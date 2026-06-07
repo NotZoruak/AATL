@@ -2,11 +2,32 @@
 
 PC 端自动化工具，通过 ADB 连接 MuMu 模拟器运行《刀剑乱舞》。目前仅适配 MuMu 模拟器 12。
 
-## 使用前准备
+## 安装步骤
 
-1. 安装 [.NET Desktop Runtime 10.0](https://dotnet.microsoft.com/download/dotnet/10.0)
-2. 启动 MuMu 模拟器，进入《刀剑乱舞》
-3. 双击 `AATL.exe` 启动程序
+### 1. 安装系统依赖
+
+右键 `DependencySetup_依赖库安装_win.bat` → **以管理员身份运行**。
+
+此脚本会自动安装：
+- Microsoft Visual C++ Redistributable
+- .NET Desktop Runtime 10.0
+
+如果已安装过这两个组件，可跳过此步。
+
+### 2. 安装 Python 环境
+
+双击 `setup.bat`，自动完成：
+1. 检测 Python 是否已安装
+2. 创建虚拟环境 `venv/`
+3. 安装 Python 依赖（maafw）
+
+### 3. 启动模拟器
+
+启动 MuMu 模拟器 12，进入《刀剑乱舞》主界面（本丸画面）。
+
+### 4. 运行程序
+
+双击 `AATL.exe` 启动 GUI 界面，连接设备后即可开始任务。具体操作见下方「使用方法」。
 
 ## 使用方法
 
@@ -19,7 +40,7 @@ PC 端自动化工具，通过 ADB 连接 MuMu 模拟器运行《刀剑乱舞》
 
 ## 修改设置
 
-修改部队地图或刷新间隔后，关闭程序再重新打开即可生效，无需其他操作。
+修改部队地图或刷新间隔后，关闭程序再重新打开即可生效。
 
 ## 任务说明
 
@@ -29,13 +50,15 @@ PC 端自动化工具，通过 ADB 连接 MuMu 模拟器运行《刀剑乱舞》
 
 ```
 AATL/
-├── AATL.exe              ← 桌面 GUI
-├── interface.json        ← 任务、资源、选项配置
-├── config/               ← 用户配置（自动生成）
-├── resource/             ← OCR 模型、模板图片、流水线
-├── libs/ + runtimes/     ← .NET 运行时依赖
-├── aatl/                 ← Python 工具
-│   ├── pipeline_gen.py   ← 根据配置生成远征流水线
-│   └── expedition.py     ← 远征地图坐标常量
-└── venv/                 ← Python 虚拟环境
+├── AATL.exe                              ← 桌面 GUI
+├── setup.bat                             ← 一键安装 Python 环境
+├── DependencySetup_依赖库安装_win.bat      ← 安装系统运行时依赖
+├── interface.json                        ← 任务、资源、选项配置
+├── config/                               ← 用户配置（自动生成）
+├── resource/                             ← OCR 模型、模板图片、流水线
+├── libs/ + runtimes/                     ← .NET 运行时依赖
+├── aatl/                                 ← Python 工具
+│   ├── pipeline_gen.py                   ← 根据配置生成远征流水线
+│   └── expedition.py                     ← 远征地图坐标常量
+└── venv/                                 ← Python 虚拟环境
 ```

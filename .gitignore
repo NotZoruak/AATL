@@ -23,4 +23,4 @@ appsettings.json
 # 系统
 Thumbs.db
 .DS_Store
-.claude/skills/gstack/
+.claude/
