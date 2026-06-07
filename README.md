@@ -1,6 +1,6 @@
 # AATL — 刀剑乱舞自动化助手
 
-基于 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 的《刀剑乱舞》自动化工具，运行于 MuMu 模拟器。
+基于 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 的《刀剑乱舞》PC 端自动化工具，通过 ADB 连接 MuMu 模拟器运行。目前仅适配 MuMu 模拟器 12。
 
 ## 功能
 
