@@ -1,65 +1,39 @@
 # AATL — 刀剑乱舞自动化助手
 
-基于 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 的《刀剑乱舞》PC 端自动化工具，通过 ADB 连接 MuMu 模拟器运行。目前仅适配 MuMu 模拟器 12。
+PC 端自动化工具，通过 ADB 连接 MuMu 模拟器运行《刀剑乱舞》。目前仅适配 MuMu 模拟器 12。
 
-## 功能
+## 使用前准备
 
-- **远征** — 自动收发 1~5 队远征，支持 20 张地图自由配置，休息队伍自动跳过
-- 更多任务开发中（合战场、地下城、联队战...）
+1. 安装 [.NET Desktop Runtime 10.0](https://dotnet.microsoft.com/download/dotnet/10.0)
+2. 启动 MuMu 模拟器，进入《刀剑乱舞》
+3. 双击 `AATL.exe` 启动程序
 
-## 环境
+## 使用方法
 
-- [.NET Desktop Runtime 10.0](https://dotnet.microsoft.com/download/dotnet/10.0)
-- [Python 3.11+](https://www.python.org/)（仅开发/构建用）
-- [MuMu 模拟器 12](https://mumu.163.com/)
+1. 程序启动后，点击左侧导航「主页」
+2. 在连接目标下拉框中选中你的 MuMu 设备
+3. 左侧任务列表勾选「远征」
+4. 在右侧设置面板中，为每个部队选择远征目的地（或休息），设置刷新间隔
+5. 点击「开始任务」即可自动运行
+6. 关闭程序前会最小化到系统托盘，右键托盘图标可退出
 
-## 快速开始
+## 修改设置
 
-1. 启动 MuMu 模拟器，进入《刀剑乱舞》
-2. 双击 `AATL.lnk` 启动 GUI
-3. 左侧导航选「主页」，点击连接目标下拉框选中 MuMu 设备
-4. 在远征任务的设置面板中，为每个部队选择远征地图（或休息）
-5. 勾选「远征」，点击「开始任务」
+修改部队地图或刷新间隔后，关闭程序再重新打开即可生效，无需其他操作。
 
-## 修改队伍配置后
+## 任务说明
 
-GUI 里改完队伍地图 → 保存 → 关 GUI → 执行：
-
-```bash
-venv\Scripts\python aatl\pipeline_gen.py
-```
-
-再打开 GUI 即可生效。
-
-## 从源码构建 GUI
-
-依赖 .NET 10.0 SDK，安装后执行：
-
-```bash
-dotnet publish _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj -c Release -o GUI
-```
+**远征** — 自动检测队伍状态，将空闲队伍派往指定地图，到时间后收取奖励，循环执行。
 
 ## 目录结构
 
 ```
 AATL/
-├── AATL.exe              ← 桌面 GUI
-├── AATL.lnk              ← 启动快捷方式
-├── interface.json        ← 任务、资源、选项配置
-├── config/               ← 用户配置（自动生成）
-├── resource/             ← OCR 模型、模板图片、流水线
-├── libs/ + runtimes/     ← .NET 运行时依赖
-├── MFAToolsPlus/         ← MFA 开发工具箱
-├── _src/                 ← GUI 源码
-├── aatl/                 ← Python 工具
-│   ├── pipeline_gen.py   ← 根据配置生成远征流水线
-│   └── expedition.py     ← 远征地图坐标常量
-└── venv/                 ← Python 虚拟环境
+├── AATL.exe              ← 主程序，双击启动
+├── interface.json        ← 任务和选项配置
+├── resource/             ← 图片模板和流水线
+├── config/               ← 用户设置（自动生成）
+├── aatl/                 ← 辅助脚本
+├── libs/ + runtimes/     ← 运行库
+└── venv/                 ← Python 环境
 ```
-
-## 流水线调试
-
-用 MFAToolsPlus 连接模拟器后，可以：
-- ROI 模式框选区域获取坐标
-- 截图保存模板图片到 `resource/base/image/`
-- 测试 OCR / 模板匹配的命中效果
