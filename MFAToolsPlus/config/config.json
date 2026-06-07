@@ -1,0 +1,44 @@
+{
+  "ColorTheme": {
+    "DisplayName": "Blue",
+    "Primary": {
+      "A": 255,
+      "R": 10,
+      "G": 89,
+      "B": 247
+    },
+    "PrimaryBrush": "#ff0a59f7",
+    "PrimaryDark": {
+      "A": 255,
+      "R": 5,
+      "G": 44,
+      "B": 123
+    },
+    "PrimaryDarkBrush": "#ff052c7b",
+    "Accent": {
+      "A": 255,
+      "R": 247,
+      "G": 168,
+      "B": 10
+    },
+    "AccentBrush": "#fff7a80a",
+    "AccentDark": {
+      "A": 255,
+      "R": 123,
+      "G": 84,
+      "B": 5
+    },
+    "AccentDarkBrush": "#ff7b5405"
+  },
+  "BaseTheme": "Light",
+  "CurrentLanguage": "zh-CN",
+  "AdbDevice": {
+    "Name": "MuMu安卓设备-MuMuPlayer12 v5",
+    "AdbPath": "D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe",
+    "AdbSerial": "127.0.0.1:16384",
+    "ScreencapMethods": 64,
+    "InputMethods": 18446744073709551615,
+    "Config": "{\"extras\":{\"mumu\":{\"enable\":true,\"index\":0,\"path\":\"D:/Apps/MuMu/MuMuPlayer\"}}}",
+    "AgentPath": "./MaaAgentBinary"
+  }
+}

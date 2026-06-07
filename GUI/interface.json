@@ -1,0 +1,286 @@
+{
+    "name": "AATL",
+    "version": "0.1.0",
+    "icon": "AATL.ico",
+    "custom_title": "AATL - 刀剑乱舞自动化助手",
+
+    "controller": [
+        {
+            "name": "mumu",
+            "label": "MuMu 模拟器",
+            "description": "docs/mumu.md",
+            "type": "Adb",
+            "display_short_side": 720,
+            "adb": {
+                "adb_path": "{ADB}",
+                "address": "127.0.0.1:7555",
+                "screencap_method": 0,
+                "input_method": 0
+            }
+        }
+    ],
+
+    "resource": [
+        {
+            "name": "刀剑乱舞",
+            "path": ["{PROJECT_DIR}/resource/base"],
+            "DisplayName": "刀剑乱舞",
+            "DisplayDescription": "刀剑乱舞（Touken Ranbu）自动化资源"
+        }
+    ],
+
+    "task": [
+        {
+            "name": "远征",
+            "entry": "Expedition",
+            "default_check": true,
+            "repeatable": false,
+            "repeat_count": 0,
+            "option": [
+                "部队一",
+                "部队二",
+                "部队三",
+                "部队四",
+                "部队五",
+                "RefreshInterval"
+            ],
+            "DisplayName": "远征",
+            "DisplayDescription": "自动收发远征队伍"
+        },
+        {
+            "name": "合战场",
+            "entry": "Battlefield",
+            "default_check": false,
+            "repeatable": true,
+            "repeat_count": 1,
+            "DisplayName": "合战场",
+            "DisplayDescription": "自动出阵合战场"
+        },
+        {
+            "name": "异去",
+            "entry": "EventMap",
+            "default_check": false,
+            "repeatable": false,
+            "repeat_count": 1,
+            "DisplayName": "异去",
+            "DisplayDescription": "自动攻略异去地图"
+        },
+        {
+            "name": "地下城",
+            "entry": "Dungeon",
+            "default_check": false,
+            "repeatable": true,
+            "repeat_count": 1,
+            "DisplayName": "地下城",
+            "DisplayDescription": "自动攻略地下城"
+        },
+        {
+            "name": "联队战（陆联）",
+            "entry": "JointBattleLand",
+            "default_check": false,
+            "repeatable": true,
+            "repeat_count": 1,
+            "DisplayName": "联队战（陆联）",
+            "DisplayDescription": "自动联队战（陆地）"
+        },
+        {
+            "name": "联队战（海联）",
+            "entry": "JointBattleSea",
+            "default_check": false,
+            "repeatable": true,
+            "repeat_count": 1,
+            "DisplayName": "联队战（海联）",
+            "DisplayDescription": "自动联队战（海上）"
+        },
+        {
+            "name": "战力扩充",
+            "entry": "PowerExpansion",
+            "default_check": false,
+            "repeatable": true,
+            "repeat_count": 1,
+            "DisplayName": "战力扩充",
+            "DisplayDescription": "自动战力扩充任务"
+        },
+        {
+            "name": "夜花夺还",
+            "entry": "NightFlower",
+            "default_check": false,
+            "repeatable": false,
+            "repeat_count": 1,
+            "DisplayName": "夜花夺还",
+            "DisplayDescription": "自动夜花夺还任务"
+        },
+        {
+            "name": "秘宝之里",
+            "entry": "TreasureRealm",
+            "default_check": false,
+            "repeatable": true,
+            "repeat_count": 1,
+            "DisplayName": "秘宝之里",
+            "DisplayDescription": "自动秘宝之里任务"
+        }
+    ],
+
+    "option": {
+        "部队一": {
+            "name": "部队一",
+            "label": "部队一 远征地图",
+            "description": "选择部队一前往的远征地图",
+            "default_case": "休息",
+            "cases": [
+                {"name": "休息", "DisplayName": "休息"},
+                {"name": "1-1", "DisplayName": "1-1"},
+                {"name": "1-2", "DisplayName": "1-2"},
+                {"name": "1-3", "DisplayName": "1-3"},
+                {"name": "1-4", "DisplayName": "1-4"},
+                {"name": "2-1", "DisplayName": "2-1"},
+                {"name": "2-2", "DisplayName": "2-2"},
+                {"name": "2-3", "DisplayName": "2-3"},
+                {"name": "2-4", "DisplayName": "2-4"},
+                {"name": "3-1", "DisplayName": "3-1"},
+                {"name": "3-2", "DisplayName": "3-2"},
+                {"name": "3-3", "DisplayName": "3-3"},
+                {"name": "3-4", "DisplayName": "3-4"},
+                {"name": "4-1", "DisplayName": "4-1"},
+                {"name": "4-2", "DisplayName": "4-2"},
+                {"name": "4-3", "DisplayName": "4-3"},
+                {"name": "4-4", "DisplayName": "4-4"},
+                {"name": "5-1", "DisplayName": "5-1"},
+                {"name": "5-2", "DisplayName": "5-2"},
+                {"name": "5-3", "DisplayName": "5-3"},
+                {"name": "5-4", "DisplayName": "5-4"}
+            ]
+        },
+        "部队二": {
+            "name": "部队二",
+            "label": "部队二 远征地图",
+            "description": "选择部队二前往的远征地图",
+            "default_case": "休息",
+            "cases": [
+                {"name": "休息", "DisplayName": "休息"},
+                {"name": "1-1", "DisplayName": "1-1"},
+                {"name": "1-2", "DisplayName": "1-2"},
+                {"name": "1-3", "DisplayName": "1-3"},
+                {"name": "1-4", "DisplayName": "1-4"},
+                {"name": "2-1", "DisplayName": "2-1"},
+                {"name": "2-2", "DisplayName": "2-2"},
+                {"name": "2-3", "DisplayName": "2-3"},
+                {"name": "2-4", "DisplayName": "2-4"},
+                {"name": "3-1", "DisplayName": "3-1"},
+                {"name": "3-2", "DisplayName": "3-2"},
+                {"name": "3-3", "DisplayName": "3-3"},
+                {"name": "3-4", "DisplayName": "3-4"},
+                {"name": "4-1", "DisplayName": "4-1"},
+                {"name": "4-2", "DisplayName": "4-2"},
+                {"name": "4-3", "DisplayName": "4-3"},
+                {"name": "4-4", "DisplayName": "4-4"},
+                {"name": "5-1", "DisplayName": "5-1"},
+                {"name": "5-2", "DisplayName": "5-2"},
+                {"name": "5-3", "DisplayName": "5-3"},
+                {"name": "5-4", "DisplayName": "5-4"}
+            ]
+        },
+        "部队三": {
+            "name": "部队三",
+            "label": "部队三 远征地图",
+            "description": "选择部队三前往的远征地图",
+            "default_case": "休息",
+            "cases": [
+                {"name": "休息", "DisplayName": "休息"},
+                {"name": "1-1", "DisplayName": "1-1"},
+                {"name": "1-2", "DisplayName": "1-2"},
+                {"name": "1-3", "DisplayName": "1-3"},
+                {"name": "1-4", "DisplayName": "1-4"},
+                {"name": "2-1", "DisplayName": "2-1"},
+                {"name": "2-2", "DisplayName": "2-2"},
+                {"name": "2-3", "DisplayName": "2-3"},
+                {"name": "2-4", "DisplayName": "2-4"},
+                {"name": "3-1", "DisplayName": "3-1"},
+                {"name": "3-2", "DisplayName": "3-2"},
+                {"name": "3-3", "DisplayName": "3-3"},
+                {"name": "3-4", "DisplayName": "3-4"},
+                {"name": "4-1", "DisplayName": "4-1"},
+                {"name": "4-2", "DisplayName": "4-2"},
+                {"name": "4-3", "DisplayName": "4-3"},
+                {"name": "4-4", "DisplayName": "4-4"},
+                {"name": "5-1", "DisplayName": "5-1"},
+                {"name": "5-2", "DisplayName": "5-2"},
+                {"name": "5-3", "DisplayName": "5-3"},
+                {"name": "5-4", "DisplayName": "5-4"}
+            ]
+        },
+        "部队四": {
+            "name": "部队四",
+            "label": "部队四 远征地图",
+            "description": "选择部队四前往的远征地图",
+            "default_case": "休息",
+            "cases": [
+                {"name": "休息", "DisplayName": "休息"},
+                {"name": "1-1", "DisplayName": "1-1"},
+                {"name": "1-2", "DisplayName": "1-2"},
+                {"name": "1-3", "DisplayName": "1-3"},
+                {"name": "1-4", "DisplayName": "1-4"},
+                {"name": "2-1", "DisplayName": "2-1"},
+                {"name": "2-2", "DisplayName": "2-2"},
+                {"name": "2-3", "DisplayName": "2-3"},
+                {"name": "2-4", "DisplayName": "2-4"},
+                {"name": "3-1", "DisplayName": "3-1"},
+                {"name": "3-2", "DisplayName": "3-2"},
+                {"name": "3-3", "DisplayName": "3-3"},
+                {"name": "3-4", "DisplayName": "3-4"},
+                {"name": "4-1", "DisplayName": "4-1"},
+                {"name": "4-2", "DisplayName": "4-2"},
+                {"name": "4-3", "DisplayName": "4-3"},
+                {"name": "4-4", "DisplayName": "4-4"},
+                {"name": "5-1", "DisplayName": "5-1"},
+                {"name": "5-2", "DisplayName": "5-2"},
+                {"name": "5-3", "DisplayName": "5-3"},
+                {"name": "5-4", "DisplayName": "5-4"}
+            ]
+        },
+        "部队五": {
+            "name": "部队五",
+            "label": "部队五 远征地图",
+            "description": "选择部队五前往的远征地图",
+            "default_case": "休息",
+            "cases": [
+                {"name": "休息", "DisplayName": "休息"},
+                {"name": "1-1", "DisplayName": "1-1"},
+                {"name": "1-2", "DisplayName": "1-2"},
+                {"name": "1-3", "DisplayName": "1-3"},
+                {"name": "1-4", "DisplayName": "1-4"},
+                {"name": "2-1", "DisplayName": "2-1"},
+                {"name": "2-2", "DisplayName": "2-2"},
+                {"name": "2-3", "DisplayName": "2-3"},
+                {"name": "2-4", "DisplayName": "2-4"},
+                {"name": "3-1", "DisplayName": "3-1"},
+                {"name": "3-2", "DisplayName": "3-2"},
+                {"name": "3-3", "DisplayName": "3-3"},
+                {"name": "3-4", "DisplayName": "3-4"},
+                {"name": "4-1", "DisplayName": "4-1"},
+                {"name": "4-2", "DisplayName": "4-2"},
+                {"name": "4-3", "DisplayName": "4-3"},
+                {"name": "4-4", "DisplayName": "4-4"},
+                {"name": "5-1", "DisplayName": "5-1"},
+                {"name": "5-2", "DisplayName": "5-2"},
+                {"name": "5-3", "DisplayName": "5-3"},
+                {"name": "5-4", "DisplayName": "5-4"}
+            ]
+        },
+        "RefreshInterval": {
+            "name": "RefreshInterval",
+            "label": "刷新间隔（分钟）",
+            "description": "每次巡检远征状态的时间间隔，建议 10-30 分钟",
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "minutes",
+                    "label": "间隔（分钟）",
+                    "default": "10",
+                    "pipeline_type": "int",
+                    "description": "设置过短可能导致游戏卡顿"
+                }
+            ]
+        }
+    }
+}

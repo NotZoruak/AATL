@@ -1,0 +1,36 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# IDE
+.idea/
+*.iml
+.vs/
+*.DotSettings.user
+
+# 源码克隆（单独下载/构建）
+_src/
+MaaFramework/
+
+# GUI 运行时产物
+GUI/logs/
+GUI/temp/
+GUI/debug/
+GUI/backup/
+GUI/config/
+GUI/appsettings.json
+
+# MFAToolsPlus 运行时产物
+MFAToolsPlus/logs/
+MFAToolsPlus/debug/
+MFAToolsPlus/temp/
+
+# 系统
+Thumbs.db
+.DS_Store
+.claude/skills/gstack/

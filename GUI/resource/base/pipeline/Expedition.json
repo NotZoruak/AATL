@@ -1,0 +1,294 @@
+{
+    "Expedition": {
+        "next": ["DetectExpeditionReturn"]
+    },
+
+    "DetectExpeditionReturn": {
+        "recognition": "OCR",
+        "roi": [560, 4, 157, 43],
+        "target": "远征结果",
+        "action": "DoNothing",
+        "next": ["ClickExpeditionReturn", "DetectHome"]
+    },
+
+    "ClickExpeditionReturn": {
+        "action": "Click",
+        "target": [560, 4, 157, 43],
+        "target_offset": [8, 4, 0, 0],
+        "next": ["DetectHome"]
+    },
+
+    "DetectHome": {
+        "recognition": "TemplateMatch",
+        "template": "本丸.png",
+        "roi": [13, 6, 61, 97],
+        "action": "DoNothing",
+        "next": ["CheckTeamStatus", "DetectHome"]
+    },
+
+    "CheckTeamStatus": {
+        "recognition": "OCR",
+        "roi": [10, 370, 30, 61],
+        "target": "状",
+        "action": "Click",
+        "target_offset": [7, 3, 0, 0],
+        "next": ["CheckTeam1"]
+    },
+
+    "CheckTeam1": {
+        "recognition": "OCR",
+        "roi": [171, 37, 66, 30],
+        "target": "待机中",
+        "action": "DoNothing",
+        "next": ["SelectTeam1", "CheckTeam2"]
+    },
+
+    "SelectTeam1": {
+        "action": "Click",
+        "target": [378, 53, 27, 77],
+        "target_offset": [7, 4, 0, 0],
+        "next": ["VerifyScreen1"]
+    },
+
+    "VerifyScreen1": {
+        "recognition": "OCR",
+        "roi": [521, 62, 240, 37],
+        "target": "远征目的地选择",
+        "action": "DoNothing",
+        "next": ["SelectMap1", "DetectHome"]
+    },
+
+    "SelectMap1": {
+        "action": "DoNothing",
+        "next": ["ConfirmDispatch1", "DetectHome"]
+    },
+
+    "ConfirmDispatch1": {
+        "action": "Click",
+        "target": [1199, 636, 1, 1],
+        "target_offset": [6, 4, 0, 0],
+        "next": ["SelectTeamBtn1"]
+    },
+
+    "SelectTeamBtn1": {
+        "action": "DoNothing",
+        "next": ["StartExpedition"]
+    },
+
+    "CheckTeam2": {
+        "recognition": "OCR",
+        "roi": [166, 153, 69, 28],
+        "target": "待机中",
+        "action": "DoNothing",
+        "next": ["SelectTeam2", "CheckTeam3"]
+    },
+
+    "SelectTeam2": {
+        "action": "Click",
+        "target": [378, 53, 27, 77],
+        "target_offset": [8, 3, 0, 0],
+        "next": ["VerifyScreen2"]
+    },
+
+    "VerifyScreen2": {
+        "recognition": "OCR",
+        "roi": [521, 62, 240, 37],
+        "target": "远征目的地选择",
+        "action": "DoNothing",
+        "next": ["SelectMap2", "DetectHome"]
+    },
+
+    "SelectMap2": {
+        "action": "DoNothing",
+        "next": ["ConfirmDispatch2", "DetectHome"]
+    },
+
+    "ConfirmDispatch2": {
+        "action": "Click",
+        "target": [1199, 636, 1, 1],
+        "target_offset": [6, 4, 0, 0],
+        "next": ["SelectTeamBtn2"]
+    },
+
+    "SelectTeamBtn2": {
+        "action": "DoNothing",
+        "next": ["StartExpedition"]
+    },
+
+    "CheckTeam3": {
+        "recognition": "OCR",
+        "roi": [164, 267, 74, 33],
+        "target": "待机中",
+        "action": "DoNothing",
+        "next": ["SelectTeam3", "CheckTeam4"]
+    },
+
+    "SelectTeam3": {
+        "action": "Click",
+        "target": [378, 53, 27, 77],
+        "target_offset": [6, 5, 0, 0],
+        "next": ["VerifyScreen3"]
+    },
+
+    "VerifyScreen3": {
+        "recognition": "OCR",
+        "roi": [521, 62, 240, 37],
+        "target": "远征目的地选择",
+        "action": "DoNothing",
+        "next": ["SelectMap3", "DetectHome"]
+    },
+
+    "SelectMap3": {
+        "action": "DoNothing",
+        "next": ["ConfirmDispatch3", "DetectHome"]
+    },
+
+    "ConfirmDispatch3": {
+        "action": "Click",
+        "target": [1199, 636, 1, 1],
+        "target_offset": [6, 4, 0, 0],
+        "next": ["SelectTeamBtn3"]
+    },
+
+    "SelectTeamBtn3": {
+        "action": "DoNothing",
+        "next": ["StartExpedition"]
+    },
+
+    "CheckTeam4": {
+        "recognition": "OCR",
+        "roi": [166, 379, 76, 35],
+        "target": "待机中",
+        "action": "DoNothing",
+        "next": ["SelectTeam4", "CheckTeam5"]
+    },
+
+    "SelectTeam4": {
+        "action": "Click",
+        "target": [378, 53, 27, 77],
+        "target_offset": [9, 3, 0, 0],
+        "next": ["VerifyScreen4"]
+    },
+
+    "VerifyScreen4": {
+        "recognition": "OCR",
+        "roi": [521, 62, 240, 37],
+        "target": "远征目的地选择",
+        "action": "DoNothing",
+        "next": ["SelectMap4", "DetectHome"]
+    },
+
+    "SelectMap4": {
+        "action": "DoNothing",
+        "next": ["ConfirmDispatch4", "DetectHome"]
+    },
+
+    "ConfirmDispatch4": {
+        "action": "Click",
+        "target": [1199, 636, 1, 1],
+        "target_offset": [6, 4, 0, 0],
+        "next": ["SelectTeamBtn4"]
+    },
+
+    "SelectTeamBtn4": {
+        "action": "DoNothing",
+        "next": ["StartExpedition"]
+    },
+
+    "CheckTeam5": {
+        "recognition": "OCR",
+        "roi": [165, 498, 72, 33],
+        "target": "待机中",
+        "action": "DoNothing",
+        "next": ["SelectTeam5", "AllTeamsBusy"]
+    },
+
+    "SelectTeam5": {
+        "action": "Click",
+        "target": [378, 53, 27, 77],
+        "target_offset": [5, 6, 0, 0],
+        "next": ["VerifyScreen5"]
+    },
+
+    "VerifyScreen5": {
+        "recognition": "OCR",
+        "roi": [521, 62, 240, 37],
+        "target": "远征目的地选择",
+        "action": "DoNothing",
+        "next": ["SelectMap5", "DetectHome"]
+    },
+
+    "SelectMap5": {
+        "action": "DoNothing",
+        "next": ["ConfirmDispatch5", "DetectHome"]
+    },
+
+    "ConfirmDispatch5": {
+        "action": "Click",
+        "target": [1199, 636, 1, 1],
+        "target_offset": [6, 4, 0, 0],
+        "next": ["SelectTeamBtn5"]
+    },
+
+    "SelectTeamBtn5": {
+        "action": "DoNothing",
+        "next": ["StartExpedition"]
+    },
+
+    "AllTeamsBusy": {
+        "action": "Click",
+        "target": [640, 360, 1, 1],
+        "target_offset": [50, 50, 0, 0],
+        "next": ["GoHome"]
+    },
+
+    "StartExpedition": {
+        "action": "Click",
+        "target": [1148, 577, 106, 95],
+        "target_offset": [8, 5, 0, 0],
+        "next": ["VerifyConfirmScreen"]
+    },
+
+    "VerifyConfirmScreen": {
+        "recognition": "OCR",
+        "roi": [472, 188, 345, 70],
+        "target": "是否向选定章节发起远征",
+        "action": "DoNothing",
+        "next": ["ConfirmExpedition", "VerifyConfirmScreen"]
+    },
+
+    "ConfirmExpedition": {
+        "action": "Click",
+        "target": [738, 551, 89, 40],
+        "target_offset": [6, 4, 0, 0],
+        "next": ["GoHome"]
+    },
+
+    "GoHome": {
+        "next": ["ClickDirectoryTop"]
+    },
+
+    "ClickDirectoryTop": {
+        "recognition": "OCR",
+        "roi": [1179, 8, 95, 56],
+        "target": "目录",
+        "action": "Click",
+        "target_offset": [5, 3, 0, 0],
+        "next": ["VerifyDirectory"]
+    },
+
+    "VerifyDirectory": {
+        "recognition": "OCR",
+        "roi": [586, 33, 102, 47],
+        "target": "目录",
+        "action": "DoNothing",
+        "next": ["ClickBackToHome", "GoHome"]
+    },
+
+    "ClickBackToHome": {
+        "action": "Click",
+        "target": [1037, 169, 110, 44],
+        "target_offset": [6, 4, 0, 0],
+        "next": ["DetectHome"]
+    }
+}
