@@ -29,11 +29,13 @@ PC 端自动化工具，通过 ADB 连接 MuMu 模拟器运行《刀剑乱舞》
 
 ```
 AATL/
-├── AATL.exe              ← 主程序，双击启动
-├── interface.json        ← 任务和选项配置
-├── resource/             ← 图片模板和流水线
-├── config/               ← 用户设置（自动生成）
-├── aatl/                 ← 辅助脚本
-├── libs/ + runtimes/     ← 运行库
-└── venv/                 ← Python 环境
+├── AATL.exe              ← 桌面 GUI
+├── interface.json        ← 任务、资源、选项配置
+├── config/               ← 用户配置（自动生成）
+├── resource/             ← OCR 模型、模板图片、流水线
+├── libs/ + runtimes/     ← .NET 运行时依赖
+├── aatl/                 ← Python 工具
+│   ├── pipeline_gen.py   ← 根据配置生成远征流水线
+│   └── expedition.py     ← 远征地图坐标常量
+└── venv/                 ← Python 虚拟环境
 ```
