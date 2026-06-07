@@ -35,6 +35,7 @@ def generate():
     with open(CFG_PATH, encoding="utf-8") as f:
         config = json.load(f)
 
+    interval_minutes = 1  # 默认
     team_maps = {}
     for item in config.get("TaskItems", []):
         if item.get("entry") != "Expedition":
@@ -53,6 +54,12 @@ def generate():
                     if cases and 0 <= idx < len(cases):
                         team_maps[n] = cases[idx]["name"]
                     break
+            if opt.get("name") == "RefreshInterval":
+                data = opt.get("data", {})
+                try:
+                    interval_minutes = int(data.get("minutes", 1))
+                except (ValueError, TypeError):
+                    interval_minutes = 1
         break
 
     with open(PIPE_PATH, encoding="utf-8") as f:
@@ -68,12 +75,17 @@ def generate():
         btn_key = f"SelectTeamBtn{i}"
 
         if parsed is None:
-            pipe[select_key]["next"] = [f"CheckTeam{i+1}" if i < 5 else "AllTeamsBusy"]
-            pipe[map_key]["action"]["param"]["target"] = random_pt([661, 183, 50, 35])
-            pipe[small_key]["action"]["param"]["target"] = random_pt([767, 370, 81, 115])
-            print(f"  部队{i}: 休息 → 跳过")
+            # 休息：禁用 CheckTeam 节点，引擎自动跳过
+            check_key = f"CheckTeam{i}"
+            pipe[check_key]["enabled"] = False
+            pipe[select_key]["action"]["type"] = "DoNothing"
+            pipe[select_key]["next"] = []
+            print(f"  部队{i}: 休息 → enabled=false")
         else:
             b, s = parsed
+            check_key = f"CheckTeam{i}"
+            pipe[check_key]["enabled"] = True
+            pipe[check_key]["next"] = [f"SelectTeam{i}"]
             pipe[select_key]["next"] = [f"VerifyScreen{i}"]
             pipe[map_key]["action"]["param"]["target"] = random_pt(BIG_MAP[b])
             pipe[small_key]["action"]["param"]["target"] = random_pt(SMALL_MAP[s])
@@ -81,6 +93,10 @@ def generate():
 
         pipe[btn_key]["action"]["param"]["target"] = random_pt(TEAM_BTN[i], offset_x=8, offset_y=0)
         print(f"          按钮: {pipe[btn_key]['action']['param']['target']}")
+
+    delay_ms = interval_minutes * 60000
+    pipe["WaitRefresh"]["post_delay"] = delay_ms
+    print(f"\n刷新间隔: {interval_minutes} 分钟 ({delay_ms}ms)")
 
     with open(PIPE_PATH, "w", encoding="utf-8") as f:
         json.dump(pipe, f, ensure_ascii=False, indent=4)

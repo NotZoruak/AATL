@@ -1,6 +1,8 @@
 {
     "Expedition": {
         "next": [
+            "ClickExpeditionReturn",
+            "DetectExpeditionScreen",
             "DetectHome"
         ]
     },
@@ -21,6 +23,9 @@
         "next": [
             "CheckTeamStatus",
             "DetectHome"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "CheckTeamStatus": {
@@ -48,7 +53,12 @@
             }
         },
         "next": [
-            "CheckTeam1"
+            "CheckTeam1",
+            "CheckTeam2",
+            "CheckTeam3",
+            "CheckTeam4",
+            "CheckTeam5",
+            "AllTeamsBusy"
         ]
     },
     "CheckTeam1": {
@@ -65,13 +75,13 @@
             }
         },
         "next": [
-            "SelectTeam1",
             "CheckTeam2"
-        ]
+        ],
+        "enabled": false
     },
     "SelectTeam1": {
         "action": {
-            "type": "Click",
+            "type": "DoNothing",
             "param": {
                 "target": [
                     378,
@@ -87,8 +97,9 @@
                 ]
             }
         },
-        "next": [
-            "CheckTeam2"
+        "next": [],
+        "on_error": [
+            "Expedition"
         ]
     },
     "VerifyScreen1": {
@@ -107,6 +118,9 @@
         "next": [
             "SelectMap1",
             "DetectHome"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "SelectMap1": {
@@ -114,8 +128,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    701,
-                    198,
+                    676,
+                    200,
                     1,
                     1
                 ],
@@ -129,6 +143,9 @@
         },
         "next": [
             "ClickSmallMap1"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "ClickSmallMap1": {
@@ -136,8 +153,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    827,
-                    383,
+                    775,
+                    451,
                     1,
                     1
                 ],
@@ -151,6 +168,9 @@
         },
         "next": [
             "ConfirmDispatch1"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "ConfirmDispatch1": {
@@ -173,6 +193,9 @@
         },
         "next": [
             "SelectTeamBtn1"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "SelectTeamBtn1": {
@@ -180,7 +203,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    150,
+                    148,
                     93,
                     1,
                     1
@@ -195,6 +218,9 @@
         },
         "next": [
             "StartExpedition"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "CheckTeam2": {
@@ -211,9 +237,9 @@
             }
         },
         "next": [
-            "SelectTeam2",
-            "CheckTeam3"
-        ]
+            "SelectTeam2"
+        ],
+        "enabled": true
     },
     "SelectTeam2": {
         "action": {
@@ -234,7 +260,10 @@
             }
         },
         "next": [
-            "CheckTeam3"
+            "VerifyScreen2"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "VerifyScreen2": {
@@ -253,6 +282,9 @@
         "next": [
             "SelectMap2",
             "DetectHome"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "SelectMap2": {
@@ -260,8 +292,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    674,
-                    200,
+                    673,
+                    202,
                     1,
                     1
                 ],
@@ -275,6 +307,9 @@
         },
         "next": [
             "ClickSmallMap2"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "ClickSmallMap2": {
@@ -282,8 +317,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    801,
-                    416,
+                    515,
+                    472,
                     1,
                     1
                 ],
@@ -297,6 +332,9 @@
         },
         "next": [
             "ConfirmDispatch2"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "ConfirmDispatch2": {
@@ -319,6 +357,9 @@
         },
         "next": [
             "SelectTeamBtn2"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "SelectTeamBtn2": {
@@ -326,7 +367,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    276,
+                    289,
                     94,
                     1,
                     1
@@ -341,6 +382,9 @@
         },
         "next": [
             "StartExpedition"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "CheckTeam3": {
@@ -357,9 +401,9 @@
             }
         },
         "next": [
-            "SelectTeam3",
-            "CheckTeam4"
-        ]
+            "SelectTeam3"
+        ],
+        "enabled": true
     },
     "SelectTeam3": {
         "action": {
@@ -380,7 +424,10 @@
             }
         },
         "next": [
-            "CheckTeam4"
+            "VerifyScreen3"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "VerifyScreen3": {
@@ -399,6 +446,9 @@
         "next": [
             "SelectMap3",
             "DetectHome"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "SelectMap3": {
@@ -406,8 +456,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    685,
-                    205,
+                    703,
+                    208,
                     1,
                     1
                 ],
@@ -421,6 +471,9 @@
         },
         "next": [
             "ClickSmallMap3"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "ClickSmallMap3": {
@@ -428,8 +481,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    783,
-                    447,
+                    1104,
+                    415,
                     1,
                     1
                 ],
@@ -443,6 +496,9 @@
         },
         "next": [
             "ConfirmDispatch3"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "ConfirmDispatch3": {
@@ -465,6 +521,9 @@
         },
         "next": [
             "SelectTeamBtn3"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "SelectTeamBtn3": {
@@ -472,7 +531,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    404,
+                    399,
                     91,
                     1,
                     1
@@ -487,6 +546,9 @@
         },
         "next": [
             "StartExpedition"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "CheckTeam4": {
@@ -503,9 +565,9 @@
             }
         },
         "next": [
-            "SelectTeam4",
-            "CheckTeam5"
-        ]
+            "SelectTeam4"
+        ],
+        "enabled": true
     },
     "SelectTeam4": {
         "action": {
@@ -526,7 +588,10 @@
             }
         },
         "next": [
-            "CheckTeam5"
+            "VerifyScreen4"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "VerifyScreen4": {
@@ -545,6 +610,9 @@
         "next": [
             "SelectMap4",
             "DetectHome"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "SelectMap4": {
@@ -552,8 +620,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    698,
-                    212,
+                    919,
+                    211,
                     1,
                     1
                 ],
@@ -567,6 +635,9 @@
         },
         "next": [
             "ClickSmallMap4"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "ClickSmallMap4": {
@@ -574,8 +645,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    803,
-                    434,
+                    527,
+                    383,
                     1,
                     1
                 ],
@@ -589,6 +660,9 @@
         },
         "next": [
             "ConfirmDispatch4"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "ConfirmDispatch4": {
@@ -611,6 +685,9 @@
         },
         "next": [
             "SelectTeamBtn4"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "SelectTeamBtn4": {
@@ -618,7 +695,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    514,
+                    522,
                     89,
                     1,
                     1
@@ -633,6 +710,9 @@
         },
         "next": [
             "StartExpedition"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "CheckTeam5": {
@@ -649,9 +729,9 @@
             }
         },
         "next": [
-            "SelectTeam5",
-            "AllTeamsBusy"
-        ]
+            "SelectTeam5"
+        ],
+        "enabled": true
     },
     "SelectTeam5": {
         "action": {
@@ -672,7 +752,10 @@
             }
         },
         "next": [
-            "AllTeamsBusy"
+            "VerifyScreen5"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "VerifyScreen5": {
@@ -691,6 +774,9 @@
         "next": [
             "SelectMap5",
             "DetectHome"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "SelectMap5": {
@@ -698,8 +784,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    700,
-                    208,
+                    912,
+                    207,
                     1,
                     1
                 ],
@@ -713,6 +799,9 @@
         },
         "next": [
             "ClickSmallMap5"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "ClickSmallMap5": {
@@ -720,8 +809,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    790,
-                    405,
+                    220,
+                    377,
                     1,
                     1
                 ],
@@ -735,6 +824,9 @@
         },
         "next": [
             "ConfirmDispatch5"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "ConfirmDispatch5": {
@@ -757,6 +849,9 @@
         },
         "next": [
             "SelectTeamBtn5"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "SelectTeamBtn5": {
@@ -764,7 +859,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    639,
+                    637,
                     91,
                     1,
                     1
@@ -779,6 +874,9 @@
         },
         "next": [
             "StartExpedition"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "AllTeamsBusy": {
@@ -799,7 +897,9 @@
                 ]
             }
         },
-        "next": []
+        "next": [
+            "GoHome"
+        ]
     },
     "StartExpedition": {
         "action": {
@@ -839,6 +939,9 @@
         "next": [
             "ConfirmExpedition",
             "VerifyConfirmScreen"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "ConfirmExpedition": {
@@ -894,6 +997,9 @@
         },
         "next": [
             "VerifyDirectory"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "VerifyDirectory": {
@@ -912,6 +1018,9 @@
         "next": [
             "ClickBackToHome",
             "GoHome"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "ClickBackToHome": {
@@ -932,6 +1041,42 @@
                 ]
             }
         },
-        "next": []
+        "next": [
+            "WaitRefresh"
+        ]
+    },
+    "ClickExpeditionReturn": {
+        "recognition": "OCR",
+        "expected": "远征结果",
+        "roi": [
+            560,
+            4,
+            157,
+            43
+        ],
+        "action": "Click",
+        "next": [
+            "DetectHome"
+        ]
+    },
+    "WaitRefresh": {
+        "action": "DoNothing",
+        "post_delay": 300000,
+        "next": [
+            "Expedition"
+        ]
+    },
+    "DetectExpeditionScreen": {
+        "recognition": "OCR",
+        "roi": [
+            521,
+            62,
+            240,
+            37
+        ],
+        "expected": "远征目的地选择",
+        "next": [
+            "GoHome"
+        ]
     }
 }

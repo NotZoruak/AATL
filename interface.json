@@ -44,7 +44,7 @@
                 "RefreshInterval"
             ],
             "DisplayName": "远征",
-            "DisplayDescription": "自动收发远征队伍"
+            "DisplayDescription": "修改队伍地图或刷新间隔后，关闭程序再重新打开即可生效"
         },
         {
             "name": "合战场",
@@ -123,7 +123,6 @@
         "部队一": {
             "name": "部队一",
             "label": "部队一 远征地图",
-            "description": "选择部队一前往的远征地图",
             "default_case": "休息",
             "cases": [
                 {
@@ -576,7 +575,6 @@
         "部队二": {
             "name": "部队二",
             "label": "部队二 远征地图",
-            "description": "选择部队二前往的远征地图",
             "default_case": "休息",
             "cases": [
                 {
@@ -1029,7 +1027,6 @@
         "部队三": {
             "name": "部队三",
             "label": "部队三 远征地图",
-            "description": "选择部队三前往的远征地图",
             "default_case": "休息",
             "cases": [
                 {
@@ -1482,7 +1479,6 @@
         "部队四": {
             "name": "部队四",
             "label": "部队四 远征地图",
-            "description": "选择部队四前往的远征地图",
             "default_case": "休息",
             "cases": [
                 {
@@ -1935,7 +1931,6 @@
         "部队五": {
             "name": "部队五",
             "label": "部队五 远征地图",
-            "description": "选择部队五前往的远征地图",
             "default_case": "休息",
             "cases": [
                 {
@@ -2388,7 +2383,6 @@
         "RefreshInterval": {
             "name": "RefreshInterval",
             "label": "刷新间隔（分钟）",
-            "description": "每次巡检远征状态的时间间隔，建议 10-30 分钟",
             "type": "input",
             "inputs": [
                 {
