@@ -43,12 +43,12 @@ dotnet publish _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj -c Release -o
 
 ```
 AATL/
+├── AATL.exe              ← 桌面 GUI
 ├── AATL.lnk              ← 启动快捷方式
-├── GUI/                  ← 桌面 GUI
-│   ├── interface.json    ← 任务、资源、选项配置
-│   ├── config/           ← 用户配置（自动生成）
-│   ├── resource/         ← OCR 模型、模板图片、流水线
-│   └── AATL.ico          ← 自定义图标
+├── interface.json        ← 任务、资源、选项配置
+├── config/               ← 用户配置（自动生成）
+├── resource/             ← OCR 模型、模板图片、流水线
+├── libs/ + runtimes/     ← .NET 运行时依赖
 ├── MFAToolsPlus/         ← MFA 开发工具箱
 ├── _src/                 ← GUI 源码
 ├── aatl/                 ← Python 工具

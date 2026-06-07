@@ -1,106 +1,91 @@
-"""根据 GUI 队伍配置生成远征 pipeline
-
-使用方法：在 GUI 里配好队伍目的地 → 保存 → 关 GUI → 运行此脚本 → 重开 GUI
-"""
+"""根据 GUI 队伍配置生成远征 pipeline 坐标（嵌套格式）"""
 
 import json
 import random
 from pathlib import Path
 
 PROJECT = Path(__file__).parent.parent
+PIPE_PATH = PROJECT / "resource" / "base" / "pipeline" / "Expedition.json"
+CFG_PATH = PROJECT / "config" / "instances" / "default.json"
 
 BIG_MAP = {1: [276, 188, 37, 39], 2: [469, 178, 50, 40], 3: [661, 183, 50, 35], 4: [891, 190, 50, 36], 5: [1078, 191, 45, 34]}
 SMALL_MAP = {1: [173, 365, 97, 96], 2: [487, 373, 84, 113], 3: [767, 370, 81, 115], 4: [1098, 368, 67, 79]}
 TEAM_BTN = {1: [154, 93, 1, 1], 2: [282, 94, 1, 1], 3: [398, 91, 1, 1], 4: [519, 89, 1, 1], 5: [635, 91, 1, 1]}
-
 CN = ["一", "二", "三", "四", "五"]
 
 
-def random_pt(roi):
+def random_pt(roi: list, offset_x=6, offset_y=6) -> list:
     x, y, w, h = roi
-    cx = x + random.randint(-5, 5) if w <= 1 else x + random.randint(6, w - 6)
-    cy = y + random.randint(-3, 3) if h <= 1 else y + random.randint(6, h - 6)
+    cx = x + random.randint(-offset_x, offset_x) if w <= 1 else x + random.randint(offset_x, w - offset_x)
+    cy = y + random.randint(-offset_y, offset_y) if h <= 1 else y + random.randint(offset_y, h - offset_y)
     return [cx, cy, 1, 1]
 
 
-def load_config(instance_path=None):
-    if instance_path is None:
-        instance_path = PROJECT / "GUI" / "config" / "instances" / "default.json"
-    with open(instance_path, encoding="utf-8") as f:
-        return json.load(f)
-
-
-def load_interface():
-    with open(PROJECT / "GUI" / "interface.json", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def parse_map(map_str):
-    if not map_str or map_str == "休息":
+def parse_map(s: str):
+    if not s or s == "休息":
         return None
     try:
-        b, s = map_str.split("-")
-        return int(b), int(s)
+        b, sm = s.split("-")
+        return int(b), int(sm)
     except (ValueError, AttributeError):
         return None
 
 
 def generate():
-    config = load_config()
-    iface = load_interface()
+    with open(CFG_PATH, encoding="utf-8") as f:
+        config = json.load(f)
 
-    # 读配置
     team_maps = {}
     for item in config.get("TaskItems", []):
         if item.get("entry") != "Expedition":
             continue
         for opt in item.get("option", []):
             name = opt.get("name", "")
-            idx = None
             for n, cn in enumerate(CN, 1):
                 if cn in name:
-                    idx = n
+                    team_maps[n] = None
+                    idx = opt.get("index", 0)
+                    # 从 interface.json 读取 cases
+                    iface_path = PROJECT / "interface.json"
+                    with open(iface_path, encoding="utf-8") as f2:
+                        iface = json.load(f2)
+                    cases = iface.get("option", {}).get(name, {}).get("cases", [])
+                    if cases and 0 <= idx < len(cases):
+                        team_maps[n] = cases[idx]["name"]
                     break
-            if idx is None:
-                continue
-            selected = opt.get("index", 0)
-            cases = iface.get("option", {}).get(name, {}).get("cases", [])
-            if cases and 0 <= selected < len(cases):
-                team_maps[idx] = cases[selected]["name"]
         break
 
-    # 加载 pipeline 模板
-    pipe_path = PROJECT / "GUI" / "resource" / "base" / "pipeline" / "Expedition.json"
-    with open(pipe_path, encoding="utf-8") as f:
+    with open(PIPE_PATH, encoding="utf-8") as f:
         pipe = json.load(f)
 
     for i in range(1, 6):
         map_str = team_maps.get(i, "休息")
         parsed = parse_map(map_str)
 
-        select_map_key = f"SelectMap{i}"
-        small_map_key = f"ClickSmallMap{i}"
-        team_btn_key = f"SelectTeamBtn{i}"
+        select_key = f"SelectTeam{i}"
+        map_key = f"SelectMap{i}"
+        small_key = f"ClickSmallMap{i}"
+        btn_key = f"SelectTeamBtn{i}"
 
         if parsed is None:
-            # 休息 → 这队不派遣，SelectTeam 直接跳到下一队检查
-            next_team = f"CheckTeam{i+1}" if i < 5 else "AllTeamsBusy"
-            pipe[f"SelectTeam{i}"]["next"] = [next_team]
-            status = "休息 → 跳过"
+            pipe[select_key]["next"] = [f"CheckTeam{i+1}" if i < 5 else "AllTeamsBusy"]
+            pipe[map_key]["action"]["param"]["target"] = random_pt([661, 183, 50, 35])
+            pipe[small_key]["action"]["param"]["target"] = random_pt([767, 370, 81, 115])
+            print(f"  部队{i}: 休息 → 跳过")
         else:
             b, s = parsed
-            pipe[f"SelectTeam{i}"]["next"] = [f"VerifyScreen{i}"]
-            pipe[select_map_key]["target"] = random_pt(BIG_MAP[b])
-            pipe[small_map_key]["target"] = random_pt(SMALL_MAP[s])
-            status = f"{map_str} → 大{b} {pipe[select_map_key]['target']} 小{s} {pipe[small_map_key]['target']}"
+            pipe[select_key]["next"] = [f"VerifyScreen{i}"]
+            pipe[map_key]["action"]["param"]["target"] = random_pt(BIG_MAP[b])
+            pipe[small_key]["action"]["param"]["target"] = random_pt(SMALL_MAP[s])
+            print(f"  部队{i}: {map_str} → 大{b} 小{s}")
 
-        pipe[team_btn_key]["target"] = random_pt(TEAM_BTN[i])
-        print(f"  部队{i}: {status} | 按钮{pipe[team_btn_key]['target']}")
+        pipe[btn_key]["action"]["param"]["target"] = random_pt(TEAM_BTN[i], offset_x=8, offset_y=0)
+        print(f"          按钮: {pipe[btn_key]['action']['param']['target']}")
 
-    with open(pipe_path, "w", encoding="utf-8") as f:
+    with open(PIPE_PATH, "w", encoding="utf-8") as f:
         json.dump(pipe, f, ensure_ascii=False, indent=4)
 
-    print("\nPipeline 已生成。重启 GUI 后配置生效。")
+    print("\nPipeline 已更新，重启 GUI 生效。")
 
 
 if __name__ == "__main__":
