@@ -7,7 +7,7 @@ PC 端自动化工具，通过 ADB 连接 MuMu 模拟器运行《刀剑乱舞》
 
 ### 1. 下载方式
 
-双击Releases 并下载最新版中命名为【AATL-Vx.x.x】的文件。
+前往 [Releases](https://github.com/alouettelwr/AATL/releases) 页面，下载最新版中命名为 `AATL-vx.x.x.zip` 的文件。
 
 注意：Release基于x86_64架构，Windows系统。对于Arm架构（如苹果M系列芯片，树莓派等），RISCV架构和Mac系统，Linux系统暂不支持。
 
