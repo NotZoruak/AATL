@@ -25,3 +25,6 @@ Thumbs.db
 .DS_Store
 .claude/
 resource/base/pipeline_snippets.json
+
+# 发布包
+*.zip
