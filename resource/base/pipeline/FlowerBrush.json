@@ -1,0 +1,459 @@
+{
+    "FlowerBrush": {
+        "next": ["FB_DetectWhereAmI"]
+    },
+
+    "FB_DetectWhereAmI": {
+        "next": [
+            "FB_HasExpeditionReturn",
+            "FB_IsMarching",
+            "FB_IsBattleResult",
+            "FB_IsSwordDrop",
+            "FB_IsFormationSelect",
+            "FB_IsSwordSelect",
+            "FB_IsTeamSelect",
+            "FB_IsEraSelect",
+            "FB_IsRegionSelect",
+            "FB_IsSortieActivity",
+            "FB_IsHome",
+            "FB_FallbackClick"
+        ]
+    },
+
+    "FB_HasExpeditionReturn": {
+        "recognition": "OCR",
+        "roi": [560, 4, 157, 43],
+        "expected": "远征结果",
+        "action": "Click",
+        "next": ["FB_DetectWhereAmI"]
+    },
+
+    "FB_IsBattleResult": {
+        "recognition": "OCR",
+        "roi": [560, 4, 157, 43],
+        "expected": "战斗结果",
+        "action": "Click",
+        "next": ["FB_DetectWhereAmI"]
+    },
+
+    "FB_IsSwordDrop": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [1168, 622, 61, 57],
+                "template": "刀剑对话.png",
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "next": ["FB_DetectWhereAmI"]
+    },
+
+    "FB_IsFormationSelect": {
+        "recognition": "OCR",
+        "roi": [560, 4, 157, 43],
+        "expected": "阵形选择",
+        "next": ["FB_SelectFormation"]
+    },
+    "FB_SelectFormation": {
+        "next": ["FB_ClickFormation1"]
+    },
+    "FB_ClickFormation1": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1017, 421, 1, 1],
+                "target_offset": [4, 2, 0, 0]
+            }
+        },
+        "post_delay": 500,
+        "next": ["FB_ClickFormation2"]
+    },
+    "FB_ClickFormation2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1017, 421, 1, 1],
+                "target_offset": [4, 2, 0, 0]
+            }
+        },
+        "next": ["FB_DetectWhereAmI"]
+    },
+
+    "FB_IsMarching": {
+        "recognition": "OCR",
+        "roi": [1072, 563, 110, 69],
+        "expected": "行军",
+        "action": "Click",
+        "next": ["FB_DetectAfterMarching"]
+    },
+
+    "FB_IsSwordSelect": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [535, 11, 214, 35],
+                "expected": "刀剑男士选择"
+            }
+        },
+        "next": ["FB_ClickFilter"]
+    },
+    "FB_ClickFilter": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [828, 82, 68, 25],
+                "target_offset": [6, 4, 0, 0]
+            }
+        },
+        "post_delay": 800,
+        "next": ["FB_ClearResidualFilter"]
+    },
+    "FB_ClearResidualFilter": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [752, 137, 97, 29],
+                "target_offset": [6, 4, 0, 0]
+            }
+        },
+        "post_delay": 800,
+        "next": ["FB_FilterByHorse"]
+    },
+    "FB_FilterByHorse": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [407, 510, 90, 31],
+                "target_offset": [6, 4, 0, 0]
+            }
+        },
+        "post_delay": 800,
+        "next": ["FB_FilterBySakura"]
+    },
+    "FB_FilterBySakura": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [965, 438, 91, 34],
+                "target_offset": [6, 4, 0, 0]
+            }
+        },
+        "post_delay": 800,
+        "next": ["FB_ConfirmFilter"]
+    },
+    "FB_ConfirmFilter": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [592, 603, 107, 46],
+                "target_offset": [6, 4, 0, 0]
+            }
+        },
+        "next": ["FB_DetectSortOrder"]
+    },
+    "FB_DetectSortOrder": {
+        "next": ["FB_ClickDescending", "FB_ConfirmSortAsc"]
+    },
+    "FB_ClickDescending": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [944, 82, 46, 29],
+                "expected": "降序"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [4, 2, 0, 0]
+            }
+        },
+        "post_delay": 800,
+        "next": ["FB_DetectSortOrder"]
+    },
+    "FB_ConfirmSortAsc": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [944, 82, 46, 29],
+                "expected": "升序"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1189, 140, 37, 61],
+                "target_offset": [6, 4, 0, 0]
+            }
+        },
+        "next": ["FB_ClickSortieNow"]
+    },
+    "FB_ClickSortieNow": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1204, 629, 1, 1],
+                "target_offset": [4, 2, 0, 0]
+            }
+        },
+        "next": ["FB_DetectWhereAmI"]
+    },
+
+    "FB_IsTeamSelect": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [566, 6, 150, 39],
+                "expected": "部队选择"
+            }
+        },
+        "next": ["FB_ClickCaptainSlot"]
+    },
+    "FB_ClickCaptainSlot": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1024, 140, 30, 50],
+                "target_offset": [6, 4, 0, 0]
+            }
+        },
+        "next": ["FB_DetectWhereAmI"]
+    },
+
+    "FB_IsEraSelect": {
+        "recognition": "OCR",
+        "roi": [569, 59, 147, 44],
+        "expected": "时代选择",
+        "next": ["FB_SelectEra"]
+    },
+    "FB_SelectEra": {
+        "next": ["FB_ClickFirstEra"]
+    },
+    "FB_ClickFirstEra": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [246, 389, 1, 1],
+                "target_offset": [6, 4, 0, 0]
+            }
+        },
+        "post_delay": 500,
+        "next": ["FB_ClickEraConfirm"]
+    },
+    "FB_ClickEraConfirm": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1199, 633, 3, 1],
+                "target_offset": [1, 0, 0, 0]
+            }
+        },
+        "next": ["FB_DetectWhereAmI"]
+    },
+
+    "FB_IsRegionSelect": {
+        "recognition": "OCR",
+        "roi": [563, 60, 159, 44],
+        "expected": "地域选择",
+        "next": ["FB_SelectRegion"]
+    },
+    "FB_SelectRegion": {
+        "next": ["FB_ClickRegion1_1"]
+    },
+    "FB_ClickRegion1_1": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [225, 344, 1, 1],
+                "target_offset": [6, 4, 0, 0]
+            }
+        },
+        "next": ["FB_DetectWhereAmI"]
+    },
+
+    "FB_IsSortieActivity": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [3, 307, 39, 76],
+                "template": "活动选中.png",
+                "green_mask": true
+            }
+        },
+        "next": ["FB_ClickBattlefieldTab"]
+    },
+    "FB_ClickBattlefieldTab": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [23, 202, 1, 1],
+                "target_offset": [6, 4, 0, 0]
+            }
+        },
+        "next": ["FB_DetectWhereAmI"]
+    },
+
+    "FB_IsHome": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [13, 6, 61, 97],
+                "template": "本丸.png",
+                "green_mask": true
+            }
+        },
+        "next": ["FB_NavigateToSortie"]
+    },
+    "FB_NavigateToSortie": {
+        "next": ["FB_ClickMenuForSortie"]
+    },
+    "FB_ClickMenuForSortie": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [1179, 8, 95, 56],
+                "expected": "目录"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [5, 3, 0, 0]
+            }
+        },
+        "next": ["FB_ClickSortieInMenu"]
+    },
+    "FB_ClickSortieInMenu": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [165, 163, 87, 52],
+                "expected": "出阵"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [5, 3, 0, 0]
+            }
+        },
+        "next": ["FB_DetectWhereAmI"]
+    },
+
+    "FB_DetectAfterMarching": {
+        "next": [
+            "FB_PostExpeditionReturn",
+            "FB_PostMarching",
+            "FB_PostBattleResult",
+            "FB_PostSwordDrop",
+            "FB_PostFormationSelect",
+            "FB_PostHome",
+            "FB_PostFallbackClick"
+        ]
+    },
+
+    "FB_PostExpeditionReturn": {
+        "recognition": "OCR",
+        "roi": [560, 4, 157, 43],
+        "expected": "远征结果",
+        "action": "Click",
+        "next": ["FB_DetectAfterMarching"]
+    },
+
+    "FB_PostBattleResult": {
+        "recognition": "OCR",
+        "roi": [560, 4, 157, 43],
+        "expected": "战斗结果",
+        "action": "Click",
+        "next": ["FB_DetectAfterMarching"]
+    },
+
+    "FB_PostSwordDrop": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [1168, 622, 61, 57],
+                "template": "刀剑对话.png",
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "next": ["FB_DetectAfterMarching"]
+    },
+
+    "FB_PostFormationSelect": {
+        "recognition": "OCR",
+        "roi": [560, 4, 157, 43],
+        "expected": "阵形选择",
+        "next": ["FB_PostSelectFormation"]
+    },
+    "FB_PostSelectFormation": {
+        "next": ["FB_PostClickFormation1"]
+    },
+    "FB_PostClickFormation1": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1017, 421, 1, 1],
+                "target_offset": [4, 2, 0, 0]
+            }
+        },
+        "post_delay": 500,
+        "next": ["FB_PostClickFormation2"]
+    },
+    "FB_PostClickFormation2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1017, 421, 1, 1],
+                "target_offset": [4, 2, 0, 0]
+            }
+        },
+        "next": ["FB_DetectAfterMarching"]
+    },
+
+    "FB_PostMarching": {
+        "recognition": "OCR",
+        "roi": [1072, 563, 110, 69],
+        "expected": "行军",
+        "action": "Click",
+        "next": ["FB_DetectAfterMarching"]
+    },
+
+    "FB_PostHome": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [13, 6, 61, 97],
+                "template": "本丸.png",
+                "green_mask": true
+            }
+        },
+        "action": "DoNothing"
+    },
+
+    "FB_PostFallbackClick": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [262, 25, 1, 1],
+                "target_offset": [6, 4, 0, 0]
+            }
+        },
+        "post_delay": 1500,
+        "next": ["FB_DetectAfterMarching"]
+    },
+
+    "FB_FallbackClick": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [262, 25, 1, 1],
+                "target_offset": [6, 4, 0, 0]
+            }
+        },
+        "post_delay": 1500,
+        "next": ["FB_DetectWhereAmI"]
+    }
+}

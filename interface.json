@@ -43,80 +43,8 @@
                 "部队五",
                 "RefreshInterval"
             ],
-            "DisplayName": "远征",
-            "DisplayDescription": "修改队伍地图或刷新间隔后，关闭程序再重新打开即可生效。请确保编队符合远征要求"
-        },
-        {
-            "name": "合战场",
-            "entry": "Battlefield",
-            "default_check": false,
-            "repeatable": true,
-            "repeat_count": 1,
-            "DisplayName": "合战场",
-            "DisplayDescription": "自动出阵合战场"
-        },
-        {
-            "name": "异去",
-            "entry": "EventMap",
-            "default_check": false,
-            "repeatable": false,
-            "repeat_count": 1,
-            "DisplayName": "异去",
-            "DisplayDescription": "自动攻略异去地图"
-        },
-        {
-            "name": "地下城",
-            "entry": "Dungeon",
-            "default_check": false,
-            "repeatable": true,
-            "repeat_count": 1,
-            "DisplayName": "地下城",
-            "DisplayDescription": "自动攻略地下城"
-        },
-        {
-            "name": "联队战（陆联）",
-            "entry": "JointBattleLand",
-            "default_check": false,
-            "repeatable": true,
-            "repeat_count": 1,
-            "DisplayName": "联队战（陆联）",
-            "DisplayDescription": "自动联队战（陆地）"
-        },
-        {
-            "name": "联队战（海联）",
-            "entry": "JointBattleSea",
-            "default_check": false,
-            "repeatable": true,
-            "repeat_count": 1,
-            "DisplayName": "联队战（海联）",
-            "DisplayDescription": "自动联队战（海上）"
-        },
-        {
-            "name": "战力扩充",
-            "entry": "PowerExpansion",
-            "default_check": false,
-            "repeatable": true,
-            "repeat_count": 1,
-            "DisplayName": "战力扩充",
-            "DisplayDescription": "自动战力扩充任务"
-        },
-        {
-            "name": "夜花夺还",
-            "entry": "NightFlower",
-            "default_check": false,
-            "repeatable": false,
-            "repeat_count": 1,
-            "DisplayName": "夜花夺还",
-            "DisplayDescription": "自动夜花夺还任务"
-        },
-        {
-            "name": "秘宝之里",
-            "entry": "TreasureRealm",
-            "default_check": false,
-            "repeatable": true,
-            "repeat_count": 1,
-            "DisplayName": "秘宝之里",
-            "DisplayDescription": "自动秘宝之里任务"
+            "label": "远征",
+            "description": "修改队伍地图或刷新间隔后，关闭程序再重新打开即可生效。请确保编队符合远征要求"
         },
         {
             "name": "江户城",
@@ -130,8 +58,17 @@
                 "换队长",
                 "补充门票"
             ],
-            "DisplayName": "江户城",
-            "DisplayDescription": "换队长：为且仅为需控花的刀剑男士装备马。补充门票：自动补充三个"
+            "label": "江户城",
+            "description": "行军路线固定为最短路径优先进入王点。\n\n- **换队长**：请为且仅为需控花的刀剑男士装备马\n- **补充门票**：勾选后检测到通行令牌耗尽时自动补充三枚"
+        },
+        {
+            "name": "刷花",
+            "entry": "FlowerBrush",
+            "default_check": false,
+            "repeatable": true,
+            "repeat_count": 1,
+            "label": "刷花",
+            "description": "仅支持部队一单骑出阵1-1刷花，请提前解散部队一并为且仅为需要刷花的刀剑男士装备马匹和刀装"
         }
     ],
     "option": {
