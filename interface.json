@@ -44,7 +44,7 @@
                 "RefreshInterval"
             ],
             "DisplayName": "远征",
-            "DisplayDescription": "修改队伍地图或刷新间隔后，关闭程序再重新打开即可生效"
+            "DisplayDescription": "修改队伍地图或刷新间隔后，关闭程序再重新打开即可生效。请确保编队符合远征要求"
         },
         {
             "name": "合战场",
@@ -117,6 +117,21 @@
             "repeat_count": 1,
             "DisplayName": "秘宝之里",
             "DisplayDescription": "自动秘宝之里任务"
+        },
+        {
+            "name": "江户城",
+            "entry": "EdoCastle",
+            "default_check": false,
+            "repeatable": true,
+            "repeat_count": 1,
+            "option": [
+                "难度选择",
+                "出阵队伍",
+                "换队长",
+                "补充门票"
+            ],
+            "DisplayName": "江户城",
+            "DisplayDescription": "换队长：为且仅为需控花的刀剑男士装备马。补充门票：自动补充三个"
         }
     ],
     "option": {
@@ -2393,6 +2408,164 @@
                     "description": "设置过短可能导致游戏卡顿"
                 }
             ]
+        },
+        "难度选择": {
+            "name": "难度选择",
+            "label": "难度选择",
+            "default_case": "易",
+            "cases": [
+                {
+                    "name": "易",
+                    "DisplayName": "易",
+                    "pipeline_override": {
+                        "ClickDifficulty": {
+                            "target": [127, 267, 208, 112]
+                        }
+                    }
+                },
+                {
+                    "name": "普",
+                    "DisplayName": "普",
+                    "pipeline_override": {
+                        "ClickDifficulty": {
+                            "target": [393, 250, 265, 141]
+                        }
+                    }
+                },
+                {
+                    "name": "难",
+                    "DisplayName": "难",
+                    "pipeline_override": {
+                        "ClickDifficulty": {
+                            "target": [698, 244, 248, 155]
+                        }
+                    }
+                },
+                {
+                    "name": "超难",
+                    "DisplayName": "超难",
+                    "pipeline_override": {
+                        "ClickDifficulty": {
+                            "target": [1012, 262, 220, 117]
+                        }
+                    }
+                }
+            ]
+        },
+        "出阵队伍": {
+            "name": "出阵队伍",
+            "label": "出阵队伍",
+            "default_case": "部队一",
+            "cases": [
+                {
+                    "name": "部队一",
+                    "DisplayName": "部队一",
+                    "pipeline_override": {
+                        "SelectTeam": {
+                            "target": [154, 93, 1, 1]
+                        }
+                    }
+                },
+                {
+                    "name": "部队二",
+                    "DisplayName": "部队二",
+                    "pipeline_override": {
+                        "SelectTeam": {
+                            "target": [282, 94, 1, 1]
+                        }
+                    }
+                },
+                {
+                    "name": "部队三",
+                    "DisplayName": "部队三",
+                    "pipeline_override": {
+                        "SelectTeam": {
+                            "target": [398, 91, 1, 1]
+                        }
+                    }
+                },
+                {
+                    "name": "部队四",
+                    "DisplayName": "部队四",
+                    "pipeline_override": {
+                        "SelectTeam": {
+                            "target": [519, 89, 1, 1]
+                        }
+                    }
+                },
+                {
+                    "name": "部队五",
+                    "DisplayName": "部队五",
+                    "pipeline_override": {
+                        "SelectTeam": {
+                            "target": [635, 91, 1, 1]
+                        }
+                    }
+                }
+            ]
+        },
+        "换队长": {
+            "name": "换队长",
+            "type": "checkbox",
+            "cases": [
+                {
+                    "name": "",
+                    "pipeline_override": {
+                        "ClickCaptainSlot": {
+                            "enabled": true
+                        },
+                        "IsSwordSelect": {
+                            "enabled": true
+                        },
+                        "ClickCaptain1": {
+                            "enabled": true
+                        },
+                        "ClickCaptain2": {
+                            "enabled": true
+                        },
+                        "ClickCaptain3": {
+                            "enabled": true
+                        },
+                        "ClickCaptain4": {
+                            "enabled": true
+                        },
+                        "ClickCaptain5": {
+                            "enabled": true
+                        },
+                        "DetectSortOrder": {
+                            "enabled": true
+                        },
+                        "ClickDescending": {
+                            "enabled": true
+                        },
+                        "ConfirmSortAsc": {
+                            "enabled": true
+                        }
+                    }
+                }
+            ],
+            "default_case": []
+        },
+        "补充门票": {
+            "name": "补充门票",
+            "type": "checkbox",
+            "cases": [
+                {
+                    "name": "",
+                    "pipeline_override": {
+                        "ReplenishTicket": {
+                            "enabled": true
+                        },
+                        "ClickRestore3": {
+                            "enabled": true
+                        },
+                        "ClickReplenishConfirm": {
+                            "enabled": true
+                        }
+                    }
+                }
+            ],
+            "default_case": []
         }
     }
 }

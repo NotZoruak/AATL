@@ -24,3 +24,4 @@ appsettings.json
 Thumbs.db
 .DS_Store
 .claude/
+resource/base/pipeline_snippets.json
