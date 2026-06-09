@@ -1,2508 +1,3209 @@
 {
-    "name": "AATL",
-    "version": "0.1.0",
-    "icon": "AATL.ico",
-    "custom_title": "AATL - 刀剑乱舞自动化助手",
-    "controller": [
-        {
-            "name": "mumu",
-            "label": "MuMu 模拟器",
-            "description": "docs/mumu.md",
-            "type": "Adb",
-            "display_short_side": 720,
-            "adb": {
-                "adb_path": "{ADB}",
-                "address": "127.0.0.1:7555",
-                "screencap_method": 0,
-                "input_method": 0
-            }
-        }
-    ],
-    "resource": [
-        {
-            "name": "刀剑乱舞",
-            "path": [
-                "{PROJECT_DIR}/resource/base"
-            ],
-            "DisplayName": "刀剑乱舞",
-            "DisplayDescription": "刀剑乱舞（Touken Ranbu）自动化资源"
-        }
-    ],
-    "task": [
-        {
-            "name": "远征",
-            "entry": "Expedition",
-            "default_check": true,
-            "repeatable": false,
-            "repeat_count": 0,
-            "option": [
-                "部队一",
-                "部队二",
-                "部队三",
-                "部队四",
-                "部队五",
-                "RefreshInterval"
-            ],
-            "label": "远征",
-            "description": "修改队伍地图或刷新间隔后，关闭程序再重新打开即可生效。请确保编队符合远征要求"
-        },
-        {
-            "name": "江户城",
-            "entry": "EdoCastle",
-            "default_check": false,
-            "repeatable": true,
-            "repeat_count": 1,
-            "option": [
-                "难度选择",
-                "出阵队伍",
-                "换队长",
-                "补充门票"
-            ],
-            "label": "江户城",
-            "description": "行军路线固定为最短路径优先进入王点。\n\n- **换队长**：请为且仅为需控花的刀剑男士装备马\n- **补充门票**：勾选后检测到通行令牌耗尽时自动补充三枚"
-        },
-        {
-            "name": "刷花",
-            "entry": "FlowerBrush",
-            "default_check": false,
-            "repeatable": true,
-            "repeat_count": 1,
-            "label": "刷花",
-            "description": "仅支持部队一单骑出阵1-1刷花，请提前解散部队一并为且仅为需要刷花的刀剑男士装备马匹和刀装"
-        }
-    ],
-    "option": {
-        "部队一": {
-            "name": "部队一",
-            "label": "部队一 远征地图",
-            "default_case": "休息",
-            "cases": [
-                {
-                    "name": "休息",
-                    "DisplayName": "休息",
-                    "pipeline_override": {}
-                },
-                {
-                    "name": "1-1",
-                    "DisplayName": "1-1",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-2",
-                    "DisplayName": "1-2",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-3",
-                    "DisplayName": "1-3",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-4",
-                    "DisplayName": "1-4",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-1",
-                    "DisplayName": "2-1",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-2",
-                    "DisplayName": "2-2",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-3",
-                    "DisplayName": "2-3",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-4",
-                    "DisplayName": "2-4",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-1",
-                    "DisplayName": "3-1",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-2",
-                    "DisplayName": "3-2",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-3",
-                    "DisplayName": "3-3",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-4",
-                    "DisplayName": "3-4",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-1",
-                    "DisplayName": "4-1",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-2",
-                    "DisplayName": "4-2",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-3",
-                    "DisplayName": "4-3",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-4",
-                    "DisplayName": "4-4",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-1",
-                    "DisplayName": "5-1",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-2",
-                    "DisplayName": "5-2",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-3",
-                    "DisplayName": "5-3",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-4",
-                    "DisplayName": "5-4",
-                    "pipeline_override": {
-                        "SelectMap1": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap1": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                }
-            ]
-        },
-        "部队二": {
-            "name": "部队二",
-            "label": "部队二 远征地图",
-            "default_case": "休息",
-            "cases": [
-                {
-                    "name": "休息",
-                    "DisplayName": "休息",
-                    "pipeline_override": {}
-                },
-                {
-                    "name": "1-1",
-                    "DisplayName": "1-1",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-2",
-                    "DisplayName": "1-2",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-3",
-                    "DisplayName": "1-3",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-4",
-                    "DisplayName": "1-4",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-1",
-                    "DisplayName": "2-1",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-2",
-                    "DisplayName": "2-2",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-3",
-                    "DisplayName": "2-3",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-4",
-                    "DisplayName": "2-4",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-1",
-                    "DisplayName": "3-1",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-2",
-                    "DisplayName": "3-2",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-3",
-                    "DisplayName": "3-3",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-4",
-                    "DisplayName": "3-4",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-1",
-                    "DisplayName": "4-1",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-2",
-                    "DisplayName": "4-2",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-3",
-                    "DisplayName": "4-3",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-4",
-                    "DisplayName": "4-4",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-1",
-                    "DisplayName": "5-1",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-2",
-                    "DisplayName": "5-2",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-3",
-                    "DisplayName": "5-3",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-4",
-                    "DisplayName": "5-4",
-                    "pipeline_override": {
-                        "SelectMap2": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap2": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                }
-            ]
-        },
-        "部队三": {
-            "name": "部队三",
-            "label": "部队三 远征地图",
-            "default_case": "休息",
-            "cases": [
-                {
-                    "name": "休息",
-                    "DisplayName": "休息",
-                    "pipeline_override": {}
-                },
-                {
-                    "name": "1-1",
-                    "DisplayName": "1-1",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-2",
-                    "DisplayName": "1-2",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-3",
-                    "DisplayName": "1-3",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-4",
-                    "DisplayName": "1-4",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-1",
-                    "DisplayName": "2-1",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-2",
-                    "DisplayName": "2-2",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-3",
-                    "DisplayName": "2-3",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-4",
-                    "DisplayName": "2-4",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-1",
-                    "DisplayName": "3-1",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-2",
-                    "DisplayName": "3-2",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-3",
-                    "DisplayName": "3-3",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-4",
-                    "DisplayName": "3-4",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-1",
-                    "DisplayName": "4-1",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-2",
-                    "DisplayName": "4-2",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-3",
-                    "DisplayName": "4-3",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-4",
-                    "DisplayName": "4-4",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-1",
-                    "DisplayName": "5-1",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-2",
-                    "DisplayName": "5-2",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-3",
-                    "DisplayName": "5-3",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-4",
-                    "DisplayName": "5-4",
-                    "pipeline_override": {
-                        "SelectMap3": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap3": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                }
-            ]
-        },
-        "部队四": {
-            "name": "部队四",
-            "label": "部队四 远征地图",
-            "default_case": "休息",
-            "cases": [
-                {
-                    "name": "休息",
-                    "DisplayName": "休息",
-                    "pipeline_override": {}
-                },
-                {
-                    "name": "1-1",
-                    "DisplayName": "1-1",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-2",
-                    "DisplayName": "1-2",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-3",
-                    "DisplayName": "1-3",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-4",
-                    "DisplayName": "1-4",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-1",
-                    "DisplayName": "2-1",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-2",
-                    "DisplayName": "2-2",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-3",
-                    "DisplayName": "2-3",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-4",
-                    "DisplayName": "2-4",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-1",
-                    "DisplayName": "3-1",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-2",
-                    "DisplayName": "3-2",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-3",
-                    "DisplayName": "3-3",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-4",
-                    "DisplayName": "3-4",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-1",
-                    "DisplayName": "4-1",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-2",
-                    "DisplayName": "4-2",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-3",
-                    "DisplayName": "4-3",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-4",
-                    "DisplayName": "4-4",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-1",
-                    "DisplayName": "5-1",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-2",
-                    "DisplayName": "5-2",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-3",
-                    "DisplayName": "5-3",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-4",
-                    "DisplayName": "5-4",
-                    "pipeline_override": {
-                        "SelectMap4": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap4": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                }
-            ]
-        },
-        "部队五": {
-            "name": "部队五",
-            "label": "部队五 远征地图",
-            "default_case": "休息",
-            "cases": [
-                {
-                    "name": "休息",
-                    "DisplayName": "休息",
-                    "pipeline_override": {}
-                },
-                {
-                    "name": "1-1",
-                    "DisplayName": "1-1",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-2",
-                    "DisplayName": "1-2",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-3",
-                    "DisplayName": "1-3",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "1-4",
-                    "DisplayName": "1-4",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                276,
-                                188,
-                                37,
-                                39
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-1",
-                    "DisplayName": "2-1",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-2",
-                    "DisplayName": "2-2",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-3",
-                    "DisplayName": "2-3",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "2-4",
-                    "DisplayName": "2-4",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                469,
-                                178,
-                                50,
-                                40
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-1",
-                    "DisplayName": "3-1",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-2",
-                    "DisplayName": "3-2",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-3",
-                    "DisplayName": "3-3",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "3-4",
-                    "DisplayName": "3-4",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                661,
-                                183,
-                                50,
-                                35
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-1",
-                    "DisplayName": "4-1",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-2",
-                    "DisplayName": "4-2",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-3",
-                    "DisplayName": "4-3",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "4-4",
-                    "DisplayName": "4-4",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                891,
-                                190,
-                                50,
-                                36
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-1",
-                    "DisplayName": "5-1",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                173,
-                                365,
-                                97,
-                                96
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-2",
-                    "DisplayName": "5-2",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                487,
-                                373,
-                                84,
-                                113
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-3",
-                    "DisplayName": "5-3",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                767,
-                                370,
-                                81,
-                                115
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "5-4",
-                    "DisplayName": "5-4",
-                    "pipeline_override": {
-                        "SelectMap5": {
-                            "target": [
-                                1078,
-                                191,
-                                45,
-                                34
-                            ]
-                        },
-                        "ClickSmallMap5": {
-                            "target": [
-                                1098,
-                                368,
-                                67,
-                                79
-                            ]
-                        }
-                    }
-                }
-            ]
-        },
-        "RefreshInterval": {
-            "name": "RefreshInterval",
-            "label": "刷新间隔（分钟）",
-            "type": "input",
-            "inputs": [
-                {
-                    "name": "minutes",
-                    "label": "间隔（分钟）",
-                    "default": "10",
-                    "pipeline_type": "int",
-                    "description": "设置过短可能导致游戏卡顿"
-                }
-            ]
-        },
-        "难度选择": {
-            "name": "难度选择",
-            "label": "难度选择",
-            "default_case": "易",
-            "cases": [
-                {
-                    "name": "易",
-                    "DisplayName": "易",
-                    "pipeline_override": {
-                        "ClickDifficulty": {
-                            "target": [127, 267, 208, 112]
-                        }
-                    }
-                },
-                {
-                    "name": "普",
-                    "DisplayName": "普",
-                    "pipeline_override": {
-                        "ClickDifficulty": {
-                            "target": [393, 250, 265, 141]
-                        }
-                    }
-                },
-                {
-                    "name": "难",
-                    "DisplayName": "难",
-                    "pipeline_override": {
-                        "ClickDifficulty": {
-                            "target": [698, 244, 248, 155]
-                        }
-                    }
-                },
-                {
-                    "name": "超难",
-                    "DisplayName": "超难",
-                    "pipeline_override": {
-                        "ClickDifficulty": {
-                            "target": [1012, 262, 220, 117]
-                        }
-                    }
-                }
-            ]
-        },
-        "出阵队伍": {
-            "name": "出阵队伍",
-            "label": "出阵队伍",
-            "default_case": "部队一",
-            "cases": [
-                {
-                    "name": "部队一",
-                    "DisplayName": "部队一",
-                    "pipeline_override": {
-                        "SelectTeam": {
-                            "target": [154, 93, 1, 1]
-                        }
-                    }
-                },
-                {
-                    "name": "部队二",
-                    "DisplayName": "部队二",
-                    "pipeline_override": {
-                        "SelectTeam": {
-                            "target": [282, 94, 1, 1]
-                        }
-                    }
-                },
-                {
-                    "name": "部队三",
-                    "DisplayName": "部队三",
-                    "pipeline_override": {
-                        "SelectTeam": {
-                            "target": [398, 91, 1, 1]
-                        }
-                    }
-                },
-                {
-                    "name": "部队四",
-                    "DisplayName": "部队四",
-                    "pipeline_override": {
-                        "SelectTeam": {
-                            "target": [519, 89, 1, 1]
-                        }
-                    }
-                },
-                {
-                    "name": "部队五",
-                    "DisplayName": "部队五",
-                    "pipeline_override": {
-                        "SelectTeam": {
-                            "target": [635, 91, 1, 1]
-                        }
-                    }
-                }
-            ]
-        },
-        "换队长": {
-            "name": "换队长",
-            "type": "checkbox",
-            "cases": [
-                {
-                    "name": "",
-                    "pipeline_override": {
-                        "ClickCaptainSlot": {
-                            "enabled": true
-                        },
-                        "IsSwordSelect": {
-                            "enabled": true
-                        },
-                        "ClickCaptain1": {
-                            "enabled": true
-                        },
-                        "ClickCaptain2": {
-                            "enabled": true
-                        },
-                        "ClickCaptain3": {
-                            "enabled": true
-                        },
-                        "ClickCaptain4": {
-                            "enabled": true
-                        },
-                        "ClickCaptain5": {
-                            "enabled": true
-                        },
-                        "DetectSortOrder": {
-                            "enabled": true
-                        },
-                        "ClickDescending": {
-                            "enabled": true
-                        },
-                        "ConfirmSortAsc": {
-                            "enabled": true
-                        }
-                    }
-                }
-            ],
-            "default_case": []
-        },
-        "补充门票": {
-            "name": "补充门票",
-            "type": "checkbox",
-            "cases": [
-                {
-                    "name": "",
-                    "pipeline_override": {
-                        "ReplenishTicket": {
-                            "enabled": true
-                        },
-                        "ClickRestore3": {
-                            "enabled": true
-                        },
-                        "ClickReplenishConfirm": {
-                            "enabled": true
-                        }
-                    }
-                }
-            ],
-            "default_case": []
-        }
+  "name": "AATL",
+  "version": "0.1.0",
+  "icon": "AATL.ico",
+  "custom_title": "AATL - 刀剑乱舞自动化助手",
+  "controller": [
+    {
+      "name": "mumu",
+      "label": "MuMu 模拟器",
+      "description": "docs/mumu.md",
+      "type": "Adb",
+      "display_short_side": 720,
+      "adb": {
+        "adb_path": "{ADB}",
+        "address": "127.0.0.1:7555",
+        "screencap_method": 0,
+        "input_method": 0
+      }
     }
+  ],
+  "resource": [
+    {
+      "name": "刀剑乱舞",
+      "path": [
+        "{PROJECT_DIR}/resource/base"
+      ],
+      "DisplayName": "刀剑乱舞",
+      "DisplayDescription": "刀剑乱舞（Touken Ranbu）自动化资源"
+    }
+  ],
+  "task": [
+    {
+      "name": "远征",
+      "entry": "Expedition",
+      "default_check": true,
+      "repeatable": false,
+      "repeat_count": 0,
+      "option": [
+        "部队一",
+        "部队二",
+        "部队三",
+        "部队四",
+        "部队五",
+        "RefreshInterval"
+      ],
+      "label": "远征",
+      "description": "修改队伍地图或刷新间隔后，关闭程序再重新打开即可生效。请确保编队符合远征要求"
+    },
+    {
+      "name": "江户城",
+      "entry": "EdoCastle",
+      "default_check": false,
+      "repeatable": true,
+      "repeat_count": 1,
+      "option": [
+        "难度选择",
+        "出阵队伍",
+        "换队长",
+        "补充门票"
+      ],
+      "label": "江户城",
+      "description": "行军路线固定为最短路径，优先进入王点。\n\n- **换队长**：请为且仅为需控花的刀剑男士装备马\n- **补充门票**：勾选后检测到通行令牌耗尽时自动补充三枚"
+    },
+    {
+      "name": "刷花",
+      "entry": "FlowerBrush",
+      "default_check": false,
+      "repeatable": true,
+      "repeat_count": 1,
+      "label": "刷花",
+      "description": "仅支持部队一单骑出阵1-1刷花，请提前解散部队一并为且仅为需要刷花的刀剑男士装备马匹和刀装"
+    },
+    {
+      "name": "合战场",
+      "entry": "Sortie",
+      "default_check": false,
+      "repeatable": false,
+      "repeat_count": 0,
+      "option": [
+        "重伤处理",
+        "选择部队",
+        "选择时代",
+        "选择地域",
+        "选择阵形",
+        "换队长",
+        "补充刀装",
+        "王点前撤退",
+        "同步远征"
+      ],
+      "label": "合战场",
+      "description": "通用合战场出阵自动化，无限循环。\n\n- **换队长**：单骑出阵时自动筛选装备马的刀剑并切换队长，请为且仅为需控花的刀剑男士装备马\n- **补充刀装**：开发中，敬请期待\n- **重伤处理**：仅能识别第一次重伤弹窗，不建议在助手运行期间额外操控或测试识别与点击极限，以免发生意外\n- **王点前撤退**：目前仅适配四图，更多功能开发中\n- **同步远征**：开发中，敬请期待"
+    }
+  ],
+  "option": {
+    "部队一": {
+      "name": "部队一",
+      "label": "部队一 远征地图",
+      "default_case": "休息",
+      "cases": [
+        {
+          "name": "休息",
+          "DisplayName": "休息",
+          "pipeline_override": {}
+        },
+        {
+          "name": "1-1",
+          "DisplayName": "1-1",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-2",
+          "DisplayName": "1-2",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-3",
+          "DisplayName": "1-3",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-4",
+          "DisplayName": "1-4",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-1",
+          "DisplayName": "2-1",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-2",
+          "DisplayName": "2-2",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-3",
+          "DisplayName": "2-3",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-4",
+          "DisplayName": "2-4",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-1",
+          "DisplayName": "3-1",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-2",
+          "DisplayName": "3-2",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-3",
+          "DisplayName": "3-3",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-4",
+          "DisplayName": "3-4",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-1",
+          "DisplayName": "4-1",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-2",
+          "DisplayName": "4-2",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-3",
+          "DisplayName": "4-3",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-4",
+          "DisplayName": "4-4",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-1",
+          "DisplayName": "5-1",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-2",
+          "DisplayName": "5-2",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-3",
+          "DisplayName": "5-3",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-4",
+          "DisplayName": "5-4",
+          "pipeline_override": {
+            "SelectMap1": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap1": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "部队二": {
+      "name": "部队二",
+      "label": "部队二 远征地图",
+      "default_case": "休息",
+      "cases": [
+        {
+          "name": "休息",
+          "DisplayName": "休息",
+          "pipeline_override": {}
+        },
+        {
+          "name": "1-1",
+          "DisplayName": "1-1",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-2",
+          "DisplayName": "1-2",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-3",
+          "DisplayName": "1-3",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-4",
+          "DisplayName": "1-4",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-1",
+          "DisplayName": "2-1",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-2",
+          "DisplayName": "2-2",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-3",
+          "DisplayName": "2-3",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-4",
+          "DisplayName": "2-4",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-1",
+          "DisplayName": "3-1",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-2",
+          "DisplayName": "3-2",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-3",
+          "DisplayName": "3-3",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-4",
+          "DisplayName": "3-4",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-1",
+          "DisplayName": "4-1",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-2",
+          "DisplayName": "4-2",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-3",
+          "DisplayName": "4-3",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-4",
+          "DisplayName": "4-4",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-1",
+          "DisplayName": "5-1",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-2",
+          "DisplayName": "5-2",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-3",
+          "DisplayName": "5-3",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-4",
+          "DisplayName": "5-4",
+          "pipeline_override": {
+            "SelectMap2": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap2": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "部队三": {
+      "name": "部队三",
+      "label": "部队三 远征地图",
+      "default_case": "休息",
+      "cases": [
+        {
+          "name": "休息",
+          "DisplayName": "休息",
+          "pipeline_override": {}
+        },
+        {
+          "name": "1-1",
+          "DisplayName": "1-1",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-2",
+          "DisplayName": "1-2",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-3",
+          "DisplayName": "1-3",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-4",
+          "DisplayName": "1-4",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-1",
+          "DisplayName": "2-1",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-2",
+          "DisplayName": "2-2",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-3",
+          "DisplayName": "2-3",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-4",
+          "DisplayName": "2-4",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-1",
+          "DisplayName": "3-1",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-2",
+          "DisplayName": "3-2",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-3",
+          "DisplayName": "3-3",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-4",
+          "DisplayName": "3-4",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-1",
+          "DisplayName": "4-1",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-2",
+          "DisplayName": "4-2",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-3",
+          "DisplayName": "4-3",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-4",
+          "DisplayName": "4-4",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-1",
+          "DisplayName": "5-1",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-2",
+          "DisplayName": "5-2",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-3",
+          "DisplayName": "5-3",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-4",
+          "DisplayName": "5-4",
+          "pipeline_override": {
+            "SelectMap3": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap3": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "部队四": {
+      "name": "部队四",
+      "label": "部队四 远征地图",
+      "default_case": "休息",
+      "cases": [
+        {
+          "name": "休息",
+          "DisplayName": "休息",
+          "pipeline_override": {}
+        },
+        {
+          "name": "1-1",
+          "DisplayName": "1-1",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-2",
+          "DisplayName": "1-2",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-3",
+          "DisplayName": "1-3",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-4",
+          "DisplayName": "1-4",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-1",
+          "DisplayName": "2-1",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-2",
+          "DisplayName": "2-2",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-3",
+          "DisplayName": "2-3",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-4",
+          "DisplayName": "2-4",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-1",
+          "DisplayName": "3-1",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-2",
+          "DisplayName": "3-2",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-3",
+          "DisplayName": "3-3",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-4",
+          "DisplayName": "3-4",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-1",
+          "DisplayName": "4-1",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-2",
+          "DisplayName": "4-2",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-3",
+          "DisplayName": "4-3",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-4",
+          "DisplayName": "4-4",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-1",
+          "DisplayName": "5-1",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-2",
+          "DisplayName": "5-2",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-3",
+          "DisplayName": "5-3",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-4",
+          "DisplayName": "5-4",
+          "pipeline_override": {
+            "SelectMap4": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap4": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "部队五": {
+      "name": "部队五",
+      "label": "部队五 远征地图",
+      "default_case": "休息",
+      "cases": [
+        {
+          "name": "休息",
+          "DisplayName": "休息",
+          "pipeline_override": {}
+        },
+        {
+          "name": "1-1",
+          "DisplayName": "1-1",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-2",
+          "DisplayName": "1-2",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-3",
+          "DisplayName": "1-3",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-4",
+          "DisplayName": "1-4",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-1",
+          "DisplayName": "2-1",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-2",
+          "DisplayName": "2-2",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-3",
+          "DisplayName": "2-3",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-4",
+          "DisplayName": "2-4",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-1",
+          "DisplayName": "3-1",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-2",
+          "DisplayName": "3-2",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-3",
+          "DisplayName": "3-3",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-4",
+          "DisplayName": "3-4",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-1",
+          "DisplayName": "4-1",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-2",
+          "DisplayName": "4-2",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-3",
+          "DisplayName": "4-3",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-4",
+          "DisplayName": "4-4",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-1",
+          "DisplayName": "5-1",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-2",
+          "DisplayName": "5-2",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-3",
+          "DisplayName": "5-3",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-4",
+          "DisplayName": "5-4",
+          "pipeline_override": {
+            "SelectMap5": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "ClickSmallMap5": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "RefreshInterval": {
+      "name": "RefreshInterval",
+      "label": "刷新间隔（分钟）",
+      "type": "input",
+      "inputs": [
+        {
+          "name": "minutes",
+          "label": "间隔（分钟）",
+          "default": "10",
+          "pipeline_type": "int",
+          "description": "设置过短可能导致游戏卡顿"
+        }
+      ]
+    },
+    "难度选择": {
+      "name": "难度选择",
+      "label": "难度选择",
+      "default_case": "易",
+      "cases": [
+        {
+          "name": "易",
+          "DisplayName": "易",
+          "pipeline_override": {
+            "ClickDifficulty": {
+              "target": [
+                127,
+                267,
+                208,
+                112
+              ]
+            }
+          }
+        },
+        {
+          "name": "普",
+          "DisplayName": "普",
+          "pipeline_override": {
+            "ClickDifficulty": {
+              "target": [
+                393,
+                250,
+                265,
+                141
+              ]
+            }
+          }
+        },
+        {
+          "name": "难",
+          "DisplayName": "难",
+          "pipeline_override": {
+            "ClickDifficulty": {
+              "target": [
+                698,
+                244,
+                248,
+                155
+              ]
+            }
+          }
+        },
+        {
+          "name": "超难",
+          "DisplayName": "超难",
+          "pipeline_override": {
+            "ClickDifficulty": {
+              "target": [
+                1012,
+                262,
+                220,
+                117
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "出阵队伍": {
+      "name": "出阵队伍",
+      "label": "出阵队伍",
+      "default_case": "部队一",
+      "cases": [
+        {
+          "name": "部队一",
+          "DisplayName": "部队一",
+          "pipeline_override": {
+            "SelectTeam": {
+              "target": [
+                154,
+                93,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队二",
+          "DisplayName": "部队二",
+          "pipeline_override": {
+            "SelectTeam": {
+              "target": [
+                282,
+                94,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队三",
+          "DisplayName": "部队三",
+          "pipeline_override": {
+            "SelectTeam": {
+              "target": [
+                398,
+                91,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队四",
+          "DisplayName": "部队四",
+          "pipeline_override": {
+            "SelectTeam": {
+              "target": [
+                519,
+                89,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队五",
+          "DisplayName": "部队五",
+          "pipeline_override": {
+            "SelectTeam": {
+              "target": [
+                635,
+                91,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "换队长": {
+      "name": "换队长",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "Sortie_IsSwordSelect": {
+              "enabled": true
+            },
+            "Sortie_ClickFilter": {
+              "enabled": true
+            },
+            "Sortie_ClearResidualFilter": {
+              "enabled": true
+            },
+            "Sortie_FilterByHorse": {
+              "enabled": true
+            },
+            "Sortie_FilterBySakura": {
+              "enabled": true
+            },
+            "Sortie_ConfirmFilter": {
+              "enabled": true
+            },
+            "Sortie_DetectSortOrder": {
+              "enabled": true
+            },
+            "Sortie_ClickDescending": {
+              "enabled": true
+            },
+            "Sortie_ConfirmSortAsc": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "补充门票": {
+      "name": "补充门票",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "ReplenishTicket": {
+              "enabled": true
+            },
+            "ClickRestore3": {
+              "enabled": true
+            },
+            "ClickReplenishConfirm": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "选择部队": {
+      "name": "选择部队",
+      "label": "选择部队",
+      "default_case": "部队一",
+      "cases": [
+        {
+          "name": "部队一",
+          "DisplayName": "部队一",
+          "pipeline_override": {
+            "Sortie_ClickTeam": {
+              "target": [
+                154,
+                93,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队二",
+          "DisplayName": "部队二",
+          "pipeline_override": {
+            "Sortie_ClickTeam": {
+              "target": [
+                282,
+                94,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队三",
+          "DisplayName": "部队三",
+          "pipeline_override": {
+            "Sortie_ClickTeam": {
+              "target": [
+                398,
+                91,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队四",
+          "DisplayName": "部队四",
+          "pipeline_override": {
+            "Sortie_ClickTeam": {
+              "target": [
+                519,
+                89,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队五",
+          "DisplayName": "部队五",
+          "pipeline_override": {
+            "Sortie_ClickTeam": {
+              "target": [
+                635,
+                91,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "选择时代": {
+      "name": "选择时代",
+      "label": "选择时代",
+      "default_case": "时代一",
+      "cases": [
+        {
+          "name": "时代一",
+          "DisplayName": "时代一",
+          "pipeline_override": {
+            "Sortie_ClickEra": {
+              "target": [
+                246,
+                389,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代二",
+          "DisplayName": "时代二",
+          "pipeline_override": {
+            "Sortie_ClickEra": {
+              "target": [
+                345,
+                516,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代三",
+          "DisplayName": "时代三",
+          "pipeline_override": {
+            "Sortie_ClickEra": {
+              "target": [
+                447,
+                379,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代四",
+          "DisplayName": "时代四",
+          "pipeline_override": {
+            "Sortie_ClickEra": {
+              "target": [
+                546,
+                511,
+                3,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代五",
+          "DisplayName": "时代五",
+          "pipeline_override": {
+            "Sortie_ClickEra": {
+              "target": [
+                644,
+                375,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代六",
+          "DisplayName": "时代六",
+          "pipeline_override": {
+            "Sortie_ClickEra": {
+              "target": [
+                750,
+                508,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代七",
+          "DisplayName": "时代七",
+          "pipeline_override": {
+            "Sortie_ClickEra": {
+              "target": [
+                849,
+                378,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代八",
+          "DisplayName": "时代八",
+          "pipeline_override": {
+            "Sortie_ClickEra": {
+              "target": [
+                956,
+                519,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "选择地域": {
+      "name": "选择地域",
+      "label": "选择地域",
+      "default_case": "地域一",
+      "cases": [
+        {
+          "name": "地域一",
+          "DisplayName": "地域一",
+          "pipeline_override": {
+            "Sortie_ClickRegion": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "地域二",
+          "DisplayName": "地域二",
+          "pipeline_override": {
+            "Sortie_ClickRegion": {
+              "target": [
+                520,
+                243,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "地域三",
+          "DisplayName": "地域三",
+          "pipeline_override": {
+            "Sortie_ClickRegion": {
+              "target": [
+                837,
+                234,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "地域四",
+          "DisplayName": "地域四",
+          "pipeline_override": {
+            "Sortie_ClickRegion": {
+              "target": [
+                1118,
+                243,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "选择阵形": {
+      "name": "选择阵形",
+      "label": "选择阵形",
+      "default_case": "逆行阵",
+      "cases": [
+        {
+          "name": "不启用",
+          "DisplayName": "不启用",
+          "pipeline_override": {
+            "Sortie_IsFormationSelect": {
+              "enabled": false
+            },
+            "Sortie_PostFormationSelect": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "鱼鳞阵",
+          "DisplayName": "鱼鳞阵",
+          "pipeline_override": {
+            "Sortie_ClickFormation1": {
+              "target": [
+                212,
+                234,
+                1,
+                1
+              ]
+            },
+            "Sortie_ClickFormation2": {
+              "target": [
+                212,
+                234,
+                1,
+                1
+              ]
+            },
+            "Sortie_PostClickFormation1": {
+              "target": [
+                212,
+                234,
+                1,
+                1
+              ]
+            },
+            "Sortie_PostClickFormation2": {
+              "target": [
+                212,
+                234,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "横队阵",
+          "DisplayName": "横队阵",
+          "pipeline_override": {
+            "Sortie_ClickFormation1": {
+              "target": [
+                591,
+                234,
+                1,
+                1
+              ]
+            },
+            "Sortie_ClickFormation2": {
+              "target": [
+                591,
+                234,
+                1,
+                1
+              ]
+            },
+            "Sortie_PostClickFormation1": {
+              "target": [
+                591,
+                234,
+                1,
+                1
+              ]
+            },
+            "Sortie_PostClickFormation2": {
+              "target": [
+                591,
+                234,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "雁行阵",
+          "DisplayName": "雁行阵",
+          "pipeline_override": {
+            "Sortie_ClickFormation1": {
+              "target": [
+                1037,
+                222,
+                1,
+                1
+              ]
+            },
+            "Sortie_ClickFormation2": {
+              "target": [
+                1037,
+                222,
+                1,
+                1
+              ]
+            },
+            "Sortie_PostClickFormation1": {
+              "target": [
+                1037,
+                222,
+                1,
+                1
+              ]
+            },
+            "Sortie_PostClickFormation2": {
+              "target": [
+                1037,
+                222,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "鹤翼阵",
+          "DisplayName": "鹤翼阵",
+          "pipeline_override": {
+            "Sortie_ClickFormation1": {
+              "target": [
+                195,
+                431,
+                1,
+                1
+              ]
+            },
+            "Sortie_ClickFormation2": {
+              "target": [
+                195,
+                431,
+                1,
+                1
+              ]
+            },
+            "Sortie_PostClickFormation1": {
+              "target": [
+                195,
+                431,
+                1,
+                1
+              ]
+            },
+            "Sortie_PostClickFormation2": {
+              "target": [
+                195,
+                431,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "方阵",
+          "DisplayName": "方阵",
+          "pipeline_override": {
+            "Sortie_ClickFormation1": {
+              "target": [
+                625,
+                407,
+                1,
+                1
+              ]
+            },
+            "Sortie_ClickFormation2": {
+              "target": [
+                625,
+                407,
+                1,
+                1
+              ]
+            },
+            "Sortie_PostClickFormation1": {
+              "target": [
+                625,
+                407,
+                1,
+                1
+              ]
+            },
+            "Sortie_PostClickFormation2": {
+              "target": [
+                625,
+                407,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "逆行阵",
+          "DisplayName": "逆行阵",
+          "pipeline_override": {
+            "Sortie_ClickFormation1": {
+              "target": [
+                1017,
+                421,
+                1,
+                1
+              ]
+            },
+            "Sortie_PostClickFormation1": {
+              "target": [
+                1017,
+                421,
+                1,
+                1
+              ]
+            },
+            "Sortie_PostClickFormation2": {
+              "target": [
+                1017,
+                421,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "补充刀装": {
+      "name": "补充刀装",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "Sortie_IsTroopDepleted": {
+              "enabled": true
+            },
+            "Sortie_RefillTroops": {
+              "enabled": true
+            },
+            "Sortie_ConfirmRefill": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "重伤处理": {
+      "name": "重伤处理",
+      "label": "重伤处理",
+      "default_case": "修刀",
+      "cases": [
+        {
+          "name": "修刀",
+          "DisplayName": "修刀",
+          "pipeline_override": {
+            "Sortie_IsRepair": {
+              "enabled": true
+            },
+            "Sortie_IsStopOnDamage": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "停止",
+          "DisplayName": "停止",
+          "pipeline_override": {
+            "Sortie_IsStopOnDamage": {
+              "enabled": true
+            },
+            "Sortie_IsRepair": {
+              "enabled": false
+            }
+          }
+        }
+      ]
+    },
+    "王点前撤退": {
+      "name": "王点前撤退",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "Sortie_Boss_E4_R1": {
+              "enabled": true
+            },
+            "Sortie_Boss_E4_R2": {
+              "enabled": true
+            },
+            "Sortie_Boss_E4_R3": {
+              "enabled": true
+            },
+            "Sortie_Boss_E4_R4": {
+              "enabled": true
+            },
+            "Sortie_Boss_E5_R1": {
+              "enabled": true
+            },
+            "Sortie_Boss_E5_R2": {
+              "enabled": true
+            },
+            "Sortie_Boss_E5_R3": {
+              "enabled": true
+            },
+            "Sortie_Boss_E5_R4": {
+              "enabled": true
+            },
+            "Sortie_Boss_E6_R1": {
+              "enabled": true
+            },
+            "Sortie_Boss_E6_R2": {
+              "enabled": true
+            },
+            "Sortie_Boss_E6_R3": {
+              "enabled": true
+            },
+            "Sortie_Boss_E6_R4": {
+              "enabled": true
+            },
+            "Sortie_Boss_E7_R1": {
+              "enabled": true
+            },
+            "Sortie_Boss_E7_R2": {
+              "enabled": true
+            },
+            "Sortie_Boss_E7_R3": {
+              "enabled": true
+            },
+            "Sortie_Boss_E7_R4": {
+              "enabled": true
+            },
+            "Sortie_Boss_E8_R1": {
+              "enabled": true
+            },
+            "Sortie_Boss_E8_R2": {
+              "enabled": true
+            },
+            "Sortie_Boss_E8_R3": {
+              "enabled": true
+            },
+            "Sortie_Boss_E8_R4": {
+              "enabled": true
+            },
+            "Sortie_ClickRetreat": {
+              "enabled": true
+            },
+            "Sortie_ConfirmRetreat": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "同步远征": {
+      "name": "同步远征",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {}
+        }
+      ],
+      "default_case": []
+    }
+  }
 }
