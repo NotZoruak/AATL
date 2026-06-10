@@ -680,7 +680,7 @@
             }
         },
         "next": [
-            "CheckTeamStatus"
+            "Sortie_NavigateToSortie"
         ]
     },
     "Sortie_NavigateToSortie": {

@@ -3206,6 +3206,11 @@
         {
           "name": "",
           "pipeline_override": {
+            "Sortie_IsHome": {
+              "next": [
+                "CheckTeamStatus"
+              ]
+            },
             "VerifyScreen1": {
               "on_error": [
                 "CheckTeamStatus"

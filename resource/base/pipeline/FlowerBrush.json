@@ -416,6 +416,28 @@
             }
         },
         "next": [
+            "FB_ClickTeam1"
+        ]
+    },
+    "FB_ClickTeam1": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    154,
+                    93,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    8,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
             "FB_ClickCaptainSlot"
         ]
     },
