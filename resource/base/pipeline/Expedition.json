@@ -1,5 +1,6 @@
 {
     "Expedition": {
+        "pre_delay": 0,
         "next": [
             "ClickExpeditionReturn",
             "DetectExpeditionScreen",
@@ -17,7 +18,10 @@
                     97
                 ],
                 "template": "本丸.png",
-                "green_mask": true
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
             }
         },
         "next": [
@@ -53,23 +57,19 @@
             }
         },
         "next": [
-            "CheckTeam1",
-            "CheckTeam2",
-            "CheckTeam3",
-            "CheckTeam4",
-            "CheckTeam5",
-            "AllTeamsBusy"
-        ]
+            "ExpSubHub2"
+        ],
+        "post_delay": 1000
     },
     "CheckTeam1": {
         "recognition": {
             "type": "OCR",
             "param": {
                 "roi": [
-                    171,
-                    37,
-                    66,
-                    30
+                    167,
+                    42,
+                    71,
+                    22
                 ],
                 "expected": "待机中"
             }
@@ -203,7 +203,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    148,
+                    156,
                     93,
                     1,
                     1
@@ -228,9 +228,9 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    166,
+                    169,
                     153,
-                    69,
+                    65,
                     28
                 ],
                 "expected": "待机中"
@@ -292,8 +292,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    705,
-                    205,
+                    695,
+                    189,
                     1,
                     1
                 ],
@@ -317,8 +317,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    531,
-                    387,
+                    550,
+                    423,
                     1,
                     1
                 ],
@@ -367,7 +367,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    280,
+                    284,
                     94,
                     1,
                     1
@@ -392,10 +392,10 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    164,
-                    267,
-                    74,
-                    33
+                    171,
+                    271,
+                    65,
+                    25
                 ],
                 "expected": "待机中"
             }
@@ -456,8 +456,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    702,
-                    193,
+                    691,
+                    203,
                     1,
                     1
                 ],
@@ -481,8 +481,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    1112,
-                    394,
+                    1113,
+                    435,
                     1,
                     1
                 ],
@@ -531,7 +531,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    402,
+                    392,
                     91,
                     1,
                     1
@@ -556,10 +556,10 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    166,
-                    379,
-                    76,
-                    35
+                    168,
+                    387,
+                    69,
+                    25
                 ],
                 "expected": "待机中"
             }
@@ -620,8 +620,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    925,
-                    220,
+                    903,
+                    215,
                     1,
                     1
                 ],
@@ -645,8 +645,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    551,
-                    423,
+                    496,
+                    400,
                     1,
                     1
                 ],
@@ -695,7 +695,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    515,
+                    517,
                     89,
                     1,
                     1
@@ -720,10 +720,10 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    165,
-                    498,
-                    72,
-                    33
+                    168,
+                    497,
+                    69,
+                    31
                 ],
                 "expected": "待机中"
             }
@@ -784,8 +784,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    897,
-                    198,
+                    900,
+                    220,
                     1,
                     1
                 ],
@@ -809,8 +809,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    207,
-                    401,
+                    1113,
+                    403,
                     1,
                     1
                 ],
@@ -859,7 +859,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    639,
+                    629,
                     91,
                     1,
                     1
@@ -964,7 +964,8 @@
         },
         "next": [
             "GoHome"
-        ]
+        ],
+        "post_delay": 4000
     },
     "GoHome": {
         "next": [
@@ -1046,14 +1047,22 @@
         ]
     },
     "ClickExpeditionReturn": {
-        "recognition": "OCR",
-        "expected": "远征结果",
-        "roi": [
-            560,
-            4,
-            157,
-            43
-        ],
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    560,
+                    4,
+                    157,
+                    43
+                ],
+                "template": "远征结果.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": "Click",
         "next": [
             "DetectHome"
@@ -1061,22 +1070,78 @@
     },
     "WaitRefresh": {
         "action": "DoNothing",
-        "post_delay": 300000,
+        "post_delay": 60000,
         "next": [
             "Expedition"
         ]
     },
     "DetectExpeditionScreen": {
-        "recognition": "OCR",
-        "roi": [
-            521,
-            62,
-            240,
-            37
-        ],
-        "expected": "远征目的地选择",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    521,
+                    62,
+                    240,
+                    37
+                ],
+                "template": "远征目的地选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "next": [
             "GoHome"
+        ]
+    },
+    "Expedition_VerifyLeftMenu": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "WaitRefresh"
+        ],
+        "next": [
+            "ClickBackToHome"
+        ]
+    },
+    "ExpSubHub2": {
+        "next": [
+            "CheckTeam2",
+            "ExpSubHub3"
+        ]
+    },
+    "ExpSubHub3": {
+        "next": [
+            "CheckTeam3",
+            "ExpSubHub4"
+        ]
+    },
+    "ExpSubHub4": {
+        "next": [
+            "CheckTeam4",
+            "ExpSubHub5"
+        ]
+    },
+    "ExpSubHub5": {
+        "next": [
+            "CheckTeam5",
+            "AllTeamsBusy"
         ]
     }
 }

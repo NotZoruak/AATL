@@ -5,9 +5,9 @@
         ]
     },
     "DetectWhereAmI": {
+        "pre_delay": 0,
         "next": [
             "HasExpeditionReturn",
-            "IsBattleResult",
             "IsSpecialDrop",
             "IsFormationSelect",
             "IsMapPointSelect",
@@ -15,32 +15,49 @@
             "IsTeamSelect",
             "IsEventPage",
             "IsSortie",
-            "IsHome"
+            "IsHome",
+            "EC_FallbackRetry"
         ]
     },
     "HasExpeditionReturn": {
-        "recognition": "OCR",
-        "roi": [
-            560,
-            4,
-            157,
-            43
-        ],
-        "expected": "远征结果",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    560,
+                    4,
+                    157,
+                    43
+                ],
+                "template": "远征结果.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": "Click",
         "next": [
             "DetectWhereAmI"
         ]
     },
     "IsBattleResult": {
-        "recognition": "OCR",
-        "roi": [
-            560,
-            4,
-            157,
-            43
-        ],
-        "expected": "战斗结果",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    575,
+                    6,
+                    129,
+                    35
+                ],
+                "template": "战斗结果.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": "Click",
         "next": [
             "DetectWhereAmI"
@@ -69,14 +86,22 @@
         ]
     },
     "IsFormationSelect": {
-        "recognition": "OCR",
-        "roi": [
-            560,
-            4,
-            157,
-            43
-        ],
-        "expected": "阵形选择",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    575,
+                    6,
+                    129,
+                    35
+                ],
+                "template": "阵形选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "next": [
             "SelectFormation"
         ]
@@ -132,14 +157,22 @@
         ]
     },
     "IsMapPointSelect": {
-        "recognition": "OCR",
-        "roi": [
-            60,
-            642,
-            141,
-            35
-        ],
-        "expected": "地图点选择",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    60,
+                    642,
+                    141,
+                    35
+                ],
+                "template": "江户城地图点选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "next": [
             "ClickMapStep"
         ]
@@ -167,7 +200,7 @@
                     54,
                     68
                 ],
-                "template": "点1.png",
+                "template": "江户城_点1.png",
                 "green_mask": true,
                 "threshold": [
                     0.98
@@ -205,7 +238,7 @@
                     63,
                     84
                 ],
-                "template": "点2.png",
+                "template": "江户城_点2.png",
                 "green_mask": true,
                 "threshold": [
                     0.98
@@ -243,7 +276,7 @@
                     61,
                     79
                 ],
-                "template": "点3.png",
+                "template": "江户城_点3.png",
                 "green_mask": true,
                 "threshold": [
                     0.98
@@ -281,7 +314,7 @@
                     49,
                     84
                 ],
-                "template": "点4.png",
+                "template": "江户城_点4.png",
                 "green_mask": true,
                 "threshold": [
                     0.98
@@ -311,21 +344,28 @@
     },
     "PostBossDetect": {
         "next": [
-            "PostBossBattleResult",
             "PostBossDrop",
             "IsEventPageTerminate",
             "PostBossWait"
         ]
     },
     "PostBossBattleResult": {
-        "recognition": "OCR",
-        "roi": [
-            560,
-            4,
-            157,
-            43
-        ],
-        "expected": "战斗结果",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    575,
+                    6,
+                    129,
+                    35
+                ],
+                "template": "战斗结果.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": "Click",
         "next": [
             "PostBossDetect"
@@ -371,7 +411,7 @@
             }
         },
         "next": [
-            "GoHomeFinal"
+            "TerminateEdoCastle"
         ]
     },
     "GoHomeFinal": {
@@ -874,6 +914,12 @@
                     4,
                     0,
                     0
+                ],
+                "target": [
+                    1012,
+                    262,
+                    220,
+                    117
                 ]
             }
         },
@@ -975,7 +1021,7 @@
             }
         },
         "next": [
-            "ClickSortieInMenu"
+            "EC_VerifyMenuSortie"
         ]
     },
     "ClickSortieInMenu": {
@@ -1002,6 +1048,109 @@
                 ]
             }
         },
+        "on_error": [
+            "DetectWhereAmI"
+        ],
+        "next": [
+            "DetectWhereAmI"
+        ]
+    },
+    "EC_VerifyMenuSortie": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "ClickMenuForSortie"
+        ],
+        "next": [
+            "ClickSortieInMenu"
+        ]
+    },
+    "EC_VerifyLeftMenuSortie": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "DetectWhereAmI"
+        ],
+        "next": [
+            "ClickSortieInMenu"
+        ]
+    },
+    "EC_VerifyLeftMenuFinal": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "TerminateEdoCastle"
+        ],
+        "next": [
+            "ClickHomeFinal"
+        ]
+    },
+    "EC_FallbackClick": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    181,
+                    36,
+                    22,
+                    12
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "DetectWhereAmI"
+        ]
+    },
+    "EC_FallbackRetry": {
         "next": [
             "DetectWhereAmI"
         ]

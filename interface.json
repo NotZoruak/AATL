@@ -1,6 +1,6 @@
 {
   "name": "AATL",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "icon": "AATL.ico",
   "custom_title": "AATL - 刀剑乱舞自动化助手",
   "controller": [
@@ -53,13 +53,12 @@
       "repeatable": true,
       "repeat_count": 1,
       "option": [
-        "难度选择",
         "出阵队伍",
         "换队长",
         "补充门票"
       ],
       "label": "江户城",
-      "description": "行军路线固定为最短路径，优先进入王点。\n\n- **换队长**：请为且仅为需控花的刀剑男士装备马\n- **补充门票**：勾选后检测到通行令牌耗尽时自动补充三枚"
+      "description": "行军路线固定为最短路径，优先进入王点。\n\n- **换队长**：请为且仅为需控花的刀剑男士装备马\n- **补充门票**：勾选后检测到通行令牌耗尽时自动补充三枚\n- **难度**：仅支持超难"
     },
     {
       "name": "刷花",
@@ -88,7 +87,7 @@
         "同步远征"
       ],
       "label": "合战场",
-      "description": "通用合战场出阵自动化，无限循环。\n\n- **换队长**：单骑出阵时自动筛选装备马的刀剑并切换队长，请为且仅为需控花的刀剑男士装备马\n- **补充刀装**：开发中，敬请期待\n- **重伤处理**：仅能识别第一次重伤弹窗，不建议在助手运行期间额外操控或测试识别与点击极限，以免发生意外\n- **王点前撤退**：目前仅适配四图，更多功能开发中\n- **同步远征**：开发中，敬请期待"
+      "description": "通用合战场出阵自动化，无限循环。可与游戏内自动行军同时开启，最大化过图速度。\n\n- **换队长**：通过筛选装备马的刀剑来切换队长，请为且仅为需控花的刀剑男士装备马\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请保存部队记录\n- **重伤处理**：仅能识别第一次重伤弹窗，不建议在助手运行期间额外操控或测试识别与点击极限，以免发生意外\n- **王点前撤退**：目前仅适配四图，更多功能开发中\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保合战场使用的队伍在远征任务中设置为「休息」"
     }
   ],
   "option": {
@@ -2516,21 +2515,6 @@
             "Sortie_IsSwordSelect": {
               "enabled": true
             },
-            "Sortie_ClickFilter": {
-              "enabled": true
-            },
-            "Sortie_ClearResidualFilter": {
-              "enabled": true
-            },
-            "Sortie_FilterByHorse": {
-              "enabled": true
-            },
-            "Sortie_FilterBySakura": {
-              "enabled": true
-            },
-            "Sortie_ConfirmFilter": {
-              "enabled": true
-            },
             "Sortie_DetectSortOrder": {
               "enabled": true
             },
@@ -2538,6 +2522,24 @@
               "enabled": true
             },
             "Sortie_ConfirmSortAsc": {
+              "enabled": true
+            },
+            "Sortie_ClickCaptain1": {
+              "enabled": true
+            },
+            "Sortie_ClickCaptain2": {
+              "enabled": true
+            },
+            "Sortie_ClickCaptain3": {
+              "enabled": true
+            },
+            "Sortie_ClickCaptain4": {
+              "enabled": true
+            },
+            "Sortie_ClickCaptain5": {
+              "enabled": true
+            },
+            "Sortie_ClickCaptainSlot": {
               "enabled": true
             }
           }
@@ -3071,13 +3073,16 @@
         {
           "name": "",
           "pipeline_override": {
-            "Sortie_IsTroopDepleted": {
+            "Sortie_CheckEquipmentPopup": {
               "enabled": true
             },
-            "Sortie_RefillTroops": {
+            "Sortie_PreCheckTroopRecord": {
               "enabled": true
             },
-            "Sortie_ConfirmRefill": {
+            "Sortie_PreCheckUseRecord": {
+              "enabled": true
+            },
+            "Sortie_PreConfirmSupply": {
               "enabled": true
             }
           }
@@ -3200,7 +3205,46 @@
       "cases": [
         {
           "name": "",
-          "pipeline_override": {}
+          "pipeline_override": {
+            "VerifyScreen1": {
+              "on_error": [
+                "CheckTeamStatus"
+              ]
+            },
+            "VerifyScreen2": {
+              "on_error": [
+                "CheckTeamStatus"
+              ]
+            },
+            "VerifyScreen3": {
+              "on_error": [
+                "CheckTeamStatus"
+              ]
+            },
+            "VerifyScreen4": {
+              "on_error": [
+                "CheckTeamStatus"
+              ]
+            },
+            "VerifyScreen5": {
+              "on_error": [
+                "CheckTeamStatus"
+              ]
+            },
+            "ClickBackToHome": {
+              "next": [
+                "Sortie_WaitRefresh"
+              ]
+            },
+            "AllTeamsBusy": {
+              "next": [
+                "Sortie_NavigateToSortie"
+              ]
+            },
+            "Sortie_WaitRefresh": {
+              "enabled": true
+            }
+          }
         }
       ],
       "default_case": []

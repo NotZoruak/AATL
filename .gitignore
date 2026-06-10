@@ -26,5 +26,8 @@ Thumbs.db
 .claude/
 resource/base/pipeline_snippets.json
 
+# 开发工具
+gen_doc.py
+
 # 发布包
 *.zip

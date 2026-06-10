@@ -5,6 +5,7 @@
         ]
     },
     "Sortie_DetectWhereAmI": {
+        "pre_delay": 0,
         "next": [
             "Sortie_HasExpeditionReturn",
             "Sortie_IsMarching",
@@ -12,7 +13,6 @@
             "Sortie_IsSwordDrop",
             "Sortie_IsFormationSelect",
             "Sortie_IsSwordSelect",
-            "Sortie_IsPreSortieConfirm",
             "Sortie_IsTeamSelect",
             "Sortie_IsEraSelect",
             "Sortie_IsRegionSelect",
@@ -24,41 +24,65 @@
         ]
     },
     "Sortie_HasExpeditionReturn": {
-        "recognition": "OCR",
-        "roi": [
-            560,
-            4,
-            157,
-            43
-        ],
-        "expected": "远征结果",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    560,
+                    4,
+                    157,
+                    43
+                ],
+                "template": "远征结果.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": "Click",
         "next": [
             "Sortie_DetectWhereAmI"
         ]
     },
     "Sortie_IsMarching": {
-        "recognition": "OCR",
-        "roi": [
-            1072,
-            563,
-            110,
-            69
-        ],
-        "expected": "行军",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1072,
+                    563,
+                    110,
+                    69
+                ],
+                "template": "合战场_行军.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "next": [
             "Sortie_CheckBossBeforeMarch"
         ]
     },
     "Sortie_IsBattleResult": {
-        "recognition": "OCR",
-        "roi": [
-            560,
-            4,
-            157,
-            43
-        ],
-        "expected": "战斗结果",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    575,
+                    6,
+                    129,
+                    35
+                ],
+                "template": "战斗结果.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": "Click",
         "next": [
             "Sortie_DetectWhereAmI"
@@ -75,7 +99,10 @@
                     57
                 ],
                 "template": "刀剑对话.png",
-                "green_mask": true
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
             }
         },
         "action": "Click",
@@ -84,14 +111,22 @@
         ]
     },
     "Sortie_IsFormationSelect": {
-        "recognition": "OCR",
-        "roi": [
-            560,
-            4,
-            157,
-            43
-        ],
-        "expected": "阵形选择",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    575,
+                    6,
+                    129,
+                    35
+                ],
+                "template": "阵形选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "next": [
             "Sortie_ClickFormation1"
         ]
@@ -156,126 +191,7 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickFilter"
-        ]
-    },
-    "Sortie_ClickFilter": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    828,
-                    82,
-                    68,
-                    25
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": false,
-        "post_delay": 200,
-        "next": [
-            "Sortie_ClearResidualFilter"
-        ]
-    },
-    "Sortie_ClearResidualFilter": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    752,
-                    137,
-                    97,
-                    29
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": false,
-        "post_delay": 200,
-        "next": [
-            "Sortie_FilterByHorse"
-        ]
-    },
-    "Sortie_FilterByHorse": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    407,
-                    510,
-                    90,
-                    31
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": false,
-        "post_delay": 200,
-        "next": [
-            "Sortie_FilterBySakura"
-        ]
-    },
-    "Sortie_FilterBySakura": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    965,
-                    438,
-                    91,
-                    34
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": false,
-        "post_delay": 200,
-        "next": [
-            "Sortie_ConfirmFilter"
-        ]
-    },
-    "Sortie_ConfirmFilter": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    592,
-                    603,
-                    107,
-                    46
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": false,
-        "next": [
-            "Sortie_DetectSortOrder"
+            "Sortie_ClickCaptain1"
         ]
     },
     "Sortie_DetectSortOrder": {
@@ -310,7 +226,7 @@
             }
         },
         "enabled": false,
-        "post_delay": 200,
+        "post_delay": 800,
         "next": [
             "Sortie_DetectSortOrder"
         ]
@@ -347,22 +263,29 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickSortieNow"
+            "Sortie_IsPreSortieConfirm"
         ]
     },
     "Sortie_IsPreSortieConfirm": {
         "recognition": {
-            "type": "OCR",
+            "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    1135,
-                    630,
-                    93,
-                    40
+                    1166,
+                    590,
+                    75,
+                    79
                 ],
-                "expected": "出阵"
+                "template": "即刻出阵.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
             }
         },
+        "on_error": [
+            "Sortie_DetectWhereAmI"
+        ],
         "next": [
             "Sortie_ClickSortieNow"
         ]
@@ -386,16 +309,50 @@
             }
         },
         "next": [
+            "Sortie_PostSortieHub"
+        ]
+    },
+    "Sortie_PostSortieHub": {
+        "pre_delay": 0,
+        "next": [
+            "Sortie_IsPreDamage1",
+            "Sortie_IsPreDamage2",
+            "Sortie_CheckEquipmentPopup",
+            "Sortie_DetectAfterSortieNow"
+        ]
+    },
+    "Sortie_CheckEquipmentPopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    428,
+                    489,
+                    135,
+                    46
+                ],
+                "template": "整备刀装.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "enabled": false,
+        "next": [
+            "Sortie_PreCheckTroopRecord"
+        ],
+        "on_error": [
             "Sortie_DetectAfterSortieNow"
         ]
     },
     "Sortie_DetectAfterSortieNow": {
+        "pre_delay": 0,
         "next": [
             "Sortie_IsTroopDepleted",
             "Sortie_IsMarching",
             "Sortie_IsFormationSelect",
-            "Sortie_IsPreDamage2",
-            "Sortie_IsPreDamage1",
             "Sortie_FallbackClick"
         ]
     },
@@ -499,18 +456,78 @@
             }
         },
         "next": [
-            "Sortie_DetectWhereAmI"
+            "Sortie_CaptainHub"
+        ]
+    },
+    "Sortie_PreCheckTroopRecord": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1144,
+                    137,
+                    114,
+                    31
+                ],
+                "template": "部队记录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "enabled": false,
+        "on_error": [
+            "Sortie_DetectAfterSortieNow"
+        ],
+        "next": [
+            "Sortie_PreCheckUseRecord"
+        ]
+    },
+    "Sortie_PreCheckUseRecord": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    712,
+                    58,
+                    62,
+                    54
+                ],
+                "template": "使用记录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "enabled": false,
+        "on_error": [
+            "Sortie_DetectAfterSortieNow"
+        ],
+        "next": [
+            "Sortie_PreConfirmSupply"
         ]
     },
     "Sortie_IsEraSelect": {
-        "recognition": "OCR",
-        "roi": [
-            569,
-            59,
-            147,
-            44
-        ],
-        "expected": "时代选择",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    569,
+                    59,
+                    147,
+                    44
+                ],
+                "template": "时代选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "next": [
             "Sortie_ClickEra"
         ]
@@ -560,14 +577,22 @@
         ]
     },
     "Sortie_IsRegionSelect": {
-        "recognition": "OCR",
-        "roi": [
-            563,
-            60,
-            159,
-            44
-        ],
-        "expected": "地域选择",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    563,
+                    60,
+                    159,
+                    44
+                ],
+                "template": "地域选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "next": [
             "Sortie_ClickRegion"
         ]
@@ -605,7 +630,10 @@
                     76
                 ],
                 "template": "活动选中.png",
-                "green_mask": true
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
             }
         },
         "next": [
@@ -645,11 +673,14 @@
                     97
                 ],
                 "template": "本丸.png",
-                "green_mask": true
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
             }
         },
         "next": [
-            "Sortie_NavigateToSortie"
+            "CheckTeamStatus"
         ]
     },
     "Sortie_NavigateToSortie": {
@@ -682,7 +713,7 @@
             }
         },
         "next": [
-            "Sortie_ClickSortieInMenu"
+            "Sortie_VerifyMenuSortie"
         ]
     },
     "Sortie_ClickSortieInMenu": {
@@ -709,6 +740,9 @@
                 ]
             }
         },
+        "on_error": [
+            "Sortie_DetectWhereAmI"
+        ],
         "next": [
             "Sortie_DetectWhereAmI"
         ]
@@ -856,10 +890,10 @@
             "type": "Click",
             "param": {
                 "target": [
-                    262,
-                    25,
-                    1,
-                    1
+                    181,
+                    36,
+                    22,
+                    12
                 ],
                 "target_offset": [
                     6,
@@ -875,6 +909,7 @@
         ]
     },
     "Sortie_DetectAfterMarching": {
+        "pre_delay": 0,
         "next": [
             "Sortie_PostExpeditionReturn",
             "Sortie_PostMarching",
@@ -885,41 +920,65 @@
         ]
     },
     "Sortie_PostExpeditionReturn": {
-        "recognition": "OCR",
-        "roi": [
-            560,
-            4,
-            157,
-            43
-        ],
-        "expected": "远征结果",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    560,
+                    4,
+                    157,
+                    43
+                ],
+                "template": "远征结果.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": "Click",
         "next": [
             "Sortie_DetectAfterMarching"
         ]
     },
     "Sortie_PostMarching": {
-        "recognition": "OCR",
-        "roi": [
-            1072,
-            563,
-            110,
-            69
-        ],
-        "expected": "行军",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1072,
+                    563,
+                    110,
+                    69
+                ],
+                "template": "合战场_行军.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "next": [
             "Sortie_CheckBossBeforeMarch"
         ]
     },
     "Sortie_PostBattleResult": {
-        "recognition": "OCR",
-        "roi": [
-            560,
-            4,
-            157,
-            43
-        ],
-        "expected": "战斗结果",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    575,
+                    6,
+                    129,
+                    35
+                ],
+                "template": "战斗结果.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": "Click",
         "next": [
             "Sortie_DetectAfterMarching"
@@ -936,7 +995,10 @@
                     57
                 ],
                 "template": "刀剑对话.png",
-                "green_mask": true
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
             }
         },
         "action": "Click",
@@ -945,14 +1007,22 @@
         ]
     },
     "Sortie_PostFormationSelect": {
-        "recognition": "OCR",
-        "roi": [
-            560,
-            4,
-            157,
-            43
-        ],
-        "expected": "阵形选择",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    575,
+                    6,
+                    129,
+                    35
+                ],
+                "template": "阵形选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "next": [
             "Sortie_PostClickFormation1"
         ]
@@ -1003,6 +1073,7 @@
         ]
     },
     "Sortie_CheckBossBeforeMarch": {
+        "pre_delay": 0,
         "next": [
             "Sortie_IsMarchingDamage2",
             "Sortie_Boss_E4_R1",
@@ -1629,10 +1700,10 @@
             "type": "Click",
             "param": {
                 "target": [
-                    262,
-                    25,
-                    1,
-                    1
+                    181,
+                    36,
+                    22,
+                    12
                 ],
                 "target_offset": [
                     6,
@@ -1653,6 +1724,7 @@
         ]
     },
     "Sortie_DetectWhereAmI_Round2": {
+        "pre_delay": 0,
         "next": [
             "Sortie_HasExpeditionReturn",
             "Sortie_IsMarching",
@@ -1660,7 +1732,6 @@
             "Sortie_IsSwordDrop",
             "Sortie_IsFormationSelect",
             "Sortie_IsSwordSelect",
-            "Sortie_IsPreSortieConfirm",
             "Sortie_IsTeamSelect",
             "Sortie_IsEraSelect",
             "Sortie_IsRegionSelect",
@@ -2066,7 +2137,7 @@
             0
         ],
         "next": [
-            "Sortie_SortieAfterRepair"
+            "Sortie_VerifyMenuAfterRepair"
         ]
     },
     "Sortie_SortieAfterRepair": {
@@ -2132,6 +2203,308 @@
         "next": [
             "Sortie_ClickRepairInMenu",
             "Sortie_ClickMenuForRepair"
+        ]
+    },
+    "Sortie_VerifyMenuSortie": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "Sortie_ClickMenu"
+        ],
+        "next": [
+            "Sortie_ClickSortieInMenu"
+        ]
+    },
+    "Sortie_VerifyLeftMenuSortie": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "Sortie_DetectWhereAmI"
+        ],
+        "next": [
+            "Sortie_ClickSortieInMenu"
+        ]
+    },
+    "Sortie_VerifyLeftMenuRepair": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "Sortie_SelectDamagedSword"
+        ],
+        "next": [
+            "Sortie_ClickRepairInMenu"
+        ]
+    },
+    "Sortie_VerifyMenuAfterRepair": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "Sortie_DirAfterRepair"
+        ],
+        "next": [
+            "Sortie_SortieAfterRepair"
+        ]
+    },
+    "Sortie_VerifyLeftMenuAfterRepair": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "Sortie_DetectWhereAmI"
+        ],
+        "next": [
+            "Sortie_SortieAfterRepair"
+        ]
+    },
+    "Sortie_ClickCaptain1": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    828,
+                    82,
+                    68,
+                    25
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 800,
+        "next": [
+            "Sortie_ClickCaptain2"
+        ]
+    },
+    "Sortie_ClickCaptain2": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    752,
+                    137,
+                    97,
+                    29
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 800,
+        "next": [
+            "Sortie_ClickCaptain3"
+        ]
+    },
+    "Sortie_ClickCaptain3": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    407,
+                    510,
+                    90,
+                    31
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 800,
+        "next": [
+            "Sortie_ClickCaptain4"
+        ]
+    },
+    "Sortie_ClickCaptain4": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    965,
+                    438,
+                    91,
+                    34
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 800,
+        "next": [
+            "Sortie_ClickCaptain5"
+        ]
+    },
+    "Sortie_ClickCaptain5": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    592,
+                    603,
+                    107,
+                    46
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "Sortie_DetectSortOrder"
+        ]
+    },
+    "Sortie_ClickCaptainSlot": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1024,
+                    140,
+                    30,
+                    50
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "Sortie_DetectWhereAmI"
+        ],
+        "post_delay": 1000
+    },
+    "Sortie_CaptainHub": {
+        "next": [
+            "Sortie_ClickCaptainSlot",
+            "Sortie_IsPreSortieConfirm"
+        ]
+    },
+    "Sortie_PreConfirmSupply": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    789,
+                    512,
+                    1,
+                    4
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_IsPreSortieConfirm"
+        ]
+    },
+    "Sortie_WaitRefresh": {
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "post_delay": 3000,
+        "next": [
+            "CheckTeamStatus"
         ]
     }
 }
