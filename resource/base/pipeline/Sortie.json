@@ -11,6 +11,7 @@
             "Sortie_IsMarching",
             "Sortie_IsBattleResult",
             "Sortie_IsSwordDrop",
+            "Sortie_IsKebiishi",
             "Sortie_IsFormationSelect",
             "Sortie_IsSwordSelect",
             "Sortie_IsTeamSelect",
@@ -20,30 +21,29 @@
             "Sortie_IsHome",
             "Sortie_IsRepair",
             "Sortie_IsStopOnDamage",
-            "Sortie_FallbackRetry"
+            "Sortie_FallbackWait"
         ]
     },
     "Sortie_HasExpeditionReturn": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    560,
-                    4,
-                    157,
-                    43
-                ],
-                "template": "远征结果.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+        "recognition": "OCR",
+        "roi": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "expected": "经验",
         "action": "Click",
+        "target": [
+            957,
+            465,
+            178,
+            192
+        ],
         "next": [
             "Sortie_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_IsMarching": {
         "recognition": {
@@ -67,26 +67,25 @@
         ]
     },
     "Sortie_IsBattleResult": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    575,
-                    6,
-                    129,
-                    35
-                ],
-                "template": "战斗结果.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+        "recognition": "OCR",
+        "roi": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "expected": "经验",
         "action": "Click",
+        "target": [
+            957,
+            465,
+            178,
+            192
+        ],
         "next": [
             "Sortie_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_IsSwordDrop": {
         "recognition": {
@@ -108,7 +107,8 @@
         "action": "Click",
         "next": [
             "Sortie_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_IsFormationSelect": {
         "recognition": {
@@ -152,7 +152,8 @@
         "post_delay": 200,
         "next": [
             "Sortie_ClickFormation2"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ClickFormation2": {
         "action": {
@@ -174,7 +175,8 @@
         },
         "next": [
             "Sortie_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_IsSwordSelect": {
         "recognition": {
@@ -229,7 +231,8 @@
         "post_delay": 800,
         "next": [
             "Sortie_DetectSortOrder"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ConfirmSortAsc": {
         "recognition": {
@@ -264,7 +267,8 @@
         "enabled": false,
         "next": [
             "Sortie_IsPreSortieConfirm"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_IsPreSortieConfirm": {
         "recognition": {
@@ -310,7 +314,8 @@
         },
         "next": [
             "Sortie_PostSortieHub"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_PostSortieHub": {
         "pre_delay": 0,
@@ -345,7 +350,8 @@
         ],
         "on_error": [
             "Sortie_DetectAfterSortieNow"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_DetectAfterSortieNow": {
         "pre_delay": 0,
@@ -353,7 +359,7 @@
             "Sortie_IsTroopDepleted",
             "Sortie_IsMarching",
             "Sortie_IsFormationSelect",
-            "Sortie_FallbackClick"
+            "Sortie_FallbackWait"
         ]
     },
     "Sortie_IsTroopDepleted": {
@@ -395,7 +401,8 @@
         "enabled": false,
         "next": [
             "Sortie_ConfirmRefill"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ConfirmRefill": {
         "action": {
@@ -418,7 +425,8 @@
         "enabled": false,
         "next": [
             "Sortie_ClickSortieNow"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_IsTeamSelect": {
         "recognition": {
@@ -457,7 +465,8 @@
         },
         "next": [
             "Sortie_CaptainHub"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_PreCheckTroopRecord": {
         "recognition": {
@@ -483,7 +492,8 @@
         ],
         "next": [
             "Sortie_PreCheckUseRecord"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_PreCheckUseRecord": {
         "recognition": {
@@ -509,7 +519,8 @@
         ],
         "next": [
             "Sortie_PreConfirmSupply"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_IsEraSelect": {
         "recognition": {
@@ -552,7 +563,8 @@
         },
         "next": [
             "Sortie_ConfirmEra"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ConfirmEra": {
         "action": {
@@ -574,7 +586,8 @@
         },
         "next": [
             "Sortie_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_IsRegionSelect": {
         "recognition": {
@@ -594,7 +607,34 @@
             }
         },
         "next": [
+            "Sortie_VerifyRegionSelect"
+        ],
+        "on_error": [
+            "Sortie_DetectWhereAmI"
+        ]
+    },
+    "Sortie_VerifyRegionSelect": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    563,
+                    60,
+                    159,
+                    44
+                ],
+                "template": "地域选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
             "Sortie_ClickRegion"
+        ],
+        "on_error": [
+            "Sortie_DetectWhereAmI"
         ]
     },
     "Sortie_ClickRegion": {
@@ -617,7 +657,9 @@
         },
         "next": [
             "Sortie_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 500,
+        "post_delay": 800
     },
     "Sortie_IsSortieActivity": {
         "recognition": {
@@ -660,7 +702,8 @@
         },
         "next": [
             "Sortie_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_IsHome": {
         "recognition": {
@@ -713,8 +756,9 @@
             }
         },
         "next": [
-            "Sortie_VerifyMenuSortie"
-        ]
+            "Sortie_PostClickMenuHub"
+        ],
+        "pre_delay": 100
     },
     "Sortie_ClickSortieInMenu": {
         "recognition": {
@@ -741,11 +785,12 @@
             }
         },
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "Sortie_PostClickMenuHub"
         ],
         "next": [
             "Sortie_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_IsRepair": {
         "recognition": {
@@ -802,7 +847,8 @@
         "enabled": false,
         "next": [
             "Sortie_ConfirmRepair"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ConfirmRepair": {
         "action": {
@@ -826,7 +872,8 @@
         "post_delay": 200,
         "next": [
             "Sortie_ReturnHome"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ReturnHome": {
         "next": [
@@ -860,7 +907,8 @@
         "enabled": false,
         "next": [
             "Sortie_ClickHomeInMenu"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ClickHomeInMenu": {
         "action": {
@@ -883,198 +931,13 @@
         "enabled": false,
         "next": [
             "Sortie_DetectWhereAmI"
-        ]
-    },
-    "Sortie_FallbackClick": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    181,
-                    36,
-                    22,
-                    12
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "post_delay": 1000,
-        "next": [
-            "Sortie_DetectWhereAmI"
-        ]
-    },
-    "Sortie_DetectAfterMarching": {
-        "pre_delay": 0,
-        "next": [
-            "Sortie_PostExpeditionReturn",
-            "Sortie_PostMarching",
-            "Sortie_PostBattleResult",
-            "Sortie_PostSwordDrop",
-            "Sortie_PostFormationSelect",
-            "Sortie_PostFallbackClick"
-        ]
-    },
-    "Sortie_PostExpeditionReturn": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    560,
-                    4,
-                    157,
-                    43
-                ],
-                "template": "远征结果.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
-        "next": [
-            "Sortie_DetectAfterMarching"
-        ]
-    },
-    "Sortie_PostMarching": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    1072,
-                    563,
-                    110,
-                    69
-                ],
-                "template": "合战场_行军.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "next": [
-            "Sortie_CheckBossBeforeMarch"
-        ]
-    },
-    "Sortie_PostBattleResult": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    575,
-                    6,
-                    129,
-                    35
-                ],
-                "template": "战斗结果.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
-        "next": [
-            "Sortie_DetectAfterMarching"
-        ]
-    },
-    "Sortie_PostSwordDrop": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    1168,
-                    622,
-                    61,
-                    57
-                ],
-                "template": "刀剑对话.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
-        "next": [
-            "Sortie_DetectAfterMarching"
-        ]
-    },
-    "Sortie_PostFormationSelect": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    575,
-                    6,
-                    129,
-                    35
-                ],
-                "template": "阵形选择.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "next": [
-            "Sortie_PostClickFormation1"
-        ]
-    },
-    "Sortie_PostClickFormation1": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1017,
-                    421,
-                    1,
-                    1
-                ],
-                "target_offset": [
-                    4,
-                    2,
-                    0,
-                    0
-                ]
-            }
-        },
-        "post_delay": 200,
-        "next": [
-            "Sortie_PostClickFormation2"
-        ]
-    },
-    "Sortie_PostClickFormation2": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1017,
-                    421,
-                    1,
-                    1
-                ],
-                "target_offset": [
-                    4,
-                    2,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "Sortie_DetectAfterMarching"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_CheckBossBeforeMarch": {
         "pre_delay": 0,
         "next": [
+            "Sortie_IsKebiishi",
             "Sortie_IsMarchingDamage2",
             "Sortie_Boss_E4_R1",
             "Sortie_Boss_E4_R2",
@@ -1083,6 +946,7 @@
             "Sortie_Boss_E5_R1",
             "Sortie_Boss_E5_R2",
             "Sortie_Boss_E5_R3",
+            "Sortie_Boss_E5_R3_2",
             "Sortie_Boss_E5_R4",
             "Sortie_Boss_E6_R1",
             "Sortie_Boss_E6_R2",
@@ -1118,8 +982,9 @@
             }
         },
         "next": [
-            "Sortie_DetectAfterMarching"
-        ]
+            "Sortie_DetectWhereAmI"
+        ],
+        "pre_delay": 100
     },
     "Sortie_Boss_E4_R1": {
         "recognition": {
@@ -1206,30 +1071,24 @@
         ]
     },
     "Sortie_Boss_E5_R1": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1081,
+                    261,
+                    18,
+                    18
+                ],
+                "template": "王点_5_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
-        ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
         ]
     },
     "Sortie_Boss_E5_R2": {
@@ -1260,30 +1119,24 @@
         ]
     },
     "Sortie_Boss_E5_R3": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1067,
+                    283,
+                    14,
+                    23
+                ],
+                "template": "王点_5_3_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
-        ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
         ]
     },
     "Sortie_Boss_E5_R4": {
@@ -1314,111 +1167,87 @@
         ]
     },
     "Sortie_Boss_E6_R1": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    870,
+                    172,
+                    16,
+                    21
+                ],
+                "template": "王点_6_1_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
-        ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
         ]
     },
     "Sortie_Boss_E6_R2": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    855,
+                    167,
+                    12,
+                    21
+                ],
+                "template": "王点_6_2.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
-        ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
         ]
     },
     "Sortie_Boss_E6_R3": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1101,
+                    241,
+                    15,
+                    23
+                ],
+                "template": "王点_6_3.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
-        ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
         ]
     },
     "Sortie_Boss_E6_R4": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    876,
+                    196,
+                    11,
+                    21
+                ],
+                "template": "王点_6_4.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
-        ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
         ]
     },
     "Sortie_Boss_E7_R1": {
@@ -1658,7 +1487,8 @@
         "enabled": false,
         "next": [
             "Sortie_ConfirmRetreat"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ConfirmRetreat": {
         "recognition": {
@@ -1693,54 +1523,8 @@
         "enabled": false,
         "next": [
             "Sortie_DetectWhereAmI"
-        ]
-    },
-    "Sortie_PostFallbackClick": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    181,
-                    36,
-                    22,
-                    12
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "post_delay": 1000,
-        "next": [
-            "Sortie_DetectWhereAmI"
-        ]
-    },
-    "Sortie_FallbackRetry": {
-        "next": [
-            "Sortie_DetectWhereAmI_Round2"
-        ]
-    },
-    "Sortie_DetectWhereAmI_Round2": {
-        "pre_delay": 0,
-        "next": [
-            "Sortie_HasExpeditionReturn",
-            "Sortie_IsMarching",
-            "Sortie_IsBattleResult",
-            "Sortie_IsSwordDrop",
-            "Sortie_IsFormationSelect",
-            "Sortie_IsSwordSelect",
-            "Sortie_IsTeamSelect",
-            "Sortie_IsEraSelect",
-            "Sortie_IsRegionSelect",
-            "Sortie_IsSortieActivity",
-            "Sortie_IsHome",
-            "Sortie_IsRepair",
-            "Sortie_IsStopOnDamage",
-            "Sortie_FallbackClick"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_IsPreDamage1": {
         "recognition": "OCR",
@@ -1766,7 +1550,8 @@
         ],
         "next": [
             "Sortie_DecideDamage_Pre"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_IsPreDamage2": {
         "recognition": "OCR",
@@ -1805,7 +1590,8 @@
         ],
         "next": [
             "Sortie_DecideDamage_March"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_IsMarchingDamage2": {
         "recognition": "OCR",
@@ -1838,7 +1624,8 @@
         ],
         "next": [
             "Sortie_DecideDamage_Pre"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ConfirmCancelPreDamage2": {
         "recognition": "OCR",
@@ -1859,7 +1646,8 @@
         "next": [
             "Sortie_DecideDamage_Pre"
         ],
-        "post_delay": 500
+        "post_delay": 500,
+        "pre_delay": 100
     },
     "Sortie_ConfirmCancelMarchingDamage2": {
         "recognition": "OCR",
@@ -1880,7 +1668,8 @@
         "next": [
             "Sortie_ReturnHomeAfterMarchDamage"
         ],
-        "post_delay": 300
+        "post_delay": 300,
+        "pre_delay": 100
     },
     "Sortie_NavigateToRepair": {
         "next": [
@@ -1908,7 +1697,8 @@
         "post_delay": 300,
         "next": [
             "Sortie_VerifyMenuOpened"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ClickRepairInMenu": {
         "recognition": "OCR",
@@ -1928,7 +1718,8 @@
         ],
         "next": [
             "Sortie_SelectDamagedSword"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_SelectDamagedSword": {
         "next": [
@@ -1955,7 +1746,8 @@
         ],
         "next": [
             "Sortie_ConfirmSelectSlot"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_FindSlot2": {
         "recognition": "OCR",
@@ -1975,7 +1767,8 @@
         ],
         "next": [
             "Sortie_ConfirmSelectSlot"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_FindSlot3": {
         "recognition": "OCR",
@@ -1995,7 +1788,8 @@
         ],
         "next": [
             "Sortie_ConfirmSelectSlot"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_DecideDamage_Pre": {
         "next": [
@@ -2019,7 +1813,8 @@
         ],
         "next": [
             "Sortie_ConfirmReturnHome"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_DecideDamage_March": {
         "next": [
@@ -2045,60 +1840,36 @@
         ],
         "next": [
             "Sortie_CheckAccel"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_CheckAccel": {
         "next": [
-            "Sortie_MatchAccelUnused",
-            "Sortie_MatchAccelUsed"
+            "Sortie_ClickAccel"
         ]
     },
-    "Sortie_MatchAccelUnused": {
-        "recognition": {
-            "type": "TemplateMatch",
+    "Sortie_ClickAccel": {
+        "action": {
+            "type": "Click",
             "param": {
-                "roi": [
+                "target": [
                     1156,
                     241,
                     27,
                     25
                 ],
-                "template": "未使用加速符.png",
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
-        "target_offset": [
-            2,
-            1,
-            0,
-            0
-        ],
-        "next": [
-            "Sortie_CheckAccel"
-        ]
-    },
-    "Sortie_MatchAccelUsed": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    1156,
-                    241,
-                    27,
-                    25
-                ],
-                "template": "使用加速符.png",
-                "threshold": [
-                    0.98
+                "target_offset": [
+                    2,
+                    1,
+                    0,
+                    0
                 ]
             }
         },
         "next": [
             "Sortie_ClickRepairDone"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ClickRepairDone": {
         "recognition": "OCR",
@@ -2118,7 +1889,8 @@
         ],
         "next": [
             "Sortie_DirAfterRepair"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_DirAfterRepair": {
         "recognition": "OCR",
@@ -2138,7 +1910,8 @@
         ],
         "next": [
             "Sortie_VerifyMenuAfterRepair"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_SortieAfterRepair": {
         "recognition": "OCR",
@@ -2158,7 +1931,8 @@
         ],
         "next": [
             "Sortie_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ConfirmReturnHome": {
         "recognition": {
@@ -2187,9 +1961,10 @@
             0
         ],
         "next": [
-            "Sortie_ClickMenuForRepair"
+            "Sortie_DetectWhereAmI"
         ],
-        "post_delay": 500
+        "post_delay": 500,
+        "pre_delay": 100
     },
     "Sortie_VerifyMenuOpened": {
         "recognition": "OCR",
@@ -2200,9 +1975,18 @@
             47
         ],
         "expected": "目录",
-        "next": [
-            "Sortie_ClickRepairInMenu",
+        "on_error": [
             "Sortie_ClickMenuForRepair"
+        ],
+        "next": [
+            "Sortie_ClickRepairInMenu"
+        ]
+    },
+    "Sortie_PostClickMenuHub": {
+        "next": [
+            "Sortie_VerifyMenuSortie",
+            "Sortie_CheckNavDirForRetry",
+            "Sortie_DetectWhereAmI"
         ]
     },
     "Sortie_VerifyMenuSortie": {
@@ -2222,12 +2006,30 @@
                 ]
             }
         },
-        "on_error": [
-            "Sortie_ClickMenu"
-        ],
         "next": [
             "Sortie_ClickSortieInMenu"
         ]
+    },
+    "Sortie_CheckNavDirForRetry": {
+        "recognition": "OCR",
+        "roi": [
+            1179,
+            8,
+            95,
+            56
+        ],
+        "expected": "目录",
+        "action": "Click",
+        "target_offset": [
+            5,
+            3,
+            0,
+            0
+        ],
+        "next": [
+            "Sortie_ClickMenu"
+        ],
+        "pre_delay": 100
     },
     "Sortie_VerifyLeftMenuSortie": {
         "recognition": {
@@ -2347,7 +2149,8 @@
         "post_delay": 800,
         "next": [
             "Sortie_ClickCaptain2"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ClickCaptain2": {
         "enabled": false,
@@ -2371,7 +2174,8 @@
         "post_delay": 800,
         "next": [
             "Sortie_ClickCaptain3"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ClickCaptain3": {
         "enabled": false,
@@ -2395,7 +2199,8 @@
         "post_delay": 800,
         "next": [
             "Sortie_ClickCaptain4"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ClickCaptain4": {
         "enabled": false,
@@ -2419,7 +2224,8 @@
         "post_delay": 800,
         "next": [
             "Sortie_ClickCaptain5"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ClickCaptain5": {
         "enabled": false,
@@ -2442,7 +2248,8 @@
         },
         "next": [
             "Sortie_DetectSortOrder"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_ClickCaptainSlot": {
         "enabled": false,
@@ -2466,7 +2273,8 @@
         "next": [
             "Sortie_DetectWhereAmI"
         ],
-        "post_delay": 1000
+        "post_delay": 1000,
+        "pre_delay": 100
     },
     "Sortie_CaptainHub": {
         "next": [
@@ -2495,7 +2303,8 @@
         "enabled": false,
         "next": [
             "Sortie_IsPreSortieConfirm"
-        ]
+        ],
+        "pre_delay": 100
     },
     "Sortie_WaitRefresh": {
         "action": {
@@ -2505,6 +2314,56 @@
         "post_delay": 3000,
         "next": [
             "CheckTeamStatus"
+        ]
+    },
+    "Sortie_IsKebiishi": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    527,
+                    98,
+                    69,
+                    54
+                ],
+                "template": "检非.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "Sortie_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "Sortie_FallbackWait": {
+        "action": "DoNothing",
+        "next": [
+            "Sortie_DetectWhereAmI"
+        ]
+    },
+    "Sortie_Boss_E5_R3_2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1089,
+                    192,
+                    18,
+                    20
+                ],
+                "template": "王点_5_3_2.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
         ]
     }
 }

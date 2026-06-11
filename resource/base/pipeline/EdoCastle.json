@@ -16,7 +16,7 @@
             "IsEventPage",
             "IsSortie",
             "IsHome",
-            "EC_FallbackRetry"
+            "EC_FallbackWait"
         ]
     },
     "HasExpeditionReturn": {
@@ -39,7 +39,8 @@
         "action": "Click",
         "next": [
             "DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "IsBattleResult": {
         "recognition": {
@@ -61,7 +62,8 @@
         "action": "Click",
         "next": [
             "DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "IsSpecialDrop": {
         "recognition": {
@@ -83,7 +85,8 @@
         "action": "Click",
         "next": [
             "DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "IsFormationSelect": {
         "recognition": {
@@ -132,7 +135,8 @@
         "post_delay": 500,
         "next": [
             "ClickFormation2"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickFormation2": {
         "action": {
@@ -154,7 +158,8 @@
         },
         "next": [
             "DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "IsMapPointSelect": {
         "recognition": {
@@ -226,7 +231,8 @@
         },
         "next": [
             "DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "IsPoint2": {
         "recognition": {
@@ -264,7 +270,8 @@
         },
         "next": [
             "DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "IsPoint3": {
         "recognition": {
@@ -302,7 +309,8 @@
         },
         "next": [
             "DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "IsPoint4": {
         "recognition": {
@@ -340,7 +348,8 @@
         },
         "next": [
             "PostBossDetect"
-        ]
+        ],
+        "pre_delay": 100
     },
     "PostBossDetect": {
         "next": [
@@ -369,7 +378,8 @@
         "action": "Click",
         "next": [
             "PostBossDetect"
-        ]
+        ],
+        "pre_delay": 100
     },
     "PostBossDrop": {
         "recognition": {
@@ -391,7 +401,8 @@
         "action": "Click",
         "next": [
             "PostBossDetect"
-        ]
+        ],
+        "pre_delay": 100
     },
     "IsEventPageTerminate": {
         "recognition": {
@@ -445,7 +456,8 @@
         },
         "next": [
             "VerifyDirFinal"
-        ]
+        ],
+        "pre_delay": 100
     },
     "VerifyDirFinal": {
         "recognition": {
@@ -487,7 +499,8 @@
         },
         "next": [
             "TerminateEdoCastle"
-        ]
+        ],
+        "pre_delay": 100
     },
     "PostBossWait": {
         "action": "DoNothing",
@@ -539,7 +552,8 @@
         "post_delay": 800,
         "next": [
             "ClickCaptain2"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickCaptain2": {
         "enabled": false,
@@ -563,7 +577,8 @@
         "post_delay": 800,
         "next": [
             "ClickCaptain3"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickCaptain3": {
         "enabled": false,
@@ -587,7 +602,8 @@
         "post_delay": 800,
         "next": [
             "ClickCaptain4"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickCaptain4": {
         "enabled": false,
@@ -611,7 +627,8 @@
         "post_delay": 800,
         "next": [
             "ClickCaptain5"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickCaptain5": {
         "enabled": false,
@@ -634,7 +651,8 @@
         },
         "next": [
             "DetectSortOrder"
-        ]
+        ],
+        "pre_delay": 100
     },
     "DetectSortOrder": {
         "enabled": false,
@@ -671,7 +689,8 @@
         "post_delay": 800,
         "next": [
             "DetectSortOrder"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ConfirmSortAsc": {
         "enabled": false,
@@ -706,7 +725,8 @@
         },
         "next": [
             "AfterCaptain"
-        ]
+        ],
+        "pre_delay": 100
     },
     "IsTeamSelect": {
         "recognition": {
@@ -752,7 +772,8 @@
         },
         "next": [
             "DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "AfterCaptain": {
         "action": {
@@ -774,7 +795,8 @@
         },
         "next": [
             "DetectTicket"
-        ]
+        ],
+        "pre_delay": 100
     },
     "DetectTicket": {
         "next": [
@@ -814,7 +836,8 @@
         "action": "Click",
         "next": [
             "ClickRestore3"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickRestore3": {
         "enabled": false,
@@ -829,7 +852,8 @@
         "action": "Click",
         "next": [
             "ClickReplenishConfirm"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickReplenishConfirm": {
         "enabled": false,
@@ -852,7 +876,8 @@
         },
         "next": [
             "AfterCaptain"
-        ]
+        ],
+        "pre_delay": 100
     },
     "TerminateNoTicket": {
         "action": "DoNothing"
@@ -877,7 +902,8 @@
         },
         "next": [
             "DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "IsEventPage": {
         "recognition": {
@@ -925,7 +951,8 @@
         },
         "next": [
             "DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "IsSortie": {
         "recognition": {
@@ -968,7 +995,8 @@
         },
         "next": [
             "DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "IsHome": {
         "recognition": {
@@ -1022,7 +1050,8 @@
         },
         "next": [
             "EC_VerifyMenuSortie"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickSortieInMenu": {
         "recognition": {
@@ -1053,7 +1082,8 @@
         ],
         "next": [
             "DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "EC_VerifyMenuSortie": {
         "recognition": {
@@ -1127,30 +1157,8 @@
             "ClickHomeFinal"
         ]
     },
-    "EC_FallbackClick": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    181,
-                    36,
-                    22,
-                    12
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "post_delay": 1000,
-        "next": [
-            "DetectWhereAmI"
-        ]
-    },
-    "EC_FallbackRetry": {
+    "EC_FallbackWait": {
+        "action": "DoNothing",
         "next": [
             "DetectWhereAmI"
         ]

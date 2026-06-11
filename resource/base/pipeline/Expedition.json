@@ -4,7 +4,8 @@
         "next": [
             "ClickExpeditionReturn",
             "DetectExpeditionScreen",
-            "DetectHome"
+            "DetectHome",
+            "Expedition_FallbackWait"
         ]
     },
     "DetectHome": {
@@ -59,7 +60,8 @@
         "next": [
             "ExpSubHub2"
         ],
-        "post_delay": 1000
+        "post_delay": 1000,
+        "pre_delay": 100
     },
     "CheckTeam1": {
         "recognition": {
@@ -146,7 +148,8 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickSmallMap1": {
         "action": {
@@ -171,7 +174,8 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ConfirmDispatch1": {
         "action": {
@@ -196,14 +200,27 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "SelectTeamBtn1": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    566,
+                    6,
+                    150,
+                    39
+                ],
+                "expected": "部队选择"
+            }
+        },
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    146,
+                    151,
                     93,
                     1,
                     1
@@ -220,8 +237,9 @@
             "StartExpedition"
         ],
         "on_error": [
-            "Expedition"
-        ]
+            "DetectExpeditionScreen"
+        ],
+        "pre_delay": 100
     },
     "CheckTeam2": {
         "recognition": {
@@ -264,7 +282,8 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "VerifyScreen2": {
         "recognition": {
@@ -292,8 +311,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    691,
-                    199,
+                    697,
+                    204,
                     1,
                     1
                 ],
@@ -310,15 +329,16 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickSmallMap2": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    542,
-                    471,
+                    545,
+                    457,
                     1,
                     1
                 ],
@@ -335,7 +355,8 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ConfirmDispatch2": {
         "action": {
@@ -360,14 +381,27 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "SelectTeamBtn2": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    566,
+                    6,
+                    150,
+                    39
+                ],
+                "expected": "部队选择"
+            }
+        },
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    288,
+                    279,
                     94,
                     1,
                     1
@@ -384,8 +418,9 @@
             "StartExpedition"
         ],
         "on_error": [
-            "Expedition"
-        ]
+            "DetectExpeditionScreen"
+        ],
+        "pre_delay": 100
     },
     "CheckTeam3": {
         "recognition": {
@@ -428,7 +463,8 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "VerifyScreen3": {
         "recognition": {
@@ -456,8 +492,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    687,
-                    201,
+                    680,
+                    212,
                     1,
                     1
                 ],
@@ -474,15 +510,16 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickSmallMap3": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    1144,
-                    430,
+                    1141,
+                    382,
                     1,
                     1
                 ],
@@ -499,7 +536,8 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ConfirmDispatch3": {
         "action": {
@@ -524,14 +562,15 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "SelectTeamBtn3": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    394,
+                    395,
                     91,
                     1,
                     1
@@ -548,8 +587,21 @@
             "StartExpedition"
         ],
         "on_error": [
-            "Expedition"
-        ]
+            "DetectExpeditionScreen"
+        ],
+        "pre_delay": 100,
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    566,
+                    6,
+                    150,
+                    39
+                ],
+                "expected": "部队选择"
+            }
+        }
     },
     "CheckTeam4": {
         "recognition": {
@@ -592,7 +644,8 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "VerifyScreen4": {
         "recognition": {
@@ -620,8 +673,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    910,
-                    220,
+                    918,
+                    210,
                     1,
                     1
                 ],
@@ -638,15 +691,16 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickSmallMap4": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    507,
-                    399,
+                    495,
+                    438,
                     1,
                     1
                 ],
@@ -663,7 +717,8 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ConfirmDispatch4": {
         "action": {
@@ -688,14 +743,15 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "SelectTeamBtn4": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    517,
+                    523,
                     89,
                     1,
                     1
@@ -712,8 +768,21 @@
             "StartExpedition"
         ],
         "on_error": [
-            "Expedition"
-        ]
+            "DetectExpeditionScreen"
+        ],
+        "pre_delay": 100,
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    566,
+                    6,
+                    150,
+                    39
+                ],
+                "expected": "部队选择"
+            }
+        }
     },
     "CheckTeam5": {
         "recognition": {
@@ -756,7 +825,8 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "VerifyScreen5": {
         "recognition": {
@@ -784,8 +854,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    899,
-                    216,
+                    898,
+                    196,
                     1,
                     1
                 ],
@@ -802,15 +872,16 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickSmallMap5": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    1151,
-                    410,
+                    1133,
+                    432,
                     1,
                     1
                 ],
@@ -827,7 +898,8 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ConfirmDispatch5": {
         "action": {
@@ -852,14 +924,15 @@
         ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "SelectTeamBtn5": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    628,
+                    627,
                     91,
                     1,
                     1
@@ -876,8 +949,21 @@
             "StartExpedition"
         ],
         "on_error": [
-            "Expedition"
-        ]
+            "DetectExpeditionScreen"
+        ],
+        "pre_delay": 100,
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    566,
+                    6,
+                    150,
+                    39
+                ],
+                "expected": "部队选择"
+            }
+        }
     },
     "AllTeamsBusy": {
         "action": {
@@ -899,7 +985,8 @@
         },
         "next": [
             "GoHome"
-        ]
+        ],
+        "pre_delay": 100
     },
     "StartExpedition": {
         "action": {
@@ -919,29 +1006,30 @@
                 ]
             }
         },
+        "post_delay": 800,
         "next": [
-            "VerifyConfirmScreen"
-        ]
+            "VerifyConfirmPopup"
+        ],
+        "pre_delay": 100
     },
-    "VerifyConfirmScreen": {
+    "VerifyConfirmPopup": {
         "recognition": {
             "type": "OCR",
             "param": {
                 "roi": [
-                    472,
-                    188,
-                    345,
-                    70
+                    577,
+                    79,
+                    127,
+                    35
                 ],
-                "expected": "是否向选定章节发起远征"
+                "expected": "远征确认"
             }
         },
         "next": [
-            "ConfirmExpedition",
-            "VerifyConfirmScreen"
+            "ConfirmExpedition"
         ],
         "on_error": [
-            "Expedition"
+            "VerifyTeamSelect"
         ]
     },
     "ConfirmExpedition": {
@@ -949,10 +1037,10 @@
             "type": "Click",
             "param": {
                 "target": [
-                    738,
-                    551,
-                    89,
-                    40
+                    783,
+                    570,
+                    1,
+                    1
                 ],
                 "target_offset": [
                     6,
@@ -965,7 +1053,8 @@
         "next": [
             "GoHome"
         ],
-        "post_delay": 4000
+        "post_delay": 4000,
+        "pre_delay": 100
     },
     "GoHome": {
         "next": [
@@ -997,15 +1086,23 @@
             }
         },
         "next": [
-            "VerifyDirectory"
+            "PostClickDirectoryHub"
         ],
         "on_error": [
             "Expedition"
+        ],
+        "pre_delay": 3000
+    },
+    "PostClickDirectoryHub": {
+        "next": [
+            "Expedition_VerifyMenuDir",
+            "CheckNavDirRetry_Exp",
+            "Expedition"
         ]
     },
-    "VerifyDirectory": {
+    "Expedition_VerifyMenuDir": {
         "recognition": {
-            "type": "OCR",
+            "type": "TemplateMatch",
             "param": {
                 "roi": [
                     586,
@@ -1013,16 +1110,37 @@
                     102,
                     47
                 ],
-                "expected": "目录"
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
             }
         },
         "next": [
-            "ClickBackToHome",
-            "GoHome"
-        ],
-        "on_error": [
-            "Expedition"
+            "ClickBackToHome"
         ]
+    },
+    "CheckNavDirRetry_Exp": {
+        "recognition": "OCR",
+        "roi": [
+            1179,
+            8,
+            95,
+            56
+        ],
+        "expected": "目录",
+        "action": "Click",
+        "target_offset": [
+            5,
+            3,
+            0,
+            0
+        ],
+        "next": [
+            "ClickDirectoryTop"
+        ],
+        "pre_delay": 100
     },
     "ClickBackToHome": {
         "action": {
@@ -1044,29 +1162,29 @@
         },
         "next": [
             "WaitRefresh"
-        ]
+        ],
+        "pre_delay": 100
     },
     "ClickExpeditionReturn": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    560,
-                    4,
-                    157,
-                    43
-                ],
-                "template": "远征结果.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+        "recognition": "OCR",
+        "roi": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "expected": "经验",
         "action": "Click",
+        "target": [
+            957,
+            465,
+            178,
+            192
+        ],
         "next": [
             "DetectHome"
-        ]
+        ],
+        "pre_delay": 100
     },
     "WaitRefresh": {
         "action": "DoNothing",
@@ -1142,6 +1260,32 @@
         "next": [
             "CheckTeam5",
             "AllTeamsBusy"
+        ]
+    },
+    "Expedition_FallbackWait": {
+        "action": "DoNothing",
+        "next": [
+            "Expedition"
+        ]
+    },
+    "VerifyTeamSelect": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    566,
+                    6,
+                    150,
+                    39
+                ],
+                "expected": "部队选择"
+            }
+        },
+        "next": [
+            "StartExpedition"
+        ],
+        "on_error": [
+            "DetectExpeditionScreen"
         ]
     }
 }

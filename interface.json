@@ -3143,13 +3143,10 @@
             "Sortie_Boss_E5_R1": {
               "enabled": true
             },
-            "Sortie_Boss_E5_R2": {
-              "enabled": true
-            },
             "Sortie_Boss_E5_R3": {
               "enabled": true
             },
-            "Sortie_Boss_E5_R4": {
+            "Sortie_Boss_E5_R3_2": {
               "enabled": true
             },
             "Sortie_Boss_E6_R1": {

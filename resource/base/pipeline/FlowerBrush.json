@@ -18,52 +18,50 @@
             "FB_IsRegionSelect",
             "FB_IsSortieActivity",
             "FB_IsHome",
-            "FB_FallbackClick"
+            "FB_FallbackWait"
         ]
     },
     "FB_HasExpeditionReturn": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    560,
-                    4,
-                    157,
-                    43
-                ],
-                "template": "远征结果.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+        "recognition": "OCR",
+        "roi": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "expected": "经验",
         "action": "Click",
+        "target": [
+            957,
+            465,
+            178,
+            192
+        ],
         "next": [
             "FB_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_IsBattleResult": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    575,
-                    6,
-                    129,
-                    35
-                ],
-                "template": "战斗结果.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+        "recognition": "OCR",
+        "roi": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "expected": "经验",
         "action": "Click",
+        "target": [
+            957,
+            465,
+            178,
+            192
+        ],
         "next": [
             "FB_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_IsSwordDrop": {
         "recognition": {
@@ -85,7 +83,8 @@
         "action": "Click",
         "next": [
             "FB_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_IsFormationSelect": {
         "recognition": {
@@ -134,7 +133,8 @@
         "post_delay": 500,
         "next": [
             "FB_ClickFormation2"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_ClickFormation2": {
         "action": {
@@ -156,7 +156,8 @@
         },
         "next": [
             "FB_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_IsMarching": {
         "recognition": {
@@ -178,7 +179,8 @@
         "action": "Click",
         "next": [
             "FB_DetectAfterMarching"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_IsSwordSelect": {
         "recognition": {
@@ -218,7 +220,8 @@
         "post_delay": 800,
         "next": [
             "FB_ClearResidualFilter"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_ClearResidualFilter": {
         "action": {
@@ -241,7 +244,8 @@
         "post_delay": 800,
         "next": [
             "FB_FilterByHorse"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_FilterByHorse": {
         "action": {
@@ -264,7 +268,8 @@
         "post_delay": 800,
         "next": [
             "FB_FilterBySakura"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_FilterBySakura": {
         "action": {
@@ -287,7 +292,8 @@
         "post_delay": 800,
         "next": [
             "FB_ConfirmFilter"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_ConfirmFilter": {
         "action": {
@@ -309,7 +315,8 @@
         },
         "next": [
             "FB_DetectSortOrder"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_DetectSortOrder": {
         "next": [
@@ -344,7 +351,8 @@
         "post_delay": 800,
         "next": [
             "FB_DetectSortOrder"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_ConfirmSortAsc": {
         "recognition": {
@@ -378,7 +386,8 @@
         },
         "next": [
             "FB_ClickSortieNow"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_ClickSortieNow": {
         "action": {
@@ -400,7 +409,8 @@
         },
         "next": [
             "FB_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_IsTeamSelect": {
         "recognition": {
@@ -439,7 +449,8 @@
         },
         "next": [
             "FB_ClickCaptainSlot"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_ClickCaptainSlot": {
         "action": {
@@ -461,7 +472,8 @@
         },
         "next": [
             "FB_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_IsEraSelect": {
         "recognition": {
@@ -510,7 +522,8 @@
         "post_delay": 500,
         "next": [
             "FB_ClickEraConfirm"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_ClickEraConfirm": {
         "action": {
@@ -532,7 +545,8 @@
         },
         "next": [
             "FB_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_IsRegionSelect": {
         "recognition": {
@@ -580,7 +594,8 @@
         },
         "next": [
             "FB_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_IsSortieActivity": {
         "recognition": {
@@ -623,7 +638,8 @@
         },
         "next": [
             "FB_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_IsHome": {
         "recognition": {
@@ -677,7 +693,8 @@
         },
         "next": [
             "FB_VerifyMenuOpened"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_ClickSortieInMenu": {
         "recognition": {
@@ -708,7 +725,8 @@
         ],
         "next": [
             "FB_DetectWhereAmI"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_DetectAfterMarching": {
         "next": [
@@ -718,52 +736,50 @@
             "FB_PostSwordDrop",
             "FB_PostFormationSelect",
             "FB_PostHome",
-            "FB_PostFallbackClick"
+            "FB_PostFallbackWait"
         ]
     },
     "FB_PostExpeditionReturn": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    560,
-                    4,
-                    157,
-                    43
-                ],
-                "template": "远征结果.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+        "recognition": "OCR",
+        "roi": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "expected": "经验",
         "action": "Click",
+        "target": [
+            957,
+            465,
+            178,
+            192
+        ],
         "next": [
             "FB_DetectAfterMarching"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_PostBattleResult": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    575,
-                    6,
-                    129,
-                    35
-                ],
-                "template": "战斗结果.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+        "recognition": "OCR",
+        "roi": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "expected": "经验",
         "action": "Click",
+        "target": [
+            957,
+            465,
+            178,
+            192
+        ],
         "next": [
             "FB_DetectAfterMarching"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_PostSwordDrop": {
         "recognition": {
@@ -785,7 +801,8 @@
         "action": "Click",
         "next": [
             "FB_DetectAfterMarching"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_PostFormationSelect": {
         "recognition": {
@@ -834,7 +851,8 @@
         "post_delay": 500,
         "next": [
             "FB_PostClickFormation2"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_PostClickFormation2": {
         "action": {
@@ -856,7 +874,8 @@
         },
         "next": [
             "FB_DetectAfterMarching"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_PostMarching": {
         "recognition": {
@@ -878,7 +897,8 @@
         "action": "Click",
         "next": [
             "FB_DetectAfterMarching"
-        ]
+        ],
+        "pre_delay": 100
     },
     "FB_PostHome": {
         "recognition": {
@@ -899,50 +919,10 @@
         },
         "action": "DoNothing"
     },
-    "FB_PostFallbackClick": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    181,
-                    36,
-                    22,
-                    12
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "post_delay": 1500,
+    "FB_PostFallbackWait": {
+        "action": "DoNothing",
         "next": [
             "FB_DetectAfterMarching"
-        ]
-    },
-    "FB_FallbackClick": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    181,
-                    36,
-                    22,
-                    12
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "post_delay": 1500,
-        "next": [
-            "FB_DetectWhereAmI"
         ]
     },
     "FB_VerifyMenuOpened": {
@@ -991,6 +971,12 @@
         ],
         "next": [
             "FB_ClickSortieInMenu"
+        ]
+    },
+    "FB_FallbackWait": {
+        "action": "DoNothing",
+        "next": [
+            "FB_DetectWhereAmI"
         ]
     }
 }
