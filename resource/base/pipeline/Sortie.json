@@ -7,6 +7,7 @@
     "Sortie_DetectWhereAmI": {
         "pre_delay": 0,
         "next": [
+            "S_IsAnnouncementPopup",
             "Sortie_HasExpeditionReturn",
             "Sortie_IsMarching",
             "Sortie_IsBattleResult",
@@ -21,6 +22,9 @@
             "Sortie_IsHome",
             "Sortie_IsRepair",
             "Sortie_IsStopOnDamage",
+            "S_IsGameIcon",
+            "S_IsLoginButton",
+            "S_IsGameUpdatePopup",
             "Sortie_FallbackWait"
         ]
     },
@@ -729,6 +733,9 @@
     "Sortie_NavigateToSortie": {
         "next": [
             "Sortie_ClickMenu"
+        ],
+        "on_error": [
+            "Sortie_DetectWhereAmI"
         ]
     },
     "Sortie_ClickMenu": {
@@ -788,9 +795,39 @@
             "Sortie_PostClickMenuHub"
         ],
         "next": [
-            "Sortie_DetectWhereAmI"
+            "Sortie_VerifyMenuClosed"
         ],
         "pre_delay": 100
+    },
+    "Sortie_VerifyMenuClosed": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "Sortie_TryClickSortie"
+        ],
+        "on_error": [
+            "Sortie_DetectWhereAmI"
+        ]
+    },
+    "Sortie_TryClickSortie": {
+        "next": [
+            "Sortie_ClickSortieInMenu",
+            "Sortie_DetectWhereAmI"
+        ]
     },
     "Sortie_IsRepair": {
         "recognition": {
@@ -930,7 +967,7 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_DetectWhereAmI"
+            "Sortie_VerifyHomeMenuClosed"
         ],
         "pre_delay": 100
     },
@@ -939,12 +976,21 @@
         "next": [
             "Sortie_IsKebiishi",
             "Sortie_IsMarchingDamage2",
+            "Sortie_Boss_E2_R1",
+            "Sortie_Boss_E3_R1",
             "Sortie_Boss_E4_R1",
+            "Sortie_Boss_E2_R2_1",
+            "Sortie_Boss_E2_R2_2",
+            "Sortie_Boss_E3_R2",
+            "Sortie_Boss_E3_R3",
+            "Sortie_Boss_E3_R4",
             "Sortie_Boss_E4_R2",
+            "Sortie_Boss_E2_R3_1",
+            "Sortie_Boss_E2_R3_2",
             "Sortie_Boss_E4_R3",
+            "Sortie_Boss_E2_R4",
             "Sortie_Boss_E4_R4",
             "Sortie_Boss_E5_R1",
-            "Sortie_Boss_E5_R2",
             "Sortie_Boss_E5_R3",
             "Sortie_Boss_E5_R3_2",
             "Sortie_Boss_E5_R4",
@@ -955,7 +1001,10 @@
             "Sortie_Boss_E7_R1",
             "Sortie_Boss_E7_R2",
             "Sortie_Boss_E7_R3",
-            "Sortie_Boss_E7_R4",
+            "Sortie_MidRetreat_E8_R1",
+            "Sortie_MidRetreat_E8_R2",
+            "Sortie_MidRetreat_E8_R3",
+            "Sortie_MidRetreat_E8_R4",
             "Sortie_Boss_E8_R1",
             "Sortie_Boss_E8_R2",
             "Sortie_Boss_E8_R3",
@@ -1091,33 +1140,6 @@
             "Sortie_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E5_R2": {
-        "recognition": "ColorMatch",
-        "enabled": false,
-        "next": [
-            "Sortie_ClickRetreat"
-        ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
-        ]
-    },
     "Sortie_Boss_E5_R3": {
         "recognition": {
             "type": "TemplateMatch",
@@ -1140,30 +1162,24 @@
         ]
     },
     "Sortie_Boss_E5_R4": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1088,
+                    292,
+                    15,
+                    24
+                ],
+                "template": "王点_5_4.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
-        ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
         ]
     },
     "Sortie_Boss_E6_R1": {
@@ -1251,220 +1267,165 @@
         ]
     },
     "Sortie_Boss_E7_R1": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    888,
+                    191,
+                    13,
+                    23
+                ],
+                "template": "王点_7_1.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
         ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
-        ]
+        "pre_delay": 100
     },
     "Sortie_Boss_E7_R2": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    885,
+                    205,
+                    17,
+                    24
+                ],
+                "template": "王点_7_2.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
         ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
-        ]
+        "pre_delay": 100
     },
     "Sortie_Boss_E7_R3": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    985,
+                    168,
+                    12,
+                    20
+                ],
+                "template": "王点_7_3.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
         ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
-        ]
-    },
-    "Sortie_Boss_E7_R4": {
-        "recognition": "ColorMatch",
-        "enabled": false,
-        "next": [
-            "Sortie_ClickRetreat"
-        ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
-        ]
+        "pre_delay": 100
     },
     "Sortie_Boss_E8_R1": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    932,
+                    167,
+                    10,
+                    18
+                ],
+                "template": "王点_8_1.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
         ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
-        ]
+        "pre_delay": 100
     },
     "Sortie_Boss_E8_R2": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    848,
+                    159,
+                    12,
+                    19
+                ],
+                "template": "王点_8_2.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
         ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
-        ]
+        "pre_delay": 100
     },
     "Sortie_Boss_E8_R3": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1035,
+                    152,
+                    16,
+                    18
+                ],
+                "template": "王点_8_3.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
         ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
-        ]
+        "pre_delay": 100
     },
     "Sortie_Boss_E8_R4": {
-        "recognition": "ColorMatch",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1141,
+                    264,
+                    14,
+                    19
+                ],
+                "template": "王点_8_4.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "enabled": false,
         "next": [
             "Sortie_ClickRetreat"
         ],
-        "roi": [
-            880,
-            5,
-            394,
-            109
-        ],
-        "upper": [
-            255,
-            250,
-            235
-        ],
-        "lower": [
-            235,
-            230,
-            215
-        ],
-        "count": 5,
-        "threshold": [
-            0.05
-        ]
+        "pre_delay": 100
     },
     "Sortie_ClickRetreat": {
         "action": {
@@ -1717,7 +1678,7 @@
             0
         ],
         "next": [
-            "Sortie_SelectDamagedSword"
+            "Sortie_VerifyRepairMenuClosed"
         ],
         "pre_delay": 100
     },
@@ -1930,7 +1891,7 @@
             0
         ],
         "next": [
-            "Sortie_DetectWhereAmI"
+            "Sortie_VerifyAfterRepairMenuClosed"
         ],
         "pre_delay": 100
     },
@@ -2027,9 +1988,12 @@
             0
         ],
         "next": [
-            "Sortie_ClickMenu"
+            "Sortie_PostClickMenuHub"
         ],
-        "pre_delay": 100
+        "pre_delay": 100,
+        "on_error": [
+            "Sortie_DetectWhereAmI"
+        ]
     },
     "Sortie_VerifyLeftMenuSortie": {
         "recognition": {
@@ -2365,5 +2329,504 @@
         "next": [
             "Sortie_ClickRetreat"
         ]
+    },
+    "Sortie_VerifyRepairMenuClosed": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "Sortie_TryClickRepair"
+        ],
+        "on_error": [
+            "Sortie_SelectDamagedSword"
+        ]
+    },
+    "Sortie_TryClickRepair": {
+        "next": [
+            "Sortie_ClickRepairInMenu",
+            "Sortie_SelectDamagedSword"
+        ]
+    },
+    "Sortie_VerifyHomeMenuClosed": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "Sortie_TryClickHome"
+        ],
+        "on_error": [
+            "Sortie_DetectWhereAmI"
+        ]
+    },
+    "Sortie_TryClickHome": {
+        "next": [
+            "Sortie_ClickHomeInMenu",
+            "Sortie_DetectWhereAmI"
+        ]
+    },
+    "Sortie_VerifyAfterRepairMenuClosed": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "Sortie_TryClickAfterRepair"
+        ],
+        "on_error": [
+            "Sortie_DetectWhereAmI"
+        ]
+    },
+    "Sortie_TryClickAfterRepair": {
+        "next": [
+            "Sortie_SortieAfterRepair",
+            "Sortie_DetectWhereAmI"
+        ]
+    },
+    "S_IsGameIcon": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    0,
+                    0,
+                    1600,
+                    900
+                ],
+                "template": "游戏图标.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 3000,
+        "pre_delay": 100,
+        "next": [
+            "Sortie_DetectWhereAmI"
+        ],
+        "on_error": [
+            "Sortie_DetectWhereAmI"
+        ]
+    },
+    "S_IsLoginButton": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    670,
+                    534,
+                    114,
+                    68
+                ],
+                "template": "登录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 3000,
+        "pre_delay": 100,
+        "next": [
+            "Sortie_DetectWhereAmI"
+        ],
+        "on_error": [
+            "Sortie_DetectWhereAmI"
+        ]
+    },
+    "S_IsGameUpdatePopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    448,
+                    436,
+                    110,
+                    36
+                ],
+                "template": "游戏更新.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000,
+        "pre_delay": 100,
+        "next": [
+            "Sortie_DetectWhereAmI"
+        ],
+        "on_error": [
+            "Sortie_DetectWhereAmI"
+        ]
+    },
+    "Sortie_Boss_E2_R1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    940,
+                    311,
+                    21,
+                    27
+                ],
+                "template": "王点_2_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ]
+    },
+    "Sortie_Boss_E2_R2_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1062,
+                    186,
+                    17,
+                    26
+                ],
+                "template": "王点_2_2_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ]
+    },
+    "Sortie_Boss_E2_R2_2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    989,
+                    251,
+                    15,
+                    23
+                ],
+                "template": "王点_2_2_2.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ]
+    },
+    "Sortie_Boss_E2_R3_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    921,
+                    288,
+                    20,
+                    27
+                ],
+                "template": "王点_2_3_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ]
+    },
+    "Sortie_Boss_E2_R3_2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1032,
+                    190,
+                    17,
+                    26
+                ],
+                "template": "王点_2_3_2.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ]
+    },
+    "Sortie_Boss_E2_R4": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    964,
+                    262,
+                    12,
+                    22
+                ],
+                "template": "王点_2_4.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ]
+    },
+    "Sortie_Boss_E3_R1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1055,
+                    274,
+                    16,
+                    23
+                ],
+                "template": "王点_3_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ]
+    },
+    "Sortie_Boss_E3_R2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    983,
+                    197,
+                    18,
+                    25
+                ],
+                "template": "王点_3_2.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ]
+    },
+    "Sortie_Boss_E3_R3": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    930,
+                    318,
+                    20,
+                    25
+                ],
+                "template": "王点_3_3.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ]
+    },
+    "Sortie_Boss_E3_R4": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    939,
+                    227,
+                    20,
+                    27
+                ],
+                "template": "王点_3_4.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ]
+    },
+    "S_IsAnnouncementPopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1066,
+                    473,
+                    43,
+                    173
+                ],
+                "template": "公告弹窗.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "pre_delay": 100,
+        "next": [
+            "Sortie_DetectWhereAmI"
+        ],
+        "on_error": [
+            "Sortie_DetectWhereAmI"
+        ]
+    },
+    "Sortie_MidRetreat_E8_R1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    971,
+                    194,
+                    13,
+                    23
+                ],
+                "template": "道中_8_1.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "Sortie_MidRetreat_E8_R2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    939,
+                    243,
+                    13,
+                    20
+                ],
+                "template": "道中_8_2.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "Sortie_MidRetreat_E8_R3": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1036,
+                    188,
+                    12,
+                    22
+                ],
+                "template": "道中_8_3.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "Sortie_MidRetreat_E8_R4": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1075,
+                    215,
+                    15,
+                    19
+                ],
+                "template": "道中_8_4.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "Sortie_ClickRetreat"
+        ],
+        "pre_delay": 100
     }
 }

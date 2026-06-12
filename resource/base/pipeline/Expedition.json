@@ -2,9 +2,13 @@
     "Expedition": {
         "pre_delay": 0,
         "next": [
+            "E_IsAnnouncementPopup",
             "ClickExpeditionReturn",
             "DetectExpeditionScreen",
             "DetectHome",
+            "E_IsGameIcon",
+            "E_IsLoginButton",
+            "E_IsGameUpdatePopup",
             "Expedition_FallbackWait"
         ]
     },
@@ -220,7 +224,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    151,
+                    148,
                     93,
                     1,
                     1
@@ -311,8 +315,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    697,
-                    204,
+                    701,
+                    205,
                     1,
                     1
                 ],
@@ -337,8 +341,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    545,
-                    457,
+                    511,
+                    416,
                     1,
                     1
                 ],
@@ -401,7 +405,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    279,
+                    286,
                     94,
                     1,
                     1
@@ -492,8 +496,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    680,
-                    212,
+                    671,
+                    196,
                     1,
                     1
                 ],
@@ -518,8 +522,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    1141,
-                    382,
+                    1154,
+                    440,
                     1,
                     1
                 ],
@@ -570,7 +574,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    395,
+                    393,
                     91,
                     1,
                     1
@@ -673,8 +677,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    918,
-                    210,
+                    909,
+                    211,
                     1,
                     1
                 ],
@@ -699,8 +703,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    495,
-                    438,
+                    505,
+                    422,
                     1,
                     1
                 ],
@@ -751,7 +755,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    523,
+                    526,
                     89,
                     1,
                     1
@@ -854,8 +858,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    898,
-                    196,
+                    920,
+                    204,
                     1,
                     1
                 ],
@@ -880,8 +884,8 @@
             "type": "Click",
             "param": {
                 "target": [
-                    1133,
-                    432,
+                    1141,
+                    428,
                     1,
                     1
                 ],
@@ -1138,9 +1142,12 @@
             0
         ],
         "next": [
-            "ClickDirectoryTop"
+            "PostClickDirectoryHub"
         ],
-        "pre_delay": 100
+        "pre_delay": 100,
+        "on_error": [
+            "Expedition"
+        ]
     },
     "ClickBackToHome": {
         "action": {
@@ -1286,6 +1293,113 @@
         ],
         "on_error": [
             "DetectExpeditionScreen"
+        ]
+    },
+    "E_IsGameIcon": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    0,
+                    0,
+                    1600,
+                    900
+                ],
+                "template": "游戏图标.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 3000,
+        "pre_delay": 100,
+        "next": [
+            "Expedition"
+        ],
+        "on_error": [
+            "Expedition"
+        ]
+    },
+    "E_IsLoginButton": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    670,
+                    534,
+                    114,
+                    68
+                ],
+                "template": "登录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 3000,
+        "pre_delay": 100,
+        "next": [
+            "Expedition"
+        ],
+        "on_error": [
+            "Expedition"
+        ]
+    },
+    "E_IsGameUpdatePopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    448,
+                    436,
+                    110,
+                    36
+                ],
+                "template": "游戏更新.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000,
+        "pre_delay": 100,
+        "next": [
+            "Expedition"
+        ],
+        "on_error": [
+            "Expedition"
+        ]
+    },
+    "E_IsAnnouncementPopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1066,
+                    473,
+                    43,
+                    173
+                ],
+                "template": "公告弹窗.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "pre_delay": 100,
+        "next": [
+            "E_IsAnnouncementPopup"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     }
 }

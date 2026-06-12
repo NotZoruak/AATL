@@ -1,6 +1,6 @@
 {
   "name": "AATL",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "icon": "AATL.ico",
   "custom_title": "AATL - 刀剑乱舞自动化助手",
   "controller": [
@@ -84,10 +84,11 @@
         "换队长",
         "补充刀装",
         "王点前撤退",
+        "八图道中撤退",
         "同步远征"
       ],
       "label": "合战场",
-      "description": "通用合战场出阵自动化，无限循环。可与游戏内自动行军同时开启，最大化过图速度。\n\n- **换队长**：通过筛选装备马的刀剑来切换队长，请为且仅为需控花的刀剑男士装备马\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请保存部队记录\n- **重伤处理**：仅能识别第一次重伤弹窗，不建议在助手运行期间额外操控或测试识别与点击极限，以免发生意外\n- **王点前撤退**：目前仅适配四图，更多功能开发中\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保合战场使用的队伍在远征任务中设置为「休息」"
+      "description": "通用合战场出阵自动化，无限循环。可与游戏内自动行军同时开启，最大化过图速度。\n与自动行军同时开启时，刀装破坏不会停止前进。\n\n- **换队长**：通过筛选装备马的刀剑来切换队长，请为且仅为需控花的刀剑男士装备马\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请保存部队记录\n- **重伤处理**：仅能识别第一次重伤弹窗，不建议在助手运行期间额外操控或测试识别与点击极限，以免发生意外\n- **王点前撤退**：已适配二至八图主要路线（除5-2与7-4）\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保合战场使用的队伍在远征任务中设置为「休息」"
     }
   ],
   "option": {
@@ -3121,6 +3122,30 @@
         }
       ]
     },
+    "八图道中撤退": {
+      "name": "八图道中撤退",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "Sortie_MidRetreat_E8_R1": {
+              "enabled": true
+            },
+            "Sortie_MidRetreat_E8_R2": {
+              "enabled": true
+            },
+            "Sortie_MidRetreat_E8_R3": {
+              "enabled": true
+            },
+            "Sortie_MidRetreat_E8_R4": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
     "王点前撤退": {
       "name": "王点前撤退",
       "type": "checkbox",
@@ -3128,6 +3153,36 @@
         {
           "name": "",
           "pipeline_override": {
+            "Sortie_Boss_E2_R1": {
+              "enabled": true
+            },
+            "Sortie_Boss_E2_R2_1": {
+              "enabled": true
+            },
+            "Sortie_Boss_E2_R2_2": {
+              "enabled": true
+            },
+            "Sortie_Boss_E2_R3_1": {
+              "enabled": true
+            },
+            "Sortie_Boss_E2_R3_2": {
+              "enabled": true
+            },
+            "Sortie_Boss_E2_R4": {
+              "enabled": true
+            },
+            "Sortie_Boss_E3_R1": {
+              "enabled": true
+            },
+            "Sortie_Boss_E3_R2": {
+              "enabled": true
+            },
+            "Sortie_Boss_E3_R3": {
+              "enabled": true
+            },
+            "Sortie_Boss_E3_R4": {
+              "enabled": true
+            },
             "Sortie_Boss_E4_R1": {
               "enabled": true
             },
@@ -3149,6 +3204,9 @@
             "Sortie_Boss_E5_R3_2": {
               "enabled": true
             },
+            "Sortie_Boss_E5_R4": {
+              "enabled": true
+            },
             "Sortie_Boss_E6_R1": {
               "enabled": true
             },
@@ -3168,9 +3226,6 @@
               "enabled": true
             },
             "Sortie_Boss_E7_R3": {
-              "enabled": true
-            },
-            "Sortie_Boss_E7_R4": {
               "enabled": true
             },
             "Sortie_Boss_E8_R1": {

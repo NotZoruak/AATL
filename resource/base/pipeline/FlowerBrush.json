@@ -7,6 +7,7 @@
     "FB_DetectWhereAmI": {
         "pre_delay": 0,
         "next": [
+            "FB_IsAnnouncementPopup",
             "FB_HasExpeditionReturn",
             "FB_IsMarching",
             "FB_IsBattleResult",
@@ -18,6 +19,9 @@
             "FB_IsRegionSelect",
             "FB_IsSortieActivity",
             "FB_IsHome",
+            "FB_IsGameIcon",
+            "FB_IsLoginButton",
+            "FB_IsGameUpdatePopup",
             "FB_FallbackWait"
         ]
     },
@@ -724,7 +728,7 @@
             "FB_DetectWhereAmI"
         ],
         "next": [
-            "FB_DetectWhereAmI"
+            "FB_VerifySortieMenuClosed"
         ],
         "pre_delay": 100
     },
@@ -976,6 +980,143 @@
     "FB_FallbackWait": {
         "action": "DoNothing",
         "next": [
+            "FB_DetectWhereAmI"
+        ]
+    },
+    "FB_VerifySortieMenuClosed": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "FB_TryClickSortie"
+        ],
+        "on_error": [
+            "FB_DetectWhereAmI"
+        ]
+    },
+    "FB_TryClickSortie": {
+        "next": [
+            "FB_ClickSortieInMenu",
+            "FB_DetectWhereAmI"
+        ]
+    },
+    "FB_IsGameIcon": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    0,
+                    0,
+                    1600,
+                    900
+                ],
+                "template": "游戏图标.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 3000,
+        "pre_delay": 100,
+        "next": [
+            "FB_DetectWhereAmI"
+        ],
+        "on_error": [
+            "FB_DetectWhereAmI"
+        ]
+    },
+    "FB_IsLoginButton": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    670,
+                    534,
+                    114,
+                    68
+                ],
+                "template": "登录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 3000,
+        "pre_delay": 100,
+        "next": [
+            "FB_DetectWhereAmI"
+        ],
+        "on_error": [
+            "FB_DetectWhereAmI"
+        ]
+    },
+    "FB_IsGameUpdatePopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    448,
+                    436,
+                    110,
+                    36
+                ],
+                "template": "游戏更新.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000,
+        "pre_delay": 100,
+        "next": [
+            "FB_DetectWhereAmI"
+        ],
+        "on_error": [
+            "FB_DetectWhereAmI"
+        ]
+    },
+    "FB_IsAnnouncementPopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1066,
+                    473,
+                    43,
+                    173
+                ],
+                "template": "公告弹窗.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "pre_delay": 100,
+        "next": [
+            "FB_DetectWhereAmI"
+        ],
+        "on_error": [
             "FB_DetectWhereAmI"
         ]
     }
