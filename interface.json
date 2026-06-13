@@ -44,7 +44,7 @@
         "RefreshInterval"
       ],
       "label": "远征",
-      "description": "修改队伍地图或刷新间隔后，关闭程序再重新打开即可生效。请确保编队符合远征要求"
+      "description": "请确保编队符合远征要求"
     },
     {
       "name": "江户城",
@@ -118,7 +118,11 @@
         {
           "name": "休息",
           "DisplayName": "休息",
-          "pipeline_override": {}
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": false
+            }
+          }
         },
         {
           "name": "1-1",
@@ -570,7 +574,11 @@
         {
           "name": "休息",
           "DisplayName": "休息",
-          "pipeline_override": {}
+          "pipeline_override": {
+            "E_CheckTeam2": {
+              "enabled": false
+            }
+          }
         },
         {
           "name": "1-1",
@@ -1022,7 +1030,11 @@
         {
           "name": "休息",
           "DisplayName": "休息",
-          "pipeline_override": {}
+          "pipeline_override": {
+            "E_CheckTeam3": {
+              "enabled": false
+            }
+          }
         },
         {
           "name": "1-1",
@@ -1474,7 +1486,11 @@
         {
           "name": "休息",
           "DisplayName": "休息",
-          "pipeline_override": {}
+          "pipeline_override": {
+            "E_CheckTeam4": {
+              "enabled": false
+            }
+          }
         },
         {
           "name": "1-1",
@@ -1926,7 +1942,11 @@
         {
           "name": "休息",
           "DisplayName": "休息",
-          "pipeline_override": {}
+          "pipeline_override": {
+            "E_CheckTeam5": {
+              "enabled": false
+            }
+          }
         },
         {
           "name": "1-1",
