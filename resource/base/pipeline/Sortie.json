@@ -2725,7 +2725,7 @@
                 "template": "公告弹窗.png",
                 "green_mask": true,
                 "threshold": [
-                    0.98
+                    0.9
                 ]
             }
         },
