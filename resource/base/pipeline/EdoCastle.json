@@ -1,1360 +1,1360 @@
 {
-  "EdoCastle": {
-    "next": [
-      "EC_DetectWhereAmI"
-    ]
-  },
-  "EC_DetectWhereAmI": {
-    "pre_delay": 0,
-    "next": [
-      "EC_IsAnnouncementPopup",
-      "EC_IsLoginReward",
-      "EC_HasExpeditionReturn",
-      "EC_IsSpecialDrop",
-      "EC_IsFormationSelect",
-      "EC_IsMapPointSelect",
-      "EC_IsSwordSelect",
-      "EC_IsTeamSelect",
-      "EC_IsEventPage",
-      "EC_IsSortie",
-      "EC_IsHome",
-      "EC_IsGameIcon",
-      "EC_IsLoginButton",
-      "EC_IsGameUpdatePopup",
-      "EC_FallbackWait"
-    ]
-  },
-  "EC_HasExpeditionReturn": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          560,
-          4,
-          157,
-          43
-        ],
-        "template": "远征结果.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
+    "EdoCastle": {
+        "next": [
+            "EC_DetectWhereAmI"
         ]
-      }
     },
-    "action": "Click",
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "pre_delay": 100
-  },
-  "EC_IsBattleResult": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          575,
-          6,
-          129,
-          35
-        ],
-        "template": "战斗结果.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
+    "EC_DetectWhereAmI": {
+        "pre_delay": 0,
+        "next": [
+            "EC_IsAnnouncementPopup",
+            "EC_IsLoginReward",
+            "EC_HasExpeditionReturn",
+            "EC_IsSpecialDrop",
+            "EC_IsFormationSelect",
+            "EC_IsMapPointSelect",
+            "EC_IsSwordSelect",
+            "EC_IsTeamSelect",
+            "EC_IsEventPage",
+            "EC_IsSortie",
+            "EC_IsHome",
+            "EC_IsGameIcon",
+            "EC_IsLoginButton",
+            "EC_IsGameUpdatePopup",
+            "EC_FallbackWait"
         ]
-      }
     },
-    "action": "Click",
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "pre_delay": 100
-  },
-  "EC_IsSpecialDrop": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          500,
-          196,
-          255,
-          43
+    "EC_HasExpeditionReturn": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    560,
+                    4,
+                    157,
+                    43
+                ],
+                "template": "远征结果.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "EC_DetectWhereAmI"
         ],
-        "template": "特殊掉落_江户城.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
+        "pre_delay": 100
     },
-    "action": "Click",
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "pre_delay": 100
-  },
-  "EC_IsFormationSelect": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          575,
-          6,
-          129,
-          35
+    "EC_IsBattleResult": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    575,
+                    6,
+                    129,
+                    35
+                ],
+                "template": "战斗结果.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "EC_DetectWhereAmI"
         ],
-        "template": "阵形选择.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
+        "pre_delay": 100
     },
-    "next": [
-      "EC_SelectFormation"
-    ]
-  },
-  "EC_SelectFormation": {
-    "next": [
-      "EC_ClickFormation1"
-    ]
-  },
-  "EC_ClickFormation1": {
-    "action": {
-      "type": "Click",
-      "param": {
+    "EC_IsSpecialDrop": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    500,
+                    196,
+                    255,
+                    43
+                ],
+                "template": "特殊掉落_江户城.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "EC_IsFormationSelect": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    575,
+                    6,
+                    129,
+                    35
+                ],
+                "template": "阵形选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "EC_SelectFormation"
+        ]
+    },
+    "EC_SelectFormation": {
+        "next": [
+            "EC_ClickFormation1"
+        ]
+    },
+    "EC_ClickFormation1": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1017,
+                    421,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    4,
+                    2,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 500,
+        "next": [
+            "EC_ClickFormation2"
+        ],
+        "pre_delay": 100
+    },
+    "EC_ClickFormation2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1017,
+                    421,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    4,
+                    2,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "EC_IsMapPointSelect": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    60,
+                    642,
+                    141,
+                    35
+                ],
+                "template": "江户城地图点选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "EC_ClickMapStep"
+        ]
+    },
+    "EC_ClickMapStep": {
+        "next": [
+            "EC_DetectCurrentPoint"
+        ]
+    },
+    "EC_DetectCurrentPoint": {
+        "next": [
+            "EC_IsPoint4",
+            "EC_IsPoint3",
+            "EC_IsPoint2",
+            "EC_IsPoint1"
+        ]
+    },
+    "EC_IsPoint1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    743,
+                    501,
+                    54,
+                    68
+                ],
+                "template": "江户城_点1.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    734,
+                    457,
+                    2,
+                    1
+                ],
+                "target_offset": [
+                    1,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "EC_IsPoint2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    722,
+                    378,
+                    63,
+                    84
+                ],
+                "template": "江户城_点2.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    663,
+                    350,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    1,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "EC_IsPoint3": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    654,
+                    276,
+                    61,
+                    79
+                ],
+                "template": "江户城_点3.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    612,
+                    214,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    1,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "EC_IsPoint4": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    610,
+                    138,
+                    49,
+                    84
+                ],
+                "template": "江户城_点4.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    707,
+                    153,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    1,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_PostBossDetect"
+        ],
+        "pre_delay": 100
+    },
+    "EC_PostBossDetect": {
+        "next": [
+            "EC_PostBossDrop",
+            "EC_IsEventPageTerminate",
+            "EC_PostBossWait"
+        ]
+    },
+    "EC_PostBossBattleResult": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    575,
+                    6,
+                    129,
+                    35
+                ],
+                "template": "战斗结果.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "EC_PostBossDetect"
+        ],
+        "pre_delay": 100
+    },
+    "EC_PostBossDrop": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    500,
+                    196,
+                    255,
+                    43
+                ],
+                "template": "特殊掉落_江户城.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "EC_PostBossDetect"
+        ],
+        "pre_delay": 100
+    },
+    "EC_IsEventPageTerminate": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    436,
+                    66,
+                    371,
+                    57
+                ],
+                "template": "江户城.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "EC_TerminateEdoCastle"
+        ]
+    },
+    "EC_GoHomeFinal": {
+        "next": [
+            "EC_ClickDirFinal"
+        ]
+    },
+    "EC_ClickDirFinal": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1179,
+                    8,
+                    95,
+                    56
+                ],
+                "expected": "目录"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    5,
+                    3,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_VerifyDirFinal"
+        ],
+        "pre_delay": 100
+    },
+    "EC_VerifyDirFinal": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "expected": "目录"
+            }
+        },
+        "next": [
+            "EC_ClickHomeFinal"
+        ],
+        "on_error": [
+            "EC_GoHomeFinal"
+        ]
+    },
+    "EC_ClickHomeFinal": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1037,
+                    169,
+                    110,
+                    44
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_TerminateEdoCastle"
+        ],
+        "pre_delay": 100
+    },
+    "EC_PostBossWait": {
+        "action": "DoNothing",
+        "post_delay": 3000,
+        "next": [
+            "EC_PostBossDetect"
+        ]
+    },
+    "EC_TerminateEdoCastle": {
+        "action": "DoNothing"
+    },
+    "EC_IsSwordSelect": {
+        "enabled": false,
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    535,
+                    11,
+                    214,
+                    35
+                ],
+                "expected": "刀剑男士选择"
+            }
+        },
+        "next": [
+            "EC_ClickCaptain1"
+        ]
+    },
+    "EC_ClickCaptain1": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    828,
+                    82,
+                    68,
+                    25
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 800,
+        "next": [
+            "EC_ClickCaptain2"
+        ],
+        "pre_delay": 100
+    },
+    "EC_ClickCaptain2": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    752,
+                    137,
+                    97,
+                    29
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 800,
+        "next": [
+            "EC_ClickCaptain3"
+        ],
+        "pre_delay": 100
+    },
+    "EC_ClickCaptain3": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    407,
+                    510,
+                    90,
+                    31
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 800,
+        "next": [
+            "EC_ClickCaptain4"
+        ],
+        "pre_delay": 100
+    },
+    "EC_ClickCaptain4": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    965,
+                    438,
+                    91,
+                    34
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 800,
+        "next": [
+            "EC_ClickCaptain5"
+        ],
+        "pre_delay": 100
+    },
+    "EC_ClickCaptain5": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    592,
+                    603,
+                    107,
+                    46
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_DetectSortOrder"
+        ],
+        "pre_delay": 100
+    },
+    "EC_DetectSortOrder": {
+        "enabled": false,
+        "next": [
+            "EC_ClickDescending",
+            "EC_ConfirmSortAsc"
+        ]
+    },
+    "EC_ClickDescending": {
+        "enabled": false,
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    944,
+                    82,
+                    46,
+                    29
+                ],
+                "expected": "降序"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    4,
+                    2,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 800,
+        "next": [
+            "EC_DetectSortOrder"
+        ],
+        "pre_delay": 100
+    },
+    "EC_ConfirmSortAsc": {
+        "enabled": false,
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    944,
+                    82,
+                    46,
+                    29
+                ],
+                "expected": "升序"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1189,
+                    140,
+                    37,
+                    61
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_AfterCaptain"
+        ],
+        "pre_delay": 100
+    },
+    "EC_IsTeamSelect": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    566,
+                    6,
+                    150,
+                    39
+                ],
+                "expected": "部队选择"
+            }
+        },
+        "next": [
+            "EC_SelectTeam"
+        ]
+    },
+    "EC_SelectTeam": {
+        "next": [
+            "EC_ClickCaptainSlot",
+            "EC_AfterCaptain"
+        ]
+    },
+    "EC_ClickCaptainSlot": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1024,
+                    140,
+                    30,
+                    50
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "EC_AfterCaptain": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1153,
+                    584,
+                    96,
+                    89
+                ],
+                "target_offset": [
+                    8,
+                    6,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_DetectTicket"
+        ],
+        "pre_delay": 100
+    },
+    "EC_DetectTicket": {
+        "next": [
+            "EC_HandleNoTicket",
+            "EC_ConfirmEnterMap"
+        ]
+    },
+    "EC_HandleNoTicket": {
+        "recognition": "OCR",
+        "roi": [
+            524,
+            196,
+            248,
+            67
+        ],
+        "expected": "通行令牌不足",
+        "next": [
+            "EC_ReplenishOrTerminate"
+        ]
+    },
+    "EC_ReplenishOrTerminate": {
+        "next": [
+            "EC_ReplenishTicket",
+            "EC_TerminateNoTicket"
+        ]
+    },
+    "EC_ReplenishTicket": {
+        "enabled": false,
+        "recognition": "OCR",
+        "roi": [
+            453,
+            449,
+            91,
+            40
+        ],
+        "expected": "补充",
+        "action": "Click",
+        "next": [
+            "EC_ClickRestore3"
+        ],
+        "pre_delay": 100
+    },
+    "EC_ClickRestore3": {
+        "enabled": false,
+        "recognition": "OCR",
+        "roi": [
+            580,
+            535,
+            115,
+            47
+        ],
+        "expected": "恢复3个",
+        "action": "Click",
+        "next": [
+            "EC_ClickReplenishConfirm"
+        ],
+        "pre_delay": 100
+    },
+    "EC_ClickReplenishConfirm": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    603,
+                    449,
+                    78,
+                    38
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_AfterCaptain"
+        ],
+        "pre_delay": 100
+    },
+    "EC_TerminateNoTicket": {
+        "action": "DoNothing"
+    },
+    "EC_ConfirmEnterMap": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    599,
+                    582,
+                    81,
+                    41
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "EC_IsEventPage": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    436,
+                    66,
+                    371,
+                    57
+                ],
+                "template": "江户城.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "EC_SelectDifficulty"
+        ]
+    },
+    "EC_SelectDifficulty": {
+        "next": [
+            "EC_ClickDifficulty"
+        ]
+    },
+    "EC_ClickDifficulty": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ],
+                "target": [
+                    1012,
+                    262,
+                    220,
+                    117
+                ]
+            }
+        },
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "EC_IsSortie": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    8,
+                    169,
+                    33,
+                    82
+                ],
+                "template": "合战场选中.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "EC_OnSortieScreen"
+        ]
+    },
+    "EC_OnSortieScreen": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    8,
+                    299,
+                    32,
+                    89
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "EC_IsHome": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    13,
+                    6,
+                    61,
+                    97
+                ],
+                "template": "本丸.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "EC_NavigateToSortie"
+        ]
+    },
+    "EC_NavigateToSortie": {
+        "next": [
+            "EC_ClickMenuForSortie"
+        ]
+    },
+    "EC_ClickMenuForSortie": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1179,
+                    8,
+                    95,
+                    56
+                ],
+                "expected": "目录"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    5,
+                    3,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "EC_VerifyMenuSortie"
+        ],
+        "pre_delay": 100
+    },
+    "EC_ClickSortieInMenu": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    165,
+                    163,
+                    87,
+                    52
+                ],
+                "expected": "出阵"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    5,
+                    3,
+                    0,
+                    0
+                ]
+            }
+        },
+        "on_error": [
+            "EC_DetectWhereAmI"
+        ],
+        "next": [
+            "EC_VerifySortieMenuClosed"
+        ],
+        "pre_delay": 100
+    },
+    "EC_VerifyMenuSortie": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "EC_ClickMenuForSortie"
+        ],
+        "next": [
+            "EC_ClickSortieInMenu"
+        ]
+    },
+    "EC_VerifyLeftMenuSortie": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "EC_DetectWhereAmI"
+        ],
+        "next": [
+            "EC_ClickSortieInMenu"
+        ]
+    },
+    "EC_VerifyLeftMenuFinal": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "EC_TerminateEdoCastle"
+        ],
+        "next": [
+            "EC_ClickHomeFinal"
+        ]
+    },
+    "EC_FallbackWait": {
+        "action": "DoNothing",
+        "next": [
+            "EC_DetectWhereAmI"
+        ]
+    },
+    "EC_VerifySortieMenuClosed": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "EC_TryClickSortie"
+        ],
+        "on_error": [
+            "EC_DetectWhereAmI"
+        ]
+    },
+    "EC_TryClickSortie": {
+        "next": [
+            "EC_ClickSortieInMenu",
+            "EC_DetectWhereAmI"
+        ]
+    },
+    "EC_IsGameIcon": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    0,
+                    0,
+                    1600,
+                    900
+                ],
+                "template": "游戏图标.png",
+                "green_mask": true,
+                "threshold": [
+                    0.95
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 3000,
+        "pre_delay": 100,
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "on_error": [
+            "EC_DetectWhereAmI"
+        ]
+    },
+    "EC_IsLoginButton": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    670,
+                    534,
+                    114,
+                    68
+                ],
+                "template": "登录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 3000,
+        "pre_delay": 100,
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "on_error": [
+            "EC_DetectWhereAmI"
+        ]
+    },
+    "EC_IsGameUpdatePopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    448,
+                    436,
+                    110,
+                    36
+                ],
+                "template": "游戏更新.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000,
+        "pre_delay": 100,
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "on_error": [
+            "EC_DetectWhereAmI"
+        ]
+    },
+    "EC_IsAnnouncementPopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1066,
+                    473,
+                    43,
+                    173
+                ],
+                "template": "公告弹窗.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "pre_delay": 100,
+        "next": [
+            "EC_IsAnnouncementPopup"
+        ],
+        "on_error": [
+            "EC_DetectWhereAmI"
+        ]
+    },
+    "EC_IsLoginReward": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    821,
+                    582,
+                    172,
+                    49
+                ],
+                "template": "登录奖励.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "pre_delay": 100,
+        "next": [
+            "EC_LoginRewardClick2"
+        ],
+        "on_error": [
+            "EC_DetectWhereAmI"
+        ]
+    },
+    "EC_LoginRewardClick2": {
+        "action": "Click",
         "target": [
-          1017,
-          421,
-          1,
-          1
+            1092,
+            318,
+            1,
+            1
         ],
-        "target_offset": [
-          4,
-          2,
-          0,
-          0
+        "pre_delay": 300,
+        "next": [
+            "EC_LoginRewardClick3"
         ]
-      }
     },
-    "post_delay": 500,
-    "next": [
-      "EC_ClickFormation2"
-    ],
-    "pre_delay": 100
-  },
-  "EC_ClickFormation2": {
-    "action": {
-      "type": "Click",
-      "param": {
+    "EC_LoginRewardClick3": {
+        "action": "Click",
         "target": [
-          1017,
-          421,
-          1,
-          1
+            1092,
+            318,
+            1,
+            1
         ],
-        "target_offset": [
-          4,
-          2,
-          0,
-          0
+        "pre_delay": 300,
+        "next": [
+            "EC_IsLoginReward"
         ]
-      }
-    },
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "pre_delay": 100
-  },
-  "EC_IsMapPointSelect": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          60,
-          642,
-          141,
-          35
-        ],
-        "template": "江户城地图点选择.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "next": [
-      "EC_ClickMapStep"
-    ]
-  },
-  "EC_ClickMapStep": {
-    "next": [
-      "EC_DetectCurrentPoint"
-    ]
-  },
-  "EC_DetectCurrentPoint": {
-    "next": [
-      "EC_IsPoint4",
-      "EC_IsPoint3",
-      "EC_IsPoint2",
-      "EC_IsPoint1"
-    ]
-  },
-  "EC_IsPoint1": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          743,
-          501,
-          54,
-          68
-        ],
-        "template": "江户城_点1.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          734,
-          457,
-          2,
-          1
-        ],
-        "target_offset": [
-          1,
-          0,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "pre_delay": 100
-  },
-  "EC_IsPoint2": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          722,
-          378,
-          63,
-          84
-        ],
-        "template": "江户城_点2.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          663,
-          350,
-          1,
-          1
-        ],
-        "target_offset": [
-          1,
-          0,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "pre_delay": 100
-  },
-  "EC_IsPoint3": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          654,
-          276,
-          61,
-          79
-        ],
-        "template": "江户城_点3.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          612,
-          214,
-          1,
-          1
-        ],
-        "target_offset": [
-          1,
-          0,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "pre_delay": 100
-  },
-  "EC_IsPoint4": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          610,
-          138,
-          49,
-          84
-        ],
-        "template": "江户城_点4.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          707,
-          153,
-          1,
-          1
-        ],
-        "target_offset": [
-          1,
-          0,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_PostBossDetect"
-    ],
-    "pre_delay": 100
-  },
-  "EC_PostBossDetect": {
-    "next": [
-      "EC_PostBossDrop",
-      "EC_IsEventPageTerminate",
-      "EC_PostBossWait"
-    ]
-  },
-  "EC_PostBossBattleResult": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          575,
-          6,
-          129,
-          35
-        ],
-        "template": "战斗结果.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "action": "Click",
-    "next": [
-      "EC_PostBossDetect"
-    ],
-    "pre_delay": 100
-  },
-  "EC_PostBossDrop": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          500,
-          196,
-          255,
-          43
-        ],
-        "template": "特殊掉落_江户城.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "action": "Click",
-    "next": [
-      "EC_PostBossDetect"
-    ],
-    "pre_delay": 100
-  },
-  "EC_IsEventPageTerminate": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          436,
-          66,
-          371,
-          57
-        ],
-        "template": "江户城.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "next": [
-      "EC_TerminateEdoCastle"
-    ]
-  },
-  "EC_GoHomeFinal": {
-    "next": [
-      "EC_ClickDirFinal"
-    ]
-  },
-  "EC_ClickDirFinal": {
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [
-          1179,
-          8,
-          95,
-          56
-        ],
-        "expected": "目录"
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_VerifyDirFinal"
-    ],
-    "pre_delay": 100
-  },
-  "EC_VerifyDirFinal": {
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [
-          586,
-          33,
-          102,
-          47
-        ],
-        "expected": "目录"
-      }
-    },
-    "next": [
-      "EC_ClickHomeFinal"
-    ],
-    "on_error": [
-      "EC_GoHomeFinal"
-    ]
-  },
-  "EC_ClickHomeFinal": {
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          1037,
-          169,
-          110,
-          44
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_TerminateEdoCastle"
-    ],
-    "pre_delay": 100
-  },
-  "EC_PostBossWait": {
-    "action": "DoNothing",
-    "post_delay": 3000,
-    "next": [
-      "EC_PostBossDetect"
-    ]
-  },
-  "EC_TerminateEdoCastle": {
-    "action": "DoNothing"
-  },
-  "EC_IsSwordSelect": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [
-          535,
-          11,
-          214,
-          35
-        ],
-        "expected": "刀剑男士选择"
-      }
-    },
-    "next": [
-      "EC_ClickCaptain1"
-    ]
-  },
-  "EC_ClickCaptain1": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          828,
-          82,
-          68,
-          25
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
-        ]
-      }
-    },
-    "post_delay": 800,
-    "next": [
-      "EC_ClickCaptain2"
-    ],
-    "pre_delay": 100
-  },
-  "EC_ClickCaptain2": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          752,
-          137,
-          97,
-          29
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
-        ]
-      }
-    },
-    "post_delay": 800,
-    "next": [
-      "EC_ClickCaptain3"
-    ],
-    "pre_delay": 100
-  },
-  "EC_ClickCaptain3": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          407,
-          510,
-          90,
-          31
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
-        ]
-      }
-    },
-    "post_delay": 800,
-    "next": [
-      "EC_ClickCaptain4"
-    ],
-    "pre_delay": 100
-  },
-  "EC_ClickCaptain4": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          965,
-          438,
-          91,
-          34
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
-        ]
-      }
-    },
-    "post_delay": 800,
-    "next": [
-      "EC_ClickCaptain5"
-    ],
-    "pre_delay": 100
-  },
-  "EC_ClickCaptain5": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          592,
-          603,
-          107,
-          46
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_DetectSortOrder"
-    ],
-    "pre_delay": 100
-  },
-  "EC_DetectSortOrder": {
-    "enabled": false,
-    "next": [
-      "EC_ClickDescending",
-      "EC_ConfirmSortAsc"
-    ]
-  },
-  "EC_ClickDescending": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [
-          944,
-          82,
-          46,
-          29
-        ],
-        "expected": "降序"
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target_offset": [
-          4,
-          2,
-          0,
-          0
-        ]
-      }
-    },
-    "post_delay": 800,
-    "next": [
-      "EC_DetectSortOrder"
-    ],
-    "pre_delay": 100
-  },
-  "EC_ConfirmSortAsc": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [
-          944,
-          82,
-          46,
-          29
-        ],
-        "expected": "升序"
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          1189,
-          140,
-          37,
-          61
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_AfterCaptain"
-    ],
-    "pre_delay": 100
-  },
-  "EC_IsTeamSelect": {
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [
-          566,
-          6,
-          150,
-          39
-        ],
-        "expected": "部队选择"
-      }
-    },
-    "next": [
-      "EC_SelectTeam"
-    ]
-  },
-  "EC_SelectTeam": {
-    "next": [
-      "EC_ClickCaptainSlot",
-      "EC_AfterCaptain"
-    ]
-  },
-  "EC_ClickCaptainSlot": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          1024,
-          140,
-          30,
-          50
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "pre_delay": 100
-  },
-  "EC_AfterCaptain": {
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          1153,
-          584,
-          96,
-          89
-        ],
-        "target_offset": [
-          8,
-          6,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_DetectTicket"
-    ],
-    "pre_delay": 100
-  },
-  "EC_DetectTicket": {
-    "next": [
-      "EC_HandleNoTicket",
-      "EC_ConfirmEnterMap"
-    ]
-  },
-  "EC_HandleNoTicket": {
-    "recognition": "OCR",
-    "roi": [
-      524,
-      196,
-      248,
-      67
-    ],
-    "expected": "通行令牌不足",
-    "next": [
-      "EC_ReplenishOrTerminate"
-    ]
-  },
-  "EC_ReplenishOrTerminate": {
-    "next": [
-      "EC_ReplenishTicket",
-      "EC_TerminateNoTicket"
-    ]
-  },
-  "EC_ReplenishTicket": {
-    "enabled": false,
-    "recognition": "OCR",
-    "roi": [
-      453,
-      449,
-      91,
-      40
-    ],
-    "expected": "补充",
-    "action": "Click",
-    "next": [
-      "EC_ClickRestore3"
-    ],
-    "pre_delay": 100
-  },
-  "EC_ClickRestore3": {
-    "enabled": false,
-    "recognition": "OCR",
-    "roi": [
-      580,
-      535,
-      115,
-      47
-    ],
-    "expected": "恢复3个",
-    "action": "Click",
-    "next": [
-      "EC_ClickReplenishConfirm"
-    ],
-    "pre_delay": 100
-  },
-  "EC_ClickReplenishConfirm": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          603,
-          449,
-          78,
-          38
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_AfterCaptain"
-    ],
-    "pre_delay": 100
-  },
-  "EC_TerminateNoTicket": {
-    "action": "DoNothing"
-  },
-  "EC_ConfirmEnterMap": {
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          599,
-          582,
-          81,
-          41
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "pre_delay": 100
-  },
-  "EC_IsEventPage": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          436,
-          66,
-          371,
-          57
-        ],
-        "template": "江户城.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "next": [
-      "EC_SelectDifficulty"
-    ]
-  },
-  "EC_SelectDifficulty": {
-    "next": [
-      "EC_ClickDifficulty"
-    ]
-  },
-  "EC_ClickDifficulty": {
-    "action": {
-      "type": "Click",
-      "param": {
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
-        ],
-        "target": [
-          1012,
-          262,
-          220,
-          117
-        ]
-      }
-    },
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "pre_delay": 100
-  },
-  "EC_IsSortie": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          8,
-          169,
-          33,
-          82
-        ],
-        "template": "合战场选中.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "next": [
-      "EC_OnSortieScreen"
-    ]
-  },
-  "EC_OnSortieScreen": {
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          8,
-          299,
-          32,
-          89
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "pre_delay": 100
-  },
-  "EC_IsHome": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          13,
-          6,
-          61,
-          97
-        ],
-        "template": "本丸.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "next": [
-      "EC_NavigateToSortie"
-    ]
-  },
-  "EC_NavigateToSortie": {
-    "next": [
-      "EC_ClickMenuForSortie"
-    ]
-  },
-  "EC_ClickMenuForSortie": {
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [
-          1179,
-          8,
-          95,
-          56
-        ],
-        "expected": "目录"
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "EC_VerifyMenuSortie"
-    ],
-    "pre_delay": 100
-  },
-  "EC_ClickSortieInMenu": {
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [
-          165,
-          163,
-          87,
-          52
-        ],
-        "expected": "出阵"
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
-        ]
-      }
-    },
-    "on_error": [
-      "EC_DetectWhereAmI"
-    ],
-    "next": [
-      "EC_VerifySortieMenuClosed"
-    ],
-    "pre_delay": 100
-  },
-  "EC_VerifyMenuSortie": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          586,
-          33,
-          102,
-          47
-        ],
-        "template": "菜单目录.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "on_error": [
-      "EC_ClickMenuForSortie"
-    ],
-    "next": [
-      "EC_ClickSortieInMenu"
-    ]
-  },
-  "EC_VerifyLeftMenuSortie": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          586,
-          33,
-          102,
-          47
-        ],
-        "template": "菜单目录.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "on_error": [
-      "EC_DetectWhereAmI"
-    ],
-    "next": [
-      "EC_ClickSortieInMenu"
-    ]
-  },
-  "EC_VerifyLeftMenuFinal": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          586,
-          33,
-          102,
-          47
-        ],
-        "template": "菜单目录.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "on_error": [
-      "EC_TerminateEdoCastle"
-    ],
-    "next": [
-      "EC_ClickHomeFinal"
-    ]
-  },
-  "EC_FallbackWait": {
-    "action": "DoNothing",
-    "next": [
-      "EC_DetectWhereAmI"
-    ]
-  },
-  "EC_VerifySortieMenuClosed": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          586,
-          33,
-          102,
-          47
-        ],
-        "template": "菜单目录.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "next": [
-      "EC_TryClickSortie"
-    ],
-    "on_error": [
-      "EC_DetectWhereAmI"
-    ]
-  },
-  "EC_TryClickSortie": {
-    "next": [
-      "EC_ClickSortieInMenu",
-      "EC_DetectWhereAmI"
-    ]
-  },
-  "EC_IsGameIcon": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          0,
-          0,
-          1600,
-          900
-        ],
-        "template": "游戏图标.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "action": "Click",
-    "post_delay": 3000,
-    "pre_delay": 100,
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "on_error": [
-      "EC_DetectWhereAmI"
-    ]
-  },
-  "EC_IsLoginButton": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          670,
-          534,
-          114,
-          68
-        ],
-        "template": "登录.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "action": "Click",
-    "post_delay": 3000,
-    "pre_delay": 100,
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "on_error": [
-      "EC_DetectWhereAmI"
-    ]
-  },
-  "EC_IsGameUpdatePopup": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          448,
-          436,
-          110,
-          36
-        ],
-        "template": "游戏更新.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "action": "Click",
-    "post_delay": 2000,
-    "pre_delay": 100,
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "on_error": [
-      "EC_DetectWhereAmI"
-    ]
-  },
-  "EC_IsAnnouncementPopup": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          1066,
-          473,
-          43,
-          173
-        ],
-        "template": "公告弹窗.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "action": "Click",
-    "pre_delay": 100,
-    "next": [
-      "EC_IsAnnouncementPopup"
-    ],
-    "on_error": [
-      "EC_DetectWhereAmI"
-    ]
-  },
-  "EC_IsLoginReward": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          821,
-          582,
-          172,
-          49
-        ],
-        "template": "登录奖励.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "action": "Click",
-    "pre_delay": 100,
-    "next": [
-      "EC_LoginRewardClick2"
-    ],
-    "on_error": [
-      "EC_DetectWhereAmI"
-    ]
-  },
-  "EC_LoginRewardClick2": {
-    "action": "Click",
-    "target": [
-      1092,
-      318,
-      1,
-      1
-    ],
-    "pre_delay": 300,
-    "next": [
-      "EC_LoginRewardClick3"
-    ]
-  },
-  "EC_LoginRewardClick3": {
-    "action": "Click",
-    "target": [
-      1092,
-      318,
-      1,
-      1
-    ],
-    "pre_delay": 300,
-    "next": [
-      "EC_IsLoginReward"
-    ]
-  }
+    }
 }

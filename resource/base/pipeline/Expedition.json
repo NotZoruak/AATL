@@ -1309,7 +1309,7 @@
                 "template": "游戏图标.png",
                 "green_mask": true,
                 "threshold": [
-                    0.98
+                    0.95
                 ]
             }
         },
