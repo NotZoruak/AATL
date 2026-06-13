@@ -73,10 +73,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    1168,
-                    622,
-                    61,
-                    57
+                    1163,
+                    617,
+                    71,
+                    67
                 ],
                 "template": "刀剑对话.png",
                 "green_mask": true,
@@ -96,10 +96,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    575,
-                    6,
-                    129,
-                    35
+                    570,
+                    1,
+                    139,
+                    45
                 ],
                 "template": "阵形选择.png",
                 "green_mask": true,
@@ -169,10 +169,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    1072,
-                    563,
-                    110,
-                    69
+                    1067,
+                    558,
+                    120,
+                    79
                 ],
                 "template": "合战场_行军.png",
                 "green_mask": true,
@@ -192,10 +192,10 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    535,
-                    11,
-                    214,
-                    35
+                    530,
+                    6,
+                    224,
+                    45
                 ],
                 "expected": "刀剑男士选择"
             }
@@ -334,10 +334,10 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    944,
-                    82,
-                    46,
-                    29
+                    939,
+                    77,
+                    56,
+                    39
                 ],
                 "expected": "降序"
             }
@@ -364,10 +364,10 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    944,
-                    82,
-                    46,
-                    29
+                    939,
+                    77,
+                    56,
+                    39
                 ],
                 "expected": "升序"
             }
@@ -422,10 +422,10 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    566,
-                    6,
-                    150,
-                    39
+                    561,
+                    1,
+                    160,
+                    49
                 ],
                 "expected": "部队选择"
             }
@@ -485,10 +485,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    569,
-                    59,
-                    147,
-                    44
+                    564,
+                    54,
+                    157,
+                    54
                 ],
                 "template": "时代选择.png",
                 "green_mask": true,
@@ -558,10 +558,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    563,
-                    60,
-                    159,
-                    44
+                    558,
+                    55,
+                    169,
+                    54
                 ],
                 "template": "地域选择.png",
                 "green_mask": true,
@@ -607,10 +607,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    3,
-                    307,
-                    39,
-                    76
+                    -2,
+                    302,
+                    49,
+                    86
                 ],
                 "template": "活动选中.png",
                 "green_mask": true,
@@ -651,10 +651,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    13,
-                    6,
-                    61,
-                    97
+                    8,
+                    1,
+                    71,
+                    107
                 ],
                 "template": "本丸.png",
                 "green_mask": true,
@@ -677,10 +677,10 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    1179,
-                    8,
-                    95,
-                    56
+                    1174,
+                    3,
+                    105,
+                    66
                 ],
                 "expected": "目录"
             }
@@ -706,10 +706,10 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    165,
-                    163,
-                    87,
-                    52
+                    160,
+                    158,
+                    97,
+                    62
                 ],
                 "expected": "出阵"
             }
@@ -791,10 +791,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    1168,
-                    622,
-                    61,
-                    57
+                    1163,
+                    617,
+                    71,
+                    67
                 ],
                 "template": "刀剑对话.png",
                 "green_mask": true,
@@ -814,10 +814,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    575,
-                    6,
-                    129,
-                    35
+                    570,
+                    1,
+                    139,
+                    45
                 ],
                 "template": "阵形选择.png",
                 "green_mask": true,
@@ -887,10 +887,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    1072,
-                    563,
-                    110,
-                    69
+                    1067,
+                    558,
+                    120,
+                    79
                 ],
                 "template": "合战场_行军.png",
                 "green_mask": true,
@@ -910,10 +910,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    13,
-                    6,
-                    61,
-                    97
+                    8,
+                    1,
+                    71,
+                    107
                 ],
                 "template": "本丸.png",
                 "green_mask": true,
@@ -935,10 +935,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    586,
-                    33,
-                    102,
-                    47
+                    581,
+                    28,
+                    112,
+                    57
                 ],
                 "template": "菜单目录.png",
                 "green_mask": true,
@@ -959,10 +959,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    586,
-                    33,
-                    102,
-                    47
+                    581,
+                    28,
+                    112,
+                    57
                 ],
                 "template": "菜单目录.png",
                 "green_mask": true,
@@ -989,10 +989,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    586,
-                    33,
-                    102,
-                    47
+                    581,
+                    28,
+                    112,
+                    57
                 ],
                 "template": "菜单目录.png",
                 "green_mask": true,
@@ -1046,10 +1046,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    670,
-                    534,
-                    114,
-                    68
+                    665,
+                    529,
+                    124,
+                    78
                 ],
                 "template": "登录.png",
                 "green_mask": true,
@@ -1073,10 +1073,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    448,
-                    436,
-                    110,
-                    36
+                    443,
+                    431,
+                    120,
+                    46
                 ],
                 "template": "游戏更新.png",
                 "green_mask": true,
@@ -1100,15 +1100,15 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    1066,
-                    473,
-                    43,
-                    173
+                    1056,
+                    463,
+                    63,
+                    193
                 ],
                 "template": "公告弹窗.png",
                 "green_mask": true,
                 "threshold": [
-                    0.9
+                    0.95
                 ]
             }
         },
@@ -1126,10 +1126,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    821,
-                    582,
-                    172,
-                    49
+                    816,
+                    577,
+                    182,
+                    59
                 ],
                 "template": "登录奖励.png",
                 "green_mask": true,
