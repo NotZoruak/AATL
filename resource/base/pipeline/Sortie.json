@@ -1,34 +1,35 @@
 {
     "Sortie": {
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_DetectWhereAmI": {
+    "S_DetectWhereAmI": {
         "pre_delay": 0,
         "next": [
             "S_IsAnnouncementPopup",
-            "Sortie_HasExpeditionReturn",
-            "Sortie_IsMarching",
-            "Sortie_IsBattleResult",
-            "Sortie_IsSwordDrop",
-            "Sortie_IsKebiishi",
-            "Sortie_IsFormationSelect",
-            "Sortie_IsSwordSelect",
-            "Sortie_IsTeamSelect",
-            "Sortie_IsEraSelect",
-            "Sortie_IsRegionSelect",
-            "Sortie_IsSortieActivity",
-            "Sortie_IsHome",
-            "Sortie_IsRepair",
-            "Sortie_IsStopOnDamage",
+            "S_IsLoginReward",
+            "S_HasExpeditionReturn",
+            "S_IsMarching",
+            "S_IsBattleResult",
+            "S_IsSwordDrop",
+            "S_IsKebiishi",
+            "S_IsFormationSelect",
+            "S_IsSwordSelect",
+            "S_IsTeamSelect",
+            "S_IsEraSelect",
+            "S_IsRegionSelect",
+            "S_IsSortieActivity",
+            "S_IsHome",
+            "S_IsRepair",
+            "S_IsStopOnDamage",
             "S_IsGameIcon",
             "S_IsLoginButton",
             "S_IsGameUpdatePopup",
-            "Sortie_FallbackWait"
+            "S_FallbackWait"
         ]
     },
-    "Sortie_HasExpeditionReturn": {
+    "S_HasExpeditionReturn": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -45,11 +46,11 @@
             192
         ],
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
-    "Sortie_IsMarching": {
+    "S_IsMarching": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -67,10 +68,10 @@
             }
         },
         "next": [
-            "Sortie_CheckBossBeforeMarch"
+            "S_CheckBossBeforeMarch"
         ]
     },
-    "Sortie_IsBattleResult": {
+    "S_IsBattleResult": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -87,11 +88,11 @@
             192
         ],
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
-    "Sortie_IsSwordDrop": {
+    "S_IsSwordDrop": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -110,11 +111,11 @@
         },
         "action": "Click",
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
-    "Sortie_IsFormationSelect": {
+    "S_IsFormationSelect": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -132,10 +133,10 @@
             }
         },
         "next": [
-            "Sortie_ClickFormation1"
+            "S_ClickFormation1"
         ]
     },
-    "Sortie_ClickFormation1": {
+    "S_ClickFormation1": {
         "action": {
             "type": "Click",
             "param": {
@@ -155,11 +156,11 @@
         },
         "post_delay": 200,
         "next": [
-            "Sortie_ClickFormation2"
+            "S_ClickFormation2"
         ],
         "pre_delay": 100
     },
-    "Sortie_ClickFormation2": {
+    "S_ClickFormation2": {
         "action": {
             "type": "Click",
             "param": {
@@ -178,11 +179,11 @@
             }
         },
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
-    "Sortie_IsSwordSelect": {
+    "S_IsSwordSelect": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -197,17 +198,17 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickCaptain1"
+            "S_ClickCaptain1"
         ]
     },
-    "Sortie_DetectSortOrder": {
+    "S_DetectSortOrder": {
         "enabled": false,
         "next": [
-            "Sortie_ClickDescending",
-            "Sortie_ConfirmSortAsc"
+            "S_ClickDescending",
+            "S_ConfirmSortAsc"
         ]
     },
-    "Sortie_ClickDescending": {
+    "S_ClickDescending": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -234,11 +235,11 @@
         "enabled": false,
         "post_delay": 800,
         "next": [
-            "Sortie_DetectSortOrder"
+            "S_DetectSortOrder"
         ],
         "pre_delay": 100
     },
-    "Sortie_ConfirmSortAsc": {
+    "S_ConfirmSortAsc": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -270,11 +271,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_IsPreSortieConfirm"
+            "S_IsPreSortieConfirm"
         ],
         "pre_delay": 100
     },
-    "Sortie_IsPreSortieConfirm": {
+    "S_IsPreSortieConfirm": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -292,13 +293,13 @@
             }
         },
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "next": [
-            "Sortie_ClickSortieNow"
+            "S_ClickSortieNow"
         ]
     },
-    "Sortie_ClickSortieNow": {
+    "S_ClickSortieNow": {
         "action": {
             "type": "Click",
             "param": {
@@ -317,20 +318,20 @@
             }
         },
         "next": [
-            "Sortie_PostSortieHub"
+            "S_PostSortieHub"
         ],
         "pre_delay": 100
     },
-    "Sortie_PostSortieHub": {
+    "S_PostSortieHub": {
         "pre_delay": 0,
         "next": [
-            "Sortie_IsPreDamage1",
-            "Sortie_IsPreDamage2",
-            "Sortie_CheckEquipmentPopup",
-            "Sortie_DetectAfterSortieNow"
+            "S_IsPreDamage1",
+            "S_IsPreDamage2",
+            "S_CheckEquipmentPopup",
+            "S_DetectAfterSortieNow"
         ]
     },
-    "Sortie_CheckEquipmentPopup": {
+    "S_CheckEquipmentPopup": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -350,23 +351,23 @@
         "action": "Click",
         "enabled": false,
         "next": [
-            "Sortie_PreCheckTroopRecord"
+            "S_PreCheckTroopRecord"
         ],
         "on_error": [
-            "Sortie_DetectAfterSortieNow"
+            "S_DetectAfterSortieNow"
         ],
         "pre_delay": 100
     },
-    "Sortie_DetectAfterSortieNow": {
+    "S_DetectAfterSortieNow": {
         "pre_delay": 0,
         "next": [
-            "Sortie_IsTroopDepleted",
-            "Sortie_IsMarching",
-            "Sortie_IsFormationSelect",
-            "Sortie_FallbackWait"
+            "S_IsTroopDepleted",
+            "S_IsMarching",
+            "S_IsFormationSelect",
+            "S_FallbackWait"
         ]
     },
-    "Sortie_IsTroopDepleted": {
+    "S_IsTroopDepleted": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -381,10 +382,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_RefillTroops"
+            "S_RefillTroops"
         ]
     },
-    "Sortie_RefillTroops": {
+    "S_RefillTroops": {
         "action": {
             "type": "Click",
             "param": {
@@ -404,11 +405,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ConfirmRefill"
+            "S_ConfirmRefill"
         ],
         "pre_delay": 100
     },
-    "Sortie_ConfirmRefill": {
+    "S_ConfirmRefill": {
         "action": {
             "type": "Click",
             "param": {
@@ -428,11 +429,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickSortieNow"
+            "S_ClickSortieNow"
         ],
         "pre_delay": 100
     },
-    "Sortie_IsTeamSelect": {
+    "S_IsTeamSelect": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -446,10 +447,10 @@
             }
         },
         "next": [
-            "Sortie_ClickTeam"
+            "S_ClickTeam"
         ]
     },
-    "Sortie_ClickTeam": {
+    "S_ClickTeam": {
         "action": {
             "type": "Click",
             "param": {
@@ -468,11 +469,11 @@
             }
         },
         "next": [
-            "Sortie_CaptainHub"
+            "S_CaptainHub"
         ],
         "pre_delay": 100
     },
-    "Sortie_PreCheckTroopRecord": {
+    "S_PreCheckTroopRecord": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -492,14 +493,14 @@
         "action": "Click",
         "enabled": false,
         "on_error": [
-            "Sortie_DetectAfterSortieNow"
+            "S_DetectAfterSortieNow"
         ],
         "next": [
-            "Sortie_PreCheckUseRecord"
+            "S_PreCheckUseRecord"
         ],
         "pre_delay": 100
     },
-    "Sortie_PreCheckUseRecord": {
+    "S_PreCheckUseRecord": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -519,14 +520,14 @@
         "action": "Click",
         "enabled": false,
         "on_error": [
-            "Sortie_DetectAfterSortieNow"
+            "S_DetectAfterSortieNow"
         ],
         "next": [
-            "Sortie_PreConfirmSupply"
+            "S_PreConfirmSupply"
         ],
         "pre_delay": 100
     },
-    "Sortie_IsEraSelect": {
+    "S_IsEraSelect": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -544,10 +545,10 @@
             }
         },
         "next": [
-            "Sortie_ClickEra"
+            "S_ClickEra"
         ]
     },
-    "Sortie_ClickEra": {
+    "S_ClickEra": {
         "action": {
             "type": "Click",
             "param": {
@@ -566,11 +567,11 @@
             }
         },
         "next": [
-            "Sortie_ConfirmEra"
+            "S_ConfirmEra"
         ],
         "pre_delay": 100
     },
-    "Sortie_ConfirmEra": {
+    "S_ConfirmEra": {
         "action": {
             "type": "Click",
             "param": {
@@ -589,11 +590,11 @@
             }
         },
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
-    "Sortie_IsRegionSelect": {
+    "S_IsRegionSelect": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -611,13 +612,13 @@
             }
         },
         "next": [
-            "Sortie_VerifyRegionSelect"
+            "S_VerifyRegionSelect"
         ],
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_VerifyRegionSelect": {
+    "S_VerifyRegionSelect": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -635,13 +636,13 @@
             }
         },
         "next": [
-            "Sortie_ClickRegion"
+            "S_ClickRegion"
         ],
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_ClickRegion": {
+    "S_ClickRegion": {
         "action": {
             "type": "Click",
             "param": {
@@ -660,12 +661,12 @@
             }
         },
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "pre_delay": 500,
         "post_delay": 800
     },
-    "Sortie_IsSortieActivity": {
+    "S_IsSortieActivity": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -683,10 +684,10 @@
             }
         },
         "next": [
-            "Sortie_ClickBattlefieldTab"
+            "S_ClickBattlefieldTab"
         ]
     },
-    "Sortie_ClickBattlefieldTab": {
+    "S_ClickBattlefieldTab": {
         "action": {
             "type": "Click",
             "param": {
@@ -705,11 +706,11 @@
             }
         },
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
-    "Sortie_IsHome": {
+    "S_IsHome": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -727,18 +728,18 @@
             }
         },
         "next": [
-            "Sortie_NavigateToSortie"
+            "S_NavigateToSortie"
         ]
     },
-    "Sortie_NavigateToSortie": {
+    "S_NavigateToSortie": {
         "next": [
-            "Sortie_ClickMenu"
+            "S_ClickMenu"
         ],
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_ClickMenu": {
+    "S_ClickMenu": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -763,11 +764,11 @@
             }
         },
         "next": [
-            "Sortie_PostClickMenuHub"
+            "S_PostClickMenuHub"
         ],
         "pre_delay": 100
     },
-    "Sortie_ClickSortieInMenu": {
+    "S_ClickSortieInMenu": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -792,14 +793,14 @@
             }
         },
         "on_error": [
-            "Sortie_PostClickMenuHub"
+            "S_PostClickMenuHub"
         ],
         "next": [
-            "Sortie_VerifyMenuClosed"
+            "S_VerifyMenuClosed"
         ],
         "pre_delay": 100
     },
-    "Sortie_VerifyMenuClosed": {
+    "S_VerifyMenuClosed": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -817,19 +818,19 @@
             }
         },
         "next": [
-            "Sortie_TryClickSortie"
+            "S_TryClickSortie"
         ],
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_TryClickSortie": {
+    "S_TryClickSortie": {
         "next": [
-            "Sortie_ClickSortieInMenu",
-            "Sortie_DetectWhereAmI"
+            "S_ClickSortieInMenu",
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_IsRepair": {
+    "S_IsRepair": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -844,10 +845,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_UseSpeedup"
+            "S_UseSpeedup"
         ]
     },
-    "Sortie_IsStopOnDamage": {
+    "S_IsStopOnDamage": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -863,7 +864,7 @@
         "enabled": false,
         "action": "DoNothing"
     },
-    "Sortie_UseSpeedup": {
+    "S_UseSpeedup": {
         "action": {
             "type": "Click",
             "param": {
@@ -883,11 +884,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ConfirmRepair"
+            "S_ConfirmRepair"
         ],
         "pre_delay": 100
     },
-    "Sortie_ConfirmRepair": {
+    "S_ConfirmRepair": {
         "action": {
             "type": "Click",
             "param": {
@@ -908,16 +909,16 @@
         "enabled": false,
         "post_delay": 200,
         "next": [
-            "Sortie_ReturnHome"
+            "S_ReturnHome"
         ],
         "pre_delay": 100
     },
-    "Sortie_ReturnHome": {
+    "S_ReturnHome": {
         "next": [
-            "Sortie_ClickMenuFromRepair"
+            "S_ClickMenuFromRepair"
         ]
     },
-    "Sortie_ClickMenuFromRepair": {
+    "S_ClickMenuFromRepair": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -943,11 +944,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickHomeInMenu"
+            "S_ClickHomeInMenu"
         ],
         "pre_delay": 100
     },
-    "Sortie_ClickHomeInMenu": {
+    "S_ClickHomeInMenu": {
         "action": {
             "type": "Click",
             "param": {
@@ -967,52 +968,52 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_VerifyHomeMenuClosed"
+            "S_VerifyHomeMenuClosed"
         ],
         "pre_delay": 100
     },
-    "Sortie_CheckBossBeforeMarch": {
+    "S_CheckBossBeforeMarch": {
         "pre_delay": 0,
         "next": [
-            "Sortie_IsKebiishi",
-            "Sortie_IsMarchingDamage2",
-            "Sortie_Boss_E2_R1",
-            "Sortie_Boss_E3_R1",
-            "Sortie_Boss_E4_R1",
-            "Sortie_Boss_E2_R2_1",
-            "Sortie_Boss_E2_R2_2",
-            "Sortie_Boss_E3_R2",
-            "Sortie_Boss_E3_R3",
-            "Sortie_Boss_E3_R4",
-            "Sortie_Boss_E4_R2",
-            "Sortie_Boss_E2_R3_1",
-            "Sortie_Boss_E2_R3_2",
-            "Sortie_Boss_E4_R3",
-            "Sortie_Boss_E2_R4",
-            "Sortie_Boss_E4_R4",
-            "Sortie_Boss_E5_R1",
-            "Sortie_Boss_E5_R3",
-            "Sortie_Boss_E5_R3_2",
-            "Sortie_Boss_E5_R4",
-            "Sortie_Boss_E6_R1",
-            "Sortie_Boss_E6_R2",
-            "Sortie_Boss_E6_R3",
-            "Sortie_Boss_E6_R4",
-            "Sortie_Boss_E7_R1",
-            "Sortie_Boss_E7_R2",
-            "Sortie_Boss_E7_R3",
-            "Sortie_MidRetreat_E8_R1",
-            "Sortie_MidRetreat_E8_R2",
-            "Sortie_MidRetreat_E8_R3",
-            "Sortie_MidRetreat_E8_R4",
-            "Sortie_Boss_E8_R1",
-            "Sortie_Boss_E8_R2",
-            "Sortie_Boss_E8_R3",
-            "Sortie_Boss_E8_R4",
-            "Sortie_PostClickMarching"
+            "S_IsKebiishi",
+            "S_IsMarchingDamage2",
+            "S_Boss_E2_R1",
+            "S_Boss_E3_R1",
+            "S_Boss_E4_R1",
+            "S_Boss_E2_R2_1",
+            "S_Boss_E2_R2_2",
+            "S_Boss_E3_R2",
+            "S_Boss_E3_R3",
+            "S_Boss_E3_R4",
+            "S_Boss_E4_R2",
+            "S_Boss_E2_R3_1",
+            "S_Boss_E2_R3_2",
+            "S_Boss_E4_R3",
+            "S_Boss_E2_R4",
+            "S_Boss_E4_R4",
+            "S_Boss_E5_R1",
+            "S_Boss_E5_R3",
+            "S_Boss_E5_R3_2",
+            "S_Boss_E5_R4",
+            "S_Boss_E6_R1",
+            "S_Boss_E6_R2",
+            "S_Boss_E6_R3",
+            "S_Boss_E6_R4",
+            "S_Boss_E7_R1",
+            "S_Boss_E7_R2",
+            "S_Boss_E7_R3",
+            "S_MidRetreat_E8_R1",
+            "S_MidRetreat_E8_R2",
+            "S_MidRetreat_E8_R3",
+            "S_MidRetreat_E8_R4",
+            "S_Boss_E8_R1",
+            "S_Boss_E8_R2",
+            "S_Boss_E8_R3",
+            "S_Boss_E8_R4",
+            "S_PostClickMarching"
         ]
     },
-    "Sortie_PostClickMarching": {
+    "S_PostClickMarching": {
         "action": {
             "type": "Click",
             "param": {
@@ -1031,11 +1032,11 @@
             }
         },
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
-    "Sortie_Boss_E4_R1": {
+    "S_Boss_E4_R1": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1053,10 +1054,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E4_R2": {
+    "S_Boss_E4_R2": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1074,10 +1075,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E4_R3": {
+    "S_Boss_E4_R3": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1095,10 +1096,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E4_R4": {
+    "S_Boss_E4_R4": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1116,10 +1117,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E5_R1": {
+    "S_Boss_E5_R1": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1137,10 +1138,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E5_R3": {
+    "S_Boss_E5_R3": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1158,10 +1159,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E5_R4": {
+    "S_Boss_E5_R4": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1179,10 +1180,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E6_R1": {
+    "S_Boss_E6_R1": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1200,10 +1201,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E6_R2": {
+    "S_Boss_E6_R2": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1221,10 +1222,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E6_R3": {
+    "S_Boss_E6_R3": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1242,10 +1243,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E6_R4": {
+    "S_Boss_E6_R4": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1263,10 +1264,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E7_R1": {
+    "S_Boss_E7_R1": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1285,11 +1286,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ],
         "pre_delay": 100
     },
-    "Sortie_Boss_E7_R2": {
+    "S_Boss_E7_R2": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1308,11 +1309,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ],
         "pre_delay": 100
     },
-    "Sortie_Boss_E7_R3": {
+    "S_Boss_E7_R3": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1331,11 +1332,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ],
         "pre_delay": 100
     },
-    "Sortie_Boss_E8_R1": {
+    "S_Boss_E8_R1": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1354,11 +1355,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ],
         "pre_delay": 100
     },
-    "Sortie_Boss_E8_R2": {
+    "S_Boss_E8_R2": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1377,11 +1378,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ],
         "pre_delay": 100
     },
-    "Sortie_Boss_E8_R3": {
+    "S_Boss_E8_R3": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1400,11 +1401,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ],
         "pre_delay": 100
     },
-    "Sortie_Boss_E8_R4": {
+    "S_Boss_E8_R4": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1423,11 +1424,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ],
         "pre_delay": 100
     },
-    "Sortie_ClickRetreat": {
+    "S_ClickRetreat": {
         "action": {
             "type": "Click",
             "param": {
@@ -1447,11 +1448,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ConfirmRetreat"
+            "S_ConfirmRetreat"
         ],
         "pre_delay": 100
     },
-    "Sortie_ConfirmRetreat": {
+    "S_ConfirmRetreat": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -1483,11 +1484,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
-    "Sortie_IsPreDamage1": {
+    "S_IsPreDamage1": {
         "recognition": "OCR",
         "roi": [
             493,
@@ -1510,11 +1511,11 @@
             0
         ],
         "next": [
-            "Sortie_DecideDamage_Pre"
+            "S_DecideDamage_Pre"
         ],
         "pre_delay": 100
     },
-    "Sortie_IsPreDamage2": {
+    "S_IsPreDamage2": {
         "recognition": "OCR",
         "roi": [
             465,
@@ -1524,10 +1525,10 @@
         ],
         "expected": "重伤",
         "next": [
-            "Sortie_ConfirmCancelPreDamage2"
+            "S_ConfirmCancelPreDamage2"
         ]
     },
-    "Sortie_IsMarchingDamage1": {
+    "S_IsMarchingDamage1": {
         "recognition": "OCR",
         "roi": [
             493,
@@ -1550,11 +1551,11 @@
             0
         ],
         "next": [
-            "Sortie_DecideDamage_March"
+            "S_DecideDamage_March"
         ],
         "pre_delay": 100
     },
-    "Sortie_IsMarchingDamage2": {
+    "S_IsMarchingDamage2": {
         "recognition": "OCR",
         "roi": [
             469,
@@ -1564,10 +1565,10 @@
         ],
         "expected": "重伤",
         "next": [
-            "Sortie_ConfirmCancelMarchingDamage2"
+            "S_ConfirmCancelMarchingDamage2"
         ]
     },
-    "Sortie_ConfirmCancelPreDamage1": {
+    "S_ConfirmCancelPreDamage1": {
         "recognition": "OCR",
         "roi": [
             772,
@@ -1584,11 +1585,11 @@
             0
         ],
         "next": [
-            "Sortie_DecideDamage_Pre"
+            "S_DecideDamage_Pre"
         ],
         "pre_delay": 100
     },
-    "Sortie_ConfirmCancelPreDamage2": {
+    "S_ConfirmCancelPreDamage2": {
         "recognition": "OCR",
         "roi": [
             772,
@@ -1605,12 +1606,12 @@
             0
         ],
         "next": [
-            "Sortie_DecideDamage_Pre"
+            "S_DecideDamage_Pre"
         ],
         "post_delay": 500,
         "pre_delay": 100
     },
-    "Sortie_ConfirmCancelMarchingDamage2": {
+    "S_ConfirmCancelMarchingDamage2": {
         "recognition": "OCR",
         "roi": [
             763,
@@ -1627,19 +1628,19 @@
             0
         ],
         "next": [
-            "Sortie_ReturnHomeAfterMarchDamage"
+            "S_ReturnHomeAfterMarchDamage"
         ],
         "post_delay": 300,
         "pre_delay": 100
     },
-    "Sortie_NavigateToRepair": {
+    "S_NavigateToRepair": {
         "next": [
-            "Sortie_ClickMenuForRepair",
-            "Sortie_DetectWhereAmI"
+            "S_ClickMenuForRepair",
+            "S_DetectWhereAmI"
         ],
         "post_delay": 300
     },
-    "Sortie_ClickMenuForRepair": {
+    "S_ClickMenuForRepair": {
         "recognition": "OCR",
         "roi": [
             1179,
@@ -1657,11 +1658,11 @@
         ],
         "post_delay": 300,
         "next": [
-            "Sortie_VerifyMenuOpened"
+            "S_VerifyMenuOpened"
         ],
         "pre_delay": 100
     },
-    "Sortie_ClickRepairInMenu": {
+    "S_ClickRepairInMenu": {
         "recognition": "OCR",
         "roi": [
             451,
@@ -1678,18 +1679,18 @@
             0
         ],
         "next": [
-            "Sortie_VerifyRepairMenuClosed"
+            "S_VerifyRepairMenuClosed"
         ],
         "pre_delay": 100
     },
-    "Sortie_SelectDamagedSword": {
+    "S_SelectDamagedSword": {
         "next": [
-            "Sortie_FindSlot1",
-            "Sortie_FindSlot2",
-            "Sortie_FindSlot3"
+            "S_FindSlot1",
+            "S_FindSlot2",
+            "S_FindSlot3"
         ]
     },
-    "Sortie_FindSlot1": {
+    "S_FindSlot1": {
         "recognition": "OCR",
         "roi": [
             380,
@@ -1706,11 +1707,11 @@
             0
         ],
         "next": [
-            "Sortie_ConfirmSelectSlot"
+            "S_ConfirmSelectSlot"
         ],
         "pre_delay": 100
     },
-    "Sortie_FindSlot2": {
+    "S_FindSlot2": {
         "recognition": "OCR",
         "roi": [
             383,
@@ -1727,11 +1728,11 @@
             0
         ],
         "next": [
-            "Sortie_ConfirmSelectSlot"
+            "S_ConfirmSelectSlot"
         ],
         "pre_delay": 100
     },
-    "Sortie_FindSlot3": {
+    "S_FindSlot3": {
         "recognition": "OCR",
         "roi": [
             381,
@@ -1748,17 +1749,17 @@
             0
         ],
         "next": [
-            "Sortie_ConfirmSelectSlot"
+            "S_ConfirmSelectSlot"
         ],
         "pre_delay": 100
     },
-    "Sortie_DecideDamage_Pre": {
+    "S_DecideDamage_Pre": {
         "next": [
-            "Sortie_ClickMenuForRepair",
-            "Sortie_IsStopOnDamage"
+            "S_ClickMenuForRepair",
+            "S_IsStopOnDamage"
         ]
     },
-    "Sortie_ReturnHomeAfterMarchDamage": {
+    "S_ReturnHomeAfterMarchDamage": {
         "action": "Click",
         "target": [
             1208,
@@ -1773,17 +1774,17 @@
             0
         ],
         "next": [
-            "Sortie_ConfirmReturnHome"
+            "S_ConfirmReturnHome"
         ],
         "pre_delay": 100
     },
-    "Sortie_DecideDamage_March": {
+    "S_DecideDamage_March": {
         "next": [
-            "Sortie_ClickMenuForRepair",
-            "Sortie_IsStopOnDamage"
+            "S_ClickMenuForRepair",
+            "S_IsStopOnDamage"
         ]
     },
-    "Sortie_ConfirmSelectSlot": {
+    "S_ConfirmSelectSlot": {
         "recognition": "OCR",
         "roi": [
             1052,
@@ -1800,16 +1801,16 @@
             0
         ],
         "next": [
-            "Sortie_CheckAccel"
+            "S_CheckAccel"
         ],
         "pre_delay": 100
     },
-    "Sortie_CheckAccel": {
+    "S_CheckAccel": {
         "next": [
-            "Sortie_ClickAccel"
+            "S_ClickAccel"
         ]
     },
-    "Sortie_ClickAccel": {
+    "S_ClickAccel": {
         "action": {
             "type": "Click",
             "param": {
@@ -1828,11 +1829,11 @@
             }
         },
         "next": [
-            "Sortie_ClickRepairDone"
+            "S_ClickRepairDone"
         ],
         "pre_delay": 100
     },
-    "Sortie_ClickRepairDone": {
+    "S_ClickRepairDone": {
         "recognition": "OCR",
         "roi": [
             1159,
@@ -1849,11 +1850,11 @@
             0
         ],
         "next": [
-            "Sortie_DirAfterRepair"
+            "S_DirAfterRepair"
         ],
         "pre_delay": 100
     },
-    "Sortie_DirAfterRepair": {
+    "S_DirAfterRepair": {
         "recognition": "OCR",
         "roi": [
             1179,
@@ -1870,11 +1871,11 @@
             0
         ],
         "next": [
-            "Sortie_VerifyMenuAfterRepair"
+            "S_VerifyMenuAfterRepair"
         ],
         "pre_delay": 100
     },
-    "Sortie_SortieAfterRepair": {
+    "S_SortieAfterRepair": {
         "recognition": "OCR",
         "roi": [
             165,
@@ -1891,11 +1892,11 @@
             0
         ],
         "next": [
-            "Sortie_VerifyAfterRepairMenuClosed"
+            "S_VerifyAfterRepairMenuClosed"
         ],
         "pre_delay": 100
     },
-    "Sortie_ConfirmReturnHome": {
+    "S_ConfirmReturnHome": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -1922,12 +1923,12 @@
             0
         ],
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "post_delay": 500,
         "pre_delay": 100
     },
-    "Sortie_VerifyMenuOpened": {
+    "S_VerifyMenuOpened": {
         "recognition": "OCR",
         "roi": [
             586,
@@ -1937,20 +1938,20 @@
         ],
         "expected": "目录",
         "on_error": [
-            "Sortie_ClickMenuForRepair"
+            "S_ClickMenuForRepair"
         ],
         "next": [
-            "Sortie_ClickRepairInMenu"
+            "S_ClickRepairInMenu"
         ]
     },
-    "Sortie_PostClickMenuHub": {
+    "S_PostClickMenuHub": {
         "next": [
-            "Sortie_VerifyMenuSortie",
-            "Sortie_CheckNavDirForRetry",
-            "Sortie_DetectWhereAmI"
+            "S_VerifyMenuSortie",
+            "S_CheckNavDirForRetry",
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_VerifyMenuSortie": {
+    "S_VerifyMenuSortie": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1968,10 +1969,10 @@
             }
         },
         "next": [
-            "Sortie_ClickSortieInMenu"
+            "S_ClickSortieInMenu"
         ]
     },
-    "Sortie_CheckNavDirForRetry": {
+    "S_CheckNavDirForRetry": {
         "recognition": "OCR",
         "roi": [
             1179,
@@ -1988,14 +1989,14 @@
             0
         ],
         "next": [
-            "Sortie_PostClickMenuHub"
+            "S_PostClickMenuHub"
         ],
         "pre_delay": 100,
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_VerifyLeftMenuSortie": {
+    "S_VerifyLeftMenuSortie": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2013,13 +2014,13 @@
             }
         },
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "next": [
-            "Sortie_ClickSortieInMenu"
+            "S_ClickSortieInMenu"
         ]
     },
-    "Sortie_VerifyLeftMenuRepair": {
+    "S_VerifyLeftMenuRepair": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2037,13 +2038,13 @@
             }
         },
         "on_error": [
-            "Sortie_SelectDamagedSword"
+            "S_SelectDamagedSword"
         ],
         "next": [
-            "Sortie_ClickRepairInMenu"
+            "S_ClickRepairInMenu"
         ]
     },
-    "Sortie_VerifyMenuAfterRepair": {
+    "S_VerifyMenuAfterRepair": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2061,13 +2062,13 @@
             }
         },
         "on_error": [
-            "Sortie_DirAfterRepair"
+            "S_DirAfterRepair"
         ],
         "next": [
-            "Sortie_SortieAfterRepair"
+            "S_SortieAfterRepair"
         ]
     },
-    "Sortie_VerifyLeftMenuAfterRepair": {
+    "S_VerifyLeftMenuAfterRepair": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2085,13 +2086,13 @@
             }
         },
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "next": [
-            "Sortie_SortieAfterRepair"
+            "S_SortieAfterRepair"
         ]
     },
-    "Sortie_ClickCaptain1": {
+    "S_ClickCaptain1": {
         "enabled": false,
         "action": {
             "type": "Click",
@@ -2112,11 +2113,11 @@
         },
         "post_delay": 800,
         "next": [
-            "Sortie_ClickCaptain2"
+            "S_ClickCaptain2"
         ],
         "pre_delay": 100
     },
-    "Sortie_ClickCaptain2": {
+    "S_ClickCaptain2": {
         "enabled": false,
         "action": {
             "type": "Click",
@@ -2137,11 +2138,11 @@
         },
         "post_delay": 800,
         "next": [
-            "Sortie_ClickCaptain3"
+            "S_ClickCaptain3"
         ],
         "pre_delay": 100
     },
-    "Sortie_ClickCaptain3": {
+    "S_ClickCaptain3": {
         "enabled": false,
         "action": {
             "type": "Click",
@@ -2162,11 +2163,11 @@
         },
         "post_delay": 800,
         "next": [
-            "Sortie_ClickCaptain4"
+            "S_ClickCaptain4"
         ],
         "pre_delay": 100
     },
-    "Sortie_ClickCaptain4": {
+    "S_ClickCaptain4": {
         "enabled": false,
         "action": {
             "type": "Click",
@@ -2187,11 +2188,11 @@
         },
         "post_delay": 800,
         "next": [
-            "Sortie_ClickCaptain5"
+            "S_ClickCaptain5"
         ],
         "pre_delay": 100
     },
-    "Sortie_ClickCaptain5": {
+    "S_ClickCaptain5": {
         "enabled": false,
         "action": {
             "type": "Click",
@@ -2211,11 +2212,11 @@
             }
         },
         "next": [
-            "Sortie_DetectSortOrder"
+            "S_DetectSortOrder"
         ],
         "pre_delay": 100
     },
-    "Sortie_ClickCaptainSlot": {
+    "S_ClickCaptainSlot": {
         "enabled": false,
         "action": {
             "type": "Click",
@@ -2235,18 +2236,18 @@
             }
         },
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "post_delay": 1000,
         "pre_delay": 100
     },
-    "Sortie_CaptainHub": {
+    "S_CaptainHub": {
         "next": [
-            "Sortie_ClickCaptainSlot",
-            "Sortie_IsPreSortieConfirm"
+            "S_ClickCaptainSlot",
+            "S_IsPreSortieConfirm"
         ]
     },
-    "Sortie_PreConfirmSupply": {
+    "S_PreConfirmSupply": {
         "action": {
             "type": "Click",
             "param": {
@@ -2266,21 +2267,21 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_IsPreSortieConfirm"
+            "S_IsPreSortieConfirm"
         ],
         "pre_delay": 100
     },
-    "Sortie_WaitRefresh": {
+    "S_WaitRefresh": {
         "action": {
             "type": "DoNothing",
             "param": {}
         },
         "post_delay": 3000,
         "next": [
-            "CheckTeamStatus"
+            "E_CheckTeamStatus"
         ]
     },
-    "Sortie_IsKebiishi": {
+    "S_IsKebiishi": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2299,17 +2300,17 @@
         },
         "action": "Click",
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
-    "Sortie_FallbackWait": {
+    "S_FallbackWait": {
         "action": "DoNothing",
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_Boss_E5_R3_2": {
+    "S_Boss_E5_R3_2": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2327,10 +2328,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_VerifyRepairMenuClosed": {
+    "S_VerifyRepairMenuClosed": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2348,19 +2349,19 @@
             }
         },
         "next": [
-            "Sortie_TryClickRepair"
+            "S_TryClickRepair"
         ],
         "on_error": [
-            "Sortie_SelectDamagedSword"
+            "S_SelectDamagedSword"
         ]
     },
-    "Sortie_TryClickRepair": {
+    "S_TryClickRepair": {
         "next": [
-            "Sortie_ClickRepairInMenu",
-            "Sortie_SelectDamagedSword"
+            "S_ClickRepairInMenu",
+            "S_SelectDamagedSword"
         ]
     },
-    "Sortie_VerifyHomeMenuClosed": {
+    "S_VerifyHomeMenuClosed": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2378,19 +2379,19 @@
             }
         },
         "next": [
-            "Sortie_TryClickHome"
+            "S_TryClickHome"
         ],
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_TryClickHome": {
+    "S_TryClickHome": {
         "next": [
-            "Sortie_ClickHomeInMenu",
-            "Sortie_DetectWhereAmI"
+            "S_ClickHomeInMenu",
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_VerifyAfterRepairMenuClosed": {
+    "S_VerifyAfterRepairMenuClosed": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2408,16 +2409,16 @@
             }
         },
         "next": [
-            "Sortie_TryClickAfterRepair"
+            "S_TryClickAfterRepair"
         ],
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_TryClickAfterRepair": {
+    "S_TryClickAfterRepair": {
         "next": [
-            "Sortie_SortieAfterRepair",
-            "Sortie_DetectWhereAmI"
+            "S_SortieAfterRepair",
+            "S_DetectWhereAmI"
         ]
     },
     "S_IsGameIcon": {
@@ -2441,10 +2442,10 @@
         "post_delay": 3000,
         "pre_delay": 100,
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ]
     },
     "S_IsLoginButton": {
@@ -2468,10 +2469,10 @@
         "post_delay": 3000,
         "pre_delay": 100,
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ]
     },
     "S_IsGameUpdatePopup": {
@@ -2495,13 +2496,13 @@
         "post_delay": 2000,
         "pre_delay": 100,
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ],
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_Boss_E2_R1": {
+    "S_Boss_E2_R1": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2519,10 +2520,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E2_R2_1": {
+    "S_Boss_E2_R2_1": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2540,10 +2541,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E2_R2_2": {
+    "S_Boss_E2_R2_2": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2561,10 +2562,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E2_R3_1": {
+    "S_Boss_E2_R3_1": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2582,10 +2583,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E2_R3_2": {
+    "S_Boss_E2_R3_2": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2603,10 +2604,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E2_R4": {
+    "S_Boss_E2_R4": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2624,10 +2625,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E3_R1": {
+    "S_Boss_E3_R1": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2645,10 +2646,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E3_R2": {
+    "S_Boss_E3_R2": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2666,10 +2667,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E3_R3": {
+    "S_Boss_E3_R3": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2687,10 +2688,10 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
-    "Sortie_Boss_E3_R4": {
+    "S_Boss_E3_R4": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2708,7 +2709,7 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ]
     },
     "S_IsAnnouncementPopup": {
@@ -2731,13 +2732,65 @@
         "action": "Click",
         "pre_delay": 100,
         "next": [
-            "Sortie_DetectWhereAmI"
+            "S_IsAnnouncementPopup"
         ],
         "on_error": [
-            "Sortie_DetectWhereAmI"
+            "S_DetectWhereAmI"
         ]
     },
-    "Sortie_MidRetreat_E8_R1": {
+    "S_IsLoginReward": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    821,
+                    582,
+                    172,
+                    49
+                ],
+                "template": "登录奖励.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "pre_delay": 100,
+        "next": [
+            "S_LoginRewardClick2"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_LoginRewardClick2": {
+        "action": "Click",
+        "target": [
+            1092,
+            318,
+            1,
+            1
+        ],
+        "pre_delay": 300,
+        "next": [
+            "S_LoginRewardClick3"
+        ]
+    },
+    "S_LoginRewardClick3": {
+        "action": "Click",
+        "target": [
+            1092,
+            318,
+            1,
+            1
+        ],
+        "pre_delay": 300,
+        "next": [
+            "S_IsLoginReward"
+        ]
+    },
+    "S_MidRetreat_E8_R1": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2756,11 +2809,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ],
         "pre_delay": 100
     },
-    "Sortie_MidRetreat_E8_R2": {
+    "S_MidRetreat_E8_R2": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2779,11 +2832,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ],
         "pre_delay": 100
     },
-    "Sortie_MidRetreat_E8_R3": {
+    "S_MidRetreat_E8_R3": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2802,11 +2855,11 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ],
         "pre_delay": 100
     },
-    "Sortie_MidRetreat_E8_R4": {
+    "S_MidRetreat_E8_R4": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -2825,7 +2878,7 @@
         },
         "enabled": false,
         "next": [
-            "Sortie_ClickRetreat"
+            "S_ClickRetreat"
         ],
         "pre_delay": 100
     }

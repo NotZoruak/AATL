@@ -1,0 +1,741 @@
+{
+    "Disassemble": {
+        "next": [
+            "D_DetectWhereAmI"
+        ]
+    },
+    "D_DetectWhereAmI": {
+        "pre_delay": 0,
+        "next": [
+            "D_DetectHome",
+            "D_DetectMenu",
+            "D_DetectForge",
+            "D_DetectDisassemble",
+            "D_DetectFilter",
+            "D_DetectMailbox",
+            "D_FallbackWait"
+        ]
+    },
+    "D_DetectHome": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    13,
+                    6,
+                    61,
+                    97
+                ],
+                "template": "本丸.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1179,
+                    8,
+                    95,
+                    56
+                ],
+                "target_offset": [
+                    5,
+                    3,
+                    0,
+                    0
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_DetectWhereAmI"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
+        ]
+    },
+    "D_DetectMenu": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    748,
+                    275,
+                    76,
+                    34
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_DetectWhereAmI"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
+        ]
+    },
+    "D_DetectForge": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    569,
+                    59,
+                    143,
+                    41
+                ],
+                "expected": "锻刀状况"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    8,
+                    303,
+                    30,
+                    74
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_DetectWhereAmI"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
+        ]
+    },
+    "D_DetectDisassemble": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    577,
+                    64,
+                    134,
+                    34
+                ],
+                "expected": "刀解选择"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    812,
+                    115,
+                    46,
+                    25
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_DetectWhereAmI"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
+        ]
+    },
+    "D_DetectFilter": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    501,
+                    68,
+                    68,
+                    34
+                ],
+                "expected": "筛选"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    752,
+                    145,
+                    100,
+                    25
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_FilterSwordHub"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
+        ]
+    },
+    "D_FilterSwordHub": {
+        "next": [
+            "D_FilterSword1",
+            "D_FilterSword2",
+            "D_FilterSword3",
+            "D_FilterSword4",
+            "D_FilterSword5",
+            "D_FilterSword6",
+            "D_FilterSword7",
+            "D_FilterConfirm",
+            "D_DetectWhereAmI"
+        ]
+    },
+    "D_FilterSword1": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    235,
+                    217,
+                    83,
+                    27
+                ]
+            }
+        },
+        "enabled": false,
+        "pre_delay": 300,
+        "next": [
+            "D_FilterSword2"
+        ],
+        "on_error": [
+            "D_FilterConfirm"
+        ]
+    },
+    "D_FilterSword2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    419,
+                    218,
+                    66,
+                    30
+                ]
+            }
+        },
+        "enabled": false,
+        "pre_delay": 300,
+        "next": [
+            "D_FilterSword3"
+        ],
+        "on_error": [
+            "D_FilterConfirm"
+        ]
+    },
+    "D_FilterSword3": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    596,
+                    218,
+                    56,
+                    27
+                ]
+            }
+        },
+        "enabled": false,
+        "pre_delay": 300,
+        "next": [
+            "D_FilterSword4"
+        ],
+        "on_error": [
+            "D_FilterConfirm"
+        ]
+    },
+    "D_FilterSword4": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    772,
+                    215,
+                    63,
+                    32
+                ]
+            }
+        },
+        "enabled": false,
+        "pre_delay": 300,
+        "next": [
+            "D_FilterSword5"
+        ],
+        "on_error": [
+            "D_FilterConfirm"
+        ]
+    },
+    "D_FilterSword5": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    241,
+                    289,
+                    74,
+                    33
+                ]
+            }
+        },
+        "enabled": false,
+        "pre_delay": 300,
+        "next": [
+            "D_FilterSword6"
+        ],
+        "on_error": [
+            "D_FilterConfirm"
+        ]
+    },
+    "D_FilterSword6": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    423,
+                    290,
+                    52,
+                    31
+                ]
+            }
+        },
+        "enabled": false,
+        "pre_delay": 300,
+        "next": [
+            "D_FilterSword7"
+        ],
+        "on_error": [
+            "D_FilterConfirm"
+        ]
+    },
+    "D_FilterSword7": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    588,
+                    287,
+                    68,
+                    34
+                ]
+            }
+        },
+        "enabled": false,
+        "pre_delay": 300,
+        "next": [
+            "D_FilterConfirm"
+        ],
+        "on_error": [
+            "D_FilterConfirm"
+        ]
+    },
+    "D_FilterConfirm": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    588,
+                    604,
+                    99,
+                    39
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_FilterPostHub"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
+        ]
+    },
+    "D_FilterPostHub": {
+        "next": [
+            "D_PostFilterReward",
+            "D_PostFilterDisassemble",
+            "D_PostFilterMailbox",
+            "D_DetectWhereAmI"
+        ]
+    },
+    "D_PostFilterDisassemble": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    577,
+                    64,
+                    134,
+                    34
+                ],
+                "expected": "刀解选择"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1149,
+                    463,
+                    107,
+                    35
+                ]
+            }
+        },
+        "pre_delay": 1000,
+        "post_delay": 2000,
+        "next": [
+            "D_DisassembleCheckConfirm",
+            "D_DisassembleGoToMailbox"
+        ],
+        "on_error": [
+            "D_FilterPostHub"
+        ]
+    },
+    "D_DisassembleCheckConfirm": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1135,
+                    575,
+                    132,
+                    106
+                ],
+                "template": "刀解确认.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    5,
+                    3,
+                    0,
+                    0
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_DisassembleClickFinal"
+        ]
+    },
+    "D_DisassembleClickFinal": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    728,
+                    609,
+                    117,
+                    40
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_PostFilterDisassemble"
+        ]
+    },
+    "D_DisassembleGoToMailbox": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1179,
+                    8,
+                    95,
+                    56
+                ],
+                "target_offset": [
+                    5,
+                    3,
+                    0,
+                    0
+                ]
+            }
+        },
+        "pre_delay": 1000,
+        "next": [
+            "D_DisassembleVerifyMenu"
+        ]
+    },
+    "D_DisassembleVerifyMenu": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    586,
+                    33,
+                    102,
+                    47
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    999,
+                    372,
+                    43,
+                    45
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_DetectWhereAmI"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
+        ],
+        "post_delay": 2000
+    },
+    "D_PostFilterMailbox": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    596,
+                    34,
+                    90,
+                    43
+                ],
+                "expected": "收件箱"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1121,
+                    582,
+                    91,
+                    83
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_DetectReward"
+        ],
+        "on_error": [
+            "D_FilterPostHub"
+        ]
+    },
+    "D_DetectMailbox": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    596,
+                    34,
+                    90,
+                    43
+                ],
+                "expected": "收件箱"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    967,
+                    113,
+                    48,
+                    22
+                ]
+            }
+        },
+        "pre_delay": 1000,
+        "next": [
+            "D_DetectWhereAmI"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
+        ],
+        "post_delay": 1000
+    },
+    "D_FallbackWait": {
+        "action": "DoNothing",
+        "next": [
+            "D_DetectWhereAmI"
+        ]
+    },
+    "D_PostFilterReward": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    577,
+                    52,
+                    124,
+                    43
+                ],
+                "expected": "励确认"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1128,
+                    28,
+                    35,
+                    35
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_DetectPurchase"
+        ],
+        "on_error": [
+            "D_FilterPostHub"
+        ]
+    },
+    "D_DetectReward": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    577,
+                    52,
+                    124,
+                    43
+                ],
+                "expected": "励确认"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1128,
+                    28,
+                    35,
+                    35
+                ]
+            }
+        },
+        "pre_delay": 500,
+        "next": [
+            "D_DetectPurchase"
+        ],
+        "on_error": [
+            "D_DetectPurchase"
+        ]
+    },
+    "D_DetectPurchase": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    575,
+                    167,
+                    126,
+                    34
+                ],
+                "expected": "购买详情"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1231,
+                    8,
+                    38,
+                    39
+                ]
+            }
+        },
+        "pre_delay": 500,
+        "next": [
+            "D_DetectWhereAmI"
+        ],
+        "on_error": [
+            "D_MailboxCloseFinal"
+        ]
+    },
+    "D_MailboxCloseFinal": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1231,
+                    8,
+                    38,
+                    39
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_MailboxCloseVerify"
+        ]
+    },
+    "D_MailboxCloseVerify": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    596,
+                    34,
+                    90,
+                    43
+                ],
+                "expected": "收件箱"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1231,
+                    8,
+                    38,
+                    39
+                ]
+            }
+        },
+        "pre_delay": 1000,
+        "next": [
+            "D_MailboxCloseVerify"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
+        ]
+    }
+}

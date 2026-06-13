@@ -3,16 +3,17 @@
         "pre_delay": 0,
         "next": [
             "E_IsAnnouncementPopup",
-            "ClickExpeditionReturn",
-            "DetectExpeditionScreen",
-            "DetectHome",
+            "E_IsLoginReward",
+            "E_ClickExpeditionReturn",
+            "E_DetectExpeditionScreen",
+            "E_DetectHome",
             "E_IsGameIcon",
             "E_IsLoginButton",
             "E_IsGameUpdatePopup",
-            "Expedition_FallbackWait"
+            "E_FallbackWait"
         ]
     },
-    "DetectHome": {
+    "E_DetectHome": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -30,14 +31,14 @@
             }
         },
         "next": [
-            "CheckTeamStatus",
-            "DetectHome"
+            "E_CheckTeamStatus",
+            "E_DetectHome"
         ],
         "on_error": [
             "Expedition"
         ]
     },
-    "CheckTeamStatus": {
+    "E_CheckTeamStatus": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -62,12 +63,12 @@
             }
         },
         "next": [
-            "ExpSubHub2"
+            "E_ExpSubHub2"
         ],
         "post_delay": 1000,
         "pre_delay": 100
     },
-    "CheckTeam1": {
+    "E_CheckTeam1": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -81,11 +82,11 @@
             }
         },
         "next": [
-            "CheckTeam2"
+            "E_CheckTeam2"
         ],
         "enabled": false
     },
-    "SelectTeam1": {
+    "E_SelectTeam1": {
         "action": {
             "type": "DoNothing",
             "param": {
@@ -108,7 +109,7 @@
             "Expedition"
         ]
     },
-    "VerifyScreen1": {
+    "E_VerifyScreen1": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -122,14 +123,14 @@
             }
         },
         "next": [
-            "SelectMap1",
-            "DetectHome"
+            "E_SelectMap1",
+            "E_DetectHome"
         ],
         "on_error": [
             "Expedition"
         ]
     },
-    "SelectMap1": {
+    "E_SelectMap1": {
         "action": {
             "type": "Click",
             "param": {
@@ -148,14 +149,14 @@
             }
         },
         "next": [
-            "ClickSmallMap1"
+            "E_ClickSmallMap1"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "ClickSmallMap1": {
+    "E_ClickSmallMap1": {
         "action": {
             "type": "Click",
             "param": {
@@ -174,14 +175,14 @@
             }
         },
         "next": [
-            "ConfirmDispatch1"
+            "E_ConfirmDispatch1"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "ConfirmDispatch1": {
+    "E_ConfirmDispatch1": {
         "action": {
             "type": "Click",
             "param": {
@@ -200,14 +201,14 @@
             }
         },
         "next": [
-            "SelectTeamBtn1"
+            "E_SelectTeamBtn1"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "SelectTeamBtn1": {
+    "E_SelectTeamBtn1": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -224,7 +225,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    148,
+                    157,
                     93,
                     1,
                     1
@@ -238,14 +239,14 @@
             }
         },
         "next": [
-            "StartExpedition"
+            "E_StartExpedition"
         ],
         "on_error": [
-            "DetectExpeditionScreen"
+            "E_DetectExpeditionScreen"
         ],
         "pre_delay": 100
     },
-    "CheckTeam2": {
+    "E_CheckTeam2": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -259,11 +260,11 @@
             }
         },
         "next": [
-            "SelectTeam2"
+            "E_SelectTeam2"
         ],
         "enabled": true
     },
-    "SelectTeam2": {
+    "E_SelectTeam2": {
         "action": {
             "type": "Click",
             "param": {
@@ -282,14 +283,14 @@
             }
         },
         "next": [
-            "VerifyScreen2"
+            "E_VerifyScreen2"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "VerifyScreen2": {
+    "E_VerifyScreen2": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -303,19 +304,19 @@
             }
         },
         "next": [
-            "SelectMap2",
-            "DetectHome"
+            "E_SelectMap2",
+            "E_DetectHome"
         ],
         "on_error": [
             "Expedition"
         ]
     },
-    "SelectMap2": {
+    "E_SelectMap2": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    701,
+                    691,
                     205,
                     1,
                     1
@@ -329,20 +330,20 @@
             }
         },
         "next": [
-            "ClickSmallMap2"
+            "E_ClickSmallMap2"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "ClickSmallMap2": {
+    "E_ClickSmallMap2": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    511,
-                    416,
+                    499,
+                    477,
                     1,
                     1
                 ],
@@ -355,14 +356,14 @@
             }
         },
         "next": [
-            "ConfirmDispatch2"
+            "E_ConfirmDispatch2"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "ConfirmDispatch2": {
+    "E_ConfirmDispatch2": {
         "action": {
             "type": "Click",
             "param": {
@@ -381,14 +382,14 @@
             }
         },
         "next": [
-            "SelectTeamBtn2"
+            "E_SelectTeamBtn2"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "SelectTeamBtn2": {
+    "E_SelectTeamBtn2": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -405,7 +406,7 @@
             "type": "Click",
             "param": {
                 "target": [
-                    286,
+                    276,
                     94,
                     1,
                     1
@@ -419,14 +420,14 @@
             }
         },
         "next": [
-            "StartExpedition"
+            "E_StartExpedition"
         ],
         "on_error": [
-            "DetectExpeditionScreen"
+            "E_DetectExpeditionScreen"
         ],
         "pre_delay": 100
     },
-    "CheckTeam3": {
+    "E_CheckTeam3": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -440,11 +441,11 @@
             }
         },
         "next": [
-            "SelectTeam3"
+            "E_SelectTeam3"
         ],
         "enabled": true
     },
-    "SelectTeam3": {
+    "E_SelectTeam3": {
         "action": {
             "type": "Click",
             "param": {
@@ -463,14 +464,14 @@
             }
         },
         "next": [
-            "VerifyScreen3"
+            "E_VerifyScreen3"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "VerifyScreen3": {
+    "E_VerifyScreen3": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -484,20 +485,20 @@
             }
         },
         "next": [
-            "SelectMap3",
-            "DetectHome"
+            "E_SelectMap3",
+            "E_DetectHome"
         ],
         "on_error": [
             "Expedition"
         ]
     },
-    "SelectMap3": {
+    "E_SelectMap3": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    671,
-                    196,
+                    675,
+                    190,
                     1,
                     1
                 ],
@@ -510,20 +511,20 @@
             }
         },
         "next": [
-            "ClickSmallMap3"
+            "E_ClickSmallMap3"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "ClickSmallMap3": {
+    "E_ClickSmallMap3": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    1154,
-                    440,
+                    1148,
+                    436,
                     1,
                     1
                 ],
@@ -536,14 +537,14 @@
             }
         },
         "next": [
-            "ConfirmDispatch3"
+            "E_ConfirmDispatch3"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "ConfirmDispatch3": {
+    "E_ConfirmDispatch3": {
         "action": {
             "type": "Click",
             "param": {
@@ -562,19 +563,19 @@
             }
         },
         "next": [
-            "SelectTeamBtn3"
+            "E_SelectTeamBtn3"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "SelectTeamBtn3": {
+    "E_SelectTeamBtn3": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    393,
+                    405,
                     91,
                     1,
                     1
@@ -588,10 +589,10 @@
             }
         },
         "next": [
-            "StartExpedition"
+            "E_StartExpedition"
         ],
         "on_error": [
-            "DetectExpeditionScreen"
+            "E_DetectExpeditionScreen"
         ],
         "pre_delay": 100,
         "recognition": {
@@ -607,7 +608,7 @@
             }
         }
     },
-    "CheckTeam4": {
+    "E_CheckTeam4": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -621,11 +622,11 @@
             }
         },
         "next": [
-            "SelectTeam4"
+            "E_SelectTeam4"
         ],
         "enabled": true
     },
-    "SelectTeam4": {
+    "E_SelectTeam4": {
         "action": {
             "type": "Click",
             "param": {
@@ -644,14 +645,14 @@
             }
         },
         "next": [
-            "VerifyScreen4"
+            "E_VerifyScreen4"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "VerifyScreen4": {
+    "E_VerifyScreen4": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -665,20 +666,20 @@
             }
         },
         "next": [
-            "SelectMap4",
-            "DetectHome"
+            "E_SelectMap4",
+            "E_DetectHome"
         ],
         "on_error": [
             "Expedition"
         ]
     },
-    "SelectMap4": {
+    "E_SelectMap4": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    909,
-                    211,
+                    928,
+                    210,
                     1,
                     1
                 ],
@@ -691,20 +692,20 @@
             }
         },
         "next": [
-            "ClickSmallMap4"
+            "E_ClickSmallMap4"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "ClickSmallMap4": {
+    "E_ClickSmallMap4": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    505,
-                    422,
+                    536,
+                    385,
                     1,
                     1
                 ],
@@ -717,14 +718,14 @@
             }
         },
         "next": [
-            "ConfirmDispatch4"
+            "E_ConfirmDispatch4"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "ConfirmDispatch4": {
+    "E_ConfirmDispatch4": {
         "action": {
             "type": "Click",
             "param": {
@@ -743,19 +744,19 @@
             }
         },
         "next": [
-            "SelectTeamBtn4"
+            "E_SelectTeamBtn4"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "SelectTeamBtn4": {
+    "E_SelectTeamBtn4": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    526,
+                    522,
                     89,
                     1,
                     1
@@ -769,10 +770,10 @@
             }
         },
         "next": [
-            "StartExpedition"
+            "E_StartExpedition"
         ],
         "on_error": [
-            "DetectExpeditionScreen"
+            "E_DetectExpeditionScreen"
         ],
         "pre_delay": 100,
         "recognition": {
@@ -788,7 +789,7 @@
             }
         }
     },
-    "CheckTeam5": {
+    "E_CheckTeam5": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -802,11 +803,11 @@
             }
         },
         "next": [
-            "SelectTeam5"
+            "E_SelectTeam5"
         ],
         "enabled": true
     },
-    "SelectTeam5": {
+    "E_SelectTeam5": {
         "action": {
             "type": "Click",
             "param": {
@@ -825,14 +826,14 @@
             }
         },
         "next": [
-            "VerifyScreen5"
+            "E_VerifyScreen5"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "VerifyScreen5": {
+    "E_VerifyScreen5": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -846,20 +847,20 @@
             }
         },
         "next": [
-            "SelectMap5",
-            "DetectHome"
+            "E_SelectMap5",
+            "E_DetectHome"
         ],
         "on_error": [
             "Expedition"
         ]
     },
-    "SelectMap5": {
+    "E_SelectMap5": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    920,
-                    204,
+                    903,
+                    206,
                     1,
                     1
                 ],
@@ -872,20 +873,20 @@
             }
         },
         "next": [
-            "ClickSmallMap5"
+            "E_ClickSmallMap5"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "ClickSmallMap5": {
+    "E_ClickSmallMap5": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    1141,
-                    428,
+                    1157,
+                    427,
                     1,
                     1
                 ],
@@ -898,14 +899,14 @@
             }
         },
         "next": [
-            "ConfirmDispatch5"
+            "E_ConfirmDispatch5"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "ConfirmDispatch5": {
+    "E_ConfirmDispatch5": {
         "action": {
             "type": "Click",
             "param": {
@@ -924,19 +925,19 @@
             }
         },
         "next": [
-            "SelectTeamBtn5"
+            "E_SelectTeamBtn5"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 100
     },
-    "SelectTeamBtn5": {
+    "E_SelectTeamBtn5": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    627,
+                    638,
                     91,
                     1,
                     1
@@ -950,10 +951,10 @@
             }
         },
         "next": [
-            "StartExpedition"
+            "E_StartExpedition"
         ],
         "on_error": [
-            "DetectExpeditionScreen"
+            "E_DetectExpeditionScreen"
         ],
         "pre_delay": 100,
         "recognition": {
@@ -969,7 +970,7 @@
             }
         }
     },
-    "AllTeamsBusy": {
+    "E_AllTeamsBusy": {
         "action": {
             "type": "Click",
             "param": {
@@ -988,11 +989,11 @@
             }
         },
         "next": [
-            "GoHome"
+            "E_GoHome"
         ],
         "pre_delay": 100
     },
-    "StartExpedition": {
+    "E_StartExpedition": {
         "action": {
             "type": "Click",
             "param": {
@@ -1012,11 +1013,11 @@
         },
         "post_delay": 800,
         "next": [
-            "VerifyConfirmPopup"
+            "E_VerifyConfirmPopup"
         ],
         "pre_delay": 100
     },
-    "VerifyConfirmPopup": {
+    "E_VerifyConfirmPopup": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -1030,13 +1031,13 @@
             }
         },
         "next": [
-            "ConfirmExpedition"
+            "E_ConfirmExpedition"
         ],
         "on_error": [
-            "VerifyTeamSelect"
+            "E_VerifyTeamSelect"
         ]
     },
-    "ConfirmExpedition": {
+    "E_ConfirmExpedition": {
         "action": {
             "type": "Click",
             "param": {
@@ -1055,17 +1056,17 @@
             }
         },
         "next": [
-            "GoHome"
+            "E_GoHome"
         ],
         "post_delay": 4000,
         "pre_delay": 100
     },
-    "GoHome": {
+    "E_GoHome": {
         "next": [
-            "ClickDirectoryTop"
+            "E_ClickDirectoryTop"
         ]
     },
-    "ClickDirectoryTop": {
+    "E_ClickDirectoryTop": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -1090,21 +1091,21 @@
             }
         },
         "next": [
-            "PostClickDirectoryHub"
+            "E_PostClickDirectoryHub"
         ],
         "on_error": [
             "Expedition"
         ],
         "pre_delay": 3000
     },
-    "PostClickDirectoryHub": {
+    "E_PostClickDirectoryHub": {
         "next": [
-            "Expedition_VerifyMenuDir",
-            "CheckNavDirRetry_Exp",
+            "E_VerifyMenuDir",
+            "E_CheckNavDirRetry_Exp",
             "Expedition"
         ]
     },
-    "Expedition_VerifyMenuDir": {
+    "E_VerifyMenuDir": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1122,10 +1123,10 @@
             }
         },
         "next": [
-            "ClickBackToHome"
+            "E_ClickBackToHome"
         ]
     },
-    "CheckNavDirRetry_Exp": {
+    "E_CheckNavDirRetry_Exp": {
         "recognition": "OCR",
         "roi": [
             1179,
@@ -1142,14 +1143,14 @@
             0
         ],
         "next": [
-            "PostClickDirectoryHub"
+            "E_PostClickDirectoryHub"
         ],
         "pre_delay": 100,
         "on_error": [
             "Expedition"
         ]
     },
-    "ClickBackToHome": {
+    "E_ClickBackToHome": {
         "action": {
             "type": "Click",
             "param": {
@@ -1168,11 +1169,11 @@
             }
         },
         "next": [
-            "WaitRefresh"
+            "E_WaitRefresh"
         ],
         "pre_delay": 100
     },
-    "ClickExpeditionReturn": {
+    "E_ClickExpeditionReturn": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -1189,18 +1190,18 @@
             192
         ],
         "next": [
-            "DetectHome"
+            "Expedition"
         ],
         "pre_delay": 100
     },
-    "WaitRefresh": {
+    "E_WaitRefresh": {
         "action": "DoNothing",
         "post_delay": 60000,
         "next": [
             "Expedition"
         ]
     },
-    "DetectExpeditionScreen": {
+    "E_DetectExpeditionScreen": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1218,10 +1219,10 @@
             }
         },
         "next": [
-            "GoHome"
+            "E_GoHome"
         ]
     },
-    "Expedition_VerifyLeftMenu": {
+    "E_VerifyLeftMenu": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1239,43 +1240,43 @@
             }
         },
         "on_error": [
-            "WaitRefresh"
+            "E_WaitRefresh"
         ],
         "next": [
-            "ClickBackToHome"
+            "E_ClickBackToHome"
         ]
     },
-    "ExpSubHub2": {
+    "E_ExpSubHub2": {
         "next": [
-            "CheckTeam2",
-            "ExpSubHub3"
+            "E_CheckTeam2",
+            "E_ExpSubHub3"
         ]
     },
-    "ExpSubHub3": {
+    "E_ExpSubHub3": {
         "next": [
-            "CheckTeam3",
-            "ExpSubHub4"
+            "E_CheckTeam3",
+            "E_ExpSubHub4"
         ]
     },
-    "ExpSubHub4": {
+    "E_ExpSubHub4": {
         "next": [
-            "CheckTeam4",
-            "ExpSubHub5"
+            "E_CheckTeam4",
+            "E_ExpSubHub5"
         ]
     },
-    "ExpSubHub5": {
+    "E_ExpSubHub5": {
         "next": [
-            "CheckTeam5",
-            "AllTeamsBusy"
+            "E_CheckTeam5",
+            "E_AllTeamsBusy"
         ]
     },
-    "Expedition_FallbackWait": {
+    "E_FallbackWait": {
         "action": "DoNothing",
         "next": [
             "Expedition"
         ]
     },
-    "VerifyTeamSelect": {
+    "E_VerifyTeamSelect": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -1289,10 +1290,10 @@
             }
         },
         "next": [
-            "StartExpedition"
+            "E_StartExpedition"
         ],
         "on_error": [
-            "DetectExpeditionScreen"
+            "E_DetectExpeditionScreen"
         ]
     },
     "E_IsGameIcon": {
@@ -1400,6 +1401,58 @@
         ],
         "on_error": [
             "Expedition"
+        ]
+    },
+    "E_IsLoginReward": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    821,
+                    582,
+                    172,
+                    49
+                ],
+                "template": "登录奖励.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "pre_delay": 100,
+        "next": [
+            "E_LoginRewardClick2"
+        ],
+        "on_error": [
+            "Expedition"
+        ]
+    },
+    "E_LoginRewardClick2": {
+        "action": "Click",
+        "target": [
+            1092,
+            318,
+            1,
+            1
+        ],
+        "pre_delay": 300,
+        "next": [
+            "E_LoginRewardClick3"
+        ]
+    },
+    "E_LoginRewardClick3": {
+        "action": "Click",
+        "target": [
+            1092,
+            318,
+            1,
+            1
+        ],
+        "pre_delay": 300,
+        "next": [
+            "E_IsLoginReward"
         ]
     }
 }

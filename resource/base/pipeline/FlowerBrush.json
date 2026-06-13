@@ -8,6 +8,7 @@
         "pre_delay": 0,
         "next": [
             "FB_IsAnnouncementPopup",
+            "FB_IsLoginReward",
             "FB_HasExpeditionReturn",
             "FB_IsMarching",
             "FB_IsBattleResult",
@@ -1114,10 +1115,62 @@
         "action": "Click",
         "pre_delay": 100,
         "next": [
-            "FB_DetectWhereAmI"
+            "FB_IsAnnouncementPopup"
         ],
         "on_error": [
             "FB_DetectWhereAmI"
+        ]
+    },
+    "FB_IsLoginReward": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    821,
+                    582,
+                    172,
+                    49
+                ],
+                "template": "登录奖励.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "pre_delay": 100,
+        "next": [
+            "FB_LoginRewardClick2"
+        ],
+        "on_error": [
+            "FB_DetectWhereAmI"
+        ]
+    },
+    "FB_LoginRewardClick2": {
+        "action": "Click",
+        "target": [
+            1092,
+            318,
+            1,
+            1
+        ],
+        "pre_delay": 300,
+        "next": [
+            "FB_LoginRewardClick3"
+        ]
+    },
+    "FB_LoginRewardClick3": {
+        "action": "Click",
+        "target": [
+            1092,
+            318,
+            1,
+            1
+        ],
+        "pre_delay": 300,
+        "next": [
+            "FB_IsLoginReward"
         ]
     }
 }

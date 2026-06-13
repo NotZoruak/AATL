@@ -8,6 +8,7 @@
     "pre_delay": 0,
     "next": [
       "EC_IsAnnouncementPopup",
+      "EC_IsLoginReward",
       "EC_HasExpeditionReturn",
       "EC_IsSpecialDrop",
       "EC_IsFormationSelect",
@@ -1298,10 +1299,62 @@
     "action": "Click",
     "pre_delay": 100,
     "next": [
-      "EC_DetectWhereAmI"
+      "EC_IsAnnouncementPopup"
     ],
     "on_error": [
       "EC_DetectWhereAmI"
+    ]
+  },
+  "EC_IsLoginReward": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          821,
+          582,
+          172,
+          49
+        ],
+        "template": "登录奖励.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "pre_delay": 100,
+    "next": [
+      "EC_LoginRewardClick2"
+    ],
+    "on_error": [
+      "EC_DetectWhereAmI"
+    ]
+  },
+  "EC_LoginRewardClick2": {
+    "action": "Click",
+    "target": [
+      1092,
+      318,
+      1,
+      1
+    ],
+    "pre_delay": 300,
+    "next": [
+      "EC_LoginRewardClick3"
+    ]
+  },
+  "EC_LoginRewardClick3": {
+    "action": "Click",
+    "target": [
+      1092,
+      318,
+      1,
+      1
+    ],
+    "pre_delay": 300,
+    "next": [
+      "EC_IsLoginReward"
     ]
   }
 }

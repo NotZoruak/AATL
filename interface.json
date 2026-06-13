@@ -88,7 +88,25 @@
         "同步远征"
       ],
       "label": "合战场",
-      "description": "通用合战场出阵自动化，无限循环。可与游戏内自动行军同时开启，最大化过图速度。\n与自动行军同时开启时，刀装破坏不会停止前进。\n\n- **换队长**：通过筛选装备马的刀剑来切换队长，请为且仅为需控花的刀剑男士装备马\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请保存部队记录\n- **重伤处理**：仅能识别第一次重伤弹窗，不建议在助手运行期间额外操控或测试识别与点击极限，以免发生意外\n- **王点前撤退**：已适配二至八图主要路线（除5-2与7-4）\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保合战场使用的队伍在远征任务中设置为「休息」"
+      "description": "通用合战场出阵自动化，无限循环。可与游戏内自动行军同时开启，最大化过图速度。\n与自动行军同时开启时，刀装破坏不会停止前进。\n\n- **换队长**：通过筛选装备马的刀剑来切换队长，请为且仅为需控花的刀剑男士装备马\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请保存部队记录\n- **重伤处理**：仅能识别第一次重伤弹窗，不建议在助手运行期间额外操控或测试识别与点击极限，以免发生意外\n- **王点前撤退**：已适配二至八图主要路线（除5-2与7-4）\n- **八图道中撤退**：与王点前撤退同时开启时生效。8-1王点前三个点撤退，8-3玉钢点后撤退，8-2、8-4不过桥\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保合战场使用的队伍在远征任务中设置为「休息」"
+    },
+    {
+      "name": "刀解",
+      "entry": "Disassemble",
+      "default_check": false,
+      "repeatable": false,
+      "repeat_count": 0,
+      "option": [
+        "短",
+        "胁",
+        "打",
+        "太",
+        "大太",
+        "枪",
+        "薙"
+      ],
+      "label": "刀解",
+      "description": "自动刀解 + 收邮箱循环。⚠ 该功能尚不稳定，可能中途停止任务，建议在有人看管的情况下使用"
     }
   ],
   "option": {
@@ -106,7 +124,7 @@
           "name": "1-1",
           "DisplayName": "1-1",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 276,
                 188,
@@ -114,7 +132,7 @@
                 39
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 173,
                 365,
@@ -128,7 +146,7 @@
           "name": "1-2",
           "DisplayName": "1-2",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 276,
                 188,
@@ -136,7 +154,7 @@
                 39
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 487,
                 373,
@@ -150,7 +168,7 @@
           "name": "1-3",
           "DisplayName": "1-3",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 276,
                 188,
@@ -158,7 +176,7 @@
                 39
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 767,
                 370,
@@ -172,7 +190,7 @@
           "name": "1-4",
           "DisplayName": "1-4",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 276,
                 188,
@@ -180,7 +198,7 @@
                 39
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 1098,
                 368,
@@ -194,7 +212,7 @@
           "name": "2-1",
           "DisplayName": "2-1",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 469,
                 178,
@@ -202,7 +220,7 @@
                 40
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 173,
                 365,
@@ -216,7 +234,7 @@
           "name": "2-2",
           "DisplayName": "2-2",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 469,
                 178,
@@ -224,7 +242,7 @@
                 40
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 487,
                 373,
@@ -238,7 +256,7 @@
           "name": "2-3",
           "DisplayName": "2-3",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 469,
                 178,
@@ -246,7 +264,7 @@
                 40
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 767,
                 370,
@@ -260,7 +278,7 @@
           "name": "2-4",
           "DisplayName": "2-4",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 469,
                 178,
@@ -268,7 +286,7 @@
                 40
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 1098,
                 368,
@@ -282,7 +300,7 @@
           "name": "3-1",
           "DisplayName": "3-1",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 661,
                 183,
@@ -290,7 +308,7 @@
                 35
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 173,
                 365,
@@ -304,7 +322,7 @@
           "name": "3-2",
           "DisplayName": "3-2",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 661,
                 183,
@@ -312,7 +330,7 @@
                 35
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 487,
                 373,
@@ -326,7 +344,7 @@
           "name": "3-3",
           "DisplayName": "3-3",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 661,
                 183,
@@ -334,7 +352,7 @@
                 35
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 767,
                 370,
@@ -348,7 +366,7 @@
           "name": "3-4",
           "DisplayName": "3-4",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 661,
                 183,
@@ -356,7 +374,7 @@
                 35
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 1098,
                 368,
@@ -370,7 +388,7 @@
           "name": "4-1",
           "DisplayName": "4-1",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 891,
                 190,
@@ -378,7 +396,7 @@
                 36
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 173,
                 365,
@@ -392,7 +410,7 @@
           "name": "4-2",
           "DisplayName": "4-2",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 891,
                 190,
@@ -400,7 +418,7 @@
                 36
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 487,
                 373,
@@ -414,7 +432,7 @@
           "name": "4-3",
           "DisplayName": "4-3",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 891,
                 190,
@@ -422,7 +440,7 @@
                 36
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 767,
                 370,
@@ -436,7 +454,7 @@
           "name": "4-4",
           "DisplayName": "4-4",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 891,
                 190,
@@ -444,7 +462,7 @@
                 36
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 1098,
                 368,
@@ -458,7 +476,7 @@
           "name": "5-1",
           "DisplayName": "5-1",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 1078,
                 191,
@@ -466,7 +484,7 @@
                 34
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 173,
                 365,
@@ -480,7 +498,7 @@
           "name": "5-2",
           "DisplayName": "5-2",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 1078,
                 191,
@@ -488,7 +506,7 @@
                 34
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 487,
                 373,
@@ -502,7 +520,7 @@
           "name": "5-3",
           "DisplayName": "5-3",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 1078,
                 191,
@@ -510,7 +528,7 @@
                 34
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 767,
                 370,
@@ -524,7 +542,7 @@
           "name": "5-4",
           "DisplayName": "5-4",
           "pipeline_override": {
-            "SelectMap1": {
+            "E_SelectMap1": {
               "target": [
                 1078,
                 191,
@@ -532,7 +550,7 @@
                 34
               ]
             },
-            "ClickSmallMap1": {
+            "E_ClickSmallMap1": {
               "target": [
                 1098,
                 368,
@@ -558,7 +576,7 @@
           "name": "1-1",
           "DisplayName": "1-1",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 276,
                 188,
@@ -566,7 +584,7 @@
                 39
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 173,
                 365,
@@ -580,7 +598,7 @@
           "name": "1-2",
           "DisplayName": "1-2",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 276,
                 188,
@@ -588,7 +606,7 @@
                 39
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 487,
                 373,
@@ -602,7 +620,7 @@
           "name": "1-3",
           "DisplayName": "1-3",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 276,
                 188,
@@ -610,7 +628,7 @@
                 39
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 767,
                 370,
@@ -624,7 +642,7 @@
           "name": "1-4",
           "DisplayName": "1-4",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 276,
                 188,
@@ -632,7 +650,7 @@
                 39
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 1098,
                 368,
@@ -646,7 +664,7 @@
           "name": "2-1",
           "DisplayName": "2-1",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 469,
                 178,
@@ -654,7 +672,7 @@
                 40
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 173,
                 365,
@@ -668,7 +686,7 @@
           "name": "2-2",
           "DisplayName": "2-2",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 469,
                 178,
@@ -676,7 +694,7 @@
                 40
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 487,
                 373,
@@ -690,7 +708,7 @@
           "name": "2-3",
           "DisplayName": "2-3",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 469,
                 178,
@@ -698,7 +716,7 @@
                 40
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 767,
                 370,
@@ -712,7 +730,7 @@
           "name": "2-4",
           "DisplayName": "2-4",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 469,
                 178,
@@ -720,7 +738,7 @@
                 40
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 1098,
                 368,
@@ -734,7 +752,7 @@
           "name": "3-1",
           "DisplayName": "3-1",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 661,
                 183,
@@ -742,7 +760,7 @@
                 35
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 173,
                 365,
@@ -756,7 +774,7 @@
           "name": "3-2",
           "DisplayName": "3-2",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 661,
                 183,
@@ -764,7 +782,7 @@
                 35
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 487,
                 373,
@@ -778,7 +796,7 @@
           "name": "3-3",
           "DisplayName": "3-3",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 661,
                 183,
@@ -786,7 +804,7 @@
                 35
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 767,
                 370,
@@ -800,7 +818,7 @@
           "name": "3-4",
           "DisplayName": "3-4",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 661,
                 183,
@@ -808,7 +826,7 @@
                 35
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 1098,
                 368,
@@ -822,7 +840,7 @@
           "name": "4-1",
           "DisplayName": "4-1",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 891,
                 190,
@@ -830,7 +848,7 @@
                 36
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 173,
                 365,
@@ -844,7 +862,7 @@
           "name": "4-2",
           "DisplayName": "4-2",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 891,
                 190,
@@ -852,7 +870,7 @@
                 36
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 487,
                 373,
@@ -866,7 +884,7 @@
           "name": "4-3",
           "DisplayName": "4-3",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 891,
                 190,
@@ -874,7 +892,7 @@
                 36
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 767,
                 370,
@@ -888,7 +906,7 @@
           "name": "4-4",
           "DisplayName": "4-4",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 891,
                 190,
@@ -896,7 +914,7 @@
                 36
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 1098,
                 368,
@@ -910,7 +928,7 @@
           "name": "5-1",
           "DisplayName": "5-1",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 1078,
                 191,
@@ -918,7 +936,7 @@
                 34
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 173,
                 365,
@@ -932,7 +950,7 @@
           "name": "5-2",
           "DisplayName": "5-2",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 1078,
                 191,
@@ -940,7 +958,7 @@
                 34
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 487,
                 373,
@@ -954,7 +972,7 @@
           "name": "5-3",
           "DisplayName": "5-3",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 1078,
                 191,
@@ -962,7 +980,7 @@
                 34
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 767,
                 370,
@@ -976,7 +994,7 @@
           "name": "5-4",
           "DisplayName": "5-4",
           "pipeline_override": {
-            "SelectMap2": {
+            "E_SelectMap2": {
               "target": [
                 1078,
                 191,
@@ -984,7 +1002,7 @@
                 34
               ]
             },
-            "ClickSmallMap2": {
+            "E_ClickSmallMap2": {
               "target": [
                 1098,
                 368,
@@ -1010,7 +1028,7 @@
           "name": "1-1",
           "DisplayName": "1-1",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 276,
                 188,
@@ -1018,7 +1036,7 @@
                 39
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 173,
                 365,
@@ -1032,7 +1050,7 @@
           "name": "1-2",
           "DisplayName": "1-2",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 276,
                 188,
@@ -1040,7 +1058,7 @@
                 39
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 487,
                 373,
@@ -1054,7 +1072,7 @@
           "name": "1-3",
           "DisplayName": "1-3",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 276,
                 188,
@@ -1062,7 +1080,7 @@
                 39
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 767,
                 370,
@@ -1076,7 +1094,7 @@
           "name": "1-4",
           "DisplayName": "1-4",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 276,
                 188,
@@ -1084,7 +1102,7 @@
                 39
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 1098,
                 368,
@@ -1098,7 +1116,7 @@
           "name": "2-1",
           "DisplayName": "2-1",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 469,
                 178,
@@ -1106,7 +1124,7 @@
                 40
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 173,
                 365,
@@ -1120,7 +1138,7 @@
           "name": "2-2",
           "DisplayName": "2-2",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 469,
                 178,
@@ -1128,7 +1146,7 @@
                 40
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 487,
                 373,
@@ -1142,7 +1160,7 @@
           "name": "2-3",
           "DisplayName": "2-3",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 469,
                 178,
@@ -1150,7 +1168,7 @@
                 40
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 767,
                 370,
@@ -1164,7 +1182,7 @@
           "name": "2-4",
           "DisplayName": "2-4",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 469,
                 178,
@@ -1172,7 +1190,7 @@
                 40
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 1098,
                 368,
@@ -1186,7 +1204,7 @@
           "name": "3-1",
           "DisplayName": "3-1",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 661,
                 183,
@@ -1194,7 +1212,7 @@
                 35
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 173,
                 365,
@@ -1208,7 +1226,7 @@
           "name": "3-2",
           "DisplayName": "3-2",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 661,
                 183,
@@ -1216,7 +1234,7 @@
                 35
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 487,
                 373,
@@ -1230,7 +1248,7 @@
           "name": "3-3",
           "DisplayName": "3-3",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 661,
                 183,
@@ -1238,7 +1256,7 @@
                 35
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 767,
                 370,
@@ -1252,7 +1270,7 @@
           "name": "3-4",
           "DisplayName": "3-4",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 661,
                 183,
@@ -1260,7 +1278,7 @@
                 35
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 1098,
                 368,
@@ -1274,7 +1292,7 @@
           "name": "4-1",
           "DisplayName": "4-1",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 891,
                 190,
@@ -1282,7 +1300,7 @@
                 36
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 173,
                 365,
@@ -1296,7 +1314,7 @@
           "name": "4-2",
           "DisplayName": "4-2",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 891,
                 190,
@@ -1304,7 +1322,7 @@
                 36
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 487,
                 373,
@@ -1318,7 +1336,7 @@
           "name": "4-3",
           "DisplayName": "4-3",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 891,
                 190,
@@ -1326,7 +1344,7 @@
                 36
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 767,
                 370,
@@ -1340,7 +1358,7 @@
           "name": "4-4",
           "DisplayName": "4-4",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 891,
                 190,
@@ -1348,7 +1366,7 @@
                 36
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 1098,
                 368,
@@ -1362,7 +1380,7 @@
           "name": "5-1",
           "DisplayName": "5-1",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 1078,
                 191,
@@ -1370,7 +1388,7 @@
                 34
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 173,
                 365,
@@ -1384,7 +1402,7 @@
           "name": "5-2",
           "DisplayName": "5-2",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 1078,
                 191,
@@ -1392,7 +1410,7 @@
                 34
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 487,
                 373,
@@ -1406,7 +1424,7 @@
           "name": "5-3",
           "DisplayName": "5-3",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 1078,
                 191,
@@ -1414,7 +1432,7 @@
                 34
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 767,
                 370,
@@ -1428,7 +1446,7 @@
           "name": "5-4",
           "DisplayName": "5-4",
           "pipeline_override": {
-            "SelectMap3": {
+            "E_SelectMap3": {
               "target": [
                 1078,
                 191,
@@ -1436,7 +1454,7 @@
                 34
               ]
             },
-            "ClickSmallMap3": {
+            "E_ClickSmallMap3": {
               "target": [
                 1098,
                 368,
@@ -1462,7 +1480,7 @@
           "name": "1-1",
           "DisplayName": "1-1",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 276,
                 188,
@@ -1470,7 +1488,7 @@
                 39
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 173,
                 365,
@@ -1484,7 +1502,7 @@
           "name": "1-2",
           "DisplayName": "1-2",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 276,
                 188,
@@ -1492,7 +1510,7 @@
                 39
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 487,
                 373,
@@ -1506,7 +1524,7 @@
           "name": "1-3",
           "DisplayName": "1-3",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 276,
                 188,
@@ -1514,7 +1532,7 @@
                 39
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 767,
                 370,
@@ -1528,7 +1546,7 @@
           "name": "1-4",
           "DisplayName": "1-4",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 276,
                 188,
@@ -1536,7 +1554,7 @@
                 39
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 1098,
                 368,
@@ -1550,7 +1568,7 @@
           "name": "2-1",
           "DisplayName": "2-1",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 469,
                 178,
@@ -1558,7 +1576,7 @@
                 40
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 173,
                 365,
@@ -1572,7 +1590,7 @@
           "name": "2-2",
           "DisplayName": "2-2",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 469,
                 178,
@@ -1580,7 +1598,7 @@
                 40
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 487,
                 373,
@@ -1594,7 +1612,7 @@
           "name": "2-3",
           "DisplayName": "2-3",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 469,
                 178,
@@ -1602,7 +1620,7 @@
                 40
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 767,
                 370,
@@ -1616,7 +1634,7 @@
           "name": "2-4",
           "DisplayName": "2-4",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 469,
                 178,
@@ -1624,7 +1642,7 @@
                 40
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 1098,
                 368,
@@ -1638,7 +1656,7 @@
           "name": "3-1",
           "DisplayName": "3-1",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 661,
                 183,
@@ -1646,7 +1664,7 @@
                 35
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 173,
                 365,
@@ -1660,7 +1678,7 @@
           "name": "3-2",
           "DisplayName": "3-2",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 661,
                 183,
@@ -1668,7 +1686,7 @@
                 35
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 487,
                 373,
@@ -1682,7 +1700,7 @@
           "name": "3-3",
           "DisplayName": "3-3",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 661,
                 183,
@@ -1690,7 +1708,7 @@
                 35
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 767,
                 370,
@@ -1704,7 +1722,7 @@
           "name": "3-4",
           "DisplayName": "3-4",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 661,
                 183,
@@ -1712,7 +1730,7 @@
                 35
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 1098,
                 368,
@@ -1726,7 +1744,7 @@
           "name": "4-1",
           "DisplayName": "4-1",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 891,
                 190,
@@ -1734,7 +1752,7 @@
                 36
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 173,
                 365,
@@ -1748,7 +1766,7 @@
           "name": "4-2",
           "DisplayName": "4-2",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 891,
                 190,
@@ -1756,7 +1774,7 @@
                 36
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 487,
                 373,
@@ -1770,7 +1788,7 @@
           "name": "4-3",
           "DisplayName": "4-3",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 891,
                 190,
@@ -1778,7 +1796,7 @@
                 36
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 767,
                 370,
@@ -1792,7 +1810,7 @@
           "name": "4-4",
           "DisplayName": "4-4",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 891,
                 190,
@@ -1800,7 +1818,7 @@
                 36
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 1098,
                 368,
@@ -1814,7 +1832,7 @@
           "name": "5-1",
           "DisplayName": "5-1",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 1078,
                 191,
@@ -1822,7 +1840,7 @@
                 34
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 173,
                 365,
@@ -1836,7 +1854,7 @@
           "name": "5-2",
           "DisplayName": "5-2",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 1078,
                 191,
@@ -1844,7 +1862,7 @@
                 34
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 487,
                 373,
@@ -1858,7 +1876,7 @@
           "name": "5-3",
           "DisplayName": "5-3",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 1078,
                 191,
@@ -1866,7 +1884,7 @@
                 34
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 767,
                 370,
@@ -1880,7 +1898,7 @@
           "name": "5-4",
           "DisplayName": "5-4",
           "pipeline_override": {
-            "SelectMap4": {
+            "E_SelectMap4": {
               "target": [
                 1078,
                 191,
@@ -1888,7 +1906,7 @@
                 34
               ]
             },
-            "ClickSmallMap4": {
+            "E_ClickSmallMap4": {
               "target": [
                 1098,
                 368,
@@ -1914,7 +1932,7 @@
           "name": "1-1",
           "DisplayName": "1-1",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 276,
                 188,
@@ -1922,7 +1940,7 @@
                 39
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 173,
                 365,
@@ -1936,7 +1954,7 @@
           "name": "1-2",
           "DisplayName": "1-2",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 276,
                 188,
@@ -1944,7 +1962,7 @@
                 39
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 487,
                 373,
@@ -1958,7 +1976,7 @@
           "name": "1-3",
           "DisplayName": "1-3",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 276,
                 188,
@@ -1966,7 +1984,7 @@
                 39
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 767,
                 370,
@@ -1980,7 +1998,7 @@
           "name": "1-4",
           "DisplayName": "1-4",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 276,
                 188,
@@ -1988,7 +2006,7 @@
                 39
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 1098,
                 368,
@@ -2002,7 +2020,7 @@
           "name": "2-1",
           "DisplayName": "2-1",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 469,
                 178,
@@ -2010,7 +2028,7 @@
                 40
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 173,
                 365,
@@ -2024,7 +2042,7 @@
           "name": "2-2",
           "DisplayName": "2-2",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 469,
                 178,
@@ -2032,7 +2050,7 @@
                 40
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 487,
                 373,
@@ -2046,7 +2064,7 @@
           "name": "2-3",
           "DisplayName": "2-3",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 469,
                 178,
@@ -2054,7 +2072,7 @@
                 40
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 767,
                 370,
@@ -2068,7 +2086,7 @@
           "name": "2-4",
           "DisplayName": "2-4",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 469,
                 178,
@@ -2076,7 +2094,7 @@
                 40
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 1098,
                 368,
@@ -2090,7 +2108,7 @@
           "name": "3-1",
           "DisplayName": "3-1",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 661,
                 183,
@@ -2098,7 +2116,7 @@
                 35
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 173,
                 365,
@@ -2112,7 +2130,7 @@
           "name": "3-2",
           "DisplayName": "3-2",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 661,
                 183,
@@ -2120,7 +2138,7 @@
                 35
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 487,
                 373,
@@ -2134,7 +2152,7 @@
           "name": "3-3",
           "DisplayName": "3-3",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 661,
                 183,
@@ -2142,7 +2160,7 @@
                 35
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 767,
                 370,
@@ -2156,7 +2174,7 @@
           "name": "3-4",
           "DisplayName": "3-4",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 661,
                 183,
@@ -2164,7 +2182,7 @@
                 35
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 1098,
                 368,
@@ -2178,7 +2196,7 @@
           "name": "4-1",
           "DisplayName": "4-1",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 891,
                 190,
@@ -2186,7 +2204,7 @@
                 36
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 173,
                 365,
@@ -2200,7 +2218,7 @@
           "name": "4-2",
           "DisplayName": "4-2",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 891,
                 190,
@@ -2208,7 +2226,7 @@
                 36
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 487,
                 373,
@@ -2222,7 +2240,7 @@
           "name": "4-3",
           "DisplayName": "4-3",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 891,
                 190,
@@ -2230,7 +2248,7 @@
                 36
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 767,
                 370,
@@ -2244,7 +2262,7 @@
           "name": "4-4",
           "DisplayName": "4-4",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 891,
                 190,
@@ -2252,7 +2270,7 @@
                 36
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 1098,
                 368,
@@ -2266,7 +2284,7 @@
           "name": "5-1",
           "DisplayName": "5-1",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 1078,
                 191,
@@ -2274,7 +2292,7 @@
                 34
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 173,
                 365,
@@ -2288,7 +2306,7 @@
           "name": "5-2",
           "DisplayName": "5-2",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 1078,
                 191,
@@ -2296,7 +2314,7 @@
                 34
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 487,
                 373,
@@ -2310,7 +2328,7 @@
           "name": "5-3",
           "DisplayName": "5-3",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 1078,
                 191,
@@ -2318,7 +2336,7 @@
                 34
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 767,
                 370,
@@ -2332,7 +2350,7 @@
           "name": "5-4",
           "DisplayName": "5-4",
           "pipeline_override": {
-            "SelectMap5": {
+            "E_SelectMap5": {
               "target": [
                 1078,
                 191,
@@ -2340,7 +2358,7 @@
                 34
               ]
             },
-            "ClickSmallMap5": {
+            "E_ClickSmallMap5": {
               "target": [
                 1098,
                 368,
@@ -2513,34 +2531,34 @@
         {
           "name": "",
           "pipeline_override": {
-            "Sortie_IsSwordSelect": {
+            "S_IsSwordSelect": {
               "enabled": true
             },
-            "Sortie_DetectSortOrder": {
+            "S_DetectSortOrder": {
               "enabled": true
             },
-            "Sortie_ClickDescending": {
+            "S_ClickDescending": {
               "enabled": true
             },
-            "Sortie_ConfirmSortAsc": {
+            "S_ConfirmSortAsc": {
               "enabled": true
             },
-            "Sortie_ClickCaptain1": {
+            "S_ClickCaptain1": {
               "enabled": true
             },
-            "Sortie_ClickCaptain2": {
+            "S_ClickCaptain2": {
               "enabled": true
             },
-            "Sortie_ClickCaptain3": {
+            "S_ClickCaptain3": {
               "enabled": true
             },
-            "Sortie_ClickCaptain4": {
+            "S_ClickCaptain4": {
               "enabled": true
             },
-            "Sortie_ClickCaptain5": {
+            "S_ClickCaptain5": {
               "enabled": true
             },
-            "Sortie_ClickCaptainSlot": {
+            "S_ClickCaptainSlot": {
               "enabled": true
             }
           }
@@ -2578,7 +2596,7 @@
           "name": "部队一",
           "DisplayName": "部队一",
           "pipeline_override": {
-            "Sortie_ClickTeam": {
+            "S_ClickTeam": {
               "target": [
                 154,
                 93,
@@ -2592,7 +2610,7 @@
           "name": "部队二",
           "DisplayName": "部队二",
           "pipeline_override": {
-            "Sortie_ClickTeam": {
+            "S_ClickTeam": {
               "target": [
                 282,
                 94,
@@ -2606,7 +2624,7 @@
           "name": "部队三",
           "DisplayName": "部队三",
           "pipeline_override": {
-            "Sortie_ClickTeam": {
+            "S_ClickTeam": {
               "target": [
                 398,
                 91,
@@ -2620,7 +2638,7 @@
           "name": "部队四",
           "DisplayName": "部队四",
           "pipeline_override": {
-            "Sortie_ClickTeam": {
+            "S_ClickTeam": {
               "target": [
                 519,
                 89,
@@ -2634,7 +2652,7 @@
           "name": "部队五",
           "DisplayName": "部队五",
           "pipeline_override": {
-            "Sortie_ClickTeam": {
+            "S_ClickTeam": {
               "target": [
                 635,
                 91,
@@ -2655,7 +2673,7 @@
           "name": "时代一",
           "DisplayName": "时代一",
           "pipeline_override": {
-            "Sortie_ClickEra": {
+            "S_ClickEra": {
               "target": [
                 246,
                 389,
@@ -2669,7 +2687,7 @@
           "name": "时代二",
           "DisplayName": "时代二",
           "pipeline_override": {
-            "Sortie_ClickEra": {
+            "S_ClickEra": {
               "target": [
                 345,
                 516,
@@ -2683,7 +2701,7 @@
           "name": "时代三",
           "DisplayName": "时代三",
           "pipeline_override": {
-            "Sortie_ClickEra": {
+            "S_ClickEra": {
               "target": [
                 447,
                 379,
@@ -2697,7 +2715,7 @@
           "name": "时代四",
           "DisplayName": "时代四",
           "pipeline_override": {
-            "Sortie_ClickEra": {
+            "S_ClickEra": {
               "target": [
                 546,
                 511,
@@ -2711,7 +2729,7 @@
           "name": "时代五",
           "DisplayName": "时代五",
           "pipeline_override": {
-            "Sortie_ClickEra": {
+            "S_ClickEra": {
               "target": [
                 644,
                 375,
@@ -2725,7 +2743,7 @@
           "name": "时代六",
           "DisplayName": "时代六",
           "pipeline_override": {
-            "Sortie_ClickEra": {
+            "S_ClickEra": {
               "target": [
                 750,
                 508,
@@ -2739,7 +2757,7 @@
           "name": "时代七",
           "DisplayName": "时代七",
           "pipeline_override": {
-            "Sortie_ClickEra": {
+            "S_ClickEra": {
               "target": [
                 849,
                 378,
@@ -2753,7 +2771,7 @@
           "name": "时代八",
           "DisplayName": "时代八",
           "pipeline_override": {
-            "Sortie_ClickEra": {
+            "S_ClickEra": {
               "target": [
                 956,
                 519,
@@ -2774,7 +2792,7 @@
           "name": "地域一",
           "DisplayName": "地域一",
           "pipeline_override": {
-            "Sortie_ClickRegion": {
+            "S_ClickRegion": {
               "target": [
                 173,
                 365,
@@ -2788,7 +2806,7 @@
           "name": "地域二",
           "DisplayName": "地域二",
           "pipeline_override": {
-            "Sortie_ClickRegion": {
+            "S_ClickRegion": {
               "target": [
                 520,
                 243,
@@ -2802,7 +2820,7 @@
           "name": "地域三",
           "DisplayName": "地域三",
           "pipeline_override": {
-            "Sortie_ClickRegion": {
+            "S_ClickRegion": {
               "target": [
                 837,
                 234,
@@ -2816,7 +2834,7 @@
           "name": "地域四",
           "DisplayName": "地域四",
           "pipeline_override": {
-            "Sortie_ClickRegion": {
+            "S_ClickRegion": {
               "target": [
                 1118,
                 243,
@@ -2837,10 +2855,7 @@
           "name": "不启用",
           "DisplayName": "不启用",
           "pipeline_override": {
-            "Sortie_IsFormationSelect": {
-              "enabled": false
-            },
-            "Sortie_PostFormationSelect": {
+            "S_IsFormationSelect": {
               "enabled": false
             }
           }
@@ -2849,7 +2864,7 @@
           "name": "鱼鳞阵",
           "DisplayName": "鱼鳞阵",
           "pipeline_override": {
-            "Sortie_ClickFormation1": {
+            "S_ClickFormation1": {
               "target": [
                 212,
                 234,
@@ -2857,23 +2872,7 @@
                 1
               ]
             },
-            "Sortie_ClickFormation2": {
-              "target": [
-                212,
-                234,
-                1,
-                1
-              ]
-            },
-            "Sortie_PostClickFormation1": {
-              "target": [
-                212,
-                234,
-                1,
-                1
-              ]
-            },
-            "Sortie_PostClickFormation2": {
+            "S_ClickFormation2": {
               "target": [
                 212,
                 234,
@@ -2887,7 +2886,7 @@
           "name": "横队阵",
           "DisplayName": "横队阵",
           "pipeline_override": {
-            "Sortie_ClickFormation1": {
+            "S_ClickFormation1": {
               "target": [
                 591,
                 234,
@@ -2895,23 +2894,7 @@
                 1
               ]
             },
-            "Sortie_ClickFormation2": {
-              "target": [
-                591,
-                234,
-                1,
-                1
-              ]
-            },
-            "Sortie_PostClickFormation1": {
-              "target": [
-                591,
-                234,
-                1,
-                1
-              ]
-            },
-            "Sortie_PostClickFormation2": {
+            "S_ClickFormation2": {
               "target": [
                 591,
                 234,
@@ -2925,7 +2908,7 @@
           "name": "雁行阵",
           "DisplayName": "雁行阵",
           "pipeline_override": {
-            "Sortie_ClickFormation1": {
+            "S_ClickFormation1": {
               "target": [
                 1037,
                 222,
@@ -2933,23 +2916,7 @@
                 1
               ]
             },
-            "Sortie_ClickFormation2": {
-              "target": [
-                1037,
-                222,
-                1,
-                1
-              ]
-            },
-            "Sortie_PostClickFormation1": {
-              "target": [
-                1037,
-                222,
-                1,
-                1
-              ]
-            },
-            "Sortie_PostClickFormation2": {
+            "S_ClickFormation2": {
               "target": [
                 1037,
                 222,
@@ -2963,7 +2930,7 @@
           "name": "鹤翼阵",
           "DisplayName": "鹤翼阵",
           "pipeline_override": {
-            "Sortie_ClickFormation1": {
+            "S_ClickFormation1": {
               "target": [
                 195,
                 431,
@@ -2971,23 +2938,7 @@
                 1
               ]
             },
-            "Sortie_ClickFormation2": {
-              "target": [
-                195,
-                431,
-                1,
-                1
-              ]
-            },
-            "Sortie_PostClickFormation1": {
-              "target": [
-                195,
-                431,
-                1,
-                1
-              ]
-            },
-            "Sortie_PostClickFormation2": {
+            "S_ClickFormation2": {
               "target": [
                 195,
                 431,
@@ -3001,7 +2952,7 @@
           "name": "方阵",
           "DisplayName": "方阵",
           "pipeline_override": {
-            "Sortie_ClickFormation1": {
+            "S_ClickFormation1": {
               "target": [
                 625,
                 407,
@@ -3009,23 +2960,7 @@
                 1
               ]
             },
-            "Sortie_ClickFormation2": {
-              "target": [
-                625,
-                407,
-                1,
-                1
-              ]
-            },
-            "Sortie_PostClickFormation1": {
-              "target": [
-                625,
-                407,
-                1,
-                1
-              ]
-            },
-            "Sortie_PostClickFormation2": {
+            "S_ClickFormation2": {
               "target": [
                 625,
                 407,
@@ -3039,23 +2974,7 @@
           "name": "逆行阵",
           "DisplayName": "逆行阵",
           "pipeline_override": {
-            "Sortie_ClickFormation1": {
-              "target": [
-                1017,
-                421,
-                1,
-                1
-              ]
-            },
-            "Sortie_PostClickFormation1": {
-              "target": [
-                1017,
-                421,
-                1,
-                1
-              ]
-            },
-            "Sortie_PostClickFormation2": {
+            "S_ClickFormation1": {
               "target": [
                 1017,
                 421,
@@ -3074,16 +2993,16 @@
         {
           "name": "",
           "pipeline_override": {
-            "Sortie_CheckEquipmentPopup": {
+            "S_CheckEquipmentPopup": {
               "enabled": true
             },
-            "Sortie_PreCheckTroopRecord": {
+            "S_PreCheckTroopRecord": {
               "enabled": true
             },
-            "Sortie_PreCheckUseRecord": {
+            "S_PreCheckUseRecord": {
               "enabled": true
             },
-            "Sortie_PreConfirmSupply": {
+            "S_PreConfirmSupply": {
               "enabled": true
             }
           }
@@ -3100,10 +3019,10 @@
           "name": "修刀",
           "DisplayName": "修刀",
           "pipeline_override": {
-            "Sortie_IsRepair": {
+            "S_IsRepair": {
               "enabled": true
             },
-            "Sortie_IsStopOnDamage": {
+            "S_IsStopOnDamage": {
               "enabled": false
             }
           }
@@ -3112,10 +3031,10 @@
           "name": "停止",
           "DisplayName": "停止",
           "pipeline_override": {
-            "Sortie_IsStopOnDamage": {
+            "S_IsStopOnDamage": {
               "enabled": true
             },
-            "Sortie_IsRepair": {
+            "S_IsRepair": {
               "enabled": false
             }
           }
@@ -3129,16 +3048,16 @@
         {
           "name": "",
           "pipeline_override": {
-            "Sortie_MidRetreat_E8_R1": {
+            "S_MidRetreat_E8_R1": {
               "enabled": true
             },
-            "Sortie_MidRetreat_E8_R2": {
+            "S_MidRetreat_E8_R2": {
               "enabled": true
             },
-            "Sortie_MidRetreat_E8_R3": {
+            "S_MidRetreat_E8_R3": {
               "enabled": true
             },
-            "Sortie_MidRetreat_E8_R4": {
+            "S_MidRetreat_E8_R4": {
               "enabled": true
             }
           }
@@ -3153,97 +3072,97 @@
         {
           "name": "",
           "pipeline_override": {
-            "Sortie_Boss_E2_R1": {
+            "S_Boss_E2_R1": {
               "enabled": true
             },
-            "Sortie_Boss_E2_R2_1": {
+            "S_Boss_E2_R2_1": {
               "enabled": true
             },
-            "Sortie_Boss_E2_R2_2": {
+            "S_Boss_E2_R2_2": {
               "enabled": true
             },
-            "Sortie_Boss_E2_R3_1": {
+            "S_Boss_E2_R3_1": {
               "enabled": true
             },
-            "Sortie_Boss_E2_R3_2": {
+            "S_Boss_E2_R3_2": {
               "enabled": true
             },
-            "Sortie_Boss_E2_R4": {
+            "S_Boss_E2_R4": {
               "enabled": true
             },
-            "Sortie_Boss_E3_R1": {
+            "S_Boss_E3_R1": {
               "enabled": true
             },
-            "Sortie_Boss_E3_R2": {
+            "S_Boss_E3_R2": {
               "enabled": true
             },
-            "Sortie_Boss_E3_R3": {
+            "S_Boss_E3_R3": {
               "enabled": true
             },
-            "Sortie_Boss_E3_R4": {
+            "S_Boss_E3_R4": {
               "enabled": true
             },
-            "Sortie_Boss_E4_R1": {
+            "S_Boss_E4_R1": {
               "enabled": true
             },
-            "Sortie_Boss_E4_R2": {
+            "S_Boss_E4_R2": {
               "enabled": true
             },
-            "Sortie_Boss_E4_R3": {
+            "S_Boss_E4_R3": {
               "enabled": true
             },
-            "Sortie_Boss_E4_R4": {
+            "S_Boss_E4_R4": {
               "enabled": true
             },
-            "Sortie_Boss_E5_R1": {
+            "S_Boss_E5_R1": {
               "enabled": true
             },
-            "Sortie_Boss_E5_R3": {
+            "S_Boss_E5_R3": {
               "enabled": true
             },
-            "Sortie_Boss_E5_R3_2": {
+            "S_Boss_E5_R3_2": {
               "enabled": true
             },
-            "Sortie_Boss_E5_R4": {
+            "S_Boss_E5_R4": {
               "enabled": true
             },
-            "Sortie_Boss_E6_R1": {
+            "S_Boss_E6_R1": {
               "enabled": true
             },
-            "Sortie_Boss_E6_R2": {
+            "S_Boss_E6_R2": {
               "enabled": true
             },
-            "Sortie_Boss_E6_R3": {
+            "S_Boss_E6_R3": {
               "enabled": true
             },
-            "Sortie_Boss_E6_R4": {
+            "S_Boss_E6_R4": {
               "enabled": true
             },
-            "Sortie_Boss_E7_R1": {
+            "S_Boss_E7_R1": {
               "enabled": true
             },
-            "Sortie_Boss_E7_R2": {
+            "S_Boss_E7_R2": {
               "enabled": true
             },
-            "Sortie_Boss_E7_R3": {
+            "S_Boss_E7_R3": {
               "enabled": true
             },
-            "Sortie_Boss_E8_R1": {
+            "S_Boss_E8_R1": {
               "enabled": true
             },
-            "Sortie_Boss_E8_R2": {
+            "S_Boss_E8_R2": {
               "enabled": true
             },
-            "Sortie_Boss_E8_R3": {
+            "S_Boss_E8_R3": {
               "enabled": true
             },
-            "Sortie_Boss_E8_R4": {
+            "S_Boss_E8_R4": {
               "enabled": true
             },
-            "Sortie_ClickRetreat": {
+            "S_ClickRetreat": {
               "enabled": true
             },
-            "Sortie_ConfirmRetreat": {
+            "S_ConfirmRetreat": {
               "enabled": true
             }
           }
@@ -3258,47 +3177,159 @@
         {
           "name": "",
           "pipeline_override": {
-            "Sortie_IsHome": {
+            "S_IsHome": {
               "next": [
-                "CheckTeamStatus"
+                "E_CheckTeamStatus"
               ]
             },
-            "VerifyScreen1": {
+            "E_VerifyScreen1": {
               "on_error": [
-                "CheckTeamStatus"
+                "E_CheckTeamStatus"
               ]
             },
-            "VerifyScreen2": {
+            "E_VerifyScreen2": {
               "on_error": [
-                "CheckTeamStatus"
+                "E_CheckTeamStatus"
               ]
             },
-            "VerifyScreen3": {
+            "E_VerifyScreen3": {
               "on_error": [
-                "CheckTeamStatus"
+                "E_CheckTeamStatus"
               ]
             },
-            "VerifyScreen4": {
+            "E_VerifyScreen4": {
               "on_error": [
-                "CheckTeamStatus"
+                "E_CheckTeamStatus"
               ]
             },
-            "VerifyScreen5": {
+            "E_VerifyScreen5": {
               "on_error": [
-                "CheckTeamStatus"
+                "E_CheckTeamStatus"
               ]
             },
-            "ClickBackToHome": {
+            "E_ClickBackToHome": {
               "next": [
-                "Sortie_WaitRefresh"
+                "S_WaitRefresh"
               ]
             },
-            "AllTeamsBusy": {
+            "E_AllTeamsBusy": {
               "next": [
-                "Sortie_NavigateToSortie"
+                "S_NavigateToSortie"
               ]
             },
-            "Sortie_WaitRefresh": {
+            "S_WaitRefresh": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "短": {
+      "name": "短",
+      "type": "checkbox",
+      "label": "短刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword1": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "胁": {
+      "name": "胁",
+      "type": "checkbox",
+      "label": "胁差",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword2": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "打": {
+      "name": "打",
+      "type": "checkbox",
+      "label": "打刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword3": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "太": {
+      "name": "太",
+      "type": "checkbox",
+      "label": "太刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword4": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "大太": {
+      "name": "大太",
+      "type": "checkbox",
+      "label": "大太刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword5": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "枪": {
+      "name": "枪",
+      "type": "checkbox",
+      "label": "枪",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword6": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "薙": {
+      "name": "薙",
+      "type": "checkbox",
+      "label": "薙刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword7": {
               "enabled": true
             }
           }
