@@ -1401,8 +1401,7 @@
         ],
         "on_error": [
             "Expedition"
-        ],
-        "post_delay": 1000
+        ]
     },
     "E_IsLoginReward": {
         "recognition": {

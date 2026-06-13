@@ -1119,8 +1119,7 @@
         ],
         "on_error": [
             "FB_DetectWhereAmI"
-        ],
-        "post_delay": 1000
+        ]
     },
     "FB_IsLoginReward": {
         "recognition": {
