@@ -69,24 +69,24 @@ def generate():
         map_str = team_maps.get(i, "休息")
         parsed = parse_map(map_str)
 
-        select_key = f"SelectTeam{i}"
-        map_key = f"SelectMap{i}"
-        small_key = f"ClickSmallMap{i}"
-        btn_key = f"SelectTeamBtn{i}"
+        select_key = f"E_SelectTeam{i}"
+        map_key = f"E_SelectMap{i}"
+        small_key = f"E_ClickSmallMap{i}"
+        btn_key = f"E_SelectTeamBtn{i}"
 
         if parsed is None:
             # 休息：禁用 CheckTeam 节点，引擎自动跳过
-            check_key = f"CheckTeam{i}"
+            check_key = f"E_CheckTeam{i}"
             pipe[check_key]["enabled"] = False
             pipe[select_key]["action"]["type"] = "DoNothing"
             pipe[select_key]["next"] = []
             print(f"  部队{i}: 休息 → enabled=false")
         else:
             b, s = parsed
-            check_key = f"CheckTeam{i}"
+            check_key = f"E_CheckTeam{i}"
             pipe[check_key]["enabled"] = True
-            pipe[check_key]["next"] = [f"SelectTeam{i}"]
-            pipe[select_key]["next"] = [f"VerifyScreen{i}"]
+            pipe[check_key]["next"] = [f"E_SelectTeam{i}"]
+            pipe[select_key]["next"] = [f"E_VerifyScreen{i}"]
             pipe[map_key]["action"]["param"]["target"] = random_pt(BIG_MAP[b])
             pipe[small_key]["action"]["param"]["target"] = random_pt(SMALL_MAP[s])
             print(f"  部队{i}: {map_str} → 大{b} 小{s}")
@@ -95,7 +95,7 @@ def generate():
         print(f"          按钮: {pipe[btn_key]['action']['param']['target']}")
 
     delay_ms = interval_minutes * 60000
-    pipe["WaitRefresh"]["post_delay"] = delay_ms
+    pipe["E_WaitRefresh"]["post_delay"] = delay_ms
     print(f"\n刷新间隔: {interval_minutes} 分钟 ({delay_ms}ms)")
 
     with open(PIPE_PATH, "w", encoding="utf-8") as f:
