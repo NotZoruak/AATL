@@ -2736,7 +2736,8 @@
         ],
         "on_error": [
             "S_DetectWhereAmI"
-        ]
+        ],
+        "post_delay": 1000
     },
     "S_IsLoginReward": {
         "recognition": {

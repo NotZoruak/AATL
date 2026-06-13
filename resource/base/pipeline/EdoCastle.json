@@ -1303,7 +1303,8 @@
         ],
         "on_error": [
             "EC_DetectWhereAmI"
-        ]
+        ],
+        "post_delay": 1000
     },
     "EC_IsLoginReward": {
         "recognition": {
