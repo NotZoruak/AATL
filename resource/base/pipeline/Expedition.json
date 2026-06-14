@@ -86,7 +86,7 @@
         "next": [
             "E_SelectTeam1"
         ],
-        "enabled": true
+        "enabled": false
     },
     "E_SelectTeam1": {
         "recognition": {
