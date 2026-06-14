@@ -7,7 +7,7 @@
     "D_DetectWhereAmI": {
         "pre_delay": 0,
         "next": [
-            "D_DetectHome",
+            "D_CheckHomeBrightness",
             "D_DetectMenu",
             "D_DetectForge",
             "D_DetectDisassemble",
@@ -736,6 +736,29 @@
         ],
         "on_error": [
             "D_DetectWhereAmI"
+        ]
+    },
+    "D_CheckHomeBrightness": {
+        "recognition": "ColorMatch",
+        "roi": [
+            66,
+            58,
+            11,
+            13
+        ],
+        "upper": [
+            40,
+            155,
+            30
+        ],
+        "lower": [
+            23,
+            95,
+            15
+        ],
+        "action": "DoNothing",
+        "next": [
+            "D_DetectHome"
         ]
     }
 }

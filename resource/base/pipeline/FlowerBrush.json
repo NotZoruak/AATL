@@ -19,7 +19,7 @@
             "FB_IsEraSelect",
             "FB_IsRegionSelect",
             "FB_IsSortieActivity",
-            "FB_IsHome",
+            "FB_CheckHomeBrightness",
             "FB_IsGameIcon",
             "FB_IsLoginButton",
             "FB_IsGameUpdatePopup",
@@ -37,10 +37,10 @@
         "expected": "经验",
         "action": "Click",
         "target": [
-            957,
-            465,
-            178,
-            192
+            388,
+            59,
+            54,
+            25
         ],
         "next": [
             "FB_DetectWhereAmI"
@@ -58,10 +58,10 @@
         "expected": "经验",
         "action": "Click",
         "target": [
-            957,
-            465,
-            178,
-            192
+            388,
+            59,
+            54,
+            25
         ],
         "next": [
             "FB_DetectWhereAmI"
@@ -740,7 +740,7 @@
             "FB_PostBattleResult",
             "FB_PostSwordDrop",
             "FB_PostFormationSelect",
-            "FB_PostHome",
+            "FB_CheckPostHomeBright",
             "FB_PostFallbackWait"
         ]
     },
@@ -755,10 +755,10 @@
         "expected": "经验",
         "action": "Click",
         "target": [
-            957,
-            465,
-            178,
-            192
+            388,
+            59,
+            54,
+            25
         ],
         "next": [
             "FB_DetectAfterMarching"
@@ -776,10 +776,10 @@
         "expected": "经验",
         "action": "Click",
         "target": [
-            957,
-            465,
-            178,
-            192
+            388,
+            59,
+            54,
+            25
         ],
         "next": [
             "FB_DetectAfterMarching"
@@ -1171,6 +1171,52 @@
         "pre_delay": 300,
         "next": [
             "FB_IsLoginReward"
+        ]
+    },
+    "FB_CheckHomeBrightness": {
+        "recognition": "ColorMatch",
+        "roi": [
+            66,
+            58,
+            11,
+            13
+        ],
+        "upper": [
+            40,
+            155,
+            30
+        ],
+        "lower": [
+            23,
+            95,
+            15
+        ],
+        "action": "DoNothing",
+        "next": [
+            "FB_IsHome"
+        ]
+    },
+    "FB_CheckPostHomeBright": {
+        "recognition": "ColorMatch",
+        "roi": [
+            66,
+            58,
+            11,
+            13
+        ],
+        "upper": [
+            40,
+            155,
+            30
+        ],
+        "lower": [
+            23,
+            95,
+            15
+        ],
+        "action": "DoNothing",
+        "next": [
+            "FB_PostHome"
         ]
     }
 }

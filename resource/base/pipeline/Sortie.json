@@ -20,7 +20,7 @@
             "S_IsEraSelect",
             "S_IsRegionSelect",
             "S_IsSortieActivity",
-            "S_IsHome",
+            "S_CheckHomeBrightness",
             "S_IsRepair",
             "S_IsStopOnDamage",
             "S_IsGameIcon",
@@ -40,10 +40,10 @@
         "expected": "经验",
         "action": "Click",
         "target": [
-            957,
-            465,
-            178,
-            192
+            388,
+            59,
+            54,
+            25
         ],
         "next": [
             "S_DetectWhereAmI"
@@ -82,10 +82,10 @@
         "expected": "经验",
         "action": "Click",
         "target": [
-            957,
-            465,
-            178,
-            192
+            388,
+            59,
+            54,
+            25
         ],
         "next": [
             "S_DetectWhereAmI"
@@ -276,22 +276,14 @@
         "pre_delay": 100
     },
     "S_IsPreSortieConfirm": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    1161,
-                    585,
-                    85,
-                    89
-                ],
-                "template": "即刻出阵.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+        "recognition": "OCR",
+        "roi": [
+            1156,
+            584,
+            96,
+            47
+        ],
+        "expected": "即刻",
         "on_error": [
             "S_DetectWhereAmI"
         ],
@@ -1489,27 +1481,23 @@
         "pre_delay": 100
     },
     "S_IsPreDamage1": {
-        "recognition": "OCR",
-        "roi": [
-            493,
-            348,
-            48,
-            22
-        ],
-        "expected": "重伤",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    233,
+                    128,
+                    71,
+                    549
+                ],
+                "template": "重伤.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": "Click",
-        "target": [
-            761,
-            453,
-            52,
-            34
-        ],
-        "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
         "next": [
             "S_DecideDamage_Pre"
         ],
@@ -2881,5 +2869,28 @@
             "S_ClickRetreat"
         ],
         "pre_delay": 100
+    },
+    "S_CheckHomeBrightness": {
+        "recognition": "ColorMatch",
+        "roi": [
+            66,
+            58,
+            11,
+            13
+        ],
+        "upper": [
+            40,
+            155,
+            30
+        ],
+        "lower": [
+            23,
+            95,
+            15
+        ],
+        "action": "DoNothing",
+        "next": [
+            "S_IsHome"
+        ]
     }
 }

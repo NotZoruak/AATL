@@ -6,7 +6,7 @@
             "E_IsLoginReward",
             "E_ClickExpeditionReturn",
             "E_DetectExpeditionScreen",
-            "E_DetectHome",
+            "E_CheckHomeBrightness",
             "E_IsGameIcon",
             "E_IsLoginButton",
             "E_IsGameUpdatePopup",
@@ -1184,10 +1184,10 @@
         "expected": "经验",
         "action": "Click",
         "target": [
-            957,
-            465,
-            178,
-            192
+            388,
+            59,
+            54,
+            25
         ],
         "next": [
             "Expedition"
@@ -1453,6 +1453,29 @@
         "pre_delay": 300,
         "next": [
             "E_IsLoginReward"
+        ]
+    },
+    "E_CheckHomeBrightness": {
+        "recognition": "ColorMatch",
+        "roi": [
+            66,
+            58,
+            11,
+            13
+        ],
+        "upper": [
+            40,
+            155,
+            30
+        ],
+        "lower": [
+            23,
+            95,
+            15
+        ],
+        "action": "DoNothing",
+        "next": [
+            "E_DetectHome"
         ]
     }
 }
