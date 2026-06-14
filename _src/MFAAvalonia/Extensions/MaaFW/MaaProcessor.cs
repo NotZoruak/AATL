@@ -3241,12 +3241,14 @@ public class MaaProcessor
 
             if (syncExpEnabled)
             {
-                var expTask = TasksSource
-                    ?.FirstOrDefault(t => t.InterfaceItem?.Entry == "Expedition");
-                if (expTask?.InterfaceItem?.Option != null)
+                var savedTasks = InstanceConfiguration.GetValue(
+                    ConfigurationKeys.TaskItems,
+                    new List<MaaInterface.MaaInterfaceTask>());
+                var expTask = savedTasks?.FirstOrDefault(t => t.Entry == "Expedition");
+                if (expTask?.Option != null)
                 {
                     var teamOptionNames = new List<string> { "部队一", "部队二", "部队三", "部队四", "部队五" };
-                    ProcessOptions(ref taskModels, expTask.InterfaceItem.Option, teamOptionNames);
+                    ProcessOptions(ref taskModels, expTask.Option, teamOptionNames);
                 }
             }
         }
