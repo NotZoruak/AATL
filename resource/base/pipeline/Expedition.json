@@ -6,6 +6,8 @@
             "E_IsLoginReward",
             "E_ClickExpeditionReturn",
             "E_DetectExpeditionScreen",
+            "E_IsMenuDirectory",
+            "E_IsTeamStatusPanel",
             "E_CheckHomeBrightness",
             "E_IsGameIcon",
             "E_IsLoginButton",
@@ -63,7 +65,7 @@
             }
         },
         "next": [
-            "E_ExpSubHub2"
+            "E_ExpSubHub1"
         ],
         "post_delay": 1000,
         "pre_delay": 100
@@ -82,20 +84,30 @@
             }
         },
         "next": [
-            "E_CheckTeam2"
+            "E_SelectTeam1"
         ],
-        "enabled": false
+        "enabled": true
     },
     "E_SelectTeam1": {
-        "action": {
-            "type": "DoNothing",
+        "recognition": {
+            "type": "TemplateMatch",
             "param": {
-                "target": [
-                    378,
-                    53,
-                    27,
-                    77
+                "roi": [
+                    374,
+                    42,
+                    39,
+                    108
                 ],
+                "template": "本丸远征.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
                 "target_offset": [
                     7,
                     4,
@@ -104,10 +116,13 @@
                 ]
             }
         },
-        "next": [],
+        "next": [
+            "E_VerifyScreen1"
+        ],
         "on_error": [
             "Expedition"
-        ]
+        ],
+        "pre_delay": 100
     },
     "E_VerifyScreen1": {
         "recognition": {
@@ -265,15 +280,25 @@
         "enabled": true
     },
     "E_SelectTeam2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    374,
+                    42,
+                    39,
+                    108
+                ],
+                "template": "本丸远征.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": {
             "type": "Click",
             "param": {
-                "target": [
-                    378,
-                    53,
-                    27,
-                    77
-                ],
                 "target_offset": [
                     8,
                     3,
@@ -446,15 +471,25 @@
         "enabled": true
     },
     "E_SelectTeam3": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    374,
+                    42,
+                    39,
+                    108
+                ],
+                "template": "本丸远征.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": {
             "type": "Click",
             "param": {
-                "target": [
-                    378,
-                    53,
-                    27,
-                    77
-                ],
                 "target_offset": [
                     6,
                     5,
@@ -627,15 +662,25 @@
         "enabled": true
     },
     "E_SelectTeam4": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    374,
+                    42,
+                    39,
+                    108
+                ],
+                "template": "本丸远征.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": {
             "type": "Click",
             "param": {
-                "target": [
-                    378,
-                    53,
-                    27,
-                    77
-                ],
                 "target_offset": [
                     9,
                     3,
@@ -808,15 +853,25 @@
         "enabled": true
     },
     "E_SelectTeam5": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    374,
+                    42,
+                    39,
+                    108
+                ],
+                "template": "本丸远征.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": {
             "type": "Click",
             "param": {
-                "target": [
-                    378,
-                    53,
-                    27,
-                    77
-                ],
                 "target_offset": [
                     5,
                     6,
@@ -1246,6 +1301,12 @@
             "E_ClickBackToHome"
         ]
     },
+    "E_ExpSubHub1": {
+        "next": [
+            "E_CheckTeam1",
+            "E_ExpSubHub2"
+        ]
+    },
     "E_ExpSubHub2": {
         "next": [
             "E_CheckTeam2",
@@ -1477,5 +1538,51 @@
         "next": [
             "E_DetectHome"
         ]
+    },
+    "E_IsTeamStatusPanel": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    374,
+                    42,
+                    39,
+                    108
+                ],
+                "template": "本丸远征.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "DoNothing",
+        "next": [
+            "E_ExpSubHub1"
+        ],
+        "pre_delay": 100
+    },
+    "E_IsMenuDirectory": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "DoNothing",
+        "next": [
+            "E_ClickBackToHome"
+        ],
+        "pre_delay": 100
     }
 }

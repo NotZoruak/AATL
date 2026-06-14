@@ -19,6 +19,7 @@
             "FB_IsEraSelect",
             "FB_IsRegionSelect",
             "FB_IsSortieActivity",
+            "FB_IsMenuDirectory",
             "FB_CheckHomeBrightness",
             "FB_IsGameIcon",
             "FB_IsLoginButton",
@@ -1218,5 +1219,28 @@
         "next": [
             "FB_PostHome"
         ]
+    },
+    "FB_IsMenuDirectory": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "DoNothing",
+        "next": [
+            "FB_ClickSortieInMenu"
+        ],
+        "pre_delay": 100
     }
 }

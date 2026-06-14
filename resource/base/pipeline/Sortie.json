@@ -20,6 +20,8 @@
             "S_IsEraSelect",
             "S_IsRegionSelect",
             "S_IsSortieActivity",
+            "S_IsMenuDirectory",
+            "S_IsTeamStatusPanel",
             "S_CheckHomeBrightness",
             "S_IsRepair",
             "S_IsStopOnDamage",
@@ -2892,5 +2894,51 @@
         "next": [
             "S_IsHome"
         ]
+    },
+    "S_IsTeamStatusPanel": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    374,
+                    42,
+                    39,
+                    108
+                ],
+                "template": "本丸远征.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "DoNothing",
+        "next": [
+            "E_ExpSubHub1"
+        ],
+        "pre_delay": 100
+    },
+    "S_IsMenuDirectory": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "DoNothing",
+        "next": [
+            "S_ClickSortieInMenu"
+        ],
+        "pre_delay": 100
     }
 }

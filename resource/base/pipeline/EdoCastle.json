@@ -17,6 +17,7 @@
             "EC_IsTeamSelect",
             "EC_IsEventPage",
             "EC_IsSortie",
+            "EC_IsMenuDirectory",
             "EC_CheckHomeBrightness",
             "EC_IsGameIcon",
             "EC_IsLoginButton",
@@ -1377,5 +1378,28 @@
         "next": [
             "EC_IsHome"
         ]
+    },
+    "EC_IsMenuDirectory": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "DoNothing",
+        "next": [
+            "EC_ClickSortieInMenu"
+        ],
+        "pre_delay": 100
     }
 }

@@ -11,6 +11,7 @@ __pycache__/
 
 # 源码
 _src/
+agent/
 
 # 运行时产物
 logs/
