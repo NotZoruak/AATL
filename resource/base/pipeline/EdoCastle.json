@@ -1338,7 +1338,7 @@
             1,
             1
         ],
-        "pre_delay": 300,
+        "pre_delay": 1000,
         "next": [
             "EC_LoginRewardClick3"
         ]
@@ -1351,7 +1351,7 @@
             1,
             1
         ],
-        "pre_delay": 300,
+        "pre_delay": 1000,
         "next": [
             "EC_IsLoginReward"
         ]
