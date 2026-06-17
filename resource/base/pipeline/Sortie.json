@@ -320,7 +320,9 @@
         "pre_delay": 0,
         "next": [
             "S_IsPreDamage1",
+            "S_StopOnDamagePopup",
             "S_IsPreDamage2",
+            "S_StopOnDamageText",
             "S_CheckEquipmentPopup",
             "S_DetectAfterSortieNow"
         ]
@@ -348,9 +350,9 @@
             "S_PreCheckTroopRecord"
         ],
         "on_error": [
-            "S_DetectAfterSortieNow"
+            "S_ClickTeam"
         ],
-        "pre_delay": 100
+        "post_delay": 500
     },
     "S_DetectAfterSortieNow": {
         "pre_delay": 0,
@@ -441,6 +443,8 @@
             }
         },
         "next": [
+            "S_CheckEquipmentPopup",
+            "S_StopOnEquipmentPopup",
             "S_ClickTeam"
         ]
     },
@@ -491,8 +495,7 @@
         ],
         "next": [
             "S_PreCheckUseRecord"
-        ],
-        "pre_delay": 100
+        ]
     },
     "S_PreCheckUseRecord": {
         "recognition": {
@@ -518,8 +521,7 @@
         ],
         "next": [
             "S_PreConfirmSupply"
-        ],
-        "pre_delay": 100
+        ]
     },
     "S_IsEraSelect": {
         "recognition": {
@@ -1503,7 +1505,8 @@
         "next": [
             "S_DecideDamage_Pre"
         ],
-        "pre_delay": 100
+        "pre_delay": 100,
+        "enabled": false
     },
     "S_IsPreDamage2": {
         "recognition": "OCR",
@@ -1516,7 +1519,8 @@
         "expected": "重伤",
         "next": [
             "S_ConfirmCancelPreDamage2"
-        ]
+        ],
+        "enabled": false
     },
     "S_IsMarchingDamage1": {
         "recognition": "OCR",
@@ -2258,8 +2262,7 @@
         "enabled": false,
         "next": [
             "S_IsPreSortieConfirm"
-        ],
-        "pre_delay": 100
+        ]
     },
     "S_WaitRefresh": {
         "recognition": {
@@ -2962,5 +2965,61 @@
             "S_ClickSortieInMenu"
         ],
         "pre_delay": 100
+    },
+    "S_StopOnEquipmentPopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    423,
+                    484,
+                    145,
+                    56
+                ],
+                "template": "整备刀装.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "DoNothing",
+        "pre_delay": 100,
+        "on_error": [
+            "S_ClickTeam"
+        ]
+    },
+    "S_StopOnDamagePopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    233,
+                    128,
+                    71,
+                    549
+                ],
+                "template": "重伤.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "DoNothing",
+        "enabled": false,
+        "pre_delay": 100,
+        "on_error": [
+            "S_DetectAfterSortieNow"
+        ]
+    },
+    "S_StopOnDamageText": {
+        "recognition": "OCR",
+        "action": "DoNothing",
+        "enabled": false,
+        "pre_delay": 100,
+        "on_error": [
+            "S_DetectAfterSortieNow"
+        ]
     }
 }
