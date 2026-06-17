@@ -1172,6 +1172,9 @@
         "pre_delay": 1000,
         "next": [
             "FB_IsLoginReward"
+        ],
+        "on_error": [
+            "FB_DetectWhereAmI"
         ]
     },
     "FB_CheckHomeBrightness": {

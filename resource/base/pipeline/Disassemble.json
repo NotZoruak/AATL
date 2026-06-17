@@ -7,13 +7,51 @@
     "D_DetectWhereAmI": {
         "pre_delay": 0,
         "next": [
+            "D_DetectEmptyMailbox",
             "D_CheckHomeBrightness",
             "D_DetectMenu",
             "D_DetectForge",
             "D_DetectDisassemble",
             "D_DetectFilter",
+            "D_DetectPurchasePopup",
             "D_DetectMailbox",
             "D_FallbackWait"
+        ]
+    },
+    "D_DetectEmptyMailbox": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    142,
+                    178,
+                    82,
+                    75
+                ],
+                "template": "空邮箱.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1231,
+                    8,
+                    38,
+                    39
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_MailboxCloseFinal"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
         ]
     },
     "D_DetectHome": {
@@ -374,6 +412,7 @@
         "next": [
             "D_PostFilterReward",
             "D_PostFilterDisassemble",
+            "D_DetectEmptyMailbox",
             "D_PostFilterMailbox",
             "D_DetectWhereAmI"
         ]
@@ -683,10 +722,42 @@
         },
         "pre_delay": 500,
         "next": [
-            "D_DetectWhereAmI"
+            "D_MailboxCloseFinal"
         ],
         "on_error": [
             "D_MailboxCloseFinal"
+        ]
+    },
+    "D_DetectPurchasePopup": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    570,
+                    162,
+                    136,
+                    44
+                ],
+                "expected": "购买详情"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1231,
+                    8,
+                    38,
+                    39
+                ]
+            }
+        },
+        "pre_delay": 300,
+        "next": [
+            "D_MailboxCloseFinal"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
         ]
     },
     "D_MailboxCloseFinal": {
@@ -704,6 +775,9 @@
         "pre_delay": 300,
         "next": [
             "D_MailboxCloseVerify"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
         ]
     },
     "D_MailboxCloseVerify": {

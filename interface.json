@@ -106,7 +106,7 @@
         "薙"
       ],
       "label": "刀解",
-      "description": "自动刀解 + 收邮箱循环。⚠ 该功能尚不稳定，可能中途停止任务，建议在有人看管的情况下使用"
+      "description": "自动刀解 + 收邮箱循环。邮箱清空后任务终止，若刀位有剩余刀剑需刀解可手动清理"
     }
   ],
   "option": {
@@ -3288,8 +3288,28 @@
               ]
             },
             "E_ClickBackToHome": {
+              "action": {
+                "type": "Click",
+                "param": {
+                  "target": [
+                    1037,
+                    169,
+                    110,
+                    44
+                  ],
+                  "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                  ]
+                }
+              },
               "next": [
                 "S_WaitRefresh"
+              ],
+              "on_error": [
+                "S_DetectWhereAmI"
               ]
             },
             "E_AllTeamsBusy": {

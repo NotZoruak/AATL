@@ -2797,6 +2797,9 @@
         "pre_delay": 1000,
         "next": [
             "S_IsLoginReward"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
         ]
     },
     "S_MidRetreat_E8_R1": {

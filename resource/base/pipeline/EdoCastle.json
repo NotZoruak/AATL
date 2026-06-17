@@ -1354,6 +1354,9 @@
         "pre_delay": 1000,
         "next": [
             "EC_IsLoginReward"
+        ],
+        "on_error": [
+            "EC_DetectWhereAmI"
         ]
     },
     "EC_CheckHomeBrightness": {

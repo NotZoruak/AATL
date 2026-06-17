@@ -1514,6 +1514,9 @@
         "pre_delay": 1000,
         "next": [
             "E_IsLoginReward"
+        ],
+        "on_error": [
+            "Expedition"
         ]
     },
     "E_CheckHomeBrightness": {
