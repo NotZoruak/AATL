@@ -91,6 +91,23 @@
       "description": "仅支持部队一单骑出阵1-1刷花，请提前解散部队一并为且仅为需要刷花的刀剑男士装备马匹和刀装"
     },
     {
+      "name": "地下城",
+      "entry": "Underground",
+      "default_check": false,
+      "repeatable": false,
+      "repeat_count": 0,
+      "option": [
+        "U_重伤处理",
+        "U_选择部队",
+        "U_选择阵形",
+        "U_换队长",
+        "U_补充刀装",
+        "U_同步远征"
+      ],
+      "label": "地下城",
+      "description": "地下城活动自动化目前正在开发中"
+    },
+    {
       "name": "刀解",
       "entry": "Disassemble",
       "default_check": false,
@@ -3318,6 +3335,395 @@
               ]
             },
             "S_WaitRefresh": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "U_重伤处理": {
+      "name": "U_重伤处理",
+      "label": "重伤处理",
+      "default_case": "修刀",
+      "cases": [
+        {
+          "name": "修刀",
+          "DisplayName": "修刀",
+          "pipeline_override": {
+            "U_IsRepair": {
+              "enabled": true
+            },
+            "U_IsStopOnDamage": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "停止",
+          "DisplayName": "停止",
+          "pipeline_override": {
+            "U_IsStopOnDamage": {
+              "enabled": true
+            },
+            "U_IsRepair": {
+              "enabled": false
+            }
+          }
+        }
+      ]
+    },
+    "U_选择部队": {
+      "name": "U_选择部队",
+      "label": "选择部队",
+      "default_case": "部队一",
+      "cases": [
+        {
+          "name": "部队一",
+          "DisplayName": "部队一",
+          "pipeline_override": {
+            "U_ClickTeam": {
+              "target": [
+                154,
+                93,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队二",
+          "DisplayName": "部队二",
+          "pipeline_override": {
+            "U_ClickTeam": {
+              "target": [
+                282,
+                94,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队三",
+          "DisplayName": "部队三",
+          "pipeline_override": {
+            "U_ClickTeam": {
+              "target": [
+                398,
+                91,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队四",
+          "DisplayName": "部队四",
+          "pipeline_override": {
+            "U_ClickTeam": {
+              "target": [
+                519,
+                89,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队五",
+          "DisplayName": "部队五",
+          "pipeline_override": {
+            "U_ClickTeam": {
+              "target": [
+                635,
+                91,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "U_选择阵形": {
+      "name": "U_选择阵形",
+      "label": "选择阵形",
+      "default_case": "逆行阵",
+      "cases": [
+        {
+          "name": "不启用",
+          "DisplayName": "不启用",
+          "pipeline_override": {
+            "U_IsFormationSelect": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "鱼鳞阵",
+          "DisplayName": "鱼鳞阵",
+          "pipeline_override": {
+            "U_ClickFormation1": {
+              "target": [
+                212,
+                234,
+                1,
+                1
+              ]
+            },
+            "U_ClickFormation2": {
+              "target": [
+                212,
+                234,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "横队阵",
+          "DisplayName": "横队阵",
+          "pipeline_override": {
+            "U_ClickFormation1": {
+              "target": [
+                591,
+                234,
+                1,
+                1
+              ]
+            },
+            "U_ClickFormation2": {
+              "target": [
+                591,
+                234,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "雁行阵",
+          "DisplayName": "雁行阵",
+          "pipeline_override": {
+            "U_ClickFormation1": {
+              "target": [
+                1037,
+                222,
+                1,
+                1
+              ]
+            },
+            "U_ClickFormation2": {
+              "target": [
+                1037,
+                222,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "鹤翼阵",
+          "DisplayName": "鹤翼阵",
+          "pipeline_override": {
+            "U_ClickFormation1": {
+              "target": [
+                195,
+                431,
+                1,
+                1
+              ]
+            },
+            "U_ClickFormation2": {
+              "target": [
+                195,
+                431,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "方阵",
+          "DisplayName": "方阵",
+          "pipeline_override": {
+            "U_ClickFormation1": {
+              "target": [
+                625,
+                407,
+                1,
+                1
+              ]
+            },
+            "U_ClickFormation2": {
+              "target": [
+                625,
+                407,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "逆行阵",
+          "DisplayName": "逆行阵",
+          "pipeline_override": {
+            "U_ClickFormation1": {
+              "target": [
+                1017,
+                421,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "U_换队长": {
+      "name": "U_换队长",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "U_IsSwordSelect": {
+              "enabled": true
+            },
+            "U_DetectSortOrder": {
+              "enabled": true
+            },
+            "U_ClickDescending": {
+              "enabled": true
+            },
+            "U_ConfirmSortAsc": {
+              "enabled": true
+            },
+            "U_ClickCaptain1": {
+              "enabled": true
+            },
+            "U_ClickCaptain2": {
+              "enabled": true
+            },
+            "U_ClickCaptain3": {
+              "enabled": true
+            },
+            "U_ClickCaptain4": {
+              "enabled": true
+            },
+            "U_ClickCaptain5": {
+              "enabled": true
+            },
+            "U_ClickCaptainSlot": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "U_补充刀装": {
+      "name": "U_补充刀装",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "U_CheckEquipmentPopup": {
+              "enabled": true
+            },
+            "U_PreCheckTroopRecord": {
+              "enabled": true
+            },
+            "U_PreCheckUseRecord": {
+              "enabled": true
+            },
+            "U_PreConfirmSupply": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "U_同步远征": {
+      "name": "U_同步远征",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "U_IsHome": {
+              "next": [
+                "Expedition"
+              ]
+            },
+            "E_VerifyScreen1": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen2": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen3": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen4": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen5": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_ClickBackToHome": {
+              "action": {
+                "type": "Click",
+                "param": {
+                  "target": [
+                    1037,
+                    169,
+                    110,
+                    44
+                  ],
+                  "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                  ]
+                }
+              },
+              "next": [
+                "U_WaitRefresh"
+              ],
+              "on_error": [
+                "U_DetectWhereAmI"
+              ]
+            },
+            "E_AllTeamsBusy": {
+              "next": [
+                "U_NavigateToUnderground"
+              ]
+            },
+            "U_WaitRefresh": {
               "enabled": true
             }
           }

@@ -1,0 +1,15 @@
+{
+    "Underground": {
+        "pre_delay": 0,
+        "next": [
+            "U_FallbackWait"
+        ]
+    },
+    "U_FallbackWait": {
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "pre_delay": 0
+    }
+}
