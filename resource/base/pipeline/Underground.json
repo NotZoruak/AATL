@@ -20,13 +20,14 @@
             "U_IsTeamSelect",
             "U_IsSortie",
             "U_IsEventPage",
-            "U_IsMenuDirectory",
             "U_CheckHomeBrightness",
+            "U_IsMenuDirectory",
             "U_IsRepair",
             "U_IsStopOnDamage",
             "U_IsGameIcon",
             "U_IsLoginButton",
             "U_IsGameUpdatePopup",
+            "U_IsInternalReport",
             "U_FallbackWait"
         ]
     },
@@ -176,6 +177,7 @@
             }
         },
         "next": [
+            "U_CheckRoundComplete",
             "U_ClickMarching"
         ]
     },
@@ -675,6 +677,96 @@
         ],
         "pre_delay": 100
     },
+    "U_CheckRoundComplete": {
+        "recognition": "OCR",
+        "roi": [
+            947,
+            148,
+            101,
+            34
+        ],
+        "expected": "传送凭证",
+        "action": "DoNothing",
+        "next": [
+            "U_GoHomeAfterRound",
+            "U_ContinueNextRound"
+        ]
+    },
+    "U_ContinueNextRound": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1067,
+                    558,
+                    120,
+                    79
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": true,
+        "next": [
+            "U_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "U_GoHomeAfterRound": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1208,
+                    449,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    4,
+                    2,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "U_ConfirmReturnHome"
+        ],
+        "pre_delay": 100
+    },
+
+    "U_IsInternalReport": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    569,
+                    322,
+                    138,
+                    31
+                ],
+                "template": "内番报告.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "U_DetectWhereAmI"
+        ],
+        "on_error": [
+            "U_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
     "U_FallbackWait": {
         "action": "DoNothing",
         "next": [
@@ -1155,27 +1247,7 @@
         "post_delay": 300,
         "pre_delay": 100
     },
-    "U_ConfirmCancelPreDamage1": {
-        "recognition": "OCR",
-        "roi": [
-            772,
-            448,
-            32,
-            40
-        ],
-        "expected": "否",
-        "action": "Click",
-        "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
-        "next": [
-            "U_DecideDamage_Pre"
-        ],
-        "pre_delay": 100
-    },
+
     "U_ConfirmCancelPreDamage2": {
         "recognition": "OCR",
         "roi": [
@@ -1257,15 +1329,16 @@
     },
     "U_DecideDamage_Pre": {
         "next": [
-            "U_ClickMenuForRepair",
+            "U_NavigateToRepair",
             "U_IsStopOnDamage"
         ]
     },
     "U_DetectAfterSortieNow": {
         "pre_delay": 0,
         "next": [
-            "U_IsMarching",
+            "U_IsMarchingDamage2",
             "U_IsFormationSelect",
+            "U_IsMarching",
             "U_FallbackWait"
         ]
     },
@@ -1612,30 +1685,7 @@
             "U_DetectWhereAmI"
         ]
     },
-    "U_VerifyLeftMenuAfterRepair": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    581,
-                    28,
-                    112,
-                    57
-                ],
-                "template": "菜单目录.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "next": [
-            "U_SortieAfterRepair"
-        ]
-    },
+
     "U_VerifyMenuAfterRepair": {
         "recognition": {
             "type": "TemplateMatch",
@@ -2017,6 +2067,13 @@
     },
     "U_StopOnDamageText": {
         "recognition": "OCR",
+        "roi": [
+            465,
+            310,
+            46,
+            24
+        ],
+        "expected": "重伤",
         "action": "DoNothing",
         "enabled": false,
         "pre_delay": 100,

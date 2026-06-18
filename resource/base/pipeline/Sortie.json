@@ -28,6 +28,7 @@
             "S_IsGameIcon",
             "S_IsLoginButton",
             "S_IsGameUpdatePopup",
+            "S_IsInternalReport",
             "S_FallbackWait"
         ]
     },
@@ -1535,27 +1536,7 @@
             "S_ConfirmCancelMarchingDamage2"
         ]
     },
-    "S_ConfirmCancelPreDamage1": {
-        "recognition": "OCR",
-        "roi": [
-            772,
-            448,
-            32,
-            40
-        ],
-        "expected": "否",
-        "action": "Click",
-        "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
-        "next": [
-            "S_DecideDamage_Pre"
-        ],
-        "pre_delay": 100
-    },
+
     "S_ConfirmCancelPreDamage2": {
         "recognition": "OCR",
         "roi": [
@@ -1722,7 +1703,7 @@
     },
     "S_DecideDamage_Pre": {
         "next": [
-            "S_ClickMenuForRepair",
+            "S_NavigateToRepair",
             "S_IsStopOnDamage"
         ]
     },
@@ -2029,30 +2010,7 @@
             "S_SortieAfterRepair"
         ]
     },
-    "S_VerifyLeftMenuAfterRepair": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    581,
-                    28,
-                    112,
-                    57
-                ],
-                "template": "菜单目录.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "on_error": [
-            "S_DetectWhereAmI"
-        ],
-        "next": [
-            "S_SortieAfterRepair"
-        ]
-    },
+
     "S_ClickCaptain1": {
         "enabled": false,
         "action": {
@@ -2279,6 +2237,32 @@
         },
         "action": "Click",
         "next": [
+            "S_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "S_IsInternalReport": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    569,
+                    322,
+                    138,
+                    31
+                ],
+                "template": "内番报告.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "on_error": [
             "S_DetectWhereAmI"
         ],
         "pre_delay": 100
@@ -2982,6 +2966,13 @@
     },
     "S_StopOnDamageText": {
         "recognition": "OCR",
+        "roi": [
+            465,
+            310,
+            46,
+            24
+        ],
+        "expected": "重伤",
         "action": "DoNothing",
         "enabled": false,
         "pre_delay": 100,
