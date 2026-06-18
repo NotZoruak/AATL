@@ -1,0 +1,19 @@
+{
+  "runtimeOptions": {
+    "configProperties": {
+      "MVVMTOOLKIT_ENABLE_INOTIFYPROPERTYCHANGING_SUPPORT": true,
+      "NetBeautyLibsDir": ".;./libs",
+      "NetBeautySharedRuntimeMode": "no",
+      "STARTUP_HOOKS": "libloader",
+      "SubdirectoriesToProbe": "libs",
+      "System.Reflection.Metadata.MetadataUpdater.IsSupported": false,
+      "System.Runtime.InteropServices.BuiltInComInterop.IsSupported": true,
+      "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": false
+    },
+    "framework": {
+      "name": "Microsoft.NETCore.App",
+      "version": "10.0.0"
+    },
+    "tfm": "net10.0"
+  }
+}
