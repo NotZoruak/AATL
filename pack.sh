@@ -16,7 +16,7 @@ cleanup() { rm -f "$TMP_FILE"; }
 trap cleanup EXIT
 
 # 仅开发/调试用的文件，不进入发布包
-EXCLUDE=("CLAUDE.md" ".gitignore" "开发日志.md" "pack.sh" "agent/" "resource/base/pipeline/sample.json")
+EXCLUDE=("CLAUDE.md" ".gitignore" "开发日志.md" "pack.sh" "agent/")
 
 echo "==> 收集发布文件列表（排除仅开发用文件）..."
 

@@ -1,6 +1,6 @@
 {
   "name": "AATL",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "icon": "AATL.ico",
   "custom_title": "AATL - 刀剑乱舞自动化助手",
   "Github": "https://github.com/NotZoruak/AATL",
@@ -4009,5 +4009,6 @@
       ],
       "default_case": []
     }
-  }
+  },
+  "github": "https://github.com/NotZoruak/AATL"
 }
