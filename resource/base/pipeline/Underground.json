@@ -438,7 +438,34 @@
             }
         },
         "next": [
+            "U_VerifyEventPage"
+        ],
+        "on_error": [
+            "U_DetectWhereAmI"
+        ]
+    },
+    "U_VerifyEventPage": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    427,
+                    69,
+                    388,
+                    52
+                ],
+                "template": "地下城.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
             "U_EnterUnderground"
+        ],
+        "on_error": [
+            "U_DetectWhereAmI"
         ]
     },
     "U_EnterUnderground": {
@@ -1196,14 +1223,22 @@
         "pre_delay": 100
     },
     "U_ConfirmEnterUnderground": {
-        "recognition": "OCR",
-        "roi": [
-            550,
-            145,
-            79,
-            32
-        ],
-        "expected": "地下",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    576,
+                    60,
+                    127,
+                    33
+                ],
+                "template": "出阵确认.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": "Click",
         "target": [
             706,
