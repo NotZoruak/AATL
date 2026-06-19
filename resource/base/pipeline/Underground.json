@@ -489,7 +489,8 @@
         "next": [
             "U_DetectWhereAmI"
         ],
-        "pre_delay": 100
+        "pre_delay": 500,
+        "post_delay": 800
     },
     "U_IsMenuDirectory": {
         "recognition": {
@@ -1218,6 +1219,8 @@
             }
         },
         "next": [
+            "U_IsPreDamage1",
+            "U_IsPreDamage2",
             "U_ConfirmEnterUnderground"
         ],
         "pre_delay": 100
@@ -1403,7 +1406,7 @@
         "next": [
             "U_VerifyMenuAfterRepair"
         ],
-        "pre_delay": 100
+        "pre_delay": 500
     },
     "U_FindSlot1": {
         "recognition": "OCR",
@@ -1515,11 +1518,27 @@
                 "template": "重伤.png",
                 "green_mask": true,
                 "threshold": [
-                    0.98
+                    0.9
                 ]
             }
         },
-        "action": "Click",
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    772,
+                    448,
+                    32,
+                    40
+                ],
+                "target_offset": [
+                    4,
+                    2,
+                    0,
+                    0
+                ]
+            }
+        },
         "next": [
             "U_DecideDamage_Pre"
         ],
@@ -2089,7 +2108,7 @@
                 "template": "重伤.png",
                 "green_mask": true,
                 "threshold": [
-                    0.98
+                    0.9
                 ]
             }
         },
