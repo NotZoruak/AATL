@@ -8,6 +8,7 @@
         "pre_delay": 0,
         "next": [
             "D_DetectEmptyMailbox",
+            "D_HasExpeditionReturn",
             "D_CheckHomeBrightness",
             "D_DetectMenu",
             "D_DetectForge",
@@ -19,22 +20,24 @@
         ]
     },
     "D_DetectEmptyMailbox": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    142,
-                    178,
-                    82,
-                    75
-                ],
-                "template": "空邮箱.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+        "recognition": "ColorMatch",
+        "roi": [
+            142,
+            178,
+            82,
+            75
+        ],
+        "upper": [
+            216,
+            214,
+            207
+        ],
+        "lower": [
+            206,
+            204,
+            197
+        ],
+        "count": 6150,
         "action": {
             "type": "Click",
             "param": {
@@ -47,8 +50,49 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
-            "D_MailboxCloseFinal"
+            "D_EmptyMailboxClick2"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
+        ]
+    },
+    "D_EmptyMailboxClick2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1231,
+                    8,
+                    38,
+                    39
+                ]
+            }
+        },
+        "pre_delay": 0,
+        "next": []
+    },
+    "D_HasExpeditionReturn": {
+        "recognition": "OCR",
+        "roi": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "expected": "经验",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "pre_delay": 300,
+        "post_delay": 500,
+        "next": [
+            "D_DetectWhereAmI"
         ],
         "on_error": [
             "D_DetectWhereAmI"
@@ -89,6 +133,7 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
             "D_DetectWhereAmI"
         ],
@@ -125,6 +170,7 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
             "D_DetectWhereAmI"
         ],
@@ -157,6 +203,7 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
             "D_DetectWhereAmI"
         ],
@@ -189,6 +236,7 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
             "D_DetectWhereAmI"
         ],
@@ -221,6 +269,7 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
             "D_FilterSwordHub"
         ],
@@ -255,10 +304,14 @@
         },
         "enabled": false,
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
-            "D_FilterSword2"
-        ],
-        "on_error": [
+            "D_FilterSword2",
+            "D_FilterSword3",
+            "D_FilterSword4",
+            "D_FilterSword5",
+            "D_FilterSword6",
+            "D_FilterSword7",
             "D_FilterConfirm"
         ]
     },
@@ -276,10 +329,13 @@
         },
         "enabled": false,
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
-            "D_FilterSword3"
-        ],
-        "on_error": [
+            "D_FilterSword3",
+            "D_FilterSword4",
+            "D_FilterSword5",
+            "D_FilterSword6",
+            "D_FilterSword7",
             "D_FilterConfirm"
         ]
     },
@@ -297,10 +353,12 @@
         },
         "enabled": false,
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
-            "D_FilterSword4"
-        ],
-        "on_error": [
+            "D_FilterSword4",
+            "D_FilterSword5",
+            "D_FilterSword6",
+            "D_FilterSword7",
             "D_FilterConfirm"
         ]
     },
@@ -318,10 +376,11 @@
         },
         "enabled": false,
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
-            "D_FilterSword5"
-        ],
-        "on_error": [
+            "D_FilterSword5",
+            "D_FilterSword6",
+            "D_FilterSword7",
             "D_FilterConfirm"
         ]
     },
@@ -339,10 +398,10 @@
         },
         "enabled": false,
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
-            "D_FilterSword6"
-        ],
-        "on_error": [
+            "D_FilterSword6",
+            "D_FilterSword7",
             "D_FilterConfirm"
         ]
     },
@@ -360,10 +419,9 @@
         },
         "enabled": false,
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
-            "D_FilterSword7"
-        ],
-        "on_error": [
+            "D_FilterSword7",
             "D_FilterConfirm"
         ]
     },
@@ -381,10 +439,8 @@
         },
         "enabled": false,
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
-            "D_FilterConfirm"
-        ],
-        "on_error": [
             "D_FilterConfirm"
         ]
     },
@@ -401,6 +457,7 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
             "D_FilterPostHub"
         ],
@@ -480,8 +537,12 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
             "D_DisassembleClickFinal"
+        ],
+        "on_error": [
+            "D_DisassembleGoToMailbox"
         ]
     },
     "D_DisassembleClickFinal": {
@@ -497,6 +558,7 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
             "D_PostFilterDisassemble"
         ]
@@ -520,6 +582,7 @@
             }
         },
         "pre_delay": 1000,
+        "post_delay": 500,
         "next": [
             "D_DisassembleVerifyMenu"
         ]
@@ -553,13 +616,13 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 2000,
         "next": [
             "D_DetectWhereAmI"
         ],
         "on_error": [
             "D_DetectWhereAmI"
-        ],
-        "post_delay": 2000
+        ]
     },
     "D_PostFilterMailbox": {
         "recognition": {
@@ -586,6 +649,7 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
             "D_DetectReward"
         ],
@@ -657,6 +721,7 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
             "D_DetectPurchase"
         ],
@@ -689,11 +754,12 @@
             }
         },
         "pre_delay": 500,
+        "post_delay": 500,
         "next": [
             "D_DetectPurchase"
         ],
         "on_error": [
-            "D_DetectPurchase"
+            "D_FilterPostHub"
         ]
     },
     "D_DetectPurchase": {
@@ -721,6 +787,7 @@
             }
         },
         "pre_delay": 500,
+        "post_delay": 500,
         "next": [
             "D_MailboxCloseFinal"
         ],
@@ -753,6 +820,7 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
             "D_MailboxCloseFinal"
         ],
@@ -773,6 +841,7 @@
             }
         },
         "pre_delay": 300,
+        "post_delay": 500,
         "next": [
             "D_MailboxCloseVerify"
         ],
@@ -804,9 +873,10 @@
                 ]
             }
         },
-        "pre_delay": 1000,
+        "pre_delay": 200,
+        "post_delay": 500,
         "next": [
-            "D_MailboxCloseVerify"
+            "D_DetectWhereAmI"
         ],
         "on_error": [
             "D_DetectWhereAmI"
