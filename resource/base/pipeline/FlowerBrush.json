@@ -12,7 +12,7 @@
             "FB_HasExpeditionReturn",
             "FB_IsMarching",
             "FB_IsBattleResult",
-            "FB_IsSwordDrop",
+            "FB_IsSwordDropColor",
             "FB_IsFormationSelect",
             "FB_IsSwordSelect",
             "FB_IsTeamSelect",
@@ -70,25 +70,35 @@
         ],
         "pre_delay": 100
     },
-    "FB_IsSwordDrop": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    1163,
-                    617,
-                    71,
-                    67
-                ],
-                "template": "刀剑对话.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+    "FB_IsSwordDropColor": {
+        "recognition": "ColorMatch",
+        "roi": [
+            598,
+            543,
+            66,
+            1
+        ],
+        "upper": [
+            92,
+            51,
+            6
+        ],
+        "lower": [
+            90,
+            50,
+            4
+        ],
         "action": "Click",
+        "target": [
+            816,
+            608,
+            86,
+            79
+        ],
         "next": [
+            "FB_DetectWhereAmI"
+        ],
+        "on_error": [
             "FB_DetectWhereAmI"
         ],
         "pre_delay": 100
@@ -609,7 +619,7 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    -2,
+                    0,
                     302,
                     49,
                     86
@@ -740,9 +750,11 @@
             "FB_PostExpeditionReturn",
             "FB_PostMarching",
             "FB_PostBattleResult",
-            "FB_PostSwordDrop",
+            "FB_PostSwordDropColor",
             "FB_PostFormationSelect",
             "FB_CheckPostHomeBright",
+            "FB_IsGameIcon",
+            "FB_IsLoginButton",
             "FB_PostFallbackWait"
         ]
     },
@@ -788,25 +800,35 @@
         ],
         "pre_delay": 100
     },
-    "FB_PostSwordDrop": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    1163,
-                    617,
-                    71,
-                    67
-                ],
-                "template": "刀剑对话.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+    "FB_PostSwordDropColor": {
+        "recognition": "ColorMatch",
+        "roi": [
+            598,
+            543,
+            66,
+            1
+        ],
+        "upper": [
+            92,
+            51,
+            6
+        ],
+        "lower": [
+            90,
+            50,
+            4
+        ],
         "action": "Click",
+        "target": [
+            816,
+            608,
+            86,
+            79
+        ],
         "next": [
+            "FB_DetectAfterMarching"
+        ],
+        "on_error": [
             "FB_DetectAfterMarching"
         ],
         "pre_delay": 100

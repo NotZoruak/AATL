@@ -13,7 +13,7 @@
             "U_HasExpeditionReturn",
             "U_IsMarching",
             "U_IsBattleResult",
-            "U_IsSwordDrop",
+            "U_IsSwordDropColor",
             "U_IsSpecialDrop",
             "U_IsFormationSelect",
             "U_IsSwordSelect",
@@ -202,25 +202,35 @@
         ],
         "pre_delay": 100
     },
-    "U_IsSwordDrop": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    1163,
-                    617,
-                    71,
-                    67
-                ],
-                "template": "刀剑对话.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+    "U_IsSwordDropColor": {
+        "recognition": "ColorMatch",
+        "roi": [
+            598,
+            543,
+            66,
+            1
+        ],
+        "upper": [
+            92,
+            51,
+            6
+        ],
+        "lower": [
+            90,
+            50,
+            4
+        ],
         "action": "Click",
+        "target": [
+            816,
+            608,
+            86,
+            79
+        ],
         "next": [
+            "U_DetectWhereAmI"
+        ],
+        "on_error": [
             "U_DetectWhereAmI"
         ],
         "pre_delay": 100
