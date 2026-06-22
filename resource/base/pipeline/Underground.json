@@ -28,6 +28,7 @@
             "U_IsLoginButton",
             "U_IsGameUpdatePopup",
             "U_IsInternalReport",
+            "U_IsConnectionInterrupted",
             "U_FallbackWait"
         ]
     },
@@ -220,13 +221,23 @@
             48,
             2
         ],
-        "action": "Click",
-        "target": [
-            816,
-            608,
-            86,
-            79
-        ],
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1067,
+                    558,
+                    120,
+                    79
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
         "next": [
             "U_DetectWhereAmI"
         ],
@@ -797,6 +808,30 @@
             }
         },
         "action": "Click",
+        "next": [
+            "U_DetectWhereAmI"
+        ],
+        "on_error": [
+            "U_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "U_IsConnectionInterrupted": {
+        "recognition": "OCR",
+        "roi": [
+            588,
+            274,
+            96,
+            25
+        ],
+        "expected": "连接中断",
+        "action": "Click",
+        "target": [
+            738,
+            449,
+            100,
+            39
+        ],
         "next": [
             "U_DetectWhereAmI"
         ],

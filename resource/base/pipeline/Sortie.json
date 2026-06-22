@@ -113,13 +113,23 @@
             48,
             2
         ],
-        "action": "Click",
-        "target": [
-            816,
-            608,
-            86,
-            79
-        ],
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1067,
+                    558,
+                    120,
+                    79
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
         "next": [
             "S_DetectWhereAmI"
         ],
