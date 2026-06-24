@@ -178,8 +178,7 @@
             }
         },
         "next": [
-            "U_CheckRoundComplete",
-            "U_ClickMarching"
+            "U_CheckBeforeMarch"
         ]
     },
     "U_IsBattleResult": {
@@ -725,6 +724,14 @@
             "U_DetectWhereAmI"
         ],
         "pre_delay": 100
+    },
+    "U_CheckBeforeMarch": {
+        "pre_delay": 0,
+        "next": [
+            "U_IsMarchingDamage2",
+            "U_CheckRoundComplete",
+            "U_ClickMarching"
+        ]
     },
     "U_CheckRoundComplete": {
         "recognition": "OCR",
