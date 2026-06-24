@@ -22,6 +22,7 @@
             "EC_IsGameIcon",
             "EC_IsLoginButton",
             "EC_IsGameUpdatePopup",
+            "EC_IsInGameUpdatePopup",
             "EC_IsInternalReport",
             "EC_FallbackWait"
         ]
@@ -1296,6 +1297,31 @@
             }
         },
         "action": "Click",
+        "post_delay": 2000,
+        "pre_delay": 100,
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "on_error": [
+            "EC_DetectWhereAmI"
+        ]
+    },
+    "EC_IsInGameUpdatePopup": {
+        "recognition": "OCR",
+        "roi": [
+            498,
+            291,
+            77,
+            50
+        ],
+        "expected": "更新",
+        "action": "Click",
+        "target": [
+            578,
+            440,
+            130,
+            55
+        ],
         "post_delay": 2000,
         "pre_delay": 100,
         "next": [
