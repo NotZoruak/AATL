@@ -1185,10 +1185,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    1083,
-                    287,
-                    25,
-                    34
+                    1160,
+                    299,
+                    16,
+                    23
                 ],
                 "template": "王点_5_4.png",
                 "threshold": [
