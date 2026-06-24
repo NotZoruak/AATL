@@ -1297,9 +1297,7 @@
             }
         },
         "next": [
-            "U_IsPreDamage1",
-            "U_IsPreDamage2",
-            "U_ConfirmEnterUnderground"
+            "U_PostSortieHub"
         ],
         "pre_delay": 100
     },
@@ -1670,6 +1668,7 @@
     "U_PostSortieHub": {
         "pre_delay": 0,
         "next": [
+            "U_ConfirmEnterUnderground",
             "U_IsPreDamage1",
             "U_StopOnDamagePopup",
             "U_IsPreDamage2",
