@@ -9,9 +9,11 @@
         "next": [
             "FB_IsAnnouncementPopup",
             "FB_IsLoginReward",
-            "FB_HasExpeditionReturn",
+            "FB_HasExpeditionReturn_Exp",
+            "FB_HasExpeditionReturn_Title",
             "FB_IsMarching",
-            "FB_IsBattleResult",
+            "FB_IsBattleResult_Exp",
+            "FB_IsBattleResult_Title",
             "FB_IsSwordDropColor",
             "FB_IsFormationSelect",
             "FB_IsSwordSelect",
@@ -29,7 +31,7 @@
             "FB_FallbackWait"
         ]
     },
-    "FB_HasExpeditionReturn": {
+    "FB_HasExpeditionReturn_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -50,7 +52,28 @@
         ],
         "pre_delay": 100
     },
-    "FB_IsBattleResult": {
+    "FB_HasExpeditionReturn_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "远征结果",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "FB_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "FB_IsBattleResult_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -59,6 +82,27 @@
             25
         ],
         "expected": "经验",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "FB_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "FB_IsBattleResult_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "战斗结果",
         "action": "Click",
         "target": [
             388,
@@ -758,9 +802,11 @@
     },
     "FB_DetectAfterMarching": {
         "next": [
-            "FB_PostExpeditionReturn",
+            "FB_PostExpeditionReturn_Exp",
+            "FB_PostExpeditionReturn_Title",
             "FB_PostMarching",
-            "FB_PostBattleResult",
+            "FB_PostBattleResult_Exp",
+            "FB_PostBattleResult_Title",
             "FB_PostSwordDropColor",
             "FB_PostFormationSelect",
             "FB_CheckPostHomeBright",
@@ -769,7 +815,7 @@
             "FB_PostFallbackWait"
         ]
     },
-    "FB_PostExpeditionReturn": {
+    "FB_PostExpeditionReturn_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -790,7 +836,28 @@
         ],
         "pre_delay": 100
     },
-    "FB_PostBattleResult": {
+    "FB_PostExpeditionReturn_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "远征结果",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "FB_DetectAfterMarching"
+        ],
+        "pre_delay": 100
+    },
+    "FB_PostBattleResult_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -799,6 +866,27 @@
             25
         ],
         "expected": "经验",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "FB_DetectAfterMarching"
+        ],
+        "pre_delay": 100
+    },
+    "FB_PostBattleResult_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "战斗结果",
         "action": "Click",
         "target": [
             388,

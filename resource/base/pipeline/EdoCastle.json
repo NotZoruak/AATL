@@ -9,7 +9,8 @@
         "next": [
             "EC_IsAnnouncementPopup",
             "EC_IsLoginReward",
-            "EC_HasExpeditionReturn",
+            "EC_HasExpeditionReturn_Exp",
+            "EC_HasExpeditionReturn_Title",
             "EC_IsSpecialDrop",
             "EC_IsFormationSelect",
             "EC_IsMapPointSelect",
@@ -27,7 +28,7 @@
             "EC_FallbackWait"
         ]
     },
-    "EC_HasExpeditionReturn": {
+    "EC_HasExpeditionReturn_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -48,24 +49,64 @@
         ],
         "pre_delay": 100
     },
-    "EC_IsBattleResult": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    570,
-                    1,
-                    139,
-                    45
-                ],
-                "template": "战斗结果.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+    "EC_HasExpeditionReturn_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "远征结果",
         "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "EC_IsBattleResult_Exp": {
+        "recognition": "OCR",
+        "roi": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "expected": "经验",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "EC_IsBattleResult_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "战斗结果",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
         "next": [
             "EC_DetectWhereAmI"
         ],
@@ -364,24 +405,43 @@
             "EC_PostBossWait"
         ]
     },
-    "EC_PostBossBattleResult": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    570,
-                    1,
-                    139,
-                    45
-                ],
-                "template": "战斗结果.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
+    "EC_PostBossBattleResult_Exp": {
+        "recognition": "OCR",
+        "roi": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "expected": "经验",
         "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "EC_PostBossDetect"
+        ],
+        "pre_delay": 100
+    },
+    "EC_PostBossBattleResult_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "战斗结果",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
         "next": [
             "EC_PostBossDetect"
         ],

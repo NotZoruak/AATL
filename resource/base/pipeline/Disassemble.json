@@ -8,7 +8,8 @@
         "pre_delay": 0,
         "next": [
             "D_DetectEmptyMailbox",
-            "D_HasExpeditionReturn",
+            "D_HasExpeditionReturn_Exp",
+            "D_HasExpeditionReturn_Title",
             "D_CheckHomeBrightness",
             "D_DetectMenu",
             "D_DetectForge",
@@ -73,7 +74,7 @@
         "pre_delay": 0,
         "next": []
     },
-    "D_HasExpeditionReturn": {
+    "D_HasExpeditionReturn_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -82,6 +83,31 @@
             25
         ],
         "expected": "经验",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "pre_delay": 300,
+        "post_delay": 500,
+        "next": [
+            "D_DetectWhereAmI"
+        ],
+        "on_error": [
+            "D_DetectWhereAmI"
+        ]
+    },
+    "D_HasExpeditionReturn_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "远征结果",
         "action": "Click",
         "target": [
             388,

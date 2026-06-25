@@ -10,9 +10,11 @@
             "U_IsAnnouncementPopup",
             "U_IsLoginReward",
             "U_IsTutorial",
-            "U_HasExpeditionReturn",
+            "U_HasExpeditionReturn_Exp",
+            "U_HasExpeditionReturn_Title",
             "U_IsMarching",
-            "U_IsBattleResult",
+            "U_IsBattleResult_Exp",
+            "U_IsBattleResult_Title",
             "U_IsSwordDropColor",
             "U_IsSpecialDrop",
             "U_IsFormationSelect",
@@ -140,7 +142,7 @@
         ],
         "pre_delay": 100
     },
-    "U_HasExpeditionReturn": {
+    "U_HasExpeditionReturn_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -149,6 +151,27 @@
             25
         ],
         "expected": "经验",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "U_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "U_HasExpeditionReturn_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "远征结果",
         "action": "Click",
         "target": [
             388,
@@ -182,7 +205,7 @@
             "U_CheckBeforeMarch"
         ]
     },
-    "U_IsBattleResult": {
+    "U_IsBattleResult_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -191,6 +214,27 @@
             25
         ],
         "expected": "经验",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "U_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "U_IsBattleResult_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "战斗结果",
         "action": "Click",
         "target": [
             388,
@@ -483,10 +527,19 @@
             }
         },
         "next": [
-            "U_EnterUnderground"
+            "U_SelectFloor"
         ],
         "on_error": [
             "U_DetectWhereAmI"
+        ]
+    },
+    "U_SelectFloor": {
+        "action": "Custom",
+        "custom_action": "DungeonFloorSelectAction",
+        "custom_action_param": "{}",
+        "pre_delay": 500,
+        "next": [
+            "U_EnterUnderground"
         ]
     },
     "U_EnterUnderground": {

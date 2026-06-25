@@ -4,7 +4,8 @@
         "next": [
             "E_IsAnnouncementPopup",
             "E_IsLoginReward",
-            "E_ClickExpeditionReturn",
+            "E_ClickExpeditionReturn_Exp",
+            "E_ClickExpeditionReturn_Title",
             "E_DetectExpeditionScreen",
             "E_IsMenuDirectory",
             "E_IsTeamStatusPanel",
@@ -1230,7 +1231,7 @@
         ],
         "pre_delay": 100
     },
-    "E_ClickExpeditionReturn": {
+    "E_ClickExpeditionReturn_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -1239,6 +1240,27 @@
             25
         ],
         "expected": "经验",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "Expedition"
+        ],
+        "pre_delay": 100
+    },
+    "E_ClickExpeditionReturn_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "远征结果",
         "action": "Click",
         "target": [
             388,
