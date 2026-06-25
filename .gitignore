@@ -36,3 +36,4 @@ gen_doc.py
 # 发布/打包
 *.zip
 pack.sh
+pack.sh
