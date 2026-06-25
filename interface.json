@@ -3368,6 +3368,61 @@
             "E_CheckTeam1": {
               "enabled": true
             },
+            "E_SelectMap1": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 1 }
+              },
+              "next": ["E_ConfirmDispatch1"]
+            },
+            "E_ClickSmallMap1": {
+              "enabled": false
+            },
+            "E_SelectMap2": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 2 }
+              },
+              "next": ["E_ConfirmDispatch2"]
+            },
+            "E_ClickSmallMap2": {
+              "enabled": false
+            },
+            "E_SelectMap3": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 3 }
+              },
+              "next": ["E_ConfirmDispatch3"]
+            },
+            "E_ClickSmallMap3": {
+              "enabled": false
+            },
+            "E_SelectMap4": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 4 }
+              },
+              "next": ["E_ConfirmDispatch4"]
+            },
+            "E_ClickSmallMap4": {
+              "enabled": false
+            },
+            "E_SelectMap5": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 5 }
+              },
+              "next": ["E_ConfirmDispatch5"]
+            },
+            "E_ClickSmallMap5": {
+              "enabled": false
+            },
             "E_VerifyScreen1": {
               "on_error": [
                 "E_CheckTeamStatus"
@@ -3867,6 +3922,61 @@
             },
             "E_CheckTeam1": {
               "enabled": true
+            },
+            "E_SelectMap1": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 1 }
+              },
+              "next": ["E_ConfirmDispatch1"]
+            },
+            "E_ClickSmallMap1": {
+              "enabled": false
+            },
+            "E_SelectMap2": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 2 }
+              },
+              "next": ["E_ConfirmDispatch2"]
+            },
+            "E_ClickSmallMap2": {
+              "enabled": false
+            },
+            "E_SelectMap3": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 3 }
+              },
+              "next": ["E_ConfirmDispatch3"]
+            },
+            "E_ClickSmallMap3": {
+              "enabled": false
+            },
+            "E_SelectMap4": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 4 }
+              },
+              "next": ["E_ConfirmDispatch4"]
+            },
+            "E_ClickSmallMap4": {
+              "enabled": false
+            },
+            "E_SelectMap5": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 5 }
+              },
+              "next": ["E_ConfirmDispatch5"]
+            },
+            "E_ClickSmallMap5": {
+              "enabled": false
             },
             "E_VerifyScreen1": {
               "on_error": [
