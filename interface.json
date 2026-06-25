@@ -1,6 +1,6 @@
 {
   "name": "AATL",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "icon": "AATL.ico",
   "custom_title": "AATL - 刀剑乱舞自动化助手",
   "Github": "https://github.com/NotZoruak/AATL",
@@ -3863,10 +3863,11 @@
       ],
       "pipeline_override": {
         "U_SelectFloor": {
+          "on_error": ["U_DetectWhereAmI"],
           "custom_action_param": {
             "target_floor": "{target_floor}",
-            "tens_roi": [990, 316, 51, 72],
-            "ones_roi": [1060, 316, 51, 72],
+            "tens_roi": [985, 303, 60, 99],
+            "ones_roi": [1053, 303, 60, 99],
             "tens_up": [988, 275, 54, 18],
             "tens_down": [988, 412, 54, 18],
             "ones_up": [1058, 275, 54, 18],
