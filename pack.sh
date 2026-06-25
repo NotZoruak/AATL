@@ -34,7 +34,7 @@ FILE_COUNT=$(tr '\0' '\n' < "$TMP_FILE" | wc -l)
 echo "==> 共 ${FILE_COUNT} 个文件"
 
 echo "==> 打包 ${ZIP_NAME} ..."
-xargs -0 git archive --format=zip --output="${ZIP_NAME}" HEAD -- < "$TMP_FILE"
+xargs -0 git archive --format=zip --prefix=AATL/ --output="${ZIP_NAME}" HEAD -- < "$TMP_FILE"
 
 SIZE=$(du -h "${ZIP_NAME}" | cut -f1)
 echo "==> 完成: ${ZIP_NAME} (${SIZE})"
