@@ -45,7 +45,7 @@
         "RefreshInterval"
       ],
       "label": "远征",
-      "description": "请确保编队符合远征要求"
+      "description": "请确保编队符合远征要求。远征队伍中不能有成员处于中伤或重伤状态"
     },
     {
       "name": "合战场",
@@ -3365,6 +3365,9 @@
                 "Expedition"
               ]
             },
+            "E_CheckTeam1": {
+              "enabled": true
+            },
             "E_VerifyScreen1": {
               "on_error": [
                 "E_CheckTeamStatus"
@@ -3861,6 +3864,9 @@
               "next": [
                 "Expedition"
               ]
+            },
+            "E_CheckTeam1": {
+              "enabled": true
             },
             "E_VerifyScreen1": {
               "on_error": [
