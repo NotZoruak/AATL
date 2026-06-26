@@ -855,10 +855,11 @@
             }
         },
         "on_error": [
-            "S_PostClickMenuHub"
+            "S_DetectWhereAmI"
         ],
         "next": [
-            "S_VerifyMenuClosed"
+            "S_VerifyMenuClosed",
+            "S_DetectWhereAmI"
         ],
         "pre_delay": 100
     },

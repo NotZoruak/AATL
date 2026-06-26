@@ -796,7 +796,8 @@
             "FB_DetectWhereAmI"
         ],
         "next": [
-            "FB_VerifySortieMenuClosed"
+            "FB_VerifySortieMenuClosed",
+            "FB_DetectWhereAmI"
         ],
         "pre_delay": 100
     },

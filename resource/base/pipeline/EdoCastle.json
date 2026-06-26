@@ -1147,7 +1147,8 @@
             "EC_DetectWhereAmI"
         ],
         "next": [
-            "EC_VerifySortieMenuClosed"
+            "EC_VerifySortieMenuClosed",
+            "EC_DetectWhereAmI"
         ],
         "pre_delay": 100
     },

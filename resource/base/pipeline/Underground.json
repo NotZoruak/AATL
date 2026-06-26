@@ -1324,10 +1324,11 @@
             }
         },
         "on_error": [
-            "U_PostClickMenuHub"
+            "U_DetectWhereAmI"
         ],
         "next": [
-            "U_VerifyMenuClosed"
+            "U_VerifyMenuClosed",
+            "U_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
