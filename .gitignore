@@ -1,0 +1,24 @@
+# 运行时生成
+debug/
+resource/config/
+resource/temp/
+resource/backup/
+resource/agent/
+
+# 源码
+_src/
+agent/
+
+# 开发文件
+CLAUDE.md
+开发日志.md
+pack.sh
+docs/
+
+# 系统
+.claude/
+Thumbs.db
+.DS_Store
+
+# 发布
+*.zip

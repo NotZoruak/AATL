@@ -1,7 +1,7 @@
 {
   "name": "AATL",
-  "version": "0.5.3",
-  "icon": "AATL.ico",
+  "version": "0.5.4",
+  "icon": "resource/logo/AATL.ico",
   "custom_title": "AATL - 刀剑乱舞自动化助手",
   "Github": "https://github.com/NotZoruak/AATL",
   "controller": [
