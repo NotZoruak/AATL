@@ -1,6 +1,6 @@
 {
   "name": "AATL",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "icon": "AATL.ico",
   "custom_title": "AATL - 刀剑乱舞自动化助手",
   "Github": "https://github.com/NotZoruak/AATL",
@@ -45,7 +45,7 @@
         "RefreshInterval"
       ],
       "label": "远征",
-      "description": "请确保编队符合远征要求"
+      "description": "请确保编队符合远征要求。远征队伍中不能有成员处于中伤或重伤状态"
     },
     {
       "name": "合战场",
@@ -3365,6 +3365,64 @@
                 "Expedition"
               ]
             },
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 1 }
+              },
+              "next": ["E_ConfirmDispatch1"]
+            },
+            "E_ClickSmallMap1": {
+              "enabled": false
+            },
+            "E_SelectMap2": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 2 }
+              },
+              "next": ["E_ConfirmDispatch2"]
+            },
+            "E_ClickSmallMap2": {
+              "enabled": false
+            },
+            "E_SelectMap3": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 3 }
+              },
+              "next": ["E_ConfirmDispatch3"]
+            },
+            "E_ClickSmallMap3": {
+              "enabled": false
+            },
+            "E_SelectMap4": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 4 }
+              },
+              "next": ["E_ConfirmDispatch4"]
+            },
+            "E_ClickSmallMap4": {
+              "enabled": false
+            },
+            "E_SelectMap5": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 5 }
+              },
+              "next": ["E_ConfirmDispatch5"]
+            },
+            "E_ClickSmallMap5": {
+              "enabled": false
+            },
             "E_VerifyScreen1": {
               "on_error": [
                 "E_CheckTeamStatus"
@@ -3805,10 +3863,11 @@
       ],
       "pipeline_override": {
         "U_SelectFloor": {
+          "on_error": ["U_DetectWhereAmI"],
           "custom_action_param": {
             "target_floor": "{target_floor}",
-            "tens_roi": [990, 316, 51, 72],
-            "ones_roi": [1060, 316, 51, 72],
+            "tens_roi": [985, 303, 60, 99],
+            "ones_roi": [1053, 303, 60, 99],
             "tens_up": [988, 275, 54, 18],
             "tens_down": [988, 412, 54, 18],
             "ones_up": [1058, 275, 54, 18],
@@ -3861,6 +3920,64 @@
               "next": [
                 "Expedition"
               ]
+            },
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 1 }
+              },
+              "next": ["E_ConfirmDispatch1"]
+            },
+            "E_ClickSmallMap1": {
+              "enabled": false
+            },
+            "E_SelectMap2": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 2 }
+              },
+              "next": ["E_ConfirmDispatch2"]
+            },
+            "E_ClickSmallMap2": {
+              "enabled": false
+            },
+            "E_SelectMap3": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 3 }
+              },
+              "next": ["E_ConfirmDispatch3"]
+            },
+            "E_ClickSmallMap3": {
+              "enabled": false
+            },
+            "E_SelectMap4": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 4 }
+              },
+              "next": ["E_ConfirmDispatch4"]
+            },
+            "E_ClickSmallMap4": {
+              "enabled": false
+            },
+            "E_SelectMap5": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": { "team": 5 }
+              },
+              "next": ["E_ConfirmDispatch5"]
+            },
+            "E_ClickSmallMap5": {
+              "enabled": false
             },
             "E_VerifyScreen1": {
               "on_error": [

@@ -30,9 +30,63 @@ public class DungeonFloorSelectAction : IMaaCustomAction
 
             LoggerHelper.Info($"[DungeonFloorSelect] 目标层数: {targetFloor} (十位={targetTens}, 个位={targetOnes})");
 
-            AdjustDigit(context, tensRoi, targetTens, tensUp, tensDown, "十位");
-            AdjustDigit(context, onesRoi, targetOnes, onesUp, onesDown, "个位");
+            // 先读一次十位和个位
+            int currentTens = ReadDigitStable(context, tensRoi, "十位");
+            int currentOnes = ReadDigitStable(context, onesRoi, "个位");
+            LoggerHelper.Info($"[DungeonFloorSelect] 当前层数: {currentTens}{currentOnes}");
 
+            // 调整十位（不循环，只能单向）
+            if (currentTens != targetTens)
+            {
+                int realClicks = currentTens > targetTens ? currentTens - targetTens : targetTens - currentTens;
+                bool goDown = currentTens > targetTens;
+                int btnX = goDown ? tensDown[0] + tensDown[2] / 2 : tensUp[0] + tensUp[2] / 2;
+                int btnY = goDown ? tensDown[1] + tensDown[3] / 2 : tensUp[1] + tensUp[3] / 2;
+                LoggerHelper.Info($"[DungeonFloorSelect] 十位 {currentTens}→{targetTens}，{(goDown ? "减" : "加")}{realClicks}次");
+                for (int i = 0; i < realClicks; i++)
+                {
+                    context.Click(btnX, btnY);
+                    ActionParamHelper.SleepWithStopCheck(context, 250);
+                }
+                ActionParamHelper.SleepWithStopCheck(context, 500);
+            }
+
+            // 再读一次个位（十位调整可能影响显示）
+            ActionParamHelper.SleepWithStopCheck(context, 300);
+            currentOnes = ReadDigitStable(context, onesRoi, "个位");
+
+            // 调整个位（不循环，只能单向）
+            if (currentOnes != targetOnes)
+            {
+                int realClicks = currentOnes > targetOnes ? currentOnes - targetOnes : targetOnes - currentOnes;
+                bool goDown = currentOnes > targetOnes;
+                int btnX = goDown ? onesDown[0] + onesDown[2] / 2 : onesUp[0] + onesUp[2] / 2;
+                int btnY = goDown ? onesDown[1] + onesDown[3] / 2 : onesUp[1] + onesUp[3] / 2;
+                LoggerHelper.Info($"[DungeonFloorSelect] 个位 {currentOnes}→{targetOnes}，{(goDown ? "减" : "加")}{realClicks}次");
+                for (int i = 0; i < realClicks; i++)
+                {
+                    context.Click(btnX, btnY);
+                    ActionParamHelper.SleepWithStopCheck(context, 250);
+                }
+                ActionParamHelper.SleepWithStopCheck(context, 500);
+            }
+
+            // 验证
+            ActionParamHelper.SleepWithStopCheck(context, 300);
+            int finalTens = ReadDigitStable(context, tensRoi, "十位验证");
+            int finalOnes = ReadDigitStable(context, onesRoi, "个位验证");
+            LoggerHelper.Info($"[DungeonFloorSelect] 验证结果: {finalTens}{finalOnes}");
+
+            if (finalTens == targetTens && finalOnes == targetOnes)
+            {
+                LoggerHelper.Info("[DungeonFloorSelect] 层数选择完成");
+                return true;
+            }
+
+            // 验证不通过，用逐次 OCR 方式微调
+            LoggerHelper.Info("[DungeonFloorSelect] 盲点未到位，进入逐次微调模式");
+            AdjustDigitLoop(context, tensRoi, targetTens, tensUp, tensDown, "十位");
+            AdjustDigitLoop(context, onesRoi, targetOnes, onesUp, onesDown, "个位");
             LoggerHelper.Info("[DungeonFloorSelect] 层数选择完成");
             return true;
         }
@@ -48,65 +102,68 @@ public class DungeonFloorSelectAction : IMaaCustomAction
         }
     }
 
-    private void AdjustDigit(IMaaContext context, int[] roi, int target, int[] up, int[] down, string label)
+    /// <summary>
+    /// 稳定读取一位数字，内部处理重试
+    /// </summary>
+    private int ReadDigitStable(IMaaContext context, int[] roi, string label)
     {
-        for (int attempt = 0; attempt < 20; attempt++)
-        {
-            ActionParamHelper.ThrowIfStopping(context);
-
-            int current = ReadDigit(context, roi, label);
-            if (current == target)
-            {
-                LoggerHelper.Info($"[DungeonFloorSelect] {label}已匹配: {current} == {target}");
-                return;
-            }
-
-            int clickX, clickY;
-            if (current < target)
-            {
-                clickX = up[0] + up[2] / 2;
-                clickY = up[1] + up[3] / 2;
-                LoggerHelper.Info($"[DungeonFloorSelect] {label} {current} < {target}，点击加号 ({clickX}, {clickY})");
-            }
-            else
-            {
-                clickX = down[0] + down[2] / 2;
-                clickY = down[1] + down[3] / 2;
-                LoggerHelper.Info($"[DungeonFloorSelect] {label} {current} > {target}，点击减号 ({clickX}, {clickY})");
-            }
-
-            context.Click(clickX, clickY);
-            ActionParamHelper.SleepWithStopCheck(context, 400);
-        }
-
-        LoggerHelper.Error($"[DungeonFloorSelect] {label}调整失败，已重试20次");
-    }
-
-    private int ReadDigit(IMaaContext context, int[] roi, string label)
-    {
-        for (int attempt = 0; attempt < 3; attempt++)
+        for (int attempt = 0; attempt < 8; attempt++)
         {
             ActionParamHelper.ThrowIfStopping(context);
 
             using var image = context.GetImage();
             if (image == null)
             {
-                ActionParamHelper.SleepWithStopCheck(context, 200);
+                ActionParamHelper.SleepWithStopCheck(context, 400);
                 continue;
             }
 
             var text = context.GetText(roi[0], roi[1], roi[2], roi[3], image);
+            // OCR 可能把 0 识别成字母 O
+            if (text == "O" || text == "o")
+                text = "0";
             if (int.TryParse(text, out int digit) && digit >= 0 && digit <= 9)
             {
                 LoggerHelper.Info($"[DungeonFloorSelect] {label} OCR 识别: {digit}");
                 return digit;
             }
 
-            LoggerHelper.Info($"[DungeonFloorSelect] {label} OCR 结果无效: '{text}'，重试 {attempt + 1}/3");
-            ActionParamHelper.SleepWithStopCheck(context, 200);
+            LoggerHelper.Info($"[DungeonFloorSelect] {label} OCR 结果无效: '{text}'，重试 {attempt + 1}/8");
+            ActionParamHelper.SleepWithStopCheck(context, 400);
         }
 
-        throw new Exception($"{label} OCR 识别失败（已重试3次）");
+        throw new Exception($"{label} OCR 识别失败（已重试8次）");
+    }
+
+    /// <summary>
+    /// 逐次 OCR 微调模式（盲点未到位时的后备方案）
+    /// </summary>
+    private void AdjustDigitLoop(IMaaContext context, int[] roi, int target, int[] up, int[] down, string label)
+    {
+        for (int attempt = 0; attempt < 10; attempt++)
+        {
+            ActionParamHelper.ThrowIfStopping(context);
+
+            int current = ReadDigitStable(context, roi, label);
+            if (current == target)
+            {
+                LoggerHelper.Info($"[DungeonFloorSelect] {label}已匹配: {current} == {target}");
+                return;
+            }
+
+            int downClicks = (current - target + 10) % 10;
+            int upClicks = (target - current + 10) % 10;
+            bool goDown = downClicks <= upClicks;
+
+            int clickX = goDown ? down[0] + down[2] / 2 : up[0] + up[2] / 2;
+            int clickY = goDown ? down[1] + down[3] / 2 : up[1] + up[3] / 2;
+            LoggerHelper.Info($"[DungeonFloorSelect] {label} {current}→{target}，{'减'}/{'加'} ({clickX}, {clickY})");
+
+            context.Click(clickX, clickY);
+            ActionParamHelper.SleepWithStopCheck(context, 800);
+        }
+
+        throw new Exception($"{label}微调失败，已重试10次");
     }
 
     private static int[] ParseRoi(JObject json, string key)
