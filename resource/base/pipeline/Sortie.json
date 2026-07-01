@@ -1,0 +1,2992 @@
+{
+    "Sortie": {
+        "next": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_DetectWhereAmI": {
+        "pre_delay": 0,
+        "next": [
+            "S_IsAnnouncementPopup",
+            "S_IsLoginReward",
+            "S_HasExpeditionReturn",
+            "S_IsMarching",
+            "S_IsBattleResult",
+            "S_IsSwordDrop",
+            "S_IsKebiishi",
+            "S_IsFormationSelect",
+            "S_IsSwordSelect",
+            "S_IsTeamSelect",
+            "S_IsEraSelect",
+            "S_IsRegionSelect",
+            "S_IsSortieActivity",
+            "S_IsMenuDirectory",
+            "S_IsTeamStatusPanel",
+            "S_CheckHomeBrightness",
+            "S_IsRepair",
+            "S_IsStopOnDamage",
+            "S_IsGameIcon",
+            "S_IsLoginButton",
+            "S_IsGameUpdatePopup",
+            "S_FallbackWait"
+        ]
+    },
+    "S_HasExpeditionReturn": {
+        "recognition": "OCR",
+        "roi": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "expected": "经验",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "S_IsMarching": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1067,
+                    558,
+                    120,
+                    79
+                ],
+                "template": "合战场_行军.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "S_CheckBossBeforeMarch"
+        ]
+    },
+    "S_IsBattleResult": {
+        "recognition": "OCR",
+        "roi": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "expected": "经验",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "S_IsSwordDrop": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1163,
+                    617,
+                    71,
+                    67
+                ],
+                "template": "刀剑对话.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "S_IsFormationSelect": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    570,
+                    1,
+                    139,
+                    45
+                ],
+                "template": "阵形选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "S_ClickFormation1"
+        ]
+    },
+    "S_ClickFormation1": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1017,
+                    421,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    4,
+                    2,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 200,
+        "next": [
+            "S_ClickFormation2"
+        ],
+        "pre_delay": 100
+    },
+    "S_ClickFormation2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1017,
+                    421,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    4,
+                    2,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "S_IsSwordSelect": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    530,
+                    6,
+                    224,
+                    45
+                ],
+                "expected": "刀剑男士选择"
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickCaptain1"
+        ]
+    },
+    "S_DetectSortOrder": {
+        "enabled": false,
+        "next": [
+            "S_ClickDescending",
+            "S_ConfirmSortAsc"
+        ]
+    },
+    "S_ClickDescending": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    939,
+                    77,
+                    56,
+                    39
+                ],
+                "expected": "降序"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    4,
+                    2,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "post_delay": 800,
+        "next": [
+            "S_DetectSortOrder"
+        ],
+        "pre_delay": 100
+    },
+    "S_ConfirmSortAsc": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    939,
+                    77,
+                    56,
+                    39
+                ],
+                "expected": "升序"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1189,
+                    140,
+                    37,
+                    61
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_IsPreSortieConfirm"
+        ],
+        "pre_delay": 100
+    },
+    "S_IsPreSortieConfirm": {
+        "recognition": "OCR",
+        "roi": [
+            1156,
+            584,
+            96,
+            47
+        ],
+        "expected": "即刻",
+        "on_error": [
+            "S_DetectWhereAmI"
+        ],
+        "next": [
+            "S_ClickSortieNow"
+        ]
+    },
+    "S_ClickSortieNow": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1204,
+                    629,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    4,
+                    2,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "S_PostSortieHub"
+        ],
+        "pre_delay": 100
+    },
+    "S_PostSortieHub": {
+        "pre_delay": 0,
+        "next": [
+            "S_IsPreDamage1",
+            "S_StopOnDamagePopup",
+            "S_IsPreDamage2",
+            "S_StopOnDamageText",
+            "S_CheckEquipmentPopup",
+            "S_DetectAfterSortieNow"
+        ]
+    },
+    "S_CheckEquipmentPopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    423,
+                    484,
+                    145,
+                    56
+                ],
+                "template": "整备刀装.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "enabled": false,
+        "next": [
+            "S_PreCheckTroopRecord"
+        ],
+        "on_error": [
+            "S_ClickTeam"
+        ],
+        "post_delay": 500
+    },
+    "S_DetectAfterSortieNow": {
+        "pre_delay": 0,
+        "next": [
+            "S_IsTroopDepleted",
+            "S_IsMarching",
+            "S_IsFormationSelect",
+            "S_FallbackWait"
+        ]
+    },
+    "S_IsTroopDepleted": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    411,
+                    243,
+                    458,
+                    130
+                ],
+                "expected": "刀装"
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_RefillTroops"
+        ]
+    },
+    "S_RefillTroops": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    640,
+                    420,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ConfirmRefill"
+        ],
+        "pre_delay": 100
+    },
+    "S_ConfirmRefill": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    640,
+                    520,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickSortieNow"
+        ],
+        "pre_delay": 100
+    },
+    "S_IsTeamSelect": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    561,
+                    1,
+                    160,
+                    49
+                ],
+                "expected": "部队选择"
+            }
+        },
+        "next": [
+            "S_CheckEquipmentPopup",
+            "S_StopOnEquipmentPopup",
+            "S_ClickTeam"
+        ]
+    },
+    "S_ClickTeam": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    154,
+                    93,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    8,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "S_CaptainHub"
+        ],
+        "pre_delay": 100
+    },
+    "S_PreCheckTroopRecord": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1139,
+                    132,
+                    124,
+                    41
+                ],
+                "template": "部队记录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "enabled": false,
+        "on_error": [
+            "S_DetectAfterSortieNow"
+        ],
+        "next": [
+            "S_PreCheckUseRecord"
+        ]
+    },
+    "S_PreCheckUseRecord": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    707,
+                    53,
+                    72,
+                    64
+                ],
+                "template": "使用记录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "enabled": false,
+        "on_error": [
+            "S_DetectAfterSortieNow"
+        ],
+        "next": [
+            "S_PreConfirmSupply"
+        ]
+    },
+    "S_IsEraSelect": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    564,
+                    54,
+                    157,
+                    54
+                ],
+                "template": "时代选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "S_ClickEra"
+        ]
+    },
+    "S_ClickEra": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    246,
+                    389,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "S_ConfirmEra"
+        ],
+        "pre_delay": 100
+    },
+    "S_ConfirmEra": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1206,
+                    642,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    4,
+                    2,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "S_IsRegionSelect": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    558,
+                    55,
+                    169,
+                    54
+                ],
+                "template": "地域选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "S_VerifyRegionSelect"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_VerifyRegionSelect": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    558,
+                    55,
+                    169,
+                    54
+                ],
+                "template": "地域选择.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "S_ClickRegion"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_ClickRegion": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    173,
+                    365,
+                    97,
+                    96
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "pre_delay": 500,
+        "post_delay": 800
+    },
+    "S_IsSortieActivity": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    -2,
+                    302,
+                    49,
+                    86
+                ],
+                "template": "活动选中.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "S_ClickBattlefieldTab"
+        ]
+    },
+    "S_ClickBattlefieldTab": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    23,
+                    202,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "S_IsHome": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    8,
+                    1,
+                    71,
+                    107
+                ],
+                "template": "本丸.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "S_NavigateToSortie"
+        ]
+    },
+    "S_NavigateToSortie": {
+        "next": [
+            "S_ClickMenu"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_ClickMenu": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1174,
+                    3,
+                    105,
+                    66
+                ],
+                "expected": "目录"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    5,
+                    3,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "S_PostClickMenuHub"
+        ],
+        "pre_delay": 100
+    },
+    "S_ClickSortieInMenu": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    160,
+                    158,
+                    97,
+                    62
+                ],
+                "expected": "出阵"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    5,
+                    3,
+                    0,
+                    0
+                ]
+            }
+        },
+        "on_error": [
+            "S_PostClickMenuHub"
+        ],
+        "next": [
+            "S_VerifyMenuClosed"
+        ],
+        "pre_delay": 100
+    },
+    "S_VerifyMenuClosed": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "S_TryClickSortie"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_TryClickSortie": {
+        "next": [
+            "S_ClickSortieInMenu",
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_IsRepair": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    555,
+                    -1,
+                    167,
+                    53
+                ],
+                "expected": "修复"
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_UseSpeedup"
+        ]
+    },
+    "S_IsStopOnDamage": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    555,
+                    -1,
+                    167,
+                    53
+                ],
+                "expected": "修复"
+            }
+        },
+        "enabled": false,
+        "action": "DoNothing"
+    },
+    "S_UseSpeedup": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1050,
+                    580,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ConfirmRepair"
+        ],
+        "pre_delay": 100
+    },
+    "S_ConfirmRepair": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1050,
+                    580,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "post_delay": 200,
+        "next": [
+            "S_ReturnHome"
+        ],
+        "pre_delay": 100
+    },
+    "S_ReturnHome": {
+        "next": [
+            "S_ClickMenuFromRepair"
+        ]
+    },
+    "S_ClickMenuFromRepair": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1174,
+                    3,
+                    105,
+                    66
+                ],
+                "expected": "目录"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    5,
+                    3,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickHomeInMenu"
+        ],
+        "pre_delay": 100
+    },
+    "S_ClickHomeInMenu": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1037,
+                    169,
+                    110,
+                    44
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_VerifyHomeMenuClosed"
+        ],
+        "pre_delay": 100
+    },
+    "S_CheckBossBeforeMarch": {
+        "pre_delay": 0,
+        "next": [
+            "S_IsKebiishi",
+            "S_IsMarchingDamage2",
+            "S_Boss_E2_R1",
+            "S_Boss_E3_R1",
+            "S_Boss_E4_R1",
+            "S_Boss_E2_R2_1",
+            "S_Boss_E2_R2_2",
+            "S_Boss_E3_R2",
+            "S_Boss_E3_R3",
+            "S_Boss_E3_R4",
+            "S_Boss_E4_R2",
+            "S_Boss_E2_R3_1",
+            "S_Boss_E2_R3_2",
+            "S_Boss_E4_R3",
+            "S_Boss_E2_R4",
+            "S_Boss_E4_R4",
+            "S_Boss_E5_R1",
+            "S_Boss_E5_R3",
+            "S_Boss_E5_R3_2",
+            "S_Boss_E5_R4",
+            "S_Boss_E6_R1",
+            "S_Boss_E6_R2",
+            "S_Boss_E6_R3",
+            "S_Boss_E6_R4",
+            "S_Boss_E7_R1",
+            "S_Boss_E7_R2",
+            "S_Boss_E7_R3",
+            "S_MidRetreat_E8_R1",
+            "S_MidRetreat_E8_R2",
+            "S_MidRetreat_E8_R3",
+            "S_MidRetreat_E8_R4",
+            "S_Boss_E8_R1",
+            "S_Boss_E8_R2",
+            "S_Boss_E8_R3",
+            "S_Boss_E8_R4",
+            "S_PostClickMarching"
+        ]
+    },
+    "S_PostClickMarching": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1072,
+                    563,
+                    110,
+                    69
+                ],
+                "target_offset": [
+                    5,
+                    3,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "S_Boss_E4_R1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1131,
+                    243,
+                    30,
+                    34
+                ],
+                "template": "王点_4_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E4_R2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1100,
+                    285,
+                    64,
+                    62
+                ],
+                "template": "王点_4_2.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E4_R3": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1111,
+                    189,
+                    57,
+                    51
+                ],
+                "template": "王点_4_3.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E4_R4": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1115,
+                    257,
+                    51,
+                    57
+                ],
+                "template": "王点_4_4.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E5_R1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1076,
+                    256,
+                    28,
+                    28
+                ],
+                "template": "王点_5_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E5_R3": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1062,
+                    278,
+                    24,
+                    33
+                ],
+                "template": "王点_5_3_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E5_R4": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1083,
+                    287,
+                    25,
+                    34
+                ],
+                "template": "王点_5_4.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E6_R1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    865,
+                    167,
+                    26,
+                    31
+                ],
+                "template": "王点_6_1_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E6_R2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    850,
+                    162,
+                    22,
+                    31
+                ],
+                "template": "王点_6_2.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E6_R3": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1096,
+                    236,
+                    25,
+                    33
+                ],
+                "template": "王点_6_3.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E6_R4": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    871,
+                    191,
+                    21,
+                    31
+                ],
+                "template": "王点_6_4.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E7_R1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    883,
+                    186,
+                    23,
+                    33
+                ],
+                "template": "王点_7_1.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "S_Boss_E7_R2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    880,
+                    200,
+                    27,
+                    34
+                ],
+                "template": "王点_7_2.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "S_Boss_E7_R3": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    980,
+                    163,
+                    22,
+                    30
+                ],
+                "template": "王点_7_3.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "S_Boss_E8_R1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    927,
+                    162,
+                    20,
+                    28
+                ],
+                "template": "王点_8_1.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "S_Boss_E8_R2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    843,
+                    154,
+                    22,
+                    29
+                ],
+                "template": "王点_8_2.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "S_Boss_E8_R3": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1030,
+                    147,
+                    26,
+                    28
+                ],
+                "template": "王点_8_3.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "S_Boss_E8_R4": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1136,
+                    259,
+                    24,
+                    29
+                ],
+                "template": "王点_8_4.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "S_ClickRetreat": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1208,
+                    449,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    4,
+                    2,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ConfirmRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "S_ConfirmRetreat": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    548,
+                    295,
+                    182,
+                    56
+                ],
+                "expected": "确认返回本丸"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    490,
+                    469,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "S_IsPreDamage1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    233,
+                    128,
+                    71,
+                    549
+                ],
+                "template": "重伤.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "S_DecideDamage_Pre"
+        ],
+        "pre_delay": 100,
+        "enabled": false
+    },
+    "S_IsPreDamage2": {
+        "recognition": "OCR",
+        "roi": [
+            465,
+            310,
+            46,
+            24
+        ],
+        "expected": "重伤",
+        "next": [
+            "S_ConfirmCancelPreDamage2"
+        ],
+        "enabled": false
+    },
+    "S_IsMarchingDamage2": {
+        "recognition": "OCR",
+        "roi": [
+            469,
+            297,
+            49,
+            26
+        ],
+        "expected": "重伤",
+        "next": [
+            "S_ConfirmCancelMarchingDamage2"
+        ]
+    },
+    "S_ConfirmCancelPreDamage1": {
+        "recognition": "OCR",
+        "roi": [
+            772,
+            448,
+            32,
+            40
+        ],
+        "expected": "否",
+        "action": "Click",
+        "target_offset": [
+            4,
+            2,
+            0,
+            0
+        ],
+        "next": [
+            "S_DecideDamage_Pre"
+        ],
+        "pre_delay": 100
+    },
+    "S_ConfirmCancelPreDamage2": {
+        "recognition": "OCR",
+        "roi": [
+            772,
+            448,
+            32,
+            40
+        ],
+        "expected": "否",
+        "action": "Click",
+        "target_offset": [
+            4,
+            2,
+            0,
+            0
+        ],
+        "next": [
+            "S_DecideDamage_Pre"
+        ],
+        "post_delay": 500,
+        "pre_delay": 100
+    },
+    "S_ConfirmCancelMarchingDamage2": {
+        "recognition": "OCR",
+        "roi": [
+            763,
+            446,
+            48,
+            44
+        ],
+        "expected": "否",
+        "action": "Click",
+        "target_offset": [
+            4,
+            2,
+            0,
+            0
+        ],
+        "next": [
+            "S_ReturnHomeAfterMarchDamage"
+        ],
+        "post_delay": 300,
+        "pre_delay": 100
+    },
+    "S_NavigateToRepair": {
+        "next": [
+            "S_ClickMenuForRepair",
+            "S_DetectWhereAmI"
+        ],
+        "post_delay": 300
+    },
+    "S_ClickMenuForRepair": {
+        "recognition": "OCR",
+        "roi": [
+            1179,
+            8,
+            95,
+            56
+        ],
+        "expected": "目录",
+        "action": "Click",
+        "target_offset": [
+            5,
+            3,
+            0,
+            0
+        ],
+        "post_delay": 300,
+        "next": [
+            "S_VerifyMenuOpened"
+        ],
+        "pre_delay": 100
+    },
+    "S_ClickRepairInMenu": {
+        "recognition": "OCR",
+        "roi": [
+            451,
+            379,
+            84,
+            40
+        ],
+        "expected": "修复",
+        "action": "Click",
+        "target_offset": [
+            4,
+            2,
+            0,
+            0
+        ],
+        "next": [
+            "S_VerifyRepairMenuClosed"
+        ],
+        "pre_delay": 100
+    },
+    "S_SelectDamagedSword": {
+        "next": [
+            "S_FindSlot1",
+            "S_FindSlot2",
+            "S_FindSlot3"
+        ]
+    },
+    "S_FindSlot1": {
+        "recognition": "OCR",
+        "roi": [
+            380,
+            185,
+            113,
+            46
+        ],
+        "expected": "未使用",
+        "action": "Click",
+        "target_offset": [
+            4,
+            2,
+            0,
+            0
+        ],
+        "next": [
+            "S_ConfirmSelectSlot"
+        ],
+        "pre_delay": 100
+    },
+    "S_FindSlot2": {
+        "recognition": "OCR",
+        "roi": [
+            383,
+            323,
+            110,
+            42
+        ],
+        "expected": "未使用",
+        "action": "Click",
+        "target_offset": [
+            4,
+            2,
+            0,
+            0
+        ],
+        "next": [
+            "S_ConfirmSelectSlot"
+        ],
+        "pre_delay": 100
+    },
+    "S_FindSlot3": {
+        "recognition": "OCR",
+        "roi": [
+            381,
+            462,
+            110,
+            38
+        ],
+        "expected": "未使用",
+        "action": "Click",
+        "target_offset": [
+            4,
+            2,
+            0,
+            0
+        ],
+        "next": [
+            "S_ConfirmSelectSlot"
+        ],
+        "pre_delay": 100
+    },
+    "S_DecideDamage_Pre": {
+        "next": [
+            "S_ClickMenuForRepair",
+            "S_IsStopOnDamage"
+        ]
+    },
+    "S_ReturnHomeAfterMarchDamage": {
+        "action": "Click",
+        "target": [
+            1208,
+            449,
+            1,
+            1
+        ],
+        "target_offset": [
+            4,
+            2,
+            0,
+            0
+        ],
+        "next": [
+            "S_ConfirmReturnHome"
+        ],
+        "pre_delay": 100
+    },
+    "S_ConfirmSelectSlot": {
+        "recognition": "OCR",
+        "roi": [
+            1052,
+            138,
+            32,
+            31
+        ],
+        "expected": "选",
+        "action": "Click",
+        "target_offset": [
+            4,
+            2,
+            0,
+            0
+        ],
+        "next": [
+            "S_CheckAccel"
+        ],
+        "pre_delay": 100
+    },
+    "S_CheckAccel": {
+        "next": [
+            "S_ClickAccel"
+        ]
+    },
+    "S_ClickAccel": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1156,
+                    241,
+                    27,
+                    25
+                ],
+                "target_offset": [
+                    2,
+                    1,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "S_ClickRepairDone"
+        ],
+        "pre_delay": 100
+    },
+    "S_ClickRepairDone": {
+        "recognition": "OCR",
+        "roi": [
+            1159,
+            588,
+            83,
+            44
+        ],
+        "expected": "修复",
+        "action": "Click",
+        "target_offset": [
+            4,
+            2,
+            0,
+            0
+        ],
+        "next": [
+            "S_DirAfterRepair"
+        ],
+        "pre_delay": 100
+    },
+    "S_DirAfterRepair": {
+        "recognition": "OCR",
+        "roi": [
+            1179,
+            8,
+            95,
+            56
+        ],
+        "expected": "目录",
+        "action": "Click",
+        "target_offset": [
+            5,
+            3,
+            0,
+            0
+        ],
+        "next": [
+            "S_VerifyMenuAfterRepair"
+        ],
+        "pre_delay": 100
+    },
+    "S_SortieAfterRepair": {
+        "recognition": "OCR",
+        "roi": [
+            165,
+            163,
+            87,
+            52
+        ],
+        "expected": "出阵",
+        "action": "Click",
+        "target_offset": [
+            5,
+            3,
+            0,
+            0
+        ],
+        "next": [
+            "S_VerifyAfterRepairMenuClosed"
+        ],
+        "pre_delay": 100
+    },
+    "S_ConfirmReturnHome": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    548,
+                    295,
+                    182,
+                    56
+                ],
+                "expected": "确认返回本丸"
+            }
+        },
+        "action": "Click",
+        "target": [
+            490,
+            469,
+            1,
+            1
+        ],
+        "target_offset": [
+            6,
+            4,
+            0,
+            0
+        ],
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "post_delay": 500,
+        "pre_delay": 100
+    },
+    "S_VerifyMenuOpened": {
+        "recognition": "OCR",
+        "roi": [
+            586,
+            33,
+            102,
+            47
+        ],
+        "expected": "目录",
+        "on_error": [
+            "S_ClickMenuForRepair"
+        ],
+        "next": [
+            "S_ClickRepairInMenu"
+        ]
+    },
+    "S_PostClickMenuHub": {
+        "next": [
+            "S_VerifyMenuSortie",
+            "S_CheckNavDirForRetry",
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_VerifyMenuSortie": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "S_ClickSortieInMenu"
+        ]
+    },
+    "S_CheckNavDirForRetry": {
+        "recognition": "OCR",
+        "roi": [
+            1179,
+            8,
+            95,
+            56
+        ],
+        "expected": "目录",
+        "action": "Click",
+        "target_offset": [
+            5,
+            3,
+            0,
+            0
+        ],
+        "next": [
+            "S_PostClickMenuHub"
+        ],
+        "pre_delay": 100,
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_VerifyLeftMenuSortie": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "S_DetectWhereAmI"
+        ],
+        "next": [
+            "S_ClickSortieInMenu"
+        ]
+    },
+    "S_VerifyLeftMenuRepair": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "S_SelectDamagedSword"
+        ],
+        "next": [
+            "S_ClickRepairInMenu"
+        ]
+    },
+    "S_VerifyMenuAfterRepair": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "S_DirAfterRepair"
+        ],
+        "next": [
+            "S_SortieAfterRepair"
+        ]
+    },
+    "S_VerifyLeftMenuAfterRepair": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "on_error": [
+            "S_DetectWhereAmI"
+        ],
+        "next": [
+            "S_SortieAfterRepair"
+        ]
+    },
+    "S_ClickCaptain1": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    828,
+                    82,
+                    68,
+                    25
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 800,
+        "next": [
+            "S_ClickCaptain2"
+        ],
+        "pre_delay": 100
+    },
+    "S_ClickCaptain2": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    752,
+                    137,
+                    97,
+                    29
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 800,
+        "next": [
+            "S_ClickCaptain3"
+        ],
+        "pre_delay": 100
+    },
+    "S_ClickCaptain3": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    407,
+                    510,
+                    90,
+                    31
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 800,
+        "next": [
+            "S_ClickCaptain4"
+        ],
+        "pre_delay": 100
+    },
+    "S_ClickCaptain4": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    965,
+                    438,
+                    91,
+                    34
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 800,
+        "next": [
+            "S_ClickCaptain5"
+        ],
+        "pre_delay": 100
+    },
+    "S_ClickCaptain5": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    592,
+                    603,
+                    107,
+                    46
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "S_DetectSortOrder"
+        ],
+        "pre_delay": 100
+    },
+    "S_ClickCaptainSlot": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1024,
+                    140,
+                    30,
+                    50
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "post_delay": 1000,
+        "pre_delay": 100
+    },
+    "S_CaptainHub": {
+        "next": [
+            "S_ClickCaptainSlot",
+            "S_IsPreSortieConfirm"
+        ]
+    },
+    "S_PreConfirmSupply": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    789,
+                    512,
+                    1,
+                    4
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_IsPreSortieConfirm"
+        ]
+    },
+    "S_WaitRefresh": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    8,
+                    1,
+                    71,
+                    107
+                ],
+                "template": "本丸.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "post_delay": 3000,
+        "next": [
+            "E_CheckTeamStatus"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_IsKebiishi": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    522,
+                    93,
+                    79,
+                    64
+                ],
+                "template": "检非.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "S_FallbackWait": {
+        "action": "DoNothing",
+        "next": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_Boss_E5_R3_2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1084,
+                    187,
+                    28,
+                    30
+                ],
+                "template": "王点_5_3_2.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_VerifyRepairMenuClosed": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "S_TryClickRepair"
+        ],
+        "on_error": [
+            "S_SelectDamagedSword"
+        ]
+    },
+    "S_TryClickRepair": {
+        "next": [
+            "S_ClickRepairInMenu",
+            "S_SelectDamagedSword"
+        ]
+    },
+    "S_VerifyHomeMenuClosed": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "S_TryClickHome"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_TryClickHome": {
+        "next": [
+            "S_ClickHomeInMenu",
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_VerifyAfterRepairMenuClosed": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
+            "S_TryClickAfterRepair"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_TryClickAfterRepair": {
+        "next": [
+            "S_SortieAfterRepair",
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_IsGameIcon": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    0,
+                    0,
+                    1600,
+                    900
+                ],
+                "template": "游戏图标.png",
+                "green_mask": true,
+                "threshold": [
+                    0.95
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 3000,
+        "pre_delay": 100,
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_IsLoginButton": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    665,
+                    529,
+                    124,
+                    78
+                ],
+                "template": "登录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 3000,
+        "pre_delay": 100,
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_IsGameUpdatePopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    443,
+                    431,
+                    120,
+                    46
+                ],
+                "template": "游戏更新.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000,
+        "pre_delay": 100,
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_Boss_E2_R1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    935,
+                    306,
+                    31,
+                    37
+                ],
+                "template": "王点_2_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E2_R2_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1057,
+                    181,
+                    27,
+                    36
+                ],
+                "template": "王点_2_2_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E2_R2_2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    984,
+                    246,
+                    25,
+                    33
+                ],
+                "template": "王点_2_2_2.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E2_R3_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    916,
+                    283,
+                    30,
+                    37
+                ],
+                "template": "王点_2_3_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E2_R3_2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1027,
+                    185,
+                    27,
+                    36
+                ],
+                "template": "王点_2_3_2.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E2_R4": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    959,
+                    257,
+                    22,
+                    32
+                ],
+                "template": "王点_2_4.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E3_R1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1050,
+                    269,
+                    26,
+                    33
+                ],
+                "template": "王点_3_1.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E3_R2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    978,
+                    192,
+                    28,
+                    35
+                ],
+                "template": "王点_3_2.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E3_R3": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    925,
+                    313,
+                    30,
+                    35
+                ],
+                "template": "王点_3_3.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_Boss_E3_R4": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    934,
+                    222,
+                    30,
+                    37
+                ],
+                "template": "王点_3_4.png",
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ]
+    },
+    "S_IsAnnouncementPopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1056,
+                    463,
+                    63,
+                    193
+                ],
+                "template": "公告弹窗.png",
+                "green_mask": true,
+                "threshold": [
+                    0.95
+                ]
+            }
+        },
+        "action": "Click",
+        "pre_delay": 100,
+        "next": [
+            "S_IsAnnouncementPopup"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_IsLoginReward": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    816,
+                    577,
+                    182,
+                    59
+                ],
+                "template": "登录奖励.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "pre_delay": 100,
+        "next": [
+            "S_LoginRewardClick2"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_LoginRewardClick2": {
+        "action": "Click",
+        "target": [
+            1092,
+            318,
+            1,
+            1
+        ],
+        "pre_delay": 1000,
+        "next": [
+            "S_LoginRewardClick3"
+        ]
+    },
+    "S_LoginRewardClick3": {
+        "action": "Click",
+        "target": [
+            1092,
+            318,
+            1,
+            1
+        ],
+        "pre_delay": 1000,
+        "next": [
+            "S_IsLoginReward"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_MidRetreat_E8_R1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    966,
+                    189,
+                    23,
+                    33
+                ],
+                "template": "道中_8_1.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "S_MidRetreat_E8_R2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    934,
+                    238,
+                    23,
+                    30
+                ],
+                "template": "道中_8_2.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "S_MidRetreat_E8_R3": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1031,
+                    183,
+                    22,
+                    32
+                ],
+                "template": "道中_8_3.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "S_MidRetreat_E8_R4": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1070,
+                    210,
+                    25,
+                    29
+                ],
+                "template": "道中_8_4.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "S_ClickRetreat"
+        ],
+        "pre_delay": 100
+    },
+    "S_CheckHomeBrightness": {
+        "recognition": "ColorMatch",
+        "roi": [
+            66,
+            58,
+            11,
+            13
+        ],
+        "upper": [
+            40,
+            155,
+            30
+        ],
+        "lower": [
+            23,
+            95,
+            15
+        ],
+        "action": "DoNothing",
+        "next": [
+            "S_IsHome"
+        ]
+    },
+    "S_IsTeamStatusPanel": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    374,
+                    42,
+                    39,
+                    108
+                ],
+                "template": "本丸远征.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "DoNothing",
+        "next": [
+            "E_ExpSubHub1"
+        ],
+        "pre_delay": 100
+    },
+    "S_IsMenuDirectory": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    581,
+                    28,
+                    112,
+                    57
+                ],
+                "template": "菜单目录.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "DoNothing",
+        "next": [
+            "S_ClickSortieInMenu"
+        ],
+        "pre_delay": 100
+    },
+    "S_StopOnEquipmentPopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    423,
+                    484,
+                    145,
+                    56
+                ],
+                "template": "整备刀装.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "DoNothing",
+        "pre_delay": 100,
+        "on_error": [
+            "S_ClickTeam"
+        ]
+    },
+    "S_StopOnDamagePopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    233,
+                    128,
+                    71,
+                    549
+                ],
+                "template": "重伤.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "DoNothing",
+        "enabled": false,
+        "pre_delay": 100,
+        "on_error": [
+            "S_DetectAfterSortieNow"
+        ]
+    },
+    "S_StopOnDamageText": {
+        "recognition": "OCR",
+        "action": "DoNothing",
+        "enabled": false,
+        "pre_delay": 100,
+        "on_error": [
+            "S_DetectAfterSortieNow"
+        ]
+    }
+}

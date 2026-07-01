@@ -1,0 +1,3989 @@
+{
+  "name": "AATL",
+  "version": "0.5.0",
+  "icon": "AATL.ico",
+  "custom_title": "AATL - 刀剑乱舞自动化助手",
+  "Github": "https://github.com/NotZoruak/AATL",
+  "controller": [
+    {
+      "name": "mumu",
+      "label": "MuMu 模拟器",
+      "description": "docs/mumu.md",
+      "type": "Adb",
+      "display_short_side": 720,
+      "adb": {
+        "adb_path": "{ADB}",
+        "address": "127.0.0.1:7555",
+        "screencap_method": 0,
+        "input_method": 0
+      }
+    }
+  ],
+  "resource": [
+    {
+      "name": "刀剑乱舞",
+      "path": [
+        "{PROJECT_DIR}/resource/base"
+      ],
+      "DisplayName": "刀剑乱舞",
+      "DisplayDescription": "刀剑乱舞（Touken Ranbu）自动化资源"
+    }
+  ],
+  "task": [
+    {
+      "name": "远征",
+      "entry": "Expedition",
+      "default_check": true,
+      "repeatable": false,
+      "repeat_count": 0,
+      "option": [
+        "部队一",
+        "部队二",
+        "部队三",
+        "部队四",
+        "部队五",
+        "RefreshInterval"
+      ],
+      "label": "远征",
+      "description": "请确保编队符合远征要求"
+    },
+    {
+      "name": "合战场",
+      "entry": "Sortie",
+      "default_check": false,
+      "repeatable": false,
+      "repeat_count": 0,
+      "option": [
+        "S_重伤处理",
+        "S_选择部队",
+        "S_选择时代",
+        "S_选择地域",
+        "S_选择阵形",
+        "S_换队长",
+        "S_补充刀装",
+        "S_王点前撤退",
+        "S_八图道中撤退",
+        "S_同步远征"
+      ],
+      "label": "合战场",
+      "description": "通用合战场出阵自动化，无限循环。可与游戏内自动行军同时开启，最大化过图速度。\n与自动行军同时开启时，「刀装破坏时停止」和「中伤时停止」设置无法生效。\n\n- **换队长**：通过筛选装备马的刀剑来切换队长，请为且仅为需控花的刀剑男士装备马\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请保存部队记录\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保合战场使用的队伍在远征任务中设置为「休息」"
+    },
+    {
+      "name": "地下城",
+      "entry": "Underground",
+      "default_check": false,
+      "repeatable": false,
+      "repeat_count": 0,
+      "option": [
+        "U_重伤处理",
+        "U_选择部队",
+        "U_选择阵形",
+        "U_换队长",
+        "U_补充刀装",
+        "U_动画跳过"
+      ],
+      "label": "地下城",
+      "description": "地下城活动自动化出阵，无限循环。\n\n- **换队长**：通过筛选装备马的刀剑来切换队长，请为且仅为需控花的刀剑男士装备马\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请保存部队记录\n- **动画跳过**：增加点击，提高挖地效率"
+    },
+    {
+      "name": "江户城",
+      "entry": "EdoCastle",
+      "default_check": false,
+      "repeatable": true,
+      "repeat_count": 1,
+      "option": [
+        "EC_出阵队伍",
+        "EC_换队长",
+        "EC_补充门票"
+      ],
+      "label": "江户城",
+      "description": "行军路线固定为最短路径，优先进入王点。\n\n- **换队长**：请为且仅为需控花的刀剑男士装备马\n- **补充门票**：勾选后检测到通行令牌耗尽时自动补充三枚\n- **难度**：仅支持超难"
+    },
+    {
+      "name": "刷花",
+      "entry": "FlowerBrush",
+      "default_check": false,
+      "repeatable": true,
+      "repeat_count": 1,
+      "label": "刷花",
+      "description": "仅支持部队一单骑出阵1-1刷花，请提前解散部队一并为且仅为需要刷花的刀剑男士装备马匹和刀装"
+    },
+    {
+      "name": "回到本丸",
+      "entry": "GoHome",
+      "default_check": false,
+      "repeatable": false,
+      "repeat_count": 0,
+      "label": "回到本丸",
+      "description": "检测当前界面，自动关闭弹窗并回到本丸。推荐穿插在连续任务之间，确保后续任务从本丸开始运行"
+    },
+    {
+      "name": "刀解",
+      "entry": "Disassemble",
+      "default_check": false,
+      "repeatable": false,
+      "repeat_count": 0,
+      "option": [
+        "短",
+        "胁",
+        "打",
+        "太",
+        "大太",
+        "枪",
+        "薙"
+      ],
+      "label": "刀解",
+      "description": "自动刀解 + 收邮箱循环。邮箱清空后任务终止，若刀位有剩余刀剑需刀解可手动清理"
+    }
+  ],
+  "option": {
+    "部队一": {
+      "name": "部队一",
+      "label": "部队一 远征地图",
+      "default_case": "休息",
+      "cases": [
+        {
+          "name": "休息",
+          "DisplayName": "休息",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "1-1",
+          "DisplayName": "1-1",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-2",
+          "DisplayName": "1-2",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-3",
+          "DisplayName": "1-3",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-4",
+          "DisplayName": "1-4",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-1",
+          "DisplayName": "2-1",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-2",
+          "DisplayName": "2-2",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-3",
+          "DisplayName": "2-3",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-4",
+          "DisplayName": "2-4",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-1",
+          "DisplayName": "3-1",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-2",
+          "DisplayName": "3-2",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-3",
+          "DisplayName": "3-3",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-4",
+          "DisplayName": "3-4",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-1",
+          "DisplayName": "4-1",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-2",
+          "DisplayName": "4-2",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-3",
+          "DisplayName": "4-3",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-4",
+          "DisplayName": "4-4",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-1",
+          "DisplayName": "5-1",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-2",
+          "DisplayName": "5-2",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-3",
+          "DisplayName": "5-3",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-4",
+          "DisplayName": "5-4",
+          "pipeline_override": {
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "部队二": {
+      "name": "部队二",
+      "label": "部队二 远征地图",
+      "default_case": "休息",
+      "cases": [
+        {
+          "name": "休息",
+          "DisplayName": "休息",
+          "pipeline_override": {
+            "E_CheckTeam2": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "1-1",
+          "DisplayName": "1-1",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-2",
+          "DisplayName": "1-2",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-3",
+          "DisplayName": "1-3",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-4",
+          "DisplayName": "1-4",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-1",
+          "DisplayName": "2-1",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-2",
+          "DisplayName": "2-2",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-3",
+          "DisplayName": "2-3",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-4",
+          "DisplayName": "2-4",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-1",
+          "DisplayName": "3-1",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-2",
+          "DisplayName": "3-2",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-3",
+          "DisplayName": "3-3",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-4",
+          "DisplayName": "3-4",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-1",
+          "DisplayName": "4-1",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-2",
+          "DisplayName": "4-2",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-3",
+          "DisplayName": "4-3",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-4",
+          "DisplayName": "4-4",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-1",
+          "DisplayName": "5-1",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-2",
+          "DisplayName": "5-2",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-3",
+          "DisplayName": "5-3",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-4",
+          "DisplayName": "5-4",
+          "pipeline_override": {
+            "E_SelectMap2": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "部队三": {
+      "name": "部队三",
+      "label": "部队三 远征地图",
+      "default_case": "休息",
+      "cases": [
+        {
+          "name": "休息",
+          "DisplayName": "休息",
+          "pipeline_override": {
+            "E_CheckTeam3": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "1-1",
+          "DisplayName": "1-1",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-2",
+          "DisplayName": "1-2",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-3",
+          "DisplayName": "1-3",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-4",
+          "DisplayName": "1-4",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-1",
+          "DisplayName": "2-1",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-2",
+          "DisplayName": "2-2",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-3",
+          "DisplayName": "2-3",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-4",
+          "DisplayName": "2-4",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-1",
+          "DisplayName": "3-1",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-2",
+          "DisplayName": "3-2",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-3",
+          "DisplayName": "3-3",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-4",
+          "DisplayName": "3-4",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-1",
+          "DisplayName": "4-1",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-2",
+          "DisplayName": "4-2",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-3",
+          "DisplayName": "4-3",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-4",
+          "DisplayName": "4-4",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-1",
+          "DisplayName": "5-1",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-2",
+          "DisplayName": "5-2",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-3",
+          "DisplayName": "5-3",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-4",
+          "DisplayName": "5-4",
+          "pipeline_override": {
+            "E_SelectMap3": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "部队四": {
+      "name": "部队四",
+      "label": "部队四 远征地图",
+      "default_case": "休息",
+      "cases": [
+        {
+          "name": "休息",
+          "DisplayName": "休息",
+          "pipeline_override": {
+            "E_CheckTeam4": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "1-1",
+          "DisplayName": "1-1",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-2",
+          "DisplayName": "1-2",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-3",
+          "DisplayName": "1-3",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-4",
+          "DisplayName": "1-4",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-1",
+          "DisplayName": "2-1",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-2",
+          "DisplayName": "2-2",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-3",
+          "DisplayName": "2-3",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-4",
+          "DisplayName": "2-4",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-1",
+          "DisplayName": "3-1",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-2",
+          "DisplayName": "3-2",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-3",
+          "DisplayName": "3-3",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-4",
+          "DisplayName": "3-4",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-1",
+          "DisplayName": "4-1",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-2",
+          "DisplayName": "4-2",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-3",
+          "DisplayName": "4-3",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-4",
+          "DisplayName": "4-4",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-1",
+          "DisplayName": "5-1",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-2",
+          "DisplayName": "5-2",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-3",
+          "DisplayName": "5-3",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-4",
+          "DisplayName": "5-4",
+          "pipeline_override": {
+            "E_SelectMap4": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "部队五": {
+      "name": "部队五",
+      "label": "部队五 远征地图",
+      "default_case": "休息",
+      "cases": [
+        {
+          "name": "休息",
+          "DisplayName": "休息",
+          "pipeline_override": {
+            "E_CheckTeam5": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "1-1",
+          "DisplayName": "1-1",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-2",
+          "DisplayName": "1-2",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-3",
+          "DisplayName": "1-3",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "1-4",
+          "DisplayName": "1-4",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                276,
+                188,
+                37,
+                39
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-1",
+          "DisplayName": "2-1",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-2",
+          "DisplayName": "2-2",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-3",
+          "DisplayName": "2-3",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "2-4",
+          "DisplayName": "2-4",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                469,
+                178,
+                50,
+                40
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-1",
+          "DisplayName": "3-1",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-2",
+          "DisplayName": "3-2",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-3",
+          "DisplayName": "3-3",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "3-4",
+          "DisplayName": "3-4",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                661,
+                183,
+                50,
+                35
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-1",
+          "DisplayName": "4-1",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-2",
+          "DisplayName": "4-2",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-3",
+          "DisplayName": "4-3",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "4-4",
+          "DisplayName": "4-4",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                891,
+                190,
+                50,
+                36
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-1",
+          "DisplayName": "5-1",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-2",
+          "DisplayName": "5-2",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                487,
+                373,
+                84,
+                113
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-3",
+          "DisplayName": "5-3",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                767,
+                370,
+                81,
+                115
+              ]
+            }
+          }
+        },
+        {
+          "name": "5-4",
+          "DisplayName": "5-4",
+          "pipeline_override": {
+            "E_SelectMap5": {
+              "target": [
+                1078,
+                191,
+                45,
+                34
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "target": [
+                1098,
+                368,
+                67,
+                79
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "RefreshInterval": {
+      "name": "RefreshInterval",
+      "label": "刷新间隔（分钟）",
+      "type": "input",
+      "inputs": [
+        {
+          "name": "minutes",
+          "label": "间隔（分钟）",
+          "default": "10",
+          "pipeline_type": "int",
+          "description": "设置过短可能导致游戏卡顿"
+        }
+      ]
+    },
+    "难度选择": {
+      "name": "难度选择",
+      "label": "难度选择",
+      "default_case": "易",
+      "cases": [
+        {
+          "name": "易",
+          "DisplayName": "易",
+          "pipeline_override": {
+            "ClickDifficulty": {
+              "target": [
+                127,
+                267,
+                208,
+                112
+              ]
+            }
+          }
+        },
+        {
+          "name": "普",
+          "DisplayName": "普",
+          "pipeline_override": {
+            "ClickDifficulty": {
+              "target": [
+                393,
+                250,
+                265,
+                141
+              ]
+            }
+          }
+        },
+        {
+          "name": "难",
+          "DisplayName": "难",
+          "pipeline_override": {
+            "ClickDifficulty": {
+              "target": [
+                698,
+                244,
+                248,
+                155
+              ]
+            }
+          }
+        },
+        {
+          "name": "超难",
+          "DisplayName": "超难",
+          "pipeline_override": {
+            "ClickDifficulty": {
+              "target": [
+                1012,
+                262,
+                220,
+                117
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "EC_出阵队伍": {
+      "name": "EC_出阵队伍",
+      "label": "出阵队伍",
+      "default_case": "部队一",
+      "cases": [
+        {
+          "name": "部队一",
+          "DisplayName": "部队一",
+          "pipeline_override": {
+            "EC_SelectTeam": {
+              "target": [
+                154,
+                93,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队二",
+          "DisplayName": "部队二",
+          "pipeline_override": {
+            "EC_SelectTeam": {
+              "target": [
+                282,
+                94,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队三",
+          "DisplayName": "部队三",
+          "pipeline_override": {
+            "EC_SelectTeam": {
+              "target": [
+                398,
+                91,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队四",
+          "DisplayName": "部队四",
+          "pipeline_override": {
+            "EC_SelectTeam": {
+              "target": [
+                519,
+                89,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队五",
+          "DisplayName": "部队五",
+          "pipeline_override": {
+            "EC_SelectTeam": {
+              "target": [
+                635,
+                91,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "EC_换队长": {
+      "name": "EC_换队长",
+      "label": "换队长",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "EC_IsSwordSelect": {
+              "enabled": true
+            },
+            "EC_DetectSortOrder": {
+              "enabled": true
+            },
+            "EC_ClickDescending": {
+              "enabled": true
+            },
+            "EC_ConfirmSortAsc": {
+              "enabled": true
+            },
+            "EC_ClickCaptain1": {
+              "enabled": true
+            },
+            "EC_ClickCaptain2": {
+              "enabled": true
+            },
+            "EC_ClickCaptain3": {
+              "enabled": true
+            },
+            "EC_ClickCaptain4": {
+              "enabled": true
+            },
+            "EC_ClickCaptain5": {
+              "enabled": true
+            },
+            "EC_ClickCaptainSlot": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "S_换队长": {
+      "name": "S_换队长",
+      "label": "换队长",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "S_IsSwordSelect": {
+              "enabled": true
+            },
+            "S_DetectSortOrder": {
+              "enabled": true
+            },
+            "S_ClickDescending": {
+              "enabled": true
+            },
+            "S_ConfirmSortAsc": {
+              "enabled": true
+            },
+            "S_ClickCaptain1": {
+              "enabled": true
+            },
+            "S_ClickCaptain2": {
+              "enabled": true
+            },
+            "S_ClickCaptain3": {
+              "enabled": true
+            },
+            "S_ClickCaptain4": {
+              "enabled": true
+            },
+            "S_ClickCaptain5": {
+              "enabled": true
+            },
+            "S_ClickCaptainSlot": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "EC_补充门票": {
+      "name": "EC_补充门票",
+      "label": "补充门票",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "EC_ReplenishTicket": {
+              "enabled": true
+            },
+            "EC_ClickRestore3": {
+              "enabled": true
+            },
+            "EC_ClickReplenishConfirm": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "S_选择部队": {
+      "name": "S_选择部队",
+      "label": "选择部队",
+      "default_case": "部队一",
+      "cases": [
+        {
+          "name": "部队一",
+          "DisplayName": "部队一",
+          "pipeline_override": {
+            "S_ClickTeam": {
+              "target": [
+                154,
+                93,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队二",
+          "DisplayName": "部队二",
+          "pipeline_override": {
+            "S_ClickTeam": {
+              "target": [
+                282,
+                94,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队三",
+          "DisplayName": "部队三",
+          "pipeline_override": {
+            "S_ClickTeam": {
+              "target": [
+                398,
+                91,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队四",
+          "DisplayName": "部队四",
+          "pipeline_override": {
+            "S_ClickTeam": {
+              "target": [
+                519,
+                89,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队五",
+          "DisplayName": "部队五",
+          "pipeline_override": {
+            "S_ClickTeam": {
+              "target": [
+                635,
+                91,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "S_选择时代": {
+      "name": "S_选择时代",
+      "label": "选择时代",
+      "default_case": "时代一",
+      "cases": [
+        {
+          "name": "时代一",
+          "DisplayName": "时代一",
+          "pipeline_override": {
+            "S_ClickEra": {
+              "target": [
+                246,
+                389,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代二",
+          "DisplayName": "时代二",
+          "pipeline_override": {
+            "S_ClickEra": {
+              "target": [
+                345,
+                516,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代三",
+          "DisplayName": "时代三",
+          "pipeline_override": {
+            "S_ClickEra": {
+              "target": [
+                447,
+                379,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代四",
+          "DisplayName": "时代四",
+          "pipeline_override": {
+            "S_ClickEra": {
+              "target": [
+                546,
+                511,
+                3,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代五",
+          "DisplayName": "时代五",
+          "pipeline_override": {
+            "S_ClickEra": {
+              "target": [
+                644,
+                375,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代六",
+          "DisplayName": "时代六",
+          "pipeline_override": {
+            "S_ClickEra": {
+              "target": [
+                750,
+                508,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代七",
+          "DisplayName": "时代七",
+          "pipeline_override": {
+            "S_ClickEra": {
+              "target": [
+                849,
+                378,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "时代八",
+          "DisplayName": "时代八",
+          "pipeline_override": {
+            "S_ClickEra": {
+              "target": [
+                956,
+                519,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "S_选择地域": {
+      "name": "S_选择地域",
+      "label": "选择地域",
+      "default_case": "地域一",
+      "cases": [
+        {
+          "name": "地域一",
+          "DisplayName": "地域一",
+          "pipeline_override": {
+            "S_ClickRegion": {
+              "target": [
+                173,
+                365,
+                97,
+                96
+              ]
+            }
+          }
+        },
+        {
+          "name": "地域二",
+          "DisplayName": "地域二",
+          "pipeline_override": {
+            "S_ClickRegion": {
+              "target": [
+                520,
+                243,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "地域三",
+          "DisplayName": "地域三",
+          "pipeline_override": {
+            "S_ClickRegion": {
+              "target": [
+                837,
+                234,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "地域四",
+          "DisplayName": "地域四",
+          "pipeline_override": {
+            "S_ClickRegion": {
+              "target": [
+                1118,
+                243,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "S_选择阵形": {
+      "name": "S_选择阵形",
+      "label": "选择阵形",
+      "default_case": "逆行阵",
+      "cases": [
+        {
+          "name": "不启用",
+          "DisplayName": "不启用",
+          "pipeline_override": {
+            "S_IsFormationSelect": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "鱼鳞阵",
+          "DisplayName": "鱼鳞阵",
+          "pipeline_override": {
+            "S_ClickFormation1": {
+              "target": [
+                212,
+                234,
+                1,
+                1
+              ]
+            },
+            "S_ClickFormation2": {
+              "target": [
+                212,
+                234,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "横队阵",
+          "DisplayName": "横队阵",
+          "pipeline_override": {
+            "S_ClickFormation1": {
+              "target": [
+                591,
+                234,
+                1,
+                1
+              ]
+            },
+            "S_ClickFormation2": {
+              "target": [
+                591,
+                234,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "雁行阵",
+          "DisplayName": "雁行阵",
+          "pipeline_override": {
+            "S_ClickFormation1": {
+              "target": [
+                1037,
+                222,
+                1,
+                1
+              ]
+            },
+            "S_ClickFormation2": {
+              "target": [
+                1037,
+                222,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "鹤翼阵",
+          "DisplayName": "鹤翼阵",
+          "pipeline_override": {
+            "S_ClickFormation1": {
+              "target": [
+                195,
+                431,
+                1,
+                1
+              ]
+            },
+            "S_ClickFormation2": {
+              "target": [
+                195,
+                431,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "方阵",
+          "DisplayName": "方阵",
+          "pipeline_override": {
+            "S_ClickFormation1": {
+              "target": [
+                625,
+                407,
+                1,
+                1
+              ]
+            },
+            "S_ClickFormation2": {
+              "target": [
+                625,
+                407,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "逆行阵",
+          "DisplayName": "逆行阵",
+          "pipeline_override": {
+            "S_ClickFormation1": {
+              "target": [
+                1017,
+                421,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "S_补充刀装": {
+      "name": "S_补充刀装",
+      "label": "补充刀装",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "S_CheckEquipmentPopup": {
+              "enabled": true
+            },
+            "S_PreCheckTroopRecord": {
+              "enabled": true
+            },
+            "S_PreCheckUseRecord": {
+              "enabled": true
+            },
+            "S_PreConfirmSupply": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "S_重伤处理": {
+      "name": "S_重伤处理",
+      "label": "重伤处理",
+      "default_case": "修刀",
+      "cases": [
+        {
+          "name": "修刀",
+          "DisplayName": "修刀",
+          "pipeline_override": {
+            "S_IsRepair": {
+              "enabled": true
+            },
+            "S_IsStopOnDamage": {
+              "enabled": false
+            },
+            "S_IsPreDamage1": {
+              "enabled": true
+            },
+            "S_IsPreDamage2": {
+              "enabled": true
+            },
+            "S_StopOnDamagePopup": {
+              "enabled": false
+            },
+            "S_StopOnDamageText": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "停止",
+          "DisplayName": "停止",
+          "pipeline_override": {
+            "S_IsRepair": {
+              "enabled": false
+            },
+            "S_IsStopOnDamage": {
+              "enabled": true
+            },
+            "S_IsPreDamage1": {
+              "enabled": false
+            },
+            "S_IsPreDamage2": {
+              "enabled": false
+            },
+            "S_StopOnDamagePopup": {
+              "enabled": true
+            },
+            "S_StopOnDamageText": {
+              "enabled": true
+            }
+          }
+        }
+      ]
+    },
+    "S_八图道中撤退": {
+      "name": "S_八图道中撤退",
+      "label": "八图道中撤退",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "S_MidRetreat_E8_R1": {
+              "enabled": true
+            },
+            "S_MidRetreat_E8_R2": {
+              "enabled": true
+            },
+            "S_MidRetreat_E8_R3": {
+              "enabled": true
+            },
+            "S_MidRetreat_E8_R4": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "S_王点前撤退": {
+      "name": "S_王点前撤退",
+      "label": "王点前撤退",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "S_Boss_E2_R1": {
+              "enabled": true
+            },
+            "S_Boss_E2_R2_1": {
+              "enabled": true
+            },
+            "S_Boss_E2_R2_2": {
+              "enabled": true
+            },
+            "S_Boss_E2_R3_1": {
+              "enabled": true
+            },
+            "S_Boss_E2_R3_2": {
+              "enabled": true
+            },
+            "S_Boss_E2_R4": {
+              "enabled": true
+            },
+            "S_Boss_E3_R1": {
+              "enabled": true
+            },
+            "S_Boss_E3_R2": {
+              "enabled": true
+            },
+            "S_Boss_E3_R3": {
+              "enabled": true
+            },
+            "S_Boss_E3_R4": {
+              "enabled": true
+            },
+            "S_Boss_E4_R1": {
+              "enabled": true
+            },
+            "S_Boss_E4_R2": {
+              "enabled": true
+            },
+            "S_Boss_E4_R3": {
+              "enabled": true
+            },
+            "S_Boss_E4_R4": {
+              "enabled": true
+            },
+            "S_Boss_E5_R1": {
+              "enabled": true
+            },
+            "S_Boss_E5_R3": {
+              "enabled": true
+            },
+            "S_Boss_E5_R3_2": {
+              "enabled": true
+            },
+            "S_Boss_E5_R4": {
+              "enabled": true
+            },
+            "S_Boss_E6_R1": {
+              "enabled": true
+            },
+            "S_Boss_E6_R2": {
+              "enabled": true
+            },
+            "S_Boss_E6_R3": {
+              "enabled": true
+            },
+            "S_Boss_E6_R4": {
+              "enabled": true
+            },
+            "S_Boss_E7_R1": {
+              "enabled": true
+            },
+            "S_Boss_E7_R2": {
+              "enabled": true
+            },
+            "S_Boss_E7_R3": {
+              "enabled": true
+            },
+            "S_Boss_E8_R1": {
+              "enabled": true
+            },
+            "S_Boss_E8_R2": {
+              "enabled": true
+            },
+            "S_Boss_E8_R3": {
+              "enabled": true
+            },
+            "S_Boss_E8_R4": {
+              "enabled": true
+            },
+            "S_ClickRetreat": {
+              "enabled": true
+            },
+            "S_ConfirmRetreat": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "S_同步远征": {
+      "name": "S_同步远征",
+      "label": "同步远征",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "S_IsHome": {
+              "next": [
+                "Expedition"
+              ]
+            },
+            "E_VerifyScreen1": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen2": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen3": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen4": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen5": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_ClickBackToHome": {
+              "action": {
+                "type": "Click",
+                "param": {
+                  "target": [
+                    1037,
+                    169,
+                    110,
+                    44
+                  ],
+                  "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                  ]
+                }
+              },
+              "next": [
+                "S_WaitRefresh"
+              ],
+              "on_error": [
+                "S_DetectWhereAmI"
+              ]
+            },
+            "E_AllTeamsBusy": {
+              "next": [
+                "S_NavigateToSortie"
+              ]
+            },
+            "S_WaitRefresh": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "U_重伤处理": {
+      "name": "U_重伤处理",
+      "label": "重伤处理",
+      "default_case": "修刀",
+      "cases": [
+        {
+          "name": "修刀",
+          "DisplayName": "修刀",
+          "pipeline_override": {
+            "U_IsRepair": {
+              "enabled": true
+            },
+            "U_IsStopOnDamage": {
+              "enabled": false
+            },
+            "U_IsPreDamage1": {
+              "enabled": true
+            },
+            "U_IsPreDamage2": {
+              "enabled": true
+            },
+            "U_StopOnDamagePopup": {
+              "enabled": false
+            },
+            "U_StopOnDamageText": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "停止",
+          "DisplayName": "停止",
+          "pipeline_override": {
+            "U_IsRepair": {
+              "enabled": false
+            },
+            "U_IsStopOnDamage": {
+              "enabled": true
+            },
+            "U_IsPreDamage1": {
+              "enabled": false
+            },
+            "U_IsPreDamage2": {
+              "enabled": false
+            },
+            "U_StopOnDamagePopup": {
+              "enabled": true
+            },
+            "U_StopOnDamageText": {
+              "enabled": true
+            }
+          }
+        }
+      ]
+    },
+    "U_选择部队": {
+      "name": "U_选择部队",
+      "label": "选择部队",
+      "default_case": "部队一",
+      "cases": [
+        {
+          "name": "部队一",
+          "DisplayName": "部队一",
+          "pipeline_override": {
+            "U_ClickTeam": {
+              "target": [
+                154,
+                93,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队二",
+          "DisplayName": "部队二",
+          "pipeline_override": {
+            "U_ClickTeam": {
+              "target": [
+                282,
+                94,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队三",
+          "DisplayName": "部队三",
+          "pipeline_override": {
+            "U_ClickTeam": {
+              "target": [
+                398,
+                91,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队四",
+          "DisplayName": "部队四",
+          "pipeline_override": {
+            "U_ClickTeam": {
+              "target": [
+                519,
+                89,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "部队五",
+          "DisplayName": "部队五",
+          "pipeline_override": {
+            "U_ClickTeam": {
+              "target": [
+                635,
+                91,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "U_选择阵形": {
+      "name": "U_选择阵形",
+      "label": "选择阵形",
+      "default_case": "逆行阵",
+      "cases": [
+        {
+          "name": "不启用",
+          "DisplayName": "不启用",
+          "pipeline_override": {
+            "U_IsFormationSelect": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "鱼鳞阵",
+          "DisplayName": "鱼鳞阵",
+          "pipeline_override": {
+            "U_ClickFormation1": {
+              "target": [
+                212,
+                234,
+                1,
+                1
+              ]
+            },
+            "U_ClickFormation2": {
+              "target": [
+                212,
+                234,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "横队阵",
+          "DisplayName": "横队阵",
+          "pipeline_override": {
+            "U_ClickFormation1": {
+              "target": [
+                591,
+                234,
+                1,
+                1
+              ]
+            },
+            "U_ClickFormation2": {
+              "target": [
+                591,
+                234,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "雁行阵",
+          "DisplayName": "雁行阵",
+          "pipeline_override": {
+            "U_ClickFormation1": {
+              "target": [
+                1037,
+                222,
+                1,
+                1
+              ]
+            },
+            "U_ClickFormation2": {
+              "target": [
+                1037,
+                222,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "鹤翼阵",
+          "DisplayName": "鹤翼阵",
+          "pipeline_override": {
+            "U_ClickFormation1": {
+              "target": [
+                195,
+                431,
+                1,
+                1
+              ]
+            },
+            "U_ClickFormation2": {
+              "target": [
+                195,
+                431,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "方阵",
+          "DisplayName": "方阵",
+          "pipeline_override": {
+            "U_ClickFormation1": {
+              "target": [
+                625,
+                407,
+                1,
+                1
+              ]
+            },
+            "U_ClickFormation2": {
+              "target": [
+                625,
+                407,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "name": "逆行阵",
+          "DisplayName": "逆行阵",
+          "pipeline_override": {
+            "U_ClickFormation1": {
+              "target": [
+                1017,
+                421,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "U_换队长": {
+      "name": "U_换队长",
+      "label": "换队长",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "U_IsSwordSelect": {
+              "enabled": true
+            },
+            "U_DetectSortOrder": {
+              "enabled": true
+            },
+            "U_ClickDescending": {
+              "enabled": true
+            },
+            "U_ConfirmSortAsc": {
+              "enabled": true
+            },
+            "U_ClickCaptain1": {
+              "enabled": true
+            },
+            "U_ClickCaptain2": {
+              "enabled": true
+            },
+            "U_ClickCaptain3": {
+              "enabled": true
+            },
+            "U_ClickCaptain4": {
+              "enabled": true
+            },
+            "U_ClickCaptain5": {
+              "enabled": true
+            },
+            "U_ClickCaptainSlot": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "U_补充刀装": {
+      "name": "U_补充刀装",
+      "label": "补充刀装",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "U_CheckEquipmentPopup": {
+              "enabled": true
+            },
+            "U_PreCheckTroopRecord": {
+              "enabled": true
+            },
+            "U_PreCheckUseRecord": {
+              "enabled": true
+            },
+            "U_PreConfirmSupply": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "U_动画跳过": {
+      "name": "U_动画跳过",
+      "label": "动画跳过",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "U_FallbackWait": {
+              "action": {
+                "type": "Click",
+                "param": {
+                  "target": [
+                    1078,
+                    554,
+                    103,
+                    75
+                  ],
+                  "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "U_同步远征": {
+      "name": "U_同步远征",
+      "label": "同步远征",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "U_IsHome": {
+              "next": [
+                "Expedition"
+              ]
+            },
+            "E_VerifyScreen1": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen2": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen3": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen4": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen5": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_ClickBackToHome": {
+              "action": {
+                "type": "Click",
+                "param": {
+                  "target": [
+                    1037,
+                    169,
+                    110,
+                    44
+                  ],
+                  "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                  ]
+                }
+              },
+              "next": [
+                "U_WaitRefresh"
+              ],
+              "on_error": [
+                "U_DetectWhereAmI"
+              ]
+            },
+            "E_AllTeamsBusy": {
+              "next": [
+                "U_NavigateToUnderground"
+              ]
+            },
+            "U_WaitRefresh": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "短": {
+      "name": "短",
+      "type": "checkbox",
+      "label": "短刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword1": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "胁": {
+      "name": "胁",
+      "type": "checkbox",
+      "label": "胁差",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword2": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "打": {
+      "name": "打",
+      "type": "checkbox",
+      "label": "打刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword3": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "太": {
+      "name": "太",
+      "type": "checkbox",
+      "label": "太刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword4": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "大太": {
+      "name": "大太",
+      "type": "checkbox",
+      "label": "大太刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword5": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "枪": {
+      "name": "枪",
+      "type": "checkbox",
+      "label": "枪",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword6": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "薙": {
+      "name": "薙",
+      "type": "checkbox",
+      "label": "薙刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "D_FilterSword7": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    }
+  }
+}
