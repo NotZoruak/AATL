@@ -1,6 +1,6 @@
 {
   "name": "AATL",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "icon": "AATL.ico",
   "custom_title": "AATL - 刀剑乱舞自动化助手",
   "Github": "https://github.com/NotZoruak/AATL",
@@ -72,18 +72,20 @@
       "name": "地下城",
       "entry": "Underground",
       "default_check": false,
-      "repeatable": false,
-      "repeat_count": 0,
+      "repeatable": true,
+      "repeat_count": 1,
       "option": [
         "U_重伤处理",
         "U_选择部队",
         "U_选择阵形",
+        "U_每轮回本丸",
         "U_换队长",
         "U_补充刀装",
+        "U_同步远征",
         "U_动画跳过"
       ],
       "label": "地下城",
-      "description": "地下城活动自动化出阵，无限循环。\n\n- **换队长**：通过筛选装备马的刀剑来切换队长，请为且仅为需控花的刀剑男士装备马\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请保存部队记录\n- **动画跳过**：增加点击，提高挖地效率"
+      "description": "地下城活动自动化出阵。\n\n- **每轮回本丸**：打完一轮后自动返回本丸。须勾选后以下选项方可生效：同步远征、换队长、按次数运行。不勾选时无限循环挖地\n- **重伤处理**：选择修刀则在出阵前或行军中检测到重伤后自动修复；选择停止则检测到重伤后终止任务\n- **换队长**：通过筛选装备马的刀剑来切换队长，请为且仅为需控花的刀剑男士装备马\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请保存部队记录\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保地下城使用的队伍在远征任务中设置为「休息」\n- **动画跳过**：增加点击，提高挖地效率"
     },
     {
       "name": "江户城",
@@ -3765,6 +3767,28 @@
       ],
       "default_case": []
     },
+    "U_每轮回本丸": {
+      "name": "U_每轮回本丸",
+      "label": "每轮回本丸",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "U_GoHomeAfterRound": {
+              "enabled": true
+            },
+            "U_ContinueNextRound": {
+              "enabled": false
+            },
+            "U_ConfirmReturnHome": {
+              "next": []
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
     "U_动画跳过": {
       "name": "U_动画跳过",
       "label": "动画跳过",
@@ -3778,10 +3802,10 @@
                 "type": "Click",
                 "param": {
                   "target": [
-                    1078,
-                    554,
-                    103,
-                    75
+                    180,
+                    11,
+                    25,
+                    28
                   ],
                   "target_offset": [
                     6,
@@ -3985,5 +4009,6 @@
       ],
       "default_case": []
     }
-  }
+  },
+  "github": "https://github.com/NotZoruak/AATL"
 }

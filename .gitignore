@@ -33,5 +33,6 @@ gen_doc.py
 # 开发文档
 开发日志.md
 
-# 发布包
+# 发布/打包
 *.zip
+pack.sh

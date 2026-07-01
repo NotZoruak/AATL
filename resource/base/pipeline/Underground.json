@@ -20,13 +20,14 @@
             "U_IsTeamSelect",
             "U_IsSortie",
             "U_IsEventPage",
-            "U_IsMenuDirectory",
             "U_CheckHomeBrightness",
+            "U_IsMenuDirectory",
             "U_IsRepair",
             "U_IsStopOnDamage",
             "U_IsGameIcon",
             "U_IsLoginButton",
             "U_IsGameUpdatePopup",
+            "U_IsInternalReport",
             "U_FallbackWait"
         ]
     },
@@ -176,6 +177,7 @@
             }
         },
         "next": [
+            "U_CheckRoundComplete",
             "U_ClickMarching"
         ]
     },
@@ -436,7 +438,34 @@
             }
         },
         "next": [
+            "U_VerifyEventPage"
+        ],
+        "on_error": [
+            "U_DetectWhereAmI"
+        ]
+    },
+    "U_VerifyEventPage": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    427,
+                    69,
+                    388,
+                    52
+                ],
+                "template": "地下城.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "next": [
             "U_EnterUnderground"
+        ],
+        "on_error": [
+            "U_DetectWhereAmI"
         ]
     },
     "U_EnterUnderground": {
@@ -460,7 +489,8 @@
         "next": [
             "U_DetectWhereAmI"
         ],
-        "pre_delay": 100
+        "pre_delay": 500,
+        "post_delay": 800
     },
     "U_IsMenuDirectory": {
         "recognition": {
@@ -671,6 +701,96 @@
             }
         },
         "next": [
+            "U_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "U_CheckRoundComplete": {
+        "recognition": "OCR",
+        "roi": [
+            947,
+            148,
+            101,
+            34
+        ],
+        "expected": "传送凭证",
+        "action": "DoNothing",
+        "next": [
+            "U_GoHomeAfterRound",
+            "U_ContinueNextRound"
+        ]
+    },
+    "U_ContinueNextRound": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1067,
+                    558,
+                    120,
+                    79
+                ],
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": true,
+        "next": [
+            "U_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "U_GoHomeAfterRound": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1208,
+                    449,
+                    1,
+                    1
+                ],
+                "target_offset": [
+                    4,
+                    2,
+                    0,
+                    0
+                ]
+            }
+        },
+        "enabled": false,
+        "next": [
+            "U_ConfirmReturnHome"
+        ],
+        "pre_delay": 100
+    },
+
+    "U_IsInternalReport": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    569,
+                    322,
+                    138,
+                    31
+                ],
+                "template": "内番报告.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "U_DetectWhereAmI"
+        ],
+        "on_error": [
             "U_DetectWhereAmI"
         ],
         "pre_delay": 100
@@ -1099,19 +1219,29 @@
             }
         },
         "next": [
+            "U_IsPreDamage1",
+            "U_IsPreDamage2",
             "U_ConfirmEnterUnderground"
         ],
         "pre_delay": 100
     },
     "U_ConfirmEnterUnderground": {
-        "recognition": "OCR",
-        "roi": [
-            550,
-            145,
-            79,
-            32
-        ],
-        "expected": "地下",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    576,
+                    60,
+                    127,
+                    33
+                ],
+                "template": "出阵确认.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
         "action": "Click",
         "target": [
             706,
@@ -1155,27 +1285,7 @@
         "post_delay": 300,
         "pre_delay": 100
     },
-    "U_ConfirmCancelPreDamage1": {
-        "recognition": "OCR",
-        "roi": [
-            772,
-            448,
-            32,
-            40
-        ],
-        "expected": "否",
-        "action": "Click",
-        "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
-        "next": [
-            "U_DecideDamage_Pre"
-        ],
-        "pre_delay": 100
-    },
+
     "U_ConfirmCancelPreDamage2": {
         "recognition": "OCR",
         "roi": [
@@ -1257,15 +1367,16 @@
     },
     "U_DecideDamage_Pre": {
         "next": [
-            "U_ClickMenuForRepair",
+            "U_NavigateToRepair",
             "U_IsStopOnDamage"
         ]
     },
     "U_DetectAfterSortieNow": {
         "pre_delay": 0,
         "next": [
-            "U_IsMarching",
+            "U_IsMarchingDamage2",
             "U_IsFormationSelect",
+            "U_IsMarching",
             "U_FallbackWait"
         ]
     },
@@ -1295,7 +1406,7 @@
         "next": [
             "U_VerifyMenuAfterRepair"
         ],
-        "pre_delay": 100
+        "pre_delay": 500
     },
     "U_FindSlot1": {
         "recognition": "OCR",
@@ -1407,11 +1518,27 @@
                 "template": "重伤.png",
                 "green_mask": true,
                 "threshold": [
-                    0.98
+                    0.9
                 ]
             }
         },
-        "action": "Click",
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    772,
+                    448,
+                    32,
+                    40
+                ],
+                "target_offset": [
+                    4,
+                    2,
+                    0,
+                    0
+                ]
+            }
+        },
         "next": [
             "U_DecideDamage_Pre"
         ],
@@ -1612,30 +1739,7 @@
             "U_DetectWhereAmI"
         ]
     },
-    "U_VerifyLeftMenuAfterRepair": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    581,
-                    28,
-                    112,
-                    57
-                ],
-                "template": "菜单目录.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "next": [
-            "U_SortieAfterRepair"
-        ]
-    },
+
     "U_VerifyMenuAfterRepair": {
         "recognition": {
             "type": "TemplateMatch",
@@ -2004,7 +2108,7 @@
                 "template": "重伤.png",
                 "green_mask": true,
                 "threshold": [
-                    0.98
+                    0.9
                 ]
             }
         },
@@ -2017,6 +2121,13 @@
     },
     "U_StopOnDamageText": {
         "recognition": "OCR",
+        "roi": [
+            465,
+            310,
+            46,
+            24
+        ],
+        "expected": "重伤",
         "action": "DoNothing",
         "enabled": false,
         "pre_delay": 100,

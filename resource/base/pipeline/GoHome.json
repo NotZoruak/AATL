@@ -14,6 +14,7 @@
             "G_IsGameIcon",
             "G_IsLoginButton",
             "G_IsGameUpdatePopup",
+            "G_IsInternalReport",
             "G_IsMenuDirectory",
             "G_FallbackWait"
         ]
@@ -321,6 +322,32 @@
         "on_error": [
             "G_DetectWhereAmI"
         ]
+    },
+    "G_IsInternalReport": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    569,
+                    322,
+                    138,
+                    31
+                ],
+                "template": "内番报告.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "G_DetectWhereAmI"
+        ],
+        "on_error": [
+            "G_DetectWhereAmI"
+        ],
+        "pre_delay": 100
     },
     "G_FallbackWait": {
         "action": "DoNothing",

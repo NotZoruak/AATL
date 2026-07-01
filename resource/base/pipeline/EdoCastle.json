@@ -22,6 +22,7 @@
             "EC_IsGameIcon",
             "EC_IsLoginButton",
             "EC_IsGameUpdatePopup",
+            "EC_IsInternalReport",
             "EC_FallbackWait"
         ]
     },
@@ -1160,6 +1161,32 @@
         "next": [
             "EC_ClickHomeFinal"
         ]
+    },
+    "EC_IsInternalReport": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    569,
+                    322,
+                    138,
+                    31
+                ],
+                "template": "内番报告.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "EC_DetectWhereAmI"
+        ],
+        "on_error": [
+            "EC_DetectWhereAmI"
+        ],
+        "pre_delay": 100
     },
     "EC_FallbackWait": {
         "action": "DoNothing",

@@ -12,6 +12,7 @@
             "E_IsGameIcon",
             "E_IsLoginButton",
             "E_IsGameUpdatePopup",
+            "E_IsInternalReport",
             "E_FallbackWait"
         ]
     },
@@ -1330,6 +1331,32 @@
             "E_CheckTeam5",
             "E_AllTeamsBusy"
         ]
+    },
+    "E_IsInternalReport": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    569,
+                    322,
+                    138,
+                    31
+                ],
+                "template": "内番报告.png",
+                "green_mask": true,
+                "threshold": [
+                    0.98
+                ]
+            }
+        },
+        "action": "Click",
+        "next": [
+            "Expedition"
+        ],
+        "on_error": [
+            "Expedition"
+        ],
+        "pre_delay": 100
     },
     "E_FallbackWait": {
         "action": "DoNothing",
