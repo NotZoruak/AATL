@@ -1,0 +1,30 @@
+uniform vec3 iForeground;
+
+const float pi = 3.14159265358979323846;
+
+
+vec4 main(vec2 fragCoord) {
+    float radius = 0.3;
+    float lineWidth = 1.0; // en pixels
+    float glowSize = 1.0; // en pixels
+
+    float pixelSize = 1.0 / min(iResolution.x, iResolution.y);
+    lineWidth *= pixelSize;
+    glowSize *= pixelSize;
+    glowSize *= 2.0;
+
+    vec2 uv = (fragCoord.xy / iResolution.xy) - 0.5;
+    uv.x *= iResolution.x / iResolution.y;
+
+    float len = length(uv);
+    float angle = atan(uv.y, uv.x);
+
+    // Garde le fallOff pour l'animation mais n'affecte pas la largeur de la ligne
+    float fallOff = fract(-0.5 * (angle / pi) - iTime * 0.5);
+
+    // Garde une largeur de ligne constante
+    float color = smoothstep(pixelSize, 0.0, abs(radius - len) - lineWidth) * fallOff;
+    color += smoothstep(glowSize, 0.0, abs(radius - len) - lineWidth) * fallOff * 0.5;
+
+    return vec4(color) * vec4(iForeground, iAlpha);
+}

@@ -53,6 +53,7 @@
             }
         },
         "action": "Click",
+        "timeout": 3000,
         "pre_delay": 100,
         "next": [
             "U_IsAnnouncementPopup"
@@ -108,6 +109,7 @@
             1,
             1
         ],
+        "timeout": 3000,
         "pre_delay": 1000,
         "next": [
             "U_IsLoginReward"
@@ -673,7 +675,9 @@
             }
         },
         "enabled": false,
-        "action": "DoNothing"
+        "next": [
+            "U_LogStopOnDamageRepair"
+        ]
     },
     "U_IsGameIcon": {
         "recognition": {
@@ -1324,10 +1328,11 @@
             }
         },
         "on_error": [
-            "U_PostClickMenuHub"
+            "U_DetectWhereAmI"
         ],
         "next": [
-            "U_VerifyMenuClosed"
+            "U_VerifyMenuClosed",
+            "U_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
@@ -1622,16 +1627,37 @@
         ]
     },
     "U_IsMarchingDamage2": {
-        "recognition": "OCR",
-        "roi": [
-            469,
-            297,
-            49,
-            26
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    229,
+                    116,
+                    90,
+                    569
+                ],
+                "template": "重伤.png",
+                "green_mask": true,
+                "threshold": [
+                    0.85
+                ]
+            }
+        },
+        "action": "Click",
+        "target": [
+            763,
+            446,
+            48,
+            44
         ],
-        "expected": "重伤",
+        "target_offset": [
+            4,
+            2,
+            0,
+            0
+        ],
         "next": [
-            "U_ConfirmCancelMarchingDamage2"
+            "U_LogMarchingDamage2"
         ]
     },
     "U_IsPreDamage1": {
@@ -1669,7 +1695,7 @@
             }
         },
         "next": [
-            "U_DecideDamage_Pre"
+            "U_LogPreDamage1"
         ],
         "pre_delay": 100,
         "enabled": false
@@ -1684,7 +1710,7 @@
         ],
         "expected": "重伤",
         "next": [
-            "U_ConfirmCancelPreDamage2"
+            "U_LogPreDamage2"
         ],
         "enabled": false
     },
@@ -2036,9 +2062,21 @@
             0
         ],
         "next": [
-            "U_DirAfterRepair"
+            "U_LogRepairDone"
         ],
         "pre_delay": 100
+    },
+    "U_LogRepairDone": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DamageLogAction",
+            "custom_action_param": {
+                "message": "[重伤检测] 修复完成"
+            }
+        },
+        "next": [
+            "U_DirAfterRepair"
+        ]
     },
     "U_ConfirmRepair": {
         "action": {
@@ -2242,11 +2280,10 @@
                 ]
             }
         },
-        "action": "DoNothing",
         "enabled": false,
         "pre_delay": 100,
-        "on_error": [
-            "U_DetectAfterSortieNow"
+        "next": [
+            "U_LogStopOnDamage"
         ]
     },
     "U_StopOnDamageText": {
@@ -2258,11 +2295,73 @@
             24
         ],
         "expected": "重伤",
-        "action": "DoNothing",
         "enabled": false,
         "pre_delay": 100,
-        "on_error": [
-            "U_DetectAfterSortieNow"
+        "next": [
+            "U_LogStopOnDamageText"
         ]
+    },
+    "U_LogPreDamage1": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DamageLogAction",
+            "custom_action_param": {
+                "message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"
+            }
+        },
+        "next": [
+            "U_DecideDamage_Pre"
+        ]
+    },
+    "U_LogPreDamage2": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DamageLogAction",
+            "custom_action_param": {
+                "message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"
+            }
+        },
+        "next": [
+            "U_ConfirmCancelPreDamage2"
+        ]
+    },
+    "U_LogMarchingDamage2": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DamageLogAction",
+            "custom_action_param": {
+                "message": "[重伤检测] 检测到刀剑男士重伤，撤退撤退"
+            }
+        },
+        "next": [
+            "U_ReturnHomeAfterMarchDamage"
+        ]
+    },
+    "U_LogStopOnDamage": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DamageLogAction",
+            "custom_action_param": {
+                "message": "[重伤检测] 检测到刀剑男士重伤，任务终止"
+            }
+        }
+    },
+    "U_LogStopOnDamageText": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DamageLogAction",
+            "custom_action_param": {
+                "message": "[重伤检测] 检测到刀剑男士重伤，任务终止"
+            }
+        }
+    },
+    "U_LogStopOnDamageRepair": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DamageLogAction",
+            "custom_action_param": {
+                "message": "[重伤检测] 检测到刀剑男士重伤，任务终止"
+            }
+        }
     }
 }

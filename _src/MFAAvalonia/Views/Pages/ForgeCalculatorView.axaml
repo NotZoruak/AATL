@@ -1,0 +1,215 @@
+<UserControl
+    d:DesignHeight="700"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.Pages.ForgeCalculatorView"
+    x:DataType="pages:ForgeCalculatorViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:MFAAvalonia.ViewModels.Pages"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fluent="clr-namespace:FluentIcons.Avalonia.Fluent.Markup;assembly=FluentIcons.Avalonia.Fluent">
+
+    <Design.DataContext>
+        <pages:ForgeCalculatorViewModel />
+    </Design.DataContext>
+
+    <ScrollViewer>
+        <Grid RowDefinitions="Auto,*" Margin="16,12">
+
+            <StackPanel Spacing="16" Grid.Row="0">
+
+                <!-- 标题 -->
+                <TextBlock Text="限锻资源计算器" FontSize="22" FontWeight="Bold" />
+
+                <!-- 识别屏幕按钮 -->
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <Button Command="{Binding RecognizeScreenCommand}"
+                            Padding="16,8"
+                            Classes="Accent">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <fluent:FluentIcon Icon="Camera" IconSize="Size16" IconVariant="Regular" />
+                            <TextBlock FontSize="14" VerticalAlignment="Center" Text="识别屏幕" />
+                        </StackPanel>
+                    </Button>
+                    <TextBlock Text="?" FontSize="13" VerticalAlignment="Center"
+                               Foreground="{DynamicResource SukiLowText}"
+                               ToolTip.Tip="请使游戏位于[锻刀资源投入]页面" />
+                </StackPanel>
+
+                <!-- 锻刀公式 -->
+                <Border Background="{DynamicResource SukiCardBackground}"
+                        CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="锻刀公式（手动输入）" FontWeight="Bold" FontSize="15" />
+                        <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto,Auto">
+                            <TextBlock Text="木炭" Grid.Column="0" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding RecipeCharcoal}" Grid.Column="0" Grid.Row="1"
+                                           Minimum="0" Maximum="9999" Margin="4,0" />
+                            <TextBlock Text="玉钢" Grid.Column="1" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding RecipeSteel}" Grid.Column="1" Grid.Row="1"
+                                           Minimum="0" Maximum="9999" Margin="4,0" />
+                            <TextBlock Text="冷却材" Grid.Column="2" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding RecipeCoolant}" Grid.Column="2" Grid.Row="1"
+                                           Minimum="0" Maximum="9999" Margin="4,0" />
+                            <TextBlock Text="砥石" Grid.Column="3" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding RecipeWhetstone}" Grid.Column="3" Grid.Row="1"
+                                           Minimum="0" Maximum="9999" Margin="4,0" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- 现有积分（手动） -->
+                <Border Background="{DynamicResource SukiCardBackground}"
+                        CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="现有积分（手动输入）" FontWeight="Bold" FontSize="15" />
+                        <NumericUpDown Value="{Binding CurrentScore}"
+                                       Minimum="0" Maximum="99999" Width="200" />
+                    </StackPanel>
+                </Border>
+
+                <!-- 现有资源 -->
+                <Border Background="{DynamicResource SukiCardBackground}"
+                        CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="现有资源" FontWeight="Bold" FontSize="15" />
+                        <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto,Auto">
+                            <TextBlock Text="木炭" Grid.Column="0" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding CurrentCharcoal}" Grid.Column="0" Grid.Row="1"
+                                           Minimum="0" Maximum="9999999" Margin="4,0" />
+                            <TextBlock Text="玉钢" Grid.Column="1" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding CurrentSteel}" Grid.Column="1" Grid.Row="1"
+                                           Minimum="0" Maximum="9999999" Margin="4,0" />
+                            <TextBlock Text="冷却材" Grid.Column="2" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding CurrentCoolant}" Grid.Column="2" Grid.Row="1"
+                                           Minimum="0" Maximum="9999999" Margin="4,0" />
+                            <TextBlock Text="砥石" Grid.Column="3" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding CurrentWhetstone}" Grid.Column="3" Grid.Row="1"
+                                           Minimum="0" Maximum="9999999" Margin="4,0" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- 现有御札 -->
+                <Border Background="{DynamicResource SukiCardBackground}"
+                        CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="现有御札" FontWeight="Bold" FontSize="15" />
+                        <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto,Auto">
+                            <TextBlock Text="梅 (10分)" Grid.Column="0" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding CurrentPlum}" Grid.Column="0" Grid.Row="1"
+                                           Minimum="0" Maximum="9999" Margin="4,0" />
+                            <TextBlock Text="竹 (15分)" Grid.Column="1" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding CurrentBamboo}" Grid.Column="1" Grid.Row="1"
+                                           Minimum="0" Maximum="9999" Margin="4,0" />
+                            <TextBlock Text="松 (20分)" Grid.Column="2" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding CurrentPine}" Grid.Column="2" Grid.Row="1"
+                                           Minimum="0" Maximum="9999" Margin="4,0" />
+                            <TextBlock Text="富士 (60分)" Grid.Column="3" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding CurrentFuji}" Grid.Column="3" Grid.Row="1"
+                                           Minimum="0" Maximum="9999" Margin="4,0" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- 现有道具 -->
+                <Border Background="{DynamicResource SukiCardBackground}"
+                        CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="现有道具" FontWeight="Bold" FontSize="15" />
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto">
+                            <TextBlock Text="委托符" Grid.Column="0" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding CurrentPermits}" Grid.Column="0" Grid.Row="1"
+                                           Minimum="0" Maximum="9999" Margin="8,0" Width="200" />
+                            <TextBlock Text="加速符" Grid.Column="1" Grid.Row="0"
+                                       HorizontalAlignment="Center" Margin="0,0,0,4" />
+                            <NumericUpDown Value="{Binding CurrentSpeedups}" Grid.Column="1" Grid.Row="1"
+                                           Minimum="0" Maximum="9999" Margin="8,0" Width="200" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- 操作按钮 -->
+                <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center">
+                    <Button Command="{Binding CalculateCommand}"
+                            Padding="24,10"
+                            Classes="Accent">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <fluent:FluentIcon Icon="EqualCircle" IconSize="Size16" IconVariant="Regular" />
+                            <TextBlock Text="计算" FontSize="15" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding ResetCommand}"
+                            Padding="24,10">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <fluent:FluentIcon Icon="ArrowReset" IconSize="Size16" IconVariant="Regular" />
+                            <TextBlock Text="重置" FontSize="15" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+            </StackPanel>
+
+            <!-- 结果区 -->
+            <Border Grid.Row="1"
+                    Background="{DynamicResource SukiCardBackground}"
+                    CornerRadius="8" Padding="16"
+                    Margin="0,16,0,0">
+                <StackPanel Spacing="10">
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <TextBlock Text="计算结果" FontWeight="Bold" FontSize="16" />
+                        <TextBlock Text="?" FontSize="13" VerticalAlignment="Center"
+                                   Foreground="{DynamicResource SukiLowText}"
+                                   ToolTip.Tip="如果计算结果全是 0，表示现有资源已足够一次限锻" />
+                    </StackPanel>
+
+                    <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto,Auto">
+                        <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+                            <TextBlock Text="仍需木炭" FontSize="13" Foreground="{DynamicResource SukiLowText}" />
+                            <TextBlock Text="{Binding NeedCharcoal}" FontSize="20" FontWeight="Bold" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center">
+                            <TextBlock Text="仍需玉钢" FontSize="13" Foreground="{DynamicResource SukiLowText}" />
+                            <TextBlock Text="{Binding NeedSteel}" FontSize="20" FontWeight="Bold" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center">
+                            <TextBlock Text="仍需冷却材" FontSize="13" Foreground="{DynamicResource SukiLowText}" />
+                            <TextBlock Text="{Binding NeedCoolant}" FontSize="20" FontWeight="Bold" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center">
+                            <TextBlock Text="仍需砥石" FontSize="13" Foreground="{DynamicResource SukiLowText}" />
+                            <TextBlock Text="{Binding NeedWhetstone}" FontSize="20" FontWeight="Bold" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto" Margin="0,12,0,0">
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                            <TextBlock Text="仍需委托符" FontSize="13" Foreground="{DynamicResource SukiLowText}" />
+                            <TextBlock Text="{Binding NeedPermits}" FontSize="20" FontWeight="Bold" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                            <TextBlock Text="仍需加速符" FontSize="13" Foreground="{DynamicResource SukiLowText}" />
+                            <TextBlock Text="{Binding NeedSpeedups}" FontSize="20" FontWeight="Bold" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>

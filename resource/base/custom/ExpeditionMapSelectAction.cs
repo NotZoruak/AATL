@@ -20,7 +20,7 @@ public class ExpeditionMapSelectAction : IMaaCustomAction
             string teamLabel = TeamToLabel(team);
 
             // 读取实例配置文件（默认使用当前激活的实例）
-            string instancesDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config", "instances");
+            string instancesDir = AppPaths.InstancesDirectory;
             if (!Directory.Exists(instancesDir))
             {
                 LoggerHelper.Error($"[ExpeditionMapSelect] 实例目录不存在: {instancesDir}");
@@ -28,7 +28,7 @@ public class ExpeditionMapSelectAction : IMaaCustomAction
             }
 
             // 读取 appsettings.json 获取最后激活的实例名
-            string appSettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
+            string appSettingsPath = AppPaths.GlobalConfigPath;
             string instanceName = "default";
             if (File.Exists(appSettingsPath))
             {

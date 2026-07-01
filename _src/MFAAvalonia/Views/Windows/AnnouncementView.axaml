@@ -1,0 +1,115 @@
+﻿<suki:SukiWindow
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:suki="https://github.com/kikipoulet/SukiUI"
+    xmlns:markup="https://codewf.com"
+    Height="600"
+    Width="800"
+    x:DataType="windows:AnnouncementViewModel"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:full="https://github.com/whistyun/Markdown.Avalonia"
+    xmlns:windows="clr-namespace:MFAAvalonia.ViewModels.Windows"
+    xmlns:converters="clr-namespace:MFAAvalonia.Helper.Converters"
+    xmlns:type="clr-namespace:MFAAvalonia.Helper.ValueType"
+    xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBindingAva"
+    xmlns:mdxaml="https://github.com/whistyun/Markdown.Avalonia.Tight"
+    xmlns:extensions="clr-namespace:MFAAvalonia.Extensions"
+    WindowStartupLocation="CenterScreen"
+    Title="{markup:I18n {x:Static helper:LangKeys.Announcement}}"
+    mc:Ignorable="d"
+    d:DesignWidth="800"
+    d:DesignHeight="450" Icon="{Binding Source={x:Static helper:IconHelper.WindowIcon}}"
+    x:Class="MFAAvalonia.Views.Windows.AnnouncementView">
+    <suki:SukiWindow.Resources>
+    </suki:SukiWindow.Resources>
+    <suki:SukiWindow.LogoContent>
+        <Image
+            Height="25"
+            Source="{x:Static helper:IconHelper.Icon}"
+            Stretch="Uniform"
+            Width="25" />
+    </suki:SukiWindow.LogoContent>
+    <LayoutTransformControl LayoutTransform="{Binding ScaleTransform, Source={x:Static helper:FontService.Instance}}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" /> <!-- 调整左侧宽度 -->
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" /> <!-- 调整左侧宽度 -->
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" /> <!-- 占满全部高度 -->
+                    </Grid.RowDefinitions>
+                    <ListBox
+                        Grid.Row="0" IsVisible="{Binding '!IsLoading' }"
+                        ItemsSource="{Binding AnnouncementItems}"
+                        SelectedItem="{Binding SelectedAnnouncement}"
+                        SelectionMode="Single"
+                        Margin="5">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Text="{Binding Title}"
+                                    Margin="5"
+                                    VerticalAlignment="Center"
+                                    TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+                <!-- 加载指示器 -->
+                <suki:Loading Grid.Column="0" Grid.ColumnSpan="2"
+                              VerticalAlignment="Center" HorizontalAlignment="Center" IsVisible="{Binding IsLoading}" />
+
+                <Grid Grid.Column="1">
+                    <!-- Markdown 内容 -->
+                    <full:MarkdownScrollViewer
+                        Focusable="True" x:Name="Viewer"
+                        Margin="10,0,10,0" EnableVirtualization="True"
+                        IsVisible="{Binding !IsLoading}"
+                        Markdown="{Binding AnnouncementContent, Mode=OneWay}">
+                        <full:MarkdownScrollViewer.Engine>
+                            <extensions:MarkdownExtension />
+                        </full:MarkdownScrollViewer.Engine>
+                        <full:MarkdownScrollViewer.Plugins>
+                            <StaticResource ResourceKey="MdXamlPlugin" />
+                        </full:MarkdownScrollViewer.Plugins>
+                        <full:MarkdownScrollViewer.Styles>
+                            <StyleInclude Source="avares://MFAAvalonia.Core/Assets/Style/MdXamlStyles.axaml" />
+                        </full:MarkdownScrollViewer.Styles>
+                    </full:MarkdownScrollViewer>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Control Grid.Column="0"></Control>
+                <Button Grid.Column="1"
+                        Click="Close"
+                        Content="{markup:I18n {x:Static helper:LangKeys.Confirm}}"
+                        Height="50"
+                        Margin="6"
+                        MaxWidth="200" />
+                <CheckBox Grid.Column="2"
+                          Content="{markup:I18n {x:Static helper:LangKeys.ShowDisclaimerNoMore}}"
+                          Height="30"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding DoNotRemindThisAnnouncementAgain}"
+                          Margin="6"
+                          VerticalContentAlignment="Center" />
+            </Grid>
+        </Grid>
+    </LayoutTransformControl>
+</suki:SukiWindow>

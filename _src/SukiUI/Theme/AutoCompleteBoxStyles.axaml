@@ -1,0 +1,131 @@
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:suki="https://github.com/kikipoulet/SukiUI"
+        xmlns:animations="clr-namespace:SukiUI.Animations">
+    <Design.PreviewWith>
+        <Border Width="300"
+                Padding="20"
+                Background="{DynamicResource SukiBackground}">
+            <StackPanel>
+                <AutoCompleteBox Height="28"
+                                 ItemsSource="{Binding Items}"
+                                 FilterMode="Contains" />
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="AutoCompleteBox">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="MinWidth" Value="100" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiControlBorderBrush}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource SmallCornerRadius}" />
+        <Setter Property="Background" Value="{DynamicResource SukiBackground}" />
+        <Setter Property="Padding" Value="6" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Border Name="border" DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
+                            Padding="{TemplateBinding Padding}" BorderBrush="Transparent" BorderThickness="0"
+                            Classes="Discrete">
+                       
+                        <Border.Transitions>
+                            <Transitions>
+                                <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+                            </Transitions>
+                        </Border.Transitions>
+                        <TextBox Name="PART_TextBox" suki:TextBoxExtensions.AddDeleteButton="True"
+                                 BorderBrush="{TemplateBinding BorderBrush}"
+                                 BorderThickness="{TemplateBinding BorderThickness}" Height="{TemplateBinding Height}"
+                                 CornerRadius="{TemplateBinding CornerRadius}"
+                                 Foreground="{DynamicResource SukiText}"
+                                 Watermark="{TemplateBinding Watermark}" />
+                    </Border>
+                  
+                    <Popup Name="PART_Popup"
+                           MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                           MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                           IsLightDismissEnabled="True"
+                           PlacementTarget="{TemplateBinding}">
+                        <LayoutTransformControl Name="PART_LayoutTransform" RenderTransformOrigin="50%, 0%"
+                                                Opacity="0">
+                            <Border Margin="0,-15,0,0" Padding="5,10,5,5">
+                                <Panel>
+                                    <Border Margin="0,10,0,0"
+                                            Background="{DynamicResource SukiPopupBackground}"
+                                            BorderBrush="{DynamicResource SukiMenuBorderBrush}"
+                                            BorderThickness="1"
+                                            BoxShadow="{DynamicResource SukiSmallPopupShadow}"
+                                            CornerRadius="{DynamicResource SmallCornerRadius}">
+                                        <Panel Background="{DynamicResource PopupGradientBrush}">
+                                            <suki:GlassCard Margin="-1"
+                                                            CornerRadius="{DynamicResource SmallCornerRadius}" />
+                                            <ListBox Name="PART_SelectingItemsControl"
+                                                     Background="Transparent"
+                                                     BorderThickness="0"
+                                                     Foreground="{DynamicResource SukiText}"
+                                                     ItemTemplate="{TemplateBinding ItemTemplate}"
+                                                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                                     ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                                        </Panel>
+                                    </Border>
+                                </Panel>
+                            </Border>
+                        </LayoutTransformControl>
+                    </Popup>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+
+        <!-- 将交互样式移到 ControlTheme 内部 -->
+
+
+    </Style>
+    <Style Selector="AutoCompleteBox:pointerover /template/ suki|GlassCard#border">
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiLightBorderBrush}" />
+    </Style>
+
+    <Style Selector="AutoCompleteBox:focus /template/ suki|GlassCard#border">
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiPrimaryColor}" />
+    </Style>
+
+    <Style Selector="AutoCompleteBox:disabled /template/ suki|GlassCard#border">
+        <Setter Property="Opacity" Value="{DynamicResource ThemeDisabledOpacity}" />
+    </Style>
+
+    <!-- 下拉框动画 -->
+    <Style Selector="AutoCompleteBox[IsDropDownOpen=True] /template/ LayoutTransformControl#PART_LayoutTransform">
+        <Style.Animations>
+            <Animation FillMode="Forward" Duration="0:0:0.4">
+                <Animation.Easing>
+                    <animations:SukiEaseOutBack />
+                </Animation.Easing>
+                <KeyFrame Cue="0%">
+                    <Setter Property="ScaleTransform.ScaleY" Value="0.72" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="ScaleTransform.ScaleY" Value="1" />
+                </KeyFrame>
+            </Animation>
+
+            <Animation FillMode="Forward" Duration="0:0:0.4">
+                <Animation.Easing>
+                    <animations:SukiEaseOutBack BounceIntensity="Soft" />
+                </Animation.Easing>
+                <KeyFrame Cue="0%">
+                    <Setter Property="ScaleTransform.ScaleX" Value="0.92" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="ScaleTransform.ScaleX" Value="1" />
+                </KeyFrame>
+            </Animation>
+
+            <Animation FillMode="Forward" Duration="0:0:0.35">
+                <KeyFrame Cue="0%">
+                    <Setter Property="Opacity" Value="0" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="Opacity" Value="1" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+</Styles>

@@ -1,0 +1,187 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:content="clr-namespace:SukiUI.Content"
+                    xmlns:converters="https://github.com/kikipoulet/SukiUI"
+                    xmlns:suki="clr-namespace:SukiUI.Controls">
+    <Design.PreviewWith>
+        <suki:SukiSideMenu>
+            <suki:SukiSideMenuItem Header="Header">
+                <suki:SukiSideMenuItem.Icon>
+                    <PathIcon Width="13"
+                              Height="13"
+                              Data="{x:Static content:Icons.Cross}" />
+                </suki:SukiSideMenuItem.Icon>
+
+            </suki:SukiSideMenuItem>
+            <suki:SukiSideMenuItem Header="Header">
+                <suki:SukiSideMenuItem.Icon>
+                    <PathIcon Width="13"
+                              Height="13"
+                              Data="{x:Static content:Icons.Cross}" />
+                </suki:SukiSideMenuItem.Icon>
+                <Grid />
+            </suki:SukiSideMenuItem>
+        </suki:SukiSideMenu>
+    </Design.PreviewWith>
+    <ControlTheme x:Key="SukiSideMenuItemStyle" TargetType="suki:SukiSideMenuItem">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <DockPanel>
+
+                    <Panel DockPanel.Dock="Bottom"
+                           IsVisible="{Binding IsMenuExpanded, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type suki:SukiSideMenu}}}">
+                        <ItemsPresenter Name="PART_ItemsPresenter"
+                                        Margin="20,0,0,0"
+                                        IsVisible="{TemplateBinding IsExpanded}"
+                                        ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    </Panel>
+                    <Border Name="PART_Border"
+                            Margin="3 ,2,3,2"
+                            Padding="8,8,8,8"
+                            Background="{DynamicResource SukiPrimaryColor0}"
+                            CornerRadius="{DynamicResource MiniCornerRadius}">
+
+                        <Border.Transitions>
+                            <Transitions>
+                                <DoubleTransition Property="Width"
+                                                  Duration="0:0:0.35"
+                                                  Easing="CubicEaseInOut" />
+                                <DoubleTransition Property="MaxHeight" Duration="0:0:1">
+                                    <DoubleTransition.Easing>CubicEaseInOut</DoubleTransition.Easing>
+                                </DoubleTransition>
+                                <BrushTransition Property="Background" Duration="0:0:0.35" />
+                                <ThicknessTransition Property="Padding" Duration="0:0:0.35">
+                                    <ThicknessTransition.Easing>CubicEaseInOut</ThicknessTransition.Easing>
+                                </ThicknessTransition>
+                            </Transitions>
+                        </Border.Transitions>
+                        <Panel Name="PART_Panel" HorizontalAlignment="Left">
+                            <Border Name="PART_SelectionIndicator"
+                                    Width="2"
+                                    HorizontalAlignment="Left"
+                                    Height="14"
+                                    Margin="-8,0,0,0"
+                                    Background="{DynamicResource SukiPrimaryColor75}"
+                                    CornerRadius="2"
+                                    Opacity="0" />
+                            <Grid Name="PART_NormalDisplay">
+                                <Grid.Styles>
+                                    <Style Selector="ToggleButton[IsChecked=True]">
+                                        <Setter Property="RenderTransform" Value="rotate(-180deg)" />
+                                    </Style>
+                                </Grid.Styles>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <ContentControl Name="PART_Icon" Grid.Column="0"
+                                                Width="24"
+                                                Height="24" HorizontalAlignment="Center"
+                                                Content="{TemplateBinding Icon}"
+                                                DockPanel.Dock="Left">
+                                    <ContentControl.Transitions>
+                                        <Transitions>
+                                            <TransformOperationsTransition Property="RenderTransform"
+                                                                           Duration="0:0:0.2" />
+                                            <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+                                        </Transitions>
+                                    </ContentControl.Transitions>
+                                </ContentControl>
+                                <Viewbox HorizontalAlignment="Left" StretchDirection="DownOnly" Grid.Column="1">
+                                    <TextBlock Name="PART_Header"
+                                               Margin="15,0"
+                                               VerticalAlignment="Center"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               IsVisible="{Binding IsMenuExpanded, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type suki:SukiSideMenu}}}"
+                                               Text="{TemplateBinding Header}" />
+                                </Viewbox>
+                                <ToggleButton Grid.Column="2" Margin="20,0,-33,0"
+                                              HorizontalContentAlignment="Center"
+                                              VerticalContentAlignment="Center" Name="PART_ExpandButton"
+                                              Classes="CircleGlass"
+                                              Focusable="False"
+                                              IsChecked="{TemplateBinding IsExpanded,
+                                                                          Mode=TwoWay}"
+                                              IsVisible="{TemplateBinding ItemCount}">
+                                    <ToggleButton.Transitions>
+                                        <Transitions>
+                                            <TransformOperationsTransition Property="RenderTransform"
+                                                                           Duration="0:0:0.3" />
+                                        </Transitions>
+                                    </ToggleButton.Transitions>
+                                    <PathIcon Width="10"
+                                              Height="10"
+                                              Margin="0,2,0,0"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Data="{x:Static content:Icons.ChevronDown}"
+                                              Foreground="{DynamicResource SukiLowText}" />
+
+                                </ToggleButton>
+                            </Grid>
+                            <!-- <ContentPresenter Name="PART_AltDisplay"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />-->
+
+
+                        </Panel>
+                    </Border>
+
+                </DockPanel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^.Compact /template/ Border#PART_Border">
+            <Setter Property="Padding" Value="30,10,15,10" />
+            <Setter Property="CornerRadius" Value="12" />
+        </Style>
+        <Style Selector="^:pointerover">
+            <Style Selector="^ /template/ Border#PART_Border">
+                <Setter Property="Background" Value="{DynamicResource SukiPrimaryColor5}" />
+                <Setter Property="Cursor" Value="Hand" />
+            </Style>
+        </Style>
+        <Style Selector="^[IsTopMenuExpanded=False] /template/ ToggleButton#PART_ExpandButton">
+            <Setter Property="Opacity" Value="0" />
+        </Style>
+        <Style Selector="^[IsSelected=True] /template/ Border#PART_SelectionIndicator">
+            <Setter Property="Opacity" Value="1" />
+            <Setter Property="Margin" Value="-8,0,0,0" />
+        </Style>
+        <Style Selector="^[IsSelected=True]">
+            <Style Selector="^ /template/ Border#PART_Border">
+                <Setter Property="Background" Value="{DynamicResource SukiPrimaryColor10}" />
+            </Style>
+            <Style Selector="^ /template/ TextBlock#PART_Header">
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Foreground" Value="{DynamicResource SukiPrimaryColor}" />
+            </Style>
+            <Style Selector="^[IsContentMovable=True]">
+                <Style Selector="^[IsTopMenuExpanded=True] /template/ Border#PART_Border">
+                    <Setter Property="Padding" Value="-10,8,15,8" />
+                </Style>
+                <Style Selector="^.Compact[IsTopMenuExpanded=True] /template/ Border#PART_Border">
+                    <Setter Property="Padding" Value="-10,8,15,8" />
+                </Style>
+                <Style Selector="^[IsTopMenuExpanded=True] /template/ ContentControl#PART_Icon">
+                    <Setter Property="Opacity" Value="0" />
+                </Style>
+                <Style Selector="^[IsTopMenuExpanded=False] /template/ ContentControl#PART_Icon">
+                    <Setter Property="Foreground" Value="{DynamicResource SukiPrimaryColor}" />
+                    <Setter Property="RenderTransform">
+                        <ScaleTransform ScaleX="1.12" ScaleY="1.12" />
+                    </Setter>
+                </Style>
+            </Style>
+            <Style Selector="^[IsContentMovable=False]">
+                <Style Selector="^ /template/ ContentControl#PART_Icon">
+                    <Setter Property="Foreground" Value="{DynamicResource SukiPrimaryColor}" />
+                </Style>
+            </Style>
+        </Style>
+        <Setter Property="FontSize" Value="14" />
+    </ControlTheme>
+    <ControlTheme x:Key="{x:Type suki:SukiSideMenuItem}"
+                  BasedOn="{StaticResource SukiSideMenuItemStyle}"
+                  TargetType="suki:SukiSideMenuItem" />
+</ResourceDictionary>

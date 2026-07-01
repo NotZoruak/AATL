@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <ApplicationIcon>logo.ico</ApplicationIcon>
+        <AssemblyVersion>1.1.0</AssemblyVersion>
+        <FileVersion>1.1.0</FileVersion>
+				<DebugSymbols>False</DebugSymbols>
+		<DebugType>None</DebugType>
+    </PropertyGroup>
+	
+    <PropertyGroup>
+        <PublishReadyToRun>false</PublishReadyToRun>
+        <PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>false</SelfContained>
+    </PropertyGroup>
+
+	<PropertyGroup>
+		<InvariantGlobalization>true</InvariantGlobalization> <!-- 移除全球化资源 -->
+		<IncludeNativeLibrariesForSelfExtract>false</IncludeNativeLibrariesForSelfExtract>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Packaging.Targets">
+	    <Version>0.1.232</Version>
+	  </PackageReference>
+	</ItemGroup>
+</Project>

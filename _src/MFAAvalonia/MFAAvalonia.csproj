@@ -1,0 +1,169 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <AssemblyName>MFAAvalonia.Core</AssemblyName>
+        <Nullable>annotations</Nullable>
+        <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' == ''">win-x64;linux-x64;osx-x64;win-arm64;linux-arm64;osx-arm64</RuntimeIdentifiers>
+        <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' != ''">$(RuntimeIdentifier)</RuntimeIdentifiers>
+        <MaaFrameworkPlatform>$(RuntimeIdentifier)</MaaFrameworkPlatform>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <LangVersion>14</LangVersion>
+        <TargetFramework>net10.0</TargetFramework>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <DebugType>none</DebugType>
+        <DebugSymbols>false</DebugSymbols>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Folder Include="Assets\Sound\" />
+        <AvaloniaResource Include="Assets\**" />
+        <Folder Include="resource\base\pipeline\" />
+        <AvaloniaResource Remove="%(_MaaFrameworkRuntime.DestinationFolder)AnyCPU\**" />
+    </ItemGroup>
+
+
+    <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
+        <PackageReference Include="SharpDX" Version="4.2.0" />
+        <PackageReference Include="SharpDX.Direct3D12" Version="4.2.0" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <NoWarn>NU1701;NU1510</NoWarn>
+    </PropertyGroup>
+
+    <!-- Version -->
+    <PropertyGroup>
+        <ApplicationRevision>0</ApplicationRevision>
+        <ApplicationVersion>2.12.0</ApplicationVersion>
+        <Version>1.1</Version>
+        <FileVersion>2.12.0</FileVersion>
+        <AssemblyVersion>2.12.0</AssemblyVersion>
+        <InformationalVersion>0.0.1</InformationalVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.3.12" />
+        <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.3.12" />
+        <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.3.12" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.12" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.12" />
+        <PackageReference Include="Avalonia.Themes.Simple" Version="11.3.12" />
+        <PackageReference Include="AvaloniaEdit.TextMate" Version="11.4.1" />
+        <PackageReference Include="AvaloniaExtensions.Axaml" Version="11.3.12.1" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="Avalonia.Xaml.Interactions" Version="11.3.0.6" />
+        <PackageReference Include="Avalonia.Xaml.Interactivity" Version="11.3.0.6" />
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.12" />
+        <PackageReference Include="CalcBindingAva" Version="2.5.3" />
+        <PackageReference Include="CrossPlatformProtectedData" Version="1.0.3" />
+        <PackageReference Include="Lang.Avalonia" Version="11.3.12.1" />
+        <PackageReference Include="Maa.AgentBinary" Version="1.2.0" />
+        <PackageReference Include="Maa.Framework" Version="5.8.0" />
+        <PackageReference Include="Maa.Framework.Runtimes" Version="5.10.2" />
+        <PackageReference Include="MailKit" Version="4.14.1" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="5.0.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="10.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.1" />
+        <PackageReference Include="NETCore.Encrypt" Version="2.1.1" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+        <PackageReference Include="runtime.native.System.Net.Http" Version="4.3.1" />
+        <PackageReference Include="Semver" Version="3.0.0" />
+        <PackageReference Include="Serilog" Version="4.3.1-dev-02373" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
+        <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+        <PackageReference Include="SharpCompress" Version="0.42.1" />
+        <PackageReference Include="SharpHook" Version="7.1.1" Condition="'$(TargetFramework)' == 'net10.0'" />
+        <PackageReference Include="SkiaSharp" Version="3.119.1" />
+        <PackageReference Include="SoundFlow" Version="1.4.0" />
+        <PackageReference Include="System.Linq.Dynamic.Core" Version="1.7.1" />
+        <PackageReference Include="System.Management" Version="10.0.0" />
+        <PackageReference Include="System.Net.Http" Version="4.3.4" />
+        <PackageReference Include="System.Private.Uri" Version="4.3.2" />
+        <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="10.0.0" />
+        <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.3" />
+        <PackageReference Include="WindowsAPICodePack" Version="8.0.14" />
+
+        <ProjectReference Include="../LazyStaticGenerator/LazyStaticGenerator.csproj" OutputItemType="Analyzer" ExcludeAssets="runtime;build;native;contentfiles" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="../SukiUI/SukiUI.csproj" />
+        <ProjectReference Include="../Markdown.Avalonia/Markdown.Avalonia.csproj" />
+    </ItemGroup>
+    <PropertyGroup>
+        <LazyStaticGeneratedDir>$(BaseIntermediateOutputPath)\LazyStaticGenerated</LazyStaticGeneratedDir>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="$(LazyStaticGeneratedDir)/**/*.cs" Condition="'$(EnableLazyStaticGenerator)' == 'true'" />
+        <Compile Update="Assets\Localization\LangKeys.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>LangKeys.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Assets\Localization\Strings.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Strings.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Helper\LangKeys.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>LangKeys.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Pages\ScreenshotView.axaml.cs">
+            <DependentUpon>ScreenshotView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\UserControls\MultiInstanceEditorDialogView.axaml.cs">
+            <DependentUpon>MultiInstanceEditorDialogView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Remove="%(_MaaFrameworkRuntime.DestinationFolder)AnyCPU\**" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Update="Assets\Localization\Strings.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Strings.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <None Update="Assets\Localization\LangKeys.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>LangKeys.cs</LastGenOutput>
+        </None>
+        <None Update="Helper\LangKeys.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>LangKeys.cs</LastGenOutput>
+        </None>
+        <None Remove="resource\base\pipeline\memory_leak_test.json" />
+        <None Remove="%(_MaaFrameworkRuntime.DestinationFolder)AnyCPU\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="Assets\Localization\Strings*.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Remove="%(_MaaFrameworkRuntime.DestinationFolder)AnyCPU\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AvaloniaXaml Remove="%(_MaaFrameworkRuntime.DestinationFolder)AnyCPU\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Remove="%(_MaaFrameworkRuntime.DestinationFolder)AnyCPU\**" />
+    </ItemGroup>
+    <!-- 根据发布的目标系统，仅复制对应脚本到publish目录 -->
+</Project>

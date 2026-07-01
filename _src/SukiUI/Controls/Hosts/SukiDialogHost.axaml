@@ -1,0 +1,88 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:animations="clr-namespace:SukiUI.Animations"
+    xmlns:suki="https://github.com/kikipoulet/SukiUI"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ControlTheme TargetType="suki:SukiDialogHost" x:Key="SukiDialogHostTheme">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel Name="PART_Root">
+                    <Border
+                        Background="{DynamicResource SukiDialogBackground}"
+                        HorizontalAlignment="Stretch"
+                        IsVisible="False"
+                        Name="PART_DialogBackground"
+                        Opacity="0"
+                        VerticalAlignment="Stretch" />
+                    <ContentControl
+                        ClipToBounds="False"
+                        Content="{TemplateBinding Dialog}"
+                        HorizontalAlignment="Center"
+                        Name="PART_DialogContent"
+                        VerticalAlignment="Center">
+                        <ContentControl.Transitions>
+                            <Transitions>
+                                <ThicknessTransition Duration="0:0:0.40" Property="Margin">
+                                    <ThicknessTransition.Easing>
+                                        <!--  <CircularEaseOut /> -->
+                                        <animations:SukiEaseOutBack />
+                                    </ThicknessTransition.Easing>
+                                </ThicknessTransition>
+                                <DoubleTransition Duration="0:0:0.20" Property="Opacity" />
+                                <TransformOperationsTransition Duration="0:0:0.40" Property="RenderTransform">
+                                    <TransformOperationsTransition.Easing>
+                                        <!--  <CircularEaseOut /> -->
+                                        <animations:SukiEaseOutBack BounceIntensity="Strong" />
+                                    </TransformOperationsTransition.Easing>
+                                </TransformOperationsTransition>
+                            </Transitions>
+                        </ContentControl.Transitions>
+                    </ContentControl>
+                    <Panel.Styles>
+                        <Style Selector="suki|SukiDialogHost[IsDialogOpen=True]">
+                            <Style Selector="^ Panel#PART_Root">
+                                <Setter Property="IsHitTestVisible" Value="True" />
+                            </Style>
+                            <Style Selector="^ Border#PART_DialogBackground">
+                                <Setter Property="Opacity" Value="0.4" />
+                                <Setter Property="IsVisible" Value="True" />
+                                <Setter Property="IsHitTestVisible" Value="True" />
+                            </Style>
+                            <Style Selector="^ ContentControl#PART_DialogContent">
+                                <Setter Property="Margin" Value="0" />
+                                <Setter Property="IsVisible" Value="True" />
+                                <Setter Property="IsHitTestVisible" Value="True" />
+                                <Setter Property="RenderTransform" Value="scale(1)" />
+                            </Style>
+                        </Style>
+                        <Style Selector="suki|SukiDialogHost[IsDialogOpen=False]">
+                            <Style Selector="^ Panel#PART_Root">
+                                <Setter Property="IsHitTestVisible" Value="False" />
+                            </Style>
+                            <Style Selector="^ Border#PART_DialogBackground">
+                                <Setter Property="Opacity" Value="0" />
+                                <Setter Property="IsHitTestVisible" Value="False" />
+
+
+                                <!--  need to make isvisible to false to make tooltips work !  -->
+                                <Setter Property="IsVisible" Value="False" />
+
+
+                            </Style>
+                            <Style Selector="^ ContentControl#PART_DialogContent">
+                                <Setter Property="Opacity" Value="0" />
+                                <Setter Property="IsHitTestVisible" Value="False" />
+                                <Setter Property="RenderTransform" Value="scale(0.7)" />
+                                <Setter Property="Margin" Value="0,125,0,0" />
+                            </Style>
+                        </Style>
+                    </Panel.Styles>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+    <ControlTheme
+        BasedOn="{StaticResource SukiDialogHostTheme}"
+        TargetType="suki:SukiDialogHost"
+        x:Key="{x:Type suki:SukiDialogHost}" />
+</ResourceDictionary>

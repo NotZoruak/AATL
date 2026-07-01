@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Version>11.3.1</Version>
+    <PackageId>ColorTextBlock.Avalonia</PackageId>
+    <Authors>whistyun</Authors>
+    <Copyright>Copyright (c) 2020 whistyun</Copyright>
+    <PackageProjectUrl>https://github.com/whistyun/Markdown.Avalonia/tree/master/ColorTextBlock.Avalonia/</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <LangVersion>14</LangVersion>
+    <Nullable>enable</Nullable>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>CS0618;CS8602;CS8618;NETSDK1206;CS8524;CS8604;CS0067;CS0219;CS0612;CS8629;CS8619</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../SukiUI/SukiUI.csproj" />
+    <PackageReference Include="Avalonia" Version="11.3.12" />
+  </ItemGroup>
+
+</Project>

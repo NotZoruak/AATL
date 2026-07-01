@@ -1,0 +1,59 @@
+﻿<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.UserControls.Settings.HotKeySettingsUserControl"
+    x:DataType="pages:SettingsViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:markup="https://codewf.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:MFAAvalonia.ViewModels.Pages"
+    xmlns:suki="https://github.com/kikipoulet/SukiUI"
+    xmlns:userControls="clr-namespace:MFAAvalonia.Views.UserControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="9">
+        <TextBlock
+            FontWeight="SemiBold"
+            HorizontalAlignment="Center"
+            Text="{markup:I18n {x:Static helper:LangKeys.GlobalConfigTip}}" />
+        <suki:GlassCard Padding="25,8,25,8">
+            <StackPanel Spacing="20">
+                <DockPanel>
+                    <userControls:HotKeyEditor
+                        DockPanel.Dock="Right"
+                        Height="40"
+                        HotKey="{Binding HotKeyShowGui}"
+                        IsEnabled="{Binding EnableHotKey}"
+                        Margin="0,0,4,0"
+                        Width="205" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.HotKeyShowGui}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel>
+                    <userControls:HotKeyEditor
+                        DockPanel.Dock="Right"
+                        Height="40"
+                        HotKey="{Binding HotKeyLinkStart}"
+                        IsEnabled="{Binding EnableHotKey}"
+                        Margin="0,0,4,0"
+                        Width="205" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.HotKeyLinkStart}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
+
+        </suki:GlassCard>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,69 @@
+<suki:SukiWindow
+    Height="600"
+    MinHeight="300"
+    MinWidth="500"
+    Title="{markup:I18n {x:Static helper:LangKeys.LicenseInfo}}"
+    Width="800"
+
+    WindowStartupLocation="CenterScreen"
+    d:DesignHeight="600"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.Windows.LicenseView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:markup="https://codewf.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:suki="https://github.com/kikipoulet/SukiUI"
+    xmlns:windows="clr-namespace:MFAAvalonia.Views.Windows"
+    x:DataType="windows:LicenseView" Icon="{Binding Source={x:Static helper:IconHelper.WindowIcon}}"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <suki:SukiWindow.LogoContent>
+        <Image
+            Height="25"
+            Source="{x:Static helper:IconHelper.Icon}"
+            Stretch="Uniform"
+            Width="25" />
+    </suki:SukiWindow.LogoContent>
+    <LayoutTransformControl LayoutTransform="{Binding ScaleTransform, Source={x:Static helper:FontService.Instance}}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ScrollViewer
+                Grid.Row="0"
+                HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Auto"
+                Margin="10">
+                <TextBlock
+                    Text="{Binding LicenseContent}"
+                    TextWrapping="Wrap"
+                    FontFamily="Consolas, Courier New, monospace"
+                    FontSize="12" />
+            </ScrollViewer>
+
+            <Border
+                Grid.Row="1"
+                Background="{DynamicResource SukiBackgroundColor}"
+                Padding="12">
+                <Grid MinHeight="40" VerticalAlignment="Center">
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button
+                            Classes="Basic"
+                            Click="CopyLicense_Click"
+                            Content="{markup:I18n {x:Static helper:LangKeys.CopyToClipboard}}"
+                            Margin="0,0,12,0" />
+                        <Button
+                            Classes="Primary"
+                            Click="Close_Click"
+                            Content="{markup:I18n {x:Static helper:LangKeys.Confirm}}" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </LayoutTransformControl>
+</suki:SukiWindow>

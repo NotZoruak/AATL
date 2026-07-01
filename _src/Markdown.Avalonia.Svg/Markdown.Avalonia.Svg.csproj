@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Version>11.3.1</Version>
+    <PackageId>Markdown.Avalonia.Svg</PackageId>
+    <Authors>grifsun; whistyun</Authors>
+    <Copyright>Copyright (c) 2023 grifsun, whistyun</Copyright>
+    <PackageProjectUrl>https://github.com/whistyun/Markdown.Avalonia</PackageProjectUrl>
+    <PackageReadmeFile>Markdown.Avalonia.Svg.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Company />
+    <LangVersion>14</LangVersion>
+    <Nullable>enable</Nullable>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>CS0618;CS8602;CS8618;NETSDK1206;CS8524;CS8604;CS0067;CS0219;CS0612;CS8629;CS8619</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.3.12" />
+    <PackageReference Include="Avalonia.Skia" Version="11.3.12" />
+    <PackageReference Include="Svg.Controls.Skia.Avalonia" Version="11.3.9.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Markdown.Avalonia.Tight\Markdown.Avalonia.Tight.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<UserControl d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d"
+             x:DataType="pages:SettingsViewModel"
+             x:Class="MFAAvalonia.Views.UserControls.Settings.AboutUserControl"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+             xmlns:markup="https://codewf.com"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:suki="https://github.com/kikipoulet/SukiUI"
+             xmlns:utilities="clr-namespace:MFAAvalonia.Utilities"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:MFAAvalonia.ViewModels.Pages"
+             xmlns:full="https://github.com/whistyun/Markdown.Avalonia"
+             xmlns:extensions="clr-namespace:MFAAvalonia.Extensions"
+             xmlns:fluent="clr-namespace:FluentIcons.Avalonia.Fluent.Markup;assembly=FluentIcons.Avalonia.Fluent">
+    <StackPanel Spacing="10">
+        <!-- 项目描述 -->
+        <suki:GlassCard Padding="20,13,30,-13"
+                        IsVisible="{Binding HasResourceDescription}">
+            <suki:GroupBox>
+                <suki:GroupBox.Header>
+                    <DockPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    DockPanel.Dock="Left">
+                            <ContentControl Content="{fluent:FluentIcon Icon=BookOpen, IconSize=Size20}" />
+                            <TextBlock Text="{markup:I18n {x:Static helper:LangKeys.ProjectDescription}}"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center" />
+                            
+                        </StackPanel>
+                        <ToggleButton Name="DescriptionToggle"
+                                      IsChecked="False"
+                                      DockPanel.Dock="Right"
+                                      HorizontalAlignment="Right"
+                                      Background="Transparent"
+                                      BorderThickness="0">
+                            <Panel>
+                                <ContentControl Content="{fluent:FluentIcon Icon=ChevronDown, IconSize=Size16}"
+                                                Foreground="{DynamicResource SukiText}"
+                                                IsVisible="{Binding !IsChecked, ElementName=DescriptionToggle}" />
+                                <ContentControl Content="{fluent:FluentIcon Icon=ChevronUp, IconSize=Size16}"
+                                                Foreground="{DynamicResource SukiText}"
+                                                IsVisible="{Binding IsChecked, ElementName=DescriptionToggle}" />
+                            </Panel>
+                        </ToggleButton>
+                    </DockPanel>
+                </suki:GroupBox.Header>
+                <Border Padding="10,5"
+                        Margin="0,0,0,20"
+                        IsVisible="{Binding IsChecked, ElementName=DescriptionToggle}">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                        <full:MarkdownScrollViewer Markdown="{Binding ResourceDescription}"
+                                                   VerticalAlignment="Top">
+                            <full:MarkdownScrollViewer.Engine>
+                                <extensions:MarkdownExtension />
+                            </full:MarkdownScrollViewer.Engine>
+                            <full:MarkdownScrollViewer.Plugins>
+                                <StaticResource ResourceKey="MdXamlPlugin" />
+                            </full:MarkdownScrollViewer.Plugins>
+                            <full:MarkdownScrollViewer.Styles>
+                                <StyleInclude Source="avares://MFAAvalonia.Core/Assets/Style/MdXamlStyles.axaml" />
+                            </full:MarkdownScrollViewer.Styles>
+                        </full:MarkdownScrollViewer>
+                    </ScrollViewer>
+                </Border>
+            </suki:GroupBox>
+        </suki:GlassCard>
+        <!-- 联系方式 -->
+        <suki:GlassCard Padding="20,13,30,-13"
+                        IsVisible="{Binding HasResourceContact}">
+            <suki:GroupBox>
+                <suki:GroupBox.Header>
+                    <DockPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    DockPanel.Dock="Left">
+                            <ContentControl Content="{fluent:FluentIcon Icon=ContactCard, IconSize=Size20}" />
+                            <TextBlock Text="{markup:I18n {x:Static helper:LangKeys.ContactInfo}}"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                        <ToggleButton Name="ContactToggle"
+                                      IsChecked="False"
+                                      DockPanel.Dock="Right"
+                                      HorizontalAlignment="Right"
+                                      Background="Transparent"
+                                      BorderThickness="0">
+                            <Panel>
+                                <ContentControl Content="{fluent:FluentIcon Icon=ChevronDown, IconSize=Size16}"
+                                                Foreground="{DynamicResource SukiText}"
+                                                IsVisible="{Binding !IsChecked, ElementName=ContactToggle}" />
+                                <ContentControl Content="{fluent:FluentIcon Icon=ChevronUp, IconSize=Size16}"
+                                                Foreground="{DynamicResource SukiText}"
+                                                IsVisible="{Binding IsChecked, ElementName=ContactToggle}" />
+                            </Panel>
+                        </ToggleButton>
+                    </DockPanel>
+                </suki:GroupBox.Header>
+                <Border Padding="10,5"
+                        Margin="0,0,0,20"
+                        IsVisible="{Binding IsChecked, ElementName=ContactToggle}">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                        <full:MarkdownScrollViewer Markdown="{Binding ResourceContact}"
+                                                   VerticalAlignment="Top">
+                            <full:MarkdownScrollViewer.Engine>
+                                <extensions:MarkdownExtension />
+                            </full:MarkdownScrollViewer.Engine>
+                            <full:MarkdownScrollViewer.Plugins>
+                                <StaticResource ResourceKey="MdXamlPlugin" />
+                            </full:MarkdownScrollViewer.Plugins>
+                            <full:MarkdownScrollViewer.Styles>
+                                <StyleInclude Source="avares://MFAAvalonia.Core/Assets/Style/MdXamlStyles.axaml" />
+                            </full:MarkdownScrollViewer.Styles>
+                        </full:MarkdownScrollViewer>
+                    </ScrollViewer>
+                </Border>
+            </suki:GroupBox>
+        </suki:GlassCard>
+        <!-- 许可�? -->
+        
+        <suki:GlassCard Padding="22,8,25,8"
+                        IsVisible="{Binding HasResourceLicense}">
+            <DockPanel>
+                <Button Click="ShowLicense_Click" BorderBrush="Transparent"
+                        BorderThickness="0"
+                            Content="{fluent:FluentIcon Icon=Send,
+                                                          IconSize=Size16}"
+                        DockPanel.Dock="Right"
+                        Height="40"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,4,0"/>
+                <StackPanel HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <ContentControl Content="{fluent:FluentIcon Icon=Certificate, IconSize=Size20}" />
+                            <TextBlock Text="{markup:I18n {x:Static helper:LangKeys.LicenseInfo}}"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center" />
+                </StackPanel>
+            </DockPanel>
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,8,25,8">
+            <DockPanel>
+                <Button BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Click="DisplayAnnouncement"
+                        Content="{fluent:FluentIcon Icon=Send,
+                                                          IconSize=Size16}"
+                        DockPanel.Dock="Right"
+                        Height="40"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,4,0" />
+                <StackPanel HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="{markup:I18n {x:Static helper:LangKeys.DisplayAnnouncement}}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </DockPanel>
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,8,25,8">
+            <DockPanel>
+                <Button BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Click="ClearCache_Click"
+                        Content="{fluent:FluentIcon Icon=Send,
+                                                          IconSize=Size16}"
+                        DockPanel.Dock="Right"
+                        Height="40"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,4,0" />
+                <StackPanel HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="{markup:I18n {x:Static helper:LangKeys.ClearCache}}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </DockPanel>
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,8,25,8">
+            <DockPanel>
+                <Button BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Click="Button_OnClick"
+                        Content="{fluent:FluentIcon Icon=Send,
+                                                          IconSize=Size16}"
+                        DockPanel.Dock="Right"
+                        Height="40"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,4,0" />
+                <StackPanel HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="{markup:I18n {x:Static helper:LangKeys.ExportLog}}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </DockPanel>
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,8,25,8" IsVisible="False">
+            <DockPanel>
+                <Button BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Command="{x:Static utilities:UrlUtilities.OpenLink}"
+                        CommandParameter="{x:Static helper:MFAUrls.GitHub}"
+                        Content="{fluent:FluentIcon Icon=Send,
+                                                          IconSize=Size16}"
+                        DockPanel.Dock="Right"
+                        Height="40"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,4,0" />
+                <StackPanel HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <TextBlock FontSize="16"
+                               Margin="5,0"
+                               FontWeight="SemiBold"
+                               Text="UI"
+                               VerticalAlignment="Center" />
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="{markup:I18n {x:Static helper:LangKeys.Github}}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </DockPanel>
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,8,25,8"  IsVisible="False">
+            <DockPanel>
+                <Button BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Command="{x:Static utilities:UrlUtilities.OpenLink}"
+                        CommandParameter="{x:Static helper:MFAUrls.GitHubIssues}"
+                        Content="{fluent:FluentIcon Icon=Send,
+                                                          IconSize=Size16}"
+                        DockPanel.Dock="Right"
+                        Height="40"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,4,0" />
+                <StackPanel HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="UI"
+                               Margin="5,0"
+                               VerticalAlignment="Center" />
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="{markup:I18n {x:Static helper:LangKeys.Issue}}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </DockPanel>
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,8,25,8"
+                        IsVisible="{Binding ShowResourceIssues}">
+            <DockPanel>
+                <Button BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Command="{x:Static utilities:UrlUtilities.OpenLink}"
+                        CommandParameter="{Binding ResourceGithub}"
+                        Content="{fluent:FluentIcon Icon=Send,
+                                                          IconSize=Size16}"
+                        DockPanel.Dock="Right"
+                        Height="40"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,4,0" />
+                <StackPanel HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="{markup:I18n {x:Static helper:LangKeys.Resource}}"
+                               Margin="5,0"
+                               VerticalAlignment="Center" />
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="{markup:I18n {x:Static helper:LangKeys.Github}}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </DockPanel>
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,8,25,8"
+                        IsVisible="{Binding ShowResourceIssues}">
+            <DockPanel>
+                <Button BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Command="{x:Static utilities:UrlUtilities.OpenLink}"
+                        CommandParameter="{Binding ResourceIssues}"
+                        Content="{fluent:FluentIcon Icon=Send,
+                                                          IconSize=Size16}"
+                        DockPanel.Dock="Right"
+                        Height="40"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,4,0" />
+                <StackPanel HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="{markup:I18n {x:Static helper:LangKeys.Resource}}"
+                               Margin="5,0"
+                               VerticalAlignment="Center" />
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="{markup:I18n {x:Static helper:LangKeys.Issue}}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </DockPanel>
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,8,25,8" Name="TutorialCard">
+            <DockPanel>
+                <Button BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Click="StartTutorial_Click"
+                        Content="{fluent:FluentIcon Icon=Send,
+                                                          IconSize=Size16}"
+                        DockPanel.Dock="Right"
+                        Height="40"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,4,0" />
+                <StackPanel HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <ContentControl Content="{fluent:FluentIcon Icon=Lightbulb, IconSize=Size20}" />
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="{markup:I18n {x:Static helper:LangKeys.Tutorial}}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </DockPanel>
+        </suki:GlassCard>
+    </StackPanel>
+</UserControl>

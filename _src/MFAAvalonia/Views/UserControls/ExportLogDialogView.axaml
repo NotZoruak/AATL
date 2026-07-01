@@ -1,0 +1,171 @@
+<UserControl
+    MinWidth="520"
+    MinHeight="520"
+    d:DesignHeight="560"
+    d:DesignWidth="560"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.UserControls.ExportLogDialogView"
+    x:DataType="usersControls:ExportLogDialogViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:markup="https://codewf.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:usersControls="clr-namespace:MFAAvalonia.ViewModels.UsersControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Styles>
+        <Style Selector="TextBlock.export-title">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style Selector="TextBlock.export-caption">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Foreground" Value="{DynamicResource SukiMuteText}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <Style Selector="Border.export-section">
+            <Setter Property="Background" Value="{DynamicResource SukiCardBackground}" />
+            <Setter Property="CornerRadius" Value="14" />
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SukiBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+
+        <Style Selector="TextBlock.export-section-title">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style Selector="TextBlock.export-section-caption">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="{DynamicResource SukiMuteText}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <Style Selector="Button.export-action">
+            <Setter Property="MinWidth" Value="110" />
+            <Setter Property="MinHeight" Value="38" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Margin="14,8,14,8" RowDefinitions="Auto,*,Auto" RowSpacing="16">
+        <StackPanel Grid.Row="0" Spacing="8">
+            <TextBlock
+                Classes="export-title"
+                Text="{markup:I18n {x:Static helper:LangKeys.ExportLogDialogTitle}}" />
+            <TextBlock
+                Classes="export-caption"
+                Text="{markup:I18n {x:Static helper:LangKeys.ExportLogDialogDescription}}" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Spacing="14">
+                <Border Classes="export-section">
+                    <StackPanel Spacing="12">
+                        <TextBlock
+                            Classes="export-section-title"
+                            Text="{markup:I18n {x:Static helper:LangKeys.ExportLogDialogLogsSection}}" />
+                        <StackPanel Spacing="10">
+                            <CheckBox
+                                Content="{Binding MaaLogLabel}"
+                                IsChecked="{Binding IncludeMaaLog}" />
+                            <CheckBox
+                                Content="{Binding GuiLogLabel}"
+                                IsChecked="{Binding IncludeGuiLog}" />
+                            <CheckBox
+                                Content="{Binding CustomLogLabel}"
+                                IsChecked="{Binding IncludeCustomLog}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Classes="export-section">
+                    <StackPanel Spacing="12">
+                        <TextBlock
+                            Classes="export-section-title"
+                            Text="{markup:I18n {x:Static helper:LangKeys.ExportLogDialogImagesSection}}" />
+                        <TextBlock
+                            Classes="export-section-caption"
+                            Text="{markup:I18n {x:Static helper:LangKeys.ExportLogDialogImagesDescription}}" />
+
+                        <Grid ColumnDefinitions="*,160" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="10">
+                            <CheckBox
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Content="{Binding OnErrorFolderLabel}"
+                                IsChecked="{Binding IncludeOnErrorImages}" />
+                            <ComboBox
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                IsEnabled="{Binding IncludeOnErrorImages}"
+                                ItemsSource="{Binding ImageTimeRangeOptions}"
+                                SelectedItem="{Binding SelectedOnErrorImageTimeRange}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="usersControls:ExportLogTimeRangeOption">
+                                        <TextBlock Text="{Binding DisplayName}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <CheckBox
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Content="{Binding VisionFolderLabel}"
+                                IsChecked="{Binding IncludeVisionImages}" />
+                            <ComboBox
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                IsEnabled="{Binding IncludeVisionImages}"
+                                ItemsSource="{Binding ImageTimeRangeOptions}"
+                                SelectedItem="{Binding SelectedVisionImageTimeRange}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="usersControls:ExportLogTimeRangeOption">
+                                        <TextBlock Text="{Binding DisplayName}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <CheckBox
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Content="{markup:I18n {x:Static helper:LangKeys.ExportLogDialogOtherImages}}"
+                                IsChecked="{Binding IncludeOtherImages}" />
+                            <ComboBox
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                IsEnabled="{Binding IncludeOtherImages}"
+                                ItemsSource="{Binding ImageTimeRangeOptions}"
+                                SelectedItem="{Binding SelectedOtherImageTimeRange}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="usersControls:ExportLogTimeRangeOption">
+                                        <TextBlock Text="{Binding DisplayName}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel
+            Grid.Row="2"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal"
+            Spacing="10">
+            <Button
+                Classes="Outlined export-action"
+                Command="{Binding CloseCommand}"
+                Content="{markup:I18n {x:Static helper:LangKeys.ButtonClose}}"
+                IsEnabled="{Binding !IsExporting}" />
+            <Button
+                Classes="Flat export-action"
+                BorderThickness="0"
+                Command="{Binding StartExportCommand}"
+                Content="{markup:I18n {x:Static helper:LangKeys.ExportLogDialogStart}}"
+                IsEnabled="{Binding CanStartExport}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

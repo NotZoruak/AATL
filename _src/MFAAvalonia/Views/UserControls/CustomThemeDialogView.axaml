@@ -1,0 +1,60 @@
+﻿<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.UserControls.CustomThemeDialogView"
+    x:DataType="userControls:CustomThemeDialogViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:markup="https://codewf.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:suki="https://github.com/kikipoulet/SukiUI"
+    xmlns:userControls="clr-namespace:MFAAvalonia.Views.UserControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <suki:GroupBox Header="{markup:I18n {x:Static helper:LangKeys.CreateCustomTheme}}">
+        <StackPanel>
+            <DockPanel Margin="8,8,8,8">
+                <TextBox DockPanel.Dock="Right"
+                         HorizontalAlignment="Right"
+                         Text="{Binding DisplayName}"
+                         Width="215" />
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="{markup:I18n {x:Static helper:LangKeys.CustomThemeName}}" />
+                </StackPanel>
+            </DockPanel>
+
+            <DockPanel Margin="8,8,8,8">
+                <ColorPicker DockPanel.Dock="Right"
+                             HorizontalAlignment="Right"
+                             Margin="0,0,4,0"
+                             Width="60"
+                             Color="{Binding PrimaryColor}" />
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="{markup:I18n {x:Static helper:LangKeys.CustomThemePrimaryColor}}" />
+                </StackPanel>
+            </DockPanel>
+
+            <DockPanel Margin="8,8,8,8">
+                <ColorPicker DockPanel.Dock="Right"
+                             HorizontalAlignment="Right"
+                             Margin="0,0,4,0"
+                             Width="60"
+                             Color="{Binding AccentColor}" />
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="{markup:I18n {x:Static helper:LangKeys.CustomThemeAccentColor}}" />
+                </StackPanel>
+            </DockPanel>
+
+            <Button Command="{Binding TryCreateThemeCommand}"
+                    Margin="8,8,8,8"
+                    Content="{markup:I18n {x:Static helper:LangKeys.ButtonAdd}}" />
+        </StackPanel>
+    </suki:GroupBox>
+</UserControl>

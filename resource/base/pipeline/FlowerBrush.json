@@ -796,7 +796,8 @@
             "FB_DetectWhereAmI"
         ],
         "next": [
-            "FB_VerifySortieMenuClosed"
+            "FB_VerifySortieMenuClosed",
+            "FB_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
@@ -1297,6 +1298,7 @@
             }
         },
         "action": "Click",
+        "timeout": 3000,
         "pre_delay": 100,
         "next": [
             "FB_IsAnnouncementPopup"
@@ -1352,6 +1354,7 @@
             1,
             1
         ],
+        "timeout": 3000,
         "pre_delay": 1000,
         "next": [
             "FB_IsLoginReward"

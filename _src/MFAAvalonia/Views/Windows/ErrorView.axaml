@@ -1,0 +1,102 @@
+﻿<suki:SukiWindow
+    Height="480"
+    MinHeight="200"
+    MinWidth="400"
+    Title="{markup:I18n {x:Static helper:LangKeys.Error}}"
+    Width="600"
+    WindowStartupLocation="CenterScreen"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.Windows.ErrorView"
+    x:DataType="windows:ErrorView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:markup="https://codewf.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:suki="https://github.com/kikipoulet/SukiUI"
+    xmlns:utilities="clr-namespace:MFAAvalonia.Utilities"
+    xmlns:windows="clr-namespace:MFAAvalonia.Views.Windows" Icon="{Binding Source={x:Static helper:IconHelper.WindowIcon}}"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <suki:SukiWindow.LogoContent>
+        <Image
+            Height="25"
+            Source="{x:Static helper:IconHelper.Icon}"
+            Stretch="Uniform"
+            Width="25" />
+    </suki:SukiWindow.LogoContent>
+    <LayoutTransformControl LayoutTransform="{Binding ScaleTransform, Source={x:Static helper:FontService.Instance}}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid
+                Grid.Row="0"
+                Margin="8,4,8,4"
+                RowDefinitions="Auto,*">
+                <suki:GlassCard Grid.Row="0">
+                    <suki:GroupBox>
+                        <suki:GroupBox.Header>
+                            <TextBlock FontWeight="Bold" Text="{markup:I18n {x:Static helper:LangKeys.ErrorProlog}}" />
+
+                        </suki:GroupBox.Header>
+                        <ScrollViewer
+                            HorizontalScrollBarVisibility="Disabled"
+                            MaxHeight="150"
+                            VerticalScrollBarVisibility="Auto">
+                            <TextBlock
+                                Margin="8,0,0,0"
+                                Text="{Binding ExceptionMessage}"
+                                TextWrapping="Wrap" />
+                        </ScrollViewer>
+                    </suki:GroupBox>
+
+                </suki:GlassCard>
+                <suki:GlassCard Grid.Row="1">
+                    <suki:GroupBox>
+                        <suki:GroupBox.Header>
+                            <TextBlock FontWeight="Bold" Text="{markup:I18n {x:Static helper:LangKeys.ErrorDetails}}" />
+
+                        </suki:GroupBox.Header>
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <TextBlock
+                                Margin="8,0,0,0"
+                                Text="{Binding ExceptionDetails}"
+                                TextWrapping="Wrap" />
+                        </ScrollViewer>
+                    </suki:GroupBox>
+
+                </suki:GlassCard>
+            </Grid>
+
+
+            <Border
+                Background="{DynamicResource ErrorViewBackgroundBrush}"
+                Grid.Row="1"
+                Padding="12,0">
+                <Grid MinHeight="40" VerticalAlignment="Center">
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <!--  复制按钮  -->
+                        <Button
+                            Classes="Basic"
+                            Click="CopyErrorMessage_Click"
+                            Content="{markup:I18n {x:Static helper:LangKeys.CopyErrorMessage}}"
+                            ToolTip.Tip="{markup:I18n {x:Static helper:LangKeys.CopyToClipboard}}" />
+
+                        <!--  反馈链接  -->
+                        <Button
+                            Classes="Basic"
+                            Command="{x:Static utilities:UrlUtilities.OpenLink}"
+                            CommandParameter="{x:Static helper:MFAUrls.NewIssueUri}"
+                            Content="{markup:I18n {x:Static helper:LangKeys.ErrorFeedbackLinkText}}"
+                            Margin="12,0,0,0" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </LayoutTransformControl>
+</suki:SukiWindow>

@@ -1,0 +1,168 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <RootNamespace>SukiUI</RootNamespace>
+        <Version>5.0.4</Version>
+        <FileVersion>2.0.0</FileVersion>
+        <AssemblyVersion>2.0.0</AssemblyVersion>
+        <UserSecretsId>712f85e4-12d3-41b0-a417-5714a113666f</UserSecretsId>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Nullable>enable</Nullable>
+        <LangVersion>preview</LangVersion>
+		<DebugSymbols>False</DebugSymbols>
+		<DebugType>None</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <PackageVersion>6.0.1</PackageVersion>
+        <PackageTags>avalonia;avaloniaui;ui;theme;sukiui</PackageTags>
+        <PackageIcon>OIG.N5o-removebg-preview.png</PackageIcon>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.3.12" />
+        <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.3.12" />
+        <PackageReference Include="Avalonia.Skia" Version="11.3.12" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.12" />
+        <PackageReference Include="CalcBindingAva" Version="2.5.3" />
+        <PackageReference Include="FluentIcons.Avalonia.Fluent" Version="2.0.318" />
+        <PackageReference Include="SkiaSharp" Version="3.119.1">
+        </PackageReference>
+        <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="3.119.1">
+            <ExcludeAssets>all</ExcludeAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="3.119.1" />
+        <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.3.12" />
+        <PackageReference Include="Avalonia.Themes.Simple" Version="11.3.12" />
+        <PackageReference Include="System.Linq.Dynamic.Core" Version="1.7.1" />
+        <PackageReference Update="Packaging.Targets">
+          <Version>0.1.232</Version>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AvaloniaResource Include="**\*.xaml"/>
+        <AvaloniaResource Include="Content\Images\icons8-file-explorer-new-48.png"/>
+<!--        <None Remove="CustomFont\MiSans\MiSansLatin-Bold.ttf"/>-->
+
+<!--        <None Remove="CustomFont\MiSans\MiSansLatin-Demibold.ttf"/>-->
+<!--        <None Remove="CustomFont\MiSans\MiSansLatin-ExtraLight.ttf"/>-->
+<!--        <None Remove="CustomFont\MiSans\MiSansLatin-Heavy.ttf"/>-->
+<!--        <None Remove="CustomFont\MiSans\MiSansLatin-Light.ttf"/>-->
+<!--        <None Remove="CustomFont\MiSans\MiSansLatin-Medium.ttf"/>-->
+<!--        <None Remove="CustomFont\MiSans\MiSansLatin-Normal.ttf"/>-->
+<!--        <None Remove="CustomFont\MiSans\MiSansLatin-Regular.ttf"/>-->
+<!--        <None Remove="CustomFont\MiSans\MiSansLatin-Semibold.ttf"/>-->
+<!--        <None Remove="CustomFont\MiSans\MiSansLatin-Thin.ttf"/>-->
+    </ItemGroup>
+
+    <ItemGroup>
+        <AvaloniaResource Include="Roboto-Regular.ttf"/>
+        <AvaloniaResource Include="Roboto-Medium.ttf"/>
+        <AvaloniaResource Include="CustomFont\AlibabaPuHuiTi-Bold.ttf"/>
+        <AvaloniaResource Include="CustomFont\AlibabaPuHuiTi-Light.ttf"/>
+        <AvaloniaResource Include="CustomFont\AlibabaPuHuiTi-Medium.ttf"/>
+        <AvaloniaResource Include="CustomFont\AlibabaPuHuiTi-Regular.ttf"/>
+        <AvaloniaResource Include="CustomFont\AlibabaPuHuiTi-SemiBold.ttf"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="OIG.N5o-removebg-preview.png">
+            <Pack>True</Pack>
+            <PackagePath/>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <UpToDateCheckInput Remove="Controls\TouchInput\TouchKeyboard\TouchKeyboard.axaml"/>
+        <UpToDateCheckInput Remove="Controls\TouchInput\TouchKeyboard\TouchKeyboardPopUp.axaml"/>
+        <UpToDateCheckInput Remove="Controls\TouchInput\TouchNumericPad\NumericPadPopUp.axaml"/>
+        <UpToDateCheckInput Remove="Controls\TouchInput\TouchNumericPad\TouchNumericPad.axaml"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Controls\WaveProgress.axaml.cs">
+            <DependentUpon>WaveProgress.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Controls\Hosts\SukiToastHost.cs">
+            <DependentUpon>SukiToastHost.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Controls\Hosts\SukiDialogHost.cs">
+            <DependentUpon>SukiDialogHost.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Controls\SukiDialog.cs">
+            <DependentUpon>SukiDialog.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Controls\Experimental\ChatUI\ChatUI.axaml.cs">
+            <DependentUpon>ChatUI.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+		<Compile Update="Locale\zh-hans.axaml.cs">
+            <DependentUpon>zh-hans.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Locale\zh-hant.axaml.cs">
+            <DependentUpon>zh-hant.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Locale\en-us.axaml.cs">
+            <DependentUpon>en-us.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Controls\Settings\SettingsLayout.axaml.cs">
+            <DependentUpon>SettingsLayout.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Content\Shaders\Background\bubblestrong.sksl"/>
+        <EmbeddedResource Include="Content\Shaders\Background\cells.sksl"/>
+        <EmbeddedResource Include="Content\Shaders\Background\flat.sksl"/>
+        <EmbeddedResource Include="Content\Shaders\Background\bubble.sksl"/>
+        <EmbeddedResource Include="Content\Shaders\Background\waves.sksl"/>
+        <EmbeddedResource Include="Content\Shaders\Loading\glow.sksl"/>
+        <EmbeddedResource Include="Content\Shaders\Loading\pellets.sksl"/>
+        <None Remove="Content\Shaders\Background\gradient.sksl"/>
+        <EmbeddedResource Include="Content\Shaders\Background\gradient.sksl"/>
+        <None Remove="Content\Shaders\Loading\simple.sksl"/>
+        <EmbeddedResource Include="Content\Shaders\Loading\simple.sksl"/>
+        <None Remove="Content\Shaders\Background\gradientsoft.sksl"/>
+        <EmbeddedResource Include="Content\Shaders\Background\gradientsoft.sksl"/>
+        <None Remove="Content\Shaders\Background\gradientdarker.sksl"/>
+        <EmbeddedResource Include="Content\Shaders\Background\gradientdarker.sksl"/>
+        <None Remove="Content\Shaders\Background\backgroundshadcn.sksl"/>
+        <EmbeddedResource Include="Content\Shaders\Background\backgroundshadcn.sksl"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Avalonia.Controls.ColorPicker">
+        <HintPath>C:\Users\Fox\.nuget\packages\avalonia.controls.colorpicker\11.3.8\lib\net8.0\Avalonia.Controls.ColorPicker.dll</HintPath>
+      </Reference>
+      <Reference Include="CalcBindingAva">
+        <HintPath>..\..\..\nuget\packages\calcbindingava\2.5.3\lib\net6.0\CalcBindingAva.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controls\Gauges\" />
+    </ItemGroup>
+    
+    <PropertyGroup>
+        <!-- 禁用所有编译器警告 -->
+        <WarningLevel>0</WarningLevel>
+
+        <!-- 禁用所有分析器警告（如 StyleCop 等） -->
+        <NoWarn>$(NoWarn);CS9999;AVLN5001</NoWarn>
+        <NoWarn>$(NoWarn);AVLN</NoWarn>
+        <NoWarn>$(NoWarn);AVLN5001;AVLN3001;NETSDK1206</NoWarn>
+        <RunAnalyzers>false</RunAnalyzers>
+    </PropertyGroup>
+</Project>

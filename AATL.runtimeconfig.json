@@ -2,10 +2,10 @@
   "runtimeOptions": {
     "configProperties": {
       "MVVMTOOLKIT_ENABLE_INOTIFYPROPERTYCHANGING_SUPPORT": true,
-      "NetBeautyLibsDir": ".;./libs",
+      "NetBeautyLibsDir": ".;.;./runtimes/libs",
       "NetBeautySharedRuntimeMode": "no",
       "STARTUP_HOOKS": "libloader",
-      "SubdirectoriesToProbe": "libs",
+      "SubdirectoriesToProbe": "runtimes/libs",
       "System.Reflection.Metadata.MetadataUpdater.IsSupported": false,
       "System.Runtime.InteropServices.BuiltInComInterop.IsSupported": true,
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": false

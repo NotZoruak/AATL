@@ -1,0 +1,88 @@
+<UserControl
+    MinWidth="380"
+    MinHeight="260"
+    d:DesignHeight="260"
+    d:DesignWidth="500"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.UserControls.RenameInstanceDialog"
+    x:DataType="vm:RenameInstanceDialogViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:markup="https://codewf.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:MFAAvalonia.ViewModels.Other"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Styles>
+        <Style Selector="TextBlock.rename-title">
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="{DynamicResource SukiText}" />
+        </Style>
+
+        <Style Selector="TextBlock.rename-caption">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="{DynamicResource SukiMuteText}" />
+        </Style>
+
+        <Style Selector="TextBlock.rename-label">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource SukiLowText}" />
+        </Style>
+
+        <Style Selector="TextBox.rename-input">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="MinHeight" Value="42" />
+            <Setter Property="BorderThickness" Value="1.2" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="CornerRadius" Value="{DynamicResource SmallCornerRadius}" />
+        </Style>
+
+        <Style Selector="Button.rename-action">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="MinHeight" Value="36" />
+            <Setter Property="MinWidth" Value="108" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Margin="14,8,14,8" RowDefinitions="Auto,Auto,Auto" RowSpacing="0">
+        <StackPanel Grid.Row="0" Spacing="6">
+            <TextBlock
+                Classes="rename-title"
+                Text="{markup:I18n {x:Static helper:LangKeys.TaskRename}}" />
+            <TextBlock
+                Classes="rename-caption"
+                Text="{markup:I18n {x:Static helper:LangKeys.TaskRenamePlaceholder}}" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="0,16,0,0" Spacing="8">
+            <TextBlock
+                Classes="rename-label"
+                Text="{markup:I18n {x:Static helper:LangKeys.EditTaskDialog_TaskName_Title}}" />
+            <TextBox
+                Classes="rename-input"
+                Text="{Binding Name, Mode=TwoWay}"
+                Watermark="{markup:I18n {x:Static helper:LangKeys.TaskRenamePlaceholder}}" />
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="2"
+            HorizontalAlignment="Right"
+            Margin="0,22,0,0"
+            Orientation="Horizontal"
+            Spacing="10">
+            <Button
+                Classes="Outlined rename-action"
+                Command="{Binding CancelCommand}"
+                Content="{markup:I18n {x:Static helper:LangKeys.ButtonCancel}}"
+                IsCancel="True" />
+            <Button
+                Classes="Flat rename-action"
+                BorderThickness="0"
+                Command="{Binding ConfirmCommand}"
+                Content="{markup:I18n {x:Static helper:LangKeys.Confirm}}"
+                IsDefault="True" />
+        </StackPanel>
+    </Grid>
+</UserControl>

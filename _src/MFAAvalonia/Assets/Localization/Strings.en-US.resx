@@ -1,0 +1,2118 @@
+﻿<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <data name="About" xml:space="preserve">
+        <value>About Us</value>
+    </data>
+    <data name="AdbCaptureMode" xml:space="preserve">
+        <value>Capture Mode:</value>
+    </data>
+    <data name="AdbConfig" xml:space="preserve">
+        <value>Extras</value>
+    </data>
+    <data name="AdbEditor" xml:space="preserve">
+        <value>Adb Editor</value>
+    </data>
+    <data name="AdbInput" xml:space="preserve">
+        <value>AdbInput (Not Recommended)</value>
+    </data>
+    <data name="AdbInputMode" xml:space="preserve">
+        <value>Input Mode:</value>
+    </data>
+    <data name="AdbName" xml:space="preserve">
+        <value>Adb Name</value>
+    </data>
+    <data name="AdbPath" xml:space="preserve">
+        <value>Adb Path</value>
+    </data>
+    <data name="AdbSerial" xml:space="preserve">
+        <value>Adb Address</value>
+    </data>
+    <data name="AdbAddressEmpty" xml:space="preserve">
+        <value>Adb address cannot be empty</value>
+    </data>
+    <data name="AddAbove" xml:space="preserve">
+        <value>Add Above</value>
+    </data>
+    <data name="AddBelow" xml:space="preserve">
+        <value>Add below</value>
+    </data>
+    <data name="AddConfiguration" xml:space="preserve">
+        <value>Add</value>
+    </data>
+    <data name="AddTask" xml:space="preserve">
+        <value>Add Task</value>
+    </data>
+    <data name="AdvancedSetting" xml:space="preserve">
+        <value>Advanced</value>
+    </data>
+    <data name="AfterTaskOption" xml:space="preserve">
+        <value>Post-task Actions</value>
+    </data>
+    <data name="AllFilter" xml:space="preserve">
+        <value>All Files</value>
+    </data>
+    <data name="AllowAdbHardRestart" xml:space="preserve">
+        <value>Attempt to kill and restart ADB process after connection failure</value>
+    </data>
+    <data name="AllowAdbRestart" xml:space="preserve">
+        <value>Attempt to restart ADB Server after connection failure</value>
+    </data>
+    <data name="AnimatedBackgroundDescription" xml:space="preserve">
+        <value>Enable/disable background animations, which are driven by the currently active effect.</value>
+    </data>
+    <data name="AnimatedBackgroundTitle" xml:space="preserve">
+        <value>Animated Background</value>
+    </data>
+    <data name="Announcement" xml:space="preserve">
+        <value>Announcement</value>
+    </data>
+    <data name="ApplyControllerType" xml:space="preserve">
+        <value>Select the Controller Type to Apply</value>
+    </data>
+    <data name="ApplyingUpdate" xml:space="preserve">
+        <value>Applying update...</value>
+    </data>
+    <data name="AppTitle" xml:space="preserve">
+        <value>MFA Task Manager</value>
+    </data>
+    <data name="AutoDetect" xml:space="preserve">
+        <value>AutoDetect (Automatic Detection)</value>
+    </data>
+    <data name="AutomaticDetectionUpdate" xml:space="preserve">
+        <value>Automatic Detection Update</value>
+    </data>
+    <data name="AutomaticHide" xml:space="preserve">
+        <value>Auto Hide after launched</value>
+    </data>
+    <data name="AutomaticMinimize" xml:space="preserve">
+        <value>Auto Minimize after launched</value>
+    </data>
+    <data name="AutomaticUpdateMFA" xml:space="preserve">
+        <value>Automatic Software Update</value>
+    </data>
+    <data name="AutomaticUpdateResource" xml:space="preserve">
+        <value>Automatic Resource Update</value>
+    </data>
+    <data name="AutoStartOption" xml:space="preserve">
+        <value>Post-start operation</value>
+    </data>
+    <data name="BackgroundStyleDescription" xml:space="preserve">
+        <value>Select from the built-in background styles.</value>
+    </data>
+    <data name="BackgroundStyleTitle" xml:space="preserve">
+        <value>Background Style</value>
+    </data>
+    <data name="BackgroundTransitionsDescription" xml:space="preserve">
+        <value>Enable/disable background transitions with smooth fading effects when changing styles.</value>
+    </data>
+    <data name="BackgroundTransitionsTitle" xml:space="preserve">
+        <value>Background Transitions</value>
+    </data>
+    <data name="BaseTheme" xml:space="preserve">
+        <value>Basic Theme</value>
+    </data>
+    <data name="BlueStacks" xml:space="preserve">
+        <value>BlueStacks</value>
+    </data>
+    <data name="ButtonAdd" xml:space="preserve">
+        <value>Add</value>
+    </data>
+    <data name="ButtonCancel" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="ButtonClear" xml:space="preserve">
+        <value>Clear</value>
+    </data>
+    <data name="ButtonClose" xml:space="preserve">
+        <value>Close</value>
+    </data>
+    <data name="ButtonSave" xml:space="preserve">
+        <value>Save</value>
+    </data>
+    <data name="CannotStart" xml:space="preserve">
+        <value>Unable to start task</value>
+    </data>
+    <data name="CaptureModeOption" xml:space="preserve">
+        <value>Capture Mode</value>
+    </data>
+    <data name="CheckMFA" xml:space="preserve">
+        <value>Check Software</value>
+    </data>
+    <data name="CheckUpdate" xml:space="preserve">
+        <value>Check updates</value>
+    </data>
+    <data name="CheckResource" xml:space="preserve">
+        <value>Check resources</value>
+    </data>
+    <data name="ClipboardDataError" xml:space="preserve">
+        <value>The data currently in the clipboard cannot be converted to text.</value>
+    </data>
+    <data name="CloseEmulator" xml:space="preserve">
+        <value>Close Emulator</value>
+    </data>
+    <data name="CloseEmulatorAndMFA" xml:space="preserve">
+        <value>Close Emulator and This App</value>
+    </data>
+    <data name="CloseEmulatorAndRestartMFA" xml:space="preserve">
+        <value>Restart This App and Close Emulator</value>
+    </data>
+    <data name="CloseMFA" xml:space="preserve">
+        <value>Close This App</value>
+    </data>
+    <data name="CloseTargetProgram" xml:space="preserve">
+        <value>Close Target Program</value>
+    </data>
+    <data name="CloseTargetProgramAndMFA" xml:space="preserve">
+        <value>Close Target Program and This App</value>
+    </data>
+    <data name="CloseTargetProgramAndRestartMFA" xml:space="preserve">
+        <value>Restart This App and Close Target Program</value>
+    </data>
+    <data name="ColorPickerTitle" xml:space="preserve">
+        <value>Color Picker</value>
+    </data>
+    <data name="ColorTheme" xml:space="preserve">
+        <value>Color Theme</value>
+    </data>
+    <data name="CommonSetting" xml:space="preserve">
+        <value>Common</value>
+    </data>
+    <data name="ConfigAddedSuccessfully" xml:space="preserve">
+        <value>Configuration &lt;{0}&gt; added successfully!</value>
+    </data>
+    <data name="ContactInfo" xml:space="preserve">
+        <value>Contact</value>
+    </data>
+    <data name="ConfigNameAlreadyExists" xml:space="preserve">
+        <value>Configuration name &lt;{0}&gt; already exists!</value>
+    </data>
+    <data name="ConfigNameCannotBeEmpty" xml:space="preserve">
+        <value>Configuration name cannot be empty!</value>
+    </data>
+    <data name="ConfigurationName" xml:space="preserve">
+        <value>Config</value>
+    </data>
+    <data name="Confirm" xml:space="preserve">
+        <value>Confirm</value>
+    </data>
+    <data name="ConfirmExitText" xml:space="preserve">
+        <value>Are you sure want to exit?</value>
+    </data>
+    <data name="ConfirmExitTitle" xml:space="preserve">
+        <value>The current program is performing tasks</value>
+    </data>
+    <data name="Connected" xml:space="preserve">
+        <value>Connected</value>
+    </data>
+    <data name="ConnectFailed" xml:space="preserve">
+        <value>Connection failure</value>
+    </data>
+    <data name="ConnectingEmulatorOrWindow" xml:space="preserve">
+        <value>Error connecting to {0}!</value>
+    </data>
+  <data name="ConnectingTo" xml:space="preserve">
+        <value>Connecting to {0}......</value>
+    </data>
+    <data name="ConnectingInProgress" xml:space="preserve">
+        <value>Connecting, please wait...</value>
+    </data>
+    <data name="Connection" xml:space="preserve">
+        <value>Connection</value>
+    </data>
+    <data name="ConnectionSettings" xml:space="preserve">
+        <value>Connection</value>
+    </data>
+    <data name="ControllerType" xml:space="preserve">
+        <value>Controller Type</value>
+    </data>
+    <data name="CopiedToClipboard" xml:space="preserve">
+        <value>Copied to Clipboard</value>
+    </data>
+    <data name="Copy" xml:space="preserve">
+        <value>Copy</value>
+    </data>
+    <data name="CopyErrorMessage" xml:space="preserve">
+        <value>Copy error message</value>
+    </data>
+    <data name="CopyKey" xml:space="preserve">
+        <value>Copy Key</value>
+    </data>
+    <data name="CopyValue" xml:space="preserve">
+        <value>Copy Value</value>
+    </data>
+    <data name="CurrentController" xml:space="preserve">
+        <value>Current Controller</value>
+    </data>
+    <data name="CurrentResourcesNotSupportGitHub" xml:space="preserve">
+        <value>The current resources do not support GitHub.</value>
+    </data>
+    <data name="CurrentResourcesNotSupportMirror" xml:space="preserve">
+        <value>The current resources do not support Mirror Chyan.</value>
+    </data>
+    <data name="Custom" xml:space="preserve">
+        <value>Custom</value>
+    </data>
+    <data name="Cut" xml:space="preserve">
+        <value>Cut</value>
+    </data>
+    <data name="DarkColor" xml:space="preserve">
+        <value>Dark color</value>
+    </data>
+    <data name="DebugMode" xml:space="preserve">
+        <value>[Debug mode]</value>
+    </data>
+    <data name="DebugModeWarning" xml:space="preserve">
+        <value>Debug mode has been enabled. This mode will save screenshots, operation data, and image recognition visualization results during operation, which may occupy a large amount of storage space!</value>
+    </data>
+    <data name="DashboardCardMaximize" xml:space="preserve">
+        <value>Maximize</value>
+    </data>
+    <data name="DashboardCardRestore" xml:space="preserve">
+        <value>Restore</value>
+    </data>
+    <data name="Delete" xml:space="preserve">
+        <value>Delete</value>
+    </data>
+    <data name="DeselectAll" xml:space="preserve">
+        <value>Deselect All</value>
+    </data>
+    <data name="DingTalk" xml:space="preserve">
+        <value>DingTalk</value>
+    </data>
+    <data name="DingTalkMessageAsync" xml:space="preserve">
+        <value>DingTalk group message notification</value>
+    </data>
+    <data name="DownloadFailed" xml:space="preserve">
+        <value>Download of Update Package Failed</value>
+    </data>
+    <data name="Downloading" xml:space="preserve">
+        <value>Downloading…</value>
+    </data>
+    <data name="DuplicateTaskError" xml:space="preserve">
+        <value>Duplicate task name found in Pipeline file: "{0}"!</value>
+    </data>
+    <data name="DuplicateTaskNameError" xml:space="preserve">
+        <value>A task with the name "{0}" already exists in the task list.</value>
+    </data>
+    <data name="Edit" xml:space="preserve">
+        <value>Edit</value>
+    </data>
+    <data name="EditAttributeDialogTitle" xml:space="preserve">
+        <value>Attribute Editor</value>
+    </data>
+    <data name="EditControllerConfiguration" xml:space="preserve">
+        <value>Edit Controller Configuration</value>
+    </data>
+    <data name="EditTask" xml:space="preserve">
+        <value>Edit Task</value>
+    </data>
+    <data name="EditTaskDialog_AddAttribute_Tooltip" xml:space="preserve">
+        <value>Add Attribute</value>
+    </data>
+    <data name="EditTaskDialog_ClearAttribute_Tooltip" xml:space="preserve">
+        <value>Clear Attributes</value>
+    </data>
+    <data name="EditTaskDialog_ClearTask_Tooltip" xml:space="preserve">
+        <value>Clear Tasks</value>
+    </data>
+    <data name="EditTaskDialog_ColorExtraction_Tooltip" xml:space="preserve">
+        <value>Color Extraction</value>
+    </data>
+    <data name="EditTaskDialog_Header" xml:space="preserve">
+        <value>Task Editor</value>
+    </data>
+    <data name="EditTaskDialog_Load_Tooltip" xml:space="preserve">
+        <value>Load Pipeline File</value>
+    </data>
+    <data name="EditTaskDialog_PipelineFileName_Placeholder" xml:space="preserve">
+        <value>Pipeline File Name</value>
+    </data>
+    <data name="EditTaskDialog_RecognitionText_Tooltip" xml:space="preserve">
+        <value>Text Recognition</value>
+    </data>
+    <data name="EditTaskDialog_SavePipeline_Tooltip" xml:space="preserve">
+        <value>Save Pipeline File</value>
+    </data>
+    <data name="EditTaskDialog_SaveTask_Button" xml:space="preserve">
+        <value>Save Task Name</value>
+    </data>
+    <data name="EditTaskDialog_Screenshot_Tooltip" xml:space="preserve">
+        <value>Take Screenshot</value>
+    </data>
+    <data name="EditTaskDialog_SelectionRegion_Tooltip" xml:space="preserve">
+        <value>Select Region</value>
+    </data>
+    <data name="EditTaskDialog_ShowChart_Button" xml:space="preserve">
+        <value>Flowchart</value>
+    </data>
+    <data name="EditTaskDialog_Swipe_Tooltip" xml:space="preserve">
+        <value>Swipe</value>
+    </data>
+    <data name="EditTaskDialog_TaskName_Title" xml:space="preserve">
+        <value>Task Name:</value>
+    </data>
+    <data name="EditTaskDialog_Title" xml:space="preserve">
+        <value>Task Editor</value>
+    </data>
+    <data name="EditTaskTooltip" xml:space="preserve">
+        <value>Edit Task</value>
+    </data>
+    <data name="Email" xml:space="preserve">
+        <value>Email</value>
+    </data>
+    <data name="Emulator" xml:space="preserve">
+        <value>Emulator</value>
+    </data>
+    <data name="EmulatorDetectionStarted" xml:space="preserve">
+        <value>Starting emulator search!</value>
+    </data>
+    <data name="EmulatorExtras" xml:space="preserve">
+        <value>EmulatorExtras (Specialized) </value>
+    </data>
+    <data name="EmulatorSelectionMessage" xml:space="preserve">
+        <value>Emulator selected: {0}</value>
+    </data>
+    <data name="EnableRecording" xml:space="preserve">
+            <value>Enable video recording (for debugging)</value>
+        </data>
+    <data name="EnableSaveDraw" xml:space="preserve">
+            <value>Enable save draw (for debugging)</value>
+        </data>
+    <data name="EnableSaveOnError" xml:space="preserve">
+            <value>Enable save screenshot on error (for debugging)</value>
+        </data>
+    <data name="EnterTaskName" xml:space="preserve">
+        <value>Please enter a task name</value>
+    </data>
+    <data name="Error" xml:space="preserve">
+        <value>Error</value>
+    </data>
+    <data name="ErrorDetails" xml:space="preserve">
+        <value>Details</value>
+    </data>
+    <data name="ErrorFeedbackLinkText" xml:space="preserve">
+        <value>Create a GitHub issue</value>
+    </data>
+    <data name="ErrorProlog" xml:space="preserve">
+        <value>MFA has encountered an error</value>
+    </data>
+    <data name="ExeFilter" xml:space="preserve">
+        <value>Executable files</value>
+    </data>
+    <data name="ExternalNotificationBotToken" xml:space="preserve">
+        <value>Bot Token</value>
+    </data>
+    <data name="ExternalNotificationDingTalkSecret" xml:space="preserve">
+        <value>DingTalk Secret</value>
+    </data>
+    <data name="ExternalNotificationDingTalkToken" xml:space="preserve">
+        <value>DingTalk Token</value>
+    </data>
+    <data name="ExternalNotificationDiscordChannelId" xml:space="preserve">
+        <value>Channel ID</value>
+    </data>
+    <data name="ExternalNotificationDiscordUserId" xml:space="preserve">
+        <value>User ID</value>
+    </data>
+    <data name="ExternalNotificationDiscordWebhookName" xml:space="preserve">
+        <value>Webhook Name</value>
+    </data>
+    <data name="ExternalNotificationEmailAccount" xml:space="preserve">
+        <value>Email Account</value>
+    </data>
+    <data name="ExternalNotificationEmailSecret" xml:space="preserve">
+        <value>Email Secret</value>
+    </data>
+    <data name="ExternalNotificationEnabled" xml:space="preserve">
+        <value>Enabled configuration</value>
+    </data>
+    <data name="ExternalNotificationLarkID" xml:space="preserve">
+        <value>Lark ID</value>
+    </data>
+    <data name="ExternalNotificationQmsgBot" xml:space="preserve">
+        <value>Bot QQ</value>
+    </data>
+    <data name="ExternalNotificationQmsgKey" xml:space="preserve">
+        <value>Qmsg Key</value>
+    </data>
+    <data name="ExternalNotificationQmsgServer" xml:space="preserve">
+        <value>Qmsg Server</value>
+    </data>
+    <data name="ExternalNotificationQmsgUser" xml:space="preserve">
+        <value>User QQ</value>
+    </data>
+    <data name="ExternalNotificationSendTest" xml:space="preserve">
+        <value>Send Test</value>
+    </data>
+    <data name="ExternalNotificationSettings" xml:space="preserve">
+        <value>External notifications</value>
+    </data>
+    <data name="ExternalNotificationSmtpAuth" xml:space="preserve">
+        <value>Authentication Required</value>
+    </data>
+    <data name="ExternalNotificationSmtpFrom" xml:space="preserve">
+        <value>Sender</value>
+    </data>
+    <data name="ExternalNotificationSmtpPassword" xml:space="preserve">
+        <value>Password</value>
+    </data>
+    <data name="ExternalNotificationSmtpPort" xml:space="preserve">
+        <value>Port</value>
+    </data>
+    <data name="ExternalNotificationSmtpServer" xml:space="preserve">
+        <value>SMTP Server</value>
+    </data>
+    <data name="ExternalNotificationSmtpSsl" xml:space="preserve">
+        <value>Use SSL</value>
+    </data>
+    <data name="ExternalNotificationSmtpTo" xml:space="preserve">
+        <value>Recipient</value>
+    </data>
+    <data name="ExternalNotificationSmtpUser" xml:space="preserve">
+        <value>Username</value>
+    </data>
+    <data name="ExternalNotificationTelegramChatId" xml:space="preserve">
+        <value>Chat ID</value>
+    </data>
+    <data name="ExternalNotificationTips" xml:space="preserve">
+        <value>Please note: The external notification feature currently only sends 「All tasks completed」 notifications.</value>
+    </data>
+    <data name="ExternalNotificationWebhookUrl" xml:space="preserve">
+            <value>Webhook Url</value>
+        </data>
+    <data name="CustomWebhook" xml:space="preserve">
+            <value>Custom Webhook</value>
+        </data>
+    <data name="ExternalNotificationCustomWebhookContentType" xml:space="preserve">
+            <value>Content-Type</value>
+        </data>
+    <data name="ExternalNotificationCustomWebhookPayloadTemplate" xml:space="preserve">
+            <value>Payload Template</value>
+        </data>
+    <data name="ExternalNotificationCustomWebhookPayloadTemplateDescription" xml:space="preserve">
+            <value>Use {{message}} as message placeholder, e.g.: {{"message": "{{message}}"}}</value>
+        </data>
+    <data name="ExternalNotificationWxPusherUID" xml:space="preserve">
+        <value>User UID</value>
+    </data>
+    <data name="FailToGetCurrentVersionInfo" xml:space="preserve">
+        <value>Failed to get the current version information and cannot update.</value>
+    </data>
+    <data name="FailToGetDownloadUrl" xml:space="preserve">
+        <value>Unable to get the resource download link, update failed.</value>
+    </data>
+    <data name="FailToGetLatestVersionInfo" xml:space="preserve">
+        <value>Failed to get the latest version information</value>
+    </data>
+    <data name="FollowingSystem" xml:space="preserve">
+        <value>Following System</value>
+    </data>
+    <data name="ForceScheduledStart" xml:space="preserve">
+        <value>Force scheduled start</value>
+    </data>
+    <data name="ForceScheduledStartTip" xml:space="preserve">
+        <value>Stop current task, then start new tasks after stopping completes</value>
+    </data>
+    <data name="GameResourceUpdated" xml:space="preserve">
+        <value>Game resources updated, please restart software.</value>
+    </data>
+    <data name="General" xml:space="preserve">
+        <value>General Mode</value>
+    </data>
+    <data name="GettingLatestMaaFW" xml:space="preserve">
+        <value>Getting the latest maafw...</value>
+    </data>
+    <data name="GettingLatestResources" xml:space="preserve">
+        <value>Getting the latest resources...</value>
+    </data>
+    <data name="GettingLatestSoftware" xml:space="preserve">
+        <value>Getting the latest software...</value>
+    </data>
+    <data name="Github" xml:space="preserve">
+        <value>Source code: GitHub</value>
+    </data>
+    <data name="GlobalConfigTip" xml:space="preserve">
+        <value>This option page is for global config</value>
+    </data>
+    <data name="InstanceConfigTip" xml:space="preserve">
+        <value>This option page is instance-scoped. Current instance: </value>
+    </data>
+    <data name="GpuOptionAuto" xml:space="preserve">
+        <value>Auto</value>
+    </data>
+    <data name="GpuOptionDisable" xml:space="preserve">
+        <value>Don’t use</value>
+    </data>
+    <data name="HardRestartAdb" xml:space="preserve">
+        <value>Trying to kill and restart the ADB process</value>
+    </data>
+    <data name="Hide" xml:space="preserve">
+        <value>Hide</value>
+    </data>
+    <data name="Home" xml:space="preserve">
+        <value>Home</value>
+    </data>
+    <data name="HotKeyChangingTip" xml:space="preserve">
+        <value>Press Backspace / Esc / Delete to clear the current value</value>
+    </data>
+    <data name="HotKeyLinkStart" xml:space="preserve">
+        <value>[HotKey] Start/Stop task</value>
+    </data>
+    <data name="HotKeyNotSet" xml:space="preserve">
+        <value>not set</value>
+    </data>
+    <data name="HotKeyOccupiedWarning" xml:space="preserve">
+        <value>⚠️ This hotkey is in use</value>
+    </data>
+    <data name="HotKeyOccupiedBy" xml:space="preserve">
+        <value>⚠️ This hotkey is already used by {0}</value>
+    </data>
+    <data name="HotKeyPressing" xml:space="preserve">
+        <value>Press any key...</value>
+    </data>
+    <data name="UnknownItem" xml:space="preserve">
+        <value>Unknown item</value>
+    </data>
+    <data name="GlobalConfigFileAccessError" xml:space="preserve">
+        <value>Global config file is unavailable: {0}\nOccupied/Error detail: {1}</value>
+    </data>
+    <data name="GlobalConfigFileReasonUnknown" xml:space="preserve">
+        <value>Unknown reason</value>
+    </data>
+    <data name="HotKeySettings" xml:space="preserve">
+        <value>HotKeys</value>
+    </data>
+    <data name="HotKeyShowGui" xml:space="preserve">
+        <value>[HotKey] Show/Hide GUI</value>
+    </data>
+    <data name="ImageBrowserTitle" xml:space="preserve">
+        <value>Image Browser</value>
+    </data>
+    <data name="ImageFilter" xml:space="preserve">
+        <value>Image Files (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp</value>
+    </data>
+    <data name="InitControllerFailed" xml:space="preserve">
+        <value>Error initializing controller!</value>
+    </data>
+    <data name="InitControllerSuccess" xml:space="preserve">
+        <value>Controller initialized successfully</value>
+    </data>
+    <data name="InitInstanceFailed" xml:space="preserve">
+        <value>Failed to initialize MAA instance, a connection error or resource file corruption occurred, please refer to the logs.</value>
+    </data>
+    <data name="InitResourcesSuccess" xml:space="preserve">
+        <value>Resources initialized successfully</value>
+    </data>
+    <data name="InputModeOption" xml:space="preserve">
+        <value>Input Mode</value>
+    </data>
+    <data name="Issue" xml:space="preserve">
+        <value>Issue</value>
+    </data>
+    <data name="JSONFilter" xml:space="preserve">
+        <value>JSON Files (*.json)|*.json|All files (*.*)|*.*"</value>
+    </data>
+    <data name="LabelPropertyType" xml:space="preserve">
+        <value>Property Type:</value>
+    </data>
+    <data name="LanguageOption" xml:space="preserve">
+        <value>Language(语言)</value>
+    </data>
+    <data name="LanguageOptionDescription" xml:space="preserve">
+        <value>Select application display language, changes will take effect immediately.</value>
+    </data>
+    <data name="LanguageSettings" xml:space="preserve">
+        <value>Language Setting</value>
+    </data>
+    <data name="Lark" xml:space="preserve">
+        <value>Lark</value>
+    </data>
+    <data name="LDPlayer" xml:space="preserve">
+        <value>LD Player</value>
+    </data>
+    <data name="LicenseInfo" xml:space="preserve">
+        <value>License</value>
+    </data>
+    <data name="LightColor" xml:space="preserve">
+        <value>Light Color</value>
+    </data>
+    <data name="Load" xml:space="preserve">
+        <value>Load</value>
+    </data>
+    <data name="LoadFileTitle" xml:space="preserve">
+        <value>Select Any File</value>
+    </data>
+    <data name="LoadImageTitle" xml:space="preserve">
+        <value>Select Image File</value>
+    </data>
+    <data name="LoadingController" xml:space="preserve">
+        <value>Initializing the controller</value>
+    </data>
+    <data name="LoadingResources" xml:space="preserve">
+        <value>Loading resources</value>
+    </data>
+    <data name="LoadPipelineErrorMessage" xml:space="preserve">
+        <value>Failed to load or parse the pipeline file: {0}</value>
+    </data>
+    <data name="LoadPipelineTitle" xml:space="preserve">
+        <value>Select Pipeline File</value>
+    </data>
+    <data name="LoadResourcesFailed" xml:space="preserve">
+        <value>Failed to load resources! </value>
+    </data>
+    <data name="LogRecord" xml:space="preserve">
+        <value>Log</value>
+    </data>
+    <data name="MaaFwIsLatestVersion" xml:space="preserve">
+        <value>MaaFW is already in the latest version!</value>
+    </data>
+    <data name="MaaFWVersion" xml:space="preserve">
+        <value>MaaFW Version</value>
+    </data>
+    <data name="MaaTouch" xml:space="preserve">
+        <value>MaaTouch (Experimental)</value>
+    </data>
+    <data name="MFAIsLatestVersion" xml:space="preserve">
+        <value>Software is already in the latest version!</value>
+    </data>
+    <data name="MinimizeToTray" xml:space="preserve">
+            <value>Hide to tray when minimized</value>
+        </data>
+    <data name="MinimizeToTrayDescription" xml:space="preserve">
+            <value>When enabled, clicking the minimize button will hide the window to the system tray instead of the taskbar.</value>
+        </data>
+    <data name="MiniTouch" xml:space="preserve">
+            <value>MiniTouch (Old)</value>
+        </data>
+    <data name="MirrorAutoUpdatePrompt" xml:space="preserve">
+        <value>Please purchase the Mirror Chyan service to enable automatic updates, or switch the download source to GitHub</value>
+    </data>
+    <data name="MirrorChyan" xml:space="preserve">
+        <value>Mirror Chyan</value>
+    </data>
+    <data name="MirrorUseLimitReached" xml:space="preserve">
+        <value>The usage of Mirror Chyan has reached the limit.</value>
+    </data>
+    <data name="MuMuEmulator12" xml:space="preserve">
+        <value>MuMu Emulator 12</value>
+    </data>
+    <data name="NewVersionAvailableLatestVersion" xml:space="preserve">
+        <value> new version is available! Latest version:</value>
+    </data>
+    <data name="NewVersionDownloadCompletedTitle" xml:space="preserve">
+        <value>Update Package Download Completed</value>
+    </data>
+    <data name="NewVersionFoundDescDownloading" xml:space="preserve">
+        <value>Downloading in the background……</value>
+    </data>
+    <data name="No" xml:space="preserve">
+        <value>No</value>
+    </data>
+    <data name="NoEmulatorFound" xml:space="preserve">
+        <value>No emulator found! </value>
+    </data>
+    <data name="NoEmulatorFoundPlaceholder" xml:space="preserve">
+        <value>No emulator found</value>
+    </data>
+    <data name="None" xml:space="preserve">
+        <value>None</value>
+    </data>
+    <data name="NoTaskToStop" xml:space="preserve">
+        <value>There is no task to stop!</value>
+    </data>
+    <data name="NoWindowFound" xml:space="preserve">
+        <value>No window found!</value>
+    </data>
+    <data name="NoWindowFoundPlaceholder" xml:space="preserve">
+        <value>No window found</value>
+    </data>
+    <data name="Nox" xml:space="preserve">
+        <value>Nox</value>
+    </data>
+    <data name="Off" xml:space="preserve">
+        <value>Off</value>
+    </data>
+    <data name="Ok" xml:space="preserve">
+        <value>Ok</value>
+    </data>
+    <data name="OperateController" xml:space="preserve">
+        <value>Select the Controller to Operate</value>
+    </data>
+    <data name="PleaseSelectEmulator" xml:space="preserve">
+        <value>Please select an emulator</value>
+    </data>
+    <data name="PleaseSelectWindow" xml:space="preserve">
+        <value>Please select a window</value>
+    </data>
+    <data name="Paste" xml:space="preserve">
+        <value>Paste</value>
+    </data>
+    <data name="PasteAbove" xml:space="preserve">
+        <value>Paste Above</value>
+    </data>
+    <data name="PasteBelow" xml:space="preserve">
+        <value>Paste Below</value>
+    </data>
+    <data name="PerformanceSettings" xml:space="preserve">
+        <value>Performance</value>
+    </data>
+    <data name="PerformanceBenchmark" xml:space="preserve">
+        <value>Performance benchmark</value>
+    </data>
+    <data name="PipelineLoadError" xml:space="preserve">
+        <value>Error occurred while loading Pipeline file: {0}</value>
+    </data>
+    <data name="Postscript" xml:space="preserve">
+        <value>Post-script</value>
+    </data>
+    <data name="Prescript" xml:space="preserve">
+        <value>Prescript</value>
+    </data>
+    <data name="ProjectDescription" xml:space="preserve">
+        <value>About Project</value>
+    </data>
+    <data name="ProjectLink" xml:space="preserve">
+        <value>Project Link: </value>
+    </data>
+    <data name="PurchaseLink" xml:space="preserve">
+        <value>About Mirror Chyan</value>
+    </data>
+    <data name="Quit" xml:space="preserve">
+        <value>Quit</value>
+    </data>
+    <data name="RegionSelectorTitle" xml:space="preserve">
+        <value>Region Selector</value>
+    </data>
+    <data name="RegisterCustomAction" xml:space="preserve">
+        <value>Register custom action: {0}</value>
+    </data>
+    <data name="RegisterCustomRecognizer" xml:space="preserve">
+        <value>Register custom recognizer: {0}</value>
+    </data>
+    <data name="RegisteringCustomAction" xml:space="preserve">
+        <value>Registering custom action</value>
+    </data>
+    <data name="RegisteringCustomRecognizer" xml:space="preserve">
+        <value>Registering custom recognizer</value>
+    </data>
+    <data name="RememberAdb" xml:space="preserve">
+        <value>Remember Connection</value>
+    </data>
+    <data name="RepeatOption" xml:space="preserve">
+        <value>Repeat Count</value>
+    </data>
+    <data name="RescanController" xml:space="preserve">
+        <value>Rescan Controllers</value>
+    </data>
+    <data name="ResourceDownloadSource" xml:space="preserve">
+        <value>Download Source</value>
+    </data>
+    <data name="ResourceLink" xml:space="preserve">
+        <value>Resource Link: </value>
+    </data>
+    <data name="ResourceName" xml:space="preserve">
+        <value>Resource Name</value>
+    </data>
+    <data name="GlobalOption" xml:space="preserve">
+        <value>Global Task Config</value>
+    </data>
+    <data name="ControllerPresetConfig" xml:space="preserve">
+        <value>Controller Preset Config</value>
+    </data>
+    <data name="ResourceOption" xml:space="preserve">
+        <value>Resources Type</value>
+    </data>
+    <data name="ResourcesAreLatestVersion" xml:space="preserve">
+        <value>Resources are already in the latest version!</value>
+    </data>
+    <data name="ResourceVersion" xml:space="preserve">
+        <value>Resource Version</value>
+    </data>
+    <data name="Restart" xml:space="preserve">
+        <value>Restart</value>
+    </data>
+    <data name="RestartAdb" xml:space="preserve">
+        <value>Trying to restart the ADB Server</value>
+    </data>
+    <data name="RestartMFA" xml:space="preserve">
+        <value>Restart MFA</value>
+    </data>
+    <data name="RestartPC" xml:space="preserve">
+        <value>Restart computer</value>
+    </data>
+    <data name="RetryOnDisconnected" xml:space="preserve">
+        <value>Retry launching the emulator when ADB connection fails</value>
+    </data>
+    <data name="RetryOnDisconnectedWin32" xml:space="preserve">
+        <value>Retry launching the game when Win32 connection fails</value>
+    </data>
+    <data name="AutoDetectOnConnectionFailed" xml:space="preserve">
+        <value>Auto detect available devices on connection failed</value>
+    </data>
+    <data name="AutoConnectAfterRefresh" xml:space="preserve">
+        <value>Auto connect after refreshing device list</value>
+    </data>
+    <data name="RunningSettings" xml:space="preserve">
+        <value>Running</value>
+    </data>
+    <data name="SaveFailureMessage" xml:space="preserve">
+        <value>Failed to save task!</value>
+    </data>
+    <data name="SavePipelineSuccess" xml:space="preserve">
+        <value>Saved successfully!</value>
+    </data>
+    <data name="SavePipelineWarning" xml:space="preserve">
+        <value>There are tasks with duplicate names in the task list!</value>
+    </data>
+    <data name="SaveSuccessMessage" xml:space="preserve">
+        <value>Task saved successfully!</value>
+    </data>
+    <data name="ScheduleSettings" xml:space="preserve">
+        <value>Schedule</value>
+    </data>
+    <data name="ScreencapCost" xml:space="preserve">
+        <value>Screenshot time: {0}ms({1})</value>
+    </data>
+    <data name="ScreencapErrorTip" xml:space="preserve">
+        <value>Screencap takes too long: {0}ms({1})</value>
+    </data>
+    <data name="ScreencapWarningTip" xml:space="preserve">
+        <value>Screencap takes a long time: {0}ms({1})</value>
+    </data>
+    <data name="ScreencapTimeoutAbort" xml:space="preserve">
+        <value>Screenshot timed out; task aborted</value>
+    </data>
+    <data name="ScreencapTimeoutDisconnected" xml:space="preserve">
+        <value>Screenshot timed out; disconnected</value>
+    </data>
+    <data name="Select" xml:space="preserve">
+        <value>Select</value>
+    </data>
+    <data name="SelectAll" xml:space="preserve">
+        <value>Select All</value>
+    </data>
+    <data name="SelectExecutableFile" xml:space="preserve">
+        <value>Select Executable File</value>
+    </data>
+    <data name="SelectExistingImage" xml:space="preserve">
+        <value>Select an existing image</value>
+    </data>
+    <data name="Settings" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+    <data name="Show" xml:space="preserve">
+        <value>Show</value>
+    </data>
+    <data name="ShowDisclaimerNoMore" xml:space="preserve">
+        <value>Do not prompt again until the next update</value>
+    </data>
+    <data name="ShowHitDraw" xml:space="preserve">
+        <value>Display node hit screenshot (for debugging)</value>
+    </data>
+    <data name="ShutDown" xml:space="preserve">
+        <value>Shut Down</value>
+    </data>
+    <data name="ShutDownOnce" xml:space="preserve">
+        <value>Shut Down (Once)</value>
+    </data>
+    <data name="SliderControlTitle" xml:space="preserve">
+        <value>Slider Control</value>
+    </data>
+    <data name="SoftwarePath" xml:space="preserve">
+        <value>Emulator Path</value>
+    </data>
+    <data name="SoftwareUpdate" xml:space="preserve">
+        <value>Update Software</value>
+    </data>
+    <data name="SoftwareVersion" xml:space="preserve">
+        <value>Software Version</value>
+    </data>
+    <data name="StartTask" xml:space="preserve">
+        <value>Start Task</value>
+    </data>
+    <data name="StartupParameter" xml:space="preserve">
+        <value>Startup Parameter</value>
+    </data>
+    <data name="StartupScript" xml:space="preserve">
+        <value>Startup script</value>
+    </data>
+    <data name="StartupSettings" xml:space="preserve">
+        <value>Startup</value>
+    </data>
+    <data name="StartupSoftware" xml:space="preserve">
+        <value>Startup game</value>
+    </data>
+    <data name="StartupSoftwareAndScript" xml:space="preserve">
+            <value>Startup game and script</value>
+        </data>
+    <data name="StartupScriptOnly" xml:space="preserve">
+            <value>Startup script only</value>
+        </data>
+    <data name="Stopping" xml:space="preserve">
+            <value>Stopping......</value>
+        </data>
+    <data name="StoppingFailed" xml:space="preserve">
+        <value>Failed to stop the task</value>
+    </data>
+    <data name="StopTask" xml:space="preserve">
+        <value>Stop Task</value>
+    </data>
+    <data name="SwitchConfiguration" xml:space="preserve">
+        <value>Switch Configuration</value>
+    </data>
+    <data name="SwitchLanguage" xml:space="preserve">
+        <value>Switch Language 🌐</value>
+    </data>
+    <data name="TabADB" xml:space="preserve">
+        <value>ADB</value>
+    </data>
+    <data name="TabWin32" xml:space="preserve">
+        <value>Win32</value>
+    </data>
+    <data name="TabPlayCover" xml:space="preserve">
+        <value>PlayCover</value>
+    </data>
+    <data name="Task" xml:space="preserve">
+        <value>Tasks</value>
+    </data>
+    <data name="TaskAbandoned" xml:space="preserve">
+        <value>Task has been abandoned</value>
+    </data>
+    <data name="TaskAllCompleted" xml:space="preserve">
+        <value>All tasks have been completed!</value>
+    </data>
+    <data name="TaskAllCompletedWithTime" xml:space="preserve">
+        <value>All tasks have been completed!\n(Elapsed time {0}h {1}m {2}s)</value>
+    </data>
+    <data name="TaskCompleted" xml:space="preserve">
+        <value>Task has been completed</value>
+    </data>
+    <data name="TaskDescription" xml:space="preserve">
+        <value>Task Description</value>
+    </data>
+    <data name="TaskList" xml:space="preserve">
+        <value>Task List:</value>
+    </data>
+    <data name="TaskNotFoundError" xml:space="preserve">
+        <value>The task "{2}" used in {1} of "{0}" does not exist in the Pipeline file!</value>
+    </data>
+    <data name="TaskSettings" xml:space="preserve">
+        <value>Task Settings</value>
+    </data>
+    <data name="TaskStackError" xml:space="preserve">
+        <value>Error occurred while detecting {0}: {1}</value>
+    </data>
+    <data name="TaskStart" xml:space="preserve">
+        <value>Starting task: {0}</value>
+    </data>
+    <data name="TaskStopped" xml:space="preserve">
+        <value>Task has been stopped</value>
+    </data>
+    <data name="TaskAddedToast" xml:space="preserve">
+        <value>Added task {0}</value>
+    </data>
+    <data name="TaskDeletedToast" xml:space="preserve">
+        <value>Deleted task {0}</value>
+    </data>
+    <data name="TextRecognizerTitle" xml:space="preserve">
+        <value>Text Recognizer</value>
+    </data>
+    <data name="ThemeOption" xml:space="preserve">
+        <value>UI Theme</value>
+    </data>
+    <data name="ThemeSettings" xml:space="preserve">
+        <value>Theme Setting</value>
+    </data>
+    <data name="Timer" xml:space="preserve">
+        <value>Timer</value>
+    </data>
+    <data name="TimerAction" xml:space="preserve">
+        <value>Action Type</value>
+    </data>
+    <data name="TimerCustomConfig" xml:space="preserve">
+        <value>Custom config</value>
+    </data>
+    <data name="TimerCustomConfigTip" xml:space="preserve">
+        <value>When enabled, each scheduled task runs with its selected config instead of the currently active one</value>
+    </data>
+    <data name="Tip" xml:space="preserve">
+        <value>Tip</value>
+    </data>
+    <data name="TooltipDragLabel" xml:space="preserve">
+        <value>Drag label to reorder</value>
+    </data>
+    <data name="TooltipRefresh" xml:space="preserve">
+        <value>Refresh</value>
+    </data>
+    <data name="TryToReconnect" xml:space="preserve">
+        <value>Attempting to reconnect</value>
+    </data>
+    <data name="TryToStartEmulator" xml:space="preserve">
+        <value>Trying to start the emulator</value>
+    </data>
+    <data name="TryToStartGame" xml:space="preserve">
+        <value>Trying to start the game</value>
+    </data>
+    <data name="UiSettings" xml:space="preserve">
+        <value>GUI</value>
+    </data>
+    <data name="Unconnected" xml:space="preserve">
+        <value>Unconnected</value>
+    </data>
+    <data name="Update" xml:space="preserve">
+        <value>Update</value>
+    </data>
+    <data name="UpdateCompleted" xml:space="preserve">
+        <value>Update completed</value>
+    </data>
+    <data name="UpdateMaaFW" xml:space="preserve">
+        <value>Update MaaFW</value>
+    </data>
+    <data name="UpdateResource" xml:space="preserve">
+        <value>Update Resources</value>
+    </data>
+    <data name="UpdateSettings" xml:space="preserve">
+        <value>Update</value>
+    </data>
+    <data name="UseGpuForInference" xml:space="preserve">
+        <value>Use GPU for inference acceleration</value>
+    </data>
+    <data name="WaitSoftware" xml:space="preserve">
+        <value>Connection retry window after launch (seconds)</value>
+    </data>
+    <data name="WaitSoftwareDescription" xml:space="preserve">
+        <value>After launching the software, MFA will keep trying to connect within this time. Once connected, it waits 5 more seconds and starts the task automatically.</value>
+    </data>
+    <data name="WaitSoftwareTime" xml:space="preserve">
+        <value>After launching {0}, MFA will keep trying to connect for {1} seconds</value>
+    </data>
+    <data name="StartupConnectRetrying" xml:space="preserve">
+        <value>Trying to connect to {0}, {1} seconds remaining</value>
+    </data>
+    <data name="StartupConnectSucceededDelay" xml:space="preserve">
+        <value>Connected to {0}, starting tasks in 5 seconds</value>
+    </data>
+    <data name="Warning_CannotConnect" xml:space="preserve">
+        <value>Unable to connect to {0}</value>
+    </data>
+    <data name="Window" xml:space="preserve">
+        <value>Window</value>
+    </data>
+    <data name="WindowDetectionStarted" xml:space="preserve">
+        <value>Starting window search!</value>
+    </data>
+    <data name="WindowSelectionMessage" xml:space="preserve">
+        <value>Window selected: {0}</value>
+    </data>
+    <data name="WorkflowDiagramTitle" xml:space="preserve">
+        <value>Workflow Diagram</value>
+    </data>
+    <data name="WxPusher" xml:space="preserve">
+        <value>WxPusher</value>
+    </data>
+    <data name="Yes" xml:space="preserve">
+        <value>Yes</value>
+    </data>
+    <data name="CurrentConfig" xml:space="preserve">
+        <value>Current Configuration</value>
+    </data>
+    <data name="ViewOrSwitchConfig" xml:space="preserve">
+        <value>View or Switch Existing Configuration</value>
+    </data>
+    <data name="NewConfigName" xml:space="preserve">
+        <value>New Configuration Name</value>
+    </data>
+    <data name="SetUniqueIdentifier" xml:space="preserve">
+        <value>	Set Unique Identifier for Custom Configuration</value>
+    </data>
+    <data name="CreateNewConfig" xml:space="preserve">
+        <value>Create New Configuration</value>
+    </data>
+    <data name="CreateFromCurrent" xml:space="preserve">
+        <value>Create New Template from Current Configuration</value>
+    </data>
+    <data name="TriggerTime" xml:space="preserve">
+        <value>Trigger Time</value>
+    </data>
+    <data name="SelectedConfig" xml:space="preserve">
+        <value>Selected Config</value>
+    </data>
+    <data name="ExternalNotificationOneBotKey" xml:space="preserve">
+        <value>Key</value>
+    </data>
+    <data name="ExternalNotificationOneBotServer" xml:space="preserve">
+        <value>Server</value>
+    </data>
+    <data name="ExternalNotificationOneBotUser" xml:space="preserve">
+        <value>User QQ</value>
+    </data>
+    <data name="CreateCustomTheme" xml:space="preserve">
+        <value>Create Custom Theme</value>
+    </data>
+    <data name="ConfigurePrimaryAccent" xml:space="preserve">
+        <value>Configure Primary and Accent Colors and Apply to Application</value>
+    </data>
+    <data name="CustomThemeName" xml:space="preserve">
+        <value>Theme Name</value>
+    </data>
+    <data name="CustomThemePrimaryColor" xml:space="preserve">
+        <value>Primary Color</value>
+    </data>
+    <data name="CustomThemeAccentColor" xml:space="preserve">
+        <value>Accent Color</value>
+    </data>
+    <data name="ColorThemeAlreadyExists" xml:space="preserve">
+        <value>The color theme already exists</value>
+    </data>
+    <data name="Later" xml:space="preserve">
+        <value>Later</value>
+    </data>
+    <data name="ErrorWhenCheck" xml:space="preserve">
+        <value>Failed to check for the latest version of {0}.</value>
+    </data>
+    <data name="Resource" xml:space="preserve">
+        <value>Resource</value>
+    </data>
+    <data name="MirrorCdkExpired" xml:space="preserve">
+        <value>CDK has expired, please renew and try again.</value>
+    </data>
+    <data name="MirrorCdkInvalid" xml:space="preserve">
+        <value>CDK is invalid, please check your input.</value>
+    </data>
+    <data name="MirrorCdkMismatch" xml:space="preserve">
+        <value>CDK type does not match the resource.</value>
+    </data>
+    <data name="StartingAgent" xml:space="preserve">
+        <value>Starting Agent (may take a while)</value>
+    </data>
+    <data name="AgentStartFailed" xml:space="preserve">
+        <value>Agent startup failure</value>
+    </data>
+    <data name="AgentTcpMode" xml:space="preserve">
+        <value>Communication Compatibility Mode</value>
+    </data>
+    <data name="AgentTcpModeDescription" xml:space="preserve">
+        <value>If the app crashes immediately after starting a task, try enabling this. Only use in this case, otherwise it may affect performance.</value>
+    </data>
+    <data name="AgentExecutableNotFound" xml:space="preserve">
+        <value>Agent executable file not found: {0}</value>
+    </data>
+    <data name="Optional" xml:space="preserve">
+        <value>Optional</value>
+    </data>
+    <data name="ExternalNotificationEnableCustomNotificationMessage" xml:space="preserve">
+        <value>Enable Custom Notification Message</value>
+    </data>
+    <data name="ExternalNotificationCustomNotificationContent" xml:space="preserve">
+        <value>Custom Notification Content</value>
+    </data>
+    <data name="ExternalNotificationTest" xml:space="preserve">
+        <value>This is a send test</value>
+    </data>
+    <data name="GlobalHotkeyServiceError" xml:space="preserve">
+        <value>Global Hotkey Service Failed to Load</value>
+        <data name="MultiInstanceModeGlobalHotkeyDisabled" xml:space="preserve">
+        <value>Multi-instance Mode: Global Hotkeys Disabled</value>
+    </data>
+    </data>
+    <data name="UpcomingChanges" xml:space="preserve">
+        <value>Upcoming Changes</value>
+    </data>
+    <data name="TaskFailed" xml:space="preserve">
+        <value>Task execution failed!</value>
+    </data>
+    <data name="ExternalNotificationCustomNotificationContentSuccess" xml:space="preserve">
+        <value>Customize success notification content</value>
+    </data>
+    <data name="ExternalNotificationCustomNotificationContentFailure" xml:space="preserve">
+        <value>Customize failure notification content</value>
+    </data>
+    <data name="BetaVersion" xml:space="preserve">
+        <value>Beta</value>
+    </data>
+    <data name="StableVersion" xml:space="preserve">
+        <value>Stable</value>
+    </data>
+    <data name="ResourceUpdateChannel" xml:space="preserve">
+        <value>Resource Update Channel</value>
+    </data>
+    <data name="UpdateLog" xml:space="preserve">
+        <value>Update Log</value>
+    </data>
+    <data name="ProxySettings" xml:space="preserve">
+        <value>Proxy Settings</value>
+    </data>
+    <data name="UiVersionBelowResourceRequirement" xml:space="preserve">
+        <value>The current UI version {0} is lower than the minimum required version {1} for the resource. Some functions may not work properly. Please update the software.</value>
+    </data>
+    <data name="AboutToken" xml:space="preserve">
+        <value>AboutToken</value>
+    </data>
+    <data name="Extracting" xml:space="preserve">
+        <value>Extracting</value>
+    </data>
+    <data name="AlphaVersion" xml:space="preserve">
+        <value>Alpha</value>
+    </data>
+    <data name="UIUpdateChannel" xml:space="preserve">
+        <value>UI Update Channel</value>
+    </data>
+    <data name="ExportLog" xml:space="preserve">
+        <value>Export Log</value>
+    </data>
+    <data name="ExportLogDialogTitle" xml:space="preserve">
+        <value>Package Logs</value>
+    </data>
+    <data name="ExportLogDialogDescription" xml:space="preserve">
+        <value>Choose the log files and image folders to include. Image items can be filtered by time range.</value>
+    </data>
+    <data name="ExportLogDialogLogsSection" xml:space="preserve">
+        <value>Logs</value>
+    </data>
+    <data name="ExportLogDialogImagesSection" xml:space="preserve">
+        <value>Images</value>
+    </data>
+    <data name="ExportLogDialogImagesDescription" xml:space="preserve">
+        <value>The default image time range is all, and each image category can be adjusted separately.</value>
+    </data>
+    <data name="ExportLogDialogOtherImages" xml:space="preserve">
+        <value>Other images</value>
+    </data>
+    <data name="ExportLogDialogStart" xml:space="preserve">
+        <value>Start Export</value>
+    </data>
+    <data name="ExportLogTimeRangeLast24Hours" xml:space="preserve">
+        <value>Last 24 hours</value>
+    </data>
+    <data name="ExportLogTimeRangeLast3Days" xml:space="preserve">
+        <value>Last 3 days</value>
+    </data>
+    <data name="ExportLogTimeRangeLast7Days" xml:space="preserve">
+        <value>Last 7 days</value>
+    </data>
+    <data name="ExportLogInProgress" xml:space="preserve">
+        <value>Exporting logs, please wait...</value>
+    </data>
+    <data name="ExportLogNoEligibleFiles" xml:space="preserve">
+        <value>No eligible log files or images were found.</value>
+    </data>
+    <data name="ExportLogSuccess" xml:space="preserve">
+        <value>Log export completed successfully</value>
+    </data>
+    <data name="ExportLogFailed" xml:space="preserve">
+        <value>Failed to export logs</value>
+    </data>
+    <data name="ClearCache" xml:space="preserve">
+        <value>Clear Cache</value>
+    </data>
+    <data name="ClearCacheSuccess" xml:space="preserve">
+        <value>Cache cleared</value>
+    </data>
+    <data name="ClearCacheFailed" xml:space="preserve">
+        <value>Failed to clear cache</value>
+    </data>
+    <data name="ClearCacheStopInstanceFailed" xml:space="preserve">
+        <value>Failed to stop instance {0}</value>
+    </data>
+    <data name="ClearCacheInstanceStillUsingResource" xml:space="preserve">
+        <value>Instance {0} is still using resources</value>
+    </data>
+    <data name="Warning" xml:space="preserve">
+        <value>Warning</value>
+    </data>
+    <data name="StopTaskBeforeExportLog" xml:space="preserve">
+        <value>Please stop the task before exporting logs</value>
+    </data>
+    <data name="StopTaskBeforeClearCache" xml:space="preserve">
+        <value>Please stop the task before clearing cache</value>
+    </data>
+    <data name="MirrorCdkEmpty" xml:space="preserve">
+        <value>Please go to the "Update Settings" in the "Settings", switch the "update source" to "GitHub", or fill in Mirror CDK</value>
+    </data>
+    <data name="ContinueRunningWhenError" xml:space="preserve">
+        <value>Whether to continue running other tasks after a task fails</value>
+    </data>
+    <data name="CurrentOtherUpdatingTask" xml:space="preserve">
+        <value>There are other ongoing update tasks currently</value>
+    </data>
+    <data name="RedownloadUiFullPackage" xml:space="preserve">
+        <value>Redownload the full UI package</value>
+    </data>
+    <data name="RedownloadResourceFullPackage" xml:space="preserve">
+        <value>Redownload the full resource package</value>
+    </data>
+    <data name="MirrorCDKBanned" xml:space="preserve">
+        <value>CDK has been banned</value>
+    </data>
+    <data name="ScreenshotTest" xml:space="preserve">
+        <value>Screenshot Test</value>
+    </data>
+    <data name="ScreenshotPage" xml:space="preserve">
+        <value>Screenshot</value>
+    </data>
+    <data name="ScreenshotFailed" xml:space="preserve">
+        <value>Screenshot Failed</value>
+    </data>
+    <data name="DisplayAnnouncement" xml:space="preserve">
+        <value>Display Announcement</value>
+    </data>
+    <data name="ScreenshotEmpty" xml:space="preserve">
+        <value>The current screenshot is empty! Please click [Screenshot Test] to get a screenshot</value>
+    </data>
+    <data name="ScreenshotPlaceholder" xml:space="preserve">
+        <value>No screenshot</value>
+    </data>
+    <data name="SaveScreenshot" xml:space="preserve">
+        <value>Save Screenshot</value>
+    </data>
+    <data name="AnnouncementEmpty" xml:space="preserve">
+        <value>The current announcement is empty</value>
+    </data>
+    <data name="Execute" xml:space="preserve">
+        <value>Execute</value>
+    </data>
+    <data name="StoppingInternalTask" xml:space="preserve">
+        <value>Stopping Internal Task...</value>
+    </data>
+    <data name="Verifying" xml:space="preserve">
+        <value>Verifying</value>
+    </data>
+    <data name="HashVerificationFailed" xml:space="preserve">
+        <value>Hash verification failed! The resource may be corrupted, possibly due to network fluctuations. Please try re-downloading the resource.</value>
+    </data>
+    <data name="FileLoadFailed" xml:space="preserve">
+        <value>File {0} failed to load!</value>
+    </data>
+    <data name="FileLoadFailedDetail" xml:space="preserve">
+        <value>Please check if the {0} file format is correct, there may be JSON syntax errors</value>
+    </data>
+    <data name="CopyToClipboard" xml:space="preserve">
+        <value>Copy to clipboard</value>
+    </data>
+    <data name="UseDirectMLSupportedDevice" xml:space="preserve">
+        <value>Use DirectML Supported Device</value>
+    </data>
+    <data name="SwitchUiUpdateSourceToGithub" xml:space="preserve">
+        <value>Since Mirror Chyan cannot specify a specific version for update, please go to update settings and switch the update source to GitHub.</value>
+    </data>
+    <data name="MultiInstanceUnderSamePath" xml:space="preserve">
+        <value>Only one instance can be launched under the same path!</value>
+    </data>
+    <data name="KeyboardInput" xml:space="preserve">
+        <value>Keyboard Input</value>
+    </data>
+    <data name="MouseInput" xml:space="preserve">
+        <value>Mouse Input</value>
+    </data>
+    <data name="ExternalNotificationServerChanSendKey" xml:space="preserve">
+        <value>SendKey</value>
+    </data>
+    <data name="UiDoesNotSupportResourceUpdateCancelled" xml:space="preserve">
+        <value>The current version of the UI does not support the resources to be updated, and the update has been cancelled.</value>
+    </data>
+    <data name="UiDoesNotSupportCurrentResource" xml:space="preserve">
+        <value>The current version of the UI does not support the current resource!</value>
+    </data>
+    <data name="UnknownError" xml:space="preserve">
+        <value>Unknown error</value>
+    </data>
+    <data name="UndefinedError" xml:space="preserve">
+        <value>Undefined error</value>
+    </data>
+    <data name="Notification" xml:space="preserve">
+            <value>Notification</value>
+        </data>
+    <data name="NotificationDescription" xml:space="preserve">
+            <value>When enabled, system notifications will be displayed when tasks complete or important events occur.</value>
+        </data>
+    <data name="EmulatorMultiInstanceQuickSettings" xml:space="preserve">
+        <value>Multi-instance Quick Settings</value>
+    </data>
+    <data name="EmulatorMultiInstanceEditor" xml:space="preserve">
+        <value>Multi-instance Editor</value>
+    </data>
+    <data name="MuMuEmulator" xml:space="preserve">
+        <value>MuMu Emulator</value>
+    </data>
+    <data name="XYAZ" xml:space="preserve">
+        <value>MEmu</value>
+    </data>
+    <data name="EmulatorMultiInstanceNumber" xml:space="preserve">
+        <value>Multi-instance Number</value>
+    </data>
+    <data name="RunSingle" xml:space="preserve">
+        <value>Run Single</value>
+    </data>
+    <data name="RunCheckedFromCurrent" xml:space="preserve">
+        <value>Run Checked From Current</value>
+    </data>
+    <data name="MirrorChyanResourceUpdateShortTip" xml:space="preserve">
+        <value>Resource update {0} detected</value>
+    </data>
+    <data name="ExternalNotificationLarkWebhookUrl" xml:space="preserve">
+        <value>Lark webhook</value>
+    </data>
+    <data name="ExternalNotificationLarkWebhookDescription" xml:space="preserve">
+        <value>After filling in the Webhook address, you do not need to fill in the Lark ID and Bot Token</value>
+    </data>
+    <data name="Unnamed" xml:space="preserve">
+        <value>Unnamed</value>
+    </data>
+    <data name="CdkExpireInDays" xml:space="preserve">
+        <value>CDK expires in {0} days</value>
+    </data>
+    <data name="CdkExpireInHours" xml:space="preserve">
+        <value>CDK expires in {0} hours</value>
+    </data>
+    <data name="CdkExpireInMinutes" xml:space="preserve">
+        <value>CDK expires in {0} minutes</value>
+    </data>
+    <data name="CdkExpireInSeconds" xml:space="preserve">
+        <value>CDK expires in {0} seconds</value>
+    </data>
+    <data name="QueryCdkRemainingTime" xml:space="preserve">
+        <value>Query CDK Remaining Time</value>
+    </data>
+    <data name="LoadResourcesFailedDetail" xml:space="preserve">
+        <value>Please delete the entire folder and redownload, or contact the project maintainer.</value>
+    </data>
+    <data name="NoEmulatorFoundDetail" xml:space="preserve">
+        <value>Please ensure that the emulator's ADB function is enabled, bridge mode is disabled, and try connecting again after restarting MFA and the emulator.</value>
+    </data>
+    <data name="Reset" xml:space="preserve">
+        <value>Reset</value>
+    </data>
+    <data name="BackgroundImageTitle" xml:space="preserve">
+        <value>Background Image</value>
+    </data>
+    <data name="BackgroundImageDescription" xml:space="preserve">
+        <value>Select an image as the window background, which will be overlaid on top of the default background effect.</value>
+    </data>
+    <data name="SelectBackgroundImage" xml:space="preserve">
+        <value>Select Background Image</value>
+    </data>
+    <data name="BackgroundImageOpacityTitle" xml:space="preserve">
+        <value>Background Image Opacity</value>
+    </data>
+    <data name="BackgroundImageOpacityDescription" xml:space="preserve">
+        <value>Adjust the opacity of the background image. Lower values make the image more transparent.</value>
+    </data>
+    <data name="AgentConnectionRetry" xml:space="preserve">
+        <value>Agent connection retry ({0})...</value>
+    </data>
+    <data name="TriggerDate" xml:space="preserve">
+        <value>Trigger Date</value>
+    </data>
+    <data name="SchedulePickerTip" xml:space="preserve">
+        <value>Click to set trigger date</value>
+    </data>
+    <data name="ScheduleMode" xml:space="preserve">
+        <value>Schedule Mode</value>
+    </data>
+    <data name="ScheduleDaily" xml:space="preserve">
+        <value>Daily</value>
+    </data>
+    <data name="ScheduleWeekly" xml:space="preserve">
+        <value>Weekly</value>
+    </data>
+    <data name="ScheduleMonthly" xml:space="preserve">
+        <value>Monthly</value>
+    </data>
+    <data name="ScheduleWorkdays" xml:space="preserve">
+        <value>Workdays</value>
+    </data>
+    <data name="ScheduleWeekends" xml:space="preserve">
+        <value>Weekends</value>
+    </data>
+    <data name="SelectDaysOfWeek" xml:space="preserve">
+        <value>Select Days of Week</value>
+    </data>
+    <data name="SelectDaysOfMonth" xml:space="preserve">
+        <value>Select Days of Month</value>
+    </data>
+    <data name="WeekdayMon" xml:space="preserve">
+        <value>Mon</value>
+    </data>
+    <data name="WeekdayTue" xml:space="preserve">
+        <value>Tue</value>
+    </data>
+    <data name="WeekdayWed" xml:space="preserve">
+        <value>Wed</value>
+    </data>
+    <data name="WeekdayThu" xml:space="preserve">
+        <value>Thu</value>
+    </data>
+    <data name="WeekdayFri" xml:space="preserve">
+        <value>Fri</value>
+    </data>
+    <data name="WeekdaySat" xml:space="preserve">
+        <value>Sat</value>
+    </data>
+    <data name="WeekdaySun" xml:space="preserve">
+        <value>Sun</value>
+    </data>
+    <data name="ScheduleMonthlyDay" xml:space="preserve">
+        <value>Day {0}</value>
+    </data>
+    <data name="ScheduleMonthlyDays" xml:space="preserve">
+        <value>Days: {0}</value>
+    </data>
+    <data name="ScheduleMonthlyDaySuffix" xml:space="preserve">
+        <value>th</value>  </data>
+    <data name="FontScaleTitle" xml:space="preserve">
+        <value>Font Size Scale</value>
+    </data>
+    <data name="FontScaleDescription" xml:space="preserve">
+        <value>Adjust the overall font scale of the interface. All fonts will be scaled proportionally.</value>
+    </data>
+    <data name="FontScaleValue" xml:space="preserve">
+        <value>{0}%</value>
+    </data>
+    <data name="ResourceAutoSwitched" xml:space="preserve">
+        <value>Resource Auto-Switched</value>
+    </data>
+    <data name="ResourceNotSupportController" xml:space="preserve">
+        <value>Current controller {1} does not support resource {0}, auto-switched to {2}. Please check resource settings.</value>
+    </data>
+    <data name="ResourceNotSelected" xml:space="preserve">
+        <value>No resource selected. Please select a resource first.</value>
+    </data>
+    <data name="DeviceNotSelected" xml:space="preserve">
+        <value>No device selected. Please select a device first.</value>
+    </data>
+
+
+    <data name="Preset" xml:space="preserve">
+        <value>Preset</value>
+    </data>
+
+    <data name="ResourcePresetConfig" xml:space="preserve">
+        <value>Resource Preset Config</value>
+    </data>
+    <data name="UseFingerprintMatching" xml:space="preserve">
+        <value>Use Fingerprint Matching</value>
+    </data>
+<data name="LiveView" xml:space="preserve">
+        <value>Live View</value>
+    </data>
+    <data name="LiveViewNoImageReasonAdb" xml:space="preserve">
+        <value>Possible causes: emulator window minimized/screen off, incompatible screencap mode, or device not fully started</value>
+    </data>
+    <data name="LiveViewNoImageReasonWindow" xml:space="preserve">
+        <value>Possible causes: target window minimized/hidden/occluded, incompatible screencap mode</value>
+    </data>
+    <data name="LiveViewNoImageWarning" xml:space="preserve">
+        <value>Live view is connected but no frame is available ({0}), {1}</value>
+    </data>
+    <data name="Running" xml:space="preserve">
+        <value>Running</value>
+    </data>
+    <data name="CurrentTask" xml:space="preserve">
+            <value>Task: {0}</value>
+        </data>
+    <data name="LiveViewRefreshRate" xml:space="preserve">
+        <value>Live View Max Refresh Rate (FPS)</value>
+    </data>
+    <data name="PlayCoverAddress" xml:space="preserve">
+        <value>Address</value>
+    </data>
+    <data name="PlayCoverBundleIdentifier" xml:space="preserve">
+        <value>Bundle Identifier</value>
+    </data>
+<data name="PlayCoverAddressEmpty" xml:space="preserve">
+        <value>PlayCover address cannot be empty</value>
+    </data>
+    <data name="PlayCoverEditor" xml:space="preserve">
+        <value>PlayCover Editor</value>
+    </data>
+    <data name="Reconnect" xml:space="preserve">
+        <value>Reconnect</value>
+    </data>
+    <data name="ResourceLayoutUpdatedTitle" xml:space="preserve">
+        <value>Resource layout updated</value>
+    </data>
+    <data name="ResourceLayoutUpdatedContent" xml:space="preserve">
+        <value>Resource layout file changed. Latest layout has been applied and current layout overwritten.</value>
+    </data>
+    <data name="TaskRemarkMenu" xml:space="preserve">
+        <value>Remark</value>
+    </data>
+    <data name="TaskRemarkTitle" xml:space="preserve">
+        <value>Task Remark</value>
+    </data>
+    <data name="TaskRename" xml:space="preserve">
+        <value>Rename</value>
+    </data>
+    <data name="TaskRenamePlaceholder" xml:space="preserve">
+        <value>Enter configuration name</value>
+    </data>
+    <data name="TaskRemark" xml:space="preserve">
+        <value>Remark</value>
+    </data>
+    <data name="TaskRemarkPlaceholder" xml:space="preserve">
+        <value>Enter a remark (optional)</value>
+    </data>
+        <data name="PlatformNotSupportedOperation" xml:space="preserve">
+            <value>This operation is not supported on the current platform</value>
+        </data>
+        <data name="AdminPermissionRequired" xml:space="preserve">
+            <value>Administrator Permission Required</value>
+        </data>
+        <data name="AdminPermissionRequiredDetail" xml:space="preserve">
+            <value>The current controller requires administrator privileges. Please restart this application as administrator.</value>
+        </data>
+        <data name="StartupErrorTitle" xml:space="preserve">
+            <value>Startup Failed</value>
+        </data>
+        <data name="StartupErrorMessage" xml:space="preserve">
+            <value>{0} Failed
+    
+    Error Message:
+    {1}
+    
+    Details:
+    {2}</value>
+        </data>
+        <data name="MSVC2022Missing" xml:space="preserve">
+            <value>Missing runtime detected. Please try to download and install the latest Microsoft Visual C++ Redistributable (x64).</value>
+        </data>
+        <data name="MaaNativeLibraryMissing" xml:space="preserve">
+            <value>Missing MAA dependency files were detected. Please re-extract or reinstall the application completely.</value>
+        </data>
+        <data name="MaaNativeLibraryMissingDetail" xml:space="preserve">
+            <value>Missing files: {0}
+
+Suggested directory to check:
+{1}
+
+Please do not copy only the main executable by itself.</value>
+        </data>
+        <data name="MSVC2022DownloadLink" xml:space="preserve">
+            <value>Download Link: https://aka.ms/vs/17/release/vc_redist.x64.exe</value>
+        </data>
+        <data name="DownloadNowConfirmation" xml:space="preserve">
+            <value>Download now?</value>
+        </data>
+        <data name="RuntimeMissingTitle" xml:space="preserve">
+            <value>Runtime Missing</value>
+        </data>
+        <data name="RuntimeMissingWarning" xml:space="preserve">
+            <value>System Component Missing</value>
+        </data>
+        <data name="RuntimeMissingDescription" xml:space="preserve">
+            <value>MFAAvalonia requires Microsoft Visual C++ Redistributable (x64) to run.</value>
+        </data>
+        <data name="DownloadAndInstall" xml:space="preserve">
+            <value>Download and Install</value>
+        </data>
+        <data name="DownloadingStatus" xml:space="preserve">
+            <value>Downloading Runtime Library...</value>
+        </data>
+        <data name="InstallingStatus" xml:space="preserve">
+            <value>Waiting for installation to complete, please complete the operation in the popped up installation window.</value>
+        </data>
+        <data name="InstallSuccess" xml:space="preserve">
+            <value>Installation Completed. Please restart the application.</value>
+        </data>
+        <data name="DownloadError" xml:space="preserve">
+            <value>Error: {0}</value>
+        </data>
+        <data name="Retry" xml:space="preserve">
+            <value>Retry</value>
+        </data>
+        <data name="Close" xml:space="preserve">
+            <value>Close</value>
+        </data>
+        <data name="RuntimeMissingPrompt" xml:space="preserve">
+            <value>Click the button below to automatically download and run the installer, please note to click install in the popped up window.</value>
+        </data>
+        <data name="TempDirWarningTitle" xml:space="preserve">
+            <value>Wrong Program Location</value>
+        </data>
+        <data name="TempDirWarningMain" xml:space="preserve">
+            <value>It seems you double-clicked the program inside the zip file.</value>
+        </data>
+        <data name="TempDirWarningDesc" xml:space="preserve">
+            <value>The program is running in a temporary directory and may be lost when closed. Please extract the zip file to a folder first, then run the program inside.</value>
+        </data>
+        <data name="TempDirWarningHint" xml:space="preserve">
+            <value>Tip: It is recommended to extract to a dedicated folder, e.g. "D:\MFA", avoid Desktop or Download folders for better management.</value>
+        </data>
+    <data name="ExitProgram" xml:space="preserve">
+        <value>Exit Program</value>
+    </data>
+    <data name="PreventSleep" xml:space="preserve">
+        <value>Prevent Sleep</value>
+    </data>
+    <data name="Search" xml:space="preserve">
+        <value>Search...</value>
+    </data>
+    <data name="Config" xml:space="preserve">
+        <value>Config</value>
+    </data>
+    <data name="TutorialStepConnectTitle" xml:space="preserve">
+        <value>Toolbar Overview</value>
+    </data>
+    <data name="TutorialStepConnectDesc" xml:space="preserve">
+        <value>This is the top toolbar containing resource switching, controller selection, device connection and more. Let's walk through each one.</value>
+    </data>
+    <data name="TutorialStepAddTaskTitle" xml:space="preserve">
+        <value>Task List</value>
+    </data>
+    <data name="TutorialStepAddTaskDesc" xml:space="preserve">
+        <value>Check the tasks you want to run in the task list. Drag to reorder. Click the settings icon on the right side of each task to view its detailed parameters in the Task Settings panel.</value>
+    </data>
+    <data name="TutorialStepMultiConfigTitle" xml:space="preserve">
+        <value>Manage Configurations</value>
+    </data>
+    <data name="TutorialStepMultiConfigDesc" xml:space="preserve">
+        <value>Step 3: Create or switch configurations via the top tab bar — e.g. one for daily automation, another for real-time tools. Each config has independent tasks and device settings.</value>
+    </data>
+    <data name="TutorialNext" xml:space="preserve">
+        <value>Next</value>
+    </data>
+    <data name="TutorialPrevious" xml:space="preserve">
+        <value>Previous</value>
+    </data>
+    <data name="TutorialFinish" xml:space="preserve">
+        <value>Got it</value>
+    </data>
+    <data name="TutorialStepTaskOptionsTitle" xml:space="preserve">
+        <value>Task Settings</value>
+    </data>
+    <data name="TutorialStepTaskOptionsDesc" xml:space="preserve">
+        <value>This panel shows detailed parameter settings for the selected task. Click the settings icon next to different tasks in the task list to switch between their options.</value>
+    </data>
+    <data name="TutorialStepSettingsTitle" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+    <data name="TutorialStepSettingsDesc" xml:space="preserve">
+        <value>Click the settings icon at the bottom of the left sidebar to configure global options like theme, language, and notifications.</value>
+    </data>
+    <data name="TutorialStepResourceTitle" xml:space="preserve">
+        <value>Resource Switching</value>
+    </data>
+    <data name="TutorialStepResourceDesc" xml:space="preserve">
+        <value>Use this dropdown to switch between different resource packs. Different packs may contain different task sets and configurations.</value>
+    </data>
+    <data name="TutorialStepControllerTitle" xml:space="preserve">
+        <value>Controller Type</value>
+    </data>
+    <data name="TutorialStepControllerDesc" xml:space="preserve">
+        <value>Select the controller type: Desktop, Desktop-Alt, Desktop-Foreground, or Android, etc. Choose the connection method that fits your use case.</value>
+    </data>
+    <data name="TutorialStepDeviceTitle" xml:space="preserve">
+        <value>Device Selection</value>
+    </data>
+    <data name="TutorialStepDeviceDesc" xml:space="preserve">
+        <value>Select the target device or window to connect to. The dropdown shows currently available devices.</value>
+    </data>
+    <data name="TutorialStepConnectionTitle" xml:space="preserve">
+        <value>Connection Controls</value>
+    </data>
+    <data name="TutorialStepConnectionDesc" xml:space="preserve">
+        <value>Here you'll find buttons to refresh the device list, reconnect, and a connection status indicator (green = connected, red = disconnected). Click "Start Task" to run your checked tasks.</value>
+    </data>
+    <data name="TutorialStepLogTitle" xml:space="preserve">
+        <value>Run Log</value>
+    </data>
+    <data name="TutorialStepLogDesc" xml:space="preserve">
+        <value>Log messages during task execution are displayed here for real-time monitoring and troubleshooting.</value>
+    </data>
+    <data name="TutorialStepSelectAllTitle" xml:space="preserve">
+        <value>Select All / Deselect All</value>
+    </data>
+    <data name="TutorialStepSelectAllDesc" xml:space="preserve">
+        <value>These two buttons quickly check or uncheck all tasks. The left one is "Select All" and the right one is "Deselect All".</value>
+    </data>
+    <data name="TutorialStepAddTaskBtnTitle" xml:space="preserve">
+        <value>Add &amp; Reset Tasks</value>
+    </data>
+    <data name="TutorialStepAddTaskBtnDesc" xml:space="preserve">
+        <value>The "Add Task" button adds new tasks to the list; the "Reset Tasks" button restores the task list to its default state.</value>
+    </data>
+    <data name="TutorialStepResetTaskTitle" xml:space="preserve">
+        <value>Start Tasks</value>
+    </data>
+    <data name="TutorialStepResetTaskDesc" xml:space="preserve">
+        <value>Click this button to start executing checked tasks. Click again while running to stop.</value>
+    </data>
+    <data name="TutorialStepTaskInteractTitle" xml:space="preserve">
+        <value>Task Interaction Tips</value>
+    </data>
+    <data name="TutorialStepTaskInteractDesc" xml:space="preserve">
+        <value>Left-click the checkbox to check/uncheck a task; right-click the checkbox to set it to "run only once" (indeterminate state).</value>
+    </data>
+    <data name="TutorialStepTaskItemTipTitle" xml:space="preserve">
+        <value>Task Item Actions</value>
+    </data>
+    <data name="TutorialStepTaskItemTipDesc" xml:space="preserve">
+        <value>Right-click a task item to open a context menu for running individually, adding remarks, or deleting. Click the settings icon on the right to view task parameters.</value>
+    </data>
+    <data name="TutorialStepExportLogTitle" xml:space="preserve">
+        <value>Export Log</value>
+    </data>
+    <data name="TutorialStepExportLogDesc" xml:space="preserve">
+        <value>Click this button to export run logs to a file for troubleshooting or sharing with developers.</value>
+    </data>
+    <data name="TutorialStepSettingsPageTitle" xml:space="preserve">
+        <value>Settings Page</value>
+    </data>
+    <data name="TutorialStepSettingsPageDesc" xml:space="preserve">
+        <value>This is the Settings page. Use the side or top navigation bar to quickly jump to different setting categories. The right side shows detailed settings for the selected category.</value>
+    </data>
+    <data name="TutorialStepStartupSettingsTitle" xml:space="preserve">
+        <value>Startup Settings</value>
+    </data>
+    <data name="TutorialStepStartupSettingsDesc" xml:space="preserve">
+        <value>Configure automatic actions before and after tasks, emulator/game launch path, startup parameters, and wait time here.</value>
+    </data>
+    <data name="TutorialStepBeforeAfterTaskTitle" xml:space="preserve">
+        <value>Before &amp; After Task Actions</value>
+    </data>
+    <data name="TutorialStepBeforeAfterTaskDesc" xml:space="preserve">
+        <value>"Before Task" automatically runs a specified action before tasks start (e.g., navigate to a specific screen); "After Task" runs after all tasks complete (e.g., exit game, close emulator).</value>
+    </data>
+    <data name="TutorialStepSoftwarePathTitle" xml:space="preserve">
+        <value>Set Launch Path</value>
+    </data>
+    <data name="TutorialStepSoftwarePathDesc" xml:space="preserve">
+        <value>Set the emulator or game launch path here for fully automated operation. Note: You must select "Launch Game" or "Launch &amp; Execute" in Connection Actions, or enable "Try to launch on connection failure" in Connection Settings for the launch path to take effect.</value>
+    </data>
+    <data name="TutorialStepRewatchTitle" xml:space="preserve">
+        <value>Re-watch Tutorial</value>
+    </data>
+    <data name="TutorialStepRewatchDesc" xml:space="preserve">
+        <value>If you need to review this tutorial later, you can find the "Tutorial" button at the bottom of Settings → About page to re-watch it anytime.</value>
+    </data>
+    <data name="Tutorial" xml:space="preserve">
+        <value>Tutorial</value>
+    </data>
+    <data name="SpecialTask" xml:space="preserve">
+        <value>Special Tasks</value>
+    </data>
+    <data name="SpecialTask_Countdown" xml:space="preserve">
+        <value>Countdown</value>
+    </data>
+    <data name="SpecialTask_TimedWait" xml:space="preserve">
+        <value>Timed Wait</value>
+    </data>
+    <data name="SpecialTask_Toast" xml:space="preserve">
+        <value>Toast Notification</value>
+    </data>
+    <data name="SpecialTask_CustomProgram" xml:space="preserve">
+        <value>Custom Program</value>
+    </data>
+    <data name="SpecialTask_KillProcess" xml:space="preserve">
+        <value>Kill Process</value>
+    </data>
+    <data name="SpecialTask_ComputerOperation" xml:space="preserve">
+        <value>Computer Operation</value>
+    </data>
+    <data name="SpecialTask_Webhook" xml:space="preserve">
+        <value>Webhook</value>
+    </data>
+    <data name="SpecialTask_CountdownDesc" xml:space="preserve">
+        <value>Continues to the next task after the specified seconds, supports `1~86400` seconds (24 hours), useful for adding delays between tasks.</value>
+    </data>
+    <data name="SpecialTask_TimedWaitDesc" xml:space="preserve">
+        <value>Pauses the task queue until a specified time of day (hour:minute). If the time has already passed today, waits until that time tomorrow.</value>
+    </data>
+    <data name="SpecialTask_ToastDesc" xml:space="preserve">
+        <value>Displays a toast notification with a custom message, useful for alerting when a certain point in the task queue is reached.</value>
+    </data>
+    <data name="SpecialTask_CustomProgramDesc" xml:space="preserve">
+        <value>Launches an external program or script, supports specifying program path and startup arguments, can optionally wait for the program to exit before continuing.</value>
+    </data>
+    <data name="SpecialTask_KillProcessDesc" xml:space="preserve">
+        <value>Terminates a running process by name, useful for closing games or other applications as part of the task flow.</value>
+    </data>
+    <data name="SpecialTask_ComputerOperationDesc" xml:space="preserve">
+        <value>Performs a system-level operation such as shutdown, restart, sleep or hibernate, useful for automated power management after long task runs.</value>
+    </data>
+    <data name="SpecialTask_WebhookDesc" xml:space="preserve">
+        <value>Sends an HTTP request to a specified URL with custom request body, useful for integrating with external services or automation platforms.</value>
+    </data>
+    <data name="SpecialTask_CountdownSeconds" xml:space="preserve">
+        <value>Countdown (seconds)</value>
+    </data>
+    <data name="SpecialTask_WaitUntilTime" xml:space="preserve">
+        <value>Wait until (HH:MM)</value>
+    </data>
+    <data name="SpecialTask_NotificationTitle" xml:space="preserve">
+        <value>Notification Title</value>
+    </data>
+    <data name="SpecialTask_NotificationContent" xml:space="preserve">
+        <value>Notification Content</value>
+    </data>
+    <data name="SpecialTask_ProgramPath" xml:space="preserve">
+        <value>Program Path</value>
+    </data>
+    <data name="SpecialTask_Arguments" xml:space="preserve">
+        <value>Arguments</value>
+    </data>
+    <data name="SpecialTask_WaitForExit" xml:space="preserve">
+        <value>Wait for Exit</value>
+    </data>
+    <data name="SpecialTask_KillSelfProcess" xml:space="preserve">
+        <value>Kill Self Process</value>
+    </data>
+    <data name="SpecialTask_KillSelfProcessDesc" xml:space="preserve">
+        <value>When enabled, terminates this application itself; when disabled, you can enter another process name to terminate.</value>
+    </data>
+    <data name="SpecialTask_ProcessSettings" xml:space="preserve">
+        <value>Process Settings</value>
+    </data>
+    <data name="SpecialTask_ProcessName" xml:space="preserve">
+        <value>Process Name</value>
+    </data>
+    <data name="SpecialTask_OperationType" xml:space="preserve">
+        <value>Operation Type</value>
+    </data>
+    <data name="SpecialTask_RequestMethod" xml:space="preserve">
+        <value>Request Method</value>
+    </data>
+    <data name="SpecialTask_RequestBody" xml:space="preserve">
+        <value>Request Body</value>
+    </data>
+    <data name="SpecialTask_SelectProgram" xml:space="preserve">
+        <value>Select Program</value>
+    </data>
+    <data name="SpecialTask_ProcessNamePlaceholder" xml:space="preserve">
+        <value>e.g. notepad.exe</value>
+    </data>
+    <data name="SpecialTask_ProcessNameExample" xml:space="preserve">
+        <value>e.g. notepad.exe</value>
+    </data>
+    <data name="SpecialTask_Shutdown" xml:space="preserve">
+        <value>Shutdown</value>
+    </data>
+    <data name="SpecialTask_Restart" xml:space="preserve">
+        <value>Restart</value>
+    </data>
+    <data name="SpecialTask_Sleep" xml:space="preserve">
+        <value>Sleep</value>
+    </data>
+    <data name="SpecialTask_Hibernate" xml:space="preserve">
+        <value>Hibernate</value>
+    </data>
+    <data name="InstanceSelectTooltip" xml:space="preserve">
+        <value>Select Instance</value>
+    </data>
+    <data name="InstanceAddTooltip" xml:space="preserve">
+        <value>Add Instance</value>
+    </data>
+    <data name="InstanceAddFollowLast" xml:space="preserve">
+        <value>Follow Rightmost Config</value>
+    </data>
+    <data name="InstancePresetTaskCountFormat" xml:space="preserve">
+        <value>{0}/{1} tasks</value>
+    </data>
+    <data name="InstanceCannotCloseLast" xml:space="preserve">
+        <value>Cannot close the last instance</value>
+    </data>
+    <data name="InstanceRunningCloseConfirm" xml:space="preserve">
+        <value>Instance is running. Are you sure you want to stop and close it?</value>
+    </data>
+    <data name="InstanceCloseTitle" xml:space="preserve">
+        <value>Close Instance</value>
+    </data>
+    <data name="InstanceRunningCannotClose" xml:space="preserve">
+        <value>This instance is running. Please stop the task before closing.</value>
+    </data>
+    <data name="InstanceTimerReassigned" xml:space="preserve">
+        <value>Instance "{0}" has been closed. Its scheduled tasks have been reassigned to another instance.</value>
+    </data>
+    <data name="MonitorSortDefault" xml:space="preserve">
+        <value>Default</value>
+    </data>
+    <data name="MonitorSortByStatus" xml:space="preserve">
+        <value>By Status</value>
+    </data>
+    <data name="MonitorSortByName" xml:space="preserve">
+        <value>By Name</value>
+    </data>
+    <data name="MonitorSortByCreatedTime" xml:space="preserve">
+        <value>By Created Time</value>
+    </data>
+    <data name="MonitorForceRefresh" xml:space="preserve">
+        <value>Force refresh</value>
+    </data>
+    <data name="MonitorFullScreen" xml:space="preserve">
+        <value>Full screen</value>
+    </data>
+    <data name="MonitorCopyScreenshot" xml:space="preserve">
+        <value>Copy screenshot</value>
+    </data>
+    <data name="MonitorDisconnect" xml:space="preserve">
+        <value>Disconnect</value>
+    </data>
+    <data name="MonitorTryConnect" xml:space="preserve">
+        <value>Try connect</value>
+    </data>
+    <data name="MonitorLiveBadge" xml:space="preserve">
+        <value>LIVE</value>
+    </data>
+    <data name="ZoomOut" xml:space="preserve">
+        <value>Zoom out</value>
+    </data>
+    <data name="ZoomIn" xml:space="preserve">
+        <value>Zoom in</value>
+    </data>
+    <data name="TimerStopConnectedProcess" xml:space="preserve">
+        <value>Close connected process</value>
+    </data>
+    <data name="TimerStopMFA" xml:space="preserve">
+        <value>Close This App</value>
+    </data>
+    <data name="AddTimer" xml:space="preserve">
+        <value>Add Timer</value>
+    </data>
+    <data name="RemoveTimer" xml:space="preserve">
+        <value>Remove Timer</value>
+    </data>
+  <data name="InstanceDropdownSearch" xml:space="preserve">
+    <value>Search configs</value>
+  </data>
+  <data name="InstanceDropdownOpenConfigs" xml:space="preserve">
+    <value>Open configs</value>
+  </data>
+  <data name="InstanceDropdownRecentClosed" xml:space="preserve">
+    <value>Recently closed</value>
+  </data>
+  <data name="InstanceDropdownNoOpenConfigs" xml:space="preserve">
+    <value>No open configs</value>
+  </data>
+  <data name="InstanceDropdownNoRecentClosed" xml:space="preserve">
+    <value>暂无Recently closed记录</value>
+  </data>
+  <data name="InstanceDropdownCloseConfig" xml:space="preserve">
+    <value>Close config</value>
+  </data>
+  <data name="InstanceDropdownJustNow" xml:space="preserve">
+    <value>Just now</value>
+  </data>
+</root>
+
+
+
+
+
+
+
+

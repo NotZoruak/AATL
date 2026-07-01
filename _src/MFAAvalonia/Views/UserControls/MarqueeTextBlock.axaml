@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:MFAAvalonia.Views.UserControls">
+    <Design.PreviewWith>
+        <Border Width="120" Height="30" Background="#333333">
+            <controls:MarqueeTextBlock Text="测试实施敌后i佛黑房内哦那哈佛欸你哪个给" Foreground="White"/>
+        </Border>
+    </Design.PreviewWith>
+    <ControlTheme x:Key="{x:Type controls:MarqueeTextBlock}" TargetType="controls:MarqueeTextBlock">
+        <Setter Property="ClipToBounds" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <!-- 外层Border负责裁剪和接收鼠标事件 -->
+                <Border Background="{TemplateBinding Background}" ClipToBounds="True">
+                    <!-- Canvas不裁剪，让两个文本块都能渲染 -->
+                    <Canvas Name="PART_Canvas">
+                        <!-- 第一个文本块 -->
+                        <TextBlock Name="PART_TextBlock1"
+                                   Text="{TemplateBinding Text}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   TextWrapping="NoWrap"
+                                   Canvas.Top="0"
+                                   IsHitTestVisible="False"/>
+                        <!-- 第二个文本块，用于无缝循环 -->
+                        <TextBlock Name="PART_TextBlock2"
+                                   Text="{TemplateBinding Text}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   TextWrapping="NoWrap"
+                                   Canvas.Top="0" IsVisible="False"
+                                   IsHitTestVisible="False"
+                                   />
+                    </Canvas>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

@@ -1,0 +1,303 @@
+﻿<UserControl
+    d:DesignHeight="550"
+    d:DesignWidth="500"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.UserControls.AddTaskDialogView"
+    x:DataType="settings:AddTaskDialogViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:markup="https://codewf.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:settings="clr-namespace:MFAAvalonia.ViewModels.UsersControls.Settings"
+    xmlns:controls="clr-namespace:MFAAvalonia.Views.UserControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fluent="clr-namespace:FluentIcons.Avalonia.Fluent;assembly=FluentIcons.Avalonia.Fluent">
+
+    <UserControl.Styles>
+        <!-- Task row hover -->
+        <Style Selector="Border.taskRow:pointerover">
+            <Setter Property="Background" Value="#0C3B82F6" />
+        </Style>
+        <!-- Special chip hover -->
+        <Style Selector="Border.specialChip:pointerover">
+            <Setter Property="BorderBrush" Value="{DynamicResource SukiAccentColor}" />
+        </Style>
+        <!-- Minus border hover -->
+        <Style Selector="Border.minusBorder:pointerover">
+            <Setter Property="Background" Value="#15E74C3C" />
+        </Style>
+        <Style Selector="Border.groupCard">
+            <Setter Property="Background" Value="{DynamicResource SukiCardBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SukiBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="16" />
+            <Setter Property="BoxShadow" Value="0 2 8 0 #08000000" />
+        </Style>
+        <Style Selector="Border.groupCard:pointerover">
+            <Setter Property="BorderBrush" Value="#703B82F6" />
+        </Style>
+        <Style Selector="ToggleButton.groupHeader">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="14,12,14,12" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}">
+                        <Grid ColumnDefinitions="*,24"
+                              ColumnSpacing="8"
+                              HorizontalAlignment="Stretch">
+                            <ContentPresenter Grid.Column="0"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              HorizontalAlignment="Stretch"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            <PathIcon Grid.Column="1"
+                                      Name="PART_ExpandChevron"
+                                      Data="F1 M 301.14,-189.041L 311.57,-189.041L 306.355,-182.942L 301.14,-189.041 Z"
+                                      Width="10"
+                                      Height="6"
+                                      Foreground="{DynamicResource SukiLowText}"
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="ToggleButton.groupHeader:pointerover">
+            <Setter Property="Background" Value="#063B82F6" />
+        </Style>
+        <Style Selector="ToggleButton.groupHeader /template/ PathIcon#PART_ExpandChevron">
+            <Setter Property="RenderTransform" Value="rotate(0deg)" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform"
+                                                   Duration="0:0:0.18" />
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="ToggleButton.groupHeader:checked /template/ PathIcon#PART_ExpandChevron">
+            <Setter Property="RenderTransform" Value="rotate(180deg)" />
+        </Style>
+    </UserControl.Styles>
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="TaskRowTemplate" x:DataType="settings:AddTaskItemViewModel">
+            <Border Margin="2" Padding="6,4" CornerRadius="8"
+                    Background="Transparent"
+                    PointerPressed="TaskItem_OnPointerPressed"
+                    Cursor="Hand"
+                    Classes="taskRow">
+                <Grid ColumnDefinitions="30,*,28">
+                    <Border Grid.Column="0"
+                            Width="22" Height="22"
+                            CornerRadius="11"
+                            Background="{DynamicResource SukiAccentColor}"
+                            BoxShadow="0 1 3 0 #30000000"
+                            IsVisible="{Binding HasCount}"
+                            PointerPressed="BadgeItem_OnPointerPressed"
+                            Cursor="Hand"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                        <TextBlock Text="{Binding AddCount}"
+                                   Foreground="White" FontSize="11"
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Border>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal"
+                                Margin="6,0" VerticalAlignment="Center">
+                        <controls:DisplayIcon IconSource="{Binding Icon}"
+                                              IconSize="16"
+                                              IsVisible="{Binding HasIcon}"
+                                              Margin="0,0,6,0"
+                                              VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Name}"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <Border Grid.Column="2"
+                            Width="22" Height="22"
+                            CornerRadius="6"
+                            BoxShadow="0 1 3 0 #25000000"
+                            Background="Transparent"
+                            IsVisible="{Binding HasCount}"
+                            PointerPressed="MinusItem_OnPointerPressed"
+                            Cursor="Hand"
+                            Classes="minusBorder"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                        <fluent:FluentIcon Icon="Subtract" IconSize="Size12"
+                                           Foreground="#FFE05555"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                    </Border>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <StackPanel Margin="15,10,15,0" Orientation="Vertical" Width="420">
+        <StackPanel Height="26" Orientation="Horizontal">
+            <TextBlock FontSize="12" FontWeight="Medium"
+                       Text="{markup:I18n {x:Static helper:LangKeys.Task}}"
+                       VerticalAlignment="Center" />
+        </StackPanel>
+
+        <TextBox Margin="4"
+                 TextChanged="SearchBar_OnSearchStarted"
+                 Watermark="{markup:I18n {x:Static helper:LangKeys.EnterTaskName}}"
+                 x:Name="SearchBar">
+            <TextBox.InnerRightContent>
+                <fluent:FluentIcon Foreground="{DynamicResource SukiLowText}"
+                                   Icon="Search" IconSize="Size16" />
+            </TextBox.InnerRightContent>
+        </TextBox>
+
+        <ScrollViewer Height="200" Margin="5">
+            <StackPanel Spacing="6">
+                <ItemsControl ItemsSource="{Binding Groups}" IsVisible="{Binding HasGroups}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="settings:AddTaskItemGroupViewModel">
+                            <Border Classes="groupCard" Margin="0 2 0 2">
+                                <StackPanel Spacing="0">
+                                    <ToggleButton IsChecked="{Binding IsExpanded}"
+                                                  Classes="groupHeader">
+                                        <Grid ColumnDefinitions="Auto,*"
+                                              ColumnSpacing="10"
+                                              HorizontalAlignment="Stretch">
+                                            <Border Grid.Column="0"
+                                                    Width="26"
+                                                    Height="26"
+                                                    CornerRadius="8"
+                                                    Background="#123B82F6"
+                                                    IsVisible="{Binding HasIcon}"
+                                                    VerticalAlignment="Center">
+                                                <controls:DisplayIcon IconSource="{Binding Icon}"
+                                                                      IconSize="14"
+                                                                      HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center" />
+                                            </Border>
+
+                                            <StackPanel Grid.Column="1"
+                                                        Orientation="Horizontal"
+                                                        Spacing="6"
+                                                        VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Label}"
+                                                           FontWeight="SemiBold"
+                                                           FontSize="15"
+                                                           Foreground="{DynamicResource SukiText}"
+                                                           VerticalAlignment="Center" />
+                                                <controls:TooltipBlock TooltipText="{Binding Description}"
+                                                                       IsVisible="{Binding HasDescription}"
+                                                                       TooltipMaxWidth="320"
+                                                                       VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </ToggleButton>
+
+                                    <Border Height="1"
+                                            Margin="14,0,14,8"
+                                            Background="{DynamicResource SukiBorderBrush}"
+                                            Opacity="0.7"
+                                            IsVisible="{Binding IsExpanded}" />
+
+                                    <ItemsControl ItemsSource="{Binding Items}"
+                                                  ItemTemplate="{StaticResource TaskRowTemplate}"
+                                                  IsVisible="{Binding IsExpanded}"
+                                                  Margin="10,0,10,10" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <ItemsControl ItemsSource="{Binding Items}"
+                              ItemTemplate="{StaticResource TaskRowTemplate}"
+                              IsVisible="{Binding HasUngroupedItems}"
+                              x:Name="TaskItemsControl" />
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Margin="0,8,0,4">
+            <Separator VerticalAlignment="Center" />
+            <TextBlock Text="{markup:I18n {x:Static helper:LangKeys.SpecialTask}}" FontSize="11"
+                       Foreground="{DynamicResource SukiLowText}"
+                       HorizontalAlignment="Center"
+                       Background="{DynamicResource SukiCardBackground}"
+                       Padding="8,0" />
+        </Grid>
+
+        <ItemsControl ItemsSource="{Binding SpecialTasks}" Margin="5,0">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="settings:AddTaskItemViewModel">
+                    <Border Margin="4,3" Padding="8,4" CornerRadius="14"
+                            BorderBrush="{DynamicResource SukiBorderBrush}"
+                            BorderThickness="1" Background="Transparent"
+                            PointerPressed="TaskItem_OnPointerPressed"
+                            Cursor="Hand"
+                            Classes="specialChip">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <TextBlock Text="{Binding SpecialIcon}"
+                                       FontSize="14" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Name}"
+                                       FontSize="12" VerticalAlignment="Center" />
+                            <Border Width="18" Height="18" CornerRadius="9"
+                                    Background="{DynamicResource SukiAccentColor}"
+                                    BoxShadow="0 1 2 0 #25000000"
+                                    IsVisible="{Binding HasCount}"
+                                    PointerPressed="BadgeItem_OnPointerPressed"
+                                    Cursor="Hand"
+                                    Margin="2,0,0,0" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding AddCount}"
+                                           Foreground="White" FontSize="10"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                            </Border>
+                            <Border Width="18" Height="18"
+                                    CornerRadius="5"
+                                    BoxShadow="0 1 2 0 #25000000"
+                                    Background="Transparent"
+                                    IsVisible="{Binding HasCount}"
+                                    PointerPressed="MinusItem_OnPointerPressed"
+                                    Cursor="Hand"
+                                    Classes="minusBorder"
+                                    Margin="2,0,0,0"
+                                    VerticalAlignment="Center">
+                                <fluent:FluentIcon Icon="Subtract" IconSize="Size12"
+                                                   Foreground="#FFE05555"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center" />
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <StackPanel HorizontalAlignment="Center" Margin="0,10,0,0" Orientation="Horizontal">
+            <Button BorderThickness="0" Classes="Flat"
+                    Command="{Binding AddCommand}"
+                    Content="{markup:I18n {x:Static helper:LangKeys.ButtonAdd}}"
+                    FontSize="11" MinHeight="30" Margin="0,0,0,5"
+                    VerticalContentAlignment="Center" Width="90" />
+            <Button Command="{Binding CancelCommand}"
+                    Content="{markup:I18n {x:Static helper:LangKeys.ButtonCancel}}"
+                    FontSize="11" MinHeight="30" Margin="20,0,10,5"
+                    VerticalContentAlignment="Center" Width="90"
+                    x:Name="CancelButton" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

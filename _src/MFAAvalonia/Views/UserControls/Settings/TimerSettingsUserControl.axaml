@@ -1,0 +1,241 @@
+﻿<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.UserControls.Settings.TimerSettingsUserControl"
+    x:DataType="settings:TimerSettingsUserControlModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBindingAva"
+    xmlns:other="clr-namespace:MFAAvalonia.ViewModels.Other"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:markup="https://codewf.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:MFAAvalonia.ViewModels.Pages"
+    xmlns:settings="clr-namespace:MFAAvalonia.ViewModels.UsersControls.Settings"
+    xmlns:suki="https://github.com/kikipoulet/SukiUI"
+    xmlns:userControls="clr-namespace:MFAAvalonia.Views.UserControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:extensions="clr-namespace:SukiUI.Extensions;assembly=SukiUI">
+    <Design.DataContext>
+        <settings:TimerSettingsUserControlModel />
+    </Design.DataContext>
+    <UserControl.Styles>
+        <Style Selector="Button.AddTimerButton">
+            <Setter Property="MinWidth" Value="44" />
+            <Setter Property="MinHeight" Value="44" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="RenderTransformOrigin" Value="50%,50%" />
+            <Setter Property="RenderTransform">
+                <ScaleTransform ScaleX="1" ScaleY="1" />
+            </Setter>
+        </Style>
+        <Style Selector="Button.AddTimerButton:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SukiPrimaryColor15}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SukiPrimaryColor25}" />
+            <Setter Property="Foreground" Value="{DynamicResource SukiPrimaryColor75}" />
+            <Setter Property="RenderTransform">
+                <ScaleTransform ScaleX="1.12" ScaleY="1.12" />
+            </Setter>
+        </Style>
+        <Style Selector="Button.AddTimerButton:pressed">
+            <Setter Property="Background" Value="{DynamicResource SukiPrimaryColor25}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SukiPrimaryColor75}" />
+            <Setter Property="RenderTransform">
+                <ScaleTransform ScaleX="1.05" ScaleY="1.05" />
+            </Setter>
+        </Style>
+    </UserControl.Styles>
+    <StackPanel Spacing="8">
+        <TextBlock
+            FontWeight="SemiBold"
+            HorizontalAlignment="Center"
+            IsVisible="{calcBinding:Binding 'InstanceList.Count > 1',
+                                            Source={x:Static other:TimerModel.Instance}}"
+            Text="{markup:I18n {x:Static helper:LangKeys.GlobalConfigTip}}" />
+        <suki:GlassCard Padding="25">
+            <StackPanel Spacing="20">
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding TimerModels.ForceScheduledStart}"
+                        IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                        ToolTip.Tip="{markup:I18n {x:Static helper:LangKeys.ForceScheduledStartTip}}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="DemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.ForceScheduledStart}}" />
+                        <TextBlock
+                            Foreground="{DynamicResource SukiLowText}"
+                            Margin="0,12,70,0"
+                            Text="{markup:I18n {x:Static helper:LangKeys.ForceScheduledStartTip}}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding TimerModels.CustomConfig}"
+                        IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                        ToolTip.Tip="{markup:I18n {x:Static helper:LangKeys.TimerCustomConfigTip}}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="DemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.TimerCustomConfig}}" />
+                        <TextBlock
+                            Foreground="{DynamicResource SukiLowText}"
+                            Margin="0,12,70,0"
+                            Text="{markup:I18n {x:Static helper:LangKeys.TimerCustomConfigTip}}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
+        </suki:GlassCard>
+
+        <ItemsControl ItemsSource="{Binding TimerModels.Timers}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="other:TimerModel+TimerProperties">
+                    <suki:GlassCard Padding="25,8,25,8" Margin="0,0,0,8">
+                        <StackPanel Spacing="12">
+                            <DockPanel>
+                                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="8">
+                                    <ToggleSwitch
+                                        Classes="Switch"
+                                        IsChecked="{Binding IsOn}"
+                                        VerticalAlignment="Top" />
+                                    <Button
+                                        Command="{Binding RemoveCommand}"
+                                        Content="✕"
+                                        FontSize="12"
+                                        Padding="6,2"
+                                        ToolTip.Tip="{markup:I18n {x:Static helper:LangKeys.RemoveTimer}}"
+                                        VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <TextBlock
+                                        FontSize="16"
+                                        FontWeight="DemiBold"
+                                        Text="{Binding TimerName}"
+                                        VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DockPanel>
+                            <StackPanel IsVisible="{Binding IsOn}" Spacing="12">
+                                <DockPanel>
+                                    <TimePicker ClockIdentifier="24HourClock"
+                                                DockPanel.Dock="Right"
+                                                Height="35"
+                                                SelectedTime="{Binding Time}"
+                                                VerticalAlignment="Center"
+                                                Width="205" />
+                                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <TextBlock
+                                            FontSize="15"
+                                            Text="{markup:I18n {x:Static helper:LangKeys.TriggerTime}}"
+                                            VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </DockPanel>
+                                <DockPanel>
+                                    <userControls:SchedulePicker
+                                        DockPanel.Dock="Right"
+                                        ScheduleConfig="{Binding ScheduleConfig}"
+                                        VerticalAlignment="Center"
+                                        Width="205" />
+                                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <TextBlock
+                                            FontSize="15"
+                                            Text="{markup:I18n {x:Static helper:LangKeys.TriggerDate}}"
+                                            VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </DockPanel>
+                                <DockPanel>
+                                    <ComboBox DockPanel.Dock="Right"
+                                              SelectedIndex="{Binding TimerActionIndex}"
+                                              VerticalAlignment="Center"
+                                              Width="215">
+                                        <ComboBoxItem Content="{markup:I18n {x:Static helper:LangKeys.StartTask}}" />
+                                        <ComboBoxItem Content="{markup:I18n {x:Static helper:LangKeys.StopTask}}" />
+                                    </ComboBox>
+                                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <TextBlock
+                                            FontSize="15"
+                                            Text="{markup:I18n {x:Static helper:LangKeys.TimerAction}}"
+                                            VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </DockPanel>
+                                <StackPanel IsVisible="{calcBinding:Binding 'TimerActionIndex == 1'}"
+                                            Spacing="8">
+                                    <DockPanel>
+                                        <ToggleSwitch
+                                            Classes="Switch"
+                                            DockPanel.Dock="Right"
+                                            IsChecked="{Binding StopConnectedProcess}"
+                                            VerticalAlignment="Center" />
+                                        <TextBlock
+                                            FontSize="15"
+                                            HorizontalAlignment="Left"
+                                            Text="{markup:I18n {x:Static helper:LangKeys.TimerStopConnectedProcess}}"
+                                            VerticalAlignment="Center" />
+                                    </DockPanel>
+                                    <DockPanel>
+                                        <ToggleSwitch
+                                            Classes="Switch"
+                                            DockPanel.Dock="Right"
+                                            IsChecked="{Binding StopMFA}"
+                                            VerticalAlignment="Center" />
+                                        <TextBlock
+                                            FontSize="15"
+                                            HorizontalAlignment="Left"
+                                            Text="{markup:I18n {x:Static helper:LangKeys.TimerStopMFA}}"
+                                            VerticalAlignment="Center" />
+                                    </DockPanel>
+                                </StackPanel>
+                                <DockPanel x:CompileBindings="False"
+                                           IsVisible="{Binding CustomConfig, Source={x:Static other:TimerModel.Instance}}">
+                                    <ComboBox extensions:ComboBoxExtensions.DisableNavigationOnLostFocus="True"
+                                              DisplayMemberBinding="{Binding Name}"
+                                              DockPanel.Dock="Right"
+                                              Focusable="False"
+                                              HorizontalAlignment="Center"
+                                              IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                                              ItemsSource="{Binding InstanceList, Source={x:Static other:TimerModel.Instance}}"
+                                              SelectedValue="{Binding TimerConfig}"
+                                              SelectedValueBinding="{Binding InstanceId}"
+                                              ToolTip.Tip="{Binding TimerName}"
+                                              VerticalAlignment="Center"
+                                              Width="215" />
+                                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <TextBlock
+                                            FontSize="15"
+                                            Text="{markup:I18n {x:Static helper:LangKeys.SelectedConfig}}"
+                                            VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </DockPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </suki:GlassCard>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Button
+            Classes="Basic Round AddTimerButton"
+            Command="{Binding TimerModels.AddTimerCommand}"
+            Content="+"
+            FontSize="28"
+            FontWeight="Bold"
+            Foreground="{DynamicResource SukiPrimaryColor}"
+            HorizontalAlignment="Center"
+            Margin="0,4,0,14"
+            ToolTip.Tip="{markup:I18n {x:Static helper:LangKeys.AddTimer}}">
+        </Button>
+    </StackPanel>
+</UserControl>

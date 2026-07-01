@@ -1,0 +1,48 @@
+name: 功能建议
+description: 提出新功能或改进建议
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 提交前请确认
+
+        - 已查阅 [README](https://github.com/NotZoruak/AATL/blob/main/README.md) 确认该功能尚未存在
+        - 已搜索已有 Issue，确认无重复建议
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 功能描述
+      description: 请描述你希望添加的功能及使用场景
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: AATL 版本
+      placeholder: 如 v0.5.3
+    validations:
+      required: false
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: 涉及范围
+      options:
+        - 现有任务改进（远征、合战场等）
+        - 新增任务类型
+        - GUI / 交互体验
+        - 更新 / 配置相关
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: 补充信息
+      description: 截图、参考链接等其他有助于说明的信息
+    validations:
+      required: false

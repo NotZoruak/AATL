@@ -1,0 +1,2105 @@
+﻿<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>私たちについて</value>
+  </data>
+  <data name="AddConfiguration" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="AddTask" xml:space="preserve">
+    <value>タスクを追加</value>
+  </data>
+  <data name="AdvancedSetting" xml:space="preserve">
+    <value>詳細設定</value>
+  </data>
+  <data name="AfterTaskOption" xml:space="preserve">
+    <value>タスク後の操作</value>
+  </data>
+  <data name="AllFilter" xml:space="preserve">
+    <value>すべてのファイル</value>
+  </data>
+  <data name="AnimatedBackgroundDescription" xml:space="preserve">
+    <value>現在の背景効果に連動する背景アニメーションを有効または無効にします。</value>
+  </data>
+  <data name="AnimatedBackgroundTitle" xml:space="preserve">
+    <value>背景アニメーション</value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>お知らせ</value>
+  </data>
+  <data name="ApplyControllerType" xml:space="preserve">
+    <value>適用するコントローラー種別を選択</value>
+  </data>
+  <data name="ApplyingUpdate" xml:space="preserve">
+    <value>更新を適用しています...</value>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>MFA タスクマネージャー</value>
+  </data>
+  <data name="AutoDetect" xml:space="preserve">
+    <value>自動検出</value>
+  </data>
+  <data name="AutomaticHide" xml:space="preserve">
+    <value>起動後に自動で隠す</value>
+  </data>
+  <data name="AutomaticMinimize" xml:space="preserve">
+    <value>起動後に自動で最小化</value>
+  </data>
+  <data name="AutomaticUpdateMFA" xml:space="preserve">
+    <value>アプリの自動更新</value>
+  </data>
+  <data name="AutomaticUpdateResource" xml:space="preserve">
+    <value>リソースの自動更新</value>
+  </data>
+  <data name="AutoStartOption" xml:space="preserve">
+    <value>起動後の操作</value>
+  </data>
+  <data name="BackgroundStyleDescription" xml:space="preserve">
+    <value>内蔵の背景スタイルから選択します。</value>
+  </data>
+  <data name="BackgroundStyleTitle" xml:space="preserve">
+    <value>背景スタイル</value>
+  </data>
+  <data name="BackgroundTransitionsDescription" xml:space="preserve">
+    <value>背景スタイル切り替え時の滑らかなフェード効果を有効または無効にします。</value>
+  </data>
+  <data name="BackgroundTransitionsTitle" xml:space="preserve">
+    <value>背景トランジション</value>
+  </data>
+  <data name="BaseTheme" xml:space="preserve">
+    <value>基本テーマ</value>
+  </data>
+  <data name="ButtonAdd" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>クリア</value>
+  </data>
+  <data name="ButtonClose" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="ButtonSave" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="CannotStart" xml:space="preserve">
+    <value>タスクを開始できません</value>
+  </data>
+  <data name="CaptureModeOption" xml:space="preserve">
+    <value>キャプチャ方式</value>
+  </data>
+  <data name="CheckMFA" xml:space="preserve">
+    <value>アプリを確認</value>
+  </data>
+  <data name="CheckUpdate" xml:space="preserve">
+    <value>更新を確認</value>
+  </data>
+  <data name="CheckResource" xml:space="preserve">
+    <value>リソースを確認</value>
+  </data>
+  <data name="CloseEmulator" xml:space="preserve">
+    <value>エミュレーターを閉じる</value>
+  </data>
+  <data name="CloseEmulatorAndMFA" xml:space="preserve">
+    <value>エミュレーターとこのアプリを閉じる</value>
+  </data>
+  <data name="CloseMFA" xml:space="preserve">
+    <value>このアプリを閉じる</value>
+  </data>
+  <data name="CloseTargetProgram" xml:space="preserve">
+    <value>対象プログラムを閉じる</value>
+  </data>
+  <data name="ColorTheme" xml:space="preserve">
+    <value>カラーテーマ</value>
+  </data>
+  <data name="CommonSetting" xml:space="preserve">
+    <value>共通設定</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="ConfirmExitText" xml:space="preserve">
+    <value>本当に終了しますか？</value>
+  </data>
+  <data name="ConfirmExitTitle" xml:space="preserve">
+    <value>現在プログラムがタスクを実行中です</value>
+  </data>
+  <data name="Connected" xml:space="preserve">
+    <value>接続済み</value>
+  </data>
+  <data name="ConnectFailed" xml:space="preserve">
+    <value>接続に失敗しました</value>
+  </data>
+  <data name="ConnectingTo" xml:space="preserve">
+    <value>{0} に接続しています......</value>
+  </data>
+  <data name="ConnectingInProgress" xml:space="preserve">
+    <value>接続中です。しばらくお待ちください...</value>
+  </data>
+  <data name="Connection" xml:space="preserve">
+    <value>接続</value>
+  </data>
+  <data name="ConnectionSettings" xml:space="preserve">
+    <value>接続設定</value>
+  </data>
+  <data name="ControllerType" xml:space="preserve">
+    <value>コントローラー種別</value>
+  </data>
+  <data name="CopiedToClipboard" xml:space="preserve">
+    <value>クリップボードにコピーしました</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>コピー</value>
+  </data>
+  <data name="CurrentController" xml:space="preserve">
+    <value>現在のコントローラー</value>
+  </data>
+  <data name="DashboardCardMaximize" xml:space="preserve">
+    <value>最大化</value>
+  </data>
+  <data name="DashboardCardRestore" xml:space="preserve">
+    <value>元に戻す</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="DeselectAll" xml:space="preserve">
+    <value>すべての選択を解除</value>
+  </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>ダウンロード中…</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="EditControllerConfiguration" xml:space="preserve">
+    <value>コントローラー設定を編集</value>
+  </data>
+  <data name="EditTask" xml:space="preserve">
+    <value>タスクを編集</value>
+  </data>
+  <data name="EnterTaskName" xml:space="preserve">
+    <value>タスク名を入力</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>エラー</value>
+  </data>
+  <data name="GettingLatestResources" xml:space="preserve">
+    <value>最新のリソースを取得しています...</value>
+  </data>
+  <data name="GlobalOption" xml:space="preserve">
+    <value>グローバルタスク設定</value>
+  </data>
+  <data name="ControllerPresetConfig" xml:space="preserve">
+    <value>コントローラープリセット設定</value>
+  </data>
+  <data name="ResourcePresetConfig" xml:space="preserve">
+    <value>リソースプリセット設定</value>
+  </data>
+  <data name="HotKeySettings" xml:space="preserve">
+    <value>ホットキー設定</value>
+  </data>
+  <data name="InitControllerFailed" xml:space="preserve">
+    <value>コントローラーの初期化に失敗しました</value>
+  </data>
+  <data name="InitControllerSuccess" xml:space="preserve">
+    <value>コントローラーの初期化に成功しました</value>
+  </data>
+  <data name="InitResourcesSuccess" xml:space="preserve">
+    <value>リソースの初期化に成功しました</value>
+  </data>
+  <data name="LanguageOption" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="LanguageOptionDescription" xml:space="preserve">
+    <value>アプリの表示言語を選択します。変更はすぐに反映されます。</value>
+  </data>
+  <data name="LanguageSettings" xml:space="preserve">
+    <value>言語設定</value>
+  </data>
+  <data name="LoadingController" xml:space="preserve">
+    <value>コントローラーを読み込み中...</value>
+  </data>
+  <data name="LoadingResources" xml:space="preserve">
+    <value>リソースを読み込み中...</value>
+  </data>
+  <data name="MinimizeToTray" xml:space="preserve">
+    <value>トレイに最小化</value>
+  </data>
+  <data name="MinimizeToTrayDescription" xml:space="preserve">
+    <value>有効にすると、ウィンドウを閉じてもアプリは終了せず、システムトレイへ最小化されます。</value>
+  </data>
+  <data name="NoTaskToStop" xml:space="preserve">
+    <value>停止するタスクがありません</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="NotificationDescription" xml:space="preserve">
+    <value>タスクの状態変化時にトースト通知を表示します。</value>
+  </data>
+  <data name="PerformanceSettings" xml:space="preserve">
+    <value>パフォーマンス設定</value>
+  </data>
+  <data name="ProjectDescription" xml:space="preserve">
+    <value>プロジェクトについて</value>
+  </data>
+  <data name="ProxySettings" xml:space="preserve">
+    <value>プロキシ設定</value>
+  </data>
+  <data name="Resource" xml:space="preserve">
+    <value>リソース</value>
+  </data>
+  <data name="ResourceName" xml:space="preserve">
+    <value>リソース名</value>
+  </data>
+  <data name="ResourceOption" xml:space="preserve">
+    <value>リソース種別</value>
+  </data>
+  <data name="ResourcesAreLatestVersion" xml:space="preserve">
+    <value>リソースはすでに最新です</value>
+  </data>
+  <data name="ResourceVersion" xml:space="preserve">
+    <value>リソースバージョン</value>
+  </data>
+  <data name="RunningSettings" xml:space="preserve">
+    <value>実行設定</value>
+  </data>
+  <data name="SavePipelineSuccess" xml:space="preserve">
+    <value>保存しました！</value>
+  </data>
+  <data name="ScheduleSettings" xml:space="preserve">
+    <value>スケジュール設定</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="StartTask" xml:space="preserve">
+    <value>タスク開始</value>
+  </data>
+  <data name="StartupSettings" xml:space="preserve">
+    <value>起動設定</value>
+  </data>
+  <data name="Stopping" xml:space="preserve">
+    <value>停止中......</value>
+  </data>
+  <data name="StopTask" xml:space="preserve">
+    <value>タスク停止</value>
+  </data>
+  <data name="SwitchLanguage" xml:space="preserve">
+    <value>言語を切り替える</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>タスク</value>
+  </data>
+  <data name="TaskDescription" xml:space="preserve">
+    <value>タスク説明</value>
+  </data>
+  <data name="TaskList" xml:space="preserve">
+    <value>タスクリスト:</value>
+  </data>
+  <data name="TaskSettings" xml:space="preserve">
+    <value>タスク設定</value>
+  </data>
+  <data name="TaskStart" xml:space="preserve">
+    <value>タスク開始: {0}</value>
+  </data>
+  <data name="TaskStopped" xml:space="preserve">
+    <value>タスクは停止しました</value>
+  </data>
+  <data name="ThemeOption" xml:space="preserve">
+    <value>UI テーマ</value>
+  </data>
+  <data name="ThemeSettings" xml:space="preserve">
+    <value>テーマ設定</value>
+  </data>
+  <data name="UiSettings" xml:space="preserve">
+    <value>UI 設定</value>
+  </data>
+  <data name="UpdateResource" xml:space="preserve">
+    <value>リソースを更新</value>
+  </data>
+  <data name="UpdateSettings" xml:space="preserve">
+    <value>更新設定</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="BackgroundImageTitle" xml:space="preserve">
+    <value>背景画像</value>
+  </data>
+  <data name="BackgroundImageDescription" xml:space="preserve">
+    <value>背景として使用する画像を選択します。</value>
+  </data>
+  <data name="SelectBackgroundImage" xml:space="preserve">
+    <value>背景画像を選択</value>
+  </data>
+  <data name="BackgroundImageOpacityTitle" xml:space="preserve">
+    <value>背景画像の透明度</value>
+  </data>
+  <data name="BackgroundImageOpacityDescription" xml:space="preserve">
+    <value>背景画像の表示透明度を調整します。</value>
+  </data>
+  <data name="FontScaleTitle" xml:space="preserve">
+    <value>フォント倍率</value>
+  </data>
+  <data name="FontScaleDescription" xml:space="preserve">
+    <value>アプリ全体の文字サイズを調整します。</value>
+  </data>
+  <data name="FontScaleValue" xml:space="preserve">
+    <value>{0}%</value>
+  </data>
+  <data name="LiveView" xml:space="preserve">
+    <value>ライブビュー</value>
+  </data>
+  <data name="CurrentTask" xml:space="preserve">
+    <value>タスク: {0}</value>
+  </data>
+  <data name="TaskRemarkMenu" xml:space="preserve">
+    <value>タスク備考</value>
+  </data>
+  <data name="TaskRemarkTitle" xml:space="preserve">
+    <value>タスク備考</value>
+  </data>
+  <data name="TaskRename" xml:space="preserve">
+    <value>タスク名を変更</value>
+  </data>
+  <data name="TaskRemark" xml:space="preserve">
+    <value>備考</value>
+  </data>
+  <data name="SpecialTask" xml:space="preserve">
+    <value>特殊タスク</value>
+  </data>
+  <data name="SpecialTask_Countdown" xml:space="preserve">
+    <value>カウントダウン</value>
+  </data>
+  <data name="SpecialTask_TimedWait" xml:space="preserve">
+    <value>指定時刻まで待機</value>
+  </data>
+  <data name="SpecialTask_Toast" xml:space="preserve">
+    <value>トースト通知</value>
+  </data>
+  <data name="SpecialTask_CustomProgram" xml:space="preserve">
+    <value>カスタムプログラム</value>
+  </data>
+  <data name="SpecialTask_KillProcess" xml:space="preserve">
+    <value>プロセス終了</value>
+  </data>
+  <data name="SpecialTask_ComputerOperation" xml:space="preserve">
+    <value>PC 操作</value>
+  </data>
+  <data name="SpecialTask_Webhook" xml:space="preserve">
+    <value>Webhook</value>
+  </data>
+  <data name="SpecialTask_CountdownDesc" xml:space="preserve">
+    <value>一定時間カウントダウンしてから次の処理を実行します。</value>
+  </data>
+  <data name="SpecialTask_TimedWaitDesc" xml:space="preserve">
+    <value>指定した時刻になるまで待機します。</value>
+  </data>
+  <data name="SpecialTask_ToastDesc" xml:space="preserve">
+    <value>デスクトップ通知を表示します。</value>
+  </data>
+  <data name="SpecialTask_CustomProgramDesc" xml:space="preserve">
+    <value>外部プログラムを起動し、必要に応じて終了を待機します。</value>
+  </data>
+  <data name="SpecialTask_KillProcessDesc" xml:space="preserve">
+    <value>指定したプロセスを終了します。</value>
+  </data>
+  <data name="SpecialTask_ComputerOperationDesc" xml:space="preserve">
+    <value>シャットダウンやスリープなどの PC 操作を実行します。</value>
+  </data>
+  <data name="SpecialTask_WebhookDesc" xml:space="preserve">
+    <value>指定した URL に Webhook リクエストを送信します。</value>
+  </data>
+  <data name="SpecialTask_CountdownSeconds" xml:space="preserve">
+    <value>カウントダウン秒数</value>
+  </data>
+  <data name="SpecialTask_WaitUntilTime" xml:space="preserve">
+    <value>待機終了時刻</value>
+  </data>
+  <data name="SpecialTask_NotificationTitle" xml:space="preserve">
+    <value>通知タイトル</value>
+  </data>
+  <data name="SpecialTask_NotificationContent" xml:space="preserve">
+    <value>通知内容</value>
+  </data>
+  <data name="SpecialTask_ProgramPath" xml:space="preserve">
+    <value>プログラムパス</value>
+  </data>
+  <data name="SpecialTask_Arguments" xml:space="preserve">
+    <value>引数</value>
+  </data>
+  <data name="SpecialTask_WaitForExit" xml:space="preserve">
+    <value>終了を待機</value>
+  </data>
+  <data name="SpecialTask_ProcessSettings" xml:space="preserve">
+    <value>プロセス設定</value>
+  </data>
+  <data name="SpecialTask_ProcessName" xml:space="preserve">
+    <value>プロセス名</value>
+  </data>
+  <data name="SpecialTask_OperationType" xml:space="preserve">
+    <value>操作種別</value>
+  </data>
+  <data name="SpecialTask_RequestMethod" xml:space="preserve">
+    <value>リクエスト方式</value>
+  </data>
+  <data name="SpecialTask_RequestBody" xml:space="preserve">
+    <value>リクエスト本文</value>
+  </data>
+  <data name="SpecialTask_SelectProgram" xml:space="preserve">
+    <value>プログラムを選択</value>
+  </data>
+  <data name="SpecialTask_Shutdown" xml:space="preserve">
+    <value>シャットダウン</value>
+  </data>
+  <data name="SpecialTask_Restart" xml:space="preserve">
+    <value>再起動</value>
+  </data>
+  <data name="SpecialTask_Sleep" xml:space="preserve">
+    <value>スリープ</value>
+  </data>
+  <data name="SpecialTask_Hibernate" xml:space="preserve">
+    <value>休止状態</value>
+  </data>
+  <data name="AdbCaptureMode" xml:space="preserve">
+    <value>キャプチャ方式:</value>
+  </data>
+  <data name="AdbConfig" xml:space="preserve">
+    <value>追加パラメーター</value>
+  </data>
+  <data name="AdbEditor" xml:space="preserve">
+    <value>ADB エディター</value>
+  </data>
+  <data name="AdbInput" xml:space="preserve">
+    <value>AdbInput（非推奨）</value>
+  </data>
+  <data name="AdbInputMode" xml:space="preserve">
+    <value>入力方式:</value>
+  </data>
+  <data name="AdbName" xml:space="preserve">
+    <value>ADB 名称</value>
+  </data>
+  <data name="AdbPath" xml:space="preserve">
+    <value>ADB パス</value>
+  </data>
+  <data name="AdbSerial" xml:space="preserve">
+    <value>ADB アドレス</value>
+  </data>
+  <data name="AdbAddressEmpty" xml:space="preserve">
+    <value>ADB アドレスは空にできません</value>
+  </data>
+  <data name="AddAbove" xml:space="preserve">
+    <value>上に追加</value>
+  </data>
+  <data name="AddBelow" xml:space="preserve">
+    <value>下に追加</value>
+  </data>
+  <data name="AllowAdbHardRestart" xml:space="preserve">
+    <value>接続失敗時に ADB プロセスの終了と再起動を試行する</value>
+  </data>
+  <data name="AllowAdbRestart" xml:space="preserve">
+    <value>接続失敗時に ADB サーバーの再起動を試行する</value>
+  </data>
+  <data name="ClipboardDataError" xml:space="preserve">
+    <value>現在クリップボード内のデータはテキストに変換できません。</value>
+  </data>
+  <data name="CloseEmulatorAndRestartMFA" xml:space="preserve">
+    <value>このアプリを再起動してエミュレーターを閉じる</value>
+  </data>
+  <data name="CloseTargetProgramAndMFA" xml:space="preserve">
+    <value>対象プログラムとこのアプリを閉じる</value>
+  </data>
+  <data name="CloseTargetProgramAndRestartMFA" xml:space="preserve">
+    <value>このアプリを再起動して対象プログラムを閉じる</value>
+  </data>
+  <data name="ColorPickerTitle" xml:space="preserve">
+    <value>カラーピッカー</value>
+  </data>
+  <data name="ConfigAddedSuccessfully" xml:space="preserve">
+    <value>設定 &lt;{0}&gt; を追加しました！</value>
+  </data>
+  <data name="ConfigNameAlreadyExists" xml:space="preserve">
+    <value>設定名 &lt;{0}&gt; はすでに存在します！</value>
+  </data>
+  <data name="ConfigNameCannotBeEmpty" xml:space="preserve">
+    <value>設定名は空にできません！</value>
+  </data>
+  <data name="ConfigurationName" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="ConnectingEmulatorOrWindow" xml:space="preserve">
+    <value>{0} への接続に失敗しました！</value>
+  </data>
+  <data name="CopyErrorMessage" xml:space="preserve">
+    <value>エラーメッセージをコピー</value>
+  </data>
+  <data name="CopyKey" xml:space="preserve">
+    <value>キーをコピー</value>
+  </data>
+  <data name="CopyValue" xml:space="preserve">
+    <value>値をコピー</value>
+  </data>
+  <data name="CurrentResourcesNotSupportGitHub" xml:space="preserve">
+    <value>現在のリソースは GitHub をサポートしていません。</value>
+  </data>
+  <data name="CurrentResourcesNotSupportMirror" xml:space="preserve">
+    <value>現在のリソースは Mirror Chyan をサポートしていません。</value>
+  </data>
+  <data name="Cut" xml:space="preserve">
+    <value>切り取り</value>
+  </data>
+  <data name="DebugMode" xml:space="preserve">
+    <value>[デバッグモード]</value>
+  </data>
+  <data name="DebugModeWarning" xml:space="preserve">
+    <value>デバッグモードが有効になっています。このモードでは実行中にスクリーンショット、操作データ、画像認識の可視化結果が保存されるため、多くのストレージを消費する可能性があります！</value>
+  </data>
+  <data name="DownloadFailed" xml:space="preserve">
+    <value>更新パッケージのダウンロードに失敗しました</value>
+  </data>
+  <data name="DuplicateTaskError" xml:space="preserve">
+    <value>Pipeline ファイル内に重複するタスク名 "{0}" が見つかりました！</value>
+  </data>
+  <data name="DuplicateTaskNameError" xml:space="preserve">
+    <value>タスクリストに "{0}" という名前のタスクがすでに存在します。</value>
+  </data>
+  <data name="EditAttributeDialogTitle" xml:space="preserve">
+    <value>属性エディター</value>
+  </data>
+  <data name="EditTaskDialog_AddAttribute_Tooltip" xml:space="preserve">
+    <value>属性を追加</value>
+  </data>
+  <data name="EditTaskDialog_ClearAttribute_Tooltip" xml:space="preserve">
+    <value>属性をクリア</value>
+  </data>
+  <data name="EditTaskDialog_ClearTask_Tooltip" xml:space="preserve">
+    <value>タスクをクリア</value>
+  </data>
+  <data name="EditTaskDialog_ColorExtraction_Tooltip" xml:space="preserve">
+    <value>色抽出</value>
+  </data>
+  <data name="EditTaskDialog_Header" xml:space="preserve">
+    <value>タスクエディター</value>
+  </data>
+  <data name="EditTaskDialog_Load_Tooltip" xml:space="preserve">
+    <value>Pipeline ファイルを読み込む</value>
+  </data>
+  <data name="EditTaskDialog_PipelineFileName_Placeholder" xml:space="preserve">
+    <value>Pipeline ファイル名</value>
+  </data>
+  <data name="EditTaskDialog_RecognitionText_Tooltip" xml:space="preserve">
+    <value>文字認識</value>
+  </data>
+  <data name="EditTaskDialog_SavePipeline_Tooltip" xml:space="preserve">
+    <value>Pipeline ファイルを保存</value>
+  </data>
+  <data name="EditTaskDialog_SaveTask_Button" xml:space="preserve">
+    <value>タスク名を保存</value>
+  </data>
+  <data name="EditTaskDialog_Screenshot_Tooltip" xml:space="preserve">
+    <value>スクリーンショットを撮る</value>
+  </data>
+  <data name="EditTaskDialog_SelectionRegion_Tooltip" xml:space="preserve">
+    <value>範囲を選択</value>
+  </data>
+  <data name="EditTaskDialog_ShowChart_Button" xml:space="preserve">
+    <value>フローチャート</value>
+  </data>
+  <data name="EditTaskDialog_Swipe_Tooltip" xml:space="preserve">
+    <value>スワイプ</value>
+  </data>
+  <data name="EditTaskDialog_TaskName_Title" xml:space="preserve">
+    <value>タスク名:</value>
+  </data>
+  <data name="EditTaskDialog_Title" xml:space="preserve">
+    <value>タスクエディター</value>
+  </data>
+  <data name="EditTaskTooltip" xml:space="preserve">
+    <value>タスクを編集</value>
+  </data>
+  <data name="ExeFilter" xml:space="preserve">
+    <value>実行ファイル</value>
+  </data>
+  <data name="ExternalNotificationBotToken" xml:space="preserve">
+    <value>Bot トークン</value>
+  </data>
+  <data name="ExternalNotificationDingTalkSecret" xml:space="preserve">
+    <value>DingTalk シークレット</value>
+  </data>
+  <data name="ExternalNotificationDingTalkToken" xml:space="preserve">
+    <value>DingTalk トークン</value>
+  </data>
+  <data name="ExternalNotificationDiscordChannelId" xml:space="preserve">
+    <value>チャンネル ID</value>
+  </data>
+  <data name="ExternalNotificationDiscordUserId" xml:space="preserve">
+    <value>ユーザー ID</value>
+  </data>
+  <data name="ExternalNotificationDiscordWebhookName" xml:space="preserve">
+    <value>Webhook 名</value>
+  </data>
+  <data name="ExternalNotificationEmailAccount" xml:space="preserve">
+    <value>メールアカウント</value>
+  </data>
+  <data name="ExternalNotificationEmailSecret" xml:space="preserve">
+    <value>メールシークレット</value>
+  </data>
+  <data name="ExternalNotificationEnabled" xml:space="preserve">
+    <value>設定を有効化</value>
+  </data>
+  <data name="ExternalNotificationLarkID" xml:space="preserve">
+    <value>Lark ID</value>
+  </data>
+  <data name="ExternalNotificationQmsgBot" xml:space="preserve">
+    <value>Bot QQ</value>
+  </data>
+  <data name="ExternalNotificationQmsgKey" xml:space="preserve">
+    <value>Qmsg キー</value>
+  </data>
+  <data name="ExternalNotificationQmsgServer" xml:space="preserve">
+    <value>Qmsg サーバー</value>
+  </data>
+  <data name="ExternalNotificationQmsgUser" xml:space="preserve">
+    <value>ユーザー QQ</value>
+  </data>
+  <data name="ExternalNotificationSendTest" xml:space="preserve">
+    <value>テスト送信</value>
+  </data>
+  <data name="ExternalNotificationSettings" xml:space="preserve">
+    <value>外部通知</value>
+  </data>
+  <data name="ExternalNotificationSmtpAuth" xml:space="preserve">
+    <value>認証が必要</value>
+  </data>
+  <data name="ExternalNotificationSmtpFrom" xml:space="preserve">
+    <value>送信者</value>
+  </data>
+  <data name="ExternalNotificationSmtpPassword" xml:space="preserve">
+    <value>パスワード</value>
+  </data>
+  <data name="ExternalNotificationSmtpPort" xml:space="preserve">
+    <value>ポート</value>
+  </data>
+  <data name="ExternalNotificationSmtpServer" xml:space="preserve">
+    <value>SMTP サーバー</value>
+  </data>
+  <data name="ExternalNotificationSmtpSsl" xml:space="preserve">
+    <value>SSL を使用</value>
+  </data>
+  <data name="ExternalNotificationSmtpTo" xml:space="preserve">
+    <value>受信者</value>
+  </data>
+  <data name="ExternalNotificationSmtpUser" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="ExternalNotificationTelegramChatId" xml:space="preserve">
+    <value>チャット ID</value>
+  </data>
+  <data name="ExternalNotificationTips" xml:space="preserve">
+    <value>注意: 現在、外部通知機能は「すべてのタスク完了」通知のみを送信します。</value>
+  </data>
+  <data name="ExternalNotificationWebhookUrl" xml:space="preserve">
+    <value>Webhook URL</value>
+  </data>
+  <data name="ExternalNotificationCustomWebhookContentType" xml:space="preserve">
+    <value>Content-Type</value>
+  </data>
+  <data name="ExternalNotificationCustomWebhookPayloadTemplate" xml:space="preserve">
+    <value>Payload テンプレート</value>
+  </data>
+  <data name="ExternalNotificationCustomWebhookPayloadTemplateDescription" xml:space="preserve">
+    <value>{{message}} をメッセージプレースホルダーとして使用します。例: {{"message": "{{message}}"}}</value>
+  </data>
+  <data name="ExternalNotificationWxPusherUID" xml:space="preserve">
+    <value>ユーザー UID</value>
+  </data>
+  <data name="ExternalNotificationOneBotKey" xml:space="preserve">
+    <value>キー</value>
+  </data>
+  <data name="ExternalNotificationOneBotServer" xml:space="preserve">
+    <value>サーバー</value>
+  </data>
+  <data name="ExternalNotificationOneBotUser" xml:space="preserve">
+    <value>ユーザー QQ</value>
+  </data>
+  <data name="ExternalNotificationEnableCustomNotificationMessage" xml:space="preserve">
+    <value>カスタム通知メッセージを有効にする</value>
+  </data>
+  <data name="ExternalNotificationCustomNotificationContent" xml:space="preserve">
+    <value>カスタム通知内容</value>
+  </data>
+  <data name="ExternalNotificationTest" xml:space="preserve">
+    <value>これは送信テストです</value>
+  </data>
+  <data name="ExternalNotificationCustomNotificationContentSuccess" xml:space="preserve">
+    <value>成功通知の内容をカスタマイズ</value>
+  </data>
+  <data name="ExternalNotificationCustomNotificationContentFailure" xml:space="preserve">
+    <value>失敗通知の内容をカスタマイズ</value>
+  </data>
+  <data name="ExternalNotificationLarkWebhookUrl" xml:space="preserve">
+    <value>Lark Webhook</value>
+  </data>
+  <data name="ExternalNotificationLarkWebhookDescription" xml:space="preserve">
+    <value>Webhook アドレスを入力すると、Lark ID と Bot Token は入力不要です</value>
+  </data>
+  <data name="TaskAbandoned" xml:space="preserve">
+    <value>タスクは破棄されました</value>
+  </data>
+  <data name="TaskAllCompleted" xml:space="preserve">
+    <value>すべてのタスクが完了しました！</value>
+  </data>
+  <data name="TaskAllCompletedWithTime" xml:space="preserve">
+    <value>すべてのタスクが完了しました！\n(経過時間 {0}時間 {1}分 {2}秒)</value>
+  </data>
+  <data name="TaskCompleted" xml:space="preserve">
+    <value>タスクが完了しました</value>
+  </data>
+  <data name="TaskAddedToast" xml:space="preserve">
+    <value>タスク {0} を追加しました</value>
+  </data>
+  <data name="TaskDeletedToast" xml:space="preserve">
+    <value>タスク {0} を削除しました</value>
+  </data>
+  <data name="TaskFailed" xml:space="preserve">
+    <value>タスクの実行に失敗しました！</value>
+  </data>
+  <data name="StartupErrorTitle" xml:space="preserve">
+    <value>起動に失敗しました</value>
+  </data>
+  <data name="DownloadNowConfirmation" xml:space="preserve">
+    <value>今すぐダウンロードしますか？</value>
+  </data>
+  <data name="RuntimeMissingWarning" xml:space="preserve">
+    <value>システムコンポーネントが不足しています</value>
+  </data>
+  <data name="InstallSuccess" xml:space="preserve">
+    <value>インストールが完了しました。アプリを再起動してください。</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>エラー: {0}</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="TempDirWarningTitle" xml:space="preserve">
+    <value>プログラムの場所が正しくありません</value>
+  </data>
+  <data name="TempDirWarningMain" xml:space="preserve">
+    <value>zip ファイル内のプログラムを直接実行している可能性があります。</value>
+  </data>
+  <data name="TempDirWarningDesc" xml:space="preserve">
+    <value>プログラムは一時ディレクトリで実行されており、終了時に消える可能性があります。まず zip ファイルをフォルダーへ展開してから、その中のプログラムを実行してください。</value>
+  </data>
+  <data name="TempDirWarningHint" xml:space="preserve">
+    <value>ヒント: 管理しやすいように、Desktop や Download ではなく "D:\MFA" のような専用フォルダーへ展開することをおすすめします。</value>
+  </data>
+  <data name="InstanceSelectTooltip" xml:space="preserve">
+    <value>インスタンスを選択</value>
+  </data>
+  <data name="InstanceAddTooltip" xml:space="preserve">
+    <value>インスタンスを追加</value>
+  </data>
+  <data name="InstanceAddFollowLast" xml:space="preserve">
+    <value>一番右の設定に合わせる</value>
+  </data>
+  <data name="InstancePresetTaskCountFormat" xml:space="preserve">
+    <value>{0}/{1} タスク</value>
+  </data>
+  <data name="InstanceCannotCloseLast" xml:space="preserve">
+    <value>最後のインスタンスは閉じられません</value>
+  </data>
+  <data name="InstanceRunningCloseConfirm" xml:space="preserve">
+    <value>インスタンスは実行中です。停止して閉じてもよろしいですか？</value>
+  </data>
+  <data name="InstanceCloseTitle" xml:space="preserve">
+    <value>インスタンスを閉じる</value>
+  </data>
+  <data name="InstanceRunningCannotClose" xml:space="preserve">
+    <value>このインスタンスは実行中です。閉じる前にタスクを停止してください。</value>
+  </data>
+  <data name="InstanceTimerReassigned" xml:space="preserve">
+    <value>インスタンス "{0}" は閉じられました。スケジュール済みタスクは別のインスタンスへ再割り当てされました。</value>
+  </data>
+  <data name="MonitorSortDefault" xml:space="preserve">
+    <value>デフォルト</value>
+  </data>
+  <data name="MonitorSortByStatus" xml:space="preserve">
+    <value>状態順</value>
+  </data>
+  <data name="MonitorSortByName" xml:space="preserve">
+    <value>名前順</value>
+  </data>
+  <data name="MonitorSortByCreatedTime" xml:space="preserve">
+    <value>作成時間順</value>
+  </data>
+  <data name="MonitorForceRefresh" xml:space="preserve">
+    <value>強制更新</value>
+  </data>
+  <data name="MonitorFullScreen" xml:space="preserve">
+    <value>全画面表示</value>
+  </data>
+  <data name="MonitorCopyScreenshot" xml:space="preserve">
+    <value>スクリーンショットをコピー</value>
+  </data>
+  <data name="MonitorDisconnect" xml:space="preserve">
+    <value>切断</value>
+  </data>
+  <data name="MonitorTryConnect" xml:space="preserve">
+    <value>接続を試行</value>
+  </data>
+  <data name="MonitorLiveBadge" xml:space="preserve">
+    <value>LIVE</value>
+  </data>
+  <data name="InstanceDropdownSearch" xml:space="preserve">
+    <value>設定を検索</value>
+  </data>
+  <data name="InstanceDropdownOpenConfigs" xml:space="preserve">
+    <value>開いている設定</value>
+  </data>
+  <data name="InstanceDropdownRecentClosed" xml:space="preserve">
+    <value>最近閉じた設定</value>
+  </data>
+  <data name="InstanceDropdownNoOpenConfigs" xml:space="preserve">
+    <value>開いている設定はありません</value>
+  </data>
+  <data name="InstanceDropdownNoRecentClosed" xml:space="preserve">
+    <value>最近閉じた設定はありません</value>
+  </data>
+  <data name="InstanceDropdownCloseConfig" xml:space="preserve">
+    <value>設定を閉じる</value>
+  </data>
+  <data name="InstanceDropdownJustNow" xml:space="preserve">
+    <value>たった今</value>
+  </data>
+  <data name="AutomaticDetectionUpdate" xml:space="preserve">
+        <value>自動検出更新</value>
+    </data>
+  <data name="BlueStacks" xml:space="preserve">
+        <value>BlueStacks</value>
+    </data>
+  <data name="ContactInfo" xml:space="preserve">
+        <value>接触</value>
+    </data>
+  <data name="Custom" xml:space="preserve">
+        <value>カスタム</value>
+    </data>
+  <data name="DarkColor" xml:space="preserve">
+        <value>暗色</value>
+    </data>
+  <data name="DingTalk" xml:space="preserve">
+        <value>DingTalk</value>
+    </data>
+  <data name="DingTalkMessageAsync" xml:space="preserve">
+        <value>DingTalk グループメッセージ通知</value>
+    </data>
+  <data name="Email" xml:space="preserve">
+        <value>Email</value>
+    </data>
+  <data name="Emulator" xml:space="preserve">
+        <value>エミュレータ</value>
+    </data>
+  <data name="EmulatorDetectionStarted" xml:space="preserve">
+        <value>エミュレータ検索を開始します！</value>
+    </data>
+  <data name="EmulatorExtras" xml:space="preserve">
+        <value>エミュレータエクストラ (特殊)</value>
+    </data>
+  <data name="EmulatorSelectionMessage" xml:space="preserve">
+        <value>選択されたエミュレータ: {0}</value>
+    </data>
+  <data name="EnableRecording" xml:space="preserve">
+            <value>ビデオ録画を有効にする (デバッグ用)</value>
+        </data>
+  <data name="EnableSaveDraw" xml:space="preserve">
+            <value>描画保存を有効にする (デバッグ用)</value>
+        </data>
+  <data name="EnableSaveOnError" xml:space="preserve">
+            <value>エラー時のスクリーンショットの保存を有効にする (デバッグ用)</value>
+        </data>
+  <data name="ErrorDetails" xml:space="preserve">
+        <value>詳細</value>
+    </data>
+  <data name="ErrorFeedbackLinkText" xml:space="preserve">
+        <value>GitHub の問題を作成する</value>
+    </data>
+  <data name="ErrorProlog" xml:space="preserve">
+        <value>MFA でエラーが発生しました</value>
+    </data>
+  <data name="CustomWebhook" xml:space="preserve">
+            <value>カスタム Webhook</value>
+        </data>
+  <data name="FailToGetCurrentVersionInfo" xml:space="preserve">
+        <value>現在のバージョン情報の取得に失敗したためアップデートできません。</value>
+    </data>
+  <data name="FailToGetDownloadUrl" xml:space="preserve">
+        <value>リソースのダウンロード リンクを取得できず、更新に失敗しました。</value>
+    </data>
+  <data name="FailToGetLatestVersionInfo" xml:space="preserve">
+        <value>最新バージョン情報の取得に失敗しました</value>
+    </data>
+  <data name="FollowingSystem" xml:space="preserve">
+        <value>以下のシステム</value>
+    </data>
+  <data name="ForceScheduledStart" xml:space="preserve">
+        <value>スケジュールされた開始を強制する</value>
+    </data>
+  <data name="ForceScheduledStartTip" xml:space="preserve">
+        <value>現在のタスクを停止し、停止が完了したら新しいタスクを開始します</value>
+    </data>
+  <data name="GameResourceUpdated" xml:space="preserve">
+        <value>ゲームリソースが更新されました。ソフトウェアを再起動してください。</value>
+    </data>
+  <data name="General" xml:space="preserve">
+        <value>一般モード</value>
+    </data>
+  <data name="GettingLatestMaaFW" xml:space="preserve">
+        <value>最新の maafw を入手しています...</value>
+    </data>
+  <data name="GettingLatestSoftware" xml:space="preserve">
+        <value>最新のソフトウェアを入手しています...</value>
+    </data>
+  <data name="Github" xml:space="preserve">
+        <value>ソースコード: GitHub</value>
+    </data>
+  <data name="GlobalConfigTip" xml:space="preserve">
+        <value>このオプション ページはグローバル設定用です</value>
+    </data>
+  <data name="InstanceConfigTip" xml:space="preserve">
+        <value>このオプション ページはインスタンス スコープです。現在のインスタンス:</value>
+    </data>
+  <data name="GpuOptionAuto" xml:space="preserve">
+        <value>自動</value>
+    </data>
+  <data name="GpuOptionDisable" xml:space="preserve">
+        <value>使用しないでください</value>
+    </data>
+  <data name="HardRestartAdb" xml:space="preserve">
+        <value>ADBプロセスを強制終了して再起動しようとしています</value>
+    </data>
+  <data name="Hide" xml:space="preserve">
+    <value>隠す</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
+  <data name="HotKeyChangingTip" xml:space="preserve">
+        <value>Backspace / Esc / Delete を押して現在の値をクリアします</value>
+    </data>
+  <data name="HotKeyLinkStart" xml:space="preserve">
+        <value>[ホットキー] タスクの開始/停止</value>
+    </data>
+  <data name="HotKeyNotSet" xml:space="preserve">
+        <value>設定されていません</value>
+    </data>
+  <data name="HotKeyOccupiedWarning" xml:space="preserve">
+        <value>⚠️ このホットキーは使用中です</value>
+    </data>
+  <data name="HotKeyOccupiedBy" xml:space="preserve">
+        <value>⚠️ このホットキーはすでに {0} によって使用されています</value>
+    </data>
+  <data name="HotKeyPressing" xml:space="preserve">
+        <value>任意のキーを押してください...</value>
+    </data>
+  <data name="UnknownItem" xml:space="preserve">
+        <value>不明なアイテム</value>
+    </data>
+  <data name="GlobalConfigFileAccessError" xml:space="preserve">
+        <value>グローバル構成ファイルが利用できません: {0}\n占有/エラーの詳細: {1}</value>
+    </data>
+  <data name="GlobalConfigFileReasonUnknown" xml:space="preserve">
+        <value>不明な理由</value>
+    </data>
+  <data name="HotKeyShowGui" xml:space="preserve">
+        <value>[ホットキー] GUIの表示/非表示</value>
+    </data>
+  <data name="ImageBrowserTitle" xml:space="preserve">
+        <value>画像ブラウザ</value>
+    </data>
+  <data name="ImageFilter" xml:space="preserve">
+        <value>画像ファイル (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp</value>
+    </data>
+  <data name="InitInstanceFailed" xml:space="preserve">
+        <value>MAA インスタンスの初期化に失敗しました。接続エラーまたはリソース ファイルの破損が発生しました。ログを参照してください。</value>
+    </data>
+  <data name="InputModeOption" xml:space="preserve">
+        <value>入力モード</value>
+    </data>
+  <data name="Issue" xml:space="preserve">
+        <value>Issue</value>
+    </data>
+  <data name="JSONFilter" xml:space="preserve">
+        <value>JSON ファイル (*.json)|*.json|すべてのファイル (*.*)|*.*"</value>
+    </data>
+  <data name="LabelPropertyType" xml:space="preserve">
+        <value>プロパティの種類:</value>
+    </data>
+  <data name="Lark" xml:space="preserve">
+        <value>Lark</value>
+    </data>
+  <data name="LDPlayer" xml:space="preserve">
+        <value>LD Player</value>
+    </data>
+  <data name="LicenseInfo" xml:space="preserve">
+        <value>ライセンス</value>
+    </data>
+  <data name="LightColor" xml:space="preserve">
+        <value>明るい色</value>
+    </data>
+  <data name="Load" xml:space="preserve">
+        <value>負荷</value>
+    </data>
+  <data name="LoadFileTitle" xml:space="preserve">
+        <value>任意のファイルを選択</value>
+    </data>
+  <data name="LoadImageTitle" xml:space="preserve">
+        <value>画像ファイルの選択</value>
+    </data>
+  <data name="LoadPipelineErrorMessage" xml:space="preserve">
+        <value>パイプライン ファイルのロードまたは解析に失敗しました: {0}</value>
+    </data>
+  <data name="LoadPipelineTitle" xml:space="preserve">
+        <value>パイプライン ファイルの選択</value>
+    </data>
+  <data name="LoadResourcesFailed" xml:space="preserve">
+    <value>リソースの読み込みに失敗しました！</value>
+  </data>
+  <data name="LogRecord" xml:space="preserve">
+        <value>ログ</value>
+    </data>
+  <data name="MaaFwIsLatestVersion" xml:space="preserve">
+        <value>MaaFW はすでに最新バージョンになっています。</value>
+    </data>
+  <data name="MaaFWVersion" xml:space="preserve">
+        <value>MaaFW バージョン</value>
+    </data>
+  <data name="MaaTouch" xml:space="preserve">
+        <value>MaaTouch (Experimental)</value>
+    </data>
+  <data name="MFAIsLatestVersion" xml:space="preserve">
+        <value>ソフトウェアはすでに最新バージョンです。</value>
+    </data>
+  <data name="MiniTouch" xml:space="preserve">
+            <value>MiniTouch (Old)</value>
+        </data>
+  <data name="MirrorAutoUpdatePrompt" xml:space="preserve">
+        <value>Mirror Chyan サービスを購入して自動更新を有効にするか、ダウンロード ソースを GitHub に切り替えてください。</value>
+    </data>
+  <data name="MirrorChyan" xml:space="preserve">
+        <value>Mirror Chyan</value>
+    </data>
+  <data name="MirrorUseLimitReached" xml:space="preserve">
+        <value>ミラーシアンの使用量が限界に達しました。</value>
+    </data>
+  <data name="MuMuEmulator12" xml:space="preserve">
+        <value>MuMu Emulator 12</value>
+    </data>
+  <data name="NewVersionAvailableLatestVersion" xml:space="preserve">
+        <value>新しいバージョンが利用可能になりました！最新バージョン:</value>
+    </data>
+  <data name="NewVersionDownloadCompletedTitle" xml:space="preserve">
+        <value>アップデートパッケージのダウンロードが完了しました</value>
+    </data>
+  <data name="NewVersionFoundDescDownloading" xml:space="preserve">
+        <value>バックグラウンドでダウンロード中……</value>
+    </data>
+  <data name="No" xml:space="preserve">
+        <value>いいえ</value>
+    </data>
+  <data name="NoEmulatorFound" xml:space="preserve">
+    <value>エミュレーターが見つかりません！</value>
+  </data>
+  <data name="NoEmulatorFoundPlaceholder" xml:space="preserve">
+    <value>エミュレーターが見つかりません</value>
+  </data>
+  <data name="None" xml:space="preserve">
+        <value>なし</value>
+    </data>
+  <data name="NoWindowFound" xml:space="preserve">
+    <value>ウィンドウが見つかりません！</value>
+  </data>
+  <data name="NoWindowFoundPlaceholder" xml:space="preserve">
+    <value>ウィンドウが見つかりません</value>
+  </data>
+  <data name="Nox" xml:space="preserve">
+        <value>Nox</value>
+    </data>
+  <data name="Off" xml:space="preserve">
+        <value>オフ</value>
+    </data>
+  <data name="Ok" xml:space="preserve">
+        <value>わかりました</value>
+    </data>
+  <data name="OperateController" xml:space="preserve">
+        <value>操作するコントローラーを選択する</value>
+    </data>
+  <data name="PleaseSelectEmulator" xml:space="preserve">
+        <value>エミュレータを選択してください</value>
+    </data>
+  <data name="PleaseSelectWindow" xml:space="preserve">
+        <value>ウィンドウを選択してください</value>
+    </data>
+  <data name="Paste" xml:space="preserve">
+        <value>ペースト</value>
+    </data>
+  <data name="PasteAbove" xml:space="preserve">
+        <value>上に貼り付け</value>
+    </data>
+  <data name="PasteBelow" xml:space="preserve">
+        <value>以下に貼り付け</value>
+    </data>
+  <data name="PerformanceBenchmark" xml:space="preserve">
+        <value>パフォーマンスベンチマーク</value>
+    </data>
+  <data name="PipelineLoadError" xml:space="preserve">
+        <value>パイプライン ファイルのロード中にエラーが発生しました: {0}</value>
+    </data>
+  <data name="Postscript" xml:space="preserve">
+        <value>追記</value>
+    </data>
+  <data name="Prescript" xml:space="preserve">
+        <value>処方箋</value>
+    </data>
+  <data name="ProjectLink" xml:space="preserve">
+        <value>プロジェクトリンク:</value>
+    </data>
+  <data name="PurchaseLink" xml:space="preserve">
+        <value>ミラー・シアンについて</value>
+    </data>
+  <data name="Quit" xml:space="preserve">
+        <value>やめる</value>
+    </data>
+  <data name="RegionSelectorTitle" xml:space="preserve">
+        <value>地域セレクター</value>
+    </data>
+  <data name="RegisterCustomAction" xml:space="preserve">
+        <value>カスタムアクションを登録: {0}</value>
+    </data>
+  <data name="RegisterCustomRecognizer" xml:space="preserve">
+        <value>カスタム認識エンジンを登録します: {0}</value>
+    </data>
+  <data name="RegisteringCustomAction" xml:space="preserve">
+        <value>カスタムアクションの登録</value>
+    </data>
+  <data name="RegisteringCustomRecognizer" xml:space="preserve">
+        <value>カスタム認識エンジンの登録</value>
+    </data>
+  <data name="RememberAdb" xml:space="preserve">
+        <value>接続を記憶</value>
+    </data>
+  <data name="RepeatOption" xml:space="preserve">
+        <value>リピート回数</value>
+    </data>
+  <data name="RescanController" xml:space="preserve">
+        <value>コントローラの再スキャン</value>
+    </data>
+  <data name="ResourceDownloadSource" xml:space="preserve">
+        <value>ソースのダウンロード</value>
+    </data>
+  <data name="ResourceLink" xml:space="preserve">
+        <value>リソースリンク:</value>
+    </data>
+  <data name="Restart" xml:space="preserve">
+        <value>再起動</value>
+    </data>
+  <data name="RestartAdb" xml:space="preserve">
+        <value>ADBサーバーを再起動しようとしています</value>
+    </data>
+  <data name="RestartMFA" xml:space="preserve">
+        <value>MFAを再起動する</value>
+    </data>
+  <data name="RestartPC" xml:space="preserve">
+        <value>コンピュータを再起動します</value>
+    </data>
+  <data name="RetryOnDisconnected" xml:space="preserve">
+        <value>ADB接続に失敗した場合にエミュレータの起動を再試行する</value>
+    </data>
+  <data name="RetryOnDisconnectedWin32" xml:space="preserve">
+        <value>Win32 接続に失敗した場合にゲームの起動を再試行する</value>
+    </data>
+  <data name="AutoDetectOnConnectionFailed" xml:space="preserve">
+        <value>接続時に利用可能なデバイスの自動検出に失敗しました</value>
+    </data>
+  <data name="AutoConnectAfterRefresh" xml:space="preserve">
+        <value>デバイスリストを更新した後の自動接続</value>
+    </data>
+  <data name="SaveFailureMessage" xml:space="preserve">
+        <value>タスクの保存に失敗しました!</value>
+    </data>
+  <data name="SavePipelineWarning" xml:space="preserve">
+        <value>タスク リストに重複した名前のタスクがあります。</value>
+    </data>
+  <data name="SaveSuccessMessage" xml:space="preserve">
+        <value>タスクは正常に保存されました。</value>
+    </data>
+  <data name="ScreencapCost" xml:space="preserve">
+        <value>スクリーンショット時間: {0}ms({1})</value>
+    </data>
+  <data name="ScreencapErrorTip" xml:space="preserve">
+        <value>スクリーンキャップに時間がかかりすぎます: {0}ms({1})</value>
+    </data>
+  <data name="ScreencapWarningTip" xml:space="preserve">
+        <value>スクリーンキャップに時間がかかる: {0}ms({1})</value>
+    </data>
+  <data name="ScreencapTimeoutAbort" xml:space="preserve">
+        <value>スクリーンショットがタイムアウトしました。タスクが中止されました</value>
+    </data>
+  <data name="ScreencapTimeoutDisconnected" xml:space="preserve">
+        <value>スクリーンショットがタイムアウトしました。切断された</value>
+    </data>
+  <data name="Select" xml:space="preserve">
+        <value>選択</value>
+    </data>
+  <data name="SelectAll" xml:space="preserve">
+        <value>すべて選択</value>
+    </data>
+  <data name="SelectExecutableFile" xml:space="preserve">
+        <value>実行可能ファイルの選択</value>
+    </data>
+  <data name="SelectExistingImage" xml:space="preserve">
+        <value>既存の画像を選択してください</value>
+    </data>
+  <data name="Show" xml:space="preserve">
+        <value>見せる</value>
+    </data>
+  <data name="ShowDisclaimerNoMore" xml:space="preserve">
+        <value>次の更新まで再度プロンプトを表示しない</value>
+    </data>
+  <data name="ShowHitDraw" xml:space="preserve">
+        <value>ノードヒットのスクリーンショットを表示 (デバッグ用)</value>
+    </data>
+  <data name="ShutDown" xml:space="preserve">
+        <value>シャットダウン</value>
+    </data>
+  <data name="ShutDownOnce" xml:space="preserve">
+        <value>シャットダウン(1回)</value>
+    </data>
+  <data name="SliderControlTitle" xml:space="preserve">
+        <value>スライダーコントロール</value>
+    </data>
+  <data name="SoftwarePath" xml:space="preserve">
+        <value>エミュレータパス</value>
+    </data>
+  <data name="SoftwareUpdate" xml:space="preserve">
+        <value>ソフトウェアをアップデートする</value>
+    </data>
+  <data name="SoftwareVersion" xml:space="preserve">
+        <value>ソフトウェアバージョン</value>
+    </data>
+  <data name="StartupParameter" xml:space="preserve">
+        <value>起動パラメータ</value>
+    </data>
+  <data name="StartupScript" xml:space="preserve">
+        <value>起動スクリプト</value>
+    </data>
+  <data name="StartupSoftware" xml:space="preserve">
+        <value>スタートアップゲーム</value>
+    </data>
+  <data name="StartupSoftwareAndScript" xml:space="preserve">
+            <value>ゲームとスクリプトの起動</value>
+        </data>
+  <data name="StartupScriptOnly" xml:space="preserve">
+            <value>起動スクリプトのみ</value>
+        </data>
+  <data name="StoppingFailed" xml:space="preserve">
+        <value>タスクの停止に失敗しました</value>
+    </data>
+  <data name="SwitchConfiguration" xml:space="preserve">
+        <value>スイッチ構成</value>
+    </data>
+  <data name="TabADB" xml:space="preserve">
+        <value>ADB</value>
+    </data>
+  <data name="TabWin32" xml:space="preserve">
+        <value>Win32</value>
+    </data>
+  <data name="TabPlayCover" xml:space="preserve">
+        <value>プレイカバー</value>
+    </data>
+  <data name="TaskNotFoundError" xml:space="preserve">
+        <value>「{0}」の{1}で使用されているタスク「{2}」がパイプラインファイルに存在しません。</value>
+    </data>
+  <data name="TaskStackError" xml:space="preserve">
+        <value>{0} の検出中にエラーが発生しました: {1}</value>
+    </data>
+  <data name="TextRecognizerTitle" xml:space="preserve">
+        <value>テキスト認識装置</value>
+    </data>
+  <data name="Timer" xml:space="preserve">
+        <value>タイマー</value>
+    </data>
+  <data name="TimerAction" xml:space="preserve">
+        <value>アクションの種類</value>
+    </data>
+  <data name="TimerCustomConfig" xml:space="preserve">
+        <value>カスタム構成</value>
+    </data>
+  <data name="TimerCustomConfigTip" xml:space="preserve">
+        <value>有効にすると、スケジュールされた各タスクは、現在アクティブな構成ではなく、選択した構成で実行されます。</value>
+    </data>
+  <data name="Tip" xml:space="preserve">
+        <value>ヒント</value>
+    </data>
+  <data name="TooltipDragLabel" xml:space="preserve">
+        <value>ラベルをドラッグして並べ替えます</value>
+    </data>
+  <data name="TooltipRefresh" xml:space="preserve">
+        <value>リフレッシュ</value>
+    </data>
+  <data name="TryToReconnect" xml:space="preserve">
+        <value>再接続を試みています</value>
+    </data>
+  <data name="TryToStartEmulator" xml:space="preserve">
+        <value>エミュレータを起動してみます</value>
+    </data>
+  <data name="TryToStartGame" xml:space="preserve">
+        <value>ゲームを開始しようとしています</value>
+    </data>
+  <data name="Unconnected" xml:space="preserve">
+        <value>未接続</value>
+    </data>
+  <data name="Update" xml:space="preserve">
+        <value>アップデート</value>
+    </data>
+  <data name="UpdateCompleted" xml:space="preserve">
+        <value>アップデート完了</value>
+    </data>
+  <data name="UpdateMaaFW" xml:space="preserve">
+        <value>MaaFW を更新する</value>
+    </data>
+  <data name="UseGpuForInference" xml:space="preserve">
+        <value>推論の高速化に GPU を使用する</value>
+    </data>
+  <data name="WaitSoftware" xml:space="preserve">
+        <value>起動後の接続再試行ウィンドウ (秒)</value>
+    </data>
+  <data name="WaitSoftwareDescription" xml:space="preserve">
+        <value>ソフトウェアの起動後、MFA はこの時間内に接続を試行し続けます。接続されると、さらに 5 秒待って、タスクが自動的に開始されます。</value>
+    </data>
+  <data name="WaitSoftwareTime" xml:space="preserve">
+        <value>{0} を起動した後、MFA は {1} 秒間接続を試行し続けます</value>
+    </data>
+  <data name="StartupConnectRetrying" xml:space="preserve">
+        <value>{0} に接続しようとしています。残り {1} 秒です</value>
+    </data>
+  <data name="StartupConnectSucceededDelay" xml:space="preserve">
+        <value>{0} に接続され、5 秒以内にタスクを開始します</value>
+    </data>
+  <data name="Warning_CannotConnect" xml:space="preserve">
+        <value>{0} に接続できません</value>
+    </data>
+  <data name="Window" xml:space="preserve">
+        <value>ウィンドウ</value>
+    </data>
+  <data name="WindowDetectionStarted" xml:space="preserve">
+        <value>窓探しスタート！</value>
+    </data>
+  <data name="WindowSelectionMessage" xml:space="preserve">
+        <value>選択されたウィンドウ: {0}</value>
+    </data>
+  <data name="WorkflowDiagramTitle" xml:space="preserve">
+        <value>ワークフロー図</value>
+    </data>
+  <data name="WxPusher" xml:space="preserve">
+        <value>WxPusher</value>
+    </data>
+  <data name="Yes" xml:space="preserve">
+        <value>はい</value>
+    </data>
+  <data name="CurrentConfig" xml:space="preserve">
+        <value>現在の構成</value>
+    </data>
+  <data name="ViewOrSwitchConfig" xml:space="preserve">
+        <value>既存の構成の表示または切り替え</value>
+    </data>
+  <data name="NewConfigName" xml:space="preserve">
+        <value>新しい構成名</value>
+    </data>
+  <data name="SetUniqueIdentifier" xml:space="preserve">
+        <value>カスタム構成の一意の識別子を設定する</value>
+    </data>
+  <data name="CreateNewConfig" xml:space="preserve">
+        <value>新しい構成の作成</value>
+    </data>
+  <data name="CreateFromCurrent" xml:space="preserve">
+        <value>現在の構成から新しいテンプレートを作成</value>
+    </data>
+  <data name="TriggerTime" xml:space="preserve">
+        <value>トリガー時間</value>
+    </data>
+  <data name="SelectedConfig" xml:space="preserve">
+        <value>選択した構成</value>
+    </data>
+  <data name="CreateCustomTheme" xml:space="preserve">
+        <value>カスタムテーマの作成</value>
+    </data>
+  <data name="ConfigurePrimaryAccent" xml:space="preserve">
+        <value>原色とアクセントカラーを設定してアプリケーションに適用する</value>
+    </data>
+  <data name="CustomThemeName" xml:space="preserve">
+        <value>テーマ名</value>
+    </data>
+  <data name="CustomThemePrimaryColor" xml:space="preserve">
+        <value>原色</value>
+    </data>
+  <data name="CustomThemeAccentColor" xml:space="preserve">
+        <value>アクセントカラー</value>
+    </data>
+  <data name="ColorThemeAlreadyExists" xml:space="preserve">
+        <value>カラーテーマはすでに存在します</value>
+    </data>
+  <data name="Later" xml:space="preserve">
+        <value>後で</value>
+    </data>
+  <data name="ErrorWhenCheck" xml:space="preserve">
+        <value>{0} の最新バージョンを確認できませんでした。</value>
+    </data>
+  <data name="MirrorCdkExpired" xml:space="preserve">
+        <value>CDK の有効期限が切れています。更新してもう一度お試しください。</value>
+    </data>
+  <data name="MirrorCdkInvalid" xml:space="preserve">
+        <value>CDK が無効です。入力を確認してください。</value>
+    </data>
+  <data name="MirrorCdkMismatch" xml:space="preserve">
+        <value>CDK タイプがリソースと一致しません。</value>
+    </data>
+  <data name="StartingAgent" xml:space="preserve">
+        <value>エージェントの開始 (しばらく時間がかかる場合があります)</value>
+    </data>
+  <data name="AgentStartFailed" xml:space="preserve">
+        <value>エージェントの起動失敗</value>
+    </data>
+  <data name="AgentTcpMode" xml:space="preserve">
+        <value>通信互換モード</value>
+    </data>
+  <data name="AgentTcpModeDescription" xml:space="preserve">
+        <value>タスクの開始直後にアプリがクラッシュする場合は、これを有効にしてみてください。この場合にのみ使用してください。そうでない場合は、パフォーマンスに影響を与える可能性があります。</value>
+    </data>
+  <data name="AgentExecutableNotFound" xml:space="preserve">
+        <value>エージェントの実行可能ファイルが見つかりません: {0}</value>
+    </data>
+  <data name="Optional" xml:space="preserve">
+        <value>オプション</value>
+    </data>
+  <data name="GlobalHotkeyServiceError" xml:space="preserve">
+        <value>グローバル ホットキー サービスのロードに失敗しました</value>
+        <data name="MultiInstanceModeGlobalHotkeyDisabled" xml:space="preserve">
+        <value>Multi-instance Mode: Global Hotkeys Disabled</value>
+    </data>
+    </data>
+  <data name="UpcomingChanges" xml:space="preserve">
+        <value>今後の変更点</value>
+    </data>
+  <data name="BetaVersion" xml:space="preserve">
+        <value>ベータ</value>
+    </data>
+  <data name="StableVersion" xml:space="preserve">
+        <value>安定した</value>
+    </data>
+  <data name="ResourceUpdateChannel" xml:space="preserve">
+        <value>リソース更新チャネル</value>
+    </data>
+  <data name="UpdateLog" xml:space="preserve">
+        <value>更新ログ</value>
+    </data>
+  <data name="UiVersionBelowResourceRequirement" xml:space="preserve">
+        <value>現在の UI バージョン {0} は、リソースに必要な最小バージョン {1} よりも低いです。一部の機能が正常に動作しない場合があります。ソフトウェアを更新してください。</value>
+    </data>
+  <data name="AboutToken" xml:space="preserve">
+        <value>トークンについて</value>
+    </data>
+  <data name="Extracting" xml:space="preserve">
+        <value>抽出中</value>
+    </data>
+  <data name="AlphaVersion" xml:space="preserve">
+        <value>アルファ</value>
+    </data>
+  <data name="UIUpdateChannel" xml:space="preserve">
+        <value>UI更新チャネル</value>
+    </data>
+  <data name="ExportLog" xml:space="preserve">
+        <value>エクスポートログ</value>
+    </data>
+  <data name="ExportLogDialogTitle" xml:space="preserve">
+        <value>パッケージログ</value>
+    </data>
+  <data name="ExportLogDialogDescription" xml:space="preserve">
+        <value>含めるログ ファイルとイメージ フォルダーを選択します。画像アイテムは時間範囲でフィルタリングできます。</value>
+    </data>
+  <data name="ExportLogDialogLogsSection" xml:space="preserve">
+        <value>ログ</value>
+    </data>
+  <data name="ExportLogDialogImagesSection" xml:space="preserve">
+        <value>画像</value>
+    </data>
+  <data name="ExportLogDialogImagesDescription" xml:space="preserve">
+        <value>デフォルトの画像時間範囲はすべてであり、各画像カテゴリは個別に調整できます。</value>
+    </data>
+  <data name="ExportLogDialogOtherImages" xml:space="preserve">
+        <value>その他の画像</value>
+    </data>
+  <data name="ExportLogDialogStart" xml:space="preserve">
+        <value>エクスポートの開始</value>
+    </data>
+  <data name="ExportLogTimeRangeLast24Hours" xml:space="preserve">
+        <value>過去 24 時間</value>
+    </data>
+  <data name="ExportLogTimeRangeLast3Days" xml:space="preserve">
+        <value>過去 3 日間</value>
+    </data>
+  <data name="ExportLogTimeRangeLast7Days" xml:space="preserve">
+        <value>過去 7 日間</value>
+    </data>
+  <data name="ExportLogInProgress" xml:space="preserve">
+        <value>ログをエクスポートしています。お待ちください...</value>
+    </data>
+  <data name="ExportLogNoEligibleFiles" xml:space="preserve">
+        <value>対象となるログ ファイルまたはイメージが見つかりませんでした。</value>
+    </data>
+  <data name="ExportLogSuccess" xml:space="preserve">
+        <value>ログのエクスポートが正常に完了しました</value>
+    </data>
+  <data name="ExportLogFailed" xml:space="preserve">
+        <value>ログのエクスポートに失敗しました</value>
+    </data>
+  <data name="ClearCache" xml:space="preserve">
+        <value>キャッシュのクリア</value>
+    </data>
+  <data name="ClearCacheSuccess" xml:space="preserve">
+        <value>キャッシュがクリアされました</value>
+    </data>
+  <data name="ClearCacheFailed" xml:space="preserve">
+        <value>キャッシュのクリアに失敗しました</value>
+    </data>
+  <data name="ClearCacheStopInstanceFailed" xml:space="preserve">
+        <value>インスタンス {0} を停止できませんでした</value>
+    </data>
+  <data name="ClearCacheInstanceStillUsingResource" xml:space="preserve">
+        <value>インスタンス {0} はまだリソースを使用しています</value>
+    </data>
+  <data name="StopTaskBeforeExportLog" xml:space="preserve">
+        <value>ログをエクスポートする前にタスクを停止してください</value>
+    </data>
+  <data name="StopTaskBeforeClearCache" xml:space="preserve">
+        <value>キャッシュをクリアする前にタスクを停止してください</value>
+    </data>
+  <data name="MirrorCdkEmpty" xml:space="preserve">
+        <value>「設定」の「アップデート設定」に移動し、「アップデート元」を「GitHub」に切り替えるか、ミラーCDKを入力してください。</value>
+    </data>
+  <data name="ContinueRunningWhenError" xml:space="preserve">
+        <value>タスクが失敗した後、他のタスクの実行を継続するかどうか</value>
+    </data>
+  <data name="CurrentOtherUpdatingTask" xml:space="preserve">
+        <value>現在、他にも進行中の更新タスクがあります</value>
+    </data>
+  <data name="RedownloadUiFullPackage" xml:space="preserve">
+        <value>完全な UI パッケージを再ダウンロードする</value>
+    </data>
+  <data name="RedownloadResourceFullPackage" xml:space="preserve">
+        <value>完全なリソース パッケージを再ダウンロードする</value>
+    </data>
+  <data name="MirrorCDKBanned" xml:space="preserve">
+        <value>CDKは禁止されました</value>
+    </data>
+  <data name="ScreenshotTest" xml:space="preserve">
+        <value>スクリーンショットのテスト</value>
+    </data>
+  <data name="ScreenshotPage" xml:space="preserve">
+        <value>スクリーンショット</value>
+    </data>
+  <data name="ScreenshotFailed" xml:space="preserve">
+        <value>スクリーンショットが失敗しました</value>
+    </data>
+  <data name="DisplayAnnouncement" xml:space="preserve">
+        <value>ディスプレイアナウンス</value>
+    </data>
+  <data name="ScreenshotEmpty" xml:space="preserve">
+        <value>現在のスクリーンショットは空です。 [スクリーンショットテスト]をクリックしてスクリーンショットを取得してください。</value>
+    </data>
+  <data name="ScreenshotPlaceholder" xml:space="preserve">
+        <value>スクリーンショットなし</value>
+    </data>
+  <data name="SaveScreenshot" xml:space="preserve">
+        <value>スクリーンショットの保存</value>
+    </data>
+  <data name="AnnouncementEmpty" xml:space="preserve">
+        <value>現在のアナウンスは空です</value>
+    </data>
+  <data name="Execute" xml:space="preserve">
+        <value>実行する</value>
+    </data>
+  <data name="StoppingInternalTask" xml:space="preserve">
+        <value>内部タスクを停止しています...</value>
+    </data>
+  <data name="Verifying" xml:space="preserve">
+        <value>検証中</value>
+    </data>
+  <data name="HashVerificationFailed" xml:space="preserve">
+        <value>ハッシュ検証に失敗しました!ネットワークの変動により、リソースが破損している可能性があります。リソースを再ダウンロードしてください。</value>
+    </data>
+  <data name="FileLoadFailed" xml:space="preserve">
+        <value>ファイル {0} をロードできませんでした。</value>
+    </data>
+  <data name="FileLoadFailedDetail" xml:space="preserve">
+        <value>{0} ファイル形式が正しいかどうかを確認してください。JSON 構文エラーがある可能性があります。</value>
+    </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+        <value>クリップボードにコピー</value>
+    </data>
+  <data name="UseDirectMLSupportedDevice" xml:space="preserve">
+        <value>DirectML 対応デバイスを使用する</value>
+    </data>
+  <data name="SwitchUiUpdateSourceToGithub" xml:space="preserve">
+        <value>Mirror Chyan では特定のバージョンを指定してアップデートすることができないため、アップデート設定に進み、アップデート元を GitHub に切り替えてください。</value>
+    </data>
+  <data name="MultiInstanceUnderSamePath" xml:space="preserve">
+        <value>同じパスで起動できるインスタンスは 1 つだけです。</value>
+    </data>
+  <data name="KeyboardInput" xml:space="preserve">
+        <value>キーボード入力</value>
+    </data>
+  <data name="MouseInput" xml:space="preserve">
+        <value>マウス入力</value>
+    </data>
+  <data name="ExternalNotificationServerChanSendKey" xml:space="preserve">
+        <value>送信キー</value>
+    </data>
+  <data name="UiDoesNotSupportResourceUpdateCancelled" xml:space="preserve">
+        <value>現在のバージョンの UI は更新するリソースをサポートしていないため、更新はキャンセルされました。</value>
+    </data>
+  <data name="UiDoesNotSupportCurrentResource" xml:space="preserve">
+        <value>現在のバージョンの UI は現在のリソースをサポートしていません。</value>
+    </data>
+  <data name="UnknownError" xml:space="preserve">
+        <value>不明なエラー</value>
+    </data>
+  <data name="UndefinedError" xml:space="preserve">
+        <value>未定義のエラー</value>
+    </data>
+  <data name="EmulatorMultiInstanceQuickSettings" xml:space="preserve">
+        <value>マルチインスタンスのクイック設定</value>
+    </data>
+  <data name="EmulatorMultiInstanceEditor" xml:space="preserve">
+        <value>マルチインスタンスエディター</value>
+    </data>
+  <data name="MuMuEmulator" xml:space="preserve">
+        <value>MuMu エミュレータ</value>
+    </data>
+  <data name="XYAZ" xml:space="preserve">
+        <value>MEmu</value>
+    </data>
+  <data name="EmulatorMultiInstanceNumber" xml:space="preserve">
+        <value>マルチインスタンス番号</value>
+    </data>
+  <data name="RunSingle" xml:space="preserve">
+        <value>ランシングル</value>
+    </data>
+  <data name="RunCheckedFromCurrent" xml:space="preserve">
+        <value>現在からチェックされた実行</value>
+    </data>
+  <data name="MirrorChyanResourceUpdateShortTip" xml:space="preserve">
+        <value>Resource update {0} detected</value>
+    </data>
+  <data name="Unnamed" xml:space="preserve">
+        <value>無名</value>
+    </data>
+  <data name="CdkExpireInDays" xml:space="preserve">
+        <value>CDK はあと {0} 日で期限切れになります</value>
+    </data>
+  <data name="CdkExpireInHours" xml:space="preserve">
+        <value>CDK は {0} 時間後に期限切れになります</value>
+    </data>
+  <data name="CdkExpireInMinutes" xml:space="preserve">
+        <value>CDK は {0} 分で期限切れになります</value>
+    </data>
+  <data name="CdkExpireInSeconds" xml:space="preserve">
+        <value>CDK は {0} 秒後に期限切れになります</value>
+    </data>
+  <data name="QueryCdkRemainingTime" xml:space="preserve">
+        <value>CDK 残り時間のクエリ</value>
+    </data>
+  <data name="LoadResourcesFailedDetail" xml:space="preserve">
+        <value>フォルダー全体を削除して再ダウンロードするか、プロジェクト管理者に連絡してください。</value>
+    </data>
+  <data name="NoEmulatorFoundDetail" xml:space="preserve">
+        <value>エミュレータの ADB 機能が有効であること、ブリッジ モードが無効であることを確認し、MFA とエミュレータを再起動した後、再度接続してみてください。</value>
+    </data>
+  <data name="Reset" xml:space="preserve">
+        <value>リセット</value>
+    </data>
+  <data name="AgentConnectionRetry" xml:space="preserve">
+        <value>エージェント接続の再試行 ({0})...</value>
+    </data>
+  <data name="TriggerDate" xml:space="preserve">
+        <value>トリガー日</value>
+    </data>
+  <data name="SchedulePickerTip" xml:space="preserve">
+        <value>クリックしてトリガー日を設定します</value>
+    </data>
+  <data name="ScheduleMode" xml:space="preserve">
+        <value>スケジュールモード</value>
+    </data>
+  <data name="ScheduleDaily" xml:space="preserve">
+        <value>毎日</value>
+    </data>
+  <data name="ScheduleWeekly" xml:space="preserve">
+        <value>毎週</value>
+    </data>
+  <data name="ScheduleMonthly" xml:space="preserve">
+        <value>毎月</value>
+    </data>
+  <data name="ScheduleWorkdays" xml:space="preserve">
+        <value>平日</value>
+    </data>
+  <data name="ScheduleWeekends" xml:space="preserve">
+        <value>週末</value>
+    </data>
+  <data name="SelectDaysOfWeek" xml:space="preserve">
+        <value>曜日を選択してください</value>
+    </data>
+  <data name="SelectDaysOfMonth" xml:space="preserve">
+        <value>日付を選択してください</value>
+    </data>
+  <data name="WeekdayMon" xml:space="preserve">
+        <value>月</value>
+    </data>
+  <data name="WeekdayTue" xml:space="preserve">
+        <value>火</value>
+    </data>
+  <data name="WeekdayWed" xml:space="preserve">
+        <value>水</value>
+    </data>
+  <data name="WeekdayThu" xml:space="preserve">
+        <value>木</value>
+    </data>
+  <data name="WeekdayFri" xml:space="preserve">
+        <value>金</value>
+    </data>
+  <data name="WeekdaySat" xml:space="preserve">
+        <value>土</value>
+    </data>
+  <data name="WeekdaySun" xml:space="preserve">
+        <value>太陽</value>
+    </data>
+  <data name="ScheduleMonthlyDay" xml:space="preserve">
+        <value>{0}日</value>
+    </data>
+  <data name="ScheduleMonthlyDays" xml:space="preserve">
+        <value>曜日: {0}</value>
+    </data>
+  <data name="ScheduleMonthlyDaySuffix" xml:space="preserve">
+        <value>番目</value>  </data>
+  <data name="ResourceAutoSwitched" xml:space="preserve">
+        <value>リソースの自動切り替え</value>
+    </data>
+  <data name="ResourceNotSupportController" xml:space="preserve">
+        <value>現在のコントローラー {1} はリソース {0} をサポートしていないため、{2} に自動的に切り替わります。リソース設定を確認してください。</value>
+    </data>
+  <data name="ResourceNotSelected" xml:space="preserve">
+        <value>リソースが選択されていません。最初にリソースを選択してください。</value>
+    </data>
+  <data name="DeviceNotSelected" xml:space="preserve">
+        <value>デバイスが選択されていません。最初にデバイスを選択してください。</value>
+    </data>
+  <data name="Preset" xml:space="preserve">
+        <value>プリセット</value>
+    </data>
+  <data name="UseFingerprintMatching" xml:space="preserve">
+        <value>指紋照合を使用する</value>
+    </data>
+  <data name="LiveViewNoImageReasonAdb" xml:space="preserve">
+        <value>考えられる原因: エミュレータ ウィンドウが最小化されている/画面がオフになっている、互換性のないスクリーン キャップ モード、またはデバイスが完全に起動していない</value>
+    </data>
+  <data name="LiveViewNoImageReasonWindow" xml:space="preserve">
+        <value>考えられる原因: ターゲット ウィンドウが最小化/非表示/遮蔽されている、互換性のないスクリーン キャップ モード</value>
+    </data>
+  <data name="LiveViewNoImageWarning" xml:space="preserve">
+        <value>ライブビューは接続されていますが、利用可能なフレームがありません ({0})、{1}</value>
+    </data>
+  <data name="Running" xml:space="preserve">
+        <value>ランニング</value>
+    </data>
+  <data name="LiveViewRefreshRate" xml:space="preserve">
+        <value>ライブビューの最大リフレッシュ レート (FPS)</value>
+    </data>
+  <data name="PlayCoverAddress" xml:space="preserve">
+        <value>住所</value>
+    </data>
+  <data name="PlayCoverBundleIdentifier" xml:space="preserve">
+        <value>バンドル識別子</value>
+    </data>
+  <data name="PlayCoverAddressEmpty" xml:space="preserve">
+        <value>PlayCover アドレスを空にすることはできません</value>
+    </data>
+  <data name="PlayCoverEditor" xml:space="preserve">
+        <value>プレイカバーエディター</value>
+    </data>
+  <data name="Reconnect" xml:space="preserve">
+        <value>再接続</value>
+    </data>
+  <data name="ResourceLayoutUpdatedTitle" xml:space="preserve">
+        <value>リソースレイアウトが更新されました</value>
+    </data>
+  <data name="ResourceLayoutUpdatedContent" xml:space="preserve">
+        <value>リソースレイアウトファイルが変更されました。最新のレイアウトが適用され、現在のレイアウトが上書きされます。</value>
+    </data>
+  <data name="TaskRenamePlaceholder" xml:space="preserve">
+        <value>構成名を入力してください</value>
+    </data>
+  <data name="TaskRemarkPlaceholder" xml:space="preserve">
+        <value>備考を入力してください (オプション)</value>
+    </data>
+  <data name="PlatformNotSupportedOperation" xml:space="preserve">
+            <value>この操作は現在のプラットフォームではサポートされていません</value>
+        </data>
+  <data name="AdminPermissionRequired" xml:space="preserve">
+            <value>管理者の許可が必要です</value>
+        </data>
+  <data name="AdminPermissionRequiredDetail" xml:space="preserve">
+            <value>現在のコントローラーには管理者権限が必要です。このアプリケーションを管理者として再起動してください。</value>
+        </data>
+  <data name="StartupErrorMessage" xml:space="preserve">
+            <value>{0} 失敗しました
+    
+    エラーメッセージ:
+    {1}
+    
+    詳細:
+    {2}</value>
+        </data>
+  <data name="MSVC2022Missing" xml:space="preserve">
+            <value>不足しているランタイムが検出されました。最新の Microsoft Visual C++ 再頒布可能パッケージ (x64) をダウンロードしてインストールしてみてください。</value>
+        </data>
+  <data name="MaaNativeLibraryMissing" xml:space="preserve">
+            <value>MAA の依存ファイルが不足しています。アプリを完全に再展開するか、再インストールしてください。</value>
+        </data>
+  <data name="MaaNativeLibraryMissingDetail" xml:space="preserve">
+            <value>不足ファイル: {0}
+
+確認をおすすめするディレクトリ:
+{1}
+
+実行ファイルだけを単独でコピーしないでください。</value>
+        </data>
+  <data name="MSVC2022DownloadLink" xml:space="preserve">
+            <value>ダウンロードリンク: https://aka.ms/vs/17/release/vc_redist.x64.exe</value>
+        </data>
+  <data name="RuntimeMissingTitle" xml:space="preserve">
+            <value>ランタイムがありません</value>
+        </data>
+  <data name="RuntimeMissingDescription" xml:space="preserve">
+            <value>MFAAvalonia を実行するには、Microsoft Visual C++ 再頒布可能パッケージ (x64) が必要です。</value>
+        </data>
+  <data name="DownloadAndInstall" xml:space="preserve">
+            <value>ダウンロードしてインストールする</value>
+        </data>
+  <data name="DownloadingStatus" xml:space="preserve">
+            <value>ランタイム ライブラリをダウンロードしています...</value>
+        </data>
+  <data name="InstallingStatus" xml:space="preserve">
+            <value>インストールが完了するのを待って、ポップアップされたインストール ウィンドウで操作を完了してください。</value>
+        </data>
+  <data name="Retry" xml:space="preserve">
+            <value>リトライ</value>
+        </data>
+  <data name="RuntimeMissingPrompt" xml:space="preserve">
+            <value>下のボタンをクリックすると、インストーラーが自動的にダウンロードされて実行されます。ポップアップ ウィンドウで [インストール] をクリックすることに注意してください。</value>
+        </data>
+  <data name="ExitProgram" xml:space="preserve">
+        <value>プログラムを終了する</value>
+    </data>
+  <data name="PreventSleep" xml:space="preserve">
+        <value>睡眠を妨げる</value>
+    </data>
+  <data name="Search" xml:space="preserve">
+        <value>検索...</value>
+    </data>
+  <data name="Config" xml:space="preserve">
+        <value>構成</value>
+    </data>
+  <data name="TutorialStepConnectTitle" xml:space="preserve">
+        <value>ツールバーの概要</value>
+    </data>
+  <data name="TutorialStepConnectDesc" xml:space="preserve">
+        <value>これは、リソースの切り替え、コントローラーの選択、デバイスの接続などが含まれる上部のツールバーです。それぞれについて見ていきましょう。</value>
+    </data>
+  <data name="TutorialStepAddTaskTitle" xml:space="preserve">
+        <value>タスクリスト</value>
+    </data>
+  <data name="TutorialStepAddTaskDesc" xml:space="preserve">
+        <value>タスクリストで実行したいタスクにチェックを入れます。ドラッグして並べ替えます。各タスクの右側にある設定アイコンをクリックすると、[タスク設定] パネルに詳細なパラメーターが表示されます。</value>
+    </data>
+  <data name="TutorialStepMultiConfigTitle" xml:space="preserve">
+        <value>構成の管理</value>
+    </data>
+  <data name="TutorialStepMultiConfigDesc" xml:space="preserve">
+        <value>ステップ 3: 上部のタブ バーを使用して構成を作成または切り替えます。 1 つは日常的な自動化用、もう 1 つはリアルタイム ツール用です。各構成には独立したタスクとデバイス設定があります。</value>
+    </data>
+  <data name="TutorialNext" xml:space="preserve">
+        <value>次</value>
+    </data>
+  <data name="TutorialPrevious" xml:space="preserve">
+        <value>前の</value>
+    </data>
+  <data name="TutorialFinish" xml:space="preserve">
+        <value>わかった</value>
+    </data>
+  <data name="TutorialStepTaskOptionsTitle" xml:space="preserve">
+        <value>タスクの設定</value>
+    </data>
+  <data name="TutorialStepTaskOptionsDesc" xml:space="preserve">
+        <value>このパネルには、選択したタスクの詳細なパラメータ設定が表示されます。タスク リスト内のさまざまなタスクの横にある設定アイコンをクリックして、オプションを切り替えます。</value>
+    </data>
+  <data name="TutorialStepSettingsTitle" xml:space="preserve">
+        <value>設定</value>
+    </data>
+  <data name="TutorialStepSettingsDesc" xml:space="preserve">
+        <value>左側のサイドバーの下部にある設定アイコンをクリックして、テーマ、言語、通知などのグローバル オプションを構成します。</value>
+    </data>
+  <data name="TutorialStepResourceTitle" xml:space="preserve">
+        <value>リソースの切り替え</value>
+    </data>
+  <data name="TutorialStepResourceDesc" xml:space="preserve">
+        <value>このドロップダウンを使用して、さまざまなリソース パックを切り替えます。異なるパックには、異なるタスク セットと構成が含まれる場合があります。</value>
+    </data>
+  <data name="TutorialStepControllerTitle" xml:space="preserve">
+        <value>コントローラの種類</value>
+    </data>
+  <data name="TutorialStepControllerDesc" xml:space="preserve">
+        <value>コントローラーのタイプを選択します: デスクトップ、デスクトップ-Alt、デスクトップ-フォアグラウンド、または Android など。ユースケースに合った接続方法を選択してください。</value>
+    </data>
+  <data name="TutorialStepDeviceTitle" xml:space="preserve">
+        <value>デバイスの選択</value>
+    </data>
+  <data name="TutorialStepDeviceDesc" xml:space="preserve">
+        <value>接続するターゲットデバイスまたはウィンドウを選択します。ドロップダウンには、現在利用可能なデバイスが表示されます。</value>
+    </data>
+  <data name="TutorialStepConnectionTitle" xml:space="preserve">
+        <value>接続制御</value>
+    </data>
+  <data name="TutorialStepConnectionDesc" xml:space="preserve">
+        <value>ここには、デバイス リストを更新するボタン、再接続するボタン、および接続ステータス インジケーター (緑 = 接続済み、赤 = 切断) があります。 「タスクの開始」をクリックして、チェックしたタスクを実行します。</value>
+    </data>
+  <data name="TutorialStepLogTitle" xml:space="preserve">
+        <value>実行ログ</value>
+    </data>
+  <data name="TutorialStepLogDesc" xml:space="preserve">
+        <value>タスク実行中のログ メッセージは、リアルタイムの監視とトラブルシューティングのためにここに表示されます。</value>
+    </data>
+  <data name="TutorialStepSelectAllTitle" xml:space="preserve">
+        <value>すべて選択/すべて選択解除</value>
+    </data>
+  <data name="TutorialStepSelectAllDesc" xml:space="preserve">
+        <value>これら 2 つのボタンは、すべてのタスクをすばやくオンまたはオフにします。左が「すべて選択」、右が「すべて選択解除」です。</value>
+    </data>
+  <data name="TutorialStepAddTaskBtnTitle" xml:space="preserve">
+        <value>タスクの追加とリセット</value>
+    </data>
+  <data name="TutorialStepAddTaskBtnDesc" xml:space="preserve">
+        <value>[タスクの追加] ボタンをクリックすると、新しいタスクがリストに追加されます。 [タスクをリセット] ボタンをクリックすると、タスク リストがデフォルトの状態に戻ります。</value>
+    </data>
+  <data name="TutorialStepResetTaskTitle" xml:space="preserve">
+        <value>Start Tasks</value>
+    </data>
+  <data name="TutorialStepResetTaskDesc" xml:space="preserve">
+        <value>Click this button to start executing checked tasks. Click again while running to stop.</value>
+    </data>
+  <data name="TutorialStepTaskInteractTitle" xml:space="preserve">
+        <value>Task Interaction Tips</value>
+    </data>
+  <data name="TutorialStepTaskInteractDesc" xml:space="preserve">
+        <value>Left-click the checkbox to check/uncheck a task; right-click the checkbox to set it to "run only once" (indeterminate state).</value>
+    </data>
+  <data name="TutorialStepTaskItemTipTitle" xml:space="preserve">
+        <value>Task Item Actions</value>
+    </data>
+  <data name="TutorialStepTaskItemTipDesc" xml:space="preserve">
+        <value>Right-click a task item to open a context menu for running individually, adding remarks, or deleting. Click the settings icon on the right to view task parameters.</value>
+    </data>
+  <data name="TutorialStepExportLogTitle" xml:space="preserve">
+        <value>Export Log</value>
+    </data>
+  <data name="TutorialStepExportLogDesc" xml:space="preserve">
+        <value>Click this button to export run logs to a file for troubleshooting or sharing with developers.</value>
+    </data>
+  <data name="TutorialStepSettingsPageTitle" xml:space="preserve">
+        <value>Settings Page</value>
+    </data>
+  <data name="TutorialStepSettingsPageDesc" xml:space="preserve">
+        <value>This is the Settings page. Use the side or top navigation bar to quickly jump to different setting categories. The right side shows detailed settings for the selected category.</value>
+    </data>
+  <data name="TutorialStepStartupSettingsTitle" xml:space="preserve">
+        <value>Startup Settings</value>
+    </data>
+  <data name="TutorialStepStartupSettingsDesc" xml:space="preserve">
+        <value>Configure automatic actions before and after tasks, emulator/game launch path, startup parameters, and wait time here.</value>
+    </data>
+  <data name="TutorialStepBeforeAfterTaskTitle" xml:space="preserve">
+        <value>Before &amp; After Task Actions</value>
+    </data>
+  <data name="TutorialStepBeforeAfterTaskDesc" xml:space="preserve">
+        <value>"Before Task" automatically runs a specified action before tasks start (e.g., navigate to a specific screen); "After Task" runs after all tasks complete (e.g., exit game, close emulator).</value>
+    </data>
+  <data name="TutorialStepSoftwarePathTitle" xml:space="preserve">
+        <value>Set Launch Path</value>
+    </data>
+  <data name="TutorialStepSoftwarePathDesc" xml:space="preserve">
+        <value>Set the emulator or game launch path here for fully automated operation. Note: You must select "Launch Game" or "Launch &amp; Execute" in Connection Actions, or enable "Try to launch on connection failure" in Connection Settings for the launch path to take effect.</value>
+    </data>
+  <data name="TutorialStepRewatchTitle" xml:space="preserve">
+        <value>Re-watch Tutorial</value>
+    </data>
+  <data name="TutorialStepRewatchDesc" xml:space="preserve">
+        <value>If you need to review this tutorial later, you can find the "Tutorial" button at the bottom of Settings → About page to re-watch it anytime.</value>
+    </data>
+  <data name="Tutorial" xml:space="preserve">
+        <value>Tutorial</value>
+    </data>
+  <data name="SpecialTask_KillSelfProcess" xml:space="preserve">
+        <value>Kill Self Process</value>
+    </data>
+  <data name="SpecialTask_KillSelfProcessDesc" xml:space="preserve">
+        <value>When enabled, terminates this application itself; when disabled, you can enter another process name to terminate.</value>
+    </data>
+  <data name="SpecialTask_ProcessNamePlaceholder" xml:space="preserve">
+        <value>e.g. notepad.exe</value>
+    </data>
+  <data name="SpecialTask_ProcessNameExample" xml:space="preserve">
+        <value>e.g. notepad.exe</value>
+    </data>
+  <data name="ZoomOut" xml:space="preserve">
+        <value>Zoom out</value>
+    </data>
+  <data name="ZoomIn" xml:space="preserve">
+        <value>Zoom in</value>
+    </data>
+  <data name="TimerStopConnectedProcess" xml:space="preserve">
+        <value>Close connected process</value>
+    </data>
+  <data name="TimerStopMFA" xml:space="preserve">
+        <value>Close This App</value>
+    </data>
+  <data name="AddTimer" xml:space="preserve">
+        <value>Add Timer</value>
+    </data>
+  <data name="RemoveTimer" xml:space="preserve">
+        <value>Remove Timer</value>
+    </data>
+</root>

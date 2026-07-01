@@ -257,7 +257,7 @@
             }
         },
         "next": [
-            "E_StartExpedition"
+            "E_MarkTeam1"
         ],
         "on_error": [
             "E_DetectExpeditionScreen"
@@ -448,7 +448,7 @@
             }
         },
         "next": [
-            "E_StartExpedition"
+            "E_MarkTeam2"
         ],
         "on_error": [
             "E_DetectExpeditionScreen"
@@ -627,7 +627,7 @@
             }
         },
         "next": [
-            "E_StartExpedition"
+            "E_MarkTeam3"
         ],
         "on_error": [
             "E_DetectExpeditionScreen"
@@ -818,7 +818,7 @@
             }
         },
         "next": [
-            "E_StartExpedition"
+            "E_MarkTeam4"
         ],
         "on_error": [
             "E_DetectExpeditionScreen"
@@ -1009,7 +1009,7 @@
             }
         },
         "next": [
-            "E_StartExpedition"
+            "E_MarkTeam5"
         ],
         "on_error": [
             "E_DetectExpeditionScreen"
@@ -1114,7 +1114,7 @@
             }
         },
         "next": [
-            "E_GoHome"
+            "E_LogDispatch"
         ],
         "post_delay": 4000,
         "pre_delay": 100
@@ -1531,6 +1531,7 @@
             }
         },
         "action": "Click",
+        "timeout": 3000,
         "pre_delay": 100,
         "next": [
             "E_IsAnnouncementPopup"
@@ -1586,6 +1587,7 @@
             1,
             1
         ],
+        "timeout": 3000,
         "pre_delay": 1000,
         "next": [
             "E_IsLoginReward"
@@ -1662,5 +1664,82 @@
             "E_ClickBackToHome"
         ],
         "pre_delay": 100
+    },
+    "E_MarkTeam1": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DispatchLogAction",
+            "custom_action_param": {
+                "mode": "mark",
+                "team": 1
+            }
+        },
+        "next": [
+            "E_StartExpedition"
+        ]
+    },
+    "E_MarkTeam2": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DispatchLogAction",
+            "custom_action_param": {
+                "mode": "mark",
+                "team": 2
+            }
+        },
+        "next": [
+            "E_StartExpedition"
+        ]
+    },
+    "E_MarkTeam3": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DispatchLogAction",
+            "custom_action_param": {
+                "mode": "mark",
+                "team": 3
+            }
+        },
+        "next": [
+            "E_StartExpedition"
+        ]
+    },
+    "E_MarkTeam4": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DispatchLogAction",
+            "custom_action_param": {
+                "mode": "mark",
+                "team": 4
+            }
+        },
+        "next": [
+            "E_StartExpedition"
+        ]
+    },
+    "E_MarkTeam5": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DispatchLogAction",
+            "custom_action_param": {
+                "mode": "mark",
+                "team": 5
+            }
+        },
+        "next": [
+            "E_StartExpedition"
+        ]
+    },
+    "E_LogDispatch": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DispatchLogAction",
+            "custom_action_param": {
+                "mode": "log"
+            }
+        },
+        "next": [
+            "E_GoHome"
+        ]
     }
 }

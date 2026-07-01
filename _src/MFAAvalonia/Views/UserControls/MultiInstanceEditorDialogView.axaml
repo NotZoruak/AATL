@@ -1,0 +1,61 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:markup="https://codewf.com"
+             xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+             x:DataType="usersControls:MultiInstanceEditorDialogViewModel"
+             xmlns:extensions="clr-namespace:MFAAvalonia.Extensions"
+             xmlns:suki="https://github.com/kikipoulet/SukiUI"
+             xmlns:fluent="clr-namespace:FluentIcons.Avalonia.Fluent.Markup;assembly=FluentIcons.Avalonia.Fluent"
+             xmlns:usersControls="clr-namespace:MFAAvalonia.ViewModels.UsersControls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MFAAvalonia.Views.UserControls.MultiInstanceEditorDialogView">
+    <StackPanel Margin="5" Width="450">
+        <TextBlock
+            FontSize="18"
+            FontWeight="DemiBold"
+            Text="{markup:I18n {x:Static helper:LangKeys.EmulatorMultiInstanceEditor}}" />
+
+        <Grid Margin="8,27,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       FontSize="16" VerticalAlignment="Center"
+                       FontWeight="DemiBold"
+                       Text="{markup:I18n {x:Static helper:LangKeys.Emulator}}" />
+            <ComboBox Grid.Column="1"
+                      DockPanel.Dock="Right"
+                      ItemsSource="{Binding EmulatorList}"
+                      DisplayMemberBinding="{Binding Name}"
+                      SelectedValueBinding="{Binding Other}"
+                      SelectedValue="{Binding Emulator}" />
+        </Grid>
+        <Grid Margin="8,27,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       FontSize="16" VerticalAlignment="Center"
+                       FontWeight="DemiBold"
+                       Text="{markup:I18n {x:Static helper:LangKeys.EmulatorMultiInstanceNumber}}" />
+            <NumericUpDown Grid.Column="1"
+                           DockPanel.Dock="Right" Minimum="0" Increment="1" FormatString="0"
+                           Value="{Binding Index}" />
+        </Grid>
+        <StackPanel
+            HorizontalAlignment="Right"
+            Margin="0,35,8,4"
+            Orientation="Horizontal"
+            Spacing="15">
+            <Button
+                Classes="Flat Rounded"
+                Command="{Binding SaveCommand}"
+                Content="{markup:I18n {x:Static helper:LangKeys.ButtonSave}}" />
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>

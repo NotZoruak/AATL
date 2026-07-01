@@ -1,0 +1,107 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SukiUI.Extensions">
+    <Design.PreviewWith>
+        <Border Width="400" Height="400">
+            <StackPanel>
+                <TabControl Margin="0,0,0,200" TabStripPlacement="Bottom">
+                    <TabItem Header="Arch" FontWeight="Thin">
+                        <Border Height="100" Background="AntiqueWhite">
+                            <TextBlock FontSize="20"
+                                       Foreground="Black"
+                                       Text="Content" />
+                        </Border>
+                    </TabItem>
+                    <TabItem Header="Leaf">
+                        <Border Height="100" Background="Green" />
+                    </TabItem>
+                    <TabItem Header="Disabled" IsEnabled="False" />
+                </TabControl>
+               
+                <Border BorderBrush="Black" BorderThickness="1">
+                    <TabControl Classes="NoContent NoPadding">
+                        <TabItem Header="A"></TabItem>
+                        <TabItem Header="B"></TabItem>
+                    </TabControl>
+                </Border>
+               
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+    <ControlTheme x:Key="SukiTabControlStyle" TargetType="TabControl">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="{DynamicResource TabItemMargin}" />
+        <Setter Property="Background" Value="{DynamicResource TabControlBackground}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                    <DockPanel>
+                        <LayoutTransformControl Name="PART_LayoutTransform" 
+                                                DockPanel.Dock="{TemplateBinding TabStripPlacement}">
+                            <ItemsPresenter Name="PART_ItemsPresenter"
+                                            HorizontalAlignment="{Binding 
+                            (local:TabControlExtensions.HeaderHorizontalAlignment), 
+                            RelativeSource={RelativeSource TemplatedParent}}"
+                                            ItemsPanel="{TemplateBinding ItemsPanel}" />
+                        </LayoutTransformControl>
+                        <ContentPresenter Name="PART_SelectedContentHost"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding SelectedContent}"
+                                          ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+                    </DockPanel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^[TabStripPlacement=Left] /template/ LayoutTransformControl#PART_LayoutTransform">
+            <Setter Property="LayoutTransform" Value="rotate(-90deg)" />
+            <Style Selector="^ ItemsPresenter#PART_ItemsPresenter WrapPanel">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="FlowDirection" Value="{DynamicResource FlowDirectionOpposite}" />
+            </Style>
+        </Style>
+        <Style Selector="^[TabStripPlacement=Right] /template/ LayoutTransformControl#PART_LayoutTransform">
+            <Setter Property="LayoutTransform" Value="rotate(90deg)" />
+            <Style Selector="^ ItemsPresenter#PART_ItemsPresenter WrapPanel">
+                <Setter Property="Orientation" Value="Horizontal" />
+            </Style>
+        </Style>
+        <Style Selector="^[TabStripPlacement=Top] /template/ ItemsPresenter#PART_ItemsPresenter">
+            <Setter Property="Margin" Value="{DynamicResource TabControlTopPlacementItemMargin}" />
+        </Style>
+        <Style Selector="^.NoTabs /template/ LayoutTransformControl#PART_LayoutTransform">
+            <Setter Property="IsVisible" Value="False"></Setter>
+        </Style>
+        <Style Selector="^.NoPadding">
+            <Setter Property="Padding" Value="0"></Setter>
+        </Style>
+        <Style Selector="^.NoContent /template/ ContentPresenter#PART_SelectedContentHost">
+            <Setter Property="IsVisible" Value="False"></Setter>
+        </Style>
+        <Style Selector="^.HorizontalTabs">
+            <Style Selector="^[TabStripPlacement=Left] /template/ LayoutTransformControl#PART_LayoutTransform">
+                <Setter Property="LayoutTransform" Value="rotate(0)" />
+                <Style Selector="^ ItemsPresenter#PART_ItemsPresenter WrapPanel">
+                    <Setter Property="Orientation" Value="Vertical" />
+                    <Setter Property="FlowDirection" Value="{DynamicResource FlowDirectionOpposite}" />
+                </Style>
+            </Style>
+            <Style Selector="^[TabStripPlacement=Right] /template/ LayoutTransformControl#PART_LayoutTransform">
+                <Setter Property="LayoutTransform" Value="rotate(0)" />
+                <Style Selector="^ ItemsPresenter#PART_ItemsPresenter WrapPanel">
+                    <Setter Property="Orientation" Value="Vertical" />
+                </Style>
+            </Style>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type TabControl}"
+                  BasedOn="{StaticResource SukiTabControlStyle}"
+                  TargetType="TabControl" />
+</ResourceDictionary>

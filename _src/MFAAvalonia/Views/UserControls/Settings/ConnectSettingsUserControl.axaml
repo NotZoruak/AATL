@@ -1,0 +1,288 @@
+﻿<UserControl d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d"
+             x:Class="MFAAvalonia.Views.UserControls.Settings.ConnectSettingsUserControl"
+             x:DataType="settings:ConnectSettingsUserControlModel"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBindingAva"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+             xmlns:maa="clr-namespace:MFAAvalonia.Extensions.MaaFW"
+             xmlns:markup="https://codewf.com"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:settings="clr-namespace:MFAAvalonia.ViewModels.UsersControls.Settings"
+             xmlns:suki="https://github.com/kikipoulet/SukiUI"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="20">
+        <StackPanel
+            HorizontalAlignment="Center"
+            IsVisible="{calcBinding:Binding 'Tabs.Count > 1',
+                                            Source={x:Static helper:Instances.InstanceTabBarViewModel}}"
+            Orientation="Horizontal">
+            <TextBlock
+                FontWeight="SemiBold"
+                Text="{markup:I18n {x:Static helper:LangKeys.InstanceConfigTip}}" />
+            <TextBlock
+                FontWeight="SemiBold"
+                Text="{Binding ActiveTab.Name, Source={x:Static helper:Instances.InstanceTabBarViewModel}}" />
+        </StackPanel>
+        <suki:GlassCard
+            IsVisible="{calcBinding:Binding 'CurrentControllerType == maa:MaaControllerTypes.Adb'}"
+            Margin="0,25,0,0" Padding="25,10,25,10">
+            <StackPanel>
+                <DockPanel>
+                    <ComboBox
+                        DockPanel.Dock="Right"
+                        HorizontalAlignment="Center"
+                        DisplayMemberBinding="{Binding Name}"
+                        IsEnabled="{calcBinding:Binding Idle,Source={x:Static helper:Instances.RootViewModel}}"
+                        ItemsSource="{Binding AdbControlScreenCapTypes}"
+                        SelectedValue="{Binding AdbControlScreenCapType}"
+                        SelectedValueBinding="{Binding Other}"
+                        Width="215" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.CaptureModeOption}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel>
+                    <ComboBox
+                        DisplayMemberBinding="{Binding Name}"
+                        DockPanel.Dock="Right"
+                        HorizontalAlignment="Center"
+                        IsEnabled="{calcBinding:Binding Idle,
+                                                        Source={x:Static helper:Instances.RootViewModel}}"
+                        ItemsSource="{Binding AdbControlInputTypes}"
+                        SelectedValue="{Binding AdbControlInputType}"
+                        SelectedValueBinding="{Binding Other}"
+                        Width="215" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.InputModeOption}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Margin="0,8,0,0" Spacing="15">
+                    <DockPanel>
+                        <ToggleSwitch
+                            Classes="Switch"
+                            DockPanel.Dock="Right"
+                            IsChecked="{Binding RememberAdb}"
+                            IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                            VerticalAlignment="Top" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Text="{markup:I18n {x:Static helper:LangKeys.RememberAdb}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel IsVisible="{Binding RememberAdb}">
+                        <ToggleSwitch
+                            Classes="Switch"
+                            DockPanel.Dock="Right"
+                            IsChecked="{Binding UseFingerprintMatching}"
+                            IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                            VerticalAlignment="Top" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Text="{markup:I18n {x:Static helper:LangKeys.UseFingerprintMatching}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <ToggleSwitch
+                            Classes="Switch"
+                            DockPanel.Dock="Right"
+                            IsChecked="{Binding RetryOnDisconnected}"
+                            IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                            VerticalAlignment="Top" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Text="{markup:I18n {x:Static helper:LangKeys.RetryOnDisconnected}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <ToggleSwitch
+                            Classes="Switch"
+                            DockPanel.Dock="Right"
+                            IsChecked="{Binding AllowAdbRestart}"
+                            IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                            VerticalAlignment="Top" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Text="{markup:I18n {x:Static helper:LangKeys.AllowAdbRestart}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <ToggleSwitch
+                            Classes="Switch"
+                            DockPanel.Dock="Right"
+                            IsChecked="{Binding AllowAdbHardRestart}"
+                            IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                            VerticalAlignment="Top" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Text="{markup:I18n {x:Static helper:LangKeys.AllowAdbHardRestart}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <ToggleSwitch
+                            Classes="Switch"
+                            DockPanel.Dock="Right"
+                            IsChecked="{Binding AutoDetectOnConnectionFailed}"
+                            IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                            VerticalAlignment="Top" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Text="{markup:I18n {x:Static helper:LangKeys.AutoDetectOnConnectionFailed}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <ToggleSwitch
+                            Classes="Switch"
+                            DockPanel.Dock="Right"
+                            IsChecked="{Binding AutoConnectAfterRefresh}"
+                            IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                            VerticalAlignment="Top" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Text="{markup:I18n {x:Static helper:LangKeys.AutoConnectAfterRefresh}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+        </suki:GlassCard>
+        <suki:GlassCard
+            IsVisible="{calcBinding:Binding 'CurrentControllerType == maa:MaaControllerTypes.Win32'}"
+            Margin="0,25,0,0"
+            Padding="25,10,25,10">
+            <StackPanel Spacing="15">
+                <DockPanel>
+                    <ComboBox
+                        DockPanel.Dock="Right"
+                        HorizontalAlignment="Center"
+                        IsEnabled="{calcBinding:Binding Idle,
+                                                        Source={x:Static helper:Instances.RootViewModel}}"
+                        ItemsSource="{Binding Win32ControlScreenCapTypes}"
+                        SelectedValue="{Binding Win32ControlScreenCapType}"
+                        Width="215" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.CaptureModeOption}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel>
+                    <ComboBox
+                        DockPanel.Dock="Right"
+                        HorizontalAlignment="Center"
+                        IsEnabled="{calcBinding:Binding Idle,
+                                                        Source={x:Static helper:Instances.RootViewModel}}"
+                        ItemsSource="{Binding Win32ControlInputTypes}"
+                        SelectedValue="{Binding Win32ControlMouseType}"
+                        Width="215" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.MouseInput}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel>
+                    <ComboBox
+                        DockPanel.Dock="Right"
+                        HorizontalAlignment="Center"
+                        IsEnabled="{calcBinding:Binding Idle,
+                                                        Source={x:Static helper:Instances.RootViewModel}}"
+                        ItemsSource="{Binding Win32ControlInputTypes}"
+                        SelectedValue="{Binding Win32ControlKeyboardType}"
+                        Width="215" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.KeyboardInput}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding RetryOnDisconnectedWin32}"
+                        IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.RetryOnDisconnectedWin32}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding AutoConnectAfterRefresh}"
+                        IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.AutoConnectAfterRefresh}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
+        </suki:GlassCard>
+        <suki:GlassCard Margin="0,25,0,0" Padding="25,10,25,10">
+            <DockPanel>
+                <ToggleSwitch
+                    Classes="Switch"
+                    DockPanel.Dock="Right"
+                    IsChecked="{Binding AgentTcpMode}"
+                    IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                    VerticalAlignment="Top" />
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Text="{markup:I18n {x:Static helper:LangKeys.AgentTcpMode}}" />
+                    <TextBlock
+                        Foreground="{DynamicResource SukiLowText}"
+                        Text="{markup:I18n {x:Static helper:LangKeys.AgentTcpModeDescription}}"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </DockPanel>
+        </suki:GlassCard>
+    </StackPanel>
+</UserControl>

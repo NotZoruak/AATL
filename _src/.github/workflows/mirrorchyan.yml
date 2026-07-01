@@ -1,0 +1,28 @@
+name: mirrorchyan
+
+on:
+  workflow_dispatch:
+
+jobs:
+  mirrorchyan:
+    if: ${{ github.repository_owner == 'MaaXYZ' }}
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [win, osx, linux]
+        arch: [arm64, x64]
+
+    steps:
+      - uses: MirrorChyan/uploading-action@v1
+        with:
+          filetype: latest-release
+          filename: ${{ matrix.os == 'win' && format('MFAAvalonia-*-{0}-{1}.zip', matrix.os, matrix.arch) || format('MFAAvalonia-*-{0}-{1}.tar.gz', matrix.os, matrix.arch) }}
+          mirrorchyan_rid: MFAAvalonia
+
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          upload_token: ${{ secrets.MirrorChyanUploadToken }}
+          os: ${{ matrix.os }}
+          arch: ${{ matrix.arch }}

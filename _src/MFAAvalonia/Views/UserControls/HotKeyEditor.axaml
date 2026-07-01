@@ -1,0 +1,25 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:MFAAvalonia.Views.UserControls"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:markup="https://codewf.com"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <controls:HotKeyEditor />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|HotKeyEditor">
+        <!--  Set Defaults  -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Button
+                    Content="{Binding HotKey.Name, RelativeSource={RelativeSource TemplatedParent}, FallbackValue='not set'}"
+                    HorizontalContentAlignment="Center"
+                    Name="PART_Button"
+                    ToolTip.Tip="{markup:I18n {x:Static helper:LangKeys.HotKeyChangingTip}}"
+                    VerticalContentAlignment="Center"
+                    Width="180" />
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

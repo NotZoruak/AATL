@@ -1,0 +1,204 @@
+﻿name: Cross-Platform Release
+
+on:
+  push:
+    tags:
+      - 't*'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+  checks: write
+  deployments: write
+
+jobs:
+  meta:
+    name: Determine Release Metadata
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.set_tag.outputs.tag }}
+      is_release: ${{ steps.set_tag.outputs.is_release }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: set_tag
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            tag="v$(date +%Y%m%d)-manual"
+            echo "tag=$tag" >> $GITHUB_OUTPUT
+            echo "is_release=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          is_release=${{ startsWith(github.ref, 'refs/tags/v') }}
+          if $is_release; then
+            tag="${GITHUB_REF#refs/tags/}"
+          else
+            latest_tag=$(git describe --tags --match "v*" --abbrev=0 2>/dev/null || echo "v0.0.0")
+            commit_short=$(git rev-parse --short HEAD)
+            tag="${latest_tag}-${commit_short}-$(date +%Y%m%d)"
+          fi
+          
+          echo "tag=$tag" >> $GITHUB_OUTPUT
+          echo "is_release=$is_release" >> $GITHUB_OUTPUT
+
+  build:
+    name: Build (${{ matrix.platform }}-${{ matrix.arch }})
+    runs-on: ${{ matrix.os }}
+    needs: [ meta ]
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: linux
+            arch: x64
+            compress_cmd: "zip -r -9"
+            ext: zip
+
+          - os: ubuntu-latest
+            platform: linux
+            arch: arm64
+            compress_cmd: "zip -r -9"
+            ext: zip
+
+          - os: macos-latest
+            platform: osx
+            arch: x64
+            compress_cmd: "zip -r -9"
+            ext: zip
+            is_macos: true
+
+          - os: macos-latest
+            platform: osx
+            arch: arm64
+            compress_cmd: "zip -r -9"
+            ext: zip
+            is_macos: true
+
+          - os: windows-latest
+            platform: win
+            arch: x64
+            compress_cmd: "7z a -tzip"
+            ext: zip
+
+          - os: windows-latest
+            platform: win
+            arch: arm64
+            compress_cmd: "7z a -tzip"
+            ext: zip
+      fail-fast: false
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+          config-file: NuGet.config
+
+      - name: Restore Dependencies
+        run: dotnet restore
+        env:
+          NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+
+      - name: Build Solution
+        run: dotnet publish -c Release -r ${{ matrix.platform }}-${{ matrix.arch }}
+
+      - name: Sign macOS App with Adhoc Certificate
+        if: ${{ matrix.is_macos == true }}
+        run: |
+          # 进入发布目录
+          PUBLISH_DIR="bin/AnyCPU/Release/${{ matrix.platform }}-${{ matrix.arch }}/publish"
+          cd $PUBLISH_DIR
+          
+          # 对主程序和相关可执行文件进行adhoc签名（-s - 表示使用adhoc签名）
+          # 签名所有可执行文件（包括应用程序和更新器）
+          find . -type f -name "MFAAvalonia*" -exec codesign -s - --force --deep {} \;
+          find . -type f -name "MFAUpdater*" -exec codesign -s - --force --deep {} \;
+          
+          # 验证签名是否成功
+          echo "验证签名结果："
+          find . -type f -name "MFAAvalonia*" -exec codesign -v {} \;
+        shell: bash
+      
+      - name: Unified ZIP Packaging
+        shell: bash
+        run: |
+          BUILD_DIR="bin/AnyCPU/Release/${{ matrix.platform }}-${{ matrix.arch }}/publish"
+          OUTPUT_FILE="MFAAvalonia-${{ needs.meta.outputs.tag }}-${{ matrix.platform }}-${{ matrix.arch }}.zip"
+          
+          # 直接压缩构建目录
+          cd $BUILD_DIR
+          ${{ matrix.compress_cmd }} ../$OUTPUT_FILE *
+
+      - name: Upload ZIP Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.platform }}-${{ matrix.arch }}
+          path: |
+            bin/AnyCPU/Release/${{ matrix.platform }}-${{ matrix.arch }}/*.zip
+
+  release:
+    name: Create Release
+    if: ${{ needs.meta.outputs.is_release == 'true' }}
+    runs-on: ubuntu-latest
+    needs: [ meta, build ]
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Process and package artifacts
+        run: |
+          cd artifacts
+          for f in *; do
+            if [[ $f == *"win"* ]]; then
+              # Windows artifacts: keep original zip files as they are already in correct format
+              echo "Processing Windows artifact: $f - keeping original zip format"
+              # Move zip files to root directory
+              cd $f
+              mv *.zip ../
+              cd ..
+              # Remove the original directory
+              rm -rf $f
+            else
+              # Unix artifacts: extract, set permissions, and repackage as tar.gz
+              echo "Processing Unix artifact: $f"
+          
+              # Extract the original zip
+              cd $f
+              unzip -q *.zip
+              rm *.zip
+          
+              # Set execute permissions for MFAAvalonia
+              find . -type f -name "MFAAvalonia*" -exec chmod +x {} \; 2>/dev/null || true
+              echo "Set execute permission for all MFAAvalonia files"
+          
+              # Set execute permissions for MFAUpdater
+              find . -type f -name "MFAUpdater*" -exec chmod +x {} \; 2>/dev/null || true
+              echo "Set execute permission for all MFAUpdater files"
+          
+              # Create tar.gz with preserved permissions
+              tar -cpzf ../MFAAvalonia-${{ needs.meta.outputs.tag }}-${f}.tar.gz .
+              echo "Created archive with preserved permissions: MFAAvalonia-${{ needs.meta.outputs.tag }}-${f}.tar.gz"
+          
+              cd ..
+              # Remove the original directory to avoid duplicate files
+              rm -rf $f
+            fi
+          done
+
+      - name: Validate Artifacts
+        run: |
+          ls -R artifacts
+          echo "Total files: $(find artifacts -type f | wc -l)"
+          

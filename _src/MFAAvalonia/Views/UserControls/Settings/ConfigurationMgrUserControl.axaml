@@ -1,0 +1,141 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.UserControls.Settings.ConfigurationMgrUserControl"
+    x:DataType="settings:SettingsViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fluent="clr-namespace:FluentIcons.Avalonia.Fluent.Markup;assembly=FluentIcons.Avalonia.Fluent"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:markup="https://codewf.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:settings="clr-namespace:MFAAvalonia.ViewModels.Pages"
+    xmlns:suki="https://github.com/kikipoulet/SukiUI"
+    xmlns:fluent1="clr-namespace:FluentIcons.Avalonia.Fluent;assembly=FluentIcons.Avalonia.Fluent"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:extensions="clr-namespace:SukiUI.Extensions;assembly=SukiUI">
+    <Design.PreviewWith>
+       
+    </Design.PreviewWith>
+    <StackPanel>
+        <suki:GlassCard Margin="0,25,0,0" Padding="25">
+            <StackPanel Spacing="25">
+                <DockPanel>
+                    <ComboBox extensions:ComboBoxExtensions.DisableNavigationOnLostFocus="True" Classes="LimitWidth"
+                              DockPanel.Dock="Right"
+                              HorizontalAlignment="Center"
+                              HorizontalContentAlignment="Stretch"
+                              IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                              IsHitTestVisible="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                              ItemsSource="{Binding ConfigurationList}"
+                              SelectedItem="{Binding CurrentConfiguration}"
+                              VerticalAlignment="Center"
+                              Width="215"
+                              x:Name="SwitchConfigComboBox">
+                        <ComboBox.Styles>
+                            <Style Selector="ComboBoxItem:selected /template/ PathIcon#CheckSelected">
+                                <Setter Property="IsVisible" Value="False" />
+                            </Style>
+                        </ComboBox.Styles>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                    <TextBlock
+                                        Background="Transparent"
+                                        Foreground="{DynamicResource SukiText}"
+                                        Grid.Column="0"
+                                        Text="{Binding Name}"
+                                        TextTrimming="CharacterEllipsis"
+                                        VerticalAlignment="Center" />
+                                    <Button
+                                        Classes="Basic Round"
+                                        Command="{Binding DeleteConfigurationCommand}"
+                                        CommandParameter="{Binding}"
+                                        Grid.Column="1"
+                                        Width="20"
+                                        Height="20"
+                                        Padding="0"
+                                        HorizontalAlignment="Right"
+                                        HorizontalContentAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        ToolTip.Tip="{markup:I18n {x:Static helper:LangKeys.Delete}}">
+                                        <fluent:FluentIcon
+                                            Icon="Dismiss"
+                                            IconSize="Size12"
+                                            IconVariant="Regular" />
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                        <ComboBox.SelectionBoxItemTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Background="Transparent"
+                                    Foreground="{DynamicResource SukiText}"
+                                    Text="{Binding Name}"
+                                    TextTrimming="CharacterEllipsis"
+                                    VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </ComboBox.SelectionBoxItemTemplate>
+                    </ComboBox>
+                    <StackPanel HorizontalAlignment="Left">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="DemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.CurrentConfig}}" />
+                        <TextBlock
+                            Foreground="{DynamicResource SukiLowText}"
+                            Margin="0,12,70,0"
+                            Text="{markup:I18n {x:Static helper:LangKeys.ViewOrSwitchConfig}}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </DockPanel>
+
+                <DockPanel>
+                    <TextBox
+                        DockPanel.Dock="Right" MaxHeight="40"
+                        Text="{Binding NewConfigurationName, UpdateSourceTrigger=PropertyChanged}"
+                        Watermark="{markup:I18n {x:Static helper:LangKeys.NewConfigName}}"
+                        Width="215">
+                        <TextBox.KeyBindings>
+                            <KeyBinding Command="{Binding AddConfigurationCommand}" Gesture="Enter" />
+                        </TextBox.KeyBindings>
+                    </TextBox>
+                    <StackPanel HorizontalAlignment="Left">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="DemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.NewConfigName}}" />
+                        <TextBlock
+                            Foreground="{DynamicResource SukiLowText}"
+                            Margin="0,12,70,0"
+                            Text="{markup:I18n {x:Static helper:LangKeys.SetUniqueIdentifier}}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel>
+                    <Button
+                        Command="{Binding AddConfigurationCommand}"
+                        Content="{markup:I18n {x:Static helper:LangKeys.AddConfiguration}}"
+                        DockPanel.Dock="Right"
+                        Height="40"
+                        IsEnabled="{Binding Idle, Source={x:Static helper:Instances.RootViewModel}}"
+                        Margin="0,0,4,0"
+                        Width="205" />
+                    <StackPanel HorizontalAlignment="Left">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="DemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.CreateNewConfig}}" />
+                        <TextBlock
+                            Foreground="{DynamicResource SukiLowText}"
+                            Margin="0,12,70,0"
+                            Text="{markup:I18n {x:Static helper:LangKeys.CreateFromCurrent}}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
+        </suki:GlassCard>
+    </StackPanel>
+</UserControl>

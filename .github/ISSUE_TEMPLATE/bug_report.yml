@@ -1,0 +1,90 @@
+name: Bug 报告
+description: 任务运行异常 / 崩溃 / 识别错误
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 提交前请确认
+
+        - 已查阅 [README 常见问题](https://github.com/NotZoruak/AATL/blob/main/README.md#常见问题)
+        - 已更新到最新版本并确认问题仍存在
+        - 已搜索已有 Issue，确认无重复
+
+  - type: dropdown
+    id: task_type
+    attributes:
+      label: 涉及任务
+      description: 哪个任务出现了问题？
+      options:
+        - 远征
+        - 江户城
+        - 刷花
+        - 合战场
+        - 回到本丸
+        - 地下城
+        - 刀解
+        - 不涉及具体任务（启动/连接/更新等）
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述与复现步骤
+      description: 请描述预期行为和实际行为，并提供复现步骤
+      placeholder: |
+        预期行为：
+        实际行为：
+        复现步骤：
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: AATL 版本
+      description: 请提供准确的版本号
+      placeholder: 如 v0.5.3
+    validations:
+      required: true
+
+  - type: input
+    id: emulator
+    attributes:
+      label: 模拟器及分辨率
+      description: 请提供模拟器名称、版本和分辨率
+      placeholder: 如 MuMu 模拟器 12，1280×720
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志文件
+      description: 请上传 `debug/maafw.log` 文件内容（如日志较短请一并上传 `maafw.bak.log`）
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 截图
+      description: 如有截图请直接粘贴，识别问题请尽量提供
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 提交清单
+
+        - 完整的 `debug/maafw.log` 日志
+        - 问题描述（预期 vs 实际）
+        - AATL 版本号
+        - 模拟器及分辨率
+        - 截图（如有）

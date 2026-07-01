@@ -1,0 +1,98 @@
+﻿<suki:SukiWindow
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:suki="https://github.com/kikipoulet/SukiUI"
+    xmlns:markup="https://codewf.com"
+    Height="600"
+    Width="800"
+    x:DataType="windows:ChangelogViewModel"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:mdxaml="https://github.com/whistyun/Markdown.Avalonia.Tight"
+    xmlns:full="https://github.com/whistyun/Markdown.Avalonia"
+    xmlns:windows="clr-namespace:MFAAvalonia.ViewModels.Windows"
+    xmlns:converters="clr-namespace:MFAAvalonia.Helper.Converters"
+    xmlns:type="clr-namespace:MFAAvalonia.Helper.ValueType"
+    xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBindingAva"
+    xmlns:extensions="clr-namespace:MFAAvalonia.Extensions"
+    WindowStartupLocation="CenterScreen" Icon="{Binding Source={x:Static helper:IconHelper.WindowIcon}}"
+    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+    x:Class="MFAAvalonia.Views.Windows.ChangelogView">
+    <suki:SukiWindow.Title>
+        <MultiBinding Converter="{converters:AnnouncementTitleConverter}" Mode="OneWay">
+            <Binding Path='Type' />
+            <markup:I18nBinding>
+                <x:Arguments>
+                    <x:Static Member="helper:LangKeys.UpcomingChanges" />
+                </x:Arguments>
+            </markup:I18nBinding>
+            <markup:I18nBinding>
+                <x:Arguments>
+                    <x:Static Member="helper:LangKeys.UpdateLog" />
+                </x:Arguments>
+            </markup:I18nBinding>
+        </MultiBinding>
+    </suki:SukiWindow.Title>
+    <suki:SukiWindow.LogoContent>
+        <Image
+            Height="25"
+            Source="{x:Static helper:IconHelper.Icon}"
+            Stretch="Uniform"
+            Width="25" />
+    </suki:SukiWindow.LogoContent>
+    <LayoutTransformControl LayoutTransform="{Binding ScaleTransform, Source={x:Static helper:FontService.Instance}}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <full:MarkdownScrollViewer Grid.Row="0" x:Name="Viewer"
+                                       Focusable="True"
+                                       Margin="10,0,10,0"
+                                       Markdown="{Binding AnnouncementInfo, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                <full:MarkdownScrollViewer.Engine>
+                    <extensions:MarkdownExtension />
+                </full:MarkdownScrollViewer.Engine>
+                <full:MarkdownScrollViewer.Plugins>
+                    <StaticResource ResourceKey="MdXamlPlugin" />
+                </full:MarkdownScrollViewer.Plugins>
+                <full:MarkdownScrollViewer.Styles>
+                    <StyleInclude Source="avares://MFAAvalonia.Core/Assets/Style/MdXamlStyles.axaml" />
+                </full:MarkdownScrollViewer.Styles>
+            </full:MarkdownScrollViewer>
+
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Control Grid.Column="0"
+                         IsVisible="{Binding Converter='{converters:UniversalEqualityConverter}',
+            Path='Type', ConverterParameter='{x:Static type:AnnouncementType.Changelog}'}">
+                </Control>
+                <Button Grid.Column="1"
+                        Click="Close"
+                        Content="{markup:I18n {x:Static helper:LangKeys.Confirm}}"
+                        Height="50"
+                        Margin="6"
+                        MaxWidth="150" />
+                <CheckBox
+                    IsVisible="{Binding Converter='{converters:UniversalEqualityConverter}',
+                Path='Type', ConverterParameter='{x:Static type:AnnouncementType.Changelog}'}"
+                    Content="{markup:I18n {x:Static helper:LangKeys.ShowDisclaimerNoMore}}"
+                    Grid.Column="2"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding DoNotRemindThisChangelogAgain}"
+                    Margin="6"
+                    VerticalContentAlignment="Center" />
+            </Grid>
+        </Grid>
+    </LayoutTransformControl>
+</suki:SukiWindow>

@@ -1,0 +1,782 @@
+﻿<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.UserControls.Settings.ExternalNotificationSettingsUserControl"
+    x:DataType="settings:ExternalNotificationSettingsUserControlModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBindingAva"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:markup="https://codewf.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:settings="clr-namespace:MFAAvalonia.ViewModels.UsersControls.Settings"
+    xmlns:suki="https://github.com/kikipoulet/SukiUI"
+    xmlns:userControls="clr-namespace:MFAAvalonia.Views.UserControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fluent="clr-namespace:FluentIcons.Avalonia.Fluent.Markup;assembly=FluentIcons.Avalonia.Fluent">
+    <Design.DataContext>
+        <settings:ExternalNotificationSettingsUserControlModel />
+    </Design.DataContext>
+    <StackPanel Spacing="5">
+        <suki:GlassCard IsVisible="{calcBinding:Binding 'EnabledExternalNotificationProviderCount > 0'}"
+                        Padding="25,7,25,7">
+            <StackPanel Spacing="8">
+                <DockPanel>
+                    <Button
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding ExternalNotificationSendTestCommand}"
+                        Content="{fluent:FluentIcon Icon=Send,
+                                                          IconSize=Size16}"
+                        DockPanel.Dock="Right"
+                        Height="40"
+                        HorizontalAlignment="Center"
+                        IsEnabled="{calcBinding:Binding Idle,
+                                                    Source={x:Static helper:Instances.RootViewModel}}"
+                        Margin="0,0,4,0"
+                        ToolTip.Tip="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationSendTest}}" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationSendTest}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding EnabledCustom}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationEnableCustomNotificationMessage}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel IsVisible="{Binding EnabledCustom}">
+                    <TextBox
+                        DockPanel.Dock="Right" MaxHeight="40"
+                        Text="{Binding CustomFailureText, UpdateSourceTrigger=PropertyChanged}"
+                        Watermark="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationCustomNotificationContentFailure}}"
+                        Width="215">
+                    </TextBox>
+                    <TextBox
+                        DockPanel.Dock="Right" MaxHeight="40"
+                        Text="{Binding CustomSuccessText, UpdateSourceTrigger=PropertyChanged}"
+                        Watermark="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationCustomNotificationContentSuccess}}"
+                        Width="215">
+                    </TextBox>
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationSendTest}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,5,25,5">
+            <StackPanel Spacing="8">
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding DingTalkEnabled}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.DingTalk}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Spacing="8" IsVisible="{Binding DingTalkEnabled}">
+                    <DockPanel>
+                        <suki:PasswordBox Height="33"
+                                          DockPanel.Dock="Right"
+                                          HorizontalAlignment="Center"
+                                          Password="{Binding DingTalkToken, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationBotToken}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <suki:PasswordBox Height="33"
+                                          DockPanel.Dock="Right"
+                                          HorizontalAlignment="Center"
+                                          Password="{Binding DingTalkSecret}"
+                                          Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationDingTalkSecret}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,5,25,5">
+            <StackPanel Spacing="8">
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding EmailEnabled}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.Email}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Spacing="8" IsVisible="{Binding EmailEnabled}">
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding EmailAccount}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationBotToken}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <suki:PasswordBox Height="33"
+                                          DockPanel.Dock="Right"
+                                          HorizontalAlignment="Center"
+                                          Password="{Binding EmailSecret}"
+                                          Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationEmailSecret}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,5,25,5">
+            <StackPanel Spacing="8">
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding LarkEnabled}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.Lark}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Spacing="8" IsVisible="{Binding LarkEnabled}">
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding LarkWebhookUrl}"
+                            Width="215" />
+
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationLarkWebhookUrl}}"
+                                VerticalAlignment="Center" />
+                            <userControls:TooltipBlock
+                                TooltipText="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationLarkWebhookDescription}}" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding LarkId}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationLarkID}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <suki:PasswordBox Height="33"
+                                          DockPanel.Dock="Right"
+                                          HorizontalAlignment="Center"
+                                          Password="{Binding LarkToken}"
+                                          Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationBotToken}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,5,25,5">
+            <StackPanel Spacing="8">
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding WxPusherEnabled}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.WxPusher}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Spacing="8" IsVisible="{Binding WxPusherEnabled}">
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding WxPusherUid}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationWxPusherUID}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <suki:PasswordBox Height="33"
+                                          DockPanel.Dock="Right"
+                                          HorizontalAlignment="Center"
+                                          Password="{Binding WxPusherToken}"
+                                          Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationBotToken}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,5,25,5">
+            <StackPanel Spacing="8">
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding TelegramEnabled}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="Telegram"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Spacing="8" IsVisible="{Binding TelegramEnabled}">
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding TelegramChatId}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationTelegramChatId}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <suki:PasswordBox Height="33"
+                                          DockPanel.Dock="Right"
+                                          HorizontalAlignment="Center"
+                                          Password="{Binding TelegramBotToken}"
+                                          Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationBotToken}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,5,25,5">
+            <StackPanel Spacing="8">
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding DiscordEnabled}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="Discord Bot"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Spacing="8" IsVisible="{Binding DiscordEnabled}">
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding DiscordChannelId}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationDiscordChannelId}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <suki:PasswordBox Height="33"
+                                          DockPanel.Dock="Right"
+                                          HorizontalAlignment="Center"
+                                          Password="{Binding DiscordBotToken}"
+                                          Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationBotToken}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,5,25,5">
+            <StackPanel Spacing="8">
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding DiscordWebhookEnabled}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="Discord Webhook"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Spacing="8" IsVisible="{Binding DiscordWebhookEnabled}">
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding DiscordWebhookName}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationDiscordWebhookName}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <suki:PasswordBox Height="33"
+                                          DockPanel.Dock="Right"
+                                          HorizontalAlignment="Center"
+                                          Password="{Binding DiscordWebhookUrl}"
+                                          Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationWebhookUrl}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,5,25,5">
+            <StackPanel Spacing="8">
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding OnebotEnabled}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="Onebot"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Spacing="8" IsVisible="{Binding OnebotEnabled}">
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding OnebotServer}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationOneBotServer}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <suki:PasswordBox Height="33"
+                                          DockPanel.Dock="Right"
+                                          HorizontalAlignment="Center"
+                                          Password="{Binding OnebotKey}"
+                                          Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationOneBotKey}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding OnebotUser}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationOneBotUser}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,5,25,5">
+            <StackPanel Spacing="8">
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding SmtpEnabled}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="SMTP"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel IsVisible="{Binding SmtpEnabled}">
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding SmtpUseSsl}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationSmtpSsl}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel IsVisible="{Binding SmtpEnabled}">
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding SmtpRequireAuthentication}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationSmtpAuth}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Spacing="8" IsVisible="{Binding SmtpEnabled}">
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding SmtpServer}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationSmtpServer}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding SmtpPort}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationSmtpPort}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel IsVisible="{Binding SmtpRequireAuthentication}">
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding SmtpUser}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationSmtpUser}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel IsVisible="{Binding SmtpRequireAuthentication}">
+                        <suki:PasswordBox Height="33"
+                                          DockPanel.Dock="Right"
+                                          HorizontalAlignment="Center"
+                                          Password="{Binding SmtpPassword}"
+                                          Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationSmtpPassword}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding SmtpFrom}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationSmtpFrom}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding SmtpTo}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationSmtpTo}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,5,25,5">
+            <StackPanel Spacing="8">
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding QmsgEnabled}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="Qmsg"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Spacing="8" IsVisible="{Binding QmsgEnabled}">
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding QmsgServer}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationQmsgServer}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <suki:PasswordBox Height="33"
+                                          DockPanel.Dock="Right"
+                                          HorizontalAlignment="Center"
+                                          Password="{Binding QmsgKey}"
+                                          Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationQmsgKey}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding QmsgUser}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationQmsgUser}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding QmsgBot}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationQmsgBot}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,5,25,5">
+            <StackPanel Spacing="8">
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding ServerChanEnabled}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="Server酱"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Spacing="8" IsVisible="{Binding ServerChanEnabled}">
+                    <DockPanel>
+                        <suki:PasswordBox Height="33"
+                                          DockPanel.Dock="Right"
+                                          HorizontalAlignment="Center"
+                                          Password="{Binding ServerChanSendKey}"
+                                          Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationServerChanSendKey}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+        </suki:GlassCard>
+        <suki:GlassCard Padding="25,5,25,5">
+            <StackPanel Spacing="8">
+                <DockPanel>
+                    <ToggleSwitch
+                        Classes="Switch"
+                        DockPanel.Dock="Right"
+                        IsChecked="{Binding CustomWebhookEnabled}"
+                        VerticalAlignment="Top" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{markup:I18n {x:Static helper:LangKeys.CustomWebhook}}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel Spacing="8" IsVisible="{Binding CustomWebhookEnabled}">
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding CustomWebhookUrl}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationWebhookUrl}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding CustomWebhookContentType}"
+                            Width="215" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationCustomWebhookContentType}}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBox
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Center"
+                            Text="{Binding CustomWebhookPayloadTemplate}"
+                            Width="215"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            MaxHeight="100" />
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+                            <TextBlock
+                                FontSize="16"
+                                Text="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationCustomWebhookPayloadTemplate}}"
+                                VerticalAlignment="Center" />
+                            <userControls:TooltipBlock
+                                TooltipText="{markup:I18n {x:Static helper:LangKeys.ExternalNotificationCustomWebhookPayloadTemplateDescription}}" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+        </suki:GlassCard>
+    </StackPanel>
+</UserControl>

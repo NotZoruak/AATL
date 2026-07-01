@@ -1,0 +1,34 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
+    <PackageTargetFrameworks>net8.0</PackageTargetFrameworks>
+    <DemoAppTargetFrameworks>net9.0</DemoAppTargetFrameworks>
+    <TestTargetFrameworks>net8.0</TestTargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(IS_WHISTYUN_PC)' == 'Y' ">
+    <TestTargetFrameworks>net8.0</TestTargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AvaloniaVersion>11.3.0</AvaloniaVersion>
+    <DemoAvaloniaVersion>11.3.0</DemoAvaloniaVersion>
+    <EnableAvaloniaEdit>enabled</EnableAvaloniaEdit>
+    <AvaloniaEditVersion>11.3.0</AvaloniaEditVersion>
+    <AvaloniaSvgVersion>11.3.0</AvaloniaSvgVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(AVA_VER)' != '' ">
+    <TestAvaloniaVersion>$(AVA_VER)</TestAvaloniaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(AVA_VER)' == '' ">
+    <TestAvaloniaVersion>$(AvaloniaVersion)</TestAvaloniaVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageVersion>11.3.0-a1</PackageVersion>
+  </PropertyGroup>
+
+</Project>
+
+

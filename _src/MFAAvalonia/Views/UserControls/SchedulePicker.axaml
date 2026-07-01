@@ -1,0 +1,106 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+                    xmlns:markup="https://codewf.com"
+                    xmlns:controls="using:MFAAvalonia.Views.UserControls">
+    <Design.PreviewWith>
+        <controls:SchedulePicker />
+    </Design.PreviewWith>
+    <ControlTheme x:Key="{x:Type controls:SchedulePicker}" TargetType="controls:SchedulePicker">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="controls:SchedulePicker">
+                <Button
+                    Content="{Binding DisplayText, RelativeSource={RelativeSource TemplatedParent}, FallbackValue='每天'}"
+                    HorizontalContentAlignment="Center"
+                    Name="PART_Button"
+                    ToolTip.Tip="{markup:I18n {x:Static helper:LangKeys.SchedulePickerTip}}"
+                    VerticalContentAlignment="Center"
+                    MinWidth="100">
+                    <Button.Flyout>
+                        <Flyout Placement="Bottom" ShowMode="TransientWithDismissOnPointerMoveAway">
+                            <Border Padding="12" MinWidth="280" CornerRadius="8"
+                                    Background="{DynamicResource SukiGlassCardBackground}">
+                                <StackPanel Spacing="12">
+                                    <!-- 触发模式选择 -->
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Text="{markup:I18n {x:Static helper:LangKeys.ScheduleMode}}"
+                                                   FontWeight="SemiBold" />
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <RadioButton
+                                                Content="{markup:I18n {x:Static helper:LangKeys.ScheduleDaily}}"
+                                                GroupName="ScheduleMode"
+                                                IsChecked="{Binding IsDailyMode, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                Name="PART_DailyRadio" />
+                                            <RadioButton
+                                                Content="{markup:I18n {x:Static helper:LangKeys.ScheduleWeekly}}"
+                                                GroupName="ScheduleMode"
+                                                IsChecked="{Binding IsWeeklyMode, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                Name="PART_WeeklyRadio" />
+                                            <RadioButton
+                                                Content="{markup:I18n {x:Static helper:LangKeys.ScheduleMonthly}}"
+                                                GroupName="ScheduleMode"
+                                                IsChecked="{Binding IsMonthlyMode, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                Name="PART_MonthlyRadio" />
+                                        </StackPanel>
+                                        <!-- 周选择面板 -->
+                                        <StackPanel Spacing="8"
+                                                    IsVisible="{Binding IsWeeklyMode, RelativeSource={RelativeSource TemplatedParent}}"
+                                                    Name="PART_WeekPanel">
+                                            <TextBlock Text="{markup:I18n {x:Static helper:LangKeys.SelectDaysOfWeek}}"
+                                                       FontWeight="SemiBold" />
+                                            <WrapPanel Orientation="Horizontal">
+                                                <CheckBox Content="{markup:I18n {x:Static helper:LangKeys.WeekdayMon}}"
+                                                          Name="PART_Mon" Margin="0,0,8,4" />
+                                                <CheckBox Content="{markup:I18n {x:Static helper:LangKeys.WeekdayTue}}"
+                                                          Name="PART_Tue" Margin="0,0,8,4" />
+                                                <CheckBox Content="{markup:I18n {x:Static helper:LangKeys.WeekdayWed}}"
+                                                          Name="PART_Wed" Margin="0,0,8,4" />
+                                                <CheckBox Content="{markup:I18n {x:Static helper:LangKeys.WeekdayThu}}"
+                                                          Name="PART_Thu" Margin="0,0,8,4" />
+                                                <CheckBox Content="{markup:I18n {x:Static helper:LangKeys.WeekdayFri}}"
+                                                          Name="PART_Fri" Margin="0,0,8,4" />
+                                                <CheckBox Content="{markup:I18n {x:Static helper:LangKeys.WeekdaySat}}"
+                                                          Name="PART_Sat" Margin="0,0,8,4" />
+                                                <CheckBox Content="{markup:I18n {x:Static helper:LangKeys.WeekdaySun}}"
+                                                          Name="PART_Sun" Margin="0,0,8,4" />
+                                            </WrapPanel>
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <Button
+                                                    Content="{markup:I18n {x:Static helper:LangKeys.ScheduleWorkdays}}"
+                                                    Name="PART_SelectWorkdays" Padding="8,4" />
+                                                <Button
+                                                    Content="{markup:I18n {x:Static helper:LangKeys.ScheduleWeekends}}"
+                                                    Name="PART_SelectWeekends" Padding="8,4" />
+                                                <Button Content="{markup:I18n {x:Static helper:LangKeys.SelectAll}}"
+                                                        Name="PART_SelectAllWeek" Padding="8,4" />
+                                                <Button Content="{markup:I18n {x:Static helper:LangKeys.DeselectAll}}"
+                                                        Name="PART_DeselectAllWeek" Padding="8,4" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <!-- 月选择面板 -->
+                                        <StackPanel Spacing="8"
+                                                    IsVisible="{Binding IsMonthlyMode, RelativeSource={RelativeSource TemplatedParent}}"
+                                                    Name="PART_MonthPanel">
+                                            <TextBlock
+                                                Text="{markup:I18n {x:Static helper:LangKeys.SelectDaysOfMonth}}"
+                                                FontWeight="SemiBold" />
+                                            <UniformGrid Columns="7" Name="PART_MonthDaysGrid" />
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <Button
+                                                    Content="{markup:I18n {x:Static helper:LangKeys.SelectAll}}"
+                                                    Name="PART_SelectAllMonth" Padding="8,4" />
+                                                <Button
+                                                    Content="{markup:I18n {x:Static helper:LangKeys.DeselectAll}}"
+                                                    Name="PART_DeselectAllMonth" Padding="8,4" />
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

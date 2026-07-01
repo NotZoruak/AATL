@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:html="clr-namespace:Markdown.Avalonia.Html;assembly=Markdown.Avalonia.Html"
+                    xmlns:mdxaml="https://github.com/whistyun/Markdown.Avalonia"
+                    xmlns:ctxt="clr-namespace:ColorTextBlock.Avalonia;assembly=ColorTextBlock.Avalonia"
+                    xmlns:mdsvg="https://github.com/whistyun/Markdown.Avalonia.Svg"
+                    xmlns:avalonia="https://github.com/whistyun/Markdown.Avalonia.Tight"
+                    xmlns:syntaxHigh="clr-namespace:Markdown.Avalonia.SyntaxHigh;assembly=Markdown.Avalonia.SyntaxHigh"
+                    xmlns:helper="clr-namespace:MFAAvalonia.Helper"><mdxaml:MdAvPlugins x:Key="MdXamlPlugin">
+        <html:HtmlPlugin />
+        <mdsvg:SvgFormat />
+        <avalonia:ChatAISetup/>
+        <syntaxHigh:SyntaxHighlight />
+        <mdxaml:MdAvPlugins.PathResolver>
+            <helper:CustomPathResolver />
+        </mdxaml:MdAvPlugins.PathResolver>
+    </mdxaml:MdAvPlugins>
+
+</ResourceDictionary>

@@ -69,6 +69,7 @@
             }
         },
         "action": "Click",
+        "timeout": 3000,
         "pre_delay": 100,
         "next": [
             "G_IsAnnouncementPopup"
@@ -124,6 +125,7 @@
             1,
             1
         ],
+        "timeout": 3000,
         "pre_delay": 1000,
         "next": [
             "G_IsLoginReward"

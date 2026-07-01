@@ -7,6 +7,8 @@
     "D_DetectWhereAmI": {
         "pre_delay": 0,
         "next": [
+            "D_IsAnnouncementPopup",
+            "D_IsLoginReward",
             "D_DetectEmptyMailbox",
             "D_HasExpeditionReturn_Exp",
             "D_HasExpeditionReturn_Title",
@@ -17,6 +19,11 @@
             "D_DetectFilter",
             "D_DetectPurchasePopup",
             "D_DetectMailbox",
+            "D_IsInternalReport",
+            "D_IsGameIcon",
+            "D_IsLoginButton",
+            "D_IsGameUpdatePopup",
+            "D_IsInGameUpdatePopup",
             "D_FallbackWait"
         ]
     },
@@ -933,5 +940,124 @@
         "next": [
             "D_DetectHome"
         ]
+    },
+    "D_IsAnnouncementPopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [1056, 463, 63, 193],
+                "template": "公告弹窗.png",
+                "green_mask": true,
+                "threshold": [0.95]
+            }
+        },
+        "action": "Click",
+        "timeout": 3000,
+        "pre_delay": 100,
+        "next": ["D_IsAnnouncementPopup"],
+        "on_error": ["D_DetectWhereAmI"]
+    },
+    "D_IsLoginReward": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [816, 577, 182, 59],
+                "template": "登录奖励.png",
+                "green_mask": true,
+                "threshold": [0.98]
+            }
+        },
+        "action": "Click",
+        "pre_delay": 100,
+        "next": ["D_LoginRewardClick2"],
+        "on_error": ["D_DetectWhereAmI"]
+    },
+    "D_LoginRewardClick2": {
+        "action": "Click",
+        "target": [1092, 318, 1, 1],
+        "pre_delay": 1000,
+        "next": ["D_LoginRewardClick3"]
+    },
+    "D_LoginRewardClick3": {
+        "action": "Click",
+        "target": [1092, 318, 1, 1],
+        "timeout": 3000,
+        "pre_delay": 1000,
+        "next": ["D_IsLoginReward"],
+        "on_error": ["D_DetectWhereAmI"]
+    },
+    "D_IsInternalReport": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [569, 322, 138, 31],
+                "template": "内番报告.png",
+                "green_mask": true,
+                "threshold": [0.98]
+            }
+        },
+        "action": "Click",
+        "pre_delay": 100,
+        "next": ["D_DetectWhereAmI"],
+        "on_error": ["D_DetectWhereAmI"]
+    },
+    "D_IsGameIcon": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [0, 0, 1600, 900],
+                "template": "游戏图标.png",
+                "green_mask": true,
+                "threshold": [0.95]
+            }
+        },
+        "action": "Click",
+        "post_delay": 3000,
+        "pre_delay": 100,
+        "next": ["D_DetectWhereAmI"],
+        "on_error": ["D_DetectWhereAmI"]
+    },
+    "D_IsLoginButton": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [665, 529, 124, 78],
+                "template": "登录.png",
+                "green_mask": true,
+                "threshold": [0.98]
+            }
+        },
+        "action": "Click",
+        "post_delay": 3000,
+        "pre_delay": 100,
+        "next": ["D_DetectWhereAmI"],
+        "on_error": ["D_DetectWhereAmI"]
+    },
+    "D_IsGameUpdatePopup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [443, 431, 120, 46],
+                "template": "游戏更新.png",
+                "green_mask": true,
+                "threshold": [0.98]
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000,
+        "pre_delay": 100,
+        "next": ["D_DetectWhereAmI"],
+        "on_error": ["D_DetectWhereAmI"]
+    },
+    "D_IsInGameUpdatePopup": {
+        "recognition": "OCR",
+        "roi": [498, 291, 77, 50],
+        "expected": "更新",
+        "action": "Click",
+        "target": [578, 440, 130, 55],
+        "post_delay": 2000,
+        "pre_delay": 100,
+        "next": ["D_DetectWhereAmI"],
+        "on_error": ["D_DetectWhereAmI"]
     }
 }

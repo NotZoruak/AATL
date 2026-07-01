@@ -1,0 +1,629 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:other="clr-namespace:MFAAvalonia.ViewModels.Other"
+             xmlns:controls="clr-namespace:MFAAvalonia.Controls"
+             xmlns:suki="https://github.com/kikipoulet/SukiUI"
+             xmlns:fluent="clr-namespace:FluentIcons.Avalonia.Fluent;assembly=FluentIcons.Avalonia.Fluent"
+             xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+             xmlns:markup="https://codewf.com"
+             xmlns:userControls="clr-namespace:MFAAvalonia.Views.UserControls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MFAAvalonia.Views.UserControls.InstanceTabBar"
+             x:DataType="other:InstanceTabBarViewModel">
+
+    <UserControl.Styles>
+        <!-- 运行指示器脉冲动画 -->
+        <Style Selector="Ellipse.PulseAnimation">
+            <Style.Animations>
+                <Animation Duration="0:0:1.5" IterationCount="INFINITE" Easing="CubicEaseInOut">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="Opacity" Value="1" />
+                    </KeyFrame>
+                    <KeyFrame Cue="50%">
+                        <Setter Property="Opacity" Value="0.4" />
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="Opacity" Value="1" />
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+
+        <!-- 展开按钮旋转动画 -->
+        <Style Selector="Button.DropdownToggle fluent|FluentIcon">
+            <Setter Property="RenderTransform" Value="rotate(0deg)" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.DropdownToggle.Open fluent|FluentIcon">
+            <Setter Property="RenderTransform" Value="rotate(180deg)" />
+        </Style>
+
+        <!-- 下拉列表项样式 -->
+        <Style Selector="Border.DropdownItem">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Margin" Value="6,0,6,8" />
+        </Style>
+        <Style Selector="Border.DropdownMenuCard">
+            <Setter Property="Background" Value="{DynamicResource SukiCardBackground}" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="8,5" />
+            <Setter Property="MinHeight" Value="40" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+        <Style Selector="Border.DropdownItem:pointerover Border.DropdownMenuCard">
+            <Setter Property="Background" Value="{DynamicResource TabBarHoverBackground}" />
+        </Style>
+        <Style Selector="Border.DropdownItem.Selected Border.DropdownMenuCard">
+            <Setter Property="Background" Value="{DynamicResource SukiPrimaryColor5}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SukiPrimaryColor50}" />
+        </Style>
+        <Style Selector="Button.DropdownSectionToggle">
+            <Setter Property="Background" Value="{DynamicResource SukiBackground}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="Margin" Value="6,6,6,8" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalContentAlignment="Stretch"
+                                          VerticalContentAlignment="Center"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="Button.DropdownSectionToggle:pointerover">
+            <Setter Property="Background" Value="{DynamicResource TabBarHoverBackground}" />
+        </Style>
+        <Style Selector="Button.DropdownSectionToggle fluent|FluentIcon">
+            <Setter Property="RenderTransform" Value="rotate(0deg)" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.DropdownSectionToggle.Open fluent|FluentIcon">
+            <Setter Property="RenderTransform" Value="rotate(180deg)" />
+        </Style>
+        <Style Selector="Border.DropdownMetaChip">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="9" />
+            <Setter Property="Padding" Value="8,2" />
+            <Setter Property="MinHeight" Value="22" />
+        </Style>
+        <Style Selector="Border.DropdownMetaChip.ControllerChip">
+            <Setter Property="Background" Value="{DynamicResource SukiPrimaryColor}" />
+        </Style>
+        <Style Selector="Border.DropdownMetaChip.ResourceChip">
+            <Setter Property="Background" Value="{DynamicResource SukiAccentColor}" />
+        </Style>
+        <!-- 下拉关闭按钮样式 -->
+        <Style Selector="Button.DropdownCloseBtn">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource SukiLowText}" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+        </Style>
+        <Style Selector="Border.DropdownItem:pointerover Button.DropdownCloseBtn">
+            <Setter Property="Opacity" Value="1" />
+            <Setter Property="IsHitTestVisible" Value="True" />
+        </Style>
+        <Style Selector="Button.DropdownCloseBtn:pointerover">
+            <Setter Property="Opacity" Value="1" />
+            <Setter Property="Background" Value="{DynamicResource TabBarHoverBackground}" />
+        </Style>
+        <Style Selector="Button.DropdownCloseBtn fluent|FluentIcon">
+            <Setter Property="Foreground" Value="{DynamicResource SukiLowText}" />
+            <Setter Property="IconSize" Value="Size12" />
+        </Style>
+        <Style Selector="Button.DropdownCloseBtn PathIcon">
+            <Setter Property="Foreground" Value="{DynamicResource SukiLowText}" />
+            <Setter Property="Width" Value="9" />
+            <Setter Property="Height" Value="9" />
+        </Style>
+        <!-- + 按钮 tooltip -->
+        <Style Selector="controls|InstanceTabsControl /template/ Button#PART_AddItemButton">
+            <Setter Property="ToolTip.Tip" Value="{markup:I18n {x:Static helper:LangKeys.InstanceAddTooltip}}" />
+        </Style>
+        <!-- 标签项 tooltip 绑定到容器本身，避免被模板内拖拽层拦截 -->
+        <Style Selector="controls|InstanceTabsControl controls|DragTabItem">
+            <Setter Property="ToolTip.Tip" Value="{ReflectionBinding Name}" />
+            <Setter Property="ToolTip.ShowDelay" Value="100" />
+        </Style>
+        <!-- 预设菜单项按钮样式（与 DropdownItem 保持一致） -->
+        <!-- 预设菜单项按钮样式 -->
+        <Style Selector="Button.PresetMenuItem">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Margin" Value="0,0,0,8" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <ContentPresenter Name="PART_ContentPresenter"
+                                      Padding="{TemplateBinding Padding}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}" />
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <!-- 强制模板里的内容承载器拉伸 -->
+        <Style Selector="Button.PresetMenuItem /template/ ContentPresenter">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+
+        <Style Selector="Button.PresetFollowItem">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="10,8" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Margin" Value="8,8,4,4" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+
+        <Style Selector="Button.PresetFollowItem:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SukiPrimaryColor5}" />
+        </Style>
+
+        <Style Selector="Border.PresetMenuCard">
+            <Setter Property="Background" Value="{DynamicResource SukiPopupBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SukiMediumBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="14" />
+            <Setter Property="Padding" Value="12,11" />
+            <Setter Property="MinHeight" Value="72" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+
+        <Style Selector="Button.PresetMenuItem:pointerover Border.PresetMenuCard">
+            <Setter Property="Background" Value="{DynamicResource SukiPrimaryColor5}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SukiPrimaryColor75}" />
+        </Style>
+
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Row 0: 标签栏 = [展开按钮(固定左)] [标签页+添加按钮] -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*">
+            <!-- TabBarBackground 铺满整个标签栏（包括下拉按钮区域），选中标签区域会被 Clip 挖掉 -->
+            <Border x:Name="TabBarBackgroundBorder"
+                    Grid.ColumnSpan="2"
+                    Background="{DynamicResource TabBarBackground}" />
+
+            <!-- 展开按钮（固定最左边） -->
+            <Button Grid.Column="0"
+                    x:Name="DropdownButton"
+                    Classes="DropdownToggle"
+                    Classes.Open="{Binding IsDropdownOpen}"
+                    Theme="{StaticResource DropdownToggleButton}"
+                    VerticalAlignment="Center"
+                    Margin="3,2,4,2"
+                    Command="{Binding ToggleDropdownCommand}"
+                    ToolTip.Tip="{markup:I18n {x:Static helper:LangKeys.InstanceSelectTooltip}}">
+                <fluent:FluentIcon Icon="ChevronDown" IconSize="Size16" />
+            </Button>
+
+            <!-- 标签页控件（动态宽度 + 右侧跟随 + 按钮） -->
+            <controls:InstanceTabsControl Grid.Column="1"
+                                          x:Name="TabsControl"
+                                          Margin="0,4,0,0"
+                                          ItemsSource="{Binding Tabs}"
+                                          SelectedItem="{Binding ActiveTab, Mode=TwoWay}"
+                                          AddItemCommand="{Binding AddInstanceCommand}"
+                                          CloseItemCommand="{Binding CloseInstanceCommand}"
+                                          TabItemWidth="200"
+                                          ShowDefaultAddButton="True">
+                <controls:InstanceTabsControl.ItemTemplate>
+                    <DataTemplate x:DataType="other:InstanceTabViewModel">
+                        <Grid ColumnDefinitions="Auto,*"
+                              ColumnSpacing="6"
+                              VerticalAlignment="Center">
+                            <Ellipse Width="7" Height="7"
+                                     Fill="LimeGreen"
+                                     IsVisible="{Binding IsRunning}"
+                                     VerticalAlignment="Center"
+                                     Classes="PulseAnimation" />
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Name}"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="NoWrap"
+                                       TextTrimming="CharacterEllipsis" />
+                        </Grid>
+                    </DataTemplate>
+                </controls:InstanceTabsControl.ItemTemplate>
+            </controls:InstanceTabsControl>
+        </Grid>
+
+        <!-- Row 1: 内容区域 -->
+        <ContentControl Grid.Row="1"
+                        Content="{Binding ActiveTab.View}"
+                        Margin="0" />
+        <!-- 预设菜单 Popup（有预设时点击+号弹出，PlacementTarget 由 code-behind 动态设为 PART_AddItemButton） -->
+        <Popup x:Name="PresetMenuPopup"
+               IsOpen="{Binding IsAddMenuOpen, Mode=TwoWay}"
+               Placement="Bottom"
+               IsLightDismissEnabled="True"
+               InheritsTransform="True">
+            <Border Padding="5,10,5,5">
+                <Border Background="{DynamicResource SukiPopupBackground}"
+                        BorderBrush="{DynamicResource SukiMenuBorderBrush}"
+                        BorderThickness="1"
+                        BoxShadow="{DynamicResource SukiSmallPopupShadow}"
+                        CornerRadius="{DynamicResource SmallCornerRadius}"
+                        Width="360">
+                    <Grid Background="{DynamicResource PopupGradientBrush}" RowDefinitions="Auto,Auto,*,Auto">
+                        <suki:GlassCard Grid.RowSpan="4" Margin="-1"
+                                        CornerRadius="{DynamicResource SmallCornerRadius}"
+                                        IsAnimated="False" />
+                        <!-- 跟随最右侧配置 -->
+                        <Button Grid.Row="0" Margin="5"
+                                Classes="PresetFollowItem"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Stretch"
+                                Command="{Binding AddInstanceWithPresetCommand}"
+                                CommandParameter="{x:Null}">
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                                <PathIcon Width="16"
+                                          Height="16"
+                                          Foreground="{DynamicResource SukiLowText}"
+                                          VerticalAlignment="Center"
+                                          Data="M341.333333 853.333333v82.432a21.333333 21.333333 0 0 1-34.986666 16.426667l-175.786667-146.474667A21.333333 21.333333 0 0 1 144.298667 768H768a85.333333 85.333333 0 0 0 85.333333-85.333333V341.333333h85.333334v341.333334a170.666667 170.666667 0 0 1-170.666667 170.666666H341.333333z m341.333334-682.666666V88.234667a21.333333 21.333333 0 0 1 34.986666-16.426667l175.786667 146.474667a21.333333 21.333333 0 0 1-13.696 37.717333H256a85.333333 85.333333 0 0 0-85.333333 85.333333v341.333334H85.333333V341.333333a170.666667 170.666667 0 0 1 170.666667-170.666666h426.666667z m-213.333334 170.666666h85.333334v341.333334h-85.333334v-256H384V384l85.333333-42.666667z" />
+                                <TextBlock Grid.Column="1"
+                                           HorizontalAlignment="Stretch"
+                                           Text="{markup:I18n {x:Static helper:LangKeys.InstanceAddFollowLast}}"
+                                           Foreground="{DynamicResource SukiLowText}"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center" />
+                            </Grid>
+                        </Button>
+                        <Border Grid.Row="1" Background="{DynamicResource SukiControlBorderBrush}" Height="1" Margin="8,0,8,6" />
+                        <!-- 预设列表 -->
+                        <ScrollViewer x:Name="PresetMenuScrollViewer"
+                                      Grid.Row="2"  Margin="0,0,5,0"
+                                      MaxHeight="320"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding FilteredInstancePresets}"
+                                          HorizontalAlignment="Stretch"
+                                          Margin="8,2,4,0">
+                                <ItemsControl.Styles>
+                                    <Style Selector="ContentPresenter">
+                                        <Setter Property="HorizontalAlignment" Value="Stretch" />
+                                    </Style>
+                                </ItemsControl.Styles>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Classes="PresetMenuItem"
+                                                HorizontalAlignment="Stretch"
+                                                HorizontalContentAlignment="Stretch"
+                                                Command="{Binding $parent[UserControl].((other:InstanceTabBarViewModel)DataContext).AddInstanceWithPresetCommand}"
+                                                CommandParameter="{Binding}">
+                                            <Border Classes="PresetMenuCard">
+                                                <Grid RowDefinitions="Auto,Auto" RowSpacing="6">
+                                                    <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                                                        <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                                            <fluent:FluentIcon Icon="Star"
+                                                                               IconSize="Size16"
+                                                                               Foreground="{DynamicResource SukiPrimaryColor75}"
+                                                                               VerticalAlignment="Center" />
+                                                            <userControls:DisplayIcon IconSource="{Binding ResolvedIcon}"
+                                                                                      IconSize="18"
+                                                                                      IsVisible="{Binding HasIcon}"
+                                                                                      VerticalAlignment="Center" />
+                                                        </StackPanel>
+                                                        <TextBlock Grid.Column="1"
+                                                                   Text="{Binding DisplayName}"
+                                                                   Foreground="{DynamicResource SukiText}"
+                                                                   FontWeight="SemiBold"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   VerticalAlignment="Center" />
+                                                        <TextBlock Grid.Column="2"
+                                                                   Text="{Binding TaskCountText}"
+                                                                   Foreground="{DynamicResource SukiDisabledText}"
+                                                                   FontSize="11"
+                                                                   VerticalAlignment="Center" />
+                                                    </Grid>
+                                                    <TextBlock Grid.Row="1"
+                                                               Text="{Binding DisplayDescription}"
+                                                               Foreground="{DynamicResource SukiLowText}"
+                                                               FontSize="12"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               MaxLines="2"
+                                                               IsVisible="{Binding HasDescription}" />
+                                                </Grid>
+                                            </Border>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                        <TextBox Grid.Row="3" Margin="8,2,4,8"
+                                 Text="{Binding PresetSearchText, Mode=TwoWay}"
+                                 Watermark="{markup:I18n {x:Static helper:LangKeys.Search}}">
+                            <TextBox.InnerRightContent>
+                                <fluent:FluentIcon Margin="0,-2,0,0"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource SukiDisabledText}"
+                                                   Icon="Search"
+                                                   IconSize="Size16" />
+                            </TextBox.InnerRightContent>
+                        </TextBox>
+                    </Grid>
+                </Border>
+            </Border>
+        </Popup>
+
+        <!-- 下拉框 Popup -->
+        <Popup x:Name="InstanceDropdown"
+               IsOpen="{Binding IsDropdownOpen, Mode=TwoWay}"
+               PlacementTarget="{Binding #DropdownButton}"
+               Placement="Bottom"
+               IsLightDismissEnabled="True"
+               HorizontalOffset="0"
+               InheritsTransform="True">
+            <Border Padding="5,10,5,5">
+                <Border Background="{DynamicResource SukiPopupBackground}"
+                        BorderBrush="{DynamicResource SukiMenuBorderBrush}"
+                        BorderThickness="1"
+                        BoxShadow="{DynamicResource SukiSmallPopupShadow}"
+                        CornerRadius="{DynamicResource SmallCornerRadius}"
+                        MinWidth="302"
+                        MaxWidth="302">
+                    <Grid Background="{DynamicResource PopupGradientBrush}" RowDefinitions="Auto,*">
+                        <suki:GlassCard Grid.RowSpan="2" Margin="-1"
+                                        CornerRadius="{DynamicResource SmallCornerRadius}"
+                                        IsAnimated="False" />
+                        <TextBox Grid.Row="0" Margin="2,6,2,2"
+                                 Text="{Binding SearchText, Mode=TwoWay}"
+                                 Watermark="{Binding DropdownSearchWatermark}">
+                            <TextBox.InnerRightContent>
+                                <fluent:FluentIcon Margin="0,-2,0,0"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource SukiDisabledText}"
+                                                   Icon="Search"
+                                                   IconSize="Size16" />
+                            </TextBox.InnerRightContent>
+                        </TextBox>
+                        <ScrollViewer Grid.Row="1"
+                                      MaxHeight="600"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      VerticalScrollBarVisibility="Auto">
+                            <Grid Margin="0,2,0,4"
+                                  RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                                  ColumnDefinitions="*">
+                                <Button Grid.Row="0"
+                                        Classes="DropdownSectionToggle"
+                                        Classes.Open="{Binding IsOpenTabsExpanded}"
+                                        Command="{Binding ToggleOpenTabsExpandedCommand}">
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{Binding OpenConfigsHeaderText}"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   FontWeight="SemiBold"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource SukiText}" />
+                                        <fluent:FluentIcon Grid.Column="1"
+                                                           Icon="ChevronDown"
+                                                           IconSize="Size16"
+                                                           HorizontalAlignment="Right"
+                                                           VerticalAlignment="Center"
+                                                           Foreground="{DynamicResource SukiLowText}" />
+                                    </Grid>
+                                </Button>
+                                <ItemsControl Grid.Row="1"
+                                              ItemsSource="{Binding FilteredTabs}"
+                                              IsVisible="{Binding IsOpenTabsExpanded}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Classes="DropdownItem"
+                                                    Classes.Selected="{Binding IsActive}"
+                                                    PointerPressed="OnDropdownItemPressed">
+                                                <Border Classes="DropdownMenuCard">
+                                                    <Grid ColumnDefinitions="Auto,*,Auto,Auto"
+                                                          RowDefinitions="Auto,Auto"
+                                                          ColumnSpacing="10"
+                                                          RowSpacing="2">
+                                                        <Border Grid.RowSpan="2"
+                                                                Width="28"
+                                                                Height="28"
+                                                                CornerRadius="8"
+                                                                Background="{DynamicResource SukiPopupBackground}">
+                                                            <PathIcon Width="15"
+                                                                      Height="15"  Margin="1,0,0,0"
+                                                                      HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center"
+                                                                      Foreground="{DynamicResource SukiPrimaryColor75}"
+                                                                      Data="M488.680727 124.090182a104.727273 104.727273 0 0 1 93.184 0l279.272728 139.636363A104.727273 104.727273 0 0 1 919.272727 357.469091v332.706909a104.727273 104.727273 0 0 1-58.042182 93.696l-279.272727 139.636364a104.727273 104.727273 0 0 1-93.696 0L208.896 783.825455a104.634182 104.634182 0 0 1-57.623273-94.021819V357.469091a104.727273 104.727273 0 0 1 58.042182-93.696z m-267.636363 246.597818v319.348364a34.909091 34.909091 0 0 0 19.130181 31.371636l260.189091 130.094545v-341.178181l-279.272727-139.636364z m628.363636 0l-279.272727 139.636364v340.992l259.956363-129.954909a34.909091 34.909091 0 0 0 19.037091-26.298182l0.325818-4.887273V370.688z m-298.589091-184.087273a34.909091 34.909091 0 0 0-30.999273 0L264.378182 314.228364 535.272727 449.629091l270.848-135.447273z" />
+                                                        </Border>
+                                                        <userControls:MarqueeTextBlock Grid.Column="1"
+                                                                                        Text="{Binding Name}"
+                                                                                        Foreground="{DynamicResource SukiText}"
+                                                                                        Height="16"
+                                                                                        VerticalAlignment="Center" />
+                                                        <TextBlock Grid.Column="2"
+                                                                   Text="{Binding TaskCountText}"
+                                                                   Foreground="{DynamicResource SukiLowText}"
+                                                                   FontSize="10"
+                                                                   VerticalAlignment="Top"
+                                                                   HorizontalAlignment="Right" />
+                                                        <Button Grid.Column="3"
+                                                                Grid.RowSpan="2"
+                                                                Classes="DropdownCloseBtn"
+                                                                Width="15"
+                                                                Height="15"
+                                                                Padding="0"
+                                                                HorizontalAlignment="Right"
+                                                                VerticalAlignment="Center"
+                                                                Click="OnDropdownCloseClicked"
+                                                                ToolTip.Tip="{Binding $parent[UserControl].((other:InstanceTabBarViewModel)DataContext).CloseConfigTooltipText}">
+                                                            <PathIcon Data="M4.22 4.22a.75.75 0 0 1 1.06 0L8 6.94l2.72-2.72a.75.75 0 1 1 1.06 1.06L9.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L8 9.06l-2.72 2.72a.75.75 0 1 1-1.06-1.06L6.94 8 4.22 5.28a.75.75 0 0 1 0-1.06Z" />
+                                                        </Button>
+                                                        <TextBlock Grid.Row="1"
+                                                                   Grid.Column="1"
+                                                                   Text="{Binding DropdownMetaText}"
+                                                                   Foreground="{DynamicResource SukiLowText}"
+                                                                   FontSize="10"
+                                                                   TextTrimming="CharacterEllipsis" />
+                                                        <StackPanel Grid.Row="1"
+                                                                    Grid.Column="2"
+                                                                    Grid.ColumnSpan="2"
+                                                                    Orientation="Horizontal"
+                                                                    Spacing="4"
+                                                                    HorizontalAlignment="Right"
+                                                                    VerticalAlignment="Center"
+                                                                    Margin="0,0,22,0">
+                                                            <Grid Width="10" Height="10"
+                                                                  IsVisible="{Binding IsRunning}">
+                                                                <Ellipse Width="8" Height="8"
+                                                                         Fill="{DynamicResource SukiSuccessColor}"
+                                                                         HorizontalAlignment="Center"
+                                                                         VerticalAlignment="Center"
+                                                                         Classes="PulseAnimation" />
+                                                                <Ellipse Width="8" Height="8"
+                                                                         Stroke="{DynamicResource SukiSuccessColor}"
+                                                                         StrokeThickness="1"
+                                                                         Opacity="0.45"
+                                                                         HorizontalAlignment="Center"
+                                                                         VerticalAlignment="Center"
+                                                                         Classes="PulseAnimation" />
+                                                            </Grid>
+                                                            <Ellipse Width="8" Height="8"
+                                                                     Fill="{DynamicResource SukiSuccessColor}"
+                                                                     IsVisible="{Binding IsStatusConnectedVisible}"
+                                                                     VerticalAlignment="Center" />
+                                                            <Ellipse Width="8" Height="8"
+                                                                     Fill="{DynamicResource SukiDangerColor}"
+                                                                     IsVisible="{Binding IsStatusDisconnectedVisible}"
+                                                                     VerticalAlignment="Center" />
+                                                            <TextBlock Text="{Binding StatusBadgeText}"
+                                                                       Foreground="{DynamicResource SukiLowText}"
+                                                                       FontSize="10"
+                                                                       VerticalAlignment="Center" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Border>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <TextBlock Grid.Row="2"
+                                           Margin="14,0,0,10"
+                                           IsVisible="{Binding ShowOpenTabsEmptyState}"
+                                           Text="{Binding NoOpenConfigsText}"
+                                           Foreground="{DynamicResource SukiDisabledText}" />
+                                <Button Grid.Row="3"
+                                        Classes="DropdownSectionToggle"
+                                        IsVisible="{Binding HasRecentClosedItems}"
+                                        Classes.Open="{Binding IsRecentClosedExpanded}"
+                                        Command="{Binding ToggleRecentClosedExpandedCommand}">
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{Binding RecentClosedHeaderText}"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   FontWeight="SemiBold"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource SukiText}" />
+                                        <fluent:FluentIcon Grid.Column="1"
+                                                           Icon="ChevronDown"
+                                                           IconSize="Size16"
+                                                           HorizontalAlignment="Right"
+                                                           VerticalAlignment="Center"
+                                                           Foreground="{DynamicResource SukiLowText}" />
+                                    </Grid>
+                                </Button>
+                                <ItemsControl Grid.Row="4"
+                                              ItemsSource="{Binding FilteredRecentClosedTabs}"
+                                              IsVisible="{Binding ShowRecentClosedSection}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Margin="6,0,6,8"
+                                                    Classes="DropdownItem"
+                                                    PointerPressed="OnRecentClosedItemPressed">
+                                                <Border Classes="DropdownMenuCard">
+                                                    <Grid ColumnDefinitions="Auto,*,Auto"
+                                                          RowDefinitions="Auto,Auto"
+                                                          ColumnSpacing="10"
+                                                          RowSpacing="2">
+                                                        <Border Grid.RowSpan="2"
+                                                                Width="28"
+                                                                Height="28"
+                                                                CornerRadius="8"
+                                                                Background="{DynamicResource SukiPopupBackground}">
+                                                            <fluent:FluentIcon Icon="History"
+                                                                               IconSize="Size16"
+                                                                               HorizontalAlignment="Center"
+                                                                               VerticalAlignment="Center"
+                                                                               Foreground="{DynamicResource SukiPrimaryColor75}" />
+                                                        </Border>
+                                                        <userControls:MarqueeTextBlock Grid.Column="1"
+                                                                                        Text="{Binding Name}"
+                                                                                        Foreground="{DynamicResource SukiText}"
+                                                                                        Height="16"
+                                                                                        VerticalAlignment="Center" />
+                                                        <TextBlock Grid.Column="2"
+                                                                   Text="{Binding TaskCountText}"
+                                                                   Foreground="{DynamicResource SukiDisabledText}"
+                                                                   FontSize="10"
+                                                                   TextAlignment="Right"
+                                                                   HorizontalAlignment="Right"
+                                                                   VerticalAlignment="Center" />
+                                                        <TextBlock Grid.Row="1"
+                                                                   Grid.Column="1"
+                                                                   Text="{Binding MetaText}"
+                                                                   Foreground="{DynamicResource SukiLowText}"
+                                                                   FontSize="10"
+                                                                   TextTrimming="CharacterEllipsis" />
+                                                        <TextBlock Grid.Row="1"
+                                                                   Grid.Column="2"
+                                                                   Text="{Binding TimeText}"
+                                                                   Foreground="{DynamicResource SukiLowText}"
+                                                                   FontSize="10"
+                                                                   TextAlignment="Right"
+                                                                   HorizontalAlignment="Right"
+                                                                   VerticalAlignment="Center" />
+                                                    </Grid>
+                                                </Border>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>
+

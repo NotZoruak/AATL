@@ -1,6 +1,32 @@
+<!-- markdownlint-disable -->
+
+<div align="center">
+
+<img alt="LOGO" src="./resource/logo/AATL.png" width="256" />
+
 # AATL — 刀剑乱舞自动化助手
 
-刀剑乱舞PC 端自动化工具，通过 ADB 连接模拟器运行《刀剑乱舞》，由 MaaFramework 强力驱动！推荐使用 MuMu 模拟器 12，分辨率 1280×720。其他支持 ADB 的模拟器及分辨率亦可运行。
+<br>
+<div>
+    <img alt="C#" src="https://img.shields.io/badge/C%23-14-%23239120?logo=csharp">
+    <img alt=".NET" src="https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet">
+    <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blueviolet">
+</div>
+<div>
+    <img alt="license" src="https://img.shields.io/github/license/NotZoruak/AATL">
+    <img alt="commit" src="https://img.shields.io/github/commit-activity/m/NotZoruak/AATL?color=%23ff69b4">
+</div>
+<div>
+    <img alt="stars" src="https://img.shields.io/github/stars/NotZoruak/AATL?style=social">
+    <img alt="downloads" src="https://img.shields.io/github/downloads/NotZoruak/AATL/total?style=social">
+</div>
+<br>
+
+<!-- markdownlint-restore -->
+
+刀剑乱舞 PC 端自动化工具，通过 ADB 连接模拟器运行《刀剑乱舞》，由 MaaFramework 强力驱动！推荐使用 MuMu 模拟器 12，分辨率 1280×720。其他支持 ADB 的模拟器及分辨率亦可运行。
+
+</div>
 
 ## 安装步骤
 
@@ -8,7 +34,10 @@
 
 前往 [Releases](https://github.com/NotZoruak/AATL/releases) 页面，在最新版本下方点击「Assets」展开文件列表，下载命名为 `AATL-vx.x.x.zip` 的文件。
 
-注意：Release基于x86_64架构，Windows系统。对于Arm架构（如苹果M系列芯片，树莓派等），RISCV架构和Mac系统，Linux系统暂不支持。
+- **公测版**：功能经过验证，稳定性较高，推荐大多数用户使用
+- **内测版**：包含最新功能，但可能存在更多 bug，适合尝鲜用户
+
+注意：Release 基于 x86_64 架构，Windows 系统。对于 Arm 架构（如苹果 M 系列芯片，树莓派等）、RISCV 架构和 Mac 系统、Linux 系统暂不支持。
 
 ### 2. 安装系统依赖
 
@@ -56,7 +85,15 @@
 
 **刀解** — 自动刀解 + 收邮箱循环，在任务设置中勾选要解体的刀种即可自动筛选并一键解体。
 
+**习合** — 自动刀剑习合：支持自动搓糖、刀种筛选与习合循环。
+
 > 更多功能开发中，敬请期待。
+
+## 小工具说明
+
+**限锻计算** — 限锻资源计算工具，支持手动输入或一键 OCR 识别当前资源。输入锻刀公式、现有积分和资源道具，自动计算达到 5000 积分所需剩余资源。
+
+**数据查找表** — 游戏数据速查工具，内含经验表（极化刀剑男士升级数据）和远征收益表（各地图资源效率对比）。
 
 ## 常见问题
 
@@ -76,7 +113,7 @@ AATL 运行期间会产生 debug 日志文件（位于 `debug/` 目录），长�
 2. **手动下载更新**：前往 [Releases](https://github.com/NotZoruak/AATL/releases) 页面手动下载最新版本，解压覆盖即可
 3. **切换网络环境**：如果与其他用户共享同一公网 IP（如校园网、公司网络），GitHub 限速更容易触发，可尝试使用移动热点等独立网络
 
-> 注意：本项目的资源更新目前仅推送公测版。在「设置」→「软件更新设置」→「资源更新渠道」中选择「内测版」仅获取公测版资源，仍可能出现上述提示，不影响正常使用。
+> 注意：推荐大多数用户选择公测版。在「设置」→「软件更新设置」→「资源更新渠道」中可选择「公测版」或「内测版」。内测版包含最新功能但可能存在更多 bug，适合尝鲜用户。
 
 ### Q3: 更新检测提示「检查资源最新版时发生错误：原因=无法连接到远程服务器」怎么办？
 
@@ -93,31 +130,58 @@ AATL 运行期间会产生 debug 日志文件（位于 `debug/` 目录），长�
 2. **手动下载**：前往 [Releases](https://github.com/NotZoruak/AATL/releases) 页面下载最新版本 ZIP 文件，解压后覆盖原程序目录即可
 3. **哈希校验失败**：如果提示「哈希校验失败」，说明下载的文件不完整或被损坏，请重新下载
 
+## 反馈与建议
+
+遇到 bug 或有功能建议？欢迎通过以下方式反馈：
+
+- **GitHub Issues**：前往 [Issues 页面](https://github.com/NotZoruak/AATL/issues) 提交，请尽量包含以下信息方便快速定位
+- **邮箱**：如果没有 GitHub 账号，可直接发送至 `pei462243028140@163.com`
+
+提交反馈时请尽量包含以下信息：
+
+- **Bug 报告**：描述操作步骤、预期结果和实际结果，附上截图或日志（`debug/` 目录下）
+- **功能建议**：描述期望的功能场景和使用目的
+
+> 提交前请先搜索已有 issue，避免重复。
+
 ## 目录结构
 
 ```
 AATL/
-├── AATL.exe                              ← 桌面 GUI
+├── AATL.exe                              ← 桌面启动入口
+├── AATL.dll                              ← 桌面主程序集
+├── AATL.deps.json                        ← .NET 依赖清单
+├── AATL.runtimeconfig.json               ← 运行时配置
+├── libloader.dll                         ← nbeauty 启动钩子
+├── appsettings.json                      ← 应用配置
 ├── DependencySetup_依赖库安装_win.bat      ← 安装系统运行时依赖
-├── interface.json                        ← 任务、资源、选项配置
-├── config/                               ← 用户配置（自动生成）
-├── resource/                             ← OCR 模型、模板图片、流水线
-├── libs/ + runtimes/                     ← .NET 运行时依赖
-├── resource/base/pipeline/
-│   ├── Expedition.json                   ← 远征任务流水线
-│   ├── EdoCastle.json                    ← 江户城任务流水线
-│   ├── FlowerBrush.json                  ← 刷花任务流水线
-│   ├── GoHome.json                       ← 回到本丸任务流水线
-│   ├── Sortie.json                       ← 合战场任务流水线
-│   ├── Underground.json                  ← 地下城任务流水线
-│   └── Disassemble.json                 ← 刀解任务流水线
+├── resource/
+│   ├── interface.json                    ← 任务与选项配置
+│   ├── base/
+│   │   ├── pipeline/                     ← 自动化任务流水线（JSON）
+│   │   │   ├── Sortie.json               ← 合战场
+│   │   │   ├── Underground.json          ← 地下城
+│   │   │   ├── Expedition.json           ← 远征
+│   │   │   ├── EdoCastle.json            ← 江户城
+│   │   │   ├── FlowerBrush.json          ← 刷花
+│   │   │   ├── Disassemble.json          ← 刀解
+│   │   │   ├── Mix.json                  ← 习合
+│   │   │   └── GoHome.json               ← 回到本丸
+│   │   ├── image/                        ← 模板匹配图片
+│   │   └── model/ocr/                    ← OCR 模型
+│   ├── announcement/                     ← 公告
+│   └── logo/                             ← 程序图标
+├── runtimes/
+│   ├── libs/                             ← .NET 托管 DLL
+│   ├── win-x64/native/                   ← 原生引擎
+│   └── plugins/                          ← 插件
+└── LICENSE
 ```
 ## ⚠️ 声明
 
 - 本项目基于 [MaaFramework](https://github.com/MaaXYZ/MaaFramework)（LGPL v3）构建，采用 [GNU General Public License v3.0](LICENSE) 协议，**永久免费且开源**。
-- 本项目为非计算机工作/专业人员心血来潮之作，大量依赖vibe coding完成，仅用于学习和交流，严禁用于任何商业用途。
-- 若有人利用此脚本进行收费代练、有偿托管等行为，**均与开发者无关**，开发者不从中获利，也不对任何第三方的收费行为负责。
-- 使用本脚本可能违反游戏条款，**一切后果（包括账号封禁、数据丢失等）由使用者自行承担**。
-- 请勿跳脸官方和手搓玩家，尊重他人劳动成果，**低调使用**。
+- 本项目为非计算机专业人员心血来潮之作，大量依赖 vibe coding 完成，仅供学习交流使用。若您遇到商家使用本软件进行代练并收费，可能是设备与时间等费用，产生的问题及后果与本软件无关。
+- 使用本脚本可能违反游戏条款，一切后果（包括账号封禁、数据丢失等）由使用者自行承担。
+- 请勿跳脸官方和手搓玩家，尊重他人劳动成果，低调使用。
 
 最后，如果你觉得该软件对你有帮助，请点个Star吧。

@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="using:MFAAvalonia.Views.UserControls">
+    <Design.PreviewWith>
+        <controls:DisplayIcon IconSource="🎮" IconSize="24" />
+    </Design.PreviewWith>
+
+    <ControlTheme x:Key="{x:Type controls:DisplayIcon}" TargetType="controls:DisplayIcon">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="controls:DisplayIcon">
+                <Panel>
+                    <!-- 图片图标 -->
+                    <Image IsVisible="{TemplateBinding IsImage}"
+                           Source="{TemplateBinding ImageSource}"
+                           Width="{TemplateBinding IconSize}"
+                           Height="{TemplateBinding IconSize}"
+                           Stretch="Uniform"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
+                    <!-- 文本图标（emoji/符号） -->
+                    <TextBlock IsVisible="{TemplateBinding IsText}"
+                               Text="{TemplateBinding TextContent}"
+                               FontSize="{TemplateBinding IconSize}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center" />
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

@@ -1,0 +1,37 @@
+﻿<ResourceDictionary x:Class="SukiUI.Locale.zh_hant"
+                    xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  DatePicker  -->
+    <x:String x:Key="STRING_DATEPICKER_DAY_TEXT">日</x:String>
+    <x:String x:Key="STRING_DATEPICKER_MONTH_TEXT">月</x:String>
+    <x:String x:Key="STRING_DATEPICKER_YEAR_TEXT">年</x:String>
+    <x:String x:Key="STRING_DATEPICKER_APPLY">套用</x:String>
+    
+    <!--  TimePicker  -->
+    <x:String x:Key="STRING_TIMEPICKER_HOUR_TEXT">時</x:String>
+    <x:String x:Key="STRING_TIMEPICKER_MINUTE_TEXT">分</x:String>
+    <x:String x:Key="STRING_TIMEPICKER_SECOND_TEXT">秒</x:String>
+    <x:String x:Key="STRING_TIMEPICKER_APPLY">套用</x:String>
+    
+    <!--  TextBox  -->
+    <x:String x:Key="STRING_MENU_CUT">剪下</x:String>
+    <x:String x:Key="STRING_MENU_COPY">複製</x:String>
+    <x:String x:Key="STRING_MENU_PASTE">貼上</x:String>
+    
+    <!--  Prompts  -->
+    <x:String x:Key="STRING_PROMPT_OK">確定</x:String>
+    <x:String x:Key="STRING_PROMPT_YES">是</x:String>
+    <x:String x:Key="STRING_PROMPT_NO">否</x:String>
+    <x:String x:Key="STRING_PROMPT_CANCEL">取消</x:String>
+    <x:String x:Key="STRING_PROMPT_APPLY">套用</x:String>
+    <x:String x:Key="STRING_PROMPT_IGNORE">忽略</x:String>
+    <x:String x:Key="STRING_PROMPT_RETRY">重試</x:String>
+    <x:String x:Key="STRING_PROMPT_ABORT">中止</x:String>
+    <x:String x:Key="STRING_PROMPT_CONTINUE">繼續</x:String>
+    <x:String x:Key="STRING_PROMPT_CLOSE">關閉</x:String>
+    
+    <x:String x:Key="STRING_SETTINGS_TOPNAV_SCROLL_LEFT_TIP">向左捲動</x:String>
+    <x:String x:Key="STRING_SETTINGS_TOPNAV_SCROLL_RIGHT_TIP">向右捲動</x:String>
+    
+    <x:String x:Key="STRING_IMAGE_VIEWER">圖片瀏覽器</x:String>
+</ResourceDictionary>

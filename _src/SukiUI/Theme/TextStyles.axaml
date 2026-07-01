@@ -1,0 +1,33 @@
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Styles.Resources>
+        <FontFamily x:Key="DefaultFontFamily">
+            avares://SukiUI/CustomFont#Alibaba PuHuiTi 3.0,
+            <!-- Windows 原生高兼容字体（UI适配优先） -->
+            Microsoft YaHei UI, Microsoft JhengHei UI, Segoe UI, 
+            <!-- macOS/iOS 原生字体 -->
+            PingFang SC, PingFang TC, SF Pro Text, STHeiti, 
+            <!-- Linux 原生/开源字体 -->
+            Noto Sans CJK SC, WenQuanYi Micro Hei, Ubuntu, 
+            <!-- 跨平台开源兜底（覆盖最全，含生僻字/多语种） -->
+            Noto Sans CJK SC, Noto Sans, 
+            <!-- 商用免费兜底（可选：阿里普惠体，补充生僻字） -->
+            Alibaba PuHuiTi 3, 
+            <!-- 终极兜底（避免方框） -->
+            SimHei, SimSun, Arial, Helvetica, sans-serif
+        </FontFamily>
+        <FontWeight x:Key="DefaultDemiBold">DemiBold</FontWeight>
+    </Styles.Resources>
+
+    <Design.PreviewWith>
+        <StackPanel Margin="20" Spacing="10">
+            <TextBlock Text="SukiUI default text" />
+            <SelectableTextBlock Text="SukiUI default text" />
+            <Button Content="SukiUI default text" />
+        </StackPanel>
+    </Design.PreviewWith>
+    <Style
+        Selector="TextBlock, SelectableTextBlock, TextBox, Button, RepeatButton, ToggleButton, RadioButton, SplitButton, ToggleSplitButton, DropDownButton, NumericUpDown">
+        <Setter Property="TextElement.FontFamily" Value="{DynamicResource DefaultFontFamily}" />
+    </Style>
+
+</Styles>

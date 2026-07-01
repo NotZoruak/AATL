@@ -1,0 +1,2100 @@
+﻿ <root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <data name="About" xml:space="preserve">
+        <value>關於我們</value>
+    </data>
+    <data name="AdbCaptureMode" xml:space="preserve">
+        <value>捕獲模式:</value>
+    </data>
+    <data name="AdbConfig" xml:space="preserve">
+        <value>額外參數</value>
+    </data>
+    <data name="AdbEditor" xml:space="preserve">
+        <value>Adb 編輯器</value>
+    </data>
+    <data name="AdbInput" xml:space="preserve">
+        <value>AdbInput (不推薦)</value>
+    </data>
+    <data name="AdbInputMode" xml:space="preserve">
+        <value>觸控模式:</value>
+    </data>
+    <data name="AdbName" xml:space="preserve">
+        <value>Adb名稱</value>
+    </data>
+    <data name="AdbPath" xml:space="preserve">
+        <value>Adb路徑</value>
+    </data>
+    <data name="AdbSerial" xml:space="preserve">
+        <value>Adb位址</value>
+    </data>
+    <data name="AdbAddressEmpty" xml:space="preserve">
+        <value>Adb 位址不能為空</value>
+    </data>
+    <data name="AddAbove" xml:space="preserve">
+        <value>新增至上方</value>
+    </data>
+    <data name="AddBelow" xml:space="preserve">
+        <value>新增至下方</value>
+    </data>
+    <data name="AddConfiguration" xml:space="preserve">
+        <value>新增</value>
+    </data>
+    <data name="AddTask" xml:space="preserve">
+        <value>新增任務</value>
+    </data>
+    <data name="AdvancedSetting" xml:space="preserve">
+        <value>進階</value>
+    </data>
+    <data name="AfterTaskOption" xml:space="preserve">
+        <value>結束後操作</value>
+    </data>
+    <data name="AllFilter" xml:space="preserve">
+        <value>所有檔案</value>
+    </data>
+    <data name="AllowAdbHardRestart" xml:space="preserve">
+        <value>連接失敗後嘗試重開 ADB 程式</value>
+    </data>
+    <data name="AllowAdbRestart" xml:space="preserve">
+        <value>連接失敗後嘗試重開 ADB 伺服器</value>
+    </data>
+    <data name="AnimatedBackgroundDescription" xml:space="preserve">
+        <value>啟用/停用背景動畫，動畫由當前活動效果驅動。</value>
+    </data>
+    <data name="AnimatedBackgroundTitle" xml:space="preserve">
+        <value>動態背景動畫</value>
+    </data>
+    <data name="Announcement" xml:space="preserve">
+        <value>公告</value>
+    </data>
+    <data name="ApplyControllerType" xml:space="preserve">
+        <value>選擇要套用的控制器類型</value>
+    </data>
+    <data name="ApplyingUpdate" xml:space="preserve">
+        <value>正在套用更新.....</value>
+    </data>
+    <data name="AppTitle" xml:space="preserve">
+        <value>MFA 任務管理器</value>
+    </data>
+    <data name="AutoDetect" xml:space="preserve">
+        <value>AutoDetect (自動偵測)</value>
+    </data>
+    <data name="AutomaticDetectionUpdate" xml:space="preserve">
+        <value>自動檢測更新</value>
+    </data>
+    <data name="AutomaticHide" xml:space="preserve">
+        <value>啟動 MFA 後直接隱藏</value>
+    </data>
+    <data name="AutomaticMinimize" xml:space="preserve">
+        <value>啟動 MFA 後直接最小化</value>
+    </data>
+    <data name="AutomaticUpdateMFA" xml:space="preserve">
+        <value>自動更新軟體</value>
+    </data>
+    <data name="AutomaticUpdateResource" xml:space="preserve">
+        <value>自動更新資源</value>
+    </data>
+    <data name="AutoStartOption" xml:space="preserve">
+        <value>啟動後操作</value>
+    </data>
+    <data name="BackgroundStyleDescription" xml:space="preserve">
+        <value>從內建背景樣式中選擇。</value>
+    </data>
+    <data name="BackgroundStyleTitle" xml:space="preserve">
+        <value>背景樣式</value>
+    </data>
+    <data name="BackgroundTransitionsDescription" xml:space="preserve">
+        <value>啟用/停用背景過渡效果，切換效果時會有漸變過渡。</value>
+    </data>
+    <data name="BackgroundTransitionsTitle" xml:space="preserve">
+        <value>背景過渡效果</value>
+    </data>
+    <data name="BaseTheme" xml:space="preserve">
+        <value>基本主題</value>
+    </data>
+    <data name="BlueStacks" xml:space="preserve">
+        <value>藍疊模擬器</value>
+    </data>
+    <data name="ButtonAdd" xml:space="preserve">
+        <value>新增</value>
+    </data>
+    <data name="ButtonCancel" xml:space="preserve">
+        <value>取消</value>
+    </data>
+    <data name="ButtonClear" xml:space="preserve">
+        <value>清空</value>
+    </data>
+    <data name="ButtonClose" xml:space="preserve">
+        <value>關閉</value>
+    </data>
+    <data name="ButtonSave" xml:space="preserve">
+        <value>儲存</value>
+    </data>
+    <data name="CannotStart" xml:space="preserve">
+        <value>無法啟動任務</value>
+    </data>
+    <data name="CaptureModeOption" xml:space="preserve">
+        <value>捕獲方式</value>
+    </data>
+    <data name="CheckMFA" xml:space="preserve">
+        <value>檢查軟體</value>
+    </data>
+    <data name="CheckUpdate" xml:space="preserve">
+        <value>檢查更新</value>
+    </data>
+    <data name="CheckResource" xml:space="preserve">
+        <value>檢查資源</value>
+    </data>
+    <data name="ClipboardDataError" xml:space="preserve">
+        <value>目前剪貼簿中資料不可轉換為文字</value>
+    </data>
+    <data name="CloseEmulator" xml:space="preserve">
+        <value>關閉模擬器</value>
+    </data>
+    <data name="CloseEmulatorAndMFA" xml:space="preserve">
+        <value>關閉模擬器和本程式</value>
+    </data>
+    <data name="CloseEmulatorAndRestartMFA" xml:space="preserve">
+        <value>重啟本程式並關閉模擬器</value>
+    </data>
+    <data name="CloseMFA" xml:space="preserve">
+        <value>關閉本程式</value>
+    </data>
+    <data name="CloseTargetProgram" xml:space="preserve">
+        <value>關閉目標程式</value>
+    </data>
+    <data name="CloseTargetProgramAndMFA" xml:space="preserve">
+        <value>關閉目標程式和本程式</value>
+    </data>
+    <data name="CloseTargetProgramAndRestartMFA" xml:space="preserve">
+        <value>重啟本程式並關閉目標程式</value>
+    </data>
+    <data name="ColorPickerTitle" xml:space="preserve">
+        <value>取色器</value>
+    </data>
+    <data name="ColorTheme" xml:space="preserve">
+        <value>顏色主題</value>
+    </data>
+    <data name="CommonSetting" xml:space="preserve">
+        <value>常規</value>
+    </data>
+    <data name="ConfigAddedSuccessfully" xml:space="preserve">
+        <value>配置 &lt;{0}&gt; 新增成功！</value>
+    </data>
+    <data name="ContactInfo" xml:space="preserve">
+        <value>聯絡方式</value>
+    </data>
+    <data name="ConfigNameAlreadyExists" xml:space="preserve">
+        <value>配置名稱 &lt;{0}&gt; 已存在！</value>
+    </data>
+    <data name="ConfigNameCannotBeEmpty" xml:space="preserve">
+        <value>配置文件名不能為空！</value>
+    </data>
+    <data name="ConfigurationName" xml:space="preserve">
+        <value>配置名稱</value>
+    </data>
+    <data name="Confirm" xml:space="preserve">
+        <value>確認</value>
+    </data>
+    <data name="ConfirmExitText" xml:space="preserve">
+        <value>確定要退出嗎？</value>
+    </data>
+    <data name="ConfirmExitTitle" xml:space="preserve">
+        <value>當前正在執行任務</value>
+    </data>
+    <data name="Connected" xml:space="preserve">
+        <value>已連接</value>
+    </data>
+    <data name="ConnectFailed" xml:space="preserve">
+        <value>連線失敗</value>
+    </data>
+    <data name="ConnectingEmulatorOrWindow" xml:space="preserve">
+        <value>連接{0}時發生錯誤！ </value>
+    </data>
+  <data name="ConnectingTo" xml:space="preserve">
+        <value>正在連接至{0}......</value>
+    </data>
+    <data name="ConnectingInProgress" xml:space="preserve">
+        <value>正在連接中，請稍候...</value>
+    </data>
+    <data name="Connection" xml:space="preserve">
+        <value>連接</value>
+    </data>
+    <data name="ConnectionSettings" xml:space="preserve">
+        <value>連接設定</value>
+    </data>
+    <data name="ControllerType" xml:space="preserve">
+        <value>控制器類型</value>
+    </data>
+    <data name="CopiedToClipboard" xml:space="preserve">
+        <value>已複製到剪貼簿</value>
+    </data>
+    <data name="Copy" xml:space="preserve">
+        <value>複製</value>
+    </data>
+    <data name="CopyErrorMessage" xml:space="preserve">
+        <value>複製錯誤訊息</value>
+    </data>
+    <data name="CopyKey" xml:space="preserve">
+        <value>複製鍵</value>
+    </data>
+    <data name="CopyValue" xml:space="preserve">
+        <value>複製值</value>
+    </data>
+    <data name="CurrentController" xml:space="preserve">
+        <value>當前控制器</value>
+    </data>
+    <data name="CurrentResourcesNotSupportGitHub" xml:space="preserve">
+        <value>該資源操作暫不支援 GitHub</value>
+    </data>
+    <data name="CurrentResourcesNotSupportMirror" xml:space="preserve">
+        <value>該資源操作暫不支援 Mirror醬</value>
+    </data>
+    <data name="Custom" xml:space="preserve">
+        <value>自訂</value>
+    </data>
+    <data name="Cut" xml:space="preserve">
+        <value>剪下</value>
+    </data>
+    <data name="DarkColor" xml:space="preserve">
+        <value>深色</value>
+    </data>
+    <data name="DebugMode" xml:space="preserve">
+        <value>[除錯模式]</value>
+    </data>
+    <data name="DebugModeWarning" xml:space="preserve">
+        <value>除錯模式已開啟。此模式會保存執行期間的截圖、操作資料及圖像識別可視化結果，可能會佔用大量的儲存空間！</value>
+    </data>
+    <data name="DashboardCardMaximize" xml:space="preserve">
+        <value>最大化</value>
+    </data>
+    <data name="DashboardCardRestore" xml:space="preserve">
+        <value>還原</value>
+    </data>
+    <data name="Delete" xml:space="preserve">
+        <value>刪除</value>
+    </data>
+    <data name="DeselectAll" xml:space="preserve">
+        <value>全部不選</value>
+    </data>
+    <data name="DingTalk" xml:space="preserve">
+        <value>釘釘</value>
+    </data>
+    <data name="DingTalkMessageAsync" xml:space="preserve">
+        <value>釘釘群發送訊息通知</value>
+    </data>
+    <data name="DownloadFailed" xml:space="preserve">
+        <value>新版本下載失敗</value>
+    </data>
+    <data name="Downloading" xml:space="preserve">
+        <value>下載中.....</value>
+    </data>
+    <data name="DuplicateTaskError" xml:space="preserve">
+        <value>Pipeline檔案中存在重複的任務名稱:"{0}"！</value>
+    </data>
+    <data name="DuplicateTaskNameError" xml:space="preserve">
+        <value>任務清單中已存在名稱為"{0}"的任務</value>
+    </data>
+    <data name="Edit" xml:space="preserve">
+        <value>編輯</value>
+    </data>
+    <data name="EditAttributeDialogTitle" xml:space="preserve">
+        <value>屬性編輯器</value>
+    </data>
+    <data name="EditControllerConfiguration" xml:space="preserve">
+        <value>編輯控制器配置</value>
+    </data>
+    <data name="EditTask" xml:space="preserve">
+        <value>編輯任務</value>
+    </data>
+    <data name="EditTaskDialog_AddAttribute_Tooltip" xml:space="preserve">
+        <value>新增屬性</value>
+    </data>
+    <data name="EditTaskDialog_ClearAttribute_Tooltip" xml:space="preserve">
+        <value>清空屬性</value>
+    </data>
+    <data name="EditTaskDialog_ClearTask_Tooltip" xml:space="preserve">
+        <value>清空任務</value>
+    </data>
+    <data name="EditTaskDialog_ColorExtraction_Tooltip" xml:space="preserve">
+        <value>取色</value>
+    </data>
+    <data name="EditTaskDialog_Header" xml:space="preserve">
+        <value>任務編輯器</value>
+    </data>
+    <data name="EditTaskDialog_Load_Tooltip" xml:space="preserve">
+        <value>匯入Pipeline檔案</value>
+    </data>
+    <data name="EditTaskDialog_PipelineFileName_Placeholder" xml:space="preserve">
+        <value>Pipeline檔案名稱</value>
+    </data>
+    <data name="EditTaskDialog_RecognitionText_Tooltip" xml:space="preserve">
+        <value>文字辨識</value>
+    </data>
+    <data name="EditTaskDialog_SavePipeline_Tooltip" xml:space="preserve">
+        <value>儲存Pipeline檔案</value>
+    </data>
+    <data name="EditTaskDialog_SaveTask_Button" xml:space="preserve">
+        <value>儲存任務名稱</value>
+    </data>
+    <data name="EditTaskDialog_Screenshot_Tooltip" xml:space="preserve">
+        <value>裁切圖片</value>
+    </data>
+    <data name="EditTaskDialog_SelectionRegion_Tooltip" xml:space="preserve">
+        <value>選擇區域</value>
+    </data>
+    <data name="EditTaskDialog_ShowChart_Button" xml:space="preserve">
+        <value>流程圖</value>
+    </data>
+    <data name="EditTaskDialog_Swipe_Tooltip" xml:space="preserve">
+        <value>滑動</value>
+    </data>
+    <data name="EditTaskDialog_TaskName_Title" xml:space="preserve">
+        <value>任務名稱:</value>
+    </data>
+    <data name="EditTaskDialog_Title" xml:space="preserve">
+        <value>任務編輯器</value>
+    </data>
+    <data name="EditTaskTooltip" xml:space="preserve">
+        <value>編輯任務</value>
+    </data>
+    <data name="Email" xml:space="preserve">
+        <value>電郵</value>
+    </data>
+    <data name="Emulator" xml:space="preserve">
+        <value>模擬器</value>
+    </data>
+    <data name="EmulatorDetectionStarted" xml:space="preserve">
+        <value>開始搜尋模擬器!</value>
+    </data>
+    <data name="EmulatorExtras" xml:space="preserve">
+        <value>EmulatorExtras (特化)</value>
+    </data>
+    <data name="EmulatorSelectionMessage" xml:space="preserve">
+        <value>已選擇模擬器:{0}</value>
+    </data>
+    <data name="EnableRecording" xml:space="preserve">
+            <value>啟用儲存錄像 (用於除錯)</value>
+        </data>
+    <data name="EnableSaveDraw" xml:space="preserve">
+            <value>啟用儲存截圖 (用於除錯)</value>
+        </data>
+    <data name="EnableSaveOnError" xml:space="preserve">
+            <value>啟用錯誤時儲存截圖 (用於除錯)</value>
+        </data>
+    <data name="EnterTaskName" xml:space="preserve">
+        <value>請輸入任務名稱</value>
+    </data>
+    <data name="Error" xml:space="preserve">
+        <value>錯誤</value>
+    </data>
+    <data name="ErrorDetails" xml:space="preserve">
+        <value>詳細資料</value>
+    </data>
+    <data name="ErrorFeedbackLinkText" xml:space="preserve">
+        <value>建立 GitHub issue</value>
+    </data>
+    <data name="ErrorProlog" xml:space="preserve">
+        <value>MFA 遇到了問題</value>
+    </data>
+    <data name="ExeFilter" xml:space="preserve">
+        <value>可執行檔案</value>
+    </data>
+    <data name="ExternalNotificationBotToken" xml:space="preserve">
+        <value>機器人 Token</value>
+    </data>
+    <data name="ExternalNotificationDingTalkSecret" xml:space="preserve">
+        <value>釘釘 Secret</value>
+    </data>
+    <data name="ExternalNotificationDingTalkToken" xml:space="preserve">
+        <value>釘釘 Token</value>
+    </data>
+    <data name="ExternalNotificationDiscordChannelId" xml:space="preserve">
+        <value>頻道 ID</value>
+    </data>
+    <data name="ExternalNotificationDiscordUserId" xml:space="preserve">
+        <value>用戶 ID</value>
+    </data>
+    <data name="ExternalNotificationDiscordWebhookName" xml:space="preserve">
+        <value>Webhook 名稱</value>
+    </data>
+    <data name="ExternalNotificationEmailAccount" xml:space="preserve">
+        <value>電郵 帳戶</value>
+    </data>
+    <data name="ExternalNotificationEmailSecret" xml:space="preserve">
+        <value>電郵 Secret</value>
+    </data>
+    <data name="ExternalNotificationEnabled" xml:space="preserve">
+        <value>啟用的通知配置</value>
+    </data>
+    <data name="ExternalNotificationLarkID" xml:space="preserve">
+        <value>飛書 ID</value>
+    </data>
+    <data name="ExternalNotificationQmsgBot" xml:space="preserve">
+        <value>機器人 QQ</value>
+    </data>
+    <data name="ExternalNotificationQmsgKey" xml:space="preserve">
+        <value>Qmsg Key</value>
+    </data>
+    <data name="ExternalNotificationQmsgServer" xml:space="preserve">
+        <value>伺服器地址</value>
+    </data>
+    <data name="ExternalNotificationQmsgUser" xml:space="preserve">
+        <value>用戶QQ</value>
+    </data>
+    <data name="ExternalNotificationSendTest" xml:space="preserve">
+        <value>發送測試</value>
+    </data>
+    <data name="ExternalNotificationSettings" xml:space="preserve">
+        <value>外部通知</value>
+    </data>
+    <data name="ExternalNotificationSmtpAuth" xml:space="preserve">
+        <value>需要登入</value>
+    </data>
+    <data name="ExternalNotificationSmtpFrom" xml:space="preserve">
+        <value>寄件人</value>
+    </data>
+    <data name="ExternalNotificationSmtpPassword" xml:space="preserve">
+        <value>密碼</value>
+    </data>
+    <data name="ExternalNotificationSmtpPort" xml:space="preserve">
+        <value>埠</value>
+    </data>
+    <data name="ExternalNotificationSmtpServer" xml:space="preserve">
+        <value>SMTP 伺服器</value>
+    </data>
+    <data name="ExternalNotificationSmtpSsl" xml:space="preserve">
+        <value>使用 SSL</value>
+    </data>
+    <data name="ExternalNotificationSmtpTo" xml:space="preserve">
+        <value>收件人</value>
+    </data>
+    <data name="ExternalNotificationSmtpUser" xml:space="preserve">
+        <value>用戶名</value>
+    </data>
+    <data name="ExternalNotificationTelegramChatId" xml:space="preserve">
+        <value>聊天 ID</value>
+    </data>
+    <data name="ExternalNotificationTips" xml:space="preserve">
+        <value>請注意：外部通知功能目前僅會發送「所有任務完成」 的通知。</value>
+    </data>
+    <data name="ExternalNotificationWebhookUrl" xml:space="preserve">
+            <value>Webhook Url</value>
+        </data>
+    <data name="CustomWebhook" xml:space="preserve">
+            <value>自訂 Webhook</value>
+        </data>
+    <data name="ExternalNotificationCustomWebhookContentType" xml:space="preserve">
+            <value>Content-Type</value>
+        </data>
+    <data name="ExternalNotificationCustomWebhookPayloadTemplate" xml:space="preserve">
+            <value>Payload 範本</value>
+        </data>
+    <data name="ExternalNotificationCustomWebhookPayloadTemplateDescription" xml:space="preserve">
+            <value>使用 {{message}} 作為訊息佔位符，例如: {{"message": "{{message}}"}}</value>
+        </data>
+    <data name="ExternalNotificationWxPusherUID" xml:space="preserve">
+        <value>用戶 UID</value>
+    </data>
+    <data name="FailToGetCurrentVersionInfo" xml:space="preserve">
+        <value>獲取當前版本資訊失敗，無法更新。</value>
+    </data>
+    <data name="FailToGetDownloadUrl" xml:space="preserve">
+        <value>無法獲取資源下載連結，更新失敗。</value>
+    </data>
+    <data name="FailToGetLatestVersionInfo" xml:space="preserve">
+        <value>獲取最新版本資訊失敗</value>
+    </data>
+    <data name="FollowingSystem" xml:space="preserve">
+        <value>跟隨系統</value>
+    </data>
+    <data name="ForceScheduledStart" xml:space="preserve">
+        <value>強制定時啟動</value>
+    </data>
+    <data name="ForceScheduledStartTip" xml:space="preserve">
+        <value>停止當前任務，並在停止完成後開始新任務</value>
+    </data>
+    <data name="GameResourceUpdated" xml:space="preserve">
+        <value>遊戲資源已更新，請重啟軟體。</value>
+    </data>
+    <data name="General" xml:space="preserve">
+        <value>通用模式</value>
+    </data>
+    <data name="GettingLatestMaaFW" xml:space="preserve">
+        <value>正在獲取最新框架.....</value>
+    </data>
+    <data name="GettingLatestResources" xml:space="preserve">
+        <value>正在獲取最新資源.....</value>
+    </data>
+    <data name="GettingLatestSoftware" xml:space="preserve">
+        <value>正在獲取最新軟體.....</value>
+    </data>
+    <data name="Github" xml:space="preserve">
+        <value>原始碼: GitHub</value>
+    </data>
+    <data name="GlobalConfigTip" xml:space="preserve">
+        <value>此選項頁為全域配置</value>
+    </data>
+    <data name="InstanceConfigTip" xml:space="preserve">
+        <value>此選項頁為實例配置，當前實例：</value>
+    </data>
+    <data name="GpuOptionAuto" xml:space="preserve">
+        <value>自動</value>
+    </data>
+    <data name="GpuOptionDisable" xml:space="preserve">
+        <value>不使用</value>
+    </data>
+    <data name="HardRestartAdb" xml:space="preserve">
+        <value>正在嘗試重開 ADB 程式</value>
+    </data>
+    <data name="Hide" xml:space="preserve">
+        <value>隱藏</value>
+    </data>
+    <data name="Home" xml:space="preserve">
+        <value>主頁</value>
+    </data>
+    <data name="HotKeyChangingTip" xml:space="preserve">
+        <value>鍵入 退格/Esc/Delete 清除當前快速鍵</value>
+    </data>
+    <data name="HotKeyLinkStart" xml:space="preserve">
+        <value>[快速鍵] 開始/停止任務</value>
+    </data>
+    <data name="HotKeyNotSet" xml:space="preserve">
+        <value>未設定</value>
+    </data>
+    <data name="HotKeyOccupiedWarning" xml:space="preserve">
+        <value>⚠️ 該快速鍵已被佔用</value>
+    </data>
+    <data name="HotKeyOccupiedBy" xml:space="preserve">
+        <value>⚠️ 該快速鍵已被 {0} 佔用</value>
+    </data>
+    <data name="HotKeyPressing" xml:space="preserve">
+        <value>按下任意鍵...</value>
+    </data>
+    <data name="UnknownItem" xml:space="preserve">
+        <value>未知項</value>
+    </data>
+    <data name="GlobalConfigFileAccessError" xml:space="preserve">
+        <value>全域配置檔無法存取：{0}\n佔用/錯誤詳情：{1}</value>
+    </data>
+    <data name="GlobalConfigFileReasonUnknown" xml:space="preserve">
+        <value>未知原因</value>
+    </data>
+    <data name="HotKeySettings" xml:space="preserve">
+        <value>快速鍵設定</value>
+    </data>
+    <data name="HotKeyShowGui" xml:space="preserve">
+        <value>[快速鍵] 顯示/隱藏軟體</value>
+    </data>
+    <data name="ImageBrowserTitle" xml:space="preserve">
+        <value>圖片瀏覽器</value>
+    </data>
+    <data name="ImageFilter" xml:space="preserve">
+        <value>圖片檔 (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp</value>
+    </data>
+    <data name="InitControllerFailed" xml:space="preserve">
+        <value>初始化控制器時發生錯誤！ </value>
+    </data>
+    <data name="InitControllerSuccess" xml:space="preserve">
+        <value>初始化控制器成功</value>
+    </data>
+    <data name="InitInstanceFailed" xml:space="preserve">
+        <value>初始化MAA實例失敗，發生連線錯誤或資源檔案損壞，請參閱記錄.</value>
+    </data>
+    <data name="InitResourcesSuccess" xml:space="preserve">
+        <value>載入資源成功</value>
+    </data>
+    <data name="InputModeOption" xml:space="preserve">
+        <value>觸控模式</value>
+    </data>
+    <data name="Issue" xml:space="preserve">
+        <value>問題回饋</value>
+    </data>
+    <data name="JSONFilter" xml:space="preserve">
+        <value>JSON 檔案 (*.json)|*.json|所有檔案 (*.*)|*.*</value>
+    </data>
+    <data name="LabelPropertyType" xml:space="preserve">
+        <value>屬性類型:</value>
+    </data>
+    <data name="LanguageOption" xml:space="preserve">
+        <value>語言(Language)</value>
+    </data>
+    <data name="LanguageOptionDescription" xml:space="preserve">
+        <value>選擇應用程式的顯示語言，變更將立即生效。</value>
+    </data>
+    <data name="LanguageSettings" xml:space="preserve">
+        <value>語言設定</value>
+    </data>
+    <data name="Lark" xml:space="preserve">
+        <value>飛書</value>
+    </data>
+    <data name="LDPlayer" xml:space="preserve">
+        <value>雷電模擬器</value>
+    </data>
+    <data name="LicenseInfo" xml:space="preserve">
+        <value>許可證</value>
+    </data>
+    <data name="LightColor" xml:space="preserve">
+        <value>淺色</value>
+    </data>
+    <data name="Load" xml:space="preserve">
+        <value>匯入</value>
+    </data>
+    <data name="LoadFileTitle" xml:space="preserve">
+        <value>選擇 任意 檔案</value>
+    </data>
+    <data name="LoadImageTitle" xml:space="preserve">
+        <value>選擇圖片檔</value>
+    </data>
+    <data name="LoadingController" xml:space="preserve">
+        <value>正在初始化控制器</value>
+    </data>
+    <data name="LoadingResources" xml:space="preserve">
+        <value>正在載入資源</value>
+    </data>
+    <data name="LoadPipelineErrorMessage" xml:space="preserve">
+        <value>Pipeline檔案載入或解析失敗: {0}</value>
+    </data>
+    <data name="LoadPipelineTitle" xml:space="preserve">
+        <value>選擇 Pipeline 檔案</value>
+    </data>
+    <data name="LoadResourcesFailed" xml:space="preserve">
+        <value>資源載入失敗！</value>
+    </data>
+    <data name="LogRecord" xml:space="preserve">
+        <value>記錄</value>
+    </data>
+    <data name="MaaFwIsLatestVersion" xml:space="preserve">
+        <value>框架已為最新版本！</value>
+    </data>
+    <data name="MaaFWVersion" xml:space="preserve">
+        <value>框架版本</value>
+    </data>
+    <data name="MaaTouch" xml:space="preserve">
+        <value>MaaTouch (實驗功能)</value>
+    </data>
+    <data name="MFAIsLatestVersion" xml:space="preserve">
+        <value>軟體已為最新版本！</value>
+    </data>
+    <data name="MinimizeToTray" xml:space="preserve">
+            <value>最小化時隱藏至工作列</value>
+        </data>
+    <data name="MinimizeToTrayDescription" xml:space="preserve">
+            <value>啟用後，點擊最小化按鈕時視窗將隱藏到系統工作列而不是工作列。</value>
+        </data>
+    <data name="MiniTouch" xml:space="preserve">
+            <value>MiniTouch (舊)</value>
+        </data>
+    <data name="MirrorAutoUpdatePrompt" xml:space="preserve">
+        <value>請購買 Mirror 醬服務以實現自動更新，或將下載源切換至 GitHub</value>
+    </data>
+    <data name="MirrorChyan" xml:space="preserve">
+        <value>Mirror 醬</value>
+    </data>
+    <data name="MirrorUseLimitReached" xml:space="preserve">
+        <value>Mirror 醬的使用已達到上限</value>
+    </data>
+    <data name="MuMuEmulator12" xml:space="preserve">
+        <value>MuMu模擬器12</value>
+    </data>
+    <data name="NewVersionAvailableLatestVersion" xml:space="preserve">
+        <value>有新版本可用！最新版本:</value>
+    </data>
+    <data name="NewVersionDownloadCompletedTitle" xml:space="preserve">
+        <value>新版本下載完成</value>
+    </data>
+    <data name="NewVersionFoundDescDownloading" xml:space="preserve">
+        <value>正在背景下載……</value>
+    </data>
+    <data name="No" xml:space="preserve">
+        <value>否</value>
+    </data>
+    <data name="NoEmulatorFound" xml:space="preserve">
+        <value>未找到模擬器！</value>
+    </data>
+    <data name="NoEmulatorFoundPlaceholder" xml:space="preserve">
+        <value>未找到模擬器</value>
+    </data>
+    <data name="None" xml:space="preserve">
+        <value>無</value>
+    </data>
+    <data name="NoTaskToStop" xml:space="preserve">
+        <value>目前沒有可結束的任務!</value>
+    </data>
+    <data name="NoWindowFound" xml:space="preserve">
+        <value>未找到視窗!</value>
+    </data>
+    <data name="NoWindowFoundPlaceholder" xml:space="preserve">
+        <value>未找到視窗</value>
+    </data>
+    <data name="Nox" xml:space="preserve">
+        <value>夜神模擬器</value>
+    </data>
+    <data name="Off" xml:space="preserve">
+        <value>關閉</value>
+    </data>
+    <data name="Ok" xml:space="preserve">
+        <value>好的</value>
+    </data>
+    <data name="OperateController" xml:space="preserve">
+        <value>選擇要操作的控制器</value>
+    </data>
+    <data name="PleaseSelectEmulator" xml:space="preserve">
+        <value>請選擇模擬器</value>
+    </data>
+    <data name="PleaseSelectWindow" xml:space="preserve">
+        <value>請選擇視窗</value>
+    </data>
+    <data name="Paste" xml:space="preserve">
+        <value>貼上</value>
+    </data>
+    <data name="PasteAbove" xml:space="preserve">
+        <value>貼到上方</value>
+    </data>
+    <data name="PasteBelow" xml:space="preserve">
+        <value>貼到下方</value>
+    </data>
+    <data name="PerformanceSettings" xml:space="preserve">
+        <value>效能設定</value>
+    </data>
+    <data name="PerformanceBenchmark" xml:space="preserve">
+        <value>效能基準</value>
+    </data>
+    <data name="PipelineLoadError" xml:space="preserve">
+        <value>載入Pipeline檔案時發生錯誤: {0}</value>
+    </data>
+    <data name="Postscript" xml:space="preserve">
+        <value>結束後腳本</value>
+    </data>
+    <data name="Prescript" xml:space="preserve">
+        <value>開始前腳本</value>
+    </data>
+    <data name="ProjectDescription" xml:space="preserve">
+        <value>項目介紹</value>
+    </data>
+    <data name="ProjectLink" xml:space="preserve">
+        <value>項目連結: </value>
+    </data>
+    <data name="PurchaseLink" xml:space="preserve">
+        <value>關於Mirror醬</value>
+    </data>
+    <data name="Quit" xml:space="preserve">
+        <value>退出</value>
+    </data>
+    <data name="RegionSelectorTitle" xml:space="preserve">
+        <value>區域選擇器</value>
+    </data>
+    <data name="RegisterCustomAction" xml:space="preserve">
+        <value>註冊自訂Action:{0}</value>
+    </data>
+    <data name="RegisterCustomRecognizer" xml:space="preserve">
+        <value>註冊自訂Recognizer:{0}</value>
+    </data>
+    <data name="RegisteringCustomAction" xml:space="preserve">
+        <value>正在註冊自訂行動</value>
+    </data>
+    <data name="RegisteringCustomRecognizer" xml:space="preserve">
+        <value>正在註冊自訂識別器</value>
+    </data>
+    <data name="RememberAdb" xml:space="preserve">
+        <value>記住連線</value>
+    </data>
+    <data name="RepeatOption" xml:space="preserve">
+        <value>重複次數</value>
+    </data>
+    <data name="RescanController" xml:space="preserve">
+        <value>重新掃描控制器</value>
+    </data>
+    <data name="ResourceDownloadSource" xml:space="preserve">
+        <value>下載源</value>
+    </data>
+    <data name="ResourceLink" xml:space="preserve">
+        <value>資源連結: </value>
+    </data>
+    <data name="ResourceName" xml:space="preserve">
+        <value>資源名稱</value>
+    </data>
+    <data name="GlobalOption" xml:space="preserve">
+        <value>全域任務配置</value>
+    </data>
+    <data name="ControllerPresetConfig" xml:space="preserve">
+        <value>控制器預設配置</value>
+    </data>
+    <data name="ResourceOption" xml:space="preserve">
+        <value>資源類型</value>
+    </data>
+    <data name="ResourcesAreLatestVersion" xml:space="preserve">
+        <value>資源已為最新版本！</value>
+    </data>
+    <data name="ResourceVersion" xml:space="preserve">
+        <value>資源版本</value>
+    </data>
+    <data name="Restart" xml:space="preserve">
+        <value>重新啟動</value>
+    </data>
+    <data name="RestartAdb" xml:space="preserve">
+        <value>正在嘗試重開 ADB 伺服器</value>
+    </data>
+    <data name="RestartMFA" xml:space="preserve">
+        <value>重啟MFA</value>
+    </data>
+    <data name="RestartPC" xml:space="preserve">
+        <value>重啟電腦</value>
+    </data>
+    <data name="RetryOnDisconnected" xml:space="preserve">
+        <value>ADB 連線失敗時嘗試啟動模擬器</value>
+    </data>
+    <data name="RetryOnDisconnectedWin32" xml:space="preserve">
+        <value>Win32 連線失敗時嘗試啟動遊戲</value>
+    </data>
+    <data name="AutoDetectOnConnectionFailed" xml:space="preserve">
+        <value>連線失敗時自動重新搜尋可用裝置</value>
+    </data>
+    <data name="AutoConnectAfterRefresh" xml:space="preserve">
+        <value>重新整理裝置列表後自動連線</value>
+    </data>
+    <data name="RunningSettings" xml:space="preserve">
+        <value>執行設定</value>
+    </data>
+    <data name="SaveFailureMessage" xml:space="preserve">
+        <value>儲存任務失敗!</value>
+    </data>
+    <data name="SavePipelineSuccess" xml:space="preserve">
+        <value>儲存成功！ </value>
+    </data>
+    <data name="SavePipelineWarning" xml:space="preserve">
+        <value>任務清單中存在相同名稱的任務!</value>
+    </data>
+    <data name="SaveSuccessMessage" xml:space="preserve">
+        <value>儲存任務成功!</value>
+    </data>
+    <data name="ScheduleSettings" xml:space="preserve">
+        <value>定時執行</value>
+    </data>
+    <data name="ScreencapCost" xml:space="preserve">
+        <value>截圖耗時: {0}ms({1})</value>
+    </data>
+    <data name="ScreencapErrorTip" xml:space="preserve">
+        <value>截圖用時過長: {0}ms({1})</value>
+    </data>
+    <data name="ScreencapWarningTip" xml:space="preserve">
+        <value>截圖用時較長: {0}ms({1})</value>
+    </data>
+    <data name="ScreencapTimeoutAbort" xml:space="preserve">
+        <value>截圖逾時，已中斷任務</value>
+    </data>
+    <data name="ScreencapTimeoutDisconnected" xml:space="preserve">
+        <value>截圖逾時，已斷開連線</value>
+    </data>
+    <data name="Select" xml:space="preserve">
+        <value>選擇</value>
+    </data>
+    <data name="SelectAll" xml:space="preserve">
+        <value>全選</value>
+    </data>
+    <data name="SelectExecutableFile" xml:space="preserve">
+        <value>選擇可執行檔案</value>
+    </data>
+    <data name="SelectExistingImage" xml:space="preserve">
+        <value>選擇一張已有圖片</value>
+    </data>
+    <data name="Settings" xml:space="preserve">
+        <value>設定</value>
+    </data>
+    <data name="Show" xml:space="preserve">
+        <value>顯示</value>
+    </data>
+    <data name="ShowDisclaimerNoMore" xml:space="preserve">
+        <value>下次更新前不再提示</value>
+    </data>
+    <data name="ShowHitDraw" xml:space="preserve">
+        <value>顯示節點命中截圖（用於除錯）</value>
+    </data>
+    <data name="ShutDown" xml:space="preserve">
+        <value>關機</value>
+    </data>
+    <data name="ShutDownOnce" xml:space="preserve">
+        <value>關機（僅一次）</value>
+    </data>
+    <data name="SliderControlTitle" xml:space="preserve">
+        <value>滑動獲取器</value>
+    </data>
+    <data name="SoftwarePath" xml:space="preserve">
+        <value>模擬器路徑</value>
+    </data>
+    <data name="SoftwareUpdate" xml:space="preserve">
+        <value>軟體更新</value>
+    </data>
+    <data name="SoftwareVersion" xml:space="preserve">
+        <value>軟體版本</value>
+    </data>
+    <data name="StartTask" xml:space="preserve">
+        <value>開始任務</value>
+    </data>
+    <data name="StartupParameter" xml:space="preserve">
+        <value>啟動參數</value>
+    </data>
+    <data name="StartupScript" xml:space="preserve">
+        <value>啟動腳本</value>
+    </data>
+    <data name="StartupSettings" xml:space="preserve">
+        <value>啟動設定</value>
+    </data>
+    <data name="StartupSoftware" xml:space="preserve">
+        <value>啟動遊戲</value>
+    </data>
+    <data name="StartupSoftwareAndScript" xml:space="preserve">
+            <value>啟動遊戲並啟動腳本</value>
+        </data>
+    <data name="StartupScriptOnly" xml:space="preserve">
+            <value>僅啟動腳本</value>
+        </data>
+    <data name="Stopping" xml:space="preserve">
+            <value>正在停止......</value>
+        </data>
+    <data name="StoppingFailed" xml:space="preserve">
+        <value>停止任務失敗</value>
+    </data>
+    <data name="StopTask" xml:space="preserve">
+        <value>停止任務</value>
+    </data>
+    <data name="SwitchConfiguration" xml:space="preserve">
+        <value>切換配置</value>
+    </data>
+    <data name="SwitchLanguage" xml:space="preserve">
+        <value>切換語言 🌐</value>
+    </data>
+    <data name="TabADB" xml:space="preserve">
+        <value>模擬器</value>
+    </data>
+    <data name="TabWin32" xml:space="preserve">
+        <value>桌面應用</value>
+    </data>
+    <data name="TabPlayCover" xml:space="preserve">
+        <value>PlayCover</value>
+    </data>
+    <data name="Task" xml:space="preserve">
+        <value>任務</value>
+    </data>
+    <data name="TaskAbandoned" xml:space="preserve">
+        <value>已放棄本次任務</value>
+    </data>
+    <data name="TaskAllCompleted" xml:space="preserve">
+        <value>任務已全部完成！ </value>
+    </data>
+    <data name="TaskAllCompletedWithTime" xml:space="preserve">
+        <value>任務已全部完成！ \n(用時 {0}h {1}m {2}s)</value>
+    </data>
+    <data name="TaskCompleted" xml:space="preserve">
+        <value>任務已完成</value>
+    </data>
+    <data name="TaskDescription" xml:space="preserve">
+        <value>任務說明</value>
+    </data>
+    <data name="TaskList" xml:space="preserve">
+        <value>任務清單</value>
+    </data>
+    <data name="TaskNotFoundError" xml:space="preserve">
+        <value>Pipeline檔案中任務"{0}"的{1}使用了不存在的任務:"{2}"！</value>
+    </data>
+    <data name="TaskSettings" xml:space="preserve">
+        <value>任務設定</value>
+    </data>
+    <data name="TaskStackError" xml:space="preserve">
+        <value>辨識{0}時發生錯誤: {1}</value>
+    </data>
+    <data name="TaskStart" xml:space="preserve">
+        <value>開始任務: {0}</value>
+    </data>
+    <data name="TaskStopped" xml:space="preserve">
+        <value>任務已中止</value>
+    </data>
+    <data name="TaskAddedToast" xml:space="preserve">
+        <value>已新增 {0} 任務</value>
+    </data>
+    <data name="TaskDeletedToast" xml:space="preserve">
+        <value>已刪除 {0} 任務</value>
+    </data>
+    <data name="TextRecognizerTitle" xml:space="preserve">
+        <value>文字辨識器</value>
+    </data>
+    <data name="ThemeOption" xml:space="preserve">
+        <value>介面主題</value>
+    </data>
+    <data name="ThemeSettings" xml:space="preserve">
+        <value>主題設定</value>
+    </data>
+    <data name="Timer" xml:space="preserve">
+        <value>定時</value>
+    </data>
+    <data name="TimerAction" xml:space="preserve">
+        <value>操作類型</value>
+    </data>
+    <data name="TimerCustomConfig" xml:space="preserve">
+        <value>自定義配置選擇</value>
+    </data>
+    <data name="TimerCustomConfigTip" xml:space="preserve">
+        <value>開啟後，定時任務將按各自選擇的配置執行，而不是使用目前啟用的配置</value>
+    </data>
+    <data name="Tip" xml:space="preserve">
+        <value>提示</value>
+    </data>
+    <data name="TooltipDragLabel" xml:space="preserve">
+        <value>標籤順序可拖動</value>
+    </data>
+    <data name="TooltipRefresh" xml:space="preserve">
+        <value>刷新</value>
+    </data>
+    <data name="TryToReconnect" xml:space="preserve">
+        <value>正在嘗試重連</value>
+    </data>
+    <data name="TryToStartEmulator" xml:space="preserve">
+        <value>正在嘗試啟動模擬器</value>
+    </data>
+    <data name="TryToStartGame" xml:space="preserve">
+        <value>正在嘗試啟動遊戲</value>
+    </data>
+    <data name="UiSettings" xml:space="preserve">
+        <value>介面設定</value>
+    </data>
+    <data name="Unconnected" xml:space="preserve">
+        <value>未連接</value>
+    </data>
+    <data name="Update" xml:space="preserve">
+        <value>更新</value>
+    </data>
+    <data name="UpdateCompleted" xml:space="preserve">
+        <value>更新完成</value>
+    </data>
+    <data name="UpdateMaaFW" xml:space="preserve">
+        <value>框架更新</value>
+    </data>
+    <data name="UpdateResource" xml:space="preserve">
+        <value>資源更新</value>
+    </data>
+    <data name="UpdateSettings" xml:space="preserve">
+        <value>更新設定</value>
+    </data>
+    <data name="UseGpuForInference" xml:space="preserve">
+        <value>使用 GPU 加速推理</value>
+    </data>
+    <data name="WaitSoftware" xml:space="preserve">
+        <value>啟動後連線嘗試時長(秒)</value>
+    </data>
+    <data name="WaitSoftwareDescription" xml:space="preserve">
+        <value>啟動軟體後，會在此時長內持續嘗試連線；連線成功後再等待 5 秒並自動開始任務。</value>
+    </data>
+    <data name="WaitSoftwareTime" xml:space="preserve">
+        <value>啟動{0}後將在 {1} 秒內持續嘗試連線</value>
+    </data>
+    <data name="StartupConnectRetrying" xml:space="preserve">
+        <value>正在嘗試連線{0}，剩餘 {1} 秒</value>
+    </data>
+    <data name="StartupConnectSucceededDelay" xml:space="preserve">
+        <value>已連線到{0}，5 秒後開始任務</value>
+    </data>
+    <data name="Warning_CannotConnect" xml:space="preserve">
+        <value>無法連線至{0}</value>
+    </data>
+    <data name="Window" xml:space="preserve">
+        <value>視窗</value>
+    </data>
+    <data name="WindowDetectionStarted" xml:space="preserve">
+        <value>開始搜尋視窗!</value>
+    </data>
+    <data name="WindowSelectionMessage" xml:space="preserve">
+        <value>已選擇視窗:{0}</value>
+    </data>
+    <data name="WorkflowDiagramTitle" xml:space="preserve">
+        <value>任務流程圖</value>
+    </data>
+    <data name="WxPusher" xml:space="preserve">
+        <value>微信公眾號</value>
+    </data>
+    <data name="Yes" xml:space="preserve">
+        <value>是</value>
+    </data>
+    <data name="CurrentConfig" xml:space="preserve">
+        <value>當前配置</value>
+    </data>
+    <data name="ViewOrSwitchConfig" xml:space="preserve">
+        <value>查看或切換已存在的配置方案</value>
+    </data>
+    <data name="NewConfigName" xml:space="preserve">
+        <value>新增配置名稱</value>
+    </data>
+    <data name="SetUniqueIdentifier" xml:space="preserve">
+        <value>為自定義配置設定唯一識別字</value>
+    </data>
+    <data name="CreateNewConfig" xml:space="preserve">
+        <value>新增配置</value>
+    </data>
+    <data name="CreateFromCurrent" xml:space="preserve">
+        <value>基於當前配置創建新範本</value>
+    </data>
+    <data name="TriggerTime" xml:space="preserve">
+        <value>	觸發時間</value>
+    </data>
+    <data name="SelectedConfig" xml:space="preserve">
+        <value>	選用配置</value>
+    </data>
+    <data name="ExternalNotificationOneBotKey" xml:space="preserve">
+        <value>Key</value>
+    </data>
+    <data name="ExternalNotificationOneBotServer" xml:space="preserve">
+        <value>Server</value>
+    </data>
+    <data name="ExternalNotificationOneBotUser" xml:space="preserve">
+        <value>用戶QQ</value>
+    </data>
+    <data name="CreateCustomTheme" xml:space="preserve">
+        <value>創建自定義主題</value>
+    </data>
+    <data name="ConfigurePrimaryAccent" xml:space="preserve">
+        <value>配置主色調與強調色組合，並套用至應用程式</value>
+    </data>
+    <data name="CustomThemeName" xml:space="preserve">
+        <value>主題名稱</value>
+    </data>
+    <data name="CustomThemePrimaryColor" xml:space="preserve">
+        <value>主色調</value>
+    </data>
+    <data name="CustomThemeAccentColor" xml:space="preserve">
+        <value>強調色</value>
+    </data>
+    <data name="ColorThemeAlreadyExists" xml:space="preserve">
+        <value>該顏色主題已存在</value>
+    </data>
+    <data name="Later" xml:space="preserve">
+        <value>以後</value>
+    </data>
+    <data name="ErrorWhenCheck" xml:space="preserve">
+        <value>檢查{0}最新版時發生錯誤</value>
+    </data>
+    <data name="Resource" xml:space="preserve">
+        <value>資源</value>
+    </data>
+    <data name="MirrorCdkExpired" xml:space="preserve">
+        <value>CDK 已過期，請續費後重試</value>
+    </data>
+    <data name="MirrorCdkInvalid" xml:space="preserve">
+        <value>CDK 無效，請檢查輸入</value>
+    </data>
+    <data name="MirrorCdkMismatch" xml:space="preserve">
+        <value>CDK 類型與資源不匹配</value>
+    </data>
+    <data name="Monitor" xml:space="preserve">
+        <value>總控台</value>
+    </data>
+    <data name="StartingAgent" xml:space="preserve">
+        <value>正在啟動 Agent（耗時可能較久）</value>
+    </data>
+    <data name="AgentStartFailed" xml:space="preserve">
+        <value>Agent啟動失敗</value>
+    </data>
+    <data name="AgentTcpMode" xml:space="preserve">
+        <value>通訊相容模式</value>
+    </data>
+    <data name="AgentTcpModeDescription" xml:space="preserve">
+        <value>若啟動任務後軟體立即閃退，可嘗試開啟。僅限此情況使用，否則會影響運行效率</value>
+    </data>
+    <data name="AgentExecutableNotFound" xml:space="preserve">
+        <value>Agent 可執行文件不存在: {0}</value>
+    </data>
+    <data name="Optional" xml:space="preserve">
+        <value>可選</value>
+    </data>
+    <data name="ExternalNotificationEnableCustomNotificationMessage" xml:space="preserve">
+        <value>啟用自訂通知訊息</value>
+    </data>
+    <data name="ExternalNotificationCustomNotificationContent" xml:space="preserve">
+        <value>自訂通知內容</value>
+    </data>
+    <data name="ExternalNotificationTest" xml:space="preserve">
+        <value>這是一個發送測試</value>
+    </data>
+    <data name="GlobalHotkeyServiceError" xml:space="preserve">
+        <value>全域快速鍵服務載入失敗</value>
+        <data name="MultiInstanceModeGlobalHotkeyDisabled" xml:space="preserve">
+        <value>多實例模式：全域快速鍵已停用</value>
+    </data>
+    </data>
+    <data name="UpcomingChanges" xml:space="preserve">
+        <value>即將發生的變更</value>
+    </data>
+    <data name="TaskFailed" xml:space="preserve">
+        <value>任務運行失敗！</value>
+    </data>
+    <data name="ExternalNotificationCustomNotificationContentSuccess" xml:space="preserve">
+        <value>自訂成功通知內容</value>
+    </data>
+    <data name="ExternalNotificationCustomNotificationContentFailure" xml:space="preserve">
+        <value>自訂失敗通知內容</value>
+    </data>
+    <data name="BetaVersion" xml:space="preserve">
+        <value>公測版</value>
+    </data>
+    <data name="StableVersion" xml:space="preserve">
+        <value>正式版</value>
+    </data>
+    <data name="ResourceUpdateChannel" xml:space="preserve">
+        <value>資源更新渠道</value>
+    </data>
+    <data name="UpdateLog" xml:space="preserve">
+        <value>更新日誌</value>
+    </data>
+    <data name="ProxySettings" xml:space="preserve">
+        <value>代理設定</value>
+    </data>
+    <data name="UiVersionBelowResourceRequirement" xml:space="preserve">
+        <value>當前界面版本 {0} 低於資源要求的最低版本 {1}，部分功能將無法正常使用，建議更新軟件。</value>
+    </data>
+    <data name="AboutToken" xml:space="preserve">
+        <value>關於Token</value>
+    </data>
+    <data name="Extracting" xml:space="preserve">
+        <value>正在解壓</value>
+    </data>
+    <data name="AlphaVersion" xml:space="preserve">
+        <value>內測版</value>
+    </data>
+    <data name="UIUpdateChannel" xml:space="preserve">
+        <value>UI 更新渠道</value>
+    </data>
+    <data name="ExportLog" xml:space="preserve">
+        <value>導出日誌</value>
+    </data>
+    <data name="ExportLogDialogTitle" xml:space="preserve">
+        <value>導出日誌包</value>
+    </data>
+    <data name="ExportLogDialogDescription" xml:space="preserve">
+        <value>選擇要包含的日誌檔案和圖片資料夾。圖片項目可按時間範圍篩選。</value>
+    </data>
+    <data name="ExportLogDialogLogsSection" xml:space="preserve">
+        <value>日誌</value>
+    </data>
+    <data name="ExportLogDialogImagesSection" xml:space="preserve">
+        <value>圖片</value>
+    </data>
+    <data name="ExportLogDialogImagesDescription" xml:space="preserve">
+        <value>圖片預設時間範圍為「全部」，你可以分別調整每一類圖片的篩選範圍。</value>
+    </data>
+    <data name="ExportLogDialogOtherImages" xml:space="preserve">
+        <value>其他圖片</value>
+    </data>
+    <data name="ExportLogDialogStart" xml:space="preserve">
+        <value>開始導出</value>
+    </data>
+    <data name="ExportLogTimeRangeLast24Hours" xml:space="preserve">
+        <value>最近 24 小時</value>
+    </data>
+    <data name="ExportLogTimeRangeLast3Days" xml:space="preserve">
+        <value>最近 3 天</value>
+    </data>
+    <data name="ExportLogTimeRangeLast7Days" xml:space="preserve">
+        <value>最近 7 天</value>
+    </data>
+    <data name="ExportLogInProgress" xml:space="preserve">
+        <value>正在導出日誌，請稍候...</value>
+    </data>
+    <data name="ExportLogNoEligibleFiles" xml:space="preserve">
+        <value>未找到符合條件的日誌文件或圖片。</value>
+    </data>
+    <data name="ExportLogSuccess" xml:space="preserve">
+        <value>日誌導出成功</value>
+    </data>
+    <data name="ExportLogFailed" xml:space="preserve">
+        <value>日誌導出失敗</value>
+    </data>
+    <data name="ClearCache" xml:space="preserve">
+        <value>清理快取</value>
+    </data>
+    <data name="ClearCacheSuccess" xml:space="preserve">
+        <value>快取已清理</value>
+    </data>
+    <data name="ClearCacheFailed" xml:space="preserve">
+        <value>清理快取失敗</value>
+    </data>
+    <data name="ClearCacheStopInstanceFailed" xml:space="preserve">
+        <value>停止實例 {0} 失敗</value>
+    </data>
+    <data name="ClearCacheInstanceStillUsingResource" xml:space="preserve">
+        <value>實例 {0} 仍在占用資源</value>
+    </data>
+    <data name="Warning" xml:space="preserve">
+        <value>警告</value>
+    </data>
+    <data name="StopTaskBeforeExportLog" xml:space="preserve">
+        <value>導出日誌前請停止任務</value>
+    </data>
+    <data name="StopTaskBeforeClearCache" xml:space="preserve">
+        <value>清理快取前請停止任務</value>
+    </data>
+    <data name="MirrorCdkEmpty" xml:space="preserve">
+        <value>請前往“設定”中的“更新設定”，將“更新源”切換至“GitHub”，或填寫Mirror醬 CDK</value>
+    </data>
+    <data name="ContinueRunningWhenError" xml:space="preserve">
+        <value>任務執行失敗後是否繼續執行其他任務</value>
+    </data>
+    <data name="CurrentOtherUpdatingTask" xml:space="preserve">
+        <value>目前存在其他正在執行的更新任務</value>
+    </data>
+    <data name="RedownloadUiFullPackage" xml:space="preserve">
+        <value>重新下載 UI 全量包</value>
+    </data>
+    <data name="RedownloadResourceFullPackage" xml:space="preserve">
+        <value>重新下載資源全量包</value>
+    </data>
+    <data name="MirrorCDKBanned" xml:space="preserve">
+        <value>CDK 已被封禁</value>
+    </data>
+    <data name="ScreenshotTest" xml:space="preserve">
+        <value>截圖測試</value>
+    </data>
+    <data name="ScreenshotPage" xml:space="preserve">
+        <value>截圖</value>
+    </data>
+    <data name="ScreenshotFailed" xml:space="preserve">
+        <value>截圖失败</value>
+    </data>
+    <data name="DisplayAnnouncement" xml:space="preserve">
+        <value>顯示公告</value>
+    </data>
+    <data name="ScreenshotEmpty" xml:space="preserve">
+        <value>目前截圖為空! 請點擊【截圖測試】獲取截圖</value>
+    </data>
+    <data name="ScreenshotPlaceholder" xml:space="preserve">
+        <value>暫無截圖</value>
+    </data>
+    <data name="SaveScreenshot" xml:space="preserve">
+        <value>儲存截圖</value>
+    </data>
+    <data name="AnnouncementEmpty" xml:space="preserve">
+        <value>目前公告為空</value>
+    </data>
+    <data name="Execute" xml:space="preserve">
+        <value>執行</value>
+    </data>
+    <data name="StoppingInternalTask" xml:space="preserve">
+        <value>Stopping internal task...</value>
+    </data>
+    <data name="Verifying" xml:space="preserve">
+        <value>驗證中</value>
+    </data>
+    <data name="HashVerificationFailed" xml:space="preserve">
+        <value>雜湊驗證失敗！資源可能已損壞，可能是網路波動導致，請嘗試重新下載資源。</value>
+    </data>
+    <data name="FileLoadFailed" xml:space="preserve">
+        <value>文件 {0} 載入失敗！</value>
+    </data>
+    <data name="FileLoadFailedDetail" xml:space="preserve">
+        <value>請檢查 {0} 檔案格式是否正確，可能存在 JSON 語法錯誤</value>
+    </data>
+    <data name="CopyToClipboard" xml:space="preserve">
+        <value>複製到剪貼簿</value>
+    </data>
+    <data name="UseDirectMLSupportedDevice" xml:space="preserve">
+        <value>使用支援 DirectML 的設備</value>
+    </data>
+    <data name="SwitchUiUpdateSourceToGithub" xml:space="preserve">
+        <value>因 Mirror 醬無法指定特定版本進行更新，請到更新設定中把更新源切換為 GitHub。</value>
+    </data>
+    <data name="MultiInstanceUnderSamePath" xml:space="preserve">
+        <value>同一路徑下只能啟動一個實例！</value>
+    </data>
+    <data name="KeyboardInput" xml:space="preserve">
+        <value>鍵盤輸入</value>
+    </data>
+    <data name="MouseInput" xml:space="preserve">
+        <value>滑鼠輸入</value>
+    </data>
+    <data name="ExternalNotificationServerChanSendKey" xml:space="preserve">
+        <value>SendKey</value>
+    </data>
+    <data name="UiDoesNotSupportResourceUpdateCancelled" xml:space="preserve">
+        <value>當前版本的 UI 不支援即將更新的資源，更新已取消</value>
+    </data>
+    <data name="UiDoesNotSupportCurrentResource" xml:space="preserve">
+        <value>當前版本的 UI 不支援當前資源！</value>
+    </data>
+    <data name="UnknownError" xml:space="preserve">
+        <value>未知錯誤</value>
+    </data>
+    <data name="UndefinedError" xml:space="preserve">
+        <value>未定義錯誤</value>
+    </data>
+    <data name="Notification" xml:space="preserve">
+            <value>通知</value>
+        </data>
+    <data name="NotificationDescription" xml:space="preserve">
+            <value>啟用後，任務完成或發生重要事件時將顯示系統通知提醒。</value>
+        </data>
+    <data name="EmulatorMultiInstanceQuickSettings" xml:space="preserve">
+        <value>多開快捷設定</value>
+    </data>
+    <data name="EmulatorMultiInstanceEditor" xml:space="preserve">
+        <value>多開編輯器</value>
+    </data>
+    <data name="MuMuEmulator" xml:space="preserve">
+        <value>MuMu模擬器</value>
+    </data>
+    <data name="XYAZ" xml:space="preserve">
+        <value>逍遙模擬器</value>
+    </data>
+    <data name="EmulatorMultiInstanceNumber" xml:space="preserve">
+        <value>多開號</value>
+    </data>
+    <data name="RunSingle" xml:space="preserve">
+        <value>單獨執行</value>
+    </data>
+    <data name="RunCheckedFromCurrent" xml:space="preserve">
+        <value>執行當前及後續勾選</value>
+    </data>
+    <data name="MirrorChyanResourceUpdateShortTip" xml:space="preserve">
+        <value>偵測到資源更新: {0}</value>
+    </data>
+    <data name="ExternalNotificationLarkWebhookUrl" xml:space="preserve">
+        <value>飛書 webhook</value>
+    </data>
+    <data name="ExternalNotificationLarkWebhookDescription" xml:space="preserve">
+        <value>填寫 Webhook 位址後，無需再填寫飛書 ID 和 機器人 Token</value>
+    </data>
+    <data name="Unnamed" xml:space="preserve">
+        <value>未命名</value>
+    </data>
+    <data name="CdkExpireInDays" xml:space="preserve">
+        <value>CDK 還有 {0} 天過期</value>
+    </data>
+    <data name="CdkExpireInHours" xml:space="preserve">
+        <value>CDK 還有 {0} 小時過期</value>
+    </data>
+    <data name="CdkExpireInMinutes" xml:space="preserve">
+        <value>CDK 還有 {0} 分鐘過期</value>
+    </data>
+    <data name="CdkExpireInSeconds" xml:space="preserve">
+        <value>CDK 還有 {0} 秒過期</value>
+    </data>
+    <data name="QueryCdkRemainingTime" xml:space="preserve">
+        <value>查詢CDK剩餘時長</value>
+    </data>
+    <data name="LoadResourcesFailedDetail" xml:space="preserve">
+        <value>請刪除整個資料夾重新下載，或聯絡專案維護者。</value>
+    </data>
+    <data name="NoEmulatorFoundDetail" xml:space="preserve">
+        <value>請確保模擬器的ADB功能開啟，橋接模式為關閉狀態，重啟MFA和模擬器後重新嘗試連線。</value>
+    </data>
+    <data name="Reset" xml:space="preserve">
+        <value>重置</value>
+     </data>
+    <data name="BackgroundImageTitle" xml:space="preserve">
+        <value>背景圖片</value>
+    </data>
+    <data name="BackgroundImageDescription" xml:space="preserve">
+        <value>選擇一張圖片作為視窗背景，將覆蓋在預設背景效果之上。</value>
+    </data>
+    <data name="SelectBackgroundImage" xml:space="preserve">
+        <value>選擇背景圖片</value>
+    </data>
+    <data name="BackgroundImageOpacityTitle" xml:space="preserve">
+        <value>背景圖片不透明度</value>
+    </data>
+    <data name="BackgroundImageOpacityDescription" xml:space="preserve">
+        <value>調整背景圖片的不透明度，值越小圖片越透明。</value>
+    </data>
+    <data name="AgentConnectionRetry" xml:space="preserve">
+        <value>Agent 連線重試 ({0})...</value>    
+    </data>
+    <data name="TriggerDate" xml:space="preserve">
+        <value>觸發日期</value>
+    </data>
+    <data name="SchedulePickerTip" xml:space="preserve">
+        <value>點擊設定觸發日期</value>
+    </data>
+    <data name="ScheduleMode" xml:space="preserve">
+        <value>排程模式</value>
+    </data>
+    <data name="ScheduleDaily" xml:space="preserve">
+        <value>每天</value>
+    </data>
+    <data name="ScheduleWeekly" xml:space="preserve">
+        <value>每週</value>
+    </data>
+    <data name="ScheduleMonthly" xml:space="preserve">
+        <value>每月</value>
+    </data>
+    <data name="ScheduleWorkdays" xml:space="preserve">
+        <value>工作日</value>
+    </data>
+    <data name="ScheduleWeekends" xml:space="preserve">
+        <value>週末</value>
+    </data>
+    <data name="SelectDaysOfWeek" xml:space="preserve">
+        <value>選擇星期</value>
+    </data>
+    <data name="SelectDaysOfMonth" xml:space="preserve">
+        <value>選擇日期</value>
+    </data>
+    <data name="WeekdayMon" xml:space="preserve">
+        <value>週一</value>
+    </data>
+    <data name="WeekdayTue" xml:space="preserve">
+        <value>週二</value>
+    </data>
+    <data name="WeekdayWed" xml:space="preserve">
+        <value>週三</value>
+    </data>
+    <data name="WeekdayThu" xml:space="preserve">
+        <value>週四</value>
+    </data>
+    <data name="WeekdayFri" xml:space="preserve">
+        <value>週五</value>
+    </data>
+    <data name="WeekdaySat" xml:space="preserve">
+        <value>週六</value>
+    </data>
+    <data name="WeekdaySun" xml:space="preserve">
+        <value>週日</value>
+    </data>
+    <data name="ScheduleMonthlyDay" xml:space="preserve">
+        <value>{0}號</value>
+    </data>
+    <data name="ScheduleMonthlyDays" xml:space="preserve">
+        <value>日期: {0}</value>
+    </data>
+    <data name="ScheduleMonthlyDaySuffix" xml:space="preserve">
+        <value>號</value>
+    </data>
+    <data name="ResourceAutoSwitched" xml:space="preserve">
+        <value>資源已自動切換</value>
+    </data>
+    <data name="ResourceNotSupportController" xml:space="preserve">
+        <value>當前控制器 {1} 不支援資源 {0}，已自動切換為 {2}，請檢查資源設定</value>
+    </data>
+    <data name="ResourceNotSelected" xml:space="preserve">
+        <value>未選擇資源，請先選擇資源</value>
+    </data>
+    <data name="DeviceNotSelected" xml:space="preserve">
+        <value>未選擇裝置，請先選擇裝置</value>
+    </data>
+
+    <data name="Preset" xml:space="preserve">
+        <value>預設</value>
+    </data>
+
+    <data name="ResourcePresetConfig" xml:space="preserve">
+        <value>資源預設配置</value>
+    </data>
+    <data name="UseFingerprintMatching" xml:space="preserve">
+        <value>使用指紋匹配裝置</value>
+    </data>
+    <data name="Running" xml:space="preserve">
+        <value>執行中</value>
+    </data>
+    <data name="CurrentTask" xml:space="preserve">
+        <value>任務: {0}</value>
+    </data>
+<data name="LiveView" xml:space="preserve">
+        <value>即時視圖</value>
+    </data>
+    <data name="LiveViewNoImageReasonAdb" xml:space="preserve">
+        <value>可能原因: 模擬器視窗最小化/螢幕關閉、截圖方式不相容、裝置尚未完全啟動</value>
+    </data>
+    <data name="LiveViewNoImageReasonWindow" xml:space="preserve">
+        <value>可能原因: 目標視窗最小化/隱藏/被遮擋、截圖方式不相容</value>
+    </data>
+    <data name="LiveViewNoImageWarning" xml:space="preserve">
+        <value>即時畫面已連接但無法取得畫面 ({0}), {1}</value>
+    </data>
+    <data name="LiveViewRefreshRate" xml:space="preserve">
+        <value>即時視圖最大刷新率 (FPS)</value>
+    </data>
+    <data name="PlayCoverAddress" xml:space="preserve">
+        <value>位址</value>
+    </data>
+    <data name="PlayCoverBundleIdentifier" xml:space="preserve">
+        <value>應用識別碼</value>
+    </data>
+<data name="PlayCoverAddressEmpty" xml:space="preserve">
+        <value>PlayCover 位址不能為空</value>
+    </data>
+    <data name="PlayCoverEditor" xml:space="preserve">
+        <value>PlayCover 編輯器</value>
+    </data>
+    <data name="Reconnect" xml:space="preserve">
+        <value>重新連接</value>
+    </data>
+    <data name="TaskRemarkMenu" xml:space="preserve">
+        <value>備註</value>
+    </data>
+    <data name="TaskRemarkTitle" xml:space="preserve">
+        <value>任務備註</value>
+    </data>
+    <data name="TaskRename" xml:space="preserve">
+        <value>重新命名</value>
+    </data>
+    <data name="TaskRenamePlaceholder" xml:space="preserve">
+        <value>輸入設定名稱</value>
+    </data>
+    <data name="TaskRemark" xml:space="preserve">
+        <value>備註</value>
+    </data>
+    <data name="TaskRemarkPlaceholder" xml:space="preserve">
+        <value>輸入備註（可選）</value>
+    </data>
+    <data name="PlatformNotSupportedOperation" xml:space="preserve">
+        <value>當前平台不支援該操作</value>
+    </data>
+    <data name="TempDirWarningTitle" xml:space="preserve">
+        <value>程式位置不正確</value>
+    </data>
+    <data name="TempDirWarningMain" xml:space="preserve">
+        <value>你好像直接雙擊壓縮檔裡的程式了</value>
+    </data>
+    <data name="TempDirWarningDesc" xml:space="preserve">
+        <value>程式現在在暫存目錄裡執行著呢，一關掉可能就沒了。先把壓縮檔解壓到一個資料夾裡，再開啟裡面的程式吧。</value>
+    </data>
+    <data name="TempDirWarningHint" xml:space="preserve">
+        <value>小提示：建議解壓到一個專門的資料夾，比如「D:\MFA」，別放桌面或者下載資料夾，那樣更方便管理。</value>
+    </data>
+    <data name="ExitProgram" xml:space="preserve">
+        <value>退出程式</value>
+    </data>
+    <data name="MSVC2022Missing" xml:space="preserve">
+        <value>檢測到缺少運行庫 Runtime，請嘗試下載並安裝最新 Microsoft Visual C++ Redistributable (x64) 運行庫。</value>
+    </data>
+    <data name="MaaNativeLibraryMissing" xml:space="preserve">
+        <value>檢測到缺少 MAA 依賴檔案，請重新完整解壓或重新安裝程式。</value>
+    </data>
+    <data name="MaaNativeLibraryMissingDetail" xml:space="preserve">
+        <value>缺失檔案：{0}
+
+建議檢查目錄：
+{1}
+
+請不要只單獨複製主程式檔案。</value>
+    </data>
+    <data name="MSVC2022DownloadLink" xml:space="preserve">
+        <value>下載連結：https://aka.ms/vs/17/release/vc_redist.x64.exe</value>
+    </data>
+    <data name="DownloadNowConfirmation" xml:space="preserve">
+        <value>是否立即下載？</value>
+    </data>
+    <data name="RuntimeMissingTitle" xml:space="preserve">
+        <value>缺少運行庫</value>
+    </data>
+    <data name="RuntimeMissingWarning" xml:space="preserve">
+        <value>缺少系統組件</value>
+    </data>
+    <data name="RuntimeMissingDescription" xml:space="preserve">
+        <value>MFAAvalonia 需要 Microsoft Visual C++ Redistributable (x64) 才能運行。</value>
+    </data>
+    <data name="DownloadAndInstall" xml:space="preserve">
+        <value>下載並安裝</value>
+    </data>
+    <data name="DownloadingStatus" xml:space="preserve">
+        <value>正在下載執行階段庫...</value>
+    </data>
+    <data name="InstallingStatus" xml:space="preserve">
+        <value>正在等待安裝完成，請在彈出的安裝視窗中完成操作。</value>
+    </data>
+    <data name="InstallSuccess" xml:space="preserve">
+        <value>安裝完成，請重啟應用程式。</value>
+    </data>
+    <data name="DownloadError" xml:space="preserve">
+        <value>錯誤: {0}</value>
+    </data>
+    <data name="Retry" xml:space="preserve">
+        <value>重試</value>
+    </data>
+    <data name="Close" xml:space="preserve">
+        <value>關閉</value>
+    </data>
+    <data name="RuntimeMissingPrompt" xml:space="preserve">
+        <value>點擊下方按鈕自動下載並執行安裝程式，請注意在彈出的視窗中點擊安裝。</value>
+    </data>
+    <data name="AdminPermissionRequired" xml:space="preserve">
+        <value>需要管理員權限</value>
+    </data>
+    <data name="AdminPermissionRequiredDetail" xml:space="preserve">
+        <value>當前控制器需要管理員權限，請以管理員身份重新啟動本程式</value>
+    </data>
+    <data name="FontScaleValue" xml:space="preserve">
+        <value>{0}%</value>
+    </data>
+    <data name="FontScaleTitle" xml:space="preserve">
+        <value>字體大小縮放</value>
+    </data>
+    <data name="FontScaleDescription" xml:space="preserve">
+        <value>調整界面字體的整體縮放比例，所有字體將按比例放大或縮小。</value>
+    </data>
+    <data name="ResourceLayoutUpdatedContent" xml:space="preserve">
+        <value>檢測到資源佈局文件更新，已應用最新佈局並覆蓋當前佈局。</value>
+    </data>
+    <data name="ResourceLayoutUpdatedTitle" xml:space="preserve">
+        <value>資源佈局更新</value>
+    </data>
+    <data name="StartupErrorMessage" xml:space="preserve">
+        <value>{0}失敗
+    
+    錯誤信息：
+    {1}
+    
+    詳細信息：
+    {2}</value>
+    </data>
+    <data name="StartupErrorTitle" xml:space="preserve">
+        <value>啓動失敗</value>
+    </data>
+    <data name="PreventSleep" xml:space="preserve">
+        <value>執行時防止螢幕關閉</value>
+    </data>
+    <data name="Search" xml:space="preserve">
+        <value>搜尋...</value>
+    </data>
+    <data name="TutorialStepConnectTitle" xml:space="preserve">
+        <value>工具列總覽</value>
+    </data>
+    <data name="TutorialStepConnectDesc" xml:space="preserve">
+        <value>這是頂部工具列，包含資源切換、控制器選擇、裝置連接等核心功能。接下來將逐一介紹各區域。</value>
+    </data>
+    <data name="TutorialStepAddTaskTitle" xml:space="preserve">
+        <value>任務清單</value>
+    </data>
+    <data name="TutorialStepAddTaskDesc" xml:space="preserve">
+        <value>這裡顯示已新增的任務。勾選要執行的任務，拖曳可調整順序。點擊每個任務右側的齒輪圖示可進入對應的任務設定。</value>
+    </data>
+    <data name="TutorialStepMultiConfigTitle" xml:space="preserve">
+        <value>管理多個配置</value>
+    </data>
+    <data name="TutorialStepMultiConfigDesc" xml:space="preserve">
+        <value>第三步，透過頂部標籤頁新建或切換不同的配置——例如一個用於日常掛機，另一個用於即時小工具，各配置的任務和裝置設定互相獨立。</value>
+    </data>
+    <data name="TutorialNext" xml:space="preserve">
+        <value>下一步</value>
+    </data>
+    <data name="TutorialPrevious" xml:space="preserve">
+        <value>上一步</value>
+    </data>
+    <data name="TutorialFinish" xml:space="preserve">
+        <value>知道了</value>
+    </data>
+    <data name="TutorialStepTaskOptionsTitle" xml:space="preserve">
+        <value>任務設定</value>
+    </data>
+    <data name="TutorialStepTaskOptionsDesc" xml:space="preserve">
+        <value>此面板顯示所選任務的詳細參數設定。點擊任務清單中不同任務的齒輪圖示，可切換檢視對應的選項。</value>
+    </data>
+    <data name="TutorialStepSettingsTitle" xml:space="preserve">
+        <value>設定</value>
+    </data>
+    <data name="TutorialStepSettingsDesc" xml:space="preserve">
+        <value>點擊左側選單列底部的設定圖示，可以配置軟體的全域選項，包括主題、語言、通知等。</value>
+    </data>
+    <data name="TutorialStepResourceTitle" xml:space="preserve">
+        <value>資源切換</value>
+    </data>
+    <data name="TutorialStepResourceDesc" xml:space="preserve">
+        <value>透過此下拉選單切換不同的資源包。不同資源包可能包含不同的任務集和配置。</value>
+    </data>
+    <data name="TutorialStepControllerTitle" xml:space="preserve">
+        <value>控制器類型</value>
+    </data>
+    <data name="TutorialStepControllerDesc" xml:space="preserve">
+        <value>選擇控制器類型：電腦端、電腦端-備選、電腦端-前台或安卓端等。根據使用場景選擇合適的連接方式。</value>
+    </data>
+    <data name="TutorialStepDeviceTitle" xml:space="preserve">
+        <value>裝置選擇</value>
+    </data>
+    <data name="TutorialStepDeviceDesc" xml:space="preserve">
+        <value>選擇要連接的目標裝置或視窗。下拉選單會顯示目前可用的裝置。</value>
+    </data>
+    <data name="TutorialStepConnectionTitle" xml:space="preserve">
+        <value>連接操作</value>
+    </data>
+    <data name="TutorialStepConnectionDesc" xml:space="preserve">
+        <value>這裡有重新整理裝置清單、重新連接的按鈕，以及連接狀態指示燈（綠色=已連接，紅色=未連接）。點擊「開始任務」即可執行已勾選的任務。</value>
+    </data>
+    <data name="TutorialStepLogTitle" xml:space="preserve">
+        <value>執行日誌</value>
+    </data>
+    <data name="TutorialStepLogDesc" xml:space="preserve">
+        <value>任務執行過程中的日誌訊息會顯示在這裡，方便即時查看執行狀態和排查問題。</value>
+    </data>
+    <data name="TutorialStepSelectAllTitle" xml:space="preserve">
+        <value>全選與全不選</value>
+    </data>
+    <data name="TutorialStepSelectAllDesc" xml:space="preserve">
+        <value>這兩個按鈕可以快速勾選或取消勾選所有任務。左側為「全選」，右側為「全不選」。</value>
+    </data>
+    <data name="TutorialStepAddTaskBtnTitle" xml:space="preserve">
+        <value>新增與重置任務</value>
+    </data>
+    <data name="TutorialStepAddTaskBtnDesc" xml:space="preserve">
+        <value>「新增任務」按鈕可以將新任務加入列表；「重置任務」按鈕可以將任務列表恢復為預設狀態。</value>
+    </data>
+    <data name="TutorialStepResetTaskTitle" xml:space="preserve">
+        <value>開始任務</value>
+    </data>
+    <data name="TutorialStepResetTaskDesc" xml:space="preserve">
+        <value>點擊此按鈕開始執行已勾選的任務。執行中再次點擊可停止任務。</value>
+    </data>
+    <data name="TutorialStepTaskInteractTitle" xml:space="preserve">
+        <value>任務互動技巧</value>
+    </data>
+    <data name="TutorialStepTaskInteractDesc" xml:space="preserve">
+        <value>左鍵點擊核取方塊可勾選/取消任務；右鍵點擊核取方塊可設為「僅執行一次」（半選狀態）。</value>
+    </data>
+    <data name="TutorialStepTaskItemTipTitle" xml:space="preserve">
+        <value>任務項操作</value>
+    </data>
+    <data name="TutorialStepTaskItemTipDesc" xml:space="preserve">
+        <value>右鍵點擊任務項可彈出選單，支援單獨執行、備註和刪除操作。點擊右側設定圖示可查看該任務的詳細參數。</value>
+    </data>
+    <data name="TutorialStepExportLogTitle" xml:space="preserve">
+        <value>匯出日誌</value>
+    </data>
+    <data name="TutorialStepExportLogDesc" xml:space="preserve">
+        <value>點擊此按鈕可以將執行日誌匯出儲存為檔案，方便排查問題或分享給開發者。</value>
+    </data>
+    <data name="TutorialStepSettingsPageTitle" xml:space="preserve">
+        <value>設定頁面</value>
+    </data>
+    <data name="TutorialStepSettingsPageDesc" xml:space="preserve">
+        <value>這是設定頁面。左側或頂部的導覽列可以快速跳轉到不同的設定分類，右側顯示對應分類的詳細設定項。</value>
+    </data>
+    <data name="TutorialStepStartupSettingsTitle" xml:space="preserve">
+        <value>啟動設定</value>
+    </data>
+    <data name="TutorialStepStartupSettingsDesc" xml:space="preserve">
+        <value>在這裡可以設定任務開始前和結束後的自動操作、模擬器/遊戲啟動路徑、啟動參數和等待時間等。</value>
+    </data>
+    <data name="TutorialStepBeforeAfterTaskTitle" xml:space="preserve">
+        <value>啟動前與結束後操作</value>
+    </data>
+    <data name="TutorialStepBeforeAfterTaskDesc" xml:space="preserve">
+        <value>「啟動後操作」可在任務開始前自動執行指定操作（如進入特定介面）；「結束後操作」可在所有任務完成後自動執行（如退出遊戲、關閉模擬器）。</value>
+    </data>
+    <data name="TutorialStepSoftwarePathTitle" xml:space="preserve">
+        <value>設定啟動路徑</value>
+    </data>
+    <data name="TutorialStepSoftwarePathDesc" xml:space="preserve">
+        <value>在此填寫模擬器或遊戲的啟動路徑，實現全自動掛機。注意：需要在「連接操作」中選擇「啟動遊戲」或「啟動並執行」，或在「連接設定」中開啟「連接失敗時嘗試啟動」，啟動路徑才會生效。</value>
+    </data>
+    <data name="TutorialStepRewatchTitle" xml:space="preserve">
+        <value>重新觀看教學</value>
+    </data>
+    <data name="TutorialStepRewatchDesc" xml:space="preserve">
+        <value>如果以後需要再次查看使用教學，可以在「設定」→「關於我們」頁面底部找到「使用教學」按鈕，隨時重新觀看。</value>
+    </data>
+    <data name="Tutorial" xml:space="preserve">
+        <value>使用教學</value>
+    </data>
+    <data name="SpecialTask" xml:space="preserve">
+        <value>特殊任務</value>
+    </data>
+    <data name="SpecialTask_Countdown" xml:space="preserve">
+        <value>倒計時</value>
+    </data>
+    <data name="SpecialTask_TimedWait" xml:space="preserve">
+        <value>定時等待</value>
+    </data>
+     <data name="SpecialTask_Toast" xml:space="preserve">
+         <value>通知</value>
+     </data>
+    <data name="SpecialTask_CustomProgram" xml:space="preserve">
+        <value>自訂程式</value>
+    </data>
+    <data name="SpecialTask_KillProcess" xml:space="preserve">
+        <value>結束進程</value>
+    </data>
+    <data name="SpecialTask_ComputerOperation" xml:space="preserve">
+        <value>電腦操作</value>
+    </data>
+    <data name="SpecialTask_Webhook" xml:space="preserve">
+        <value>Webhook</value>
+    </data>
+    <data name="SpecialTask_CountdownDesc" xml:space="preserve">
+        <value>在指定的秒數後繼續執行下一個任務，支援 `1~86400` 秒（24小時），可用於任務之間的延遲等待。</value>
+    </data>
+    <data name="SpecialTask_TimedWaitDesc" xml:space="preserve">
+        <value>暫停任務佇列，等待到當天指定的時刻（時:分）後再繼續執行，若該時刻已過則等待到次日對應時刻。</value>
+    </data>
+     <data name="SpecialTask_ToastDesc" xml:space="preserve">
+         <value>發送 Toast 通知，可自訂通知內容，適用於任務佇列執行到特定節點時提醒使用者。</value>
+     </data>
+    <data name="SpecialTask_CustomProgramDesc" xml:space="preserve">
+        <value>啟動外部程式或腳本，支援設定程式路徑和啟動參數，可選擇是否等待程式退出後再繼續。</value>
+    </data>
+    <data name="SpecialTask_KillProcessDesc" xml:space="preserve">
+        <value>按名稱終止正在執行的進程，適用於在任務流程中關閉遊戲或其他應用程式。</value>
+    </data>
+    <data name="SpecialTask_ComputerOperationDesc" xml:space="preserve">
+        <value>執行關機、重啟、睡眠或休眠等系統級操作，適用於長時間任務執行後的自動電源管理。</value>
+    </data>
+    <data name="SpecialTask_WebhookDesc" xml:space="preserve">
+        <value>向指定 URL 發送 HTTP 請求，支援自訂請求體，適用於與外部服務或自動化平台整合。</value>
+    </data>
+    <data name="SpecialTask_CountdownSeconds" xml:space="preserve">
+        <value>倒計時（秒）</value>
+    </data>
+    <data name="SpecialTask_WaitUntilTime" xml:space="preserve">
+        <value>等待到（時:分）</value>
+    </data>
+    <data name="SpecialTask_NotificationTitle" xml:space="preserve">
+        <value>通知標題</value>
+    </data>
+    <data name="SpecialTask_NotificationContent" xml:space="preserve">
+        <value>通知內容</value>
+    </data>
+    <data name="SpecialTask_ProgramPath" xml:space="preserve">
+        <value>程式路徑</value>
+    </data>
+    <data name="SpecialTask_Arguments" xml:space="preserve">
+        <value>附加參數</value>
+    </data>
+    <data name="SpecialTask_WaitForExit" xml:space="preserve">
+        <value>等待程式退出</value>
+    </data>
+    <data name="SpecialTask_ProcessName" xml:space="preserve">
+        <value>進程名稱</value>
+    </data>
+    <data name="SpecialTask_OperationType" xml:space="preserve">
+        <value>操作類型</value>
+    </data>
+    <data name="SpecialTask_RequestMethod" xml:space="preserve">
+        <value>請求方法</value>
+    </data>
+    <data name="SpecialTask_RequestBody" xml:space="preserve">
+        <value>請求體</value>
+    </data>
+    <data name="SpecialTask_SelectProgram" xml:space="preserve">
+        <value>選擇程式</value>
+    </data>
+    <data name="SpecialTask_ProcessNameExample" xml:space="preserve">
+        <value>例如: notepad</value>
+    </data>
+    <data name="SpecialTask_Shutdown" xml:space="preserve">
+        <value>關機</value>
+    </data>
+    <data name="SpecialTask_Restart" xml:space="preserve">
+        <value>重啟</value>
+    </data>
+    <data name="SpecialTask_Sleep" xml:space="preserve">
+        <value>睡眠</value>
+    </data>
+    <data name="SpecialTask_Hibernate" xml:space="preserve">
+        <value>休眠</value>
+    </data>
+    <data name="InstanceSelectTooltip" xml:space="preserve">
+        <value>選擇實例</value>
+    </data>
+    <data name="InstanceAddTooltip" xml:space="preserve">
+        <value>新增實例</value>
+    </data>
+    <data name="InstanceAddFollowLast" xml:space="preserve">
+        <value>跟隨最右側配置</value>
+    </data>
+    <data name="InstancePresetTaskCountFormat" xml:space="preserve">
+        <value>{0} 個任務</value>
+    </data>
+    <data name="InstanceCannotCloseLast" xml:space="preserve">
+        <value>無法關閉最後一個實例</value>
+    </data>
+    <data name="InstanceRunningCloseConfirm" xml:space="preserve">
+        <value>實例正在運行，確定要停止並關閉嗎？</value>
+    </data>
+    <data name="InstanceCloseTitle" xml:space="preserve">
+        <value>關閉實例</value>
+    </data>
+    <data name="InstanceRunningCannotClose" xml:space="preserve">
+        <value>實例正在運行中，請先停止任務後再關閉</value>
+    </data>
+    <data name="InstanceTimerReassigned" xml:space="preserve">
+        <value>實例 "{0}" 已關閉，其關聯的定時任務已自動轉移到其他實例</value>
+    </data>
+    <data name="MonitorSortDefault" xml:space="preserve">
+        <value>預設</value>
+    </data>
+    <data name="MonitorSortByStatus" xml:space="preserve">
+        <value>按狀態</value>
+    </data>
+    <data name="MonitorSortByName" xml:space="preserve">
+        <value>按名稱</value>
+    </data>
+    <data name="MonitorSortByCreatedTime" xml:space="preserve">
+        <value>按建立時間</value>
+    </data>
+    <data name="MonitorForceRefresh" xml:space="preserve">
+        <value>強制刷新</value>
+    </data>
+    <data name="MonitorFullScreen" xml:space="preserve">
+        <value>全螢幕顯示</value>
+    </data>
+    <data name="MonitorCopyScreenshot" xml:space="preserve">
+        <value>複製截圖</value>
+    </data>
+    <data name="MonitorDisconnect" xml:space="preserve">
+        <value>斷開連接</value>
+    </data>
+    <data name="MonitorTryConnect" xml:space="preserve">
+        <value>嘗試連接</value>
+    </data>
+    <data name="MonitorLiveBadge" xml:space="preserve">
+        <value>LIVE</value>
+    </data>
+    <data name="ZoomOut" xml:space="preserve">
+        <value>縮小</value>
+    </data>
+    <data name="ZoomIn" xml:space="preserve">
+        <value>放大</value>
+    </data>
+    <data name="TimerStopConnectedProcess" xml:space="preserve">
+        <value>關閉連接的進程</value>
+    </data>
+    <data name="TimerStopMFA" xml:space="preserve">
+        <value>關閉本程式</value>
+    </data>
+    <data name="AddTimer" xml:space="preserve">
+        <value>新增定時</value>
+    </data>
+    <data name="RemoveTimer" xml:space="preserve">
+        <value>刪除定時</value>
+    </data>
+  <data name="InstanceDropdownSearch" xml:space="preserve">
+    <value>搜尋配置</value>
+  </data>
+  <data name="InstanceDropdownOpenConfigs" xml:space="preserve">
+    <value>打開配置</value>
+  </data>
+  <data name="InstanceDropdownRecentClosed" xml:space="preserve">
+    <value>最近關閉</value>
+  </data>
+  <data name="InstanceDropdownNoOpenConfigs" xml:space="preserve">
+    <value>暫無打開的配置</value>
+  </data>
+  <data name="InstanceDropdownNoRecentClosed" xml:space="preserve">
+    <value>暂无最近關閉记录</value>
+  </data>
+  <data name="InstanceDropdownCloseConfig" xml:space="preserve">
+    <value>關閉配置</value>
+  </data>
+  <data name="InstanceDropdownJustNow" xml:space="preserve">
+    <value>剛剛</value>
+  </data>
+</root>
+
+

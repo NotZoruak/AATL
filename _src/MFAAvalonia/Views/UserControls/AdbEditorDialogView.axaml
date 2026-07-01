@@ -1,0 +1,103 @@
+﻿<UserControl
+    MinHeight="430"
+    MinWidth="350"
+    d:DesignHeight="430"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.UserControls.AdbEditorDialogView"
+    x:DataType="usersControls:AdbEditorDialogViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="clr-namespace:MFAAvalonia.Extensions"
+    xmlns:helper="clr-namespace:MFAAvalonia.Helper"
+    xmlns:markup="https://codewf.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:suki="https://github.com/kikipoulet/SukiUI"
+    xmlns:usersControls="clr-namespace:MFAAvalonia.ViewModels.UsersControls" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:avalonia="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:fluent="clr-namespace:FluentIcons.Avalonia.Fluent;assembly=FluentIcons.Avalonia.Fluent">
+    <StackPanel Margin="5" Width="450">
+        <TextBlock
+            FontSize="18"
+            FontWeight="DemiBold"
+            Text="{markup:I18n {x:Static helper:LangKeys.AdbEditor}}" />
+
+        <TextBlock
+            FontSize="12"
+            FontWeight="DemiBold"
+            Margin="8,27,0,0"
+            Text="{markup:I18n {x:Static helper:LangKeys.AdbName}}" />
+
+        <TextBox Text="{Binding AdbName}" />
+ 
+        <TextBlock
+            FontSize="12"
+            FontWeight="DemiBold"
+            Margin="8,15,0,0"
+            Text="{markup:I18n {x:Static helper:LangKeys.AdbPath}}" />
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="55" />
+            </Grid.ColumnDefinitions>
+            <TextBox
+                Grid.Column="0"
+                Text="{Binding AdbPath}"
+                extensions:DragDropExtensions.EnableFileDragDrop="True"
+                suki:TextBoxExtensions.AddDeleteButton="True" />
+            <Button
+                Command="{Binding LoadCommand}"
+                Grid.Column="1"
+                Height="35" 
+                Margin="0,0,5,0"
+                
+                ToolTip.Tip="{markup:I18n {x:Static helper:LangKeys.Load}}">
+                <fluent:FluentIcon
+                    Height="25"
+                    Icon="FolderArrowLeft"
+                    IconSize="Size16"
+                    Margin="-5,0,0,0" />
+            </Button>
+        </Grid>
+        <TextBlock
+            FontSize="12"
+            FontWeight="DemiBold"
+            Margin="8,15,0,0"
+            Text="{markup:I18n {x:Static helper:LangKeys.AdbSerial}}" />
+        <TextBox Text="{Binding AdbSerial}" />
+        <TextBlock
+            FontSize="12"
+            FontWeight="DemiBold"
+            Margin="8,15,0,0"
+            Text="{markup:I18n {x:Static helper:LangKeys.AdbConfig}}" />
+        <TextBox Text="{Binding AdbConfig}" />
+
+        <StackPanel
+            HorizontalAlignment="Right"
+            Margin="0,35,8,4"
+            Orientation="Horizontal" Height="35"
+            Spacing="15">
+            <Button
+                Classes="Flat Rounded"
+                Command="{Binding SaveCommand}"
+                Content="{markup:I18n {x:Static helper:LangKeys.ButtonSave}}" />
+        </StackPanel>
+
+    </StackPanel>
+    <!-- <suki:GroupBox> -->
+    <!--     <suki:GroupBox.Header> -->
+    <!--  <TextBlock  -->
+    <!--  FontWeight="DemiBold"  -->
+    <!--  Margin="8,8,0,0"  -->
+    <!--  Text="{markup:I18n  {x:Static helper:LangKeys.AdbEditor}}" />  -->
+    <!--     </suki:GroupBox.Header> -->
+    <!--     <StackPanel> -->
+    <!--    -->
+    <!--  <Button  -->
+    <!--  Command="{Binding SaveCommand}"  -->
+    <!--  Content="{markup:I18n  {x:Static helper:LangKeys.ButtonSave}}"  -->
+    <!--  Margin="5,5,8,5" />  -->
+    <!--     </StackPanel> -->
+    <!-- </suki:GroupBox> -->
+
+</UserControl>
