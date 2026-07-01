@@ -4,7 +4,8 @@
         "next": [
             "E_IsAnnouncementPopup",
             "E_IsLoginReward",
-            "E_ClickExpeditionReturn",
+            "E_ClickExpeditionReturn_Exp",
+            "E_ClickExpeditionReturn_Title",
             "E_DetectExpeditionScreen",
             "E_IsMenuDirectory",
             "E_IsTeamStatusPanel",
@@ -12,6 +13,7 @@
             "E_IsGameIcon",
             "E_IsLoginButton",
             "E_IsGameUpdatePopup",
+            "E_IsInGameUpdatePopup",
             "E_IsInternalReport",
             "E_FallbackWait"
         ]
@@ -81,7 +83,7 @@
                     81,
                     32
                 ],
-                "expected": "待机中"
+                "expected": "机"
             }
         },
         "next": [
@@ -272,7 +274,7 @@
                     75,
                     38
                 ],
-                "expected": "待机中"
+                "expected": "机"
             }
         },
         "next": [
@@ -463,7 +465,7 @@
                     75,
                     35
                 ],
-                "expected": "待机中"
+                "expected": "机"
             }
         },
         "next": [
@@ -654,7 +656,7 @@
                     79,
                     35
                 ],
-                "expected": "待机中"
+                "expected": "机"
             }
         },
         "next": [
@@ -845,7 +847,7 @@
                     79,
                     41
                 ],
-                "expected": "待机中"
+                "expected": "机"
             }
         },
         "next": [
@@ -1229,7 +1231,7 @@
         ],
         "pre_delay": 100
     },
-    "E_ClickExpeditionReturn": {
+    "E_ClickExpeditionReturn_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -1238,6 +1240,27 @@
             25
         ],
         "expected": "经验",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "Expedition"
+        ],
+        "pre_delay": 100
+    },
+    "E_ClickExpeditionReturn_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "远征结果",
         "action": "Click",
         "target": [
             388,
@@ -1456,6 +1479,31 @@
             }
         },
         "action": "Click",
+        "post_delay": 2000,
+        "pre_delay": 100,
+        "next": [
+            "Expedition"
+        ],
+        "on_error": [
+            "Expedition"
+        ]
+    },
+    "E_IsInGameUpdatePopup": {
+        "recognition": "OCR",
+        "roi": [
+            498,
+            291,
+            77,
+            50
+        ],
+        "expected": "更新",
+        "action": "Click",
+        "target": [
+            578,
+            440,
+            130,
+            55
+        ],
         "post_delay": 2000,
         "pre_delay": 100,
         "next": [

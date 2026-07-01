@@ -9,10 +9,12 @@
         "next": [
             "FB_IsAnnouncementPopup",
             "FB_IsLoginReward",
-            "FB_HasExpeditionReturn",
+            "FB_HasExpeditionReturn_Exp",
+            "FB_HasExpeditionReturn_Title",
             "FB_IsMarching",
-            "FB_IsBattleResult",
-            "FB_IsSwordDrop",
+            "FB_IsBattleResult_Exp",
+            "FB_IsBattleResult_Title",
+            "FB_IsSwordDropColor",
             "FB_IsFormationSelect",
             "FB_IsSwordSelect",
             "FB_IsTeamSelect",
@@ -24,11 +26,12 @@
             "FB_IsGameIcon",
             "FB_IsLoginButton",
             "FB_IsGameUpdatePopup",
+            "FB_IsInGameUpdatePopup",
             "FB_IsInternalReport",
             "FB_FallbackWait"
         ]
     },
-    "FB_HasExpeditionReturn": {
+    "FB_HasExpeditionReturn_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -49,7 +52,28 @@
         ],
         "pre_delay": 100
     },
-    "FB_IsBattleResult": {
+    "FB_HasExpeditionReturn_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "远征结果",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "FB_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "FB_IsBattleResult_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -70,25 +94,66 @@
         ],
         "pre_delay": 100
     },
-    "FB_IsSwordDrop": {
-        "recognition": {
-            "type": "TemplateMatch",
+    "FB_IsBattleResult_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "战斗结果",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "FB_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "FB_IsSwordDropColor": {
+        "recognition": "ColorMatch",
+        "roi": [
+            598,
+            543,
+            66,
+            1
+        ],
+        "upper": [
+            96,
+            56,
+            10
+        ],
+        "lower": [
+            88,
+            48,
+            2
+        ],
+        "action": {
+            "type": "Click",
             "param": {
-                "roi": [
-                    1163,
-                    617,
-                    71,
-                    67
+                "target": [
+                    1067,
+                    558,
+                    120,
+                    79
                 ],
-                "template": "刀剑对话.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
                 ]
             }
         },
-        "action": "Click",
         "next": [
+            "FB_DetectWhereAmI"
+        ],
+        "on_error": [
             "FB_DetectWhereAmI"
         ],
         "pre_delay": 100
@@ -609,7 +674,7 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    -2,
+                    0,
                     302,
                     49,
                     86
@@ -737,16 +802,20 @@
     },
     "FB_DetectAfterMarching": {
         "next": [
-            "FB_PostExpeditionReturn",
+            "FB_PostExpeditionReturn_Exp",
+            "FB_PostExpeditionReturn_Title",
             "FB_PostMarching",
-            "FB_PostBattleResult",
-            "FB_PostSwordDrop",
+            "FB_PostBattleResult_Exp",
+            "FB_PostBattleResult_Title",
+            "FB_PostSwordDropColor",
             "FB_PostFormationSelect",
             "FB_CheckPostHomeBright",
+            "FB_IsGameIcon",
+            "FB_IsLoginButton",
             "FB_PostFallbackWait"
         ]
     },
-    "FB_PostExpeditionReturn": {
+    "FB_PostExpeditionReturn_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -767,7 +836,28 @@
         ],
         "pre_delay": 100
     },
-    "FB_PostBattleResult": {
+    "FB_PostExpeditionReturn_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "远征结果",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "FB_DetectAfterMarching"
+        ],
+        "pre_delay": 100
+    },
+    "FB_PostBattleResult_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -788,25 +878,66 @@
         ],
         "pre_delay": 100
     },
-    "FB_PostSwordDrop": {
-        "recognition": {
-            "type": "TemplateMatch",
+    "FB_PostBattleResult_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "战斗结果",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "FB_DetectAfterMarching"
+        ],
+        "pre_delay": 100
+    },
+    "FB_PostSwordDropColor": {
+        "recognition": "ColorMatch",
+        "roi": [
+            598,
+            543,
+            66,
+            1
+        ],
+        "upper": [
+            96,
+            56,
+            10
+        ],
+        "lower": [
+            88,
+            48,
+            2
+        ],
+        "action": {
+            "type": "Click",
             "param": {
-                "roi": [
-                    1163,
-                    617,
-                    71,
-                    67
+                "target": [
+                    1067,
+                    558,
+                    120,
+                    79
                 ],
-                "template": "刀剑对话.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
                 ]
             }
         },
-        "action": "Click",
         "next": [
+            "FB_DetectAfterMarching"
+        ],
+        "on_error": [
             "FB_DetectAfterMarching"
         ],
         "pre_delay": 100
@@ -1114,6 +1245,31 @@
             }
         },
         "action": "Click",
+        "post_delay": 2000,
+        "pre_delay": 100,
+        "next": [
+            "FB_DetectWhereAmI"
+        ],
+        "on_error": [
+            "FB_DetectWhereAmI"
+        ]
+    },
+    "FB_IsInGameUpdatePopup": {
+        "recognition": "OCR",
+        "roi": [
+            498,
+            291,
+            77,
+            50
+        ],
+        "expected": "更新",
+        "action": "Click",
+        "target": [
+            578,
+            440,
+            130,
+            55
+        ],
         "post_delay": 2000,
         "pre_delay": 100,
         "next": [

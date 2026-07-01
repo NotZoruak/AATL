@@ -9,10 +9,12 @@
         "next": [
             "S_IsAnnouncementPopup",
             "S_IsLoginReward",
-            "S_HasExpeditionReturn",
+            "S_HasExpeditionReturn_Exp",
+            "S_HasExpeditionReturn_Title",
             "S_IsMarching",
-            "S_IsBattleResult",
-            "S_IsSwordDrop",
+            "S_IsBattleResult_Exp",
+            "S_IsBattleResult_Title",
+            "S_IsSwordDropColor",
             "S_IsKebiishi",
             "S_IsFormationSelect",
             "S_IsSwordSelect",
@@ -28,11 +30,12 @@
             "S_IsGameIcon",
             "S_IsLoginButton",
             "S_IsGameUpdatePopup",
+            "S_IsInGameUpdatePopup",
             "S_IsInternalReport",
             "S_FallbackWait"
         ]
     },
-    "S_HasExpeditionReturn": {
+    "S_HasExpeditionReturn_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -41,6 +44,27 @@
             25
         ],
         "expected": "经验",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "S_HasExpeditionReturn_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "远征结果",
         "action": "Click",
         "target": [
             388,
@@ -74,7 +98,7 @@
             "S_CheckBossBeforeMarch"
         ]
     },
-    "S_IsBattleResult": {
+    "S_IsBattleResult_Exp": {
         "recognition": "OCR",
         "roi": [
             388,
@@ -95,25 +119,66 @@
         ],
         "pre_delay": 100
     },
-    "S_IsSwordDrop": {
-        "recognition": {
-            "type": "TemplateMatch",
+    "S_IsBattleResult_Title": {
+        "recognition": "OCR",
+        "roi": [
+            558,
+            1,
+            162,
+            52
+        ],
+        "expected": "战斗结果",
+        "action": "Click",
+        "target": [
+            388,
+            59,
+            54,
+            25
+        ],
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "pre_delay": 100
+    },
+    "S_IsSwordDropColor": {
+        "recognition": "ColorMatch",
+        "roi": [
+            598,
+            543,
+            66,
+            1
+        ],
+        "upper": [
+            96,
+            56,
+            10
+        ],
+        "lower": [
+            88,
+            48,
+            2
+        ],
+        "action": {
+            "type": "Click",
             "param": {
-                "roi": [
-                    1163,
-                    617,
-                    71,
-                    67
+                "target": [
+                    1067,
+                    558,
+                    120,
+                    79
                 ],
-                "template": "刀剑对话.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
+                "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
                 ]
             }
         },
-        "action": "Click",
         "next": [
+            "S_DetectWhereAmI"
+        ],
+        "on_error": [
             "S_DetectWhereAmI"
         ],
         "pre_delay": 100
@@ -668,7 +733,7 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    -2,
+                    0,
                     302,
                     49,
                     86
@@ -1164,10 +1229,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    1083,
-                    287,
-                    25,
-                    34
+                    1160,
+                    299,
+                    16,
+                    23
                 ],
                 "template": "王点_5_4.png",
                 "threshold": [
@@ -2456,6 +2521,31 @@
             }
         },
         "action": "Click",
+        "post_delay": 2000,
+        "pre_delay": 100,
+        "next": [
+            "S_DetectWhereAmI"
+        ],
+        "on_error": [
+            "S_DetectWhereAmI"
+        ]
+    },
+    "S_IsInGameUpdatePopup": {
+        "recognition": "OCR",
+        "roi": [
+            498,
+            291,
+            77,
+            50
+        ],
+        "expected": "更新",
+        "action": "Click",
+        "target": [
+            578,
+            440,
+            130,
+            55
+        ],
         "post_delay": 2000,
         "pre_delay": 100,
         "next": [
