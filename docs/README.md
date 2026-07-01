@@ -1,0 +1,177 @@
+<!-- markdownlint-disable -->
+
+<div align="center">
+
+<img alt="LOGO" src="./resource/logo/AATL.png" width="256" />
+
+# AATL — 刀剑乱舞自动化助手
+
+<br>
+<div>
+    <img alt="C#" src="https://img.shields.io/badge/C%23-14-%23239120?logo=csharp">
+    <img alt=".NET" src="https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet">
+    <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blueviolet">
+</div>
+<div>
+    <img alt="license" src="https://img.shields.io/github/license/NotZoruak/AATL">
+    <img alt="commit" src="https://img.shields.io/github/commit-activity/m/NotZoruak/AATL?color=%23ff69b4">
+</div>
+<div>
+    <img alt="stars" src="https://img.shields.io/github/stars/NotZoruak/AATL?style=social">
+    <img alt="downloads" src="https://img.shields.io/github/downloads/NotZoruak/AATL/total?style=social">
+</div>
+<br>
+
+<!-- markdownlint-restore -->
+
+刀剑乱舞 PC 端自动化工具，通过 ADB 连接模拟器运行《刀剑乱舞》，由 MaaFramework 强力驱动！推荐使用 MuMu 模拟器 12，分辨率 1280×720。其他支持 ADB 的模拟器及分辨率亦可运行。
+
+</div>
+
+## 安装步骤
+
+### 1. 下载方式
+
+前往 [Releases](https://github.com/NotZoruak/AATL/releases) 页面，在最新版本下方点击「Assets」展开文件列表，下载命名为 `AATL-vx.x.x.zip` 的文件。
+
+- **公测版**：功能经过验证，稳定性较高，推荐大多数用户使用
+- **内测版**：包含最新功能，但可能存在更多 bug，适合尝鲜用户
+
+注意：Release 基于 x86_64 架构，Windows 系统。对于 Arm 架构（如苹果 M 系列芯片，树莓派等）、RISCV 架构和 Mac 系统、Linux 系统暂不支持。
+
+### 2. 安装系统依赖
+
+右键 `DependencySetup_依赖库安装_win.bat` → **以管理员身份运行**。
+
+此脚本会自动安装：
+- Microsoft Visual C++ Redistributable
+- .NET Desktop Runtime 10.0
+
+如果已安装过这两个组件，可跳过此步。
+
+### 3. 启动模拟器（以MuMu为例）
+
+启动 MuMu 模拟器 12，进入《刀剑乱舞》主界面（本丸画面）。
+
+如需自动启动模拟器，在「设置」→「启动设置」中配置：
+- **模拟器路径**：填入 MuMu 模拟器的 exe 路径（如 `D:\Apps\MuMu\MuMuPlayer\nx_main\MuMuNxMain.exe`）
+- **附加命令**：选择对应的虚拟机实例（如 `-v 0`、`-v 1` 等，0 为第一个）
+- **启动后操作**：选择「启动游戏」
+
+配置后，AATL 启动时会自动拉起模拟器并连接 ADB。
+
+
+## 使用方法
+
+1. 启动程序后，点击左侧导航栏「主页」
+2. 在连接目标下拉框中选中 MuMu 设备
+3. 在任务列表中勾选想执行的任务，长按拖动可调整执行顺序
+4. 在右侧设置面板中配置对应选项
+5. 点击「开始任务」即可自动运行
+
+## 任务说明
+
+**远征** — 自动管理部队远征：检测空闲队伍并派往指定地图，到期后收取奖励，循环执行。请确保编队符合远征要求。
+
+**江户城** — 自动攻略江户城活动，行军路线固定为最短路径，优先进入王点。可选换队长（请为且仅为需控花的刀剑男士装备马）和补充门票（检测到通行令牌耗尽时自动补充三枚）。
+
+**刷花** — 仅支持部队一单骑出阵 1-1，自动循环进入合战场刷花。请提前解散部队一，并为且仅为需要刷花的刀剑男士装备马匹和刀装。
+
+**合战场** — 通用合战场出阵自动化，无限循环。支持自选时代、地域、部队和阵形，可选换队长、补充刀装、王点前撤退、八图道中撤退、重伤修刀/停止、同步远征。
+
+**回到本丸** — 从任意界面返回本丸，适用于任务卡住时的救援恢复。无自定义选项，勾选即运行。
+
+**地下城** — 自动攻略大阪地下城活动。可选常驻层数、选择部队、选择阵形、换队长、补充刀装、每轮回本丸（配合同步远征）、动画跳过。
+
+**刀解** — 自动刀解 + 收邮箱循环，在任务设置中勾选要解体的刀种即可自动筛选并一键解体。
+
+**限锻计算** — 限锻资源计算工具，支持手动输入或一键 OCR 识别当前资源。输入锻刀公式、现有积分和资源道具，自动计算达到 5000 积分所需剩余资源。
+
+> 更多功能开发中，敬请期待。
+
+## 常见问题
+
+### Q1: AATL 占用存储空间太大怎么办？
+
+AATL 运行期间会产生 debug 日志文件（位于 `debug/` 目录），长时间使用后可能累计数 GB。解决方法：
+
+1. **手动清理**：删除 `debug/` 目录下的 `maafw.bak.*.log` 备份日志文件，保留最新的 `maafw.log` 即可
+2. **使用内置清理**：在 AATL 菜单栏点击「设置」→「关于我们」→「清理缓存」，程序会自动清理过期日志
+3. **自动清理**：AATL 每次启动时会自动删除超过 3 天的旧备份日志，无需手动干预
+
+### Q2: 更新检测提示「处理 GitHub 响应失败：状态码 401 Unauthorized / 403 Forbidden / 429 Too Many Requests」怎么办？
+
+这是 GitHub API 未认证限速导致的，同一公网 IP 短时间内的匿名请求超过限制后会被暂时拒绝。解决方法：
+
+1. **暂时忽略**：该错误仅影响自动更新检测，不影响任务正常运行，可直接关闭提示继续使用
+2. **手动下载更新**：前往 [Releases](https://github.com/NotZoruak/AATL/releases) 页面手动下载最新版本，解压覆盖即可
+3. **切换网络环境**：如果与其他用户共享同一公网 IP（如校园网、公司网络），GitHub 限速更容易触发，可尝试使用移动热点等独立网络
+
+> 注意：推荐大多数用户选择公测版。在「设置」→「软件更新设置」→「资源更新渠道」中可选择「公测版」或「内测版」。内测版包含最新功能但可能存在更多 bug，适合尝鲜用户。
+
+### Q3: 更新检测提示「检查资源最新版时发生错误：原因=无法连接到远程服务器」怎么办？
+
+这是网络连接问题，通常由以下原因导致：
+
+1. **无网络连接**：检查设备是否正常联网，可尝试打开 [GitHub](https://github.com) 验证
+2. **DNS 污染**：部分网络环境可能无法正确解析 GitHub 域名，可尝试切换 DNS 服务器（如 114.114.114.114）或使用 VPN
+3. **运营商屏蔽**：少数地区的网络运营商可能限制了对 GitHub 的访问，需使用代理或 VPN 解决
+4. **手动下载**：如网络环境持续受限，可前往 [Releases](https://github.com/NotZoruak/AATL/releases) 页面手动下载，不需要使用 VPN 完成更新
+
+### Q4: 自动更新下载到一半失败了怎么办？
+
+1. **重试**：自动更新支持断点续传，下次启动或手动点击「检查更新」时会重新尝试
+2. **手动下载**：前往 [Releases](https://github.com/NotZoruak/AATL/releases) 页面下载最新版本 ZIP 文件，解压后覆盖原程序目录即可
+3. **哈希校验失败**：如果提示「哈希校验失败」，说明下载的文件不完整或被损坏，请重新下载
+
+## 反馈与建议
+
+遇到 bug 或有功能建议？欢迎通过以下方式反馈：
+
+- **GitHub Issues**：前往 [Issues 页面](https://github.com/NotZoruak/AATL/issues) 提交，请尽量包含以下信息方便快速定位
+- **邮箱**：如果没有 GitHub 账号，可直接发送至 `pei462243028140@163.com`
+
+提交反馈时请尽量包含以下信息：
+
+- **Bug 报告**：描述操作步骤、预期结果和实际结果，附上截图或日志（`debug/` 目录下）
+- **功能建议**：描述期望的功能场景和使用目的
+
+> 提交前请先搜索已有 issue，避免重复。
+
+## 目录结构
+
+```
+AATL/
+├── AATL.exe                              ← 桌面 GUI
+├── AATL.dll                              ← 主程序集
+├── appsettings.json                      ← 应用配置
+├── DependencySetup_依赖库安装_win.bat      ← 安装系统运行时依赖
+├── config/                               ← 用户配置（自动生成）
+├── debug/                                ← 调试日志
+├── resource/
+│   ├── interface.json                    ← 任务、选项配置
+│   ├── base/
+│   │   ├── pipeline/                     ← 自动化任务流水线（JSON）
+│   │   │   ├── Sortie.json               ← 合战场
+│   │   │   ├── Underground.json          ← 地下城
+│   │   │   ├── Expedition.json           ← 远征
+│   │   │   ├── EdoCastle.json            ← 江户城
+│   │   │   ├── FlowerBrush.json          ← 刷花
+│   │   │   ├── Disassemble.json          ← 刀解
+│   │   │   └── GoHome.json               ← 回到本丸
+│   │   ├── image/                        ← 模板匹配图片
+│   │   └── model/ocr/                    ← OCR 模型
+│   └── announcement/                     ← 公告
+├── runtimes/
+│   ├── libs/                             ← .NET 托管 DLL
+│   └── win-x64/native/                   ← 原生引擎
+└── LICENSE
+```
+## ⚠️ 声明
+
+- 本项目基于 [MaaFramework](https://github.com/MaaXYZ/MaaFramework)（LGPL v3）构建，采用 [GNU General Public License v3.0](LICENSE) 协议，**永久免费且开源**。
+- 本项目为非计算机专业人员心血来潮之作，大量依赖 vibe coding 完成，仅供学习交流使用。若您遇到商家使用本软件进行代练并收费，可能是设备与时间等费用，产生的问题及后果与本软件无关。
+- 使用本脚本可能违反游戏条款，一切后果（包括账号封禁、数据丢失等）由使用者自行承担。
+- 请勿跳脸官方和手搓玩家，尊重他人劳动成果，低调使用。
+
+最后，如果你觉得该软件对你有帮助，请点个Star吧。

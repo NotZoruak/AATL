@@ -3622,13 +3622,16 @@ public class MaaProcessor
         if (maa == null || task == null) return;
 
         var job = maa.AppendTask(task, param ?? "{}");
+        MaaJobStatus jobStatus = MaaJobStatus.Failed;
         await TaskManager.RunTaskAsync((Action)(() =>
         {
             if (InstanceConfiguration.GetValue(ConfigurationKeys.ContinueRunningWhenError, true))
-                job.Wait();
+                jobStatus = job.Wait();
             else
-                job.Wait().ThrowIfNot(MaaJobStatus.Succeeded);
+                jobStatus = job.Wait().ThrowIfNot(MaaJobStatus.Succeeded);
         }), token, (ex) => throw ex, name: "队列任务", catchException: true, shouldLog: false);
+
+        AddLogByKey(jobStatus == MaaJobStatus.Succeeded ? LangKeys.TaskCompleted : LangKeys.TaskFailed, (IBrush?)null);
 
         // 等待 PostStop 清理完成，防止下一轮 AppendTask 被中断
         await Task.Delay(500, token);
