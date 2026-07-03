@@ -7,6 +7,8 @@
     IsVisible="{Binding IsWindowVisible}"
     MinHeight="360"
     MinWidth="700"
+    Width="1028"
+    Height="650"
     d:DesignHeight="450"
     d:DesignWidth="800" ShowTitle="False"
     mc:Ignorable="d"

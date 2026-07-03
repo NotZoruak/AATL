@@ -26,6 +26,38 @@
       "LR_DetectWhereAmI"
     ]
   },
+  "LR_IsSupplyPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          24,
+          37,
+          57,
+          91
+        ],
+        "template": "补给.png",
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "target": [
+      1241,
+      37,
+      1,
+      1
+    ],
+    "pre_delay": 100,
+    "post_delay": 500,
+    "next": [
+      "LR_DetectWhereAmI"
+    ],
+    "on_error": [
+      "LR_DetectWhereAmI"
+    ]
+  },
   "LR_IsLoginReward": {
     "recognition": {
       "type": "TemplateMatch",
@@ -978,6 +1010,7 @@
     "pre_delay": 0,
     "next": [
       "LR_IsAnnouncementPopup",
+      "LR_IsSupplyPopup",
       "LR_IsLoginReward",
       "LR_HasExpeditionReturn_Exp",
       "LR_HasExpeditionReturn_Title",
@@ -1052,7 +1085,31 @@
     },
     "pre_delay": 100,
     "next": [
+      "LR_VerifyDifficulty"
+    ]
+  },
+  "LR_VerifyDifficulty": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          427,
+          69,
+          388,
+          52
+        ],
+        "template": "联队战.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
       "LR_EnterEvent"
+    ],
+    "on_error": [
+      "LR_DetectWhereAmI"
     ]
   },
   "LR_EnterEvent": {
@@ -1147,7 +1204,8 @@
         ]
       }
     },
-    "pre_delay": 100,
+    "pre_delay": 500,
+    "post_delay": 500,
     "next": [
       "LR_DetectTicket"
     ]
@@ -1227,7 +1285,7 @@
         ]
       }
     },
-    "pre_delay": 100,
+    "pre_delay": 500,
     "next": [
       "LR_AfterCaptain"
     ]
