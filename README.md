@@ -14,7 +14,6 @@
 </div>
 <div>
     <img alt="license" src="https://img.shields.io/github/license/NotZoruak/AATL">
-    <img alt="commit" src="https://img.shields.io/github/commit-activity/m/NotZoruak/AATL?color=%23ff69b4">
 </div>
 <div>
     <img alt="stars" src="https://img.shields.io/github/stars/NotZoruak/AATL?style=social">
