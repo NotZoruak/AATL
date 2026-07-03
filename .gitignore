@@ -1,3 +1,6 @@
 
 # 调试输出
 /debug/
+
+# Obsidian 配置
+docs/.obsidian/

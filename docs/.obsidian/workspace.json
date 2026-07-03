@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "陆联任务设计.md",
+                "file": "合战场任务设计.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "陆联任务设计"
+              "title": "合战场任务设计"
             }
           }
         ]
@@ -186,23 +186,24 @@
   },
   "active": "94ddccee65a65409",
   "lastOpenFiles": [
-    "陆联任务设计.md.tmp.32340.fc8d41ad8381",
+    "复用节点清单.md",
+    "合战场任务设计.md",
+    "合战场任务设计.md.tmp.38928.432ed45b7e87",
+    "复用节点清单.md.tmp.38928.5437a7326c37",
+    "合战场任务设计.md.tmp.38928.b8a342d718ef",
+    "合战场任务设计.md.tmp.38928.1472935c05cd",
+    "合战场任务设计.md.tmp.38928.2bb92cfedad4",
+    "合战场任务设计.md.tmp.38928.8cb36a78c701",
+    "合战场任务设计.md.tmp.38928.acbd02964240",
+    "合战场任务设计.md.tmp.38928.e7b922223713",
+    "合战场任务设计.md.tmp.38928.1d0a8ef1ad11",
+    "合战场任务设计.md.tmp.38928.8fd8316364f8",
+    "陆联任务设计.md",
     "数据查找表设计.md",
     "习合任务设计.md",
-    "陆联任务设计.md",
-    "陆联任务设计.md.tmp.32340.54f23114be9c",
     "已隐藏任务.md",
     "王点前撤退_ROI验证.md",
     "1-v0.5.4.md",
-    "王点前撤退_ROI验证.md.tmp.32340.7c20d7c74ad4",
-    "王点前撤退_ROI验证.md.tmp.32340.fe7a2d807bcc",
-    "王点前撤退_ROI验证.md.tmp.32340.cdbdbe77897c",
-    "王点前撤退_ROI验证.md.tmp.32340.1de5f38a7aa1",
-    "王点前撤退_ROI验证.md.tmp.32340.cf9af053188d",
-    "王点前撤退_ROI验证.md.tmp.32340.66a574e2036f",
-    "王点前撤退_ROI验证.md.tmp.32340.113cdd066214",
-    "王点前撤退_ROI验证.md.tmp.32340.ca83dd0fa260",
-    "王点前撤退_ROI验证.md.tmp.32340.f876a136b3df",
     "联队战任务设计.md",
     "README.md",
     "superpowers/plans/2026-06-30-mix-pipeline.md",
