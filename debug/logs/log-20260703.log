@@ -5509,3 +5509,2096 @@ System.Exception: NotFound - Not Found
 (用时 0h 0m 2s)
 [2026-07-03 22:30:46.402][INF] [cfg=Default] [内存管理]释放了5.09 MB（10.3%)
 [2026-07-03 22:33:25.747][INF] [cfg=Default] 应用已关闭
+[2026-07-03 23:16:30.440][INF] 正在加载配置列表...
+[2026-07-03 23:16:30.463][INF] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:16:30.464][INF] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:16:30.464][INF] 是否使用独立数据目录：False
+[2026-07-03 23:16:30.464][INF] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:16:30.464][INF] 是否使用本地配置目录：True
+[2026-07-03 23:16:30.464][INF] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:16:30.464][INF] 备份文件数量：2
+[2026-07-03 23:16:30.464][INF] 临时目录是否存在：True
+[2026-07-03 23:16:30.464][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:16:30.464][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:16:30.464][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-07-03 23:16:30.464][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:16:30.464][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-07-03 23:16:30.464][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:16:30.464][INF] [cfg=Default] 备份文件数量：2
+[2026-07-03 23:16:30.464][INF] [cfg=Default] 临时目录是否存在：True
+[2026-07-03 23:16:30.468][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\AATL\runtimes/libs
+[2026-07-03 23:16:30.468][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\AATL\runtimes/libs，目录存在=True
+[2026-07-03 23:16:30.470][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=1，路径=[D:\Claude_Workspace\AATL\runtimes\win-x64\native]
+[2026-07-03 23:16:30.471][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-07-03 23:16:30.472][INF] [cfg=Default] 程序版本：v2.12.2-beta.1
+[2026-07-03 23:16:30.472][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-07-03 23:16:30.960][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-07-03 23:16:31.090][INF] [cfg=Default] 当前配置：Default
+[2026-07-03 23:16:31.130][INF] [cfg=Default] 已恢复系统休眠。
+[2026-07-03 23:16:31.133][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-07-03 23:16:31.133][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-07-03 23:16:31.144][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-07-03 23:16:31.144][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-07-03 23:16:31.158][INF] [cfg=Default] [内存管理]释放了1.13 MB（28.2%)
+[2026-07-03 23:16:31.212][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-07-03 23:16:31.221][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:16:31.298][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:16:31.299][INF] [cfg=Default] 资源版本：0.5.4
+[2026-07-03 23:16:31.299][INF] [cfg=Default] MaaFramework 版本：v5.11.1
+[2026-07-03 23:16:31.353][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:16:31.409][INF] [cfg=Default] 窗口大小已加载：宽度=1028，高度=650
+[2026-07-03 23:16:31.417][INF] [cfg=Default] 窗口位置已加载：X=763，Y=306
+[2026-07-03 23:16:31.692][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-07-03 23:16:31.749][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-07-03 23:16:31.790][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:16:31.790][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-07-03 23:16:31.910][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:16:31.919][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:16:32.243][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:16:32.243][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:16:32.298][INF] [cfg=Default] 界面初始化开始
+[2026-07-03 23:16:32.367][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:16:32.368][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:16:32.371][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:16:32.376][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:16:32.720][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\libs\locales\en-US\MFAAvalonia.Core.resources.dll.202607031917.0.backupMFA
+[2026-07-03 23:16:32.720][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\win-x64\native\plugins\MaaPluginDemo.dll.202607031917.0.backupMFA
+[2026-07-03 23:16:32.920][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-07-03 23:16:33.255][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-07-03 23:16:33.255][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-07-03 23:16:33.450][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-07-03 23:16:33.450][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-07-03 23:16:33.581][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-07-03 23:16:33.685][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:16:33.732][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-07-03 23:16:33.732][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\AATL\resource\base
+[2026-07-03 23:16:33.733][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-07-03 23:16:33.774][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-07-03 23:16:33.775][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-07-03 23:16:33.775][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-07-03 23:16:33.775][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-07-03 23:16:33.776][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-07-03 23:16:33.778][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:Default,捕获模式:Default
+[2026-07-03 23:16:33.779][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：
+[2026-07-03 23:16:33.779][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：adb
+[2026-07-03 23:16:33.779][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：
+[2026-07-03 23:16:33.779][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：Default
+[2026-07-03 23:16:33.779][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：Default
+[2026-07-03 23:16:33.779][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{}
+[2026-07-03 23:16:33.790][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器时发生错误！
+[2026-07-03 23:16:33.790][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器失败：message=连接模拟器时发生错误！, reason=The value cannot be an empty string.（Parameter 'info.AdbSerial')
+System.ArgumentException: The value cannot be an empty string. (Parameter 'info.AdbSerial')
+   at System.ArgumentException.ThrowNullOrEmptyException(String argument, String paramName)
+   at System.ArgumentException.ThrowIfNullOrEmpty(String argument, String paramName)
+   at MaaFramework.Binding.MaaAdbController..ctor(AdbDeviceInfo info, LinkOption link, CheckStatusOption check)
+   at MaaFramework.Binding.MaaAdbController..ctor(String adbPath, String adbSerial, AdbScreencapMethods screencapMethods, AdbInputMethods inputMethods, String config, String agentPath, LinkOption link, CheckStatusOption check)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.InitializeController(MaaControllerTypes controllerType, Boolean logConfig)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.<>c__DisplayClass143_0.<InitializeMaaTasker>b__7()
+   at MFAAvalonia.Helper.TaskManager.<>c__DisplayClass6_0`1.<RunTaskAsync>b__0()
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at MFAAvalonia.Helper.TaskManager.RunTaskAsync[TResult](Func`1 function, CancellationToken token, Action`1 handleError, String name, String prompt, Boolean catchException, Boolean shouldLog, Boolean noMessage)
+[2026-07-03 23:16:33.797][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-07-03 23:16:33.798][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器初始化结果为空，已中止本次连接尝试。
+[2026-07-03 23:16:33.810][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-07-03 23:16:33.811][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-07-03 23:16:33.811][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-07-03 23:16:33.811][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=更新资源
+[2026-07-03 23:16:33.813][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:16:34.223][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-07-03 23:16:35.162][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 目标系统：平台=win，系统家族=windows，架构=x64
+[2026-07-03 23:16:35.986][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 候选资产优先级：名称=aatl-v0.5.3-beta.zip，优先级=0
+[2026-07-03 23:16:35.993][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=更新资源
+[2026-07-03 23:16:35.993][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-07-03 23:16:35.994][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:16:35.995][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-07-03 23:16:35.996][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:16:35.998][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 2s)
+[2026-07-03 23:16:36.003][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 用户操作：重新连接 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:16:36.151][INF] [cfg=Default][inst=配置 1/default][src=UI][op=MatchAdbDevice] 当前设备指纹：name=MuMu安卓设备-MuMuPlayer12 v5, serial=127.0.0.1:16384, configLength=78
+[2026-07-03 23:16:36.151][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 按指纹匹配到的设备数量：1
+[2026-07-03 23:16:36.152][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=<none>
+[2026-07-03 23:16:36.152][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:16:36.154][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在载入资源
+[2026-07-03 23:16:36.154][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 资源路径：D:\Claude_Workspace\AATL\resource\base
+[2026-07-03 23:16:36.155][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测开始（异步）。
+[2026-07-03 23:16:36.168][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-07-03 23:16:36.177][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测完成（异步）。
+[2026-07-03 23:16:36.177][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 启用 GPU 推理：成功
+[2026-07-03 23:16:36.177][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] GPU acceleration: Auto
+[2026-07-03 23:16:36.177][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测开始（异步）。
+[2026-07-03 23:16:36.177][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在加载 MAA 控制器配置...
+[2026-07-03 23:16:36.178][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 触控模式:Default,捕获模式:EmulatorExtras
+[2026-07-03 23:16:36.178][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 设备名称：MuMu安卓设备-MuMuPlayer12 v5
+[2026-07-03 23:16:36.178][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 路径：D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe
+[2026-07-03 23:16:36.178][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 序列号：127.0.0.1:16384
+[2026-07-03 23:16:36.178][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 截图模式：EmulatorExtras
+[2026-07-03 23:16:36.178][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 输入模式：Default
+[2026-07-03 23:16:36.178][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 控制器配置：{"extras":{"mumu":{"enable":true,"index":0,"path":"D:/Apps/MuMu/MuMuPlayer"}}
+[2026-07-03 23:16:36.678][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测完成（异步）。
+[2026-07-03 23:16:37.346][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册内置特殊任务动作。
+[2026-07-03 23:16:37.354][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已启动自定义类目录监听：目录=D:\Claude_Workspace\AATL\resource\base\custom
+[2026-07-03 23:16:37.356][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\CaptainDamageAction.cs
+[2026-07-03 23:16:38.247][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\CaptainDamageAction.cs
+[2026-07-03 23:16:38.247][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DamageLogAction.cs
+[2026-07-03 23:16:38.342][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DamageLogAction.cs
+[2026-07-03 23:16:38.342][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DispatchLogAction.cs
+[2026-07-03 23:16:38.523][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DispatchLogAction.cs
+[2026-07-03 23:16:38.523][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-07-03 23:16:38.686][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-07-03 23:16:38.687][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-07-03 23:16:38.738][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-07-03 23:16:38.738][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\TeamSwitchAction.cs
+[2026-07-03 23:16:38.781][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\TeamSwitchAction.cs
+[2026-07-03 23:16:38.782][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：CaptainDamageAction
+[2026-07-03 23:16:38.782][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DamageLogAction
+[2026-07-03 23:16:38.782][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DispatchLogAction
+[2026-07-03 23:16:38.782][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DungeonFloorSelectAction
+[2026-07-03 23:16:38.782][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：ExpeditionMapSelectAction
+[2026-07-03 23:16:38.782][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：TeamSwitchAction
+[2026-07-03 23:16:38.782][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 未找到自定义目录：D:\Claude_Workspace\AATL\resource\custom
+[2026-07-03 23:16:38.782][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 连接状态变更：已连接。
+[2026-07-03 23:16:38.784][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] MaaFW 调试模式：False
+[2026-07-03 23:16:41.760][INF] [cfg=Default][inst=配置 1/default][src=UI][op=StartTask] 用户操作：启动任务 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384), selectedTasks=1 [陆联]
+[2026-07-03 23:16:41.784][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 准备执行任务队列：任务数量=1
+[2026-07-03 23:16:41.792][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] [任务管线合并] 任务#1 名称=[陆联] 入口=[LRentaisen] 参数=[
+  {},
+  {
+    "LR_IsSwordSelect"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptainSlot"：{
+      "enabled"：true
+    },
+    "LR_DetectSortOrder"：{
+      "enabled"：true
+    },
+    "LR_ClickDescending"：{
+      "enabled"：true
+    },
+    "LR_ConfirmSortAsc"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain1"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain2"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain3"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain4"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain5"：{
+      "enabled"：true
+    }
+  },
+  {
+    "LR_ClickTeam"：{
+      "target"：[
+        154,
+        93,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "LR_RunTeamSwitch"：{
+      "custom_action_param"：{
+        "team_config"："221222111"
+      }
+    }
+  },
+  {
+    "LR_ClickDifficulty"：{
+      "target"：[
+        1132,
+        328,
+        1,
+        1
+      ]
+    }
+  }
+]
+[2026-07-03 23:16:41.877][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:16:41.878][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本开始（异步）。
+[2026-07-03 23:16:41.880][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本完成（异步）。
+[2026-07-03 23:16:41.881][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试开始（异步）。
+[2026-07-03 23:16:41.894][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试完成（异步）。
+[2026-07-03 23:16:41.894][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 截图耗时：5ms(EmulatorExtras)
+[2026-07-03 23:16:41.902][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 开始任务：陆联
+[2026-07-03 23:16:41.905][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务开始（异步）。
+[2026-07-03 23:16:44.618][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：NOT_STARTED
+[2026-07-03 23:16:44.620][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:16:44.620][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 正在尝试停止任务执行器，第 1 次。
+[2026-07-03 23:16:44.621][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务完成（异步）。
+[2026-07-03 23:16:44.621][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在停止......
+[2026-07-03 23:16:44.621][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:16:44.622][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：STOPPED
+[2026-07-03 23:16:44.622][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:16:44.622][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action开始。
+[2026-07-03 23:16:44.622][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action完成。
+[2026-07-03 23:16:44.652][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 第 1 次停止任务执行器返回：Succeeded，准备重试。
+[2026-07-03 23:16:45.025][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 已放弃本次任务
+[2026-07-03 23:17:03.432][INF] [cfg=Default] 应用已关闭
+[2026-07-03 23:17:03.436][INF] [cfg=Default] 已释放自定义类目录监听器。
+[2026-07-03 23:18:18.660][INF] 正在加载配置列表...
+[2026-07-03 23:18:18.683][INF] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:18:18.683][INF] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:18:18.683][INF] 是否使用独立数据目录：False
+[2026-07-03 23:18:18.683][INF] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:18:18.683][INF] 是否使用本地配置目录：True
+[2026-07-03 23:18:18.683][INF] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:18:18.683][INF] 备份文件数量：2
+[2026-07-03 23:18:18.683][INF] 临时目录是否存在：True
+[2026-07-03 23:18:18.683][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:18:18.683][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:18:18.683][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-07-03 23:18:18.683][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:18:18.683][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-07-03 23:18:18.683][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:18:18.683][INF] [cfg=Default] 备份文件数量：2
+[2026-07-03 23:18:18.683][INF] [cfg=Default] 临时目录是否存在：True
+[2026-07-03 23:18:18.687][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\AATL\runtimes/libs
+[2026-07-03 23:18:18.687][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\AATL\runtimes/libs，目录存在=True
+[2026-07-03 23:18:18.689][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=1，路径=[D:\Claude_Workspace\AATL\runtimes\win-x64\native]
+[2026-07-03 23:18:18.691][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-07-03 23:18:18.691][INF] [cfg=Default] 程序版本：v2.12.2-beta.1
+[2026-07-03 23:18:18.691][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-07-03 23:18:19.186][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-07-03 23:18:19.315][INF] [cfg=Default] 当前配置：Default
+[2026-07-03 23:18:19.356][INF] [cfg=Default] 已恢复系统休眠。
+[2026-07-03 23:18:19.359][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-07-03 23:18:19.360][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-07-03 23:18:19.369][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-07-03 23:18:19.369][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-07-03 23:18:19.381][INF] [cfg=Default] [内存管理]释放了1.15 MB（28.7%)
+[2026-07-03 23:18:19.438][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-07-03 23:18:19.448][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:18:19.518][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:18:19.519][INF] [cfg=Default] 资源版本：0.5.4
+[2026-07-03 23:18:19.519][INF] [cfg=Default] MaaFramework 版本：v5.11.1
+[2026-07-03 23:18:19.574][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:18:19.633][INF] [cfg=Default] 窗口大小已加载：宽度=1028，高度=650
+[2026-07-03 23:18:19.642][INF] [cfg=Default] 窗口位置已加载：X=763，Y=306
+[2026-07-03 23:18:19.920][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-07-03 23:18:19.985][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-07-03 23:18:20.026][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:18:20.026][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-07-03 23:18:20.147][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:18:20.156][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:18:20.470][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:18:20.470][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:18:20.523][INF] [cfg=Default] 界面初始化开始
+[2026-07-03 23:18:20.589][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:18:20.590][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:18:20.593][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:18:20.596][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:18:20.936][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\libs\locales\en-US\MFAAvalonia.Core.resources.dll.202607031917.0.backupMFA
+[2026-07-03 23:18:20.937][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\win-x64\native\plugins\MaaPluginDemo.dll.202607031917.0.backupMFA
+[2026-07-03 23:18:21.107][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-07-03 23:18:21.419][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-07-03 23:18:21.420][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-07-03 23:18:21.667][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-07-03 23:18:21.668][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-07-03 23:18:21.818][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-07-03 23:18:21.975][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:18:22.034][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-07-03 23:18:22.034][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\AATL\resource\base
+[2026-07-03 23:18:22.034][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-07-03 23:18:22.071][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-07-03 23:18:22.072][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-07-03 23:18:22.072][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-07-03 23:18:22.072][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-07-03 23:18:22.073][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-07-03 23:18:22.075][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:Default,捕获模式:Default
+[2026-07-03 23:18:22.075][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：
+[2026-07-03 23:18:22.075][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：adb
+[2026-07-03 23:18:22.075][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：
+[2026-07-03 23:18:22.075][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：Default
+[2026-07-03 23:18:22.075][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：Default
+[2026-07-03 23:18:22.075][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{}
+[2026-07-03 23:18:22.081][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器时发生错误！
+[2026-07-03 23:18:22.081][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器失败：message=连接模拟器时发生错误！, reason=The value cannot be an empty string.（Parameter 'info.AdbSerial')
+System.ArgumentException: The value cannot be an empty string. (Parameter 'info.AdbSerial')
+   at System.ArgumentException.ThrowNullOrEmptyException(String argument, String paramName)
+   at System.ArgumentException.ThrowIfNullOrEmpty(String argument, String paramName)
+   at MaaFramework.Binding.MaaAdbController..ctor(AdbDeviceInfo info, LinkOption link, CheckStatusOption check)
+   at MaaFramework.Binding.MaaAdbController..ctor(String adbPath, String adbSerial, AdbScreencapMethods screencapMethods, AdbInputMethods inputMethods, String config, String agentPath, LinkOption link, CheckStatusOption check)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.InitializeController(MaaControllerTypes controllerType, Boolean logConfig)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.<>c__DisplayClass143_0.<InitializeMaaTasker>b__7()
+   at MFAAvalonia.Helper.TaskManager.<>c__DisplayClass6_0`1.<RunTaskAsync>b__0()
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at MFAAvalonia.Helper.TaskManager.RunTaskAsync[TResult](Func`1 function, CancellationToken token, Action`1 handleError, String name, String prompt, Boolean catchException, Boolean shouldLog, Boolean noMessage)
+[2026-07-03 23:18:22.088][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-07-03 23:18:22.088][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器初始化结果为空，已中止本次连接尝试。
+[2026-07-03 23:18:22.100][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-07-03 23:18:22.100][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:18:22.101][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-07-03 23:18:22.101][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-07-03 23:18:22.101][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=更新资源
+[2026-07-03 23:18:22.413][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-07-03 23:18:22.749][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 用户操作：重新连接 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:18:22.904][INF] [cfg=Default][inst=配置 1/default][src=UI][op=MatchAdbDevice] 当前设备指纹：name=MuMu安卓设备-MuMuPlayer12 v5, serial=127.0.0.1:16384, configLength=78
+[2026-07-03 23:18:22.905][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 按指纹匹配到的设备数量：1
+[2026-07-03 23:18:22.905][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=<none>
+[2026-07-03 23:18:22.906][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:18:22.908][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在载入资源
+[2026-07-03 23:18:22.908][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 资源路径：D:\Claude_Workspace\AATL\resource\base
+[2026-07-03 23:18:22.908][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测开始（异步）。
+[2026-07-03 23:18:22.915][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-07-03 23:18:22.930][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测完成（异步）。
+[2026-07-03 23:18:22.930][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 启用 GPU 推理：成功
+[2026-07-03 23:18:22.930][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] GPU acceleration: Auto
+[2026-07-03 23:18:22.930][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测开始（异步）。
+[2026-07-03 23:18:22.930][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在加载 MAA 控制器配置...
+[2026-07-03 23:18:22.930][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 触控模式:Default,捕获模式:EmulatorExtras
+[2026-07-03 23:18:22.930][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 设备名称：MuMu安卓设备-MuMuPlayer12 v5
+[2026-07-03 23:18:22.930][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 路径：D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe
+[2026-07-03 23:18:22.930][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 序列号：127.0.0.1:16384
+[2026-07-03 23:18:22.930][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 截图模式：EmulatorExtras
+[2026-07-03 23:18:22.930][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 输入模式：Default
+[2026-07-03 23:18:22.930][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 控制器配置：{"extras":{"mumu":{"enable":true,"index":0,"path":"D:/Apps/MuMu/MuMuPlayer"}}
+[2026-07-03 23:18:23.396][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测完成（异步）。
+[2026-07-03 23:18:23.608][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 目标系统：平台=win，系统家族=windows，架构=x64
+[2026-07-03 23:18:24.043][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册内置特殊任务动作。
+[2026-07-03 23:18:24.051][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已启动自定义类目录监听：目录=D:\Claude_Workspace\AATL\resource\base\custom
+[2026-07-03 23:18:24.053][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\CaptainDamageAction.cs
+[2026-07-03 23:18:24.482][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 候选资产优先级：名称=aatl-v0.5.3-beta.zip，优先级=0
+[2026-07-03 23:18:24.774][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\CaptainDamageAction.cs
+[2026-07-03 23:18:24.774][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DamageLogAction.cs
+[2026-07-03 23:18:24.859][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DamageLogAction.cs
+[2026-07-03 23:18:24.859][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DispatchLogAction.cs
+[2026-07-03 23:18:25.035][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DispatchLogAction.cs
+[2026-07-03 23:18:25.036][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-07-03 23:18:25.182][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-07-03 23:18:25.182][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-07-03 23:18:25.235][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-07-03 23:18:25.235][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\TeamSwitchAction.cs
+[2026-07-03 23:18:25.280][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\TeamSwitchAction.cs
+[2026-07-03 23:18:25.280][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：CaptainDamageAction
+[2026-07-03 23:18:25.280][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DamageLogAction
+[2026-07-03 23:18:25.280][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DispatchLogAction
+[2026-07-03 23:18:25.280][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DungeonFloorSelectAction
+[2026-07-03 23:18:25.280][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：ExpeditionMapSelectAction
+[2026-07-03 23:18:25.280][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：TeamSwitchAction
+[2026-07-03 23:18:25.281][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 未找到自定义目录：D:\Claude_Workspace\AATL\resource\custom
+[2026-07-03 23:18:25.281][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 连接状态变更：已连接。
+[2026-07-03 23:18:25.283][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] MaaFW 调试模式：False
+[2026-07-03 23:18:25.287][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=更新资源
+[2026-07-03 23:18:25.287][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-07-03 23:18:25.288][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:18:25.301][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-07-03 23:18:25.302][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:18:25.306][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 3s)
+[2026-07-03 23:18:30.734][INF] [cfg=Default][inst=配置 1/default][src=UI][op=StartTask] 用户操作：启动任务 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384), selectedTasks=1 [陆联]
+[2026-07-03 23:18:30.745][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 准备执行任务队列：任务数量=1
+[2026-07-03 23:18:30.761][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] [任务管线合并] 任务#1 名称=[陆联] 入口=[LRentaisen] 参数=[
+  {},
+  {
+    "LR_IsSwordSelect"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptainSlot"：{
+      "enabled"：true
+    },
+    "LR_DetectSortOrder"：{
+      "enabled"：true
+    },
+    "LR_ClickDescending"：{
+      "enabled"：true
+    },
+    "LR_ConfirmSortAsc"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain1"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain2"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain3"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain4"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain5"：{
+      "enabled"：true
+    }
+  },
+  {
+    "LR_ClickTeam"：{
+      "target"：[
+        154,
+        93,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "LR_RunTeamSwitch"：{
+      "custom_action_param"：{
+        "team_config"："221222111"
+      }
+    }
+  },
+  {
+    "LR_ClickDifficulty"：{
+      "target"：[
+        1132,
+        328,
+        1,
+        1
+      ]
+    }
+  }
+]
+[2026-07-03 23:18:30.851][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:18:30.854][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本开始（异步）。
+[2026-07-03 23:18:30.855][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本完成（异步）。
+[2026-07-03 23:18:30.862][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试开始（异步）。
+[2026-07-03 23:18:30.875][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试完成（异步）。
+[2026-07-03 23:18:30.876][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 截图耗时：5ms(EmulatorExtras)
+[2026-07-03 23:18:30.882][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 开始任务：陆联
+[2026-07-03 23:18:30.884][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务开始（异步）。
+[2026-07-03 23:18:33.412][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：NOT_STARTED
+[2026-07-03 23:18:33.415][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:18:33.415][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 正在尝试停止任务执行器，第 1 次。
+[2026-07-03 23:18:33.415][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在停止......
+[2026-07-03 23:18:33.416][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务完成（异步）。
+[2026-07-03 23:18:33.416][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:18:33.417][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：STOPPED
+[2026-07-03 23:18:33.417][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:18:33.417][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action开始。
+[2026-07-03 23:18:33.417][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action完成。
+[2026-07-03 23:18:33.476][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 第 1 次停止任务执行器返回：Succeeded，准备重试。
+[2026-07-03 23:18:33.820][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 已放弃本次任务
+[2026-07-03 23:22:11.726][INF] [cfg=Default] 应用已关闭
+[2026-07-03 23:22:11.730][INF] [cfg=Default] 已释放自定义类目录监听器。
+[2026-07-03 23:22:38.450][INF] 正在加载配置列表...
+[2026-07-03 23:22:38.473][INF] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:22:38.473][INF] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:22:38.473][INF] 是否使用独立数据目录：False
+[2026-07-03 23:22:38.473][INF] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:22:38.473][INF] 是否使用本地配置目录：True
+[2026-07-03 23:22:38.473][INF] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:22:38.473][INF] 备份文件数量：2
+[2026-07-03 23:22:38.473][INF] 临时目录是否存在：True
+[2026-07-03 23:22:38.474][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:22:38.474][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:22:38.474][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-07-03 23:22:38.474][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:22:38.474][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-07-03 23:22:38.474][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:22:38.474][INF] [cfg=Default] 备份文件数量：2
+[2026-07-03 23:22:38.474][INF] [cfg=Default] 临时目录是否存在：True
+[2026-07-03 23:22:38.477][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\AATL\runtimes/libs
+[2026-07-03 23:22:38.478][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\AATL\runtimes/libs，目录存在=True
+[2026-07-03 23:22:38.480][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=1，路径=[D:\Claude_Workspace\AATL\runtimes\win-x64\native]
+[2026-07-03 23:22:38.481][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-07-03 23:22:38.481][INF] [cfg=Default] 程序版本：v2.12.2-beta.1
+[2026-07-03 23:22:38.481][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-07-03 23:22:38.997][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-07-03 23:22:39.129][INF] [cfg=Default] 当前配置：Default
+[2026-07-03 23:22:39.173][INF] [cfg=Default] 已恢复系统休眠。
+[2026-07-03 23:22:39.176][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-07-03 23:22:39.177][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-07-03 23:22:39.185][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-07-03 23:22:39.186][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-07-03 23:22:39.200][INF] [cfg=Default] [内存管理]释放了1.11 MB（27.6%)
+[2026-07-03 23:22:39.254][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-07-03 23:22:39.263][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:22:39.334][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:22:39.335][INF] [cfg=Default] 资源版本：0.5.4
+[2026-07-03 23:22:39.335][INF] [cfg=Default] MaaFramework 版本：v5.11.1
+[2026-07-03 23:22:39.390][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:22:39.450][INF] [cfg=Default] 窗口大小已加载：宽度=1028，高度=650
+[2026-07-03 23:22:39.457][INF] [cfg=Default] 窗口位置已加载：X=763，Y=306
+[2026-07-03 23:22:39.739][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-07-03 23:22:39.802][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-07-03 23:22:39.843][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:22:39.843][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-07-03 23:22:39.964][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:22:39.972][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:22:40.289][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:22:40.290][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:22:40.347][INF] [cfg=Default] 界面初始化开始
+[2026-07-03 23:22:40.416][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:22:40.417][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:22:40.420][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:22:40.427][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:22:40.758][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\libs\locales\en-US\MFAAvalonia.Core.resources.dll.202607031917.0.backupMFA
+[2026-07-03 23:22:40.759][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\win-x64\native\plugins\MaaPluginDemo.dll.202607031917.0.backupMFA
+[2026-07-03 23:22:40.927][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-07-03 23:22:41.254][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-07-03 23:22:41.255][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-07-03 23:22:41.439][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-07-03 23:22:41.439][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-07-03 23:22:41.605][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-07-03 23:22:41.694][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:22:41.698][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-07-03 23:22:41.698][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\AATL\resource\base
+[2026-07-03 23:22:41.698][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-07-03 23:22:41.763][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-07-03 23:22:41.764][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-07-03 23:22:41.764][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-07-03 23:22:41.765][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-07-03 23:22:41.765][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-07-03 23:22:41.767][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:Default,捕获模式:Default
+[2026-07-03 23:22:41.767][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：
+[2026-07-03 23:22:41.767][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：adb
+[2026-07-03 23:22:41.767][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：
+[2026-07-03 23:22:41.767][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：Default
+[2026-07-03 23:22:41.767][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：Default
+[2026-07-03 23:22:41.767][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{}
+[2026-07-03 23:22:41.782][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器时发生错误！
+[2026-07-03 23:22:41.782][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器失败：message=连接模拟器时发生错误！, reason=The value cannot be an empty string.（Parameter 'info.AdbSerial')
+System.ArgumentException: The value cannot be an empty string. (Parameter 'info.AdbSerial')
+   at System.ArgumentException.ThrowNullOrEmptyException(String argument, String paramName)
+   at System.ArgumentException.ThrowIfNullOrEmpty(String argument, String paramName)
+   at MaaFramework.Binding.MaaAdbController..ctor(AdbDeviceInfo info, LinkOption link, CheckStatusOption check)
+   at MaaFramework.Binding.MaaAdbController..ctor(String adbPath, String adbSerial, AdbScreencapMethods screencapMethods, AdbInputMethods inputMethods, String config, String agentPath, LinkOption link, CheckStatusOption check)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.InitializeController(MaaControllerTypes controllerType, Boolean logConfig)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.<>c__DisplayClass143_0.<InitializeMaaTasker>b__7()
+   at MFAAvalonia.Helper.TaskManager.<>c__DisplayClass6_0`1.<RunTaskAsync>b__0()
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at MFAAvalonia.Helper.TaskManager.RunTaskAsync[TResult](Func`1 function, CancellationToken token, Action`1 handleError, String name, String prompt, Boolean catchException, Boolean shouldLog, Boolean noMessage)
+[2026-07-03 23:22:41.789][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-07-03 23:22:41.789][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器初始化结果为空，已中止本次连接尝试。
+[2026-07-03 23:22:41.802][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-07-03 23:22:41.803][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-07-03 23:22:41.803][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-07-03 23:22:41.803][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=更新资源
+[2026-07-03 23:22:41.928][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:22:42.239][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-07-03 23:22:43.246][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 目标系统：平台=win，系统家族=windows，架构=x64
+[2026-07-03 23:22:44.120][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 用户操作：重新连接 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:22:44.159][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 候选资产优先级：名称=aatl-v0.5.3-beta.zip，优先级=0
+[2026-07-03 23:22:44.273][INF] [cfg=Default][inst=配置 1/default][src=UI][op=MatchAdbDevice] 当前设备指纹：name=MuMu安卓设备-MuMuPlayer12 v5, serial=127.0.0.1:16384, configLength=78
+[2026-07-03 23:22:44.274][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 按指纹匹配到的设备数量：1
+[2026-07-03 23:22:44.274][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=<none>
+[2026-07-03 23:22:44.274][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:22:44.280][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在载入资源
+[2026-07-03 23:22:44.280][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 资源路径：D:\Claude_Workspace\AATL\resource\base
+[2026-07-03 23:22:44.280][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测开始（异步）。
+[2026-07-03 23:22:44.290][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=更新资源
+[2026-07-03 23:22:44.291][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-07-03 23:22:44.291][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:22:44.297][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-07-03 23:22:44.304][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测完成（异步）。
+[2026-07-03 23:22:44.304][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 启用 GPU 推理：成功
+[2026-07-03 23:22:44.304][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] GPU acceleration: Auto
+[2026-07-03 23:22:44.304][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测开始（异步）。
+[2026-07-03 23:22:44.304][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在加载 MAA 控制器配置...
+[2026-07-03 23:22:44.304][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 触控模式:Default,捕获模式:EmulatorExtras
+[2026-07-03 23:22:44.304][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 设备名称：MuMu安卓设备-MuMuPlayer12 v5
+[2026-07-03 23:22:44.304][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 路径：D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe
+[2026-07-03 23:22:44.304][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 序列号：127.0.0.1:16384
+[2026-07-03 23:22:44.304][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 截图模式：EmulatorExtras
+[2026-07-03 23:22:44.304][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 输入模式：Default
+[2026-07-03 23:22:44.304][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 控制器配置：{"extras":{"mumu":{"enable":true,"index":0,"path":"D:/Apps/MuMu/MuMuPlayer"}}
+[2026-07-03 23:22:44.308][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-07-03 23:22:44.309][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:22:44.312][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] [Record] [DEBUG] DisplayTaskCompletionMessage 被调用，status=SUCCEEDED
+[2026-07-03 23:22:44.318][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 2s)
+[2026-07-03 23:22:44.776][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测完成（异步）。
+[2026-07-03 23:22:45.537][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册内置特殊任务动作。
+[2026-07-03 23:22:45.544][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已启动自定义类目录监听：目录=D:\Claude_Workspace\AATL\resource\base\custom
+[2026-07-03 23:22:45.546][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\CaptainDamageAction.cs
+[2026-07-03 23:22:46.309][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\CaptainDamageAction.cs
+[2026-07-03 23:22:46.309][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DamageLogAction.cs
+[2026-07-03 23:22:46.397][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DamageLogAction.cs
+[2026-07-03 23:22:46.397][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DispatchLogAction.cs
+[2026-07-03 23:22:46.583][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DispatchLogAction.cs
+[2026-07-03 23:22:46.583][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-07-03 23:22:46.720][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-07-03 23:22:46.720][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-07-03 23:22:46.775][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-07-03 23:22:46.775][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\TeamSwitchAction.cs
+[2026-07-03 23:22:46.819][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\TeamSwitchAction.cs
+[2026-07-03 23:22:46.819][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：CaptainDamageAction
+[2026-07-03 23:22:46.819][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DamageLogAction
+[2026-07-03 23:22:46.819][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DispatchLogAction
+[2026-07-03 23:22:46.819][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DungeonFloorSelectAction
+[2026-07-03 23:22:46.819][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：ExpeditionMapSelectAction
+[2026-07-03 23:22:46.819][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：TeamSwitchAction
+[2026-07-03 23:22:46.819][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 未找到自定义目录：D:\Claude_Workspace\AATL\resource\custom
+[2026-07-03 23:22:46.820][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 连接状态变更：已连接。
+[2026-07-03 23:22:46.821][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] MaaFW 调试模式：False
+[2026-07-03 23:22:50.629][INF] [cfg=Default][inst=配置 1/default][src=UI][op=StartTask] 用户操作：启动任务 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384), selectedTasks=1 [陆联]
+[2026-07-03 23:22:50.641][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 准备执行任务队列：任务数量=1
+[2026-07-03 23:22:50.647][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] [任务管线合并] 任务#1 名称=[陆联] 入口=[LRentaisen] 参数=[
+  {},
+  {
+    "LR_IsSwordSelect"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptainSlot"：{
+      "enabled"：true
+    },
+    "LR_DetectSortOrder"：{
+      "enabled"：true
+    },
+    "LR_ClickDescending"：{
+      "enabled"：true
+    },
+    "LR_ConfirmSortAsc"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain1"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain2"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain3"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain4"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain5"：{
+      "enabled"：true
+    }
+  },
+  {
+    "LR_ClickTeam"：{
+      "target"：[
+        154,
+        93,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "LR_RunTeamSwitch"：{
+      "custom_action_param"：{
+        "team_config"："221222111"
+      }
+    }
+  },
+  {
+    "LR_ClickDifficulty"：{
+      "target"：[
+        1132,
+        328,
+        1,
+        1
+      ]
+    }
+  }
+]
+[2026-07-03 23:22:50.755][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:22:50.757][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本开始（异步）。
+[2026-07-03 23:22:50.758][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本完成（异步）。
+[2026-07-03 23:22:50.761][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试开始（异步）。
+[2026-07-03 23:22:50.776][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试完成（异步）。
+[2026-07-03 23:22:50.776][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 截图耗时：6ms(EmulatorExtras)
+[2026-07-03 23:22:50.781][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 开始任务：陆联
+[2026-07-03 23:22:50.783][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务开始（异步）。
+[2026-07-03 23:22:52.707][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：NOT_STARTED
+[2026-07-03 23:22:52.711][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:22:52.711][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 正在尝试停止任务执行器，第 1 次。
+[2026-07-03 23:22:52.712][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在停止......
+[2026-07-03 23:22:52.712][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务完成（异步）。
+[2026-07-03 23:22:52.713][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:22:52.713][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：STOPPED
+[2026-07-03 23:22:52.713][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 第 1 次停止任务执行器返回：Succeeded，准备重试。
+[2026-07-03 23:22:52.713][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:22:52.713][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] [Record] [DEBUG] DisplayTaskCompletionMessage 被调用，status=STOPPED
+[2026-07-03 23:22:52.713][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action开始。
+[2026-07-03 23:22:52.713][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action完成。
+[2026-07-03 23:22:52.714][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] [Record] [DEBUG] DisplayTaskCompletionMessage 被调用，status=STOPPED
+[2026-07-03 23:22:53.116][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 已放弃本次任务
+[2026-07-03 23:22:59.290][INF] [cfg=Default] [内存管理]释放了2.65 MB（4.6%)
+[2026-07-03 23:23:08.917][INF] [cfg=Default] 应用已关闭
+[2026-07-03 23:23:08.921][INF] [cfg=Default] 已释放自定义类目录监听器。
+[2026-07-03 23:24:55.224][INF] 正在加载配置列表...
+[2026-07-03 23:24:55.247][INF] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:24:55.247][INF] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:24:55.247][INF] 是否使用独立数据目录：False
+[2026-07-03 23:24:55.247][INF] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:24:55.247][INF] 是否使用本地配置目录：True
+[2026-07-03 23:24:55.247][INF] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:24:55.247][INF] 备份文件数量：2
+[2026-07-03 23:24:55.247][INF] 临时目录是否存在：True
+[2026-07-03 23:24:55.247][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:24:55.247][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:24:55.247][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-07-03 23:24:55.247][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:24:55.247][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-07-03 23:24:55.247][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:24:55.247][INF] [cfg=Default] 备份文件数量：2
+[2026-07-03 23:24:55.247][INF] [cfg=Default] 临时目录是否存在：True
+[2026-07-03 23:24:55.251][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\AATL\runtimes/libs
+[2026-07-03 23:24:55.251][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\AATL\runtimes/libs，目录存在=True
+[2026-07-03 23:24:55.253][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=1，路径=[D:\Claude_Workspace\AATL\runtimes\win-x64\native]
+[2026-07-03 23:24:55.255][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-07-03 23:24:55.255][INF] [cfg=Default] 程序版本：v2.12.2-beta.1
+[2026-07-03 23:24:55.255][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-07-03 23:24:55.748][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-07-03 23:24:55.877][INF] [cfg=Default] 当前配置：Default
+[2026-07-03 23:24:55.917][INF] [cfg=Default] 已恢复系统休眠。
+[2026-07-03 23:24:55.920][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-07-03 23:24:55.920][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-07-03 23:24:55.930][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-07-03 23:24:55.930][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-07-03 23:24:55.942][INF] [cfg=Default] [内存管理]释放了1.17 MB（29.2%)
+[2026-07-03 23:24:55.995][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-07-03 23:24:56.004][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:24:56.069][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:24:56.069][INF] [cfg=Default] 资源版本：0.5.4
+[2026-07-03 23:24:56.069][INF] [cfg=Default] MaaFramework 版本：v5.11.1
+[2026-07-03 23:24:56.123][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:24:56.181][INF] [cfg=Default] 窗口大小已加载：宽度=1028，高度=650
+[2026-07-03 23:24:56.188][INF] [cfg=Default] 窗口位置已加载：X=836，Y=383
+[2026-07-03 23:24:56.460][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-07-03 23:24:56.563][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-07-03 23:24:56.602][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:24:56.602][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-07-03 23:24:56.720][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:24:56.728][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:24:57.046][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:24:57.047][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:24:57.103][INF] [cfg=Default] 界面初始化开始
+[2026-07-03 23:24:57.171][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:24:57.172][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:24:57.175][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:24:57.179][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:24:57.502][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\libs\locales\en-US\MFAAvalonia.Core.resources.dll.202607031917.0.backupMFA
+[2026-07-03 23:24:57.502][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\win-x64\native\plugins\MaaPluginDemo.dll.202607031917.0.backupMFA
+[2026-07-03 23:24:57.674][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-07-03 23:24:57.981][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-07-03 23:24:57.982][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-07-03 23:24:58.148][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-07-03 23:24:58.148][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-07-03 23:24:58.310][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-07-03 23:24:58.466][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:24:58.527][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-07-03 23:24:58.527][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\AATL\resource\base
+[2026-07-03 23:24:58.527][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-07-03 23:24:58.566][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-07-03 23:24:58.580][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-07-03 23:24:58.580][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-07-03 23:24:58.580][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-07-03 23:24:58.580][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-07-03 23:24:58.582][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:Default,捕获模式:Default
+[2026-07-03 23:24:58.582][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：
+[2026-07-03 23:24:58.582][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：adb
+[2026-07-03 23:24:58.582][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：
+[2026-07-03 23:24:58.582][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：Default
+[2026-07-03 23:24:58.583][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：Default
+[2026-07-03 23:24:58.583][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{}
+[2026-07-03 23:24:58.595][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器时发生错误！
+[2026-07-03 23:24:58.595][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器失败：message=连接模拟器时发生错误！, reason=The value cannot be an empty string.（Parameter 'info.AdbSerial')
+System.ArgumentException: The value cannot be an empty string. (Parameter 'info.AdbSerial')
+   at System.ArgumentException.ThrowNullOrEmptyException(String argument, String paramName)
+   at System.ArgumentException.ThrowIfNullOrEmpty(String argument, String paramName)
+   at MaaFramework.Binding.MaaAdbController..ctor(AdbDeviceInfo info, LinkOption link, CheckStatusOption check)
+   at MaaFramework.Binding.MaaAdbController..ctor(String adbPath, String adbSerial, AdbScreencapMethods screencapMethods, AdbInputMethods inputMethods, String config, String agentPath, LinkOption link, CheckStatusOption check)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.InitializeController(MaaControllerTypes controllerType, Boolean logConfig)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.<>c__DisplayClass143_0.<InitializeMaaTasker>b__7()
+   at MFAAvalonia.Helper.TaskManager.<>c__DisplayClass6_0`1.<RunTaskAsync>b__0()
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at MFAAvalonia.Helper.TaskManager.RunTaskAsync[TResult](Func`1 function, CancellationToken token, Action`1 handleError, String name, String prompt, Boolean catchException, Boolean shouldLog, Boolean noMessage)
+[2026-07-03 23:24:58.603][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-07-03 23:24:58.603][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器初始化结果为空，已中止本次连接尝试。
+[2026-07-03 23:24:58.617][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-07-03 23:24:58.617][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:24:58.617][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-07-03 23:24:58.618][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-07-03 23:24:58.618][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=更新资源
+[2026-07-03 23:24:58.980][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-07-03 23:25:00.096][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 目标系统：平台=win，系统家族=windows，架构=x64
+[2026-07-03 23:25:00.940][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 候选资产优先级：名称=aatl-v0.5.3-beta.zip，优先级=0
+[2026-07-03 23:25:00.945][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=更新资源
+[2026-07-03 23:25:00.946][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-07-03 23:25:00.946][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:25:00.954][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-07-03 23:25:00.955][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:25:00.958][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] [Record] [DEBUG] DisplayTaskCompletionMessage 被调用，status=SUCCEEDED
+[2026-07-03 23:25:00.965][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 2s)
+[2026-07-03 23:25:03.864][INF] [cfg=Default] 应用已关闭
+[2026-07-03 23:25:47.968][INF] 正在加载配置列表...
+[2026-07-03 23:25:47.991][INF] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:25:47.991][INF] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:25:47.991][INF] 是否使用独立数据目录：False
+[2026-07-03 23:25:47.991][INF] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:25:47.991][INF] 是否使用本地配置目录：True
+[2026-07-03 23:25:47.991][INF] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:25:47.991][INF] 备份文件数量：2
+[2026-07-03 23:25:47.991][INF] 临时目录是否存在：True
+[2026-07-03 23:25:47.991][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:25:47.991][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:25:47.991][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-07-03 23:25:47.991][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:25:47.991][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-07-03 23:25:47.991][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:25:47.991][INF] [cfg=Default] 备份文件数量：2
+[2026-07-03 23:25:47.991][INF] [cfg=Default] 临时目录是否存在：True
+[2026-07-03 23:25:47.995][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\AATL\runtimes/libs
+[2026-07-03 23:25:47.995][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\AATL\runtimes/libs，目录存在=True
+[2026-07-03 23:25:47.997][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=1，路径=[D:\Claude_Workspace\AATL\runtimes\win-x64\native]
+[2026-07-03 23:25:47.999][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-07-03 23:25:47.999][INF] [cfg=Default] 程序版本：v2.12.2-beta.1
+[2026-07-03 23:25:47.999][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-07-03 23:25:48.500][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-07-03 23:25:48.633][INF] [cfg=Default] 当前配置：Default
+[2026-07-03 23:25:48.673][INF] [cfg=Default] 已恢复系统休眠。
+[2026-07-03 23:25:48.676][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-07-03 23:25:48.677][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-07-03 23:25:48.686][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-07-03 23:25:48.687][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-07-03 23:25:48.699][INF] [cfg=Default] [内存管理]释放了1.13 MB（28.2%)
+[2026-07-03 23:25:48.754][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-07-03 23:25:48.763][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:25:48.836][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:25:48.836][INF] [cfg=Default] 资源版本：0.5.4
+[2026-07-03 23:25:48.836][INF] [cfg=Default] MaaFramework 版本：v5.11.1
+[2026-07-03 23:25:48.892][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:25:48.968][INF] [cfg=Default] 窗口大小已加载：宽度=1028，高度=650
+[2026-07-03 23:25:48.977][INF] [cfg=Default] 窗口位置已加载：X=836，Y=383
+[2026-07-03 23:25:49.258][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-07-03 23:25:49.314][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-07-03 23:25:49.354][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:25:49.354][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-07-03 23:25:49.481][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:25:49.489][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:25:49.809][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:25:49.810][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:25:49.868][INF] [cfg=Default] 界面初始化开始
+[2026-07-03 23:25:49.944][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:25:49.945][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:25:49.949][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:25:49.953][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:25:50.318][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\libs\locales\en-US\MFAAvalonia.Core.resources.dll.202607031917.0.backupMFA
+[2026-07-03 23:25:50.319][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\win-x64\native\plugins\MaaPluginDemo.dll.202607031917.0.backupMFA
+[2026-07-03 23:25:50.500][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-07-03 23:25:50.815][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-07-03 23:25:50.815][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-07-03 23:25:50.984][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-07-03 23:25:50.984][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-07-03 23:25:51.154][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-07-03 23:25:51.338][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:25:51.346][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-07-03 23:25:51.347][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\AATL\resource\base
+[2026-07-03 23:25:51.347][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-07-03 23:25:51.394][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-07-03 23:25:51.395][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-07-03 23:25:51.395][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-07-03 23:25:51.395][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-07-03 23:25:51.396][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-07-03 23:25:51.398][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:Default,捕获模式:Default
+[2026-07-03 23:25:51.398][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：
+[2026-07-03 23:25:51.398][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：adb
+[2026-07-03 23:25:51.398][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：
+[2026-07-03 23:25:51.398][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：Default
+[2026-07-03 23:25:51.398][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：Default
+[2026-07-03 23:25:51.398][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{}
+[2026-07-03 23:25:51.414][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器时发生错误！
+[2026-07-03 23:25:51.414][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器失败：message=连接模拟器时发生错误！, reason=The value cannot be an empty string.（Parameter 'info.AdbSerial')
+System.ArgumentException: The value cannot be an empty string. (Parameter 'info.AdbSerial')
+   at System.ArgumentException.ThrowNullOrEmptyException(String argument, String paramName)
+   at System.ArgumentException.ThrowIfNullOrEmpty(String argument, String paramName)
+   at MaaFramework.Binding.MaaAdbController..ctor(AdbDeviceInfo info, LinkOption link, CheckStatusOption check)
+   at MaaFramework.Binding.MaaAdbController..ctor(String adbPath, String adbSerial, AdbScreencapMethods screencapMethods, AdbInputMethods inputMethods, String config, String agentPath, LinkOption link, CheckStatusOption check)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.InitializeController(MaaControllerTypes controllerType, Boolean logConfig)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.<>c__DisplayClass143_0.<InitializeMaaTasker>b__7()
+   at MFAAvalonia.Helper.TaskManager.<>c__DisplayClass6_0`1.<RunTaskAsync>b__0()
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at MFAAvalonia.Helper.TaskManager.RunTaskAsync[TResult](Func`1 function, CancellationToken token, Action`1 handleError, String name, String prompt, Boolean catchException, Boolean shouldLog, Boolean noMessage)
+[2026-07-03 23:25:51.421][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-07-03 23:25:51.422][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器初始化结果为空，已中止本次连接尝试。
+[2026-07-03 23:25:51.437][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-07-03 23:25:51.438][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-07-03 23:25:51.438][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-07-03 23:25:51.438][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=更新资源
+[2026-07-03 23:25:51.516][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:25:51.816][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-07-03 23:25:52.691][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 用户操作：重新连接 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:25:52.827][INF] [cfg=Default][inst=配置 1/default][src=UI][op=MatchAdbDevice] 当前设备指纹：name=MuMu安卓设备-MuMuPlayer12 v5, serial=127.0.0.1:16384, configLength=78
+[2026-07-03 23:25:52.827][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 按指纹匹配到的设备数量：1
+[2026-07-03 23:25:52.828][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=<none>
+[2026-07-03 23:25:52.828][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:25:52.830][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在载入资源
+[2026-07-03 23:25:52.830][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 资源路径：D:\Claude_Workspace\AATL\resource\base
+[2026-07-03 23:25:52.830][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测开始（异步）。
+[2026-07-03 23:25:52.837][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-07-03 23:25:52.853][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测完成（异步）。
+[2026-07-03 23:25:52.853][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 启用 GPU 推理：成功
+[2026-07-03 23:25:52.853][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] GPU acceleration: Auto
+[2026-07-03 23:25:52.853][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测开始（异步）。
+[2026-07-03 23:25:52.854][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在加载 MAA 控制器配置...
+[2026-07-03 23:25:52.854][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 触控模式:Default,捕获模式:EmulatorExtras
+[2026-07-03 23:25:52.854][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 设备名称：MuMu安卓设备-MuMuPlayer12 v5
+[2026-07-03 23:25:52.854][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 路径：D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe
+[2026-07-03 23:25:52.854][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 序列号：127.0.0.1:16384
+[2026-07-03 23:25:52.854][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 截图模式：EmulatorExtras
+[2026-07-03 23:25:52.854][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 输入模式：Default
+[2026-07-03 23:25:52.854][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 控制器配置：{"extras":{"mumu":{"enable":true,"index":0,"path":"D:/Apps/MuMu/MuMuPlayer"}}
+[2026-07-03 23:25:52.888][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 目标系统：平台=win，系统家族=windows，架构=x64
+[2026-07-03 23:25:53.323][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测完成（异步）。
+[2026-07-03 23:25:53.793][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 候选资产优先级：名称=aatl-v0.5.3-beta.zip，优先级=0
+[2026-07-03 23:25:53.965][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册内置特殊任务动作。
+[2026-07-03 23:25:53.973][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已启动自定义类目录监听：目录=D:\Claude_Workspace\AATL\resource\base\custom
+[2026-07-03 23:25:53.976][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\CaptainDamageAction.cs
+[2026-07-03 23:25:54.715][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\CaptainDamageAction.cs
+[2026-07-03 23:25:54.715][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DamageLogAction.cs
+[2026-07-03 23:25:54.801][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DamageLogAction.cs
+[2026-07-03 23:25:54.801][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DispatchLogAction.cs
+[2026-07-03 23:25:54.983][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DispatchLogAction.cs
+[2026-07-03 23:25:54.983][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-07-03 23:25:55.118][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-07-03 23:25:55.118][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-07-03 23:25:55.171][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-07-03 23:25:55.171][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\TeamSwitchAction.cs
+[2026-07-03 23:25:55.214][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\TeamSwitchAction.cs
+[2026-07-03 23:25:55.214][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：CaptainDamageAction
+[2026-07-03 23:25:55.214][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DamageLogAction
+[2026-07-03 23:25:55.214][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DispatchLogAction
+[2026-07-03 23:25:55.215][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DungeonFloorSelectAction
+[2026-07-03 23:25:55.215][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：ExpeditionMapSelectAction
+[2026-07-03 23:25:55.215][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：TeamSwitchAction
+[2026-07-03 23:25:55.215][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 未找到自定义目录：D:\Claude_Workspace\AATL\resource\custom
+[2026-07-03 23:25:55.215][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 连接状态变更：已连接。
+[2026-07-03 23:25:55.217][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] MaaFW 调试模式：False
+[2026-07-03 23:25:55.221][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=更新资源
+[2026-07-03 23:25:55.222][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-07-03 23:25:55.222][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:25:55.235][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-07-03 23:25:55.237][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:25:55.240][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 4s)
+[2026-07-03 23:26:00.948][INF] [cfg=Default][inst=配置 1/default][src=UI][op=StartTask] 用户操作：启动任务 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384), selectedTasks=1 [陆联]
+[2026-07-03 23:26:00.975][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 准备执行任务队列：任务数量=1
+[2026-07-03 23:26:00.983][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] [任务管线合并] 任务#1 名称=[陆联] 入口=[LRentaisen] 参数=[
+  {},
+  {
+    "LR_IsSwordSelect"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptainSlot"：{
+      "enabled"：true
+    },
+    "LR_DetectSortOrder"：{
+      "enabled"：true
+    },
+    "LR_ClickDescending"：{
+      "enabled"：true
+    },
+    "LR_ConfirmSortAsc"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain1"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain2"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain3"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain4"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain5"：{
+      "enabled"：true
+    }
+  },
+  {
+    "LR_ClickTeam"：{
+      "target"：[
+        154,
+        93,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "LR_RunTeamSwitch"：{
+      "custom_action_param"：{
+        "team_config"："221222111"
+      }
+    }
+  },
+  {
+    "LR_ClickDifficulty"：{
+      "target"：[
+        1132,
+        328,
+        1,
+        1
+      ]
+    }
+  }
+]
+[2026-07-03 23:26:01.084][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:26:01.085][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本开始（异步）。
+[2026-07-03 23:26:01.086][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本完成（异步）。
+[2026-07-03 23:26:01.089][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试开始（异步）。
+[2026-07-03 23:26:01.105][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试完成（异步）。
+[2026-07-03 23:26:01.106][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 截图耗时：7ms(EmulatorExtras)
+[2026-07-03 23:26:01.113][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 开始任务：陆联
+[2026-07-03 23:26:01.115][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务开始（异步）。
+[2026-07-03 23:26:02.688][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：NOT_STARTED
+[2026-07-03 23:26:02.691][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:26:02.691][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 正在尝试停止任务执行器，第 1 次。
+[2026-07-03 23:26:02.692][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务完成（异步）。
+[2026-07-03 23:26:02.692][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在停止......
+[2026-07-03 23:26:02.693][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:26:02.694][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 第 1 次停止任务执行器返回：Succeeded，准备重试。
+[2026-07-03 23:26:02.694][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action开始。
+[2026-07-03 23:26:02.695][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action完成。
+[2026-07-03 23:26:02.696][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：STOPPED
+[2026-07-03 23:26:02.696][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:26:02.696][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action开始。
+[2026-07-03 23:26:02.696][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action完成。
+[2026-07-03 23:26:03.098][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 已放弃本次任务
+[2026-07-03 23:26:03.099][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 已放弃本次任务
+[2026-07-03 23:26:06.121][INF] [cfg=Default][inst=配置 1/default][src=UI][op=StartTask] 用户操作：启动任务 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384), selectedTasks=1 [陆联]
+[2026-07-03 23:26:06.131][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 准备执行任务队列：任务数量=1
+[2026-07-03 23:26:06.133][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] [任务管线合并] 任务#1 名称=[陆联] 入口=[LRentaisen] 参数=[
+  {},
+  {
+    "LR_IsSwordSelect"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptainSlot"：{
+      "enabled"：true
+    },
+    "LR_DetectSortOrder"：{
+      "enabled"：true
+    },
+    "LR_ClickDescending"：{
+      "enabled"：true
+    },
+    "LR_ConfirmSortAsc"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain1"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain2"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain3"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain4"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain5"：{
+      "enabled"：true
+    }
+  },
+  {
+    "LR_ClickTeam"：{
+      "target"：[
+        154,
+        93,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "LR_RunTeamSwitch"：{
+      "custom_action_param"：{
+        "team_config"："221222111"
+      }
+    }
+  },
+  {
+    "LR_ClickDifficulty"：{
+      "target"：[
+        1132,
+        328,
+        1,
+        1
+      ]
+    }
+  }
+]
+[2026-07-03 23:26:06.193][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:26:06.194][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本开始（异步）。
+[2026-07-03 23:26:06.194][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本完成（异步）。
+[2026-07-03 23:26:06.196][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试开始（异步）。
+[2026-07-03 23:26:06.208][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试完成（异步）。
+[2026-07-03 23:26:06.208][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 截图耗时：5ms(EmulatorExtras)
+[2026-07-03 23:26:06.211][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 开始任务：陆联
+[2026-07-03 23:26:06.212][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务开始（异步）。
+[2026-07-03 23:26:07.376][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：NOT_STARTED
+[2026-07-03 23:26:07.379][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:26:07.379][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 正在尝试停止任务执行器，第 1 次。
+[2026-07-03 23:26:07.379][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在停止......
+[2026-07-03 23:26:07.379][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务完成（异步）。
+[2026-07-03 23:26:07.379][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:26:07.380][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：STOPPED
+[2026-07-03 23:26:07.380][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:26:07.380][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action开始。
+[2026-07-03 23:26:07.380][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action完成。
+[2026-07-03 23:26:07.481][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 第 1 次停止任务执行器返回：Succeeded，准备重试。
+[2026-07-03 23:26:07.481][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action开始。
+[2026-07-03 23:26:07.481][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action完成。
+[2026-07-03 23:26:07.781][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 已放弃本次任务
+[2026-07-03 23:26:07.882][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 已放弃本次任务
+[2026-07-03 23:26:08.800][INF] [cfg=Default] [内存管理]释放了9.39 MB（14.1%)
+[2026-07-03 23:26:36.064][INF] [cfg=Default] 应用已关闭
+[2026-07-03 23:26:36.068][INF] [cfg=Default] 已释放自定义类目录监听器。
+[2026-07-03 23:27:25.721][INF] 正在加载配置列表...
+[2026-07-03 23:27:25.743][INF] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:27:25.743][INF] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:27:25.743][INF] 是否使用独立数据目录：False
+[2026-07-03 23:27:25.743][INF] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:27:25.743][INF] 是否使用本地配置目录：True
+[2026-07-03 23:27:25.743][INF] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:27:25.743][INF] 备份文件数量：2
+[2026-07-03 23:27:25.743][INF] 临时目录是否存在：True
+[2026-07-03 23:27:25.743][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:27:25.743][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:27:25.743][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-07-03 23:27:25.743][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:27:25.743][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-07-03 23:27:25.743][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:27:25.743][INF] [cfg=Default] 备份文件数量：2
+[2026-07-03 23:27:25.743][INF] [cfg=Default] 临时目录是否存在：True
+[2026-07-03 23:27:25.747][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\AATL\runtimes/libs
+[2026-07-03 23:27:25.747][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\AATL\runtimes/libs，目录存在=True
+[2026-07-03 23:27:25.749][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=1，路径=[D:\Claude_Workspace\AATL\runtimes\win-x64\native]
+[2026-07-03 23:27:25.751][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-07-03 23:27:25.751][INF] [cfg=Default] 程序版本：v2.12.2-beta.1
+[2026-07-03 23:27:25.751][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-07-03 23:27:26.256][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-07-03 23:27:26.390][INF] [cfg=Default] 当前配置：Default
+[2026-07-03 23:27:26.431][INF] [cfg=Default] 已恢复系统休眠。
+[2026-07-03 23:27:26.433][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-07-03 23:27:26.434][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-07-03 23:27:26.444][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-07-03 23:27:26.444][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-07-03 23:27:26.457][INF] [cfg=Default] [内存管理]释放了1.16 MB（28.9%)
+[2026-07-03 23:27:26.512][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-07-03 23:27:26.521][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:27:26.592][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:27:26.592][INF] [cfg=Default] 资源版本：0.5.4
+[2026-07-03 23:27:26.592][INF] [cfg=Default] MaaFramework 版本：v5.11.1
+[2026-07-03 23:27:26.646][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:27:26.705][INF] [cfg=Default] 窗口大小已加载：宽度=1028，高度=650
+[2026-07-03 23:27:26.713][INF] [cfg=Default] 窗口位置已加载：X=836，Y=383
+[2026-07-03 23:27:26.985][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-07-03 23:27:27.040][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-07-03 23:27:27.081][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:27:27.081][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-07-03 23:27:27.203][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:27:27.212][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:27:27.547][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:27:27.548][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:27:27.606][INF] [cfg=Default] 界面初始化开始
+[2026-07-03 23:27:27.680][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:27:27.681][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:27:27.683][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:27:27.688][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:27:28.045][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\libs\locales\en-US\MFAAvalonia.Core.resources.dll.202607031917.0.backupMFA
+[2026-07-03 23:27:28.046][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\win-x64\native\plugins\MaaPluginDemo.dll.202607031917.0.backupMFA
+[2026-07-03 23:27:28.218][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-07-03 23:27:28.562][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-07-03 23:27:28.563][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-07-03 23:27:28.756][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-07-03 23:27:28.757][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-07-03 23:27:28.911][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-07-03 23:27:29.022][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:27:29.079][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-07-03 23:27:29.080][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\AATL\resource\base
+[2026-07-03 23:27:29.080][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-07-03 23:27:29.116][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-07-03 23:27:29.117][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-07-03 23:27:29.117][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-07-03 23:27:29.117][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-07-03 23:27:29.118][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-07-03 23:27:29.120][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:Default,捕获模式:Default
+[2026-07-03 23:27:29.130][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：
+[2026-07-03 23:27:29.130][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：adb
+[2026-07-03 23:27:29.130][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：
+[2026-07-03 23:27:29.130][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：Default
+[2026-07-03 23:27:29.130][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：Default
+[2026-07-03 23:27:29.130][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{}
+[2026-07-03 23:27:29.148][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器时发生错误！
+[2026-07-03 23:27:29.149][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器失败：message=连接模拟器时发生错误！, reason=The value cannot be an empty string.（Parameter 'info.AdbSerial')
+System.ArgumentException: The value cannot be an empty string. (Parameter 'info.AdbSerial')
+   at System.ArgumentException.ThrowNullOrEmptyException(String argument, String paramName)
+   at System.ArgumentException.ThrowIfNullOrEmpty(String argument, String paramName)
+   at MaaFramework.Binding.MaaAdbController..ctor(AdbDeviceInfo info, LinkOption link, CheckStatusOption check)
+   at MaaFramework.Binding.MaaAdbController..ctor(String adbPath, String adbSerial, AdbScreencapMethods screencapMethods, AdbInputMethods inputMethods, String config, String agentPath, LinkOption link, CheckStatusOption check)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.InitializeController(MaaControllerTypes controllerType, Boolean logConfig)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.<>c__DisplayClass143_0.<InitializeMaaTasker>b__7()
+   at MFAAvalonia.Helper.TaskManager.<>c__DisplayClass6_0`1.<RunTaskAsync>b__0()
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at MFAAvalonia.Helper.TaskManager.RunTaskAsync[TResult](Func`1 function, CancellationToken token, Action`1 handleError, String name, String prompt, Boolean catchException, Boolean shouldLog, Boolean noMessage)
+[2026-07-03 23:27:29.155][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-07-03 23:27:29.155][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器初始化结果为空，已中止本次连接尝试。
+[2026-07-03 23:27:29.169][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-07-03 23:27:29.169][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-07-03 23:27:29.170][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-07-03 23:27:29.170][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=更新资源
+[2026-07-03 23:27:29.172][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:27:29.523][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-07-03 23:27:30.851][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 目标系统：平台=win，系统家族=windows，架构=x64
+[2026-07-03 23:27:31.330][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 用户操作：重新连接 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:27:31.506][INF] [cfg=Default][inst=配置 1/default][src=UI][op=MatchAdbDevice] 当前设备指纹：name=MuMu安卓设备-MuMuPlayer12 v5, serial=127.0.0.1:16384, configLength=78
+[2026-07-03 23:27:31.506][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 按指纹匹配到的设备数量：1
+[2026-07-03 23:27:31.507][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=<none>
+[2026-07-03 23:27:31.507][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:27:31.514][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在载入资源
+[2026-07-03 23:27:31.515][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 资源路径：D:\Claude_Workspace\AATL\resource\base
+[2026-07-03 23:27:31.515][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测开始（异步）。
+[2026-07-03 23:27:31.524][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-07-03 23:27:31.537][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测完成（异步）。
+[2026-07-03 23:27:31.537][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 启用 GPU 推理：成功
+[2026-07-03 23:27:31.537][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] GPU acceleration: Auto
+[2026-07-03 23:27:31.537][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测开始（异步）。
+[2026-07-03 23:27:31.537][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在加载 MAA 控制器配置...
+[2026-07-03 23:27:31.537][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 触控模式:Default,捕获模式:EmulatorExtras
+[2026-07-03 23:27:31.537][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 设备名称：MuMu安卓设备-MuMuPlayer12 v5
+[2026-07-03 23:27:31.537][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 路径：D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe
+[2026-07-03 23:27:31.537][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 序列号：127.0.0.1:16384
+[2026-07-03 23:27:31.537][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 截图模式：EmulatorExtras
+[2026-07-03 23:27:31.537][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 输入模式：Default
+[2026-07-03 23:27:31.538][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 控制器配置：{"extras":{"mumu":{"enable":true,"index":0,"path":"D:/Apps/MuMu/MuMuPlayer"}}
+[2026-07-03 23:27:31.766][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 候选资产优先级：名称=aatl-v0.5.3-beta.zip，优先级=0
+[2026-07-03 23:27:31.770][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=更新资源
+[2026-07-03 23:27:31.770][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-07-03 23:27:31.771][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:27:31.782][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-07-03 23:27:31.783][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:27:31.785][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 2s)
+[2026-07-03 23:27:32.047][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测完成（异步）。
+[2026-07-03 23:27:32.739][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册内置特殊任务动作。
+[2026-07-03 23:27:32.749][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已启动自定义类目录监听：目录=D:\Claude_Workspace\AATL\resource\base\custom
+[2026-07-03 23:27:32.751][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\CaptainDamageAction.cs
+[2026-07-03 23:27:33.497][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\CaptainDamageAction.cs
+[2026-07-03 23:27:33.497][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DamageLogAction.cs
+[2026-07-03 23:27:33.583][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DamageLogAction.cs
+[2026-07-03 23:27:33.583][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DispatchLogAction.cs
+[2026-07-03 23:27:33.762][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DispatchLogAction.cs
+[2026-07-03 23:27:33.762][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-07-03 23:27:33.922][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-07-03 23:27:33.922][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-07-03 23:27:33.974][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-07-03 23:27:33.974][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\TeamSwitchAction.cs
+[2026-07-03 23:27:34.017][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\TeamSwitchAction.cs
+[2026-07-03 23:27:34.017][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：CaptainDamageAction
+[2026-07-03 23:27:34.017][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DamageLogAction
+[2026-07-03 23:27:34.017][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DispatchLogAction
+[2026-07-03 23:27:34.017][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DungeonFloorSelectAction
+[2026-07-03 23:27:34.017][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：ExpeditionMapSelectAction
+[2026-07-03 23:27:34.017][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：TeamSwitchAction
+[2026-07-03 23:27:34.017][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 未找到自定义目录：D:\Claude_Workspace\AATL\resource\custom
+[2026-07-03 23:27:34.018][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 连接状态变更：已连接。
+[2026-07-03 23:27:34.019][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] MaaFW 调试模式：False
+[2026-07-03 23:27:35.889][INF] [cfg=Default][inst=配置 1/default][src=UI][op=StartTask] 用户操作：启动任务 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384), selectedTasks=1 [陆联]
+[2026-07-03 23:27:35.903][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 准备执行任务队列：任务数量=1
+[2026-07-03 23:27:35.911][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] [任务管线合并] 任务#1 名称=[陆联] 入口=[LRentaisen] 参数=[
+  {},
+  {
+    "LR_IsSwordSelect"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptainSlot"：{
+      "enabled"：true
+    },
+    "LR_DetectSortOrder"：{
+      "enabled"：true
+    },
+    "LR_ClickDescending"：{
+      "enabled"：true
+    },
+    "LR_ConfirmSortAsc"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain1"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain2"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain3"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain4"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain5"：{
+      "enabled"：true
+    }
+  },
+  {
+    "LR_ClickTeam"：{
+      "target"：[
+        154,
+        93,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "LR_RunTeamSwitch"：{
+      "custom_action_param"：{
+        "team_config"："221222111"
+      }
+    }
+  },
+  {
+    "LR_ClickDifficulty"：{
+      "target"：[
+        1132,
+        328,
+        1,
+        1
+      ]
+    }
+  }
+]
+[2026-07-03 23:27:36.009][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:27:36.012][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本开始（异步）。
+[2026-07-03 23:27:36.013][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本完成（异步）。
+[2026-07-03 23:27:36.017][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试开始（异步）。
+[2026-07-03 23:27:36.030][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试完成（异步）。
+[2026-07-03 23:27:36.031][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 截图耗时：5ms(EmulatorExtras)
+[2026-07-03 23:27:36.037][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 开始任务：陆联
+[2026-07-03 23:27:36.040][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务开始（异步）。
+[2026-07-03 23:27:38.417][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：NOT_STARTED
+[2026-07-03 23:27:38.419][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:27:38.419][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 正在尝试停止任务执行器，第 1 次。
+[2026-07-03 23:27:38.420][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在停止......
+[2026-07-03 23:27:38.420][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务完成（异步）。
+[2026-07-03 23:27:38.420][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:27:38.421][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：STOPPED
+[2026-07-03 23:27:38.421][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:27:38.421][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action开始。
+[2026-07-03 23:27:38.421][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action完成。
+[2026-07-03 23:27:38.466][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 第 1 次停止任务执行器返回：Succeeded，准备重试。
+[2026-07-03 23:27:38.824][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 已放弃本次任务
+[2026-07-03 23:27:46.526][INF] [cfg=Default] [内存管理]释放了3.39 MB（5.4%)
+[2026-07-03 23:30:13.825][INF] [cfg=Default] 应用已关闭
+[2026-07-03 23:30:13.829][INF] [cfg=Default] 已释放自定义类目录监听器。
+[2026-07-03 23:32:38.761][INF] 正在加载配置列表...
+[2026-07-03 23:32:38.785][INF] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:32:38.785][INF] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:32:38.785][INF] 是否使用独立数据目录：False
+[2026-07-03 23:32:38.785][INF] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:32:38.785][INF] 是否使用本地配置目录：True
+[2026-07-03 23:32:38.785][INF] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:32:38.785][INF] 备份文件数量：2
+[2026-07-03 23:32:38.785][INF] 临时目录是否存在：True
+[2026-07-03 23:32:38.785][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:32:38.785][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\AATL
+[2026-07-03 23:32:38.785][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-07-03 23:32:38.785][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\AATL\resource\config
+[2026-07-03 23:32:38.785][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-07-03 23:32:38.785][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\AATL\debug\logs
+[2026-07-03 23:32:38.785][INF] [cfg=Default] 备份文件数量：2
+[2026-07-03 23:32:38.785][INF] [cfg=Default] 临时目录是否存在：True
+[2026-07-03 23:32:38.789][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\AATL\runtimes/libs
+[2026-07-03 23:32:38.789][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\AATL\runtimes/libs，目录存在=True
+[2026-07-03 23:32:38.792][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=1，路径=[D:\Claude_Workspace\AATL\runtimes\win-x64\native]
+[2026-07-03 23:32:38.794][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-07-03 23:32:38.794][INF] [cfg=Default] 程序版本：v2.12.2-beta.1
+[2026-07-03 23:32:38.794][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-07-03 23:32:39.309][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-07-03 23:32:39.441][INF] [cfg=Default] 当前配置：Default
+[2026-07-03 23:32:39.481][INF] [cfg=Default] 已恢复系统休眠。
+[2026-07-03 23:32:39.484][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-07-03 23:32:39.485][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-07-03 23:32:39.495][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-07-03 23:32:39.495][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-07-03 23:32:39.507][INF] [cfg=Default] [内存管理]释放了1.13 MB（28.1%)
+[2026-07-03 23:32:39.560][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-07-03 23:32:39.569][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:32:39.640][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:32:39.640][INF] [cfg=Default] 资源版本：0.5.4
+[2026-07-03 23:32:39.640][INF] [cfg=Default] MaaFramework 版本：v5.11.1
+[2026-07-03 23:32:39.698][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:32:39.757][INF] [cfg=Default] 窗口大小已加载：宽度=1028，高度=650
+[2026-07-03 23:32:39.765][INF] [cfg=Default] 窗口位置已加载：X=836，Y=383
+[2026-07-03 23:32:40.048][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-07-03 23:32:40.160][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-07-03 23:32:40.205][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-07-03 23:32:40.205][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-07-03 23:32:40.328][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-07-03 23:32:40.337][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-07-03 23:32:40.685][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:32:40.686][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-07-03 23:32:40.740][INF] [cfg=Default] 界面初始化开始
+[2026-07-03 23:32:40.809][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:32:40.810][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:32:40.813][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-07-03 23:32:40.817][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-07-03 23:32:41.158][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\libs\locales\en-US\MFAAvalonia.Core.resources.dll.202607031917.0.backupMFA
+[2026-07-03 23:32:41.159][INF] [cfg=Default] 保留最近的备份文件：D:\Claude_Workspace\AATL\runtimes\win-x64\native\plugins\MaaPluginDemo.dll.202607031917.0.backupMFA
+[2026-07-03 23:32:41.349][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-07-03 23:32:41.689][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-07-03 23:32:41.690][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-07-03 23:32:41.946][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-07-03 23:32:41.947][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-07-03 23:32:42.101][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-07-03 23:32:42.124][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:32:42.227][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-07-03 23:32:42.227][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\AATL\resource\base
+[2026-07-03 23:32:42.227][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-07-03 23:32:42.302][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-07-03 23:32:42.303][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-07-03 23:32:42.303][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-07-03 23:32:42.303][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-07-03 23:32:42.304][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-07-03 23:32:42.305][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:Default,捕获模式:Default
+[2026-07-03 23:32:42.306][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：
+[2026-07-03 23:32:42.306][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：adb
+[2026-07-03 23:32:42.306][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：
+[2026-07-03 23:32:42.306][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：Default
+[2026-07-03 23:32:42.306][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：Default
+[2026-07-03 23:32:42.306][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{}
+[2026-07-03 23:32:42.319][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器时发生错误！
+[2026-07-03 23:32:42.319][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器失败：message=连接模拟器时发生错误！, reason=The value cannot be an empty string.（Parameter 'info.AdbSerial')
+System.ArgumentException: The value cannot be an empty string. (Parameter 'info.AdbSerial')
+   at System.ArgumentException.ThrowNullOrEmptyException(String argument, String paramName)
+   at System.ArgumentException.ThrowIfNullOrEmpty(String argument, String paramName)
+   at MaaFramework.Binding.MaaAdbController..ctor(AdbDeviceInfo info, LinkOption link, CheckStatusOption check)
+   at MaaFramework.Binding.MaaAdbController..ctor(String adbPath, String adbSerial, AdbScreencapMethods screencapMethods, AdbInputMethods inputMethods, String config, String agentPath, LinkOption link, CheckStatusOption check)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.InitializeController(MaaControllerTypes controllerType, Boolean logConfig)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.<>c__DisplayClass143_0.<InitializeMaaTasker>b__7()
+   at MFAAvalonia.Helper.TaskManager.<>c__DisplayClass6_0`1.<RunTaskAsync>b__0()
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at MFAAvalonia.Helper.TaskManager.RunTaskAsync[TResult](Func`1 function, CancellationToken token, Action`1 handleError, String name, String prompt, Boolean catchException, Boolean shouldLog, Boolean noMessage)
+[2026-07-03 23:32:42.326][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-07-03 23:32:42.326][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器初始化结果为空，已中止本次连接尝试。
+[2026-07-03 23:32:42.369][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-07-03 23:32:42.370][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-07-03 23:32:42.370][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-07-03 23:32:42.370][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=更新资源
+[2026-07-03 23:32:42.496][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:32:42.654][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-07-03 23:32:43.999][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 目标系统：平台=win，系统家族=windows，架构=x64
+[2026-07-03 23:32:44.837][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 候选资产优先级：名称=aatl-v0.5.3-beta.zip，优先级=0
+[2026-07-03 23:32:44.842][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=更新资源
+[2026-07-03 23:32:44.842][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-07-03 23:32:44.843][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:32:44.851][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-07-03 23:32:44.852][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:32:44.854][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 2s)
+[2026-07-03 23:32:45.991][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 用户操作：重新连接 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:32:46.162][INF] [cfg=Default][inst=配置 1/default][src=UI][op=MatchAdbDevice] 当前设备指纹：name=MuMu安卓设备-MuMuPlayer12 v5, serial=127.0.0.1:16384, configLength=78
+[2026-07-03 23:32:46.162][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 按指纹匹配到的设备数量：1
+[2026-07-03 23:32:46.163][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=<none>
+[2026-07-03 23:32:46.163][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-07-03 23:32:46.169][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在载入资源
+[2026-07-03 23:32:46.169][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 资源路径：D:\Claude_Workspace\AATL\resource\base
+[2026-07-03 23:32:46.169][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测开始（异步）。
+[2026-07-03 23:32:46.178][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-07-03 23:32:46.195][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测完成（异步）。
+[2026-07-03 23:32:46.196][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 启用 GPU 推理：成功
+[2026-07-03 23:32:46.196][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] GPU acceleration: Auto
+[2026-07-03 23:32:46.196][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测开始（异步）。
+[2026-07-03 23:32:46.196][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在加载 MAA 控制器配置...
+[2026-07-03 23:32:46.196][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 触控模式:Default,捕获模式:EmulatorExtras
+[2026-07-03 23:32:46.196][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 设备名称：MuMu安卓设备-MuMuPlayer12 v5
+[2026-07-03 23:32:46.196][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 路径：D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe
+[2026-07-03 23:32:46.196][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 序列号：127.0.0.1:16384
+[2026-07-03 23:32:46.196][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 截图模式：EmulatorExtras
+[2026-07-03 23:32:46.196][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 输入模式：Default
+[2026-07-03 23:32:46.196][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 控制器配置：{"extras":{"mumu":{"enable":true,"index":0,"path":"D:/Apps/MuMu/MuMuPlayer"}}
+[2026-07-03 23:32:46.689][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测完成（异步）。
+[2026-07-03 23:32:47.353][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册内置特殊任务动作。
+[2026-07-03 23:32:47.361][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已启动自定义类目录监听：目录=D:\Claude_Workspace\AATL\resource\base\custom
+[2026-07-03 23:32:47.364][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\CaptainDamageAction.cs
+[2026-07-03 23:32:48.130][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\CaptainDamageAction.cs
+[2026-07-03 23:32:48.131][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DamageLogAction.cs
+[2026-07-03 23:32:48.215][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DamageLogAction.cs
+[2026-07-03 23:32:48.215][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DispatchLogAction.cs
+[2026-07-03 23:32:48.404][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DispatchLogAction.cs
+[2026-07-03 23:32:48.404][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-07-03 23:32:48.527][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-07-03 23:32:48.527][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-07-03 23:32:48.581][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-07-03 23:32:48.581][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\TeamSwitchAction.cs
+[2026-07-03 23:32:48.628][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\AATL\resource\base\custom\TeamSwitchAction.cs
+[2026-07-03 23:32:48.628][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：CaptainDamageAction
+[2026-07-03 23:32:48.628][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DamageLogAction
+[2026-07-03 23:32:48.628][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DispatchLogAction
+[2026-07-03 23:32:48.629][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DungeonFloorSelectAction
+[2026-07-03 23:32:48.629][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：ExpeditionMapSelectAction
+[2026-07-03 23:32:48.629][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：TeamSwitchAction
+[2026-07-03 23:32:48.629][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 未找到自定义目录：D:\Claude_Workspace\AATL\resource\custom
+[2026-07-03 23:32:48.629][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 连接状态变更：已连接。
+[2026-07-03 23:32:48.630][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] MaaFW 调试模式：False
+[2026-07-03 23:32:52.238][INF] [cfg=Default][inst=配置 1/default][src=UI][op=StartTask] 用户操作：启动任务 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384), selectedTasks=1 [陆联]
+[2026-07-03 23:32:52.266][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 准备执行任务队列：任务数量=1
+[2026-07-03 23:32:52.274][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] [任务管线合并] 任务#1 名称=[陆联] 入口=[LRentaisen] 参数=[
+  {},
+  {
+    "LR_IsSwordSelect"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptainSlot"：{
+      "enabled"：true
+    },
+    "LR_DetectSortOrder"：{
+      "enabled"：true
+    },
+    "LR_ClickDescending"：{
+      "enabled"：true
+    },
+    "LR_ConfirmSortAsc"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain1"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain2"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain3"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain4"：{
+      "enabled"：true
+    },
+    "LR_ClickCaptain5"：{
+      "enabled"：true
+    }
+  },
+  {
+    "LR_ClickTeam"：{
+      "target"：[
+        154,
+        93,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "LR_RunTeamSwitch"：{
+      "custom_action_param"：{
+        "team_config"："221222111"
+      }
+    }
+  },
+  {
+    "LR_ClickDifficulty"：{
+      "target"：[
+        1132,
+        328,
+        1,
+        1
+      ]
+    }
+  }
+]
+[2026-07-03 23:32:52.363][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:32:52.364][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本开始（异步）。
+[2026-07-03 23:32:52.365][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本完成（异步）。
+[2026-07-03 23:32:52.369][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试开始（异步）。
+[2026-07-03 23:32:52.383][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试完成（异步）。
+[2026-07-03 23:32:52.384][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 截图耗时：6ms(EmulatorExtras)
+[2026-07-03 23:32:52.390][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 开始任务：陆联
+[2026-07-03 23:32:52.393][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务开始（异步）。
+[2026-07-03 23:32:53.977][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：NOT_STARTED
+[2026-07-03 23:32:53.981][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:32:53.981][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 正在尝试停止任务执行器，第 1 次。
+[2026-07-03 23:32:53.982][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在停止......
+[2026-07-03 23:32:53.982][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务完成（异步）。
+[2026-07-03 23:32:53.982][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:32:53.983][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务运行失败！
+[2026-07-03 23:32:53.984][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：STOPPED
+[2026-07-03 23:32:53.984][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:32:53.984][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action开始。
+[2026-07-03 23:32:53.984][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action完成。
+[2026-07-03 23:32:54.034][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 第 1 次停止任务执行器返回：Succeeded，准备重试。
+[2026-07-03 23:32:54.388][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 已放弃本次任务
+[2026-07-03 23:33:26.729][INF] [cfg=Default][inst=配置 1/default][src=UI][op=StartTask] 用户操作：启动任务 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384), selectedTasks=1 [合战场]
+[2026-07-03 23:33:26.755][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 准备执行任务队列：任务数量=1
+[2026-07-03 23:33:26.756][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] [任务管线合并] 任务#1 名称=[合战场] 入口=[Sortie] 参数=[
+  {},
+  {
+    "S_IsRepair"：{
+      "enabled"：true
+    },
+    "S_IsStopOnDamage"：{
+      "enabled"：false
+    },
+    "S_IsPreDamage1"：{
+      "enabled"：true
+    },
+    "S_IsPreDamage2"：{
+      "enabled"：true
+    },
+    "S_StopOnDamagePopup"：{
+      "enabled"：false
+    },
+    "S_StopOnDamageText"：{
+      "enabled"：false
+    }
+  },
+  {
+    "S_ClickTeam"：{
+      "target"：[
+        154,
+        93,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "S_ClickEra"：{
+      "target"：[
+        644,
+        375,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "S_ClickRegion"：{
+      "target"：[
+        1118,
+        243,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "S_ClickFormation1"：{
+      "target"：[
+        212,
+        234,
+        1,
+        1
+      ]
+    },
+    "S_ClickFormation2"：{
+      "target"：[
+        212,
+        234,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "S_CheckEquipmentPopup"：{
+      "enabled"：true
+    },
+    "S_PreCheckTroopRecord"：{
+      "enabled"：true
+    },
+    "S_PreCheckUseRecord"：{
+      "enabled"：true
+    },
+    "S_PreConfirmSupply"：{
+      "enabled"：true
+    }
+  },
+  {
+    "S_Boss_E2_R1"：{
+      "enabled"：true
+    },
+    "S_Boss_E2_R2_1"：{
+      "enabled"：true
+    },
+    "S_Boss_E2_R2_2"：{
+      "enabled"：true
+    },
+    "S_Boss_E2_R3_1"：{
+      "enabled"：true
+    },
+    "S_Boss_E2_R3_2"：{
+      "enabled"：true
+    },
+    "S_Boss_E2_R3_3"：{
+      "enabled"：true
+    },
+    "S_Boss_E2_R4"：{
+      "enabled"：true
+    },
+    "S_Boss_E3_R1"：{
+      "enabled"：true
+    },
+    "S_Boss_E3_R2"：{
+      "enabled"：true
+    },
+    "S_Boss_E3_R3"：{
+      "enabled"：true
+    },
+    "S_Boss_E3_R4"：{
+      "enabled"：true
+    },
+    "S_Boss_E4_R1"：{
+      "enabled"：true
+    },
+    "S_Boss_E4_R2"：{
+      "enabled"：true
+    },
+    "S_Boss_E4_R3"：{
+      "enabled"：true
+    },
+    "S_Boss_E4_R4"：{
+      "enabled"：true
+    },
+    "S_Boss_E5_R1"：{
+      "enabled"：true
+    },
+    "S_Boss_E5_R3"：{
+      "enabled"：true
+    },
+    "S_Boss_E5_R3_2"：{
+      "enabled"：true
+    },
+    "S_Boss_E5_R4_1"：{
+      "enabled"：true
+    },
+    "S_Boss_E5_R4_2"：{
+      "enabled"：true
+    },
+    "S_Boss_E6_R1"：{
+      "enabled"：true
+    },
+    "S_Boss_E6_R2"：{
+      "enabled"：true
+    },
+    "S_Boss_E6_R3"：{
+      "enabled"：true
+    },
+    "S_Boss_E6_R4"：{
+      "enabled"：true
+    },
+    "S_Boss_E7_R1"：{
+      "enabled"：true
+    },
+    "S_Boss_E7_R2_1"：{
+      "enabled"：true
+    },
+    "S_Boss_E7_R2_2"：{
+      "enabled"：true
+    },
+    "S_Boss_E7_R3_1"：{
+      "enabled"：true
+    },
+    "S_Boss_E7_R3_2"：{
+      "enabled"：true
+    },
+    "S_Boss_E7_R4"：{
+      "enabled"：true
+    },
+    "S_Boss_E8_R1"：{
+      "enabled"：true
+    },
+    "S_Boss_E8_R2"：{
+      "enabled"：true
+    },
+    "S_Boss_E8_R3"：{
+      "enabled"：true
+    },
+    "S_Boss_E8_R4"：{
+      "enabled"：true
+    },
+    "S_ClickRetreat"：{
+      "enabled"：true
+    },
+    "S_ConfirmRetreat"：{
+      "enabled"：true
+    }
+  },
+  {
+    "S_IsHome"：{
+      "next"：[
+        "Expedition"
+      ]
+    },
+    "E_CheckTeam1"：{
+      "enabled"：true
+    },
+    "E_SelectMap1"：{
+      "action"：{
+        "type"："Custom",
+        "custom_action"："ExpeditionMapSelectAction",
+        "custom_action_param"：{
+          "team"：1
+        }
+      },
+      "next"：[
+        "E_ConfirmDispatch1"
+      ]
+    },
+    "E_ClickSmallMap1"：{
+      "enabled"：false
+    },
+    "E_SelectMap2"：{
+      "action"：{
+        "type"："Custom",
+        "custom_action"："ExpeditionMapSelectAction",
+        "custom_action_param"：{
+          "team"：2
+        }
+      },
+      "next"：[
+        "E_ConfirmDispatch2"
+      ]
+    },
+    "E_ClickSmallMap2"：{
+      "enabled"：false
+    },
+    "E_SelectMap3"：{
+      "action"：{
+        "type"："Custom",
+        "custom_action"："ExpeditionMapSelectAction",
+        "custom_action_param"：{
+          "team"：3
+        }
+      },
+      "next"：[
+        "E_ConfirmDispatch3"
+      ]
+    },
+    "E_ClickSmallMap3"：{
+      "enabled"：false
+    },
+    "E_SelectMap4"：{
+      "action"：{
+        "type"："Custom",
+        "custom_action"："ExpeditionMapSelectAction",
+        "custom_action_param"：{
+          "team"：4
+        }
+      },
+      "next"：[
+        "E_ConfirmDispatch4"
+      ]
+    },
+    "E_ClickSmallMap4"：{
+      "enabled"：false
+    },
+    "E_SelectMap5"：{
+      "action"：{
+        "type"："Custom",
+        "custom_action"："ExpeditionMapSelectAction",
+        "custom_action_param"：{
+          "team"：5
+        }
+      },
+      "next"：[
+        "E_ConfirmDispatch5"
+      ]
+    },
+    "E_ClickSmallMap5"：{
+      "enabled"：false
+    },
+    "E_VerifyScreen1"：{
+      "on_error"：[
+        "E_CheckTeamStatus"
+      ]
+    },
+    "E_VerifyScreen2"：{
+      "on_error"：[
+        "E_CheckTeamStatus"
+      ]
+    },
+    "E_VerifyScreen3"：{
+      "on_error"：[
+        "E_CheckTeamStatus"
+      ]
+    },
+    "E_VerifyScreen4"：{
+      "on_error"：[
+        "E_CheckTeamStatus"
+      ]
+    },
+    "E_VerifyScreen5"：{
+      "on_error"：[
+        "E_CheckTeamStatus"
+      ]
+    },
+    "E_ClickBackToHome"：{
+      "action"：{
+        "type"："Click",
+        "param"：{
+          "target"：[
+            1037,
+            169,
+            110,
+            44
+          ],
+          "target_offset"：[
+            6,
+            4,
+            0,
+            0
+          ]
+        }
+      },
+      "next"：[
+        "S_WaitRefresh"
+      ],
+      "on_error"：[
+        "S_DetectWhereAmI"
+      ]
+    },
+    "E_AllTeamsBusy"：{
+      "next"：[
+        "S_NavigateToSortie"
+      ]
+    },
+    "S_WaitRefresh"：{
+      "enabled"：true
+    }
+  },
+  {
+    "E_CheckTeam1"：{
+      "enabled"：false
+    }
+  },
+  {
+    "E_SelectMap2"：{
+      "target"：[
+        469,
+        178,
+        50,
+        40
+      ]
+    },
+    "E_ClickSmallMap2"：{
+      "target"：[
+        1098,
+        368,
+        67,
+        79
+      ]
+    }
+  },
+  {
+    "E_SelectMap3"：{
+      "target"：[
+        661,
+        183,
+        50,
+        35
+      ]
+    },
+    "E_ClickSmallMap3"：{
+      "target"：[
+        487,
+        373,
+        84,
+        113
+      ]
+    }
+  },
+  {
+    "E_SelectMap4"：{
+      "target"：[
+        661,
+        183,
+        50,
+        35
+      ]
+    },
+    "E_ClickSmallMap4"：{
+      "target"：[
+        1098,
+        368,
+        67,
+        79
+      ]
+    }
+  },
+  {
+    "E_SelectMap5"：{
+      "target"：[
+        891,
+        190,
+        50,
+        36
+      ]
+    },
+    "E_ClickSmallMap5"：{
+      "target"：[
+        767,
+        370,
+        81,
+        115
+      ]
+    }
+  }
+]
+[2026-07-03 23:33:26.824][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-07-03 23:33:26.826][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本开始（异步）。
+[2026-07-03 23:33:26.826][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动附加开始脚本完成（异步）。
+[2026-07-03 23:33:26.828][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试开始（异步）。
+[2026-07-03 23:33:26.845][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 截图测试完成（异步）。
+[2026-07-03 23:33:26.847][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 截图耗时：7ms(EmulatorExtras)
+[2026-07-03 23:33:26.849][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 开始任务：合战场
+[2026-07-03 23:33:26.851][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务开始（异步）。
+[2026-07-03 23:37:09.450][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：NOT_STARTED
+[2026-07-03 23:37:09.470][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:37:09.470][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 正在尝试停止任务执行器，第 1 次。
+[2026-07-03 23:37:09.471][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 队列任务完成（异步）。
+[2026-07-03 23:37:09.472][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-07-03 23:37:09.472][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 第 1 次停止任务执行器返回：Succeeded，准备重试。
+[2026-07-03 23:37:09.472][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action开始。
+[2026-07-03 23:37:09.472][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 Action完成。
+[2026-07-03 23:37:09.472][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在停止......
+[2026-07-03 23:37:09.476][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务运行失败！
+[2026-07-03 23:37:09.478][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：STOPPED
+[2026-07-03 23:37:09.478][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-07-03 23:37:09.877][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 已放弃本次任务
+[2026-07-03 23:37:39.571][INF] [cfg=Default] 应用已关闭
+[2026-07-03 23:37:39.575][INF] [cfg=Default] 已释放自定义类目录监听器。
