@@ -2807,7 +2807,8 @@ public static class VersionChecker
         var candidateRoots = new List<string>
         {
             tempExtractDir,
-            Path.Combine(tempExtractDir, "assets")
+            Path.Combine(tempExtractDir, "assets"),
+            Path.Combine(tempExtractDir, "resource")
         };
 
         try

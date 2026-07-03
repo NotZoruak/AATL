@@ -674,7 +674,8 @@
       }
     },
     "next": [
-      "S_VerifyRegionSelect"
+      "S_VerifyRegionSelect",
+      "S_DetectWhereAmI"
     ],
     "on_error": [
       "S_DetectWhereAmI"
@@ -881,7 +882,8 @@
       }
     },
     "next": [
-      "S_TryClickSortie"
+      "S_TryClickSortie",
+      "S_DetectWhereAmI"
     ],
     "on_error": [
       "S_DetectWhereAmI"
@@ -2558,7 +2560,8 @@
       }
     },
     "next": [
-      "S_TryClickHome"
+      "S_TryClickHome",
+      "S_DetectWhereAmI"
     ],
     "on_error": [
       "S_DetectWhereAmI"
@@ -2588,7 +2591,8 @@
       }
     },
     "next": [
-      "S_TryClickAfterRepair"
+      "S_TryClickAfterRepair",
+      "S_DetectWhereAmI"
     ],
     "on_error": [
       "S_DetectWhereAmI"

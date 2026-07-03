@@ -567,7 +567,8 @@
       }
     },
     "next": [
-      "LR_SelectDifficulty"
+      "LR_SelectDifficulty",
+      "LR_DetectWhereAmI"
     ],
     "on_error": [
       "LR_DetectWhereAmI"
@@ -630,7 +631,8 @@
       }
     },
     "next": [
-      "LR_TryClickSortie"
+      "LR_TryClickSortie",
+      "LR_DetectWhereAmI"
     ],
     "on_error": [
       "LR_DetectWhereAmI"
@@ -995,7 +997,8 @@
       }
     },
     "next": [
-      "LR_TryClickHome"
+      "LR_TryClickHome",
+      "LR_DetectWhereAmI"
     ],
     "on_error": [
       "LR_DetectWhereAmI"
@@ -1106,7 +1109,8 @@
       }
     },
     "next": [
-      "LR_EnterEvent"
+      "LR_EnterEvent",
+      "LR_DetectWhereAmI"
     ],
     "on_error": [
       "LR_DetectWhereAmI"

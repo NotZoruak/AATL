@@ -1197,7 +1197,8 @@
             "EC_DetectWhereAmI"
         ],
         "next": [
-            "EC_ClickSortieInMenu"
+            "EC_ClickSortieInMenu",
+            "EC_DetectWhereAmI"
         ]
     },
     "EC_VerifyLeftMenuFinal": {
@@ -1274,7 +1275,8 @@
             }
         },
         "next": [
-            "EC_TryClickSortie"
+            "EC_TryClickSortie",
+            "EC_DetectWhereAmI"
         ],
         "on_error": [
             "EC_DetectWhereAmI"

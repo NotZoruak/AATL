@@ -529,7 +529,8 @@
             }
         },
         "next": [
-            "U_SelectFloor"
+            "U_SelectFloor",
+            "U_DetectWhereAmI"
         ],
         "on_error": [
             "U_DetectWhereAmI"
@@ -1938,7 +1939,8 @@
             }
         },
         "next": [
-            "U_TryClickSortie"
+            "U_TryClickSortie",
+            "U_DetectWhereAmI"
         ],
         "on_error": [
             "U_DetectWhereAmI"
@@ -2177,7 +2179,8 @@
             }
         },
         "next": [
-            "U_TryClickAfterRepair"
+            "U_TryClickAfterRepair",
+            "U_DetectWhereAmI"
         ],
         "on_error": [
             "U_DetectWhereAmI"
@@ -2201,7 +2204,8 @@
             }
         },
         "next": [
-            "U_TryClickHome"
+            "U_TryClickHome",
+            "U_DetectWhereAmI"
         ],
         "on_error": [
             "U_DetectWhereAmI"

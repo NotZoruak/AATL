@@ -201,7 +201,8 @@
             }
         },
         "next": [
-            "G_ClickBackToHome"
+            "G_ClickBackToHome",
+            "G_DetectWhereAmI"
         ],
         "on_error": [
             "G_DetectWhereAmI"
