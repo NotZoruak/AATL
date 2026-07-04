@@ -1092,7 +1092,8 @@
     },
     "pre_delay": 100,
     "next": [
-      "LR_VerifyDifficulty"
+      "LR_VerifyDifficulty",
+      "LR_DetectWhereAmI"
     ],
     "on_error": [
       "LR_DetectWhereAmI"
