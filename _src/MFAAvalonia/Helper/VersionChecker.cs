@@ -758,6 +758,10 @@ public static class VersionChecker
                     if (fileName.Equals(ChangelogViewModel.ChangelogFileName, StringComparison.OrdinalIgnoreCase) || fileName.Contains("interface.json", StringComparison.OrdinalIgnoreCase))
                         continue;
 
+                    // 跳过 temp 目录下的文件，避免删除刚解压的更新临时文件
+                    if (rfile.Contains(Path.DirectorySeparatorChar + "temp" + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))
+                        continue;
+
                     try
                     {
                         File.SetAttributes(rfile, FileAttributes.Normal);
@@ -2859,6 +2863,30 @@ public static class VersionChecker
         {
             validationMessage = $"资源包目录不存在: {originPath}";
             return false;
+        }
+
+        if (!isIncrementalPackage && !File.Exists(interfacePath))
+        {
+            // 候选路径均未找到，在解压目录中递归搜索兜底
+            try
+            {
+                var found = Directory.EnumerateFiles(tempExtractDir, "interface.json", SearchOption.AllDirectories)
+                    .FirstOrDefault();
+                if (found != null)
+                {
+                    interfacePath = found;
+                    var foundDir = Path.GetDirectoryName(found);
+                    if (!string.IsNullOrEmpty(foundDir))
+                    {
+                        resourceDirPath = foundDir;
+                        originPath = Path.GetDirectoryName(foundDir) ?? tempExtractDir;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LoggerHelper.Warning($"递归搜索 interface.json 时出错: {ex.Message}");
+            }
         }
 
         if (!isIncrementalPackage && !File.Exists(interfacePath))
