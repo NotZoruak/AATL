@@ -567,7 +567,8 @@
       }
     },
     "next": [
-      "LR_SelectDifficulty"
+      "LR_SelectDifficulty",
+      "LR_DetectWhereAmI"
     ],
     "on_error": [
       "LR_DetectWhereAmI"
@@ -630,7 +631,8 @@
       }
     },
     "next": [
-      "LR_TryClickSortie"
+      "LR_TryClickSortie",
+      "LR_DetectWhereAmI"
     ],
     "on_error": [
       "LR_DetectWhereAmI"
@@ -713,6 +715,9 @@
       }
     },
     "next": [
+      "LR_DetectWhereAmI"
+    ],
+    "on_error": [
       "LR_DetectWhereAmI"
     ],
     "pre_delay": 100
@@ -995,7 +1000,8 @@
       }
     },
     "next": [
-      "LR_TryClickHome"
+      "LR_TryClickHome",
+      "LR_DetectWhereAmI"
     ],
     "on_error": [
       "LR_DetectWhereAmI"
@@ -1106,7 +1112,8 @@
       }
     },
     "next": [
-      "LR_EnterEvent"
+      "LR_EnterEvent",
+      "LR_DetectWhereAmI"
     ],
     "on_error": [
       "LR_DetectWhereAmI"
@@ -1265,6 +1272,9 @@
     "pre_delay": 100,
     "next": [
       "LR_ClickReplenishConfirm"
+    ],
+    "on_error": [
+      "LR_ClickRestore3"
     ]
   },
   "LR_ClickReplenishConfirm": {
@@ -1343,6 +1353,9 @@
     },
     "next": [
       "LR_PostClickMenuHub"
+    ],
+    "on_error": [
+      "LR_DetectWhereAmI"
     ],
     "pre_delay": 100
   },
@@ -1517,7 +1530,8 @@
   "LR_ActionSelectHub": {
     "next": [
       "LR_ClickSwitchTeam",
-      "LR_CheckCaptainDamage"
+      "LR_CheckCaptainDamage",
+      "LR_ClickContinueBattle"
     ]
   },
   "LR_ClickSwitchTeam": {
@@ -1549,6 +1563,7 @@
       }
     },
     "next": [
+      "LR_CheckCaptainDamage",
       "LR_ClickContinueBattle"
     ]
   },

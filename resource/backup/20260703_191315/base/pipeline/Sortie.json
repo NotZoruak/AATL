@@ -674,7 +674,8 @@
       }
     },
     "next": [
-      "S_VerifyRegionSelect"
+      "S_VerifyRegionSelect",
+      "S_DetectWhereAmI"
     ],
     "on_error": [
       "S_DetectWhereAmI"
@@ -828,6 +829,9 @@
     "next": [
       "S_PostClickMenuHub"
     ],
+    "on_error": [
+      "S_DetectWhereAmI"
+    ],
     "pre_delay": 100
   },
   "S_ClickSortieInMenu": {
@@ -881,7 +885,8 @@
       }
     },
     "next": [
-      "S_TryClickSortie"
+      "S_TryClickSortie",
+      "S_DetectWhereAmI"
     ],
     "on_error": [
       "S_DetectWhereAmI"
@@ -1740,6 +1745,9 @@
     ],
     "next": [
       "S_LogMarchingDamage2"
+    ],
+    "on_error": [
+      "S_DetectWhereAmI"
     ]
   },
   "S_ConfirmCancelPreDamage2": {
@@ -1760,6 +1768,9 @@
     ],
     "next": [
       "S_DecideDamage_Pre"
+    ],
+    "on_error": [
+      "S_DetectWhereAmI"
     ],
     "post_delay": 500,
     "pre_delay": 100
@@ -1782,6 +1793,9 @@
     ],
     "next": [
       "S_ReturnHomeAfterMarchDamage"
+    ],
+    "on_error": [
+      "S_DetectWhereAmI"
     ],
     "post_delay": 300,
     "pre_delay": 100
@@ -1813,6 +1827,9 @@
     "next": [
       "S_VerifyMenuOpened"
     ],
+    "on_error": [
+      "S_DetectWhereAmI"
+    ],
     "pre_delay": 100
   },
   "S_ClickRepairInMenu": {
@@ -1834,6 +1851,9 @@
     "next": [
       "S_VerifyRepairMenuClosed"
     ],
+    "on_error": [
+      "S_DetectWhereAmI"
+    ],
     "pre_delay": 100
   },
   "S_SelectDamagedSword": {
@@ -1841,6 +1861,25 @@
       "S_FindSlot1",
       "S_FindSlot2",
       "S_FindSlot3"
+    ],
+    "on_error": [
+      "S_CheckRepairScreen"
+    ]
+  },
+  "S_CheckRepairScreen": {
+    "recognition": "OCR",
+    "roi": [
+      554,
+      56,
+      175,
+      49
+    ],
+    "expected": "修复",
+    "next": [
+      "S_SelectDamagedSword"
+    ],
+    "on_error": [
+      "S_DetectWhereAmI"
     ]
   },
   "S_FindSlot1": {
@@ -1950,7 +1989,22 @@
     "next": [
       "S_CheckAccel"
     ],
+    "on_error": [
+      "S_LogNoDamagedSword"
+    ],
     "pre_delay": 100
+  },
+  "S_LogNoDamagedSword": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DamageLogAction",
+      "custom_action_param": {
+        "message": "未检测到可修复刀剑"
+      }
+    },
+    "next": [
+      "S_DetectWhereAmI"
+    ]
   },
   "S_CheckAccel": {
     "next": [
@@ -2032,6 +2086,9 @@
     "next": [
       "S_VerifyMenuAfterRepair"
     ],
+    "on_error": [
+      "S_DetectWhereAmI"
+    ],
     "pre_delay": 100
   },
   "S_SortieAfterRepair": {
@@ -2052,6 +2109,9 @@
     ],
     "next": [
       "S_VerifyAfterRepairMenuClosed"
+    ],
+    "on_error": [
+      "S_DetectWhereAmI"
     ],
     "pre_delay": 100
   },
@@ -2082,6 +2142,9 @@
       0
     ],
     "next": [
+      "S_DetectWhereAmI"
+    ],
+    "on_error": [
       "S_DetectWhereAmI"
     ],
     "post_delay": 500,
@@ -2558,7 +2621,8 @@
       }
     },
     "next": [
-      "S_TryClickHome"
+      "S_TryClickHome",
+      "S_DetectWhereAmI"
     ],
     "on_error": [
       "S_DetectWhereAmI"
@@ -2588,7 +2652,8 @@
       }
     },
     "next": [
-      "S_TryClickAfterRepair"
+      "S_TryClickAfterRepair",
+      "S_DetectWhereAmI"
     ],
     "on_error": [
       "S_DetectWhereAmI"

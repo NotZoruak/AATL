@@ -10,9 +10,7 @@
 <div>
     <img alt="C#" src="https://img.shields.io/badge/C%23-14-%23239120?logo=csharp">
     <img alt=".NET" src="https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet">
-    <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blueviolet">
-</div>
-<div>
+    <img alt="platform" src="https://img.shields.io/badge/platform-Windows-blueviolet">
     <img alt="license" src="https://img.shields.io/github/license/NotZoruak/AATL">
 </div>
 <div>

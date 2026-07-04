@@ -717,6 +717,9 @@
     "next": [
       "LR_DetectWhereAmI"
     ],
+    "on_error": [
+      "LR_DetectWhereAmI"
+    ],
     "pre_delay": 100
   },
   "LR_ClickCaptain1": {
@@ -1269,6 +1272,9 @@
     "pre_delay": 100,
     "next": [
       "LR_ClickReplenishConfirm"
+    ],
+    "on_error": [
+      "LR_ClickRestore3"
     ]
   },
   "LR_ClickReplenishConfirm": {
@@ -1347,6 +1353,9 @@
     },
     "next": [
       "LR_PostClickMenuHub"
+    ],
+    "on_error": [
+      "LR_DetectWhereAmI"
     ],
     "pre_delay": 100
   },

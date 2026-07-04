@@ -766,6 +766,9 @@
         "next": [
             "FB_VerifyMenuOpened"
         ],
+        "on_error": [
+            "FB_DetectWhereAmI"
+        ],
         "pre_delay": 100
     },
     "FB_ClickSortieInMenu": {

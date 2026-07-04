@@ -919,6 +919,9 @@
         "next": [
             "EC_ClickReplenishConfirm"
         ],
+        "on_error": [
+            "EC_ClickRestore3"
+        ],
         "pre_delay": 100
     },
     "EC_ClickReplenishConfirm": {
@@ -1116,6 +1119,9 @@
         },
         "next": [
             "EC_VerifyMenuSortie"
+        ],
+        "on_error": [
+            "EC_DetectWhereAmI"
         ],
         "pre_delay": 100
     },

@@ -766,6 +766,9 @@
         "next": [
             "FB_VerifyMenuOpened"
         ],
+        "on_error": [
+            "FB_DetectWhereAmI"
+        ],
         "pre_delay": 100
     },
     "FB_ClickSortieInMenu": {
@@ -1109,7 +1112,8 @@
             "FB_DetectWhereAmI"
         ],
         "next": [
-            "FB_ClickSortieInMenu"
+            "FB_ClickSortieInMenu",
+            "FB_DetectWhereAmI"
         ]
     },
     "FB_IsInternalReport": {
@@ -1162,7 +1166,8 @@
             }
         },
         "next": [
-            "FB_TryClickSortie"
+            "FB_TryClickSortie",
+            "FB_DetectWhereAmI"
         ],
         "on_error": [
             "FB_DetectWhereAmI"

@@ -919,6 +919,9 @@
         "next": [
             "EC_ClickReplenishConfirm"
         ],
+        "on_error": [
+            "EC_ClickRestore3"
+        ],
         "pre_delay": 100
     },
     "EC_ClickReplenishConfirm": {
@@ -1117,6 +1120,9 @@
         "next": [
             "EC_VerifyMenuSortie"
         ],
+        "on_error": [
+            "EC_DetectWhereAmI"
+        ],
         "pre_delay": 100
     },
     "EC_ClickSortieInMenu": {
@@ -1197,7 +1203,8 @@
             "EC_DetectWhereAmI"
         ],
         "next": [
-            "EC_ClickSortieInMenu"
+            "EC_ClickSortieInMenu",
+            "EC_DetectWhereAmI"
         ]
     },
     "EC_VerifyLeftMenuFinal": {
@@ -1274,7 +1281,8 @@
             }
         },
         "next": [
-            "EC_TryClickSortie"
+            "EC_TryClickSortie",
+            "EC_DetectWhereAmI"
         ],
         "on_error": [
             "EC_DetectWhereAmI"

@@ -529,7 +529,8 @@
             }
         },
         "next": [
-            "U_SelectFloor"
+            "U_SelectFloor",
+            "U_DetectWhereAmI"
         ],
         "on_error": [
             "U_DetectWhereAmI"
@@ -616,6 +617,9 @@
             }
         },
         "next": [
+            "U_DetectWhereAmI"
+        ],
+        "on_error": [
             "U_DetectWhereAmI"
         ],
         "pre_delay": 100
@@ -1228,6 +1232,9 @@
         "next": [
             "U_PostClickMenuHub"
         ],
+        "on_error": [
+            "U_DetectWhereAmI"
+        ],
         "pre_delay": 100
     },
     "U_ClickMenuForRepair": {
@@ -1249,6 +1256,9 @@
         "post_delay": 300,
         "next": [
             "U_VerifyMenuOpened"
+        ],
+        "on_error": [
+            "U_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
@@ -1300,6 +1310,9 @@
         ],
         "next": [
             "U_VerifyRepairMenuClosed"
+        ],
+        "on_error": [
+            "U_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
@@ -1416,6 +1429,9 @@
         "next": [
             "U_ReturnHomeAfterMarchDamage"
         ],
+        "on_error": [
+            "U_DetectWhereAmI"
+        ],
         "post_delay": 300,
         "pre_delay": 100
     },
@@ -1439,6 +1455,9 @@
         "next": [
             "U_DecideDamage_Pre"
         ],
+        "on_error": [
+            "U_DetectWhereAmI"
+        ],
         "post_delay": 500,
         "pre_delay": 100
     },
@@ -1461,7 +1480,22 @@
         "next": [
             "U_CheckAccel"
         ],
+        "on_error": [
+            "U_LogNoDamagedSword"
+        ],
         "pre_delay": 100
+    },
+    "U_LogNoDamagedSword": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "DamageLogAction",
+            "custom_action_param": {
+                "message": "未检测到可修复刀剑"
+            }
+        },
+        "next": [
+            "U_DetectWhereAmI"
+        ]
     },
     "U_ConfirmSortAsc": {
         "recognition": {
@@ -1539,6 +1573,9 @@
         ],
         "next": [
             "U_VerifyMenuAfterRepair"
+        ],
+        "on_error": [
+            "U_DetectWhereAmI"
         ],
         "pre_delay": 500
     },
@@ -1658,6 +1695,9 @@
         ],
         "next": [
             "U_LogMarchingDamage2"
+        ],
+        "on_error": [
+            "U_DetectWhereAmI"
         ]
     },
     "U_IsPreDamage1": {
@@ -1860,6 +1900,25 @@
             "U_FindSlot1",
             "U_FindSlot2",
             "U_FindSlot3"
+        ],
+        "on_error": [
+            "U_CheckRepairScreen"
+        ]
+    },
+    "U_CheckRepairScreen": {
+        "recognition": "OCR",
+        "roi": [
+            554,
+            56,
+            175,
+            49
+        ],
+        "expected": "修复",
+        "next": [
+            "U_SelectDamagedSword"
+        ],
+        "on_error": [
+            "U_DetectWhereAmI"
         ]
     },
     "U_SortieAfterRepair": {
@@ -1880,6 +1939,9 @@
         ],
         "next": [
             "U_VerifyAfterRepairMenuClosed"
+        ],
+        "on_error": [
+            "U_DetectWhereAmI"
         ],
         "pre_delay": 100
     },
@@ -1938,7 +2000,8 @@
             }
         },
         "next": [
-            "U_TryClickSortie"
+            "U_TryClickSortie",
+            "U_DetectWhereAmI"
         ],
         "on_error": [
             "U_DetectWhereAmI"
@@ -2132,6 +2195,9 @@
         "next": [
             "U_DetectWhereAmI"
         ],
+        "on_error": [
+            "U_DetectWhereAmI"
+        ],
         "post_delay": 500,
         "pre_delay": 100
     },
@@ -2177,7 +2243,8 @@
             }
         },
         "next": [
-            "U_TryClickAfterRepair"
+            "U_TryClickAfterRepair",
+            "U_DetectWhereAmI"
         ],
         "on_error": [
             "U_DetectWhereAmI"
@@ -2201,7 +2268,8 @@
             }
         },
         "next": [
-            "U_TryClickHome"
+            "U_TryClickHome",
+            "U_DetectWhereAmI"
         ],
         "on_error": [
             "U_DetectWhereAmI"
