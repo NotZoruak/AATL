@@ -1468,9 +1468,11 @@
     ]
   },
   "LR_CheckSwordDropAfterSpecial": {
+    "pre_delay": 1000,
     "next": [
       "LR_IsSwordDropAfter",
-      "LR_WaitForEventPage"
+      "LR_WaitForEventPage",
+      "LR_DetectWhereAmI"
     ]
   },
   "LR_IsSwordDropAfter": {
