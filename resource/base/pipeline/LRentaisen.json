@@ -1060,7 +1060,8 @@
       }
     },
     "next": [
-      "LR_SelectDifficulty"
+      "LR_SelectDifficulty",
+      "LR_DetectWhereAmI"
     ],
     "on_error": [
       "LR_DetectWhereAmI"
@@ -1092,6 +1093,9 @@
     "pre_delay": 100,
     "next": [
       "LR_VerifyDifficulty"
+    ],
+    "on_error": [
+      "LR_DetectWhereAmI"
     ]
   },
   "LR_VerifyDifficulty": {
@@ -1531,7 +1535,8 @@
     "next": [
       "LR_ClickSwitchTeam",
       "LR_CheckCaptainDamage",
-      "LR_ClickContinueBattle"
+      "LR_ClickContinueBattle",
+      "LR_DetectWhereAmI"
     ]
   },
   "LR_ClickSwitchTeam": {

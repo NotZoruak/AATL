@@ -1673,6 +1673,9 @@
     "next": [
       "S_DetectWhereAmI"
     ],
+    "on_error": [
+      "S_DetectWhereAmI"
+    ],
     "pre_delay": 100
   },
   "S_IsPreDamage1": {
