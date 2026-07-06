@@ -1635,7 +1635,8 @@
     },
     "enabled": false,
     "next": [
-      "S_ConfirmRetreat"
+      "S_ConfirmRetreat",
+      "S_DetectWhereAmI"
     ],
     "pre_delay": 100
   },

@@ -18,12 +18,11 @@ body:
       description: 哪个任务出现了问题？
       options:
         - 远征
-        - 江户城
-        - 刷花
         - 合战场
-        - 回到本丸
-        - 地下城
+        - 陆联
+        - 刷花
         - 刀解
+        - 习合
         - 不涉及具体任务（启动/连接/更新等）
     validations:
       required: true
