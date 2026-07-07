@@ -8,5 +8,10 @@
 /agent/
 /appsettings.json
 
+# NuGet 输出（publish 时自动生成）
+/libs/
+/plugins/
+/runtimes/win-x64/
+
 # Obsidian 配置
 docs/.obsidian/
