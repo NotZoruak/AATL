@@ -110,5 +110,9 @@
         </ItemGroup>
 
         <Delete Files="@(PdbFilesToDelete);@(XmlFilesToDelete);@(RuntimeConfigFilesToDelete)" ContinueOnError="true"/>
+
+        <!-- 移除 NuGet 包自带的默认 interface.json（项目使用根目录的自定义版本） -->
+        <RemoveDir Directories="$(MainPublishDir)resource\agent;$(MainPublishDir)resource\backup;$(MainPublishDir)resource\config;$(MainPublishDir)resource\temp" ContinueOnError="true"/>
+        <Delete Files="$(MainPublishDir)resource\interface.json;$(MainPublishDir)resource\mfa_layout.json;$(MainPublishDir)resource\Changelog.md" ContinueOnError="true"/>
     </Target>
 </Project>

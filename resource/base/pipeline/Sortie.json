@@ -792,9 +792,6 @@
     },
     "next": [
       "S_NavigateToSortie"
-    ],
-    "on_error": [
-      "S_DetectWhereAmI"
     ]
   },
   "S_NavigateToSortie": {
@@ -2679,8 +2676,8 @@
         "roi": [
           0,
           0,
-          1280,
-          720
+          1600,
+          900
         ],
         "template": "游戏图标.png",
         "green_mask": true,
@@ -3204,8 +3201,7 @@
     ],
     "action": "DoNothing",
     "next": [
-      "S_IsHome",
-      "S_DetectWhereAmI"
+      "S_IsHome"
     ]
   },
   "S_IsTeamStatusPanel": {

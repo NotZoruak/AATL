@@ -14,29 +14,29 @@ public static class AppPaths
     public static string InstallRoot => AppContext.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
     public static string DataRoot { get; private set; } = InstallRoot;
     public static string ConfigDirectory => string.IsNullOrWhiteSpace(_configDirectory)
-        ? Path.Combine(InstallRoot, "resource", "config")
+        ? Path.Combine(InstallRoot, "config")
         : _configDirectory;
     public static string InstancesDirectory => Path.Combine(ConfigDirectory, "instances");
     public static string ResourceDirectory => Path.Combine(DataRoot, "resource");
-    public static string AgentDirectory => Path.Combine(DataRoot, "resource", "agent");
+    public static string AgentDirectory => Path.Combine(DataRoot, "agent");
     public static string LogsDirectory => string.IsNullOrWhiteSpace(_logsDirectory)
         ? Path.Combine(InstallRoot, "debug", "logs")
         : _logsDirectory;
     public static string TempDirectory => string.IsNullOrWhiteSpace(_tempDirectory)
-        ? Path.Combine(InstallRoot, "resource", "temp")
+        ? Path.Combine(InstallRoot, "temp")
         : _tempDirectory;
     public static string TempResourceDirectory => Path.Combine(TempDirectory, "temp_res");
     public static string TempMfaDirectory => Path.Combine(TempDirectory, "temp_mfa");
     public static string TempMaaFwDirectory => Path.Combine(TempDirectory, "temp_maafw");
-    public static string InterfaceJsonPath => Path.Combine(DataRoot, "resource", "interface.json");
-    public static string InterfaceJsoncPath => Path.Combine(DataRoot, "resource", "interface.jsonc");
-    public static string GlobalConfigPath => Path.Combine(ConfigDirectory, "appsettings.json");
+    public static string InterfaceJsonPath => Path.Combine(DataRoot, "interface.json");
+    public static string InterfaceJsoncPath => Path.Combine(DataRoot, "interface.jsonc");
+    public static string GlobalConfigPath => Path.Combine(DataRoot, "appsettings.json");
     public static string ChangesPath => Path.Combine(DataRoot, "changes.json");
-    public static string BackupDirectory => Path.Combine(DataRoot, "resource", "backup");
+    public static string BackupDirectory => Path.Combine(DataRoot, "backup");
     public static bool IsUsingIndependentDataRoot => !string.Equals(DataRoot, InstallRoot, StringComparison.OrdinalIgnoreCase);
     public static bool IsUsingLocalConfigDirectory => string.Equals(
         ConfigDirectory.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar),
-        Path.Combine(InstallRoot, "resource", "config").TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar),
+        Path.Combine(InstallRoot, "config").TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar),
         StringComparison.OrdinalIgnoreCase);
 
     public static void Initialize()
@@ -64,7 +64,7 @@ public static class AppPaths
 
     private static string ResolveConfigDirectory()
     {
-        var installConfig = Path.Combine(InstallRoot, "resource", "config");
+        var installConfig = Path.Combine(InstallRoot, "config");
         if (CanUseDirectory(installConfig))
             return installConfig;
 
@@ -82,7 +82,7 @@ public static class AppPaths
 
     private static string ResolveTempDirectory()
     {
-        var installTemp = Path.Combine(InstallRoot, "resource", "temp");
+        var installTemp = Path.Combine(InstallRoot, "temp");
         if (CanUseDirectory(installTemp))
             return installTemp;
 
