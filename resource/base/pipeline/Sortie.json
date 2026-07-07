@@ -792,6 +792,9 @@
     },
     "next": [
       "S_NavigateToSortie"
+    ],
+    "on_error": [
+      "S_DetectWhereAmI"
     ]
   },
   "S_NavigateToSortie": {
@@ -3201,7 +3204,8 @@
     ],
     "action": "DoNothing",
     "next": [
-      "S_IsHome"
+      "S_IsHome",
+      "S_DetectWhereAmI"
     ]
   },
   "S_IsTeamStatusPanel": {
