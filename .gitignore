@@ -1,6 +1,12 @@
-
 # 调试输出
 /debug/
+
+# 运行时生成目录（首次启动自动创建）
+/config/
+/temp/
+/backup/
+/agent/
+/appsettings.json
 
 # Obsidian 配置
 docs/.obsidian/
