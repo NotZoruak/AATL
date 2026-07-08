@@ -1320,6 +1320,29 @@ public partial class TaskQueueViewModel : ViewModelBase
             Processor.Config.AdbDevice.AdbSerial = device.AdbSerial;
             Processor.Config.AdbDevice.Config = device.Config;
             Processor.Config.AdbDevice.Info = device;
+
+            // MuMu 12+ 自动修复：MaaFramework 上游无法识别新格式 MuMu 设备，
+            // 导致 EmulatorExtras 快速截图失效，退化为 adb screencap（~130ms/帧）。
+            // 此处自动检测 MuMu 设备并注入 EmulatorExtras + extras 配置。
+            if (device.Name.Contains("MuMu", StringComparison.OrdinalIgnoreCase))
+            {
+                var muMuInfo = EmulatorHelper.TryGetMuMuInstallInfo(device.AdbSerial);
+                if (muMuInfo != null)
+                {
+                    var (installPath, emuIndex) = muMuInfo.Value;
+                    // 如果 serial 是 emulator-XXXX 格式，改为 127.0.0.1:PORT 直连
+                    if (Processor.Config.AdbDevice.AdbSerial.StartsWith("emulator-", StringComparison.OrdinalIgnoreCase))
+                    {
+                        var directPort = 16384 + emuIndex * 32;
+                        Processor.Config.AdbDevice.AdbSerial = $"127.0.0.1:{directPort}";
+                    }
+                    // 注入 extras JSON，告知 MaaFramework 使用 MuMu 原生截图通道
+                    var extras = $"{{\"extras\":{{\"mumu\":{{\"enable\":true,\"path\":\"{installPath.Replace("\\", "\\\\")}\",\"index\":{emuIndex}}}}}}}";
+                    Processor.Config.AdbDevice.Config = extras;
+                    LoggerHelper.Info($"已自动注入 MuMu EmulatorExtras 配置：安装路径={installPath}，索引={emuIndex}，直连地址={Processor.Config.AdbDevice.AdbSerial}");
+                }
+            }
+
             // 正在连接或设备未变更时跳过 SetTasker，避免打断进行中的连接
             if (!Processor.IsConnecting && !isSameDevice)
                 Task.Run(() => Processor.SetTasker());

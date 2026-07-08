@@ -2474,9 +2474,17 @@ public class MaaProcessor
             new UniversalEnumConverter<AdbInputMethods>());
         return inputType switch
         {
-            AdbInputMethods.None => Config.AdbDevice.Info?.InputMethods ?? AdbInputMethods.Default,
+            AdbInputMethods.None => GetEffectiveInputMethods(),
             _ => inputType
         };
+    }
+
+    private AdbInputMethods GetEffectiveInputMethods()
+    {
+        var detected = Config.AdbDevice.Info?.InputMethods ?? AdbInputMethods.Default;
+        if (detected == AdbInputMethods.Default && IsMuMuDeviceName())
+            return AdbInputMethods.EmulatorExtras;
+        return detected;
     }
 
     private AdbScreencapMethods ConfigureAdbScreenCapTypes()
@@ -2486,10 +2494,21 @@ public class MaaProcessor
             new UniversalEnumConverter<AdbScreencapMethods>());
         return screenCapType switch
         {
-            AdbScreencapMethods.None => Config.AdbDevice.Info?.ScreencapMethods ?? AdbScreencapMethods.Default,
+            AdbScreencapMethods.None => GetEffectiveScreencapMethods(),
             _ => screenCapType
         };
     }
+
+    private AdbScreencapMethods GetEffectiveScreencapMethods()
+    {
+        var detected = Config.AdbDevice.Info?.ScreencapMethods ?? AdbScreencapMethods.Default;
+        if (detected == AdbScreencapMethods.Default && IsMuMuDeviceName())
+            return AdbScreencapMethods.EmulatorExtras;
+        return detected;
+    }
+
+    private bool IsMuMuDeviceName() =>
+        Config.AdbDevice.Name.Contains("MuMu", StringComparison.OrdinalIgnoreCase);
 
     private void ConfigureMaaProcessorForWin32(bool logConfig)
     {

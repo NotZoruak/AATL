@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "on_error兜底补完计划.md",
+                "file": "陆联任务设计.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "on_error兜底补完计划"
+              "title": "陆联任务设计"
             }
           }
         ]
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "4d9b02046e833808",
@@ -186,6 +185,9 @@
   },
   "active": "94ddccee65a65409",
   "lastOpenFiles": [
+    "陆联任务设计.md.tmp.27000.2c9c5a16cb58",
+    "合战场任务设计.md",
+    "on_error兜底补完计划.md",
     "复用节点清单.md.tmp.27384.fd89e84a33ac",
     "复用节点清单.md.tmp.27384.e3032670a117",
     "复用节点清单.md.tmp.27384.5cee2c6e54da",
@@ -196,9 +198,6 @@
     "on_error兜底补完计划.md.tmp.27384.ce8326b490c5",
     "on_error兜底补完计划.md.tmp.27384.72044b995656",
     "on_error兜底补完计划.md.tmp.27384.fc64bc3648da",
-    "on_error兜底补完计划.md.tmp.27384.856b0c686ed8",
-    "合战场任务设计.md",
-    "on_error兜底补完计划.md",
     "复用节点清单.md",
     "陆联任务设计.md",
     "数据查找表设计.md",

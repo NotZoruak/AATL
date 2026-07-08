@@ -61,20 +61,21 @@ public static class EmulatorHelper
     }
 
     /// <summary>
-    /// 一个用于调用 MuMu12 模拟器控制台关闭 MuMu12 的方法
+    /// 尝试获取 MuMu 模拟器的安装目录和实例索引，用于自动注入 EmulatorExtras 配置。
     /// </summary>
-    /// <returns>是否关闭成功</returns>
-    private static bool KillEmulatorMuMuEmulator12(MaaProcessor processor)
+    /// <param name="adbSerial">ADB 设备序列号（如 emulator-5554 或 127.0.0.1:16384）</param>
+    /// <returns>成功返回 (安装目录, 模拟器索引)，失败返回 null</returns>
+    public static (string InstallPath, int EmuIndex)? TryGetMuMuInstallInfo(string adbSerial)
     {
-        string address = processor.Config.AdbDevice.AdbSerial;
+        // 步骤1：从 ADB 序列号计算模拟器索引
         int emuIndex;
-        if (address == "127.0.0.1:16384")
+        if (adbSerial == "127.0.0.1:16384")
         {
             emuIndex = 0;
         }
-        else if (address.Contains(':'))
+        else if (adbSerial.Contains(':'))
         {
-            string portStr = address.Split(':')[1];
+            string portStr = adbSerial.Split(':')[1];
             if (int.TryParse(portStr, out int port))
             {
                 switch (port)
@@ -84,51 +85,49 @@ public static class EmulatorHelper
                         break;
                     case 7555:
                         emuIndex = 0;
-                        LoggerHelper.Warning("MuMu6 的 7555 端口已不推荐使用，请改用 16384 及以上端口。");
                         break;
                     case >= 5555:
                         emuIndex = (port - 5555) / 2;
                         break;
                     default:
-                        LoggerHelper.Error($"MuMuEmulator12 端口无效：端口={port}");
-                        return false;
+                        LoggerHelper.Warning($"MuMu 端口无效，无法计算索引：端口={port}");
+                        return null;
                 }
             }
             else
             {
-                LoggerHelper.Error($"解析地址中的端口失败：地址={address}");
-                return false;
+                LoggerHelper.Warning($"解析 MuMu 地址端口失败：地址={adbSerial}");
+                return null;
             }
         }
-        else if (address.StartsWith("emulator-", StringComparison.OrdinalIgnoreCase))
+        else if (adbSerial.StartsWith("emulator-", StringComparison.OrdinalIgnoreCase))
         {
-            string[] parts = address.Split('-');
+            string[] parts = adbSerial.Split('-');
             if (parts.Length >= 2 && int.TryParse(parts[1], out int port))
             {
                 emuIndex = (port - 5554) / 2;
             }
             else
             {
-                LoggerHelper.Error($"解析模拟器风格地址中的端口失败：地址={address}");
-                return false;
+                LoggerHelper.Warning($"解析 MuMu 模拟器风格地址失败：地址={adbSerial}");
+                return null;
             }
         }
         else
         {
-            LoggerHelper.Error($"不支持的地址格式：地址={address}");
-            return false;
+            LoggerHelper.Warning($"不支持的 MuMu 地址格式：地址={adbSerial}");
+            return null;
         }
 
-        // 尝试找到正在运行的模拟器进程
-        Process[] processes = Process.GetProcessesByName("MuMuNxDevice"); // 新版
+        // 步骤2：从运行中的进程获取安装目录
+        var processes = Process.GetProcessesByName("MuMuNxDevice"); // 新版
         if (processes.Length == 0)
-        {
             processes = Process.GetProcessesByName("MuMuPlayer"); // 兼容旧版
-        }
 
         if (processes.Length == 0)
         {
-            return false;
+            LoggerHelper.Warning("未找到 MuMu 模拟器进程，无法获取安装目录。");
+            return null;
         }
 
         ProcessModule? processModule;
@@ -138,22 +137,39 @@ public static class EmulatorHelper
         }
         catch (Exception e)
         {
-            LoggerHelper.Error($"获取模拟器进程主模块失败：原因={e.Message}", e);
-            return false;
+            LoggerHelper.Warning($"获取 MuMu 进程主模块失败：原因={e.Message}");
+            return null;
         }
 
         string? emulatorExePath = processModule?.FileName;
         if (emulatorExePath == null)
-        {
-            return false;
-        }
+            return null;
 
         // 从 exe 路径回推安装目录
-        // 新版路径推导: nx_device\12.0\shell\MuMuNxDevice.exe → 上三级目录 = 安装目录
-        // 旧版路径推导: shell\MuMuPlayer.exe → 上一级目录 = 安装目录
-        var installPath = Path.GetFullPath(Path.GetFileName(emulatorExePath).Equals("MuMuNxDevice.exe", StringComparison.OrdinalIgnoreCase)
-            ? Path.Combine(Path.GetDirectoryName(emulatorExePath)!, "..", "..", "..")
-            : Path.Combine(Path.GetDirectoryName(emulatorExePath)!, ".."));
+        // 新版: nx_device\12.0\shell\MuMuNxDevice.exe → 上三级 = 安装目录
+        // 旧版: shell\MuMuPlayer.exe → 上一级 = 安装目录
+        var installPath = Path.GetFullPath(
+            Path.GetFileName(emulatorExePath).Equals("MuMuNxDevice.exe", StringComparison.OrdinalIgnoreCase)
+                ? Path.Combine(Path.GetDirectoryName(emulatorExePath)!, "..", "..", "..")
+                : Path.Combine(Path.GetDirectoryName(emulatorExePath)!, ".."));
+
+        return (installPath, emuIndex);
+    }
+
+    /// <summary>
+    /// 一个用于调用 MuMu12 模拟器控制台关闭 MuMu12 的方法
+    /// </summary>
+    /// <returns>是否关闭成功</returns>
+    private static bool KillEmulatorMuMuEmulator12(MaaProcessor processor)
+    {
+        var info = TryGetMuMuInstallInfo(processor.Config.AdbDevice.AdbSerial);
+        if (info == null)
+        {
+            LoggerHelper.Error("无法获取 MuMu 安装信息，准备改为按窗口关闭模拟器。");
+            return KillEmulatorByWindow(processor);
+        }
+
+        var (installPath, emuIndex) = info.Value;
 
         // 新旧路径分别尝试 MuMuManager.exe
         string newConsolePath = Path.Combine(installPath, "nx_main", "MuMuManager.exe");
@@ -161,13 +177,9 @@ public static class EmulatorHelper
 
         string? consolePath = null;
         if (File.Exists(newConsolePath))
-        {
             consolePath = newConsolePath;
-        }
         else if (File.Exists(oldConsolePath))
-        {
             consolePath = oldConsolePath;
-        }
 
         if (consolePath != null)
         {

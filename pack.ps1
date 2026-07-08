@@ -1,5 +1,5 @@
 param(
-    [string]$Version = "v1.0.0"
+    [string]$Version = "v1.0.0-alpha"
 )
 
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -24,10 +24,6 @@ Copy-Item "$Root\README.md" $TempDir
 Copy-Item "$Root\LICENSE" $TempDir
 Copy-Item "$Root\interface.json" $TempDir
 Copy-Item "$Root\runtimes" -Recurse -Destination "$TempDir\runtimes"
-
-# 依赖库安装脚本放到 AATL 文件夹同级（解压后可见）
-Copy-Item "$Root\DependencySetup_*.bat" $TempBase
-
 # Keep only win-x64 native libs and managed DLLs
 $KeepDirs = @("libs", "plugins", "win-x64")
 Get-ChildItem "$TempDir\runtimes" -Directory | ForEach-Object {
@@ -44,8 +40,8 @@ if (Test-Path "$TempDir\resource\config") { Remove-Item -Recurse -Force "$TempDi
 if (Test-Path "$TempDir\resource\temp") { Remove-Item -Recurse -Force "$TempDir\resource\temp" }
 if (Test-Path "$TempDir\resource\backup") { Remove-Item -Recurse -Force "$TempDir\resource\backup" }
 
-# Package (compress contents of temp base directly)
-Compress-Archive -Path "$TempBase\*" -DestinationPath $ZipFile -Force
+# Package (compress temp dir contents directly, no wrapper folder)
+Compress-Archive -Path "$TempDir\*" -DestinationPath $ZipFile -Force
 
 # Cleanup
 Remove-Item -Recurse -Force "$Root\_temp_zip"
