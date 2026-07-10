@@ -15,3 +15,7 @@
 
 # Obsidian 配置
 docs/.obsidian/
+
+# 打包产物
+/AATL-*.zip
+/_temp_zip/

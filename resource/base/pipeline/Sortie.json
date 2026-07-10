@@ -1696,7 +1696,17 @@
         ]
       }
     },
-    "action": "Click",
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          788,
+          465,
+          1,
+          1
+        ]
+      }
+    },
     "next": [
       "S_LogPreDamage1"
     ],
