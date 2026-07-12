@@ -38,12 +38,12 @@ sealed class Program
             return;
         }
 
-        // AATL: 启动时自动根据配置生成流水线坐标
+        // MATR: 启动时自动根据配置生成流水线坐标
         try
         {
             var projectDir = AppDomain.CurrentDomain.BaseDirectory;
             var pythonExe = Path.Combine(projectDir, "venv", "Scripts", "python.exe");
-            var scriptPath = Path.Combine(projectDir, "aatl", "pipeline_gen.py");
+            var scriptPath = Path.Combine(projectDir, "matr", "pipeline_gen.py");
             if (File.Exists(pythonExe) && File.Exists(scriptPath))
             {
                 Process.Start(pythonExe, scriptPath)?.WaitForExit(5000);

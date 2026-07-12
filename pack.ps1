@@ -4,8 +4,8 @@ param(
 
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $TempBase = "$Root\_temp_zip"
-$TempDir = "$TempBase\AATL"
-$ZipFile = "$Root\AATL-$Version.zip"
+$TempDir = "$TempBase\MATR"
+$ZipFile = "$Root\MATR-$Version.zip"
 
 # Clean old temp dir and zip
 if (Test-Path $TempBase) { Remove-Item -Recurse -Force $TempBase }
@@ -15,10 +15,10 @@ if (Test-Path $ZipFile) { Remove-Item -Force $ZipFile }
 New-Item -ItemType Directory -Force -Path $TempDir | Out-Null
 
 # Copy files
-Copy-Item "$Root\AATL.exe" $TempDir
-Copy-Item "$Root\AATL.dll" $TempDir
-Copy-Item "$Root\AATL.deps.json" $TempDir
-Copy-Item "$Root\AATL.runtimeconfig.json" $TempDir
+Copy-Item "$Root\MATR.exe" $TempDir
+Copy-Item "$Root\MATR.dll" $TempDir
+Copy-Item "$Root\MATR.deps.json" $TempDir
+Copy-Item "$Root\MATR.runtimeconfig.json" $TempDir
 Copy-Item "$Root\libloader.dll" $TempDir
 Copy-Item "$Root\README.md" $TempDir
 Copy-Item "$Root\LICENSE" $TempDir

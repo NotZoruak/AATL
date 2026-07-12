@@ -2,137 +2,103 @@
 
 <div align="center">
 
-<img alt="LOGO" src="./resource/logo/AATL.png" width="256" />
+<img alt="LOGO" src="./resource/logo/MATR.png" width="256" />
 
-# AATL — 刀剑乱舞自动化助手
+# MATR — 刀剑乱舞自动化助手
 
 <br>
-<div>
-    <img alt="C#" src="https://img.shields.io/badge/C%23-14-%23239120?logo=csharp">
-    <img alt=".NET" src="https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet">
-    <img alt="platform" src="https://img.shields.io/badge/platform-Windows-blueviolet">
-    <img alt="license" src="https://img.shields.io/github/license/NotZoruak/AATL">
-</div>
-<div>
-    <img alt="stars" src="https://img.shields.io/github/stars/NotZoruak/AATL?style=social">
-    <img alt="downloads" src="https://img.shields.io/github/downloads/NotZoruak/AATL/total?style=social">
-</div>
+<p align="center">
+    <img src="https://img.shields.io/badge/Platform-Windows-0078D7?style=flat-square&logo=Windows" alt="Platform" />
+    <img src="https://img.shields.io/badge/Language-C%23%20%2F%20Pipeline-%23239120?style=flat-square&logo=csharp" alt="Language" />
+    <img alt="license" src="https://img.shields.io/github/license/NotZoruak/MATR?style=flat-square">
+    <br>
+    <a href="https://github.com/MaaXYZ/MaaFramework" target="_blank"><img alt="MaaFramework" src="https://raw.githubusercontent.com/MaaXYZ/MaaFramework/refs/heads/main/docs/static/maafw.svg"></a>
+    <br/>
+    <img alt="stars" src="https://img.shields.io/github/stars/NotZoruak/MATR?style=flat-square&logo=github&color=darkgreen">
+    <img alt="downloads" src="https://img.shields.io/github/downloads/NotZoruak/MATR/total?style=flat-square&logo=github&color=darkgreen">
+</p>
 <br>
 
 <!-- markdownlint-restore -->
 
 刀剑乱舞 PC 端自动化工具，通过 ADB 连接模拟器运行《刀剑乱舞》，由 MaaFramework 强力驱动！推荐使用 MuMu 模拟器 12，分辨率 1280×720。其他支持 ADB 的模拟器及分辨率亦可运行。
 
+> 本项目由 **AATL** 更名而来，旧仓库地址将自动重定向至本仓库。
+
 </div>
 
-## 安装步骤
+> [!Tip]
+>
+> 本项目还处于早期开发阶段，欢迎提交 PR 和 Issue。
+>
+> 遇到问题请先查阅下方常见问题，或前往 [Issues 页面](https://github.com/NotZoruak/MATR/issues) 搜索已有解答。
 
-### 1. 下载方式
+## ⚠️ 免责声明与风险提示
 
-前往 [Releases](https://github.com/NotZoruak/AATL/releases) 页面，在最新版本下方点击「Assets」展开文件列表，下载命名为 `AATL-vx.x.x.zip` 的文件。
+> [!Note]
+>
+> 本项目基于 [MaaFramework](https://github.com/MaaXYZ/MaaFramework)（LGPL v3）构建，采用 [GNU General Public License v3.0](LICENSE) 协议，**永久免费且开源**。
+> - 本项目为非计算机专业人员心血来潮之作，大量依赖 vibe coding 完成，仅供学习交流使用。
+>
+> 本软件为第三方工具，通过识别游戏画面模拟常规交互动作，简化《刀剑乱舞-ONLINE-》的重复性操作。本项目遵循相关法律法规，不会破坏游戏平衡或提供不公平优势，也绝不会修改任何游戏文件或数据。
+>
+> 因使用本软件而产生的任何问题，均与本项目及开发者无关。
+> - 请勿在任何平台的《刀剑乱舞-ONLINE-》官方账号下提及 MATR。
 
-- **公测版**：功能经过验证，稳定性较高，推荐大多数用户使用
-- **内测版**：包含最新功能，但可能存在更多 bug，适合尝鲜用户
+> [!Caution]
+>
+> 根据游族网络《刀剑乱舞-ONLINE-》用户许可协议，严禁使用任何形式的妨碍游戏公平性辅助工具或程序（外挂）。官方已多次对违规账号采取封禁措施，包括但不限于封号警告、永久封禁等处罚。
+>
+> **您应充分了解并自愿承担使用本工具可能带来的所有风险，包括账号封禁、数据丢失等。**
 
-注意：Release 基于 x86_64 架构，Windows 系统。对于 Arm 架构（如苹果 M 系列芯片，树莓派等）、RISCV 架构和 Mac 系统、Linux 系统暂不支持。
+## 快速开始
 
-### 2. 安装系统依赖
+### 1. 下载
 
-右键 `DependencySetup_依赖库安装_win.bat` → **以管理员身份运行**。
+前往 [Releases](https://github.com/NotZoruak/MATR/releases) 页面，在最新版本下方点击「Assets」展开文件列表，下载命名为 `MATR-vx.x.x.zip` 的文件，解压到空目录。
 
-此脚本会自动安装：
-- Microsoft Visual C++ Redistributable
-- .NET Desktop Runtime 10.0
+> 注意：Release 基于 x86_64 架构，Windows 系统。Arm 架构（如苹果 M 系列芯片、树莓派等）、Mac 系统、Linux 系统暂不支持。
 
-如果已安装过这两个组件，可跳过此步。
+### 2. 启动
 
-### 3. 启动模拟器（以MuMu为例）
+双击 `matr.exe` 即可运行。首次启动耗时可能较长，请耐心等待。
 
-启动 MuMu 模拟器 12，进入《刀剑乱舞》主界面（本丸画面）。
+> 启动时若弹出 ".NET Desktop Runtime 10.0" 或 "VCRUNTIME140.dll" 等系统错误提示，说明缺少运行依赖。回到 Releases 页面下载 `DependencySetup_win.bat`，右键 → **以管理员身份运行**，安装完成后重新启动 MATR。
 
-如需自动启动模拟器，在「设置」→「启动设置」中配置：
-- **模拟器路径**：填入 MuMu 模拟器的 exe 路径（如 `D:\Apps\MuMu\MuMuPlayer\nx_main\MuMuNxMain.exe`）
-- **附加命令**：选择对应的虚拟机实例（如 `-v 0`、`-v 1` 等，0 为第一个）
-- **启动后操作**：选择「启动游戏」
+## 功能介绍
 
-配置后，AATL 启动时会自动拉起模拟器并连接 ADB。
+**远征** — 自动检测空闲部队并派往指定地图，到期后收取奖励，循环执行。
 
+**合战场** — 通用出阵自动化，无限循环。支持自选时代、地域、部队和阵形，可选换队长、补充刀装、王点前撤退、道中撤退、重伤修刀/停止、同步远征。
 
-## 使用方法
+**地下城** — 大阪地下城活动自动化，可选目标层数、换队长、补充刀装、每轮回本丸（配合远征）、动画跳过。
 
-1. 启动程序后，点击左侧导航栏「主页」
-2. 在连接目标下拉框中选中 MuMu 设备
-3. 在任务列表中勾选想执行的任务，长按拖动可调整执行顺序
-4. 在右侧设置面板中配置对应选项
-5. 点击「开始任务」即可自动运行
+**江户城** — 江户城活动自动化，最短路径优先进入王点，可选换队长和自动补充门票。
 
-## 任务说明
+**陆联** — 联队战活动自动化，支持部队交替、换队长、自动购买通行令牌。
 
-**远征** — 自动管理部队远征：检测空闲队伍并派往指定地图，到期后收取奖励，循环执行。请确保编队符合远征要求。
+**刷花** — 部队一单骑出阵 1-1 自动循环，快速提升刀剑男士疲劳度。
 
-**江户城** — 自动攻略江户城活动，行军路线固定为最短路径，优先进入王点。可选换队长（请为且仅为需控花的刀剑男士装备马）和补充门票（检测到通行令牌耗尽时自动补充三枚）。
+**刀解** — 勾选刀种后自动筛选并解体，自动收取邮箱。
 
-**刷花** — 仅支持部队一单骑出阵 1-1，自动循环进入合战场刷花。请提前解散部队一，并为且仅为需要刷花的刀剑男士装备马匹和刀装。
+**习合** — 自动刀剑习合，支持搓糖（乱舞 7 级跳过）和刀种筛选。
 
-**合战场** — 通用合战场出阵自动化，无限循环。支持自选时代、地域、部队和阵形，可选换队长、补充刀装、王点前撤退、八图道中撤退、重伤修刀/停止、同步远征。
+**回到本丸** — 从任意界面自动返回本丸，适用于任务卡住时的救援恢复。
 
-**回到本丸** — 从任意界面返回本丸，适用于任务卡住时的救援恢复。无自定义选项，勾选即运行。
+---
 
-**地下城** — 自动攻略大阪地下城活动。可选常驻层数、选择部队、选择阵形、换队长、补充刀装、每轮回本丸（配合同步远征）、动画跳过。
+**限锻计算** — 输入锻刀公式、现有资源及道具，计算达到目标积分所需剩余资源，支持 OCR 一键识别。
 
-**刀解** — 自动刀解 + 收邮箱循环，在任务设置中勾选要解体的刀种即可自动筛选并一键解体。
-
-**习合** — 自动刀剑习合：支持自动搓糖、刀种筛选与习合循环。
+**数据查找表** — 极化刀剑男士升级经验表、各地图远征收益对比。
 
 > 更多功能开发中，敬请期待。
-
-## 小工具说明
-
-**限锻计算** — 限锻资源计算工具，支持手动输入或一键 OCR 识别当前资源。输入锻刀公式、现有积分和资源道具，自动计算达到 5000 积分所需剩余资源。
-
-**数据查找表** — 游戏数据速查工具，内含经验表（极化刀剑男士升级数据）和远征收益表（各地图资源效率对比）。
-
-## 常见问题
-
-### Q1: AATL 占用存储空间太大怎么办？
-
-AATL 运行期间会产生 debug 日志文件（位于 `debug/` 目录），长时间使用后可能累计数 GB。解决方法：
-
-1. **手动清理**：删除 `debug/` 目录下的 `maafw.bak.*.log` 备份日志文件，保留最新的 `maafw.log` 即可
-2. **使用内置清理**：在 AATL 菜单栏点击「设置」→「关于我们」→「清理缓存」，程序会自动清理过期日志
-3. **自动清理**：AATL 每次启动时会自动删除超过 3 天的旧备份日志，无需手动干预
-
-### Q2: 更新检测提示「处理 GitHub 响应失败：状态码 401 Unauthorized / 403 Forbidden / 429 Too Many Requests」怎么办？
-
-这是 GitHub API 未认证限速导致的，同一公网 IP 短时间内的匿名请求超过限制后会被暂时拒绝。解决方法：
-
-1. **暂时忽略**：该错误仅影响自动更新检测，不影响任务正常运行，可直接关闭提示继续使用
-2. **手动下载更新**：前往 [Releases](https://github.com/NotZoruak/AATL/releases) 页面手动下载最新版本，解压覆盖即可
-3. **切换网络环境**：如果与其他用户共享同一公网 IP（如校园网、公司网络），GitHub 限速更容易触发，可尝试使用移动热点等独立网络
-
-> 注意：推荐大多数用户选择公测版。在「设置」→「软件更新设置」→「资源更新渠道」中可选择「公测版」或「内测版」。内测版包含最新功能但可能存在更多 bug，适合尝鲜用户。
-
-### Q3: 更新检测提示「检查资源最新版时发生错误：原因=无法连接到远程服务器」怎么办？
-
-这是网络连接问题，通常由以下原因导致：
-
-1. **无网络连接**：检查设备是否正常联网，可尝试打开 [GitHub](https://github.com) 验证
-2. **DNS 污染**：部分网络环境可能无法正确解析 GitHub 域名，可尝试切换 DNS 服务器（如 114.114.114.114）或使用 VPN
-3. **运营商屏蔽**：少数地区的网络运营商可能限制了对 GitHub 的访问，需使用代理或 VPN 解决
-4. **手动下载**：如网络环境持续受限，可前往 [Releases](https://github.com/NotZoruak/AATL/releases) 页面手动下载，不需要使用 VPN 完成更新
-
-### Q4: 自动更新下载到一半失败了怎么办？
-
-1. **重试**：自动更新支持断点续传，下次启动或手动点击「检查更新」时会重新尝试
-2. **手动下载**：前往 [Releases](https://github.com/NotZoruak/AATL/releases) 页面下载最新版本 ZIP 文件，解压后覆盖原程序目录即可
-3. **哈希校验失败**：如果提示「哈希校验失败」，说明下载的文件不完整或被损坏，请重新下载
 
 ## 反馈与建议
 
 遇到 bug 或有功能建议？欢迎通过以下方式反馈：
 
-- **GitHub Issues**：前往 [Issues 页面](https://github.com/NotZoruak/AATL/issues) 提交，请尽量包含以下信息方便快速定位
-- **邮箱**：如果没有 GitHub 账号，可直接发送至 `pei462243028140@163.com`
+- **GitHub Issues**：前往 [Issues 页面](https://github.com/NotZoruak/MATR/issues) 提交，请尽量包含以下信息方便快速定位
+- QQ频道：pd68335487
 
 提交反馈时请尽量包含以下信息：
 
@@ -144,16 +110,17 @@ AATL 运行期间会产生 debug 日志文件（位于 `debug/` 目录），长�
 ## 目录结构
 
 ```
-AATL/
-├── AATL.exe                              ← 桌面启动入口
-├── AATL.dll                              ← 桌面主程序集
-├── AATL.deps.json                        ← .NET 依赖清单
-├── AATL.runtimeconfig.json               ← 运行时配置
+MATR/
+├── matr.exe                              ← 桌面启动入口
+├── matr.dll                              ← 桌面主程序集
+├── matr.deps.json                        ← .NET 依赖清单
+├── matr.runtimeconfig.json               ← 运行时配置
 ├── libloader.dll                         ← nbeauty 启动钩子
 ├── appsettings.json                      ← 应用配置
-├── DependencySetup_依赖库安装_win.bat      ← 安装系统运行时依赖
+├── DependencySetup_win.bat               ← 系统运行时依赖安装脚本（单独下载）
 ├── resource/
 │   ├── interface.json                    ← 任务与选项配置
+│   ├── mfa_layout.json                   ← 界面布局配置
 │   ├── base/
 │   │   ├── pipeline/                     ← 自动化任务流水线（JSON）
 │   │   │   ├── Sortie.json               ← 合战场
@@ -174,11 +141,24 @@ AATL/
 │   └── plugins/                          ← 插件
 └── LICENSE
 ```
-## ⚠️ 声明
 
-- 本项目基于 [MaaFramework](https://github.com/MaaXYZ/MaaFramework)（LGPL v3）构建，采用 [GNU General Public License v3.0](LICENSE) 协议，**永久免费且开源**。
-- 本项目为非计算机专业人员心血来潮之作，大量依赖 vibe coding 完成，仅供学习交流使用。若您遇到商家使用本软件进行代练并收费，可能是设备与时间等费用，产生的问题及后果与本软件无关。
-- 使用本脚本可能违反游戏条款，一切后果（包括账号封禁、数据丢失等）由使用者自行承担。
-- 请勿跳脸官方和手搓玩家，尊重他人劳动成果，低调使用。
+## 致谢
 
-最后，如果你觉得该软件对你有帮助，请点个Star吧。
+### 开源项目
+
+- [MaaFramework](https://github.com/MaaXYZ/MaaFramework) — 基于图像识别的自动化黑盒测试框架
+- [MFAAvalonia](https://github.com/SweetSmellFox/MFAAvalonia) — 基于 Avalonia UI 的 MaaFramework 通用 GUI 解决方案
+- [MaaAssistantArknights](https://github.com/MaaAssistantArknights/MaaAssistantArknights) — 《明日方舟》小助手，全日常一键长草
+- [MFAToolsPlus](https://github.com/SweetSmellFox/MFAToolsPlus) — MaaFramework 新一代开发辅助工具箱
+- [MaaLogAnalyzer](https://github.com/MaaXYZ/MaaLogAnalyzer) — 可视化日志分析工具，告别手翻百万行日志
+
+## Star History
+
+如果觉得软件对你有帮助，帮忙点个 Star 吧！（网页最上方右上角的小星星），这就是对我们最大的支持了！
+<a href="https://www.star-history.com/?repos=NotZoruak%2FMATR&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=NotZoruak/MATR&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=NotZoruak/MATR&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=NotZoruak/MATR&type=date&legend=top-left" />
+ </picture>
+</a>

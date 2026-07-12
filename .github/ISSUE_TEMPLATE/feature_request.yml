@@ -7,7 +7,7 @@ body:
       value: |
         ## 提交前请确认
 
-        - 已查阅 [README](https://github.com/NotZoruak/AATL/blob/main/README.md) 确认该功能尚未存在
+        - 已查阅 [README](https://github.com/NotZoruak/MATR/blob/main/README.md) 确认该功能尚未存在
         - 已搜索已有 Issue，确认无重复建议
 
   - type: textarea
@@ -21,7 +21,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: AATL 版本
+      label: MATR 版本
       placeholder: 如 v0.5.3
     validations:
       required: false

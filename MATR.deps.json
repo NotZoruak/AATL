@@ -1,11 +1,6 @@
 {
   "compilationOptions": {},
   "libraries": {
-    "AATL/1.0.0": {
-      "serviceable": false,
-      "sha512": "",
-      "type": "project"
-    },
     "Avalonia.Angle.Windows.Natives/2.1.25547.20250602": {
       "hashPath": "avalonia.angle.windows.natives.2.1.25547.20250602.nupkg.sha512",
       "path": "avalonia.angle.windows.natives/2.1.25547.20250602",
@@ -267,6 +262,11 @@
       "serviceable": true,
       "sha512": "sha512-BsAG42ucBUJqUi0Sw6ysj63awLggjjPkhaFgEnRYSC1LolYbZEVM8bfHSL/glU7bmicF7qCeRCrsBRKHNs7GdQ==",
       "type": "package"
+    },
+    "MATR/1.0.0": {
+      "serviceable": false,
+      "sha512": "",
+      "type": "project"
     },
     "MFAAvalonia.Core.Reference/2.12.0.0": {
       "serviceable": false,
@@ -685,16 +685,6 @@
   "targets": {
     ".NETCoreApp,Version=v10.0": {},
     ".NETCoreApp,Version=v10.0/win-x64": {
-      "AATL/1.0.0": {
-        "dependencies": {
-          "Avalonia.Desktop": "11.3.12",
-          "MFAAvalonia.Core": "1.1.0",
-          "MFAAvalonia.Core.Reference": "2.12.0.0"
-        },
-        "runtime": {
-          "AATL.dll": {}
-        }
-      },
       "Avalonia.Angle.Windows.Natives/2.1.25547.20250602": {
         "native": {
           "runtimes/win-x64/native/av_libglesv2.dll": {
@@ -1178,6 +1168,16 @@
             "assemblyVersion": "11.3.12.1",
             "fileVersion": "11.3.12.1"
           }
+        }
+      },
+      "MATR/1.0.0": {
+        "dependencies": {
+          "Avalonia.Desktop": "11.3.12",
+          "MFAAvalonia.Core": "1.1.0",
+          "MFAAvalonia.Core.Reference": "2.12.0.0"
+        },
+        "runtime": {
+          "MATR.dll": {}
         }
       },
       "MFAAvalonia.Core.Reference/2.12.0.0": {

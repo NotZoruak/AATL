@@ -1,9 +1,9 @@
 {
-  "name": "AATL",
+  "name": "MATR",
   "version": "0.6.1-alpha",
-  "icon": "resource/logo/AATL.ico",
-  "custom_title": "AATL - 刀剑乱舞自动化助手",
-  "Github": "https://github.com/NotZoruak/AATL",
+  "icon": "resource/logo/MATR.ico",
+  "custom_title": "MATR - Maa Assistant TokenRanbu",
+  "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
       "name": "mumu",
@@ -4514,5 +4514,5 @@
       "default_case": []
     }
   },
-  "github": "https://github.com/NotZoruak/AATL"
+  "github": "https://github.com/NotZoruak/MATR"
 }

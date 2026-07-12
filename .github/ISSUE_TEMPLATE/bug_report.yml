@@ -7,7 +7,7 @@ body:
       value: |
         ## 提交前请确认
 
-        - 已查阅 [README 常见问题](https://github.com/NotZoruak/AATL/blob/main/README.md#常见问题)
+        - 已查阅 [README 常见问题](https://github.com/NotZoruak/MATR/blob/main/README.md#常见问题)
         - 已更新到最新版本并确认问题仍存在
         - 已搜索已有 Issue，确认无重复
 
@@ -45,7 +45,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: AATL 版本
+      label: MATR 版本
       description: 请提供准确的版本号
       placeholder: 如 v0.5.3
     validations:
@@ -84,6 +84,6 @@ body:
 
         - 完整的 `debug/maafw.log` 日志
         - 问题描述（预期 vs 实际）
-        - AATL 版本号
+        - MATR 版本号
         - 模拟器及分辨率
         - 截图（如有）
