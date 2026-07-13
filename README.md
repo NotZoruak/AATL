@@ -116,7 +116,6 @@ MATR/
 ├── matr.runtimeconfig.json               ← 运行时配置
 ├── libloader.dll                         ← nbeauty 启动钩子
 ├── appsettings.json                      ← 应用配置
-├── DependencySetup_win.bat               ← 系统运行时依赖安装脚本（单独下载）
 ├── resource/
 │   ├── interface.json                    ← 任务与选项配置
 │   ├── mfa_layout.json                   ← 界面布局配置
