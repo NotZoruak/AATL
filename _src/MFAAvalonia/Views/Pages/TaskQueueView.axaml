@@ -991,11 +991,11 @@
                                      CellSpacing="10">
             <dashboard:DashboardCard x:Name="SettingCard"
                                      CardId="settings"
-                                     GridColumn="4"
+                                     GridColumn="3"
                                      GridRow="0"
-                                     GridColumnSpan="4"
+                                     GridColumnSpan="5"
                                      GridRowSpan="5"
-                                     ExpandedColumnSpan="4"
+                                     ExpandedColumnSpan="5"
                                      ExpandedRowSpan="5">
                 <dashboard:DashboardCard.TitleContent>
                     <TextBlock FontSize="11"
@@ -1047,9 +1047,9 @@
                                      CardId="task_list"
                                      GridColumn="0"
                                      GridRow="0"
-                                     GridColumnSpan="4"
+                                     GridColumnSpan="3"
                                      GridRowSpan="8"
-                                     ExpandedColumnSpan="4"
+                                     ExpandedColumnSpan="3"
                                      ExpandedRowSpan="8">
                 <dashboard:DashboardCard.TitleContent>
                     <TextBlock FontSize="11"
@@ -1068,25 +1068,14 @@
                                 Spacing="8">
                         <Button Classes="BasicTight TaskQueueBasicTight"
                                 ClipToBounds="False"
-                                Command="{Binding SelectAllCommand}"
+                                Command="{Binding ToggleSelectAllCommand}"
                                 Height="16"
                                 IsEnabled="{Binding CurrentInstanceIdle, Source={x:Static helper:Instances.RootViewModel}}"
                                 Margin="7,0,0,0"
                                 Padding="0"
-                                ToolTip.Tip="{markup:I18n {x:Static helper:LangKeys.SelectAll}}"
+                                ToolTip.Tip="全选 / 取消全选"
                                 Width="16">
                             <avalonia1:FluentIcon Icon="SelectAllOn" IconSize="Size16" IconVariant="Regular" />
-                        </Button>
-                        <Button Classes="BasicTight TaskQueueBasicTight"
-                                ClipToBounds="False"
-                                Command="{Binding SelectNoneCommand}"
-                                Height="16"
-                                IsEnabled="{Binding CurrentInstanceIdle, Source={x:Static helper:Instances.RootViewModel}}"
-                                Margin="7,0,0,0"
-                                Padding="0"
-                                ToolTip.Tip="{markup:I18n {x:Static helper:LangKeys.DeselectAll}}"
-                                Width="16">
-                            <avalonia1:FluentIcon Icon="SelectAllOff" IconSize="Size16" IconVariant="Regular" />
                         </Button>
                         <Button Classes="BasicTight TaskQueueBasicTight"
                                 ClipToBounds="False"
@@ -1256,11 +1245,11 @@
 
             <dashboard:DashboardCard x:Name="IntroductionCard"
                                      CardId="task_desc"
-                                     GridColumn="4"
+                                     GridColumn="3"
                                      GridRow="5"
-                                     GridColumnSpan="4"
+                                     GridColumnSpan="5"
                                      GridRowSpan="3"
-                                     ExpandedColumnSpan="4"
+                                     ExpandedColumnSpan="5"
                                      ExpandedRowSpan="3">
                 <dashboard:DashboardCard.TitleContent>
                     <TextBlock FontSize="11"

@@ -4,21 +4,21 @@
   "spacing": 10.0,
   "settings": {
     "row": 0,
-    "col": 4,
+    "col": 3,
     "row_span": 5,
-    "col_span": 4
+    "col_span": 5
   },
   "task_list": {
     "row": 0,
     "col": 0,
     "row_span": 8,
-    "col_span": 4
+    "col_span": 3
   },
   "task_desc": {
     "row": 5,
-    "col": 4,
+    "col": 3,
     "row_span": 3,
-    "col_span": 4
+    "col_span": 5
   },
   "live_view": {
     "row": 0,

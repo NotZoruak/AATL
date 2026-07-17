@@ -2,7 +2,7 @@
   "name": "MATR",
   "version": "0.6.1-alpha",
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR - Maa Assistant TokenRanbu",
+  "custom_title": "MATR v0.6.1-alpha | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -142,7 +142,7 @@
     },
     {
       "name": "gui设计测试",
-      "entry": "Mix",
+      "entry": "GuiTest",
       "default_check": false,
       "repeatable": false,
       "repeat_count": 0,

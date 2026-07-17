@@ -1,4 +1,8 @@
 {
+    "GuiTest": {
+        "action": "DoNothing",
+        "next": []
+    },
     "Mix": {
         "next": [
             "M_DetectWhereAmI"

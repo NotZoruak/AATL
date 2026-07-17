@@ -574,23 +574,25 @@ public partial class TaskQueueViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private void SelectAll()
+    private void ToggleSelectAll()
     {
-        using var _ = BeginUiLogScope("SelectAllTasks");
-        foreach (var task in TaskItemViewModels)
-            task.IsChecked = true;
-        LoggerHelper.UserAction("全选任务", $"taskCount={TaskItemViewModels.Count}",
-            operation: "SelectAllTasks", instanceId: Processor.InstanceId, instanceName: InstanceName);
-    }
-
-    [RelayCommand]
-    private void SelectNone()
-    {
-        using var _ = BeginUiLogScope("SelectNoneTasks");
-        foreach (var task in TaskItemViewModels)
-            task.IsChecked = false;
-        LoggerHelper.UserAction("取消全选任务", $"taskCount={TaskItemViewModels.Count}",
-            operation: "SelectNoneTasks", instanceId: Processor.InstanceId, instanceName: InstanceName);
+        var allChecked = TaskItemViewModels.All(t => t.IsChecked == true);
+        if (allChecked)
+        {
+            using var _ = BeginUiLogScope("SelectNoneTasks");
+            foreach (var task in TaskItemViewModels)
+                task.IsChecked = false;
+            LoggerHelper.UserAction("取消全选任务", $"taskCount={TaskItemViewModels.Count}",
+                operation: "SelectNoneTasks", instanceId: Processor.InstanceId, instanceName: InstanceName);
+        }
+        else
+        {
+            using var _ = BeginUiLogScope("SelectAllTasks");
+            foreach (var task in TaskItemViewModels)
+                task.IsChecked = true;
+            LoggerHelper.UserAction("全选任务", $"taskCount={TaskItemViewModels.Count}",
+                operation: "SelectAllTasks", instanceId: Processor.InstanceId, instanceName: InstanceName);
+        }
     }
 
     [RelayCommand]
