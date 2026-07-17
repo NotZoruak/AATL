@@ -210,7 +210,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         }
         else if (interfaceOption.IsCheckbox)
         {
-            // checkbox 类型：多选 ToggleButton 列表（任务 8）
+            // checkbox 类型：CheckBox 列表（方框+文字形式）
             control = CreateCheckboxControl(option, interfaceOption, source);
         }
         else if ((interfaceOption.IsSwitch && interfaceOption.Cases.ShouldSwitchButton(out var yes, out var no)) ||
@@ -243,7 +243,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
     }
 
     /// <summary>
-    /// 创建 checkbox 类型的多选 ToggleButton 控件（任务 8）
+    /// 创建 checkbox 类型的 CheckBox 控件
     /// </summary>
     private Control CreateCheckboxControl(MaaInterface.MaaInterfaceSelectOption option, MaaInterface.MaaInterfaceOption interfaceOption, DragItemViewModel source)
     {
@@ -253,17 +253,17 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         option.SelectedCases ??= new List<string>(interfaceOption.DefaultCases ?? new List<string>());
 
         // Sub-options container（必须在 isSingleCase 块之前声明，
-        // 因为单 case 的 ToggleButton 事件处理会引用 UpdateSubOptions）
+        // 因为单 case 的 CheckBox 事件处理会引用 UpdateSubOptions）
         var subOptionsContainer = new StackPanel();
 
         var isSingleCase = interfaceOption.Cases?.Count == 1;
 
         StackPanel container;
-        UniformGrid wrapPanel;
+        Panel wrapPanel;
 
         if (isSingleCase)
         {
-            // 单个勾选框：【文字】内嵌形式
+            // 单个勾选框：CheckBox + 文字在右侧
             container = new StackPanel { Margin = new Thickness(10, 6, 10, 6), Spacing = 4 };
 
             var caseOption = interfaceOption.Cases![0];
@@ -271,49 +271,21 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
             var caseName = caseOption.Name ?? string.Empty;
             var isChecked = option.SelectedCases.Contains(caseName);
 
-            var toggleBtn = new ToggleButton
+            // 单个勾选框：CheckBox + 文字在右侧
+            var checkBox = new CheckBox
             {
                 IsChecked = isChecked,
-                Margin = new Thickness(0, 0, 6, 0),
-                Padding = new Thickness(10, 4, 10, 4),
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Left,
-                HorizontalContentAlignment = HorizontalAlignment.Center,
             };
+            checkBox.Bind(CheckBox.ContentProperty, new ResourceBindingWithFallback(interfaceOption.DisplayName, interfaceOption.Name));
 
-            var btnContent = new StackPanel
-            {
-                Orientation = Orientation.Horizontal,
-                Spacing = 4,
-                VerticalAlignment = VerticalAlignment.Center
-            };
-
-            var iconDisplay = new DisplayIcon
-            {
-                IconSize = 16,
-                Margin = new Thickness(0, 0, 4, 0),
-                VerticalAlignment = VerticalAlignment.Center
-            };
-            iconDisplay.Bind(DisplayIcon.IconSourceProperty, new Binding(nameof(MaaInterface.MaaInterfaceOptionCase.ResolvedIcon)) { Source = caseOption });
-            iconDisplay.Bind(Visual.IsVisibleProperty, new Binding(nameof(MaaInterface.MaaInterfaceOptionCase.HasIcon)) { Source = caseOption });
-
-            // 将 option 名称文字内嵌到按钮中
-            var optionText = new TextBlock
-            {
-                VerticalAlignment = VerticalAlignment.Center,
-            };
-            optionText.Bind(TextBlock.TextProperty, new ResourceBindingWithFallback(interfaceOption.DisplayName, interfaceOption.Name));
-
-            btnContent.Children.Add(iconDisplay);
-            btnContent.Children.Add(optionText);
-            toggleBtn.Content = btnContent;
-
-            BindIdleEnabled(toggleBtn);
+            BindIdleEnabled(checkBox);
 
             var capturedCaseName = caseName;
-            toggleBtn.IsCheckedChanged += (_, _) =>
+            checkBox.IsCheckedChanged += (_, _) =>
             {
-                if (toggleBtn.IsChecked == true)
+                if (checkBox.IsChecked == true)
                 {
                     if (!option.SelectedCases.Contains(capturedCaseName))
                         option.SelectedCases.Add(capturedCaseName);
@@ -326,7 +298,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
                 saveConfigurationAction();
             };
 
-            container.Children.Add(toggleBtn);
+            container.Children.Add(checkBox);
 
             // TooltipBlock for option-level description
             if (!string.IsNullOrWhiteSpace(GetTooltipText(interfaceOption.Description, interfaceOption.Document)))
@@ -341,18 +313,18 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         }
         else
         {
-            // 多个勾选框：保持原有布局
+            // 多个勾选框：WrapPanel 自适应换行
             container = new StackPanel { Margin = new Thickness(10, 10, 10, 6), Spacing = 4 };
 
             var header = CreateOptionHeader(interfaceOption);
             header.Margin = new Thickness(0);
             container.Children.Add(header);
 
-            wrapPanel = new UniformGrid
+            wrapPanel = new WrapPanel
             {
-                Columns = 2,
+                Orientation = Orientation.Horizontal,
                 Margin = new Thickness(0, 2, 0, 2),
-                HorizontalAlignment = HorizontalAlignment.Left
+                HorizontalAlignment = HorizontalAlignment.Stretch
             };
         }
 
@@ -391,54 +363,20 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
                 var caseName = caseOption.Name ?? string.Empty;
                 var isChecked = option.SelectedCases.Contains(caseName);
 
-                var toggleBtn = new ToggleButton
+                var checkBox = new CheckBox
                 {
                     IsChecked = isChecked,
-                    Margin = new Thickness(2,2,6,6),
-                    Padding = new Thickness(6, 4, 6, 4),
-                    HorizontalAlignment = HorizontalAlignment.Stretch,
-                    HorizontalContentAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(2, 4, 6, 4),
+                    VerticalAlignment = VerticalAlignment.Center,
                 };
+                checkBox.Bind(CheckBox.ContentProperty, new ResourceBindingWithFallback(caseOption.DisplayName, caseOption.Name));
 
-                // 按钮内容：图标 + 滚动文字（用 Grid 让 MarqueeTextBlock 自适应剩余宽度）
-                var btnContent = new Grid
-                {
-                    ColumnDefinitions =
-                    {
-                        new ColumnDefinition { Width = GridLength.Auto },
-                        new ColumnDefinition { Width = GridLength.Star },
-                        new ColumnDefinition { Width = GridLength.Auto },
-                    }
-                };
-
-                var iconDisplay = new DisplayIcon
-                {
-                    IconSize = 16,
-                    Margin = new Thickness(0, 0, 4, 0),
-                    VerticalAlignment = VerticalAlignment.Center
-                };
-                iconDisplay.Bind(DisplayIcon.IconSourceProperty, new Binding(nameof(MaaInterface.MaaInterfaceOptionCase.ResolvedIcon)) { Source = caseOption });
-                iconDisplay.Bind(Visual.IsVisibleProperty, new Binding(nameof(MaaInterface.MaaInterfaceOptionCase.HasIcon)) { Source = caseOption });
-                Grid.SetColumn(iconDisplay, 0);
-
-                var marqueeText = new MarqueeTextBlock
-                {
-                    VerticalContentAlignment = VerticalAlignment.Center,
-                    HorizontalAlignment = HorizontalAlignment.Stretch,
-                };
-                marqueeText.Bind(MarqueeTextBlock.TextProperty, new ResourceBindingWithFallback(caseOption.DisplayName, caseOption.Name));
-                Grid.SetColumn(marqueeText, 1);
-
-                btnContent.Children.Add(iconDisplay);
-                btnContent.Children.Add(marqueeText);
-                toggleBtn.Content = btnContent;
-
-                BindIdleEnabled(toggleBtn);
+                BindIdleEnabled(checkBox);
 
                 var capturedCaseName = caseName;
-                toggleBtn.IsCheckedChanged += (_, _) =>
+                checkBox.IsCheckedChanged += (_, _) =>
                 {
-                    if (toggleBtn.IsChecked == true)
+                    if (checkBox.IsChecked == true)
                     {
                         if (!option.SelectedCases.Contains(capturedCaseName))
                             option.SelectedCases.Add(capturedCaseName);
@@ -451,23 +389,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
                     saveConfigurationAction();
                 };
 
-                // TooltipBlock 放在 ToggleButton 内部（btnContent 末尾），
-                // TooltipBlock 会自动检测父级 Button 并通过 PointerMoved 坐标追踪来显示 Flyout，
-                // 绕过 SukiUI 按钮模板 ContentPresenter 的 IsHitTestVisible="False" 限制。
-                if (caseOption.HasDescription)
-                {
-                    var tooltipBlock = new TooltipBlock
-                    {
-                        Margin = new Thickness(2, 0, 0, 0),
-                        VerticalAlignment = VerticalAlignment.Center
-                    };
-                    tooltipBlock.Bind(TooltipBlock.TooltipTextProperty,
-                        new Binding(nameof(MaaInterface.MaaInterfaceOptionCase.DisplayDescription)) { Source = caseOption });
-                    Grid.SetColumn(tooltipBlock, 2);
-                    btnContent.Children.Add(tooltipBlock);
-                }
-
-                wrapPanel.Children.Add(toggleBtn);
+                wrapPanel.Children.Add(checkBox);
             }
         }
 
@@ -481,19 +403,19 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
                 double maxWidth = 0;
                 foreach (var child in wrapPanel.Children)
                 {
-                    if (child is ToggleButton btn)
+                    if (child is CheckBox cb)
                     {
-                        btn.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-                        if (btn.DesiredSize.Width > maxWidth)
-                            maxWidth = btn.DesiredSize.Width;
+                        cb.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                        if (cb.DesiredSize.Width > maxWidth)
+                            maxWidth = cb.DesiredSize.Width;
                     }
                 }
                 if (maxWidth > 0)
                 {
                     foreach (var child in wrapPanel.Children)
                     {
-                        if (child is ToggleButton btn)
-                            btn.MinWidth = maxWidth;
+                        if (child is CheckBox cb)
+                            cb.MinWidth = maxWidth;
                     }
                 }
             }
