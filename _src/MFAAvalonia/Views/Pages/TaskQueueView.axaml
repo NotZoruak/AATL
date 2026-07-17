@@ -1044,7 +1044,7 @@
                                     x:Name="SubOptionPage"
                                     Orientation="Vertical">
                             <StackPanel Orientation="Horizontal"
-                                        Margin="0,0,0,8">
+                                        Margin="0,0,0,0">
                                 <Button Classes="BasicTight"
                                         Command="{Binding CloseSubPageCommand}"
                                         Padding="4,2">
@@ -1059,7 +1059,7 @@
                                     </StackPanel>
                                 </Button>
                             </StackPanel>
-                            <ContentControl Content="{Binding SubPageContent}" />
+                            <ContentControl Content="{Binding SubPageContent}" Margin="0,-6,0,0" />
                         </StackPanel>
                     </Grid>
                 </ScrollViewer>

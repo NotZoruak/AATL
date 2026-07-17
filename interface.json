@@ -78,11 +78,10 @@
         "LR_换队长",
         "LR_部队交替",
         "LR_选择部队",
-        "LR_换队配置",
         "LR_选择难度"
       ],
       "label": "陆联",
-      "description": "联队战（陆联）活动自动化出阵。\n\n- **换队长**：通过筛选装备马的刀剑来切换队长\n- **部队交替**：在行动选择界面自动切换部队，需同时填写下方队伍序列\n- **选择部队**：选择出阵部队（第1轮使用）\n- **队伍序列**：9位数字（每位1-5），表示第2-10轮分别使用哪个部队，例如121212121\n- **选择难度**：易/普/难/超难\n- **重复次数**：检测到通行令牌不足弹窗时会自动购买，一次购买三枚\n\n> ⚠️ **注意**：游戏本身会在通行令牌不足时自动使用道具"
+      "description": "联队战（陆联）活动自动化出阵。\n\n- **换队长**：通过筛选装备马的刀剑来切换队长\n- **部队交替**：在行动选择界面自动切换部队，勾选后点击齿轮设置队伍序列\n- **选择部队**：选择出阵部队（第1轮使用）\n- **选择难度**：易/普/难/超难\n- **重复次数**：检测到通行令牌不足弹窗时会自动购买，一次购买三枚\n\n> ⚠️ **注意**：游戏本身会在通行令牌不足时自动使用道具"
     },
     {
       "name": "刷花",
@@ -128,38 +127,10 @@
       "repeat_count": 0,
       "option": [
         "搓糖",
-        "不筛选",
-        "短",
-        "胁",
-        "打",
-        "太",
-        "大太",
-        "枪",
-        "薙"
+        "刀种筛选"
       ],
       "label": "习合",
-      "description": "自动习合（合成强化）操作。每轮仅处理前6把刀剑，搓糖模式下前6把均达乱舞7级时自动停止。推荐先刀解清理非搓糖刀种，再开启搓糖+不筛选以获得最佳体验。\n\n- **搓糖**：习合至乱舞等级7级后跳过该刀剑，不勾选则无乱舞等级限制。上锁刀剑不受此选项限制\n- **不筛选**：跳过刀种筛选，直接对全部可习合刀剑进行操作"
-    },
-    {
-      "name": "gui设计测试",
-      "entry": "GuiTest",
-      "default_check": false,
-      "repeatable": false,
-      "repeat_count": 0,
-      "option": [
-        "测试下拉",
-        "搓糖",
-        "不筛选",
-        "短",
-        "胁",
-        "打",
-        "太",
-        "大太",
-        "枪",
-        "薙"
-      ],
-      "label": "gui设计测试",
-      "description": "GUI 设计测试任务——用于验证复选框等控件的渲染效果"
+      "description": "自动习合（合成强化）操作。每轮仅处理前6把刀剑，搓糖开启后前6把均达乱舞7级时自动停止。推荐先刀解清理非搓糖刀种，再开启搓糖+关闭刀种筛选以获得最佳体验。\n\n- **搓糖**：习合至乱舞等级7级后跳过该刀剑，关闭则无等级限制。上锁刀剑不受此选项限制\n- **刀种筛选**：点击齿轮选择要筛选的刀种，关闭则跳过筛选直接习合全部刀剑"
     }
   ],
   "option": {
@@ -3194,10 +3165,10 @@
       "label": "选择难度",
       "default_case": "超难",
       "cases": [
-        { "name": "易",   "pipeline_override": { "LR_ClickDifficulty": { "target": [236, 338, 1, 1] } } },
-        { "name": "普",   "pipeline_override": { "LR_ClickDifficulty": { "target": [524, 330, 1, 1] } } },
-        { "name": "难",   "pipeline_override": { "LR_ClickDifficulty": { "target": [826, 323, 1, 1] } } },
-        { "name": "超难", "pipeline_override": { "LR_ClickDifficulty": { "target": [1132, 328, 1, 1] } } }
+        { "name": "易",   "pipeline_override": { "LR_ClickDifficulty": { "target": [158, 308, 55, 4] } } },
+        { "name": "普",   "pipeline_override": { "LR_ClickDifficulty": { "target": [439, 277, 179, 103] } } },
+        { "name": "难",   "pipeline_override": { "LR_ClickDifficulty": { "target": [747, 289, 152, 81] } } },
+        { "name": "超难", "pipeline_override": { "LR_ClickDifficulty": { "target": [1110, 319, 18, 18] } } }
       ]
     },
     "LR_选择部队": {
@@ -3237,14 +3208,14 @@
     "LR_换队配置": {
       "name": "LR_换队配置",
       "label": "队伍序列",
+      "description": "9位数字（每位1-5），表示第2-10轮分别使用哪个部队，例如121212121",
       "type": "input",
       "inputs": [
         {
           "name": "team_config",
           "label": "队伍序列",
           "default": "111111111",
-          "pipeline_type": "string",
-          "description": "例：121212121"
+          "pipeline_type": "string"
         }
       ],
       "pipeline_override": {
@@ -3262,6 +3233,7 @@
       "cases": [
         {
           "name": "",
+          "option": ["LR_换队配置"],
           "pipeline_override": {
             "LR_ClickSwitchTeam": { "enabled": true },
             "LR_RunTeamSwitch": { "enabled": true }
@@ -4371,197 +4343,72 @@
     },
     "搓糖": {
       "name": "搓糖",
-      "type": "checkbox",
+      "type": "switch",
       "label": "搓糖",
+      "default_case": "No",
       "cases": [
         {
-          "name": "",
+          "name": "Yes",
+          "label": "搓糖开启",
           "pipeline_override": {
-            "M_CheckSubLevel": {
-              "enabled": true
-            },
-            "M_CheckLevel1": {
-              "enabled": true
-            },
-            "M_CheckLevel2": {
-              "enabled": true
-            },
-            "M_CheckLevel3": {
-              "enabled": true
-            },
-            "M_CheckLevel4": {
-              "enabled": true
-            },
-            "M_CheckLevel5": {
-              "enabled": true
-            },
-            "M_CheckLevel6": {
-              "enabled": true
-            },
-            "M_ClickMixDirect1": {
-              "enabled": false
-            },
-            "M_ClickMixDirect2": {
-              "enabled": false
-            },
-            "M_ClickMixDirect3": {
-              "enabled": false
-            },
-            "M_ClickMixDirect4": {
-              "enabled": false
-            },
-            "M_ClickMixDirect5": {
-              "enabled": false
-            },
-            "M_ClickMixDirect6": {
-              "enabled": false
-            },
-            "M_CheckPos1": {
-              "next": [
-                "M_DetectEmpty1",
-                "M_DetectLocked1",
-                "M_CheckLevel1",
-                "M_ClickMixBtn1"
-              ]
-            },
-            "M_CheckPos2": {
-              "next": [
-                "M_DetectEmpty2",
-                "M_DetectLocked2",
-                "M_CheckLevel2",
-                "M_ClickMixBtn2"
-              ]
-            },
-            "M_CheckPos3": {
-              "next": [
-                "M_DetectEmpty3",
-                "M_DetectLocked3",
-                "M_CheckLevel3",
-                "M_ClickMixBtn3"
-              ]
-            },
-            "M_CheckPos4": {
-              "next": [
-                "M_DetectEmpty4",
-                "M_DetectLocked4",
-                "M_CheckLevel4",
-                "M_ClickMixBtn4"
-              ]
-            },
-            "M_CheckPos5": {
-              "next": [
-                "M_DetectEmpty5",
-                "M_DetectLocked5",
-                "M_CheckLevel5",
-                "M_ClickMixBtn5"
-              ]
-            },
-            "M_CheckPos6": {
-              "next": [
-                "M_DetectEmpty6",
-                "M_DetectLocked6",
-                "M_CheckLevel6",
-                "M_ClickMixBtn6"
-              ]
-            },
-            "M_DetectLocked1": {
-              "on_error": [
-                "M_CheckLevel1"
-              ]
-            },
-            "M_DetectLocked2": {
-              "on_error": [
-                "M_CheckLevel2"
-              ]
-            },
-            "M_DetectLocked3": {
-              "on_error": [
-                "M_CheckLevel3"
-              ]
-            },
-            "M_DetectLocked4": {
-              "on_error": [
-                "M_CheckLevel4"
-              ]
-            },
-            "M_DetectLocked5": {
-              "on_error": [
-                "M_CheckLevel5"
-              ]
-            },
-            "M_DetectLocked6": {
-              "on_error": [
-                "M_CheckLevel6"
-              ]
-            }
+            "M_CheckSubLevel": { "enabled": true },
+            "M_CheckLevel1": { "enabled": true },
+            "M_CheckLevel2": { "enabled": true },
+            "M_CheckLevel3": { "enabled": true },
+            "M_CheckLevel4": { "enabled": true },
+            "M_CheckLevel5": { "enabled": true },
+            "M_CheckLevel6": { "enabled": true },
+            "M_ClickMixDirect1": { "enabled": false },
+            "M_ClickMixDirect2": { "enabled": false },
+            "M_ClickMixDirect3": { "enabled": false },
+            "M_ClickMixDirect4": { "enabled": false },
+            "M_ClickMixDirect5": { "enabled": false },
+            "M_ClickMixDirect6": { "enabled": false },
+            "M_CheckPos1": { "next": ["M_DetectEmpty1","M_DetectLocked1","M_CheckLevel1","M_ClickMixBtn1"] },
+            "M_CheckPos2": { "next": ["M_DetectEmpty2","M_DetectLocked2","M_CheckLevel2","M_ClickMixBtn2"] },
+            "M_CheckPos3": { "next": ["M_DetectEmpty3","M_DetectLocked3","M_CheckLevel3","M_ClickMixBtn3"] },
+            "M_CheckPos4": { "next": ["M_DetectEmpty4","M_DetectLocked4","M_CheckLevel4","M_ClickMixBtn4"] },
+            "M_CheckPos5": { "next": ["M_DetectEmpty5","M_DetectLocked5","M_CheckLevel5","M_ClickMixBtn5"] },
+            "M_CheckPos6": { "next": ["M_DetectEmpty6","M_DetectLocked6","M_CheckLevel6","M_ClickMixBtn6"] },
+            "M_DetectLocked1": { "on_error": ["M_CheckLevel1"] },
+            "M_DetectLocked2": { "on_error": ["M_CheckLevel2"] },
+            "M_DetectLocked3": { "on_error": ["M_CheckLevel3"] },
+            "M_DetectLocked4": { "on_error": ["M_CheckLevel4"] },
+            "M_DetectLocked5": { "on_error": ["M_CheckLevel5"] },
+            "M_DetectLocked6": { "on_error": ["M_CheckLevel6"] }
           }
-        }
-      ],
-      "default_case": []
-    },
-    "不筛选": {
-      "name": "不筛选",
-      "type": "checkbox",
-      "label": "不筛选",
-      "cases": [
-        {
-          "name": "",
-          "pipeline_override": {
-            "M_HideUnmixable": {
-              "next": [
-                "M_FilterPostHub"
-              ]
-            },
-            "M_DetectMailbox": {
-              "next": [
-                "M_NoFilterClick1"
-              ]
-            },
-            "M_NoFilterClick1": {
-              "enabled": true
-            },
-            "M_NoFilterClick2": {
-              "enabled": true
-            },
-            "M_NoFilterClick3": {
-              "enabled": true
-            },
-            "M_NoFilterClick4": {
-              "enabled": true
-            }
-          }
-        }
-      ],
-      "default_case": []
-    },
-    "测试下拉": {
-      "type": "select",
-      "label": "测试下拉（带子选项）",
-      "default_case": "选项A",
-      "cases": [
-        {
-          "name": "选项A",
-          "DisplayName": "选项A（无子选项）"
         },
         {
-          "name": "选项B",
-          "DisplayName": "选项B（带子选项）",
-          "option": ["测试子选项"]
+          "name": "No",
+          "label": "搓糖关闭"
         }
       ]
     },
-    "测试子选项": {
-      "type": "checkbox",
-      "label": "测试子选项",
+    "刀种筛选": {
+      "name": "刀种筛选",
+      "label": "刀种筛选",
+      "type": "switch",
+      "description": "开启后按所选刀种筛选可习合刀剑，关闭则跳过筛选直接习合全部刀剑",
+      "default_case": "Yes",
       "cases": [
         {
-          "name": "",
+          "name": "Yes",
+          "label": "筛选开启",
+          "option": ["短", "胁", "打", "太", "大太", "枪", "薙"]
+        },
+        {
+          "name": "No",
+          "label": "不筛选",
           "pipeline_override": {
-            "GuiTest": { "enabled": true }
+            "M_HideUnmixable": { "next": ["M_FilterPostHub"] },
+            "M_DetectMailbox": { "next": ["M_NoFilterClick1"] },
+            "M_NoFilterClick1": { "enabled": true },
+            "M_NoFilterClick2": { "enabled": true },
+            "M_NoFilterClick3": { "enabled": true },
+            "M_NoFilterClick4": { "enabled": true }
           }
         }
-      ],
-      "default_case": []
+      ]
     }
   },
   "github": "https://github.com/NotZoruak/MATR"

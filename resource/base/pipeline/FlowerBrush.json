@@ -315,19 +315,19 @@
         },
         "post_delay": 800,
         "next": [
-            "FB_FilterByHorse"
+            "FB_FilterByTroop"
         ],
         "pre_delay": 100
     },
-    "FB_FilterByHorse": {
+    "FB_FilterByTroop": {
         "action": {
             "type": "Click",
             "param": {
                 "target": [
-                    407,
-                    510,
-                    90,
-                    31
+                    226,
+                    514,
+                    109,
+                    26
                 ],
                 "target_offset": [
                     6,

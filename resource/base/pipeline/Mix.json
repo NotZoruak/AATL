@@ -1,8 +1,4 @@
 {
-    "GuiTest": {
-        "action": "DoNothing",
-        "next": []
-    },
     "Mix": {
         "next": [
             "M_DetectWhereAmI"
@@ -405,14 +401,14 @@
                 ]
             }
         },
-        "timeout": 3000,
         "pre_delay": 500,
-        "post_delay": 500,
+        "post_delay": 1000,
         "next": [
-            "M_CheckAndMix"
+            "M_CheckAndMix",
+            "M_ExitNoMaterial"
         ],
         "on_error": [
-            "M_ExitNoMaterial"
+            "M_DetectWhereAmI"
         ]
     },
     "M_CheckAndMix": {
@@ -512,7 +508,8 @@
         "next": [
             "M_DetectEmpty1",
             "M_DetectLocked1",
-            "M_CheckLevel1"
+            "M_CheckLevel1",
+            "M_ClickMixDirect1"
         ],
         "on_error": [
             "M_DetectWhereAmI"
@@ -635,7 +632,8 @@
         "next": [
             "M_DetectEmpty2",
             "M_DetectLocked2",
-            "M_CheckLevel2"
+            "M_CheckLevel2",
+            "M_ClickMixDirect2"
         ],
         "on_error": [
             "M_DetectWhereAmI"
@@ -758,7 +756,8 @@
         "next": [
             "M_DetectEmpty3",
             "M_DetectLocked3",
-            "M_CheckLevel3"
+            "M_CheckLevel3",
+            "M_ClickMixDirect3"
         ],
         "on_error": [
             "M_DetectWhereAmI"
@@ -881,7 +880,8 @@
         "next": [
             "M_DetectEmpty4",
             "M_DetectLocked4",
-            "M_CheckLevel4"
+            "M_CheckLevel4",
+            "M_ClickMixDirect4"
         ],
         "on_error": [
             "M_DetectWhereAmI"
@@ -1004,7 +1004,8 @@
         "next": [
             "M_DetectEmpty5",
             "M_DetectLocked5",
-            "M_CheckLevel5"
+            "M_CheckLevel5",
+            "M_ClickMixDirect5"
         ],
         "on_error": [
             "M_DetectWhereAmI"
@@ -1124,7 +1125,7 @@
         ]
     },
     "M_CheckPos6": {
-        "next": ["M_DetectEmpty6", "M_DetectLocked6", "M_CheckLevel6"],
+        "next": ["M_DetectEmpty6", "M_DetectLocked6", "M_CheckLevel6", "M_ClickMixDirect6"],
         "on_error": ["M_DetectWhereAmI"]
     },
     "M_DetectEmpty6": {
