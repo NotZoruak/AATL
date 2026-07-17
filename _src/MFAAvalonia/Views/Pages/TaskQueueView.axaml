@@ -1033,12 +1033,34 @@
                               OpacityMask="{Binding (extensions:ScrollViewerExtensions.EdgeFadeMask), ElementName=SettingsContent}"
                               extensions:ScrollViewerExtensions.EnableEdgeFade="True">
                     <Grid>
-                        <StackPanel IsVisible="{calcBinding:Binding 'IsCommon'}"
+                        <StackPanel IsVisible="{calcBinding:Binding 'IsCommon &amp;&amp; !IsSubPageOpen'}"
                                     x:Name="CommonOptionSettings"
                                     Orientation="Vertical" />
-                        <StackPanel IsVisible="{calcBinding:Binding '!IsCommon'}"
+                        <StackPanel IsVisible="{calcBinding:Binding '!IsCommon &amp;&amp; !IsSubPageOpen'}"
                                     x:Name="AdvancedOptionSettings"
                                     Orientation="Vertical" />
+                        <!-- 子选项页面 -->
+                        <StackPanel IsVisible="{Binding IsSubPageOpen}"
+                                    x:Name="SubOptionPage"
+                                    Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,0,0,8">
+                                <Button Classes="BasicTight"
+                                        Command="{Binding CloseSubPageCommand}"
+                                        Padding="4,2">
+                                    <StackPanel Orientation="Horizontal" Spacing="4">
+                                        <avalonia1:FluentIcon Icon="ArrowLeft"
+                                                              IconSize="Size16"
+                                                              IconVariant="Regular" />
+                                        <TextBlock Text="{Binding SubPageTitle}"
+                                                   FontSize="14"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                            <ContentControl Content="{Binding SubPageContent}" />
+                        </StackPanel>
                     </Grid>
                 </ScrollViewer>
             </dashboard:DashboardCard>

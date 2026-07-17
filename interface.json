@@ -147,6 +147,7 @@
       "repeatable": false,
       "repeat_count": 0,
       "option": [
+        "测试下拉",
         "搓糖",
         "不筛选",
         "短",
@@ -4528,6 +4529,35 @@
             "M_NoFilterClick4": {
               "enabled": true
             }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "测试下拉": {
+      "type": "select",
+      "label": "测试下拉（带子选项）",
+      "default_case": "选项A",
+      "cases": [
+        {
+          "name": "选项A",
+          "DisplayName": "选项A（无子选项）"
+        },
+        {
+          "name": "选项B",
+          "DisplayName": "选项B（带子选项）",
+          "option": ["测试子选项"]
+        }
+      ]
+    },
+    "测试子选项": {
+      "type": "checkbox",
+      "label": "测试子选项",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "GuiTest": { "enabled": true }
           }
         }
       ],

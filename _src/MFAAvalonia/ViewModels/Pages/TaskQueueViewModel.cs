@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Collections;
+using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
@@ -427,6 +428,9 @@ public partial class TaskQueueViewModel : ViewModelBase
     [ObservableProperty] private bool _isCommon = true;
     [ObservableProperty] private bool _showSettings;
     [ObservableProperty] private bool _toggleEnable = true;
+    [ObservableProperty] private bool _isSubPageOpen;
+    [ObservableProperty] private string _subPageTitle = string.Empty;
+    [ObservableProperty] private Control? _subPageContent;
 
     [ObservableProperty] private ObservableCollection<DragItemViewModel> _taskItemViewModels = [];
 
@@ -593,6 +597,14 @@ public partial class TaskQueueViewModel : ViewModelBase
             LoggerHelper.UserAction("全选任务", $"taskCount={TaskItemViewModels.Count}",
                 operation: "SelectAllTasks", instanceId: Processor.InstanceId, instanceName: InstanceName);
         }
+    }
+
+    [RelayCommand]
+    private void CloseSubPage()
+    {
+        IsSubPageOpen = false;
+        SubPageTitle = string.Empty;
+        SubPageContent = null;
     }
 
     [RelayCommand]

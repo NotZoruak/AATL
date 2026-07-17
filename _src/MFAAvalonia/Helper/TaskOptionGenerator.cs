@@ -229,6 +229,56 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
     /// <summary>
     /// 检查 option 是否适用于当前控制器和资源（任务 11）
     /// </summary>
+    /// <summary>判断配置项是否有子选项（任意 case 包含 option 字段）</summary>
+    private static bool HasSubOptions(MaaInterface.MaaInterfaceOption interfaceOption)
+    {
+        return interfaceOption.Cases?.Any(c => c.Option is { Count: > 0 }) == true;
+    }
+
+    /// <summary>在标签面板末尾追加齿轮图标，表示该项有子选项</summary>
+    private void AppendGearIcon(StackPanel labelPanel, MaaInterface.MaaInterfaceOption interfaceOption, DragItemViewModel source)
+    {
+        var gearIcon = new FluentIcons.Avalonia.Fluent.FluentIcon
+        {
+            Icon = FluentIcons.Common.Icon.Settings,
+            IconSize = FluentIcons.Common.IconSize.Size16,
+            Width = 16,
+            Height = 16,
+            Margin = new Thickness(6, 0, 0, 0),
+            VerticalAlignment = VerticalAlignment.Center,
+        };
+        ToolTip.SetTip(gearIcon, "含有子选项");
+
+        gearIcon.PointerPressed += (_, e) =>
+        {
+            e.Handled = true;
+            var subPanel = new StackPanel { Spacing = 4, Margin = new Thickness(0, 8, 0, 0) };
+            foreach (var caseOption in interfaceOption.Cases ?? [])
+            {
+                if (caseOption.Option == null || caseOption.Option.Count == 0) continue;
+                var caseHeader = new TextBlock
+                {
+                    Text = caseOption.DisplayName,
+                    FontSize = 14,
+                    FontWeight = FontWeight.Bold,
+                    Margin = new Thickness(0, 4, 0, 4),
+                };
+                subPanel.Children.Add(caseHeader);
+                foreach (var subName in caseOption.Option)
+                {
+                    if (MaaProcessor.Interface?.Option?.TryGetValue(subName, out var subDef) != true) continue;
+                    var subSelect = CreateDefaultSelectOption(subName);
+                    AddSubOption(subPanel, subSelect, source);
+                }
+            }
+            viewModel.SubPageTitle = interfaceOption.DisplayName;
+            viewModel.SubPageContent = subPanel;
+            viewModel.IsSubPageOpen = true;
+        };
+
+        labelPanel.Children.Add(gearIcon);
+    }
+
     private bool IsOptionApplicable(MaaInterface.MaaInterfaceOption interfaceOption)
     {
         var currentControllerName = MaaInterfaceActivationHelper.ResolveControllerName(
@@ -332,6 +382,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         void UpdateSubOptions()
         {
             subOptionsContainer.Children.Clear();
+            if (HasSubOptions(interfaceOption)) return; // 有齿轮入口，子选项只在子页面显示
             if (interfaceOption.Cases == null) return;
 
             option.SubOptions ??= new List<MaaInterface.MaaInterfaceSelectOption>();
@@ -699,8 +750,10 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         // Label with Icon
         var labelPanel = CreateLabelPanel(option.DisplayName, option.Name, interfaceOption.Description, interfaceOption.Document);
         var icon = CreateIcon(interfaceOption);
-        icon.Margin = new Thickness(10, 0, 6, 0); 
+        icon.Margin = new Thickness(10, 0, 6, 0);
         labelPanel.Children.Insert(0, icon);
+        if (HasSubOptions(interfaceOption))
+            AppendGearIcon(labelPanel, interfaceOption, source);
 
         Grid.SetColumn(labelPanel, 0);
         Grid.SetColumn(toggleSwitch, 2);
@@ -761,6 +814,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         void UpdateSubOptions(int index)
         {
             subOptionsContainer.Children.Clear();
+            if (HasSubOptions(interfaceOption)) return; // 有齿轮入口，子选项只在子页面显示
             if (interfaceOption.Cases == null || index < 0 || index >= interfaceOption.Cases.Count) return;
 
             var selectedCase = interfaceOption.Cases[index];
@@ -802,6 +856,8 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         var icon = CreateIcon(interfaceOption);
         icon.Margin = new Thickness(10, 0, 6, 0); // Margin adjusted
         labelPanel.Children.Insert(0, icon);
+        if (HasSubOptions(interfaceOption))
+            AppendGearIcon(labelPanel, interfaceOption, source);
 
         Grid.SetColumn(labelPanel, 0);
         Grid.SetColumn(comboBox, 1);
