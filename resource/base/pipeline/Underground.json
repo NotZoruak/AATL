@@ -1,2435 +1,2445 @@
 {
-    "Underground": {
-        "next": [
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_DetectWhereAmI": {
-        "pre_delay": 0,
-        "next": [
-            "U_IsAnnouncementPopup",
-            "U_IsLoginReward",
-            "U_IsTutorial",
-            "U_HasExpeditionReturn_Exp",
-            "U_HasExpeditionReturn_Title",
-            "U_IsMarching",
-            "U_IsBattleResult_Exp",
-            "U_IsBattleResult_Title",
-            "U_IsSwordDropColor",
-            "U_IsSpecialDrop",
-            "U_IsFormationSelect",
-            "U_IsSwordSelect",
-            "U_IsTeamSelect",
-            "U_IsSortie",
-            "U_IsEventPage",
-            "U_CheckHomeBrightness",
-            "U_IsMenuDirectory",
-            "U_IsRepair",
-            "U_IsStopOnDamage",
-            "U_IsGameIcon",
-            "U_IsLoginButton",
-            "U_IsGameUpdatePopup",
-            "U_IsInGameUpdatePopup",
-            "U_IsInternalReport",
-            "U_IsConnectionInterrupted",
-            "U_FallbackWait"
-        ]
-    },
-    "U_IsAnnouncementPopup": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    1056,
-                    463,
-                    63,
-                    193
-                ],
-                "template": "公告弹窗.png",
-                "green_mask": true,
-                "threshold": [
-                    0.95
-                ]
-            }
-        },
-        "action": "Click",
-        "timeout": 3000,
-        "pre_delay": 100,
-        "next": [
-            "U_IsAnnouncementPopup"
+  "Underground": {
+    "next": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_DetectWhereAmI": {
+    "pre_delay": 0,
+    "next": [
+      "U_IsAnnouncementPopup",
+      "U_IsLoginReward",
+      "U_IsTutorial",
+      "U_HasExpeditionReturn_Exp",
+      "U_HasExpeditionReturn_Title",
+      "U_IsMarching",
+      "U_IsBattleResult_Exp",
+      "U_IsBattleResult_Title",
+      "U_IsSwordDropColor",
+      "U_IsSpecialDrop",
+      "U_IsFormationSelect",
+      "U_IsSwordSelect",
+      "U_IsTeamSelect",
+      "U_IsSortie",
+      "U_IsEventPage",
+      "U_CheckHomeBrightness",
+      "U_IsMenuDirectory",
+      "U_IsRepair",
+      "U_IsStopOnDamage",
+      "U_IsGameIcon",
+      "U_IsLoginButton",
+      "U_IsGameUpdatePopup",
+      "U_IsInGameUpdatePopup",
+      "U_IsInternalReport",
+      "U_IsConnectionInterrupted",
+      "U_FallbackWait"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "U_RestartGame"
+    ]
+  },
+  "U_IsAnnouncementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          1056,
+          463,
+          63,
+          193
         ],
-        "on_error": [
-            "U_DetectWhereAmI"
+        "template": "公告弹窗.png",
+        "green_mask": true,
+        "threshold": [
+          0.95
         ]
+      }
     },
-    "U_IsLoginReward": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    816,
-                    577,
-                    182,
-                    59
-                ],
-                "template": "登录奖励.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
-        "pre_delay": 100,
-        "next": [
-            "U_LoginRewardClick2"
+    "action": "Click",
+    "timeout": 3000,
+    "pre_delay": 100,
+    "next": [
+      "U_IsAnnouncementPopup"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_IsLoginReward": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          816,
+          577,
+          182,
+          59
         ],
-        "on_error": [
-            "U_DetectWhereAmI"
+        "template": "登录奖励.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
         ]
+      }
     },
-    "U_LoginRewardClick2": {
-        "action": "Click",
+    "action": "Click",
+    "pre_delay": 100,
+    "next": [
+      "U_LoginRewardClick2"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_LoginRewardClick2": {
+    "action": "Click",
+    "target": [
+      1092,
+      318,
+      1,
+      1
+    ],
+    "pre_delay": 1000,
+    "next": [
+      "U_LoginRewardClick3"
+    ]
+  },
+  "U_LoginRewardClick3": {
+    "action": "Click",
+    "target": [
+      1092,
+      318,
+      1,
+      1
+    ],
+    "timeout": 3000,
+    "pre_delay": 1000,
+    "next": [
+      "U_IsLoginReward"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_IsTutorial": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          856,
+          387,
+          35,
+          30
+        ],
+        "template": "地下城教程.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_HasExpeditionReturn_Exp": {
+    "recognition": "OCR",
+    "roi": [
+      388,
+      59,
+      54,
+      25
+    ],
+    "expected": "经验",
+    "action": "Click",
+    "target": [
+      388,
+      59,
+      54,
+      25
+    ],
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_HasExpeditionReturn_Title": {
+    "recognition": "OCR",
+    "roi": [
+      558,
+      1,
+      162,
+      52
+    ],
+    "expected": "远征结果",
+    "action": "Click",
+    "target": [
+      388,
+      59,
+      54,
+      25
+    ],
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_IsMarching": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          1067,
+          558,
+          120,
+          79
+        ],
+        "template": "合战场_行军.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "U_CheckBeforeMarch"
+    ]
+  },
+  "U_IsBattleResult_Exp": {
+    "recognition": "OCR",
+    "roi": [
+      388,
+      59,
+      54,
+      25
+    ],
+    "expected": "经验",
+    "action": "Click",
+    "target": [
+      388,
+      59,
+      54,
+      25
+    ],
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_IsBattleResult_Title": {
+    "recognition": "OCR",
+    "roi": [
+      558,
+      1,
+      162,
+      52
+    ],
+    "expected": "战斗结果",
+    "action": "Click",
+    "target": [
+      388,
+      59,
+      54,
+      25
+    ],
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_IsSwordDropColor": {
+    "recognition": "ColorMatch",
+    "roi": [
+      598,
+      543,
+      66,
+      1
+    ],
+    "upper": [
+      96,
+      56,
+      10
+    ],
+    "lower": [
+      88,
+      48,
+      2
+    ],
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [
-            1092,
-            318,
-            1,
-            1
+          1067,
+          558,
+          120,
+          79
         ],
-        "pre_delay": 1000,
-        "next": [
-            "U_LoginRewardClick3"
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
         ]
+      }
     },
-    "U_LoginRewardClick3": {
-        "action": "Click",
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_IsSpecialDrop": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          1044,
+          29,
+          166,
+          87
+        ],
+        "template": "特殊掉落_地下城.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_IsFormationSelect": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          570,
+          1,
+          139,
+          45
+        ],
+        "template": "阵形选择.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "U_ClickFormation1"
+    ]
+  },
+  "U_ClickFormation1": {
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [
-            1092,
-            318,
-            1,
-            1
+          1017,
+          421,
+          1,
+          1
         ],
-        "timeout": 3000,
-        "pre_delay": 1000,
-        "next": [
-            "U_IsLoginReward"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
+        "target_offset": [
+          4,
+          2,
+          0,
+          0
         ]
+      }
     },
-    "U_IsTutorial": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    856,
-                    387,
-                    35,
-                    30
-                ],
-                "template": "地下城教程.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_HasExpeditionReturn_Exp": {
-        "recognition": "OCR",
-        "roi": [
-            388,
-            59,
-            54,
-            25
-        ],
-        "expected": "经验",
-        "action": "Click",
+    "post_delay": 200,
+    "next": [
+      "U_ClickFormation2"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickFormation2": {
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [
-            388,
-            59,
-            54,
-            25
+          1017,
+          421,
+          1,
+          1
         ],
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
+        "target_offset": [
+          4,
+          2,
+          0,
+          0
+        ]
+      }
     },
-    "U_HasExpeditionReturn_Title": {
-        "recognition": "OCR",
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_IsSwordSelect": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
         "roi": [
-            558,
-            1,
-            162,
-            52
+          530,
+          6,
+          224,
+          45
         ],
-        "expected": "远征结果",
-        "action": "Click",
+        "expected": "刀剑男士选择"
+      }
+    },
+    "enabled": false,
+    "next": [
+      "U_ClickCaptain1"
+    ]
+  },
+  "U_IsTeamSelect": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [
+          561,
+          1,
+          160,
+          49
+        ],
+        "expected": "部队选择"
+      }
+    },
+    "next": [
+      "U_CheckEquipmentPopup",
+      "U_StopOnEquipmentPopup",
+      "U_ClickTeam"
+    ]
+  },
+  "U_ClickTeam": {
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [
-            388,
-            59,
-            54,
-            25
+          154,
+          93,
+          1,
+          1
         ],
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_IsMarching": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    1067,
-                    558,
-                    120,
-                    79
-                ],
-                "template": "合战场_行军.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "next": [
-            "U_CheckBeforeMarch"
+        "target_offset": [
+          8,
+          0,
+          0,
+          0
         ]
+      }
     },
-    "U_IsBattleResult_Exp": {
-        "recognition": "OCR",
+    "next": [
+      "U_CaptainHub"
+    ],
+    "pre_delay": 100
+  },
+  "U_IsSortie": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
         "roi": [
-            388,
-            59,
-            54,
-            25
+          3,
+          164,
+          43,
+          92
         ],
-        "expected": "经验",
-        "action": "Click",
+        "template": "合战场选中.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "U_OnSortieScreen"
+    ]
+  },
+  "U_OnSortieScreen": {
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [
-            388,
-            59,
-            54,
-            25
+          8,
+          299,
+          32,
+          89
         ],
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
+        ]
+      }
     },
-    "U_IsBattleResult_Title": {
-        "recognition": "OCR",
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_IsEventPage": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
         "roi": [
-            558,
-            1,
-            162,
-            52
+          427,
+          69,
+          388,
+          52
         ],
-        "expected": "战斗结果",
-        "action": "Click",
+        "template": "地下城.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "U_VerifyEventPage"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_VerifyEventPage": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          427,
+          69,
+          388,
+          52
+        ],
+        "template": "地下城.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "U_SelectFloor",
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_SelectFloor": {
+    "action": "Custom",
+    "custom_action": "DungeonFloorSelectAction",
+    "custom_action_param": "{}",
+    "pre_delay": 500,
+    "next": [
+      "U_EnterUnderground"
+    ]
+  },
+  "U_EnterUnderground": {
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [
-            388,
-            59,
-            54,
-            25
+          1141,
+          614,
+          120,
+          49
         ],
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
+        ]
+      }
     },
-    "U_IsSwordDropColor": {
-        "recognition": "ColorMatch",
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 500,
+    "post_delay": 800
+  },
+  "U_IsMenuDirectory": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
         "roi": [
-            598,
-            543,
-            66,
-            1
+          581,
+          28,
+          112,
+          57
         ],
-        "upper": [
-            96,
-            56,
-            10
-        ],
-        "lower": [
-            88,
-            48,
-            2
-        ],
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1067,
-                    558,
-                    120,
-                    79
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_IsSpecialDrop": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    1044,
-                    29,
-                    166,
-                    87
-                ],
-                "template": "特殊掉落_地下城.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_IsFormationSelect": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    570,
-                    1,
-                    139,
-                    45
-                ],
-                "template": "阵形选择.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "next": [
-            "U_ClickFormation1"
+        "template": "菜单目录.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
         ]
+      }
     },
-    "U_ClickFormation1": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1017,
-                    421,
-                    1,
-                    1
-                ],
-                "target_offset": [
-                    4,
-                    2,
-                    0,
-                    0
-                ]
-            }
-        },
-        "post_delay": 200,
-        "next": [
-            "U_ClickFormation2"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickFormation2": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1017,
-                    421,
-                    1,
-                    1
-                ],
-                "target_offset": [
-                    4,
-                    2,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_IsSwordSelect": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    530,
-                    6,
-                    224,
-                    45
-                ],
-                "expected": "刀剑男士选择"
-            }
-        },
-        "enabled": false,
-        "next": [
-            "U_ClickCaptain1"
-        ]
-    },
-    "U_IsTeamSelect": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    561,
-                    1,
-                    160,
-                    49
-                ],
-                "expected": "部队选择"
-            }
-        },
-        "next": [
-            "U_CheckEquipmentPopup",
-            "U_StopOnEquipmentPopup",
-            "U_ClickTeam"
-        ]
-    },
-    "U_ClickTeam": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    154,
-                    93,
-                    1,
-                    1
-                ],
-                "target_offset": [
-                    8,
-                    0,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "U_CaptainHub"
-        ],
-        "pre_delay": 100
-    },
-    "U_IsSortie": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    3,
-                    164,
-                    43,
-                    92
-                ],
-                "template": "合战场选中.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "next": [
-            "U_OnSortieScreen"
-        ]
-    },
-    "U_OnSortieScreen": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    8,
-                    299,
-                    32,
-                    89
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_IsEventPage": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    427,
-                    69,
-                    388,
-                    52
-                ],
-                "template": "地下城.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "next": [
-            "U_VerifyEventPage"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_VerifyEventPage": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    427,
-                    69,
-                    388,
-                    52
-                ],
-                "template": "地下城.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "next": [
-            "U_SelectFloor",
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_SelectFloor": {
-        "action": "Custom",
-        "custom_action": "DungeonFloorSelectAction",
-        "custom_action_param": "{}",
-        "pre_delay": 500,
-        "next": [
-            "U_EnterUnderground"
-        ]
-    },
-    "U_EnterUnderground": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1141,
-                    614,
-                    120,
-                    49
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 500,
-        "post_delay": 800
-    },
-    "U_IsMenuDirectory": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    581,
-                    28,
-                    112,
-                    57
-                ],
-                "template": "菜单目录.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "DoNothing",
-        "next": [
-            "U_ClickUndergroundInMenu"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickUndergroundInMenu": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    160,
-                    158,
-                    97,
-                    62
-                ],
-                "expected": "出阵"
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target_offset": [
-                    5,
-                    3,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_CheckHomeBrightness": {
-        "recognition": "ColorMatch",
+    "action": "DoNothing",
+    "next": [
+      "U_ClickUndergroundInMenu"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickUndergroundInMenu": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
         "roi": [
-            66,
-            58,
-            11,
-            13
+          160,
+          158,
+          97,
+          62
         ],
-        "upper": [
-            40,
-            155,
-            30
-        ],
-        "lower": [
-            23,
-            95,
-            15
-        ],
-        "action": "DoNothing",
-        "next": [
-            "U_IsHome"
-        ]
+        "expected": "出阵"
+      }
     },
-    "U_IsRepair": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    555,
-                    -1,
-                    167,
-                    53
-                ],
-                "expected": "修复"
-            }
-        },
-        "enabled": false,
-        "next": [
-            "U_UseSpeedup"
+    "action": {
+      "type": "Click",
+      "param": {
+        "target_offset": [
+          5,
+          3,
+          0,
+          0
         ]
+      }
     },
-    "U_IsStopOnDamage": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    555,
-                    -1,
-                    167,
-                    53
-                ],
-                "expected": "修复"
-            }
-        },
-        "enabled": false,
-        "next": [
-            "U_LogStopOnDamageRepair"
-        ]
-    },
-    "U_IsGameIcon": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    0,
-                    0,
-                    1600,
-                    900
-                ],
-                "template": "游戏图标.png",
-                "green_mask": true,
-                "threshold": [
-                    0.95
-                ]
-            }
-        },
-        "action": "Click",
-        "post_delay": 3000,
-        "pre_delay": 100,
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_IsLoginButton": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    665,
-                    529,
-                    124,
-                    78
-                ],
-                "template": "登录.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
-        "post_delay": 3000,
-        "pre_delay": 100,
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_IsGameUpdatePopup": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    443,
-                    431,
-                    120,
-                    46
-                ],
-                "template": "游戏更新.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
-        "post_delay": 2000,
-        "pre_delay": 100,
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_IsInGameUpdatePopup": {
-        "recognition": "OCR",
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_CheckHomeBrightness": {
+    "recognition": "ColorMatch",
+    "roi": [
+      66,
+      58,
+      11,
+      13
+    ],
+    "upper": [
+      40,
+      155,
+      30
+    ],
+    "lower": [
+      23,
+      95,
+      15
+    ],
+    "action": "DoNothing",
+    "next": [
+      "U_IsHome"
+    ]
+  },
+  "U_IsRepair": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
         "roi": [
-            498,
-            291,
-            77,
-            50
+          555,
+          -1,
+          167,
+          53
         ],
-        "expected": "更新",
-        "action": "Click",
+        "expected": "修复"
+      }
+    },
+    "enabled": false,
+    "next": [
+      "U_UseSpeedup"
+    ]
+  },
+  "U_IsStopOnDamage": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [
+          555,
+          -1,
+          167,
+          53
+        ],
+        "expected": "修复"
+      }
+    },
+    "enabled": false,
+    "next": [
+      "U_LogStopOnDamageRepair"
+    ]
+  },
+  "U_IsGameIcon": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          0,
+          0,
+          1600,
+          900
+        ],
+        "template": "游戏图标.png",
+        "green_mask": true,
+        "threshold": [
+          0.95
+        ]
+      }
+    },
+    "action": "Click",
+    "post_delay": 3000,
+    "pre_delay": 100,
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_IsLoginButton": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          665,
+          529,
+          124,
+          78
+        ],
+        "template": "登录.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "post_delay": 3000,
+    "pre_delay": 100,
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_IsGameUpdatePopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          443,
+          431,
+          120,
+          46
+        ],
+        "template": "游戏更新.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "post_delay": 2000,
+    "pre_delay": 100,
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_IsInGameUpdatePopup": {
+    "recognition": "OCR",
+    "roi": [
+      498,
+      291,
+      77,
+      50
+    ],
+    "expected": "更新",
+    "action": "Click",
+    "target": [
+      578,
+      440,
+      130,
+      55
+    ],
+    "post_delay": 2000,
+    "pre_delay": 100,
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_ClickMarching": {
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [
-            578,
-            440,
-            130,
-            55
+          1067,
+          558,
+          120,
+          79
         ],
-        "post_delay": 2000,
-        "pre_delay": 100,
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
         ]
+      }
     },
-    "U_ClickMarching": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1067,
-                    558,
-                    120,
-                    79
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_CheckBeforeMarch": {
-        "pre_delay": 0,
-        "next": [
-            "U_IsMarchingDamage2",
-            "U_CheckRoundComplete",
-            "U_ClickMarching"
-        ]
-    },
-    "U_CheckRoundComplete": {
-        "recognition": "OCR",
-        "roi": [
-            947,
-            148,
-            101,
-            34
-        ],
-        "expected": "传送凭证",
-        "action": "DoNothing",
-        "next": [
-            "U_GoHomeAfterRound",
-            "U_ContinueNextRound"
-        ]
-    },
-    "U_ContinueNextRound": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1067,
-                    558,
-                    120,
-                    79
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": true,
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_GoHomeAfterRound": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1208,
-                    449,
-                    1,
-                    1
-                ],
-                "target_offset": [
-                    4,
-                    2,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": false,
-        "next": [
-            "U_ConfirmReturnHome"
-        ],
-        "pre_delay": 100
-    },
-
-    "U_IsInternalReport": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    569,
-                    322,
-                    138,
-                    31
-                ],
-                "template": "内番报告.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_IsConnectionInterrupted": {
-        "recognition": "OCR",
-        "roi": [
-            588,
-            274,
-            96,
-            25
-        ],
-        "expected": "连接中断",
-        "action": "Click",
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_CheckBeforeMarch": {
+    "pre_delay": 0,
+    "next": [
+      "U_IsMarchingDamage2",
+      "U_CheckRoundComplete",
+      "U_ClickMarching"
+    ]
+  },
+  "U_CheckRoundComplete": {
+    "recognition": "OCR",
+    "roi": [
+      947,
+      148,
+      101,
+      34
+    ],
+    "expected": "传送凭证",
+    "action": "DoNothing",
+    "next": [
+      "U_GoHomeAfterRound",
+      "U_ContinueNextRound"
+    ]
+  },
+  "U_ContinueNextRound": {
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [
-            738,
-            449,
-            100,
-            39
+          1067,
+          558,
+          120,
+          79
         ],
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_FallbackWait": {
-        "action": "DoNothing",
-        "next": [
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_CaptainHub": {
-        "next": [
-            "U_ClickCaptainSlot",
-            "U_IsPreSortieConfirm"
-        ]
-    },
-    "U_CheckAccel": {
-        "next": [
-            "U_ClickAccel"
-        ]
-    },
-    "U_CheckEquipmentPopup": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    423,
-                    484,
-                    145,
-                    56
-                ],
-                "template": "整备刀装.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
-        "enabled": false,
-        "next": [
-            "U_PreCheckTroopRecord"
-        ],
-        "on_error": [
-            "U_ClickTeam"
-        ],
-        "post_delay": 500
-    },
-    "U_ClickAccel": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1156,
-                    241,
-                    27,
-                    25
-                ],
-                "target_offset": [
-                    2,
-                    1,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "U_ClickRepairDone"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickCaptain1": {
-        "enabled": false,
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    828,
-                    82,
-                    68,
-                    25
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "post_delay": 800,
-        "next": [
-            "U_ClickCaptain2"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickCaptain2": {
-        "enabled": false,
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    752,
-                    137,
-                    97,
-                    29
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "post_delay": 800,
-        "next": [
-            "U_ClickCaptain3"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickCaptain3": {
-        "enabled": false,
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    407,
-                    510,
-                    90,
-                    31
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "post_delay": 800,
-        "next": [
-            "U_ClickCaptain4"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickCaptain4": {
-        "enabled": false,
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    965,
-                    438,
-                    91,
-                    34
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "post_delay": 800,
-        "next": [
-            "U_ClickCaptain5"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickCaptain5": {
-        "enabled": false,
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    592,
-                    603,
-                    107,
-                    46
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "U_DetectSortOrder"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickCaptainSlot": {
-        "enabled": false,
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1024,
-                    140,
-                    30,
-                    50
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "post_delay": 1000,
-        "pre_delay": 100
-    },
-    "U_ClickDescending": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    939,
-                    77,
-                    56,
-                    39
-                ],
-                "expected": "降序"
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target_offset": [
-                    4,
-                    2,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": false,
-        "post_delay": 800,
-        "next": [
-            "U_DetectSortOrder"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickHomeInMenu": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1037,
-                    169,
-                    110,
-                    44
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": false,
-        "next": [
-            "U_VerifyHomeMenuClosed"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickMenu": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    1174,
-                    3,
-                    105,
-                    66
-                ],
-                "expected": "目录"
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target_offset": [
-                    5,
-                    3,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "U_PostClickMenuHub"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickMenuForRepair": {
-        "recognition": "OCR",
-        "roi": [
-            1179,
-            8,
-            95,
-            56
-        ],
-        "expected": "目录",
-        "action": "Click",
         "target_offset": [
-            5,
-            3,
-            0,
-            0
-        ],
-        "post_delay": 300,
-        "next": [
-            "U_VerifyMenuOpened"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
+          6,
+          4,
+          0,
+          0
+        ]
+      }
     },
-    "U_ClickMenuFromRepair": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    1174,
-                    3,
-                    105,
-                    66
-                ],
-                "expected": "目录"
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target_offset": [
-                    5,
-                    3,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": false,
-        "next": [
-            "U_ClickHomeInMenu"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickRepairInMenu": {
-        "recognition": "OCR",
-        "roi": [
-            451,
-            379,
-            84,
-            40
-        ],
-        "expected": "修复",
-        "action": "Click",
-        "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
-        "next": [
-            "U_VerifyRepairMenuClosed"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickSortieInMenu": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    160,
-                    158,
-                    97,
-                    62
-                ],
-                "expected": "出阵"
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target_offset": [
-                    5,
-                    3,
-                    0,
-                    0
-                ]
-            }
-        },
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "next": [
-            "U_VerifyMenuClosed",
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_ClickSortieNow": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1204,
-                    629,
-                    1,
-                    1
-                ],
-                "target_offset": [
-                    4,
-                    2,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "U_PostSortieHub"
-        ],
-        "pre_delay": 100
-    },
-    "U_ConfirmEnterUnderground": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    576,
-                    60,
-                    127,
-                    33
-                ],
-                "template": "出阵确认.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
+    "enabled": true,
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_GoHomeAfterRound": {
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [
-            706,
-            582,
-            154,
-            42
+          1208,
+          449,
+          1,
+          1
         ],
         "target_offset": [
-            6,
-            4,
-            0,
-            0
-        ],
-        "next": [
-            "U_PostSortieHub"
-        ],
-        "on_error": [
-            "U_PostSortieHub"
-        ],
-        "pre_delay": 100
-    },
-    "U_ConfirmCancelMarchingDamage2": {
-        "recognition": "OCR",
-        "roi": [
-            763,
-            446,
-            48,
-            44
-        ],
-        "expected": "否",
-        "action": "Click",
-        "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
-        "next": [
-            "U_ReturnHomeAfterMarchDamage"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "post_delay": 300,
-        "pre_delay": 100
-    },
-
-    "U_ConfirmCancelPreDamage2": {
-        "recognition": "OCR",
-        "roi": [
-            772,
-            448,
-            32,
-            40
-        ],
-        "expected": "否",
-        "action": "Click",
-        "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
-        "next": [
-            "U_DecideDamage_Pre"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "post_delay": 500,
-        "pre_delay": 100
-    },
-    "U_ConfirmSelectSlot": {
-        "recognition": "OCR",
-        "roi": [
-            1052,
-            138,
-            32,
-            31
-        ],
-        "expected": "选",
-        "action": "Click",
-        "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
-        "next": [
-            "U_CheckAccel"
-        ],
-        "on_error": [
-            "U_LogNoDamagedSword"
-        ],
-        "pre_delay": 100
-    },
-    "U_LogNoDamagedSword": {
-        "action": {
-            "type": "Custom",
-            "custom_action": "DamageLogAction",
-            "custom_action_param": {
-                "message": "未检测到可修复刀剑"
-            }
-        },
-        "next": [
-            "U_DetectWhereAmI"
+          4,
+          2,
+          0,
+          0
         ]
+      }
     },
-    "U_ConfirmSortAsc": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    939,
-                    77,
-                    56,
-                    39
-                ],
-                "expected": "升序"
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1189,
-                    140,
-                    37,
-                    61
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": false,
-        "next": [
-            "U_IsPreSortieConfirm"
-        ],
-        "pre_delay": 100
-    },
-    "U_DecideDamage_Pre": {
-        "next": [
-            "U_NavigateToRepair",
-            "U_IsStopOnDamage"
-        ]
-    },
-    "U_DetectAfterSortieNow": {
-        "pre_delay": 0,
-        "next": [
-            "U_IsMarchingDamage2",
-            "U_IsFormationSelect",
-            "U_IsMarching",
-            "U_FallbackWait"
-        ]
-    },
-    "U_DetectSortOrder": {
-        "enabled": false,
-        "next": [
-            "U_ClickDescending",
-            "U_ConfirmSortAsc"
-        ]
-    },
-    "U_DirAfterRepair": {
-        "recognition": "OCR",
+    "enabled": false,
+    "next": [
+      "U_ConfirmReturnHome"
+    ],
+    "pre_delay": 100
+  },
+  "U_IsInternalReport": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
         "roi": [
-            1179,
-            8,
-            95,
-            56
+          569,
+          322,
+          138,
+          31
         ],
-        "expected": "目录",
-        "action": "Click",
-        "target_offset": [
-            5,
-            3,
-            0,
-            0
-        ],
-        "next": [
-            "U_VerifyMenuAfterRepair"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 500
-    },
-    "U_FindSlot1": {
-        "recognition": "OCR",
-        "roi": [
-            380,
-            185,
-            113,
-            46
-        ],
-        "expected": "未使用",
-        "action": "Click",
-        "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
-        "next": [
-            "U_ConfirmSelectSlot"
-        ],
-        "pre_delay": 100
-    },
-    "U_FindSlot2": {
-        "recognition": "OCR",
-        "roi": [
-            383,
-            323,
-            110,
-            42
-        ],
-        "expected": "未使用",
-        "action": "Click",
-        "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
-        "next": [
-            "U_ConfirmSelectSlot"
-        ],
-        "pre_delay": 100
-    },
-    "U_FindSlot3": {
-        "recognition": "OCR",
-        "roi": [
-            381,
-            462,
-            110,
-            38
-        ],
-        "expected": "未使用",
-        "action": "Click",
-        "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
-        "next": [
-            "U_ConfirmSelectSlot"
-        ],
-        "pre_delay": 100
-    },
-    "U_IsHome": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    8,
-                    1,
-                    71,
-                    107
-                ],
-                "template": "本丸.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "next": [
-            "U_NavigateToUnderground"
+        "template": "内番报告.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
         ]
+      }
     },
-    "U_IsMarchingDamage2": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    229,
-                    116,
-                    90,
-                    569
-                ],
-                "template": "重伤.png",
-                "green_mask": true,
-                "threshold": [
-                    0.85
-                ]
-            }
-        },
-        "action": "Click",
+    "action": "Click",
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_IsConnectionInterrupted": {
+    "recognition": "OCR",
+    "roi": [
+      588,
+      274,
+      96,
+      25
+    ],
+    "expected": "连接中断",
+    "action": "Click",
+    "target": [
+      738,
+      449,
+      100,
+      39
+    ],
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_FallbackWait": {
+    "action": "DoNothing",
+    "next": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_CaptainHub": {
+    "next": [
+      "U_ClickCaptainSlot",
+      "U_IsPreSortieConfirm"
+    ]
+  },
+  "U_CheckAccel": {
+    "next": [
+      "U_ClickAccel"
+    ]
+  },
+  "U_CheckEquipmentPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          423,
+          484,
+          145,
+          56
+        ],
+        "template": "整备刀装.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "enabled": false,
+    "next": [
+      "U_PreCheckTroopRecord"
+    ],
+    "on_error": [
+      "U_ClickTeam"
+    ],
+    "post_delay": 500
+  },
+  "U_ClickAccel": {
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [
-            763,
-            446,
-            48,
-            44
+          1156,
+          241,
+          27,
+          25
         ],
         "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
-        "next": [
-            "U_LogMarchingDamage2"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
+          2,
+          1,
+          0,
+          0
         ]
+      }
     },
-    "U_IsPreDamage1": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    233,
-                    128,
-                    71,
-                    549
-                ],
-                "template": "重伤.png",
-                "green_mask": true,
-                "threshold": [
-                    0.9
-                ]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    772,
-                    448,
-                    32,
-                    40
-                ],
-                "target_offset": [
-                    4,
-                    2,
-                    0,
-                    0
-                ]
-            }
-        },
-        "next": [
-            "U_LogPreDamage1"
-        ],
-        "pre_delay": 100,
-        "enabled": false
-    },
-    "U_IsPreDamage2": {
-        "recognition": "OCR",
-        "roi": [
-            465,
-            310,
-            46,
-            24
-        ],
-        "expected": "重伤",
-        "next": [
-            "U_LogPreDamage2"
-        ],
-        "enabled": false
-    },
-    "U_IsPreSortieConfirm": {
-        "recognition": "OCR",
-        "roi": [
-            1156,
-            584,
-            96,
-            47
-        ],
-        "expected": "即刻",
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "next": [
-            "U_ClickSortieNow"
-        ]
-    },
-    "U_NavigateToRepair": {
-        "next": [
-            "U_ClickMenuForRepair",
-            "U_DetectWhereAmI"
-        ],
-        "post_delay": 300
-    },
-    "U_PostClickMenuHub": {
-        "next": [
-            "U_VerifyMenuSortie",
-            "U_CheckNavDirForRetry",
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_PostSortieHub": {
-        "pre_delay": 0,
-        "next": [
-            "U_ConfirmEnterUnderground",
-            "U_IsPreDamage1",
-            "U_StopOnDamagePopup",
-            "U_IsPreDamage2",
-            "U_StopOnDamageText",
-            "U_CheckEquipmentPopup",
-            "U_DetectAfterSortieNow"
-        ]
-    },
-    "U_PreCheckTroopRecord": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    1139,
-                    132,
-                    124,
-                    41
-                ],
-                "template": "部队记录.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
-        "enabled": false,
-        "on_error": [
-            "U_DetectAfterSortieNow"
-        ],
-        "next": [
-            "U_PreCheckUseRecord"
-        ]
-    },
-    "U_PreCheckUseRecord": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    707,
-                    53,
-                    72,
-                    64
-                ],
-                "template": "使用记录.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "Click",
-        "enabled": false,
-        "on_error": [
-            "U_DetectAfterSortieNow"
-        ],
-        "next": [
-            "U_PreConfirmSupply"
-        ]
-    },
-    "U_PreConfirmSupply": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    789,
-                    512,
-                    1,
-                    4
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": false,
-        "next": [
-            "U_IsPreSortieConfirm"
-        ]
-    },
-    "U_ReturnHome": {
-        "next": [
-            "U_ClickMenuFromRepair"
-        ]
-    },
-    "U_ReturnHomeAfterMarchDamage": {
-        "action": "Click",
+    "next": [
+      "U_ClickRepairDone"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickCaptain1": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [
-            1208,
-            449,
-            1,
-            1
+          828,
+          82,
+          68,
+          25
         ],
         "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
-        "next": [
-            "U_ConfirmReturnHome"
-        ],
-        "pre_delay": 100
-    },
-    "U_SelectDamagedSword": {
-        "next": [
-            "U_FindSlot1",
-            "U_FindSlot2",
-            "U_FindSlot3"
-        ],
-        "on_error": [
-            "U_CheckRepairScreen"
+          6,
+          4,
+          0,
+          0
         ]
+      }
     },
-    "U_CheckRepairScreen": {
-        "recognition": "OCR",
-        "roi": [
-            554,
-            56,
-            175,
-            49
-        ],
-        "expected": "修复",
-        "next": [
-            "U_SelectDamagedSword"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_SortieAfterRepair": {
-        "recognition": "OCR",
-        "roi": [
-            165,
-            163,
-            87,
-            52
-        ],
-        "expected": "出阵",
-        "action": "Click",
-        "target_offset": [
-            5,
-            3,
-            0,
-            0
-        ],
-        "next": [
-            "U_VerifyAfterRepairMenuClosed"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ],
-        "pre_delay": 100
-    },
-    "U_TryClickRepair": {
-        "next": [
-            "U_ClickRepairInMenu",
-            "U_SelectDamagedSword"
-        ]
-    },
-    "U_TryClickSortie": {
-        "next": [
-            "U_ClickSortieInMenu",
-            "U_DetectWhereAmI"
-        ]
-    },
-
-    "U_VerifyMenuAfterRepair": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    581,
-                    28,
-                    112,
-                    57
-                ],
-                "template": "菜单目录.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "on_error": [
-            "U_DirAfterRepair"
-        ],
-        "next": [
-            "U_SortieAfterRepair"
-        ]
-    },
-    "U_VerifyMenuClosed": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    581,
-                    28,
-                    112,
-                    57
-                ],
-                "template": "菜单目录.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "next": [
-            "U_TryClickSortie",
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_VerifyMenuOpened": {
-        "recognition": "OCR",
-        "roi": [
-            586,
-            33,
-            102,
-            47
-        ],
-        "expected": "目录",
-        "on_error": [
-            "U_ClickMenuForRepair"
-        ],
-        "next": [
-            "U_ClickRepairInMenu"
-        ]
-    },
-    "U_VerifyRepairMenuClosed": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    581,
-                    28,
-                    112,
-                    57
-                ],
-                "template": "菜单目录.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "next": [
-            "U_TryClickRepair"
-        ],
-        "on_error": [
-            "U_SelectDamagedSword"
-        ]
-    },
-    "U_WaitRefresh": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    8,
-                    1,
-                    71,
-                    107
-                ],
-                "template": "本丸.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": {
-            "type": "DoNothing",
-            "param": {}
-        },
-        "post_delay": 3000,
-        "next": [
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_NavigateToUnderground": {
-        "next": [
-            "U_ClickMenu"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_CheckNavDirForRetry": {
-        "recognition": "OCR",
-        "roi": [
-            1179,
-            8,
-            95,
-            56
-        ],
-        "expected": "目录",
-        "action": "Click",
-        "target_offset": [
-            5,
-            3,
-            0,
-            0
-        ],
-        "next": [
-            "U_PostClickMenuHub"
-        ],
-        "pre_delay": 100,
-        "on_error": [
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_ClickRepairDone": {
-        "recognition": "OCR",
-        "roi": [
-            1159,
-            588,
-            83,
-            44
-        ],
-        "expected": "修复",
-        "action": "Click",
-        "target_offset": [
-            4,
-            2,
-            0,
-            0
-        ],
-        "next": [
-            "U_LogRepairDone"
-        ],
-        "pre_delay": 100
-    },
-    "U_LogRepairDone": {
-        "action": {
-            "type": "Custom",
-            "custom_action": "DamageLogAction",
-            "custom_action_param": {
-                "message": "[重伤检测] 修复完成"
-            }
-        },
-        "next": [
-            "U_DirAfterRepair"
-        ]
-    },
-    "U_ConfirmRepair": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1050,
-                    580,
-                    1,
-                    1
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": false,
-        "post_delay": 200,
-        "next": [
-            "U_ReturnHome"
-        ],
-        "pre_delay": 100
-    },
-    "U_ConfirmReturnHome": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    548,
-                    295,
-                    182,
-                    56
-                ],
-                "expected": "确认返回本丸"
-            }
-        },
-        "action": "Click",
+    "post_delay": 800,
+    "next": [
+      "U_ClickCaptain2"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickCaptain2": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [
-            490,
-            469,
-            1,
-            1
+          752,
+          137,
+          97,
+          29
         ],
         "target_offset": [
-            6,
-            4,
-            0,
-            0
+          6,
+          4,
+          0,
+          0
+        ]
+      }
+    },
+    "post_delay": 800,
+    "next": [
+      "U_ClickCaptain3"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickCaptain3": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          407,
+          510,
+          90,
+          31
         ],
-        "next": [
-            "U_DetectWhereAmI"
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
+        ]
+      }
+    },
+    "post_delay": 800,
+    "next": [
+      "U_ClickCaptain4"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickCaptain4": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          965,
+          438,
+          91,
+          34
         ],
-        "on_error": [
-            "U_DetectWhereAmI"
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
+        ]
+      }
+    },
+    "post_delay": 800,
+    "next": [
+      "U_ClickCaptain5"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickCaptain5": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          592,
+          603,
+          107,
+          46
         ],
-        "post_delay": 500,
-        "pre_delay": 100
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
+        ]
+      }
     },
-    "U_UseSpeedup": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    1050,
-                    580,
-                    1,
-                    1
-                ],
-                "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
-                ]
-            }
-        },
-        "enabled": false,
-        "next": [
-            "U_ConfirmRepair"
+    "next": [
+      "U_DetectSortOrder"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickCaptainSlot": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          1024,
+          140,
+          30,
+          50
         ],
-        "pre_delay": 100
-    },
-    "U_VerifyAfterRepairMenuClosed": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    581,
-                    28,
-                    112,
-                    57
-                ],
-                "template": "菜单目录.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "next": [
-            "U_TryClickAfterRepair",
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
         ]
+      }
     },
-    "U_VerifyHomeMenuClosed": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    581,
-                    28,
-                    112,
-                    57
-                ],
-                "template": "菜单目录.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "next": [
-            "U_TryClickHome",
-            "U_DetectWhereAmI"
-        ],
-        "on_error": [
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_VerifyMenuSortie": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    581,
-                    28,
-                    112,
-                    57
-                ],
-                "template": "菜单目录.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "next": [
-            "U_ClickSortieInMenu"
-        ]
-    },
-    "U_TryClickAfterRepair": {
-        "next": [
-            "U_SortieAfterRepair",
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_TryClickHome": {
-        "next": [
-            "U_ClickHomeInMenu",
-            "U_DetectWhereAmI"
-        ]
-    },
-    "U_StopOnEquipmentPopup": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    423,
-                    484,
-                    145,
-                    56
-                ],
-                "template": "整备刀装.png",
-                "green_mask": true,
-                "threshold": [
-                    0.98
-                ]
-            }
-        },
-        "action": "DoNothing",
-        "pre_delay": 100,
-        "on_error": [
-            "U_ClickTeam"
-        ]
-    },
-    "U_StopOnDamagePopup": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    233,
-                    128,
-                    71,
-                    549
-                ],
-                "template": "重伤.png",
-                "green_mask": true,
-                "threshold": [
-                    0.9
-                ]
-            }
-        },
-        "enabled": false,
-        "pre_delay": 100,
-        "next": [
-            "U_LogStopOnDamage"
-        ]
-    },
-    "U_StopOnDamageText": {
-        "recognition": "OCR",
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "post_delay": 1000,
+    "pre_delay": 100
+  },
+  "U_ClickDescending": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
         "roi": [
-            465,
-            310,
-            46,
-            24
+          939,
+          77,
+          56,
+          39
         ],
-        "expected": "重伤",
-        "enabled": false,
-        "pre_delay": 100,
-        "next": [
-            "U_LogStopOnDamageText"
+        "expected": "降序"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target_offset": [
+          4,
+          2,
+          0,
+          0
         ]
+      }
     },
-    "U_LogPreDamage1": {
-        "action": {
-            "type": "Custom",
-            "custom_action": "DamageLogAction",
-            "custom_action_param": {
-                "message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"
-            }
-        },
-        "next": [
-            "U_DecideDamage_Pre"
+    "enabled": false,
+    "post_delay": 800,
+    "next": [
+      "U_DetectSortOrder"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickHomeInMenu": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          1037,
+          169,
+          110,
+          44
+        ],
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
         ]
+      }
     },
-    "U_LogPreDamage2": {
-        "action": {
-            "type": "Custom",
-            "custom_action": "DamageLogAction",
-            "custom_action_param": {
-                "message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"
-            }
-        },
-        "next": [
-            "U_ConfirmCancelPreDamage2"
+    "enabled": false,
+    "next": [
+      "U_VerifyHomeMenuClosed"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickMenu": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [
+          1174,
+          3,
+          105,
+          66
+        ],
+        "expected": "目录"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target_offset": [
+          5,
+          3,
+          0,
+          0
         ]
+      }
     },
-    "U_LogMarchingDamage2": {
-        "action": {
-            "type": "Custom",
-            "custom_action": "DamageLogAction",
-            "custom_action_param": {
-                "message": "[重伤检测] 检测到刀剑男士重伤，撤退撤退"
-            }
-        },
-        "next": [
-            "U_ReturnHomeAfterMarchDamage"
+    "next": [
+      "U_PostClickMenuHub"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickMenuForRepair": {
+    "recognition": "OCR",
+    "roi": [
+      1179,
+      8,
+      95,
+      56
+    ],
+    "expected": "目录",
+    "action": "Click",
+    "target_offset": [
+      5,
+      3,
+      0,
+      0
+    ],
+    "post_delay": 300,
+    "next": [
+      "U_VerifyMenuOpened"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickMenuFromRepair": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [
+          1174,
+          3,
+          105,
+          66
+        ],
+        "expected": "目录"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target_offset": [
+          5,
+          3,
+          0,
+          0
         ]
+      }
     },
-    "U_LogStopOnDamage": {
-        "action": {
-            "type": "Custom",
-            "custom_action": "DamageLogAction",
-            "custom_action_param": {
-                "message": "[重伤检测] 检测到刀剑男士重伤，任务终止"
-            }
-        }
+    "enabled": false,
+    "next": [
+      "U_ClickHomeInMenu"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickRepairInMenu": {
+    "recognition": "OCR",
+    "roi": [
+      451,
+      379,
+      84,
+      40
+    ],
+    "expected": "修复",
+    "action": "Click",
+    "target_offset": [
+      4,
+      2,
+      0,
+      0
+    ],
+    "next": [
+      "U_VerifyRepairMenuClosed"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickSortieInMenu": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [
+          160,
+          158,
+          97,
+          62
+        ],
+        "expected": "出阵"
+      }
     },
-    "U_LogStopOnDamageText": {
-        "action": {
-            "type": "Custom",
-            "custom_action": "DamageLogAction",
-            "custom_action_param": {
-                "message": "[重伤检测] 检测到刀剑男士重伤，任务终止"
-            }
-        }
+    "action": {
+      "type": "Click",
+      "param": {
+        "target_offset": [
+          5,
+          3,
+          0,
+          0
+        ]
+      }
     },
-    "U_LogStopOnDamageRepair": {
-        "action": {
-            "type": "Custom",
-            "custom_action": "DamageLogAction",
-            "custom_action_param": {
-                "message": "[重伤检测] 检测到刀剑男士重伤，任务终止"
-            }
-        }
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "next": [
+      "U_VerifyMenuClosed",
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickSortieNow": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          1204,
+          629,
+          1,
+          1
+        ],
+        "target_offset": [
+          4,
+          2,
+          0,
+          0
+        ]
+      }
+    },
+    "next": [
+      "U_PostSortieHub"
+    ],
+    "pre_delay": 100
+  },
+  "U_ConfirmEnterUnderground": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          576,
+          60,
+          127,
+          33
+        ],
+        "template": "出阵确认.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "target": [
+      706,
+      582,
+      154,
+      42
+    ],
+    "target_offset": [
+      6,
+      4,
+      0,
+      0
+    ],
+    "next": [
+      "U_PostSortieHub"
+    ],
+    "on_error": [
+      "U_PostSortieHub"
+    ],
+    "pre_delay": 100
+  },
+  "U_ConfirmCancelMarchingDamage2": {
+    "recognition": "OCR",
+    "roi": [
+      763,
+      446,
+      48,
+      44
+    ],
+    "expected": "否",
+    "action": "Click",
+    "target_offset": [
+      4,
+      2,
+      0,
+      0
+    ],
+    "next": [
+      "U_ReturnHomeAfterMarchDamage"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "post_delay": 300,
+    "pre_delay": 100
+  },
+  "U_ConfirmCancelPreDamage2": {
+    "recognition": "OCR",
+    "roi": [
+      772,
+      448,
+      32,
+      40
+    ],
+    "expected": "否",
+    "action": "Click",
+    "target_offset": [
+      4,
+      2,
+      0,
+      0
+    ],
+    "next": [
+      "U_DecideDamage_Pre"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "post_delay": 500,
+    "pre_delay": 100
+  },
+  "U_ConfirmSelectSlot": {
+    "recognition": "OCR",
+    "roi": [
+      1052,
+      138,
+      32,
+      31
+    ],
+    "expected": "选",
+    "action": "Click",
+    "target_offset": [
+      4,
+      2,
+      0,
+      0
+    ],
+    "next": [
+      "U_CheckAccel"
+    ],
+    "on_error": [
+      "U_LogNoDamagedSword"
+    ],
+    "pre_delay": 100
+  },
+  "U_LogNoDamagedSword": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DamageLogAction",
+      "custom_action_param": {
+        "message": "未检测到可修复刀剑"
+      }
+    },
+    "next": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_ConfirmSortAsc": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [
+          939,
+          77,
+          56,
+          39
+        ],
+        "expected": "升序"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          1189,
+          140,
+          37,
+          61
+        ],
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
+        ]
+      }
+    },
+    "enabled": false,
+    "next": [
+      "U_IsPreSortieConfirm"
+    ],
+    "pre_delay": 100
+  },
+  "U_DecideDamage_Pre": {
+    "next": [
+      "U_NavigateToRepair",
+      "U_IsStopOnDamage"
+    ]
+  },
+  "U_DetectAfterSortieNow": {
+    "pre_delay": 0,
+    "next": [
+      "U_IsMarchingDamage2",
+      "U_IsFormationSelect",
+      "U_IsMarching",
+      "U_FallbackWait"
+    ]
+  },
+  "U_DetectSortOrder": {
+    "enabled": false,
+    "next": [
+      "U_ClickDescending",
+      "U_ConfirmSortAsc"
+    ]
+  },
+  "U_DirAfterRepair": {
+    "recognition": "OCR",
+    "roi": [
+      1179,
+      8,
+      95,
+      56
+    ],
+    "expected": "目录",
+    "action": "Click",
+    "target_offset": [
+      5,
+      3,
+      0,
+      0
+    ],
+    "next": [
+      "U_VerifyMenuAfterRepair"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 500
+  },
+  "U_FindSlot1": {
+    "recognition": "OCR",
+    "roi": [
+      380,
+      185,
+      113,
+      46
+    ],
+    "expected": "未使用",
+    "action": "Click",
+    "target_offset": [
+      4,
+      2,
+      0,
+      0
+    ],
+    "next": [
+      "U_ConfirmSelectSlot"
+    ],
+    "pre_delay": 100
+  },
+  "U_FindSlot2": {
+    "recognition": "OCR",
+    "roi": [
+      383,
+      323,
+      110,
+      42
+    ],
+    "expected": "未使用",
+    "action": "Click",
+    "target_offset": [
+      4,
+      2,
+      0,
+      0
+    ],
+    "next": [
+      "U_ConfirmSelectSlot"
+    ],
+    "pre_delay": 100
+  },
+  "U_FindSlot3": {
+    "recognition": "OCR",
+    "roi": [
+      381,
+      462,
+      110,
+      38
+    ],
+    "expected": "未使用",
+    "action": "Click",
+    "target_offset": [
+      4,
+      2,
+      0,
+      0
+    ],
+    "next": [
+      "U_ConfirmSelectSlot"
+    ],
+    "pre_delay": 100
+  },
+  "U_IsHome": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          8,
+          1,
+          71,
+          107
+        ],
+        "template": "本丸.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "U_NavigateToUnderground"
+    ]
+  },
+  "U_IsMarchingDamage2": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          229,
+          116,
+          90,
+          569
+        ],
+        "template": "重伤.png",
+        "green_mask": true,
+        "threshold": [
+          0.85
+        ]
+      }
+    },
+    "action": "Click",
+    "target": [
+      763,
+      446,
+      48,
+      44
+    ],
+    "target_offset": [
+      4,
+      2,
+      0,
+      0
+    ],
+    "next": [
+      "U_LogMarchingDamage2"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_IsPreDamage1": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          233,
+          128,
+          71,
+          549
+        ],
+        "template": "重伤.png",
+        "green_mask": true,
+        "threshold": [
+          0.9
+        ]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          772,
+          448,
+          32,
+          40
+        ],
+        "target_offset": [
+          4,
+          2,
+          0,
+          0
+        ]
+      }
+    },
+    "next": [
+      "U_LogPreDamage1"
+    ],
+    "pre_delay": 100,
+    "enabled": false
+  },
+  "U_IsPreDamage2": {
+    "recognition": "OCR",
+    "roi": [
+      465,
+      310,
+      46,
+      24
+    ],
+    "expected": "重伤",
+    "next": [
+      "U_LogPreDamage2"
+    ],
+    "enabled": false
+  },
+  "U_IsPreSortieConfirm": {
+    "recognition": "OCR",
+    "roi": [
+      1156,
+      584,
+      96,
+      47
+    ],
+    "expected": "即刻",
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "next": [
+      "U_ClickSortieNow"
+    ]
+  },
+  "U_NavigateToRepair": {
+    "next": [
+      "U_ClickMenuForRepair",
+      "U_DetectWhereAmI"
+    ],
+    "post_delay": 300
+  },
+  "U_PostClickMenuHub": {
+    "next": [
+      "U_VerifyMenuSortie",
+      "U_CheckNavDirForRetry",
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_PostSortieHub": {
+    "pre_delay": 0,
+    "next": [
+      "U_ConfirmEnterUnderground",
+      "U_IsPreDamage1",
+      "U_StopOnDamagePopup",
+      "U_IsPreDamage2",
+      "U_StopOnDamageText",
+      "U_CheckEquipmentPopup",
+      "U_DetectAfterSortieNow"
+    ]
+  },
+  "U_PreCheckTroopRecord": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          1139,
+          132,
+          124,
+          41
+        ],
+        "template": "部队记录.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "enabled": false,
+    "on_error": [
+      "U_DetectAfterSortieNow"
+    ],
+    "next": [
+      "U_PreCheckUseRecord"
+    ]
+  },
+  "U_PreCheckUseRecord": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          707,
+          53,
+          72,
+          64
+        ],
+        "template": "使用记录.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "enabled": false,
+    "on_error": [
+      "U_DetectAfterSortieNow"
+    ],
+    "next": [
+      "U_PreConfirmSupply"
+    ]
+  },
+  "U_PreConfirmSupply": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          789,
+          512,
+          1,
+          4
+        ],
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
+        ]
+      }
+    },
+    "enabled": false,
+    "next": [
+      "U_IsPreSortieConfirm"
+    ]
+  },
+  "U_ReturnHome": {
+    "next": [
+      "U_ClickMenuFromRepair"
+    ]
+  },
+  "U_ReturnHomeAfterMarchDamage": {
+    "action": "Click",
+    "target": [
+      1208,
+      449,
+      1,
+      1
+    ],
+    "target_offset": [
+      4,
+      2,
+      0,
+      0
+    ],
+    "next": [
+      "U_ConfirmReturnHome"
+    ],
+    "pre_delay": 100
+  },
+  "U_SelectDamagedSword": {
+    "next": [
+      "U_FindSlot1",
+      "U_FindSlot2",
+      "U_FindSlot3"
+    ],
+    "on_error": [
+      "U_CheckRepairScreen"
+    ]
+  },
+  "U_CheckRepairScreen": {
+    "recognition": "OCR",
+    "roi": [
+      554,
+      56,
+      175,
+      49
+    ],
+    "expected": "修复",
+    "next": [
+      "U_SelectDamagedSword"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_SortieAfterRepair": {
+    "recognition": "OCR",
+    "roi": [
+      165,
+      163,
+      87,
+      52
+    ],
+    "expected": "出阵",
+    "action": "Click",
+    "target_offset": [
+      5,
+      3,
+      0,
+      0
+    ],
+    "next": [
+      "U_VerifyAfterRepairMenuClosed"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_TryClickRepair": {
+    "next": [
+      "U_ClickRepairInMenu",
+      "U_SelectDamagedSword"
+    ]
+  },
+  "U_TryClickSortie": {
+    "next": [
+      "U_ClickSortieInMenu",
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_VerifyMenuAfterRepair": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          581,
+          28,
+          112,
+          57
+        ],
+        "template": "菜单目录.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "on_error": [
+      "U_DirAfterRepair"
+    ],
+    "next": [
+      "U_SortieAfterRepair"
+    ]
+  },
+  "U_VerifyMenuClosed": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          581,
+          28,
+          112,
+          57
+        ],
+        "template": "菜单目录.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "U_TryClickSortie",
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_VerifyMenuOpened": {
+    "recognition": "OCR",
+    "roi": [
+      586,
+      33,
+      102,
+      47
+    ],
+    "expected": "目录",
+    "on_error": [
+      "U_ClickMenuForRepair"
+    ],
+    "next": [
+      "U_ClickRepairInMenu"
+    ]
+  },
+  "U_VerifyRepairMenuClosed": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          581,
+          28,
+          112,
+          57
+        ],
+        "template": "菜单目录.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "U_TryClickRepair"
+    ],
+    "on_error": [
+      "U_SelectDamagedSword"
+    ]
+  },
+  "U_WaitRefresh": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          8,
+          1,
+          71,
+          107
+        ],
+        "template": "本丸.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "post_delay": 3000,
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_NavigateToUnderground": {
+    "next": [
+      "U_ClickMenu"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_CheckNavDirForRetry": {
+    "recognition": "OCR",
+    "roi": [
+      1179,
+      8,
+      95,
+      56
+    ],
+    "expected": "目录",
+    "action": "Click",
+    "target_offset": [
+      5,
+      3,
+      0,
+      0
+    ],
+    "next": [
+      "U_PostClickMenuHub"
+    ],
+    "pre_delay": 100,
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_ClickRepairDone": {
+    "recognition": "OCR",
+    "roi": [
+      1159,
+      588,
+      83,
+      44
+    ],
+    "expected": "修复",
+    "action": "Click",
+    "target_offset": [
+      4,
+      2,
+      0,
+      0
+    ],
+    "next": [
+      "U_LogRepairDone"
+    ],
+    "pre_delay": 100
+  },
+  "U_LogRepairDone": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DamageLogAction",
+      "custom_action_param": {
+        "message": "[重伤检测] 修复完成"
+      }
+    },
+    "next": [
+      "U_DirAfterRepair"
+    ]
+  },
+  "U_ConfirmRepair": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          1050,
+          580,
+          1,
+          1
+        ],
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
+        ]
+      }
+    },
+    "enabled": false,
+    "post_delay": 200,
+    "next": [
+      "U_ReturnHome"
+    ],
+    "pre_delay": 100
+  },
+  "U_ConfirmReturnHome": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [
+          548,
+          295,
+          182,
+          56
+        ],
+        "expected": "确认返回本丸"
+      }
+    },
+    "action": "Click",
+    "target": [
+      490,
+      469,
+      1,
+      1
+    ],
+    "target_offset": [
+      6,
+      4,
+      0,
+      0
+    ],
+    "next": [
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "post_delay": 500,
+    "pre_delay": 100
+  },
+  "U_UseSpeedup": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          1050,
+          580,
+          1,
+          1
+        ],
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
+        ]
+      }
+    },
+    "enabled": false,
+    "next": [
+      "U_ConfirmRepair"
+    ],
+    "pre_delay": 100
+  },
+  "U_VerifyAfterRepairMenuClosed": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          581,
+          28,
+          112,
+          57
+        ],
+        "template": "菜单目录.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "U_TryClickAfterRepair",
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_VerifyHomeMenuClosed": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          581,
+          28,
+          112,
+          57
+        ],
+        "template": "菜单目录.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "U_TryClickHome",
+      "U_DetectWhereAmI"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_VerifyMenuSortie": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          581,
+          28,
+          112,
+          57
+        ],
+        "template": "菜单目录.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "U_ClickSortieInMenu"
+    ]
+  },
+  "U_TryClickAfterRepair": {
+    "next": [
+      "U_SortieAfterRepair",
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_TryClickHome": {
+    "next": [
+      "U_ClickHomeInMenu",
+      "U_DetectWhereAmI"
+    ]
+  },
+  "U_StopOnEquipmentPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          423,
+          484,
+          145,
+          56
+        ],
+        "template": "整备刀装.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "DoNothing",
+    "pre_delay": 100,
+    "on_error": [
+      "U_ClickTeam"
+    ]
+  },
+  "U_StopOnDamagePopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          233,
+          128,
+          71,
+          549
+        ],
+        "template": "重伤.png",
+        "green_mask": true,
+        "threshold": [
+          0.9
+        ]
+      }
+    },
+    "enabled": false,
+    "pre_delay": 100,
+    "next": [
+      "U_LogStopOnDamage"
+    ]
+  },
+  "U_StopOnDamageText": {
+    "recognition": "OCR",
+    "roi": [
+      465,
+      310,
+      46,
+      24
+    ],
+    "expected": "重伤",
+    "enabled": false,
+    "pre_delay": 100,
+    "next": [
+      "U_LogStopOnDamageText"
+    ]
+  },
+  "U_LogPreDamage1": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DamageLogAction",
+      "custom_action_param": {
+        "message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"
+      }
+    },
+    "next": [
+      "U_DecideDamage_Pre"
+    ]
+  },
+  "U_LogPreDamage2": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DamageLogAction",
+      "custom_action_param": {
+        "message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"
+      }
+    },
+    "next": [
+      "U_ConfirmCancelPreDamage2"
+    ]
+  },
+  "U_LogMarchingDamage2": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DamageLogAction",
+      "custom_action_param": {
+        "message": "[重伤检测] 检测到刀剑男士重伤，撤退撤退"
+      }
+    },
+    "next": [
+      "U_ReturnHomeAfterMarchDamage"
+    ]
+  },
+  "U_LogStopOnDamage": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DamageLogAction",
+      "custom_action_param": {
+        "message": "[重伤检测] 检测到刀剑男士重伤，任务终止"
+      }
     }
+  },
+  "U_LogStopOnDamageText": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DamageLogAction",
+      "custom_action_param": {
+        "message": "[重伤检测] 检测到刀剑男士重伤，任务终止"
+      }
+    }
+  },
+  "U_LogStopOnDamageRepair": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DamageLogAction",
+      "custom_action_param": {
+        "message": "[重伤检测] 检测到刀剑男士重伤，任务终止"
+      }
+    }
+  },
+  "U_RestartGame": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": [
+      "U_DetectWhereAmI"
+    ]
+  }
 }

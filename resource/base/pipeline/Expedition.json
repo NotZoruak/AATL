@@ -16,6 +16,10 @@
       "E_IsInGameUpdatePopup",
       "E_IsInternalReport",
       "E_FallbackWait"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "E_RestartGame"
     ]
   },
   "E_DetectHome": {
@@ -1705,6 +1709,15 @@
     },
     "next": [
       "E_GoHome"
+    ]
+  },
+  "E_RestartGame": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": [
+      "Expedition"
     ]
   }
 }

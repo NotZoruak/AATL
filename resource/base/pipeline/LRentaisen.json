@@ -1040,6 +1040,10 @@
       "LR_IsInternalReport",
       "LR_IsConnectionInterrupted",
       "LR_FallbackWait"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "LR_RestartGame"
     ]
   },
   "LR_IsEventPage": {
@@ -1690,6 +1694,15 @@
       "LR_DetectWhereAmI"
     ],
     "on_error": [
+      "LR_DetectWhereAmI"
+    ]
+  },
+  "LR_RestartGame": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": [
       "LR_DetectWhereAmI"
     ]
   }

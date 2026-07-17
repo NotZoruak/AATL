@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "陆联任务设计.md",
-                "mode": "source",
+                "file": "习合任务设计.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "陆联任务设计"
+              "title": "习合任务设计"
             }
           }
         ]
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "4d9b02046e833808",
@@ -185,23 +186,29 @@
   },
   "active": "94ddccee65a65409",
   "lastOpenFiles": [
-    "陆联任务设计.md.tmp.27000.2c9c5a16cb58",
+    "复用节点清单.md.tmp.16160.05c1df50c28d",
+    "复用节点清单.md.tmp.16160.ee44661a195e",
+    "复用节点清单.md.tmp.16160.09ca10fa9327",
+    "习合任务设计.md.tmp.16160.dc9b7957e1c2",
+    "习合任务设计.md.tmp.16160.f1c95d40d78e",
+    "远征任务设计.md",
+    "刷花任务设计.md",
     "合战场任务设计.md",
-    "on_error兜底补完计划.md",
-    "复用节点清单.md.tmp.27384.fd89e84a33ac",
-    "复用节点清单.md.tmp.27384.e3032670a117",
-    "复用节点清单.md.tmp.27384.5cee2c6e54da",
-    "复用节点清单.md.tmp.27384.0f8a478e133a",
-    "开发日志.md.tmp.27384.d773c3637de2",
-    "复用节点清单.md.tmp.27384.beb3d0ea952c",
-    "复用节点清单.md.tmp.27384.b0665a1260a3",
-    "on_error兜底补完计划.md.tmp.27384.ce8326b490c5",
-    "on_error兜底补完计划.md.tmp.27384.72044b995656",
-    "on_error兜底补完计划.md.tmp.27384.fc64bc3648da",
-    "复用节点清单.md",
     "陆联任务设计.md",
-    "数据查找表设计.md",
+    "任务选项配置说明.md",
+    "任务选项配置说明.md.tmp.16160.737f4f8d8ed3",
+    "任务选项配置说明.md.tmp.16160.df8deee149ca",
+    "后续优化规划.md.tmp.16160.81c7d2c46a57",
+    "任务选项配置说明.md.tmp.16160.ee66f59d10fe",
+    "后续优化规划.md.tmp.16160.c6358e2ff06e",
+    "后续优化规划.md",
+    "后续优化规划.md.tmp.16160.8b602521f056",
+    "刮刮乐识别设计.md",
+    "开发日志.md",
     "习合任务设计.md",
+    "数据查找表设计.md",
+    "on_error兜底补完计划.md",
+    "复用节点清单.md",
     "已隐藏任务.md",
     "王点前撤退_ROI验证.md",
     "1-v0.5.4.md",

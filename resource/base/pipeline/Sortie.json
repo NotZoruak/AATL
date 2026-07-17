@@ -33,6 +33,10 @@
       "S_IsInGameUpdatePopup",
       "S_IsInternalReport",
       "S_FallbackWait"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "S_RestartGame"
     ]
   },
   "S_HasExpeditionReturn_Exp": {
@@ -3383,5 +3387,14 @@
         "message": "[重伤检测] 检测到刀剑男士重伤，任务终止"
       }
     }
+  },
+  "S_RestartGame": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": [
+      "S_DetectWhereAmI"
+    ]
   }
 }

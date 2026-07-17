@@ -235,11 +235,25 @@
       "sha512": "sha512-7EthKhbPUM51a74GY1XHu04tzosFfNEYxat0lyZdvrtnPPhzWGsJFb8mOURtDgplGDI9wGLDtk+TDRf1/tmXhg==",
       "type": "package"
     },
+    "HarfBuzzSharp.NativeAssets.Linux/8.3.1.1": {
+      "hashPath": "harfbuzzsharp.nativeassets.linux.8.3.1.1.nupkg.sha512",
+      "path": "harfbuzzsharp.nativeassets.linux/8.3.1.1",
+      "serviceable": true,
+      "sha512": "sha512-3EZ1mpIiKWRLL5hUYA82ZHteeDIVaEA/Z0rA/wU6tjx6crcAkJnBPwDXZugBSfo8+J3EznvRJf49uMsqYfKrHg==",
+      "type": "package"
+    },
     "HarfBuzzSharp.NativeAssets.Win32/8.3.1.1": {
       "hashPath": "harfbuzzsharp.nativeassets.win32.8.3.1.1.nupkg.sha512",
       "path": "harfbuzzsharp.nativeassets.win32/8.3.1.1",
       "serviceable": true,
       "sha512": "sha512-UsJtQsfAJoFDZrXc4hCUfRPMqccfKZ0iumJ/upcUjz/cmsTgVFGNEL5yaJWmkqsuFYdMWbj/En5/kS4PFl9hBA==",
+      "type": "package"
+    },
+    "HarfBuzzSharp.NativeAssets.macOS/8.3.1.1": {
+      "hashPath": "harfbuzzsharp.nativeassets.macos.8.3.1.1.nupkg.sha512",
+      "path": "harfbuzzsharp.nativeassets.macos/8.3.1.1",
+      "serviceable": true,
+      "sha512": "sha512-jbtCsgftcaFLCA13tVKo5iWdElJScrulLTKJre36O4YQTIlwDtPPqhRZNk+Y0vv4D1gxbscasGRucUDfS44ofQ==",
       "type": "package"
     },
     "HarfBuzzSharp/8.3.1.1": {
@@ -471,6 +485,13 @@
       "sha512": "sha512-eujNEpEhCl4UiqHTG0CeG/sWS8v/iYXGqUpaVkgBmYRZp3Utmz/aw38fuFL2rcnhj1FNfHwHaxGDeLY34a3nEA==",
       "type": "package"
     },
+    "Packaging.Targets/0.1.232": {
+      "hashPath": "packaging.targets.0.1.232.nupkg.sha512",
+      "path": "packaging.targets/0.1.232",
+      "serviceable": true,
+      "sha512": "sha512-4FqQN8mn4BzmiGIGYuPQWWMGOkozZoXz5bfbR1yabn3Q7iThb5PLSRynIBliJ/9vVxnRkv9ph43uh5myisev/g==",
+      "type": "package"
+    },
     "SecureArrays/1.0.41": {
       "hashPath": "securearrays.1.0.41.nupkg.sha512",
       "path": "securearrays/1.0.41",
@@ -548,11 +569,25 @@
       "sha512": "sha512-ab3J5OGdwYLyXnom90OghS9NyRPH9dtsRtW5B3mL+F43YTlxido3nUtiR9NjB/sI3jvG/J744C29bsSBQ28AfQ==",
       "type": "package"
     },
+    "SkiaSharp.NativeAssets.Linux/3.119.1": {
+      "hashPath": "skiasharp.nativeassets.linux.3.119.1.nupkg.sha512",
+      "path": "skiasharp.nativeassets.linux/3.119.1",
+      "serviceable": true,
+      "sha512": "sha512-9YNoc4SeKvQhrwiqwT4ezkNfMywPdPSK+UFvo/CaoXqLixcnYOTsQKm5BF9mc4+q3vKgDtEgMt0d1ygZhJTEHg==",
+      "type": "package"
+    },
     "SkiaSharp.NativeAssets.Win32/3.119.1": {
       "hashPath": "skiasharp.nativeassets.win32.3.119.1.nupkg.sha512",
       "path": "skiasharp.nativeassets.win32/3.119.1",
       "serviceable": true,
       "sha512": "sha512-8C4GSXVJqSr0y3Tyyv5jz6MJSTVUyYkMjeKrzK+VyZPGLo89MNoUEclVuYahzOCDdtbfXrd2HtxXfDuvoSXrUw==",
+      "type": "package"
+    },
+    "SkiaSharp.NativeAssets.macOS/3.119.1": {
+      "hashPath": "skiasharp.nativeassets.macos.3.119.1.nupkg.sha512",
+      "path": "skiasharp.nativeassets.macos/3.119.1",
+      "serviceable": true,
+      "sha512": "sha512-6hR3BdLhApjDxR1bFrJ7/lMydPfI01s3K+3WjIXFUlfC0MFCFCwRzv+JtzIkW9bDXs7XUVQS+6EVf0uzCasnGQ==",
       "type": "package"
     },
     "SkiaSharp/3.119.1": {
@@ -679,16 +714,27 @@
     }
   },
   "runtimeTarget": {
-    "name": ".NETCoreApp,Version=v10.0/win-x64",
+    "name": ".NETCoreApp,Version=v10.0",
     "signature": ""
   },
   "targets": {
-    ".NETCoreApp,Version=v10.0": {},
-    ".NETCoreApp,Version=v10.0/win-x64": {
+    ".NETCoreApp,Version=v10.0": {
       "Avalonia.Angle.Windows.Natives/2.1.25547.20250602": {
-        "native": {
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/av_libglesv2.dll": {
+            "assetType": "native",
+            "fileVersion": "2.1.25606.0",
+            "rid": "win-arm64"
+          },
           "runtimes/win-x64/native/av_libglesv2.dll": {
-            "fileVersion": "2.1.25606.0"
+            "assetType": "native",
+            "fileVersion": "2.1.25606.0",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/av_libglesv2.dll": {
+            "assetType": "native",
+            "fileVersion": "2.1.25606.0",
+            "rid": "win-x86"
           }
         }
       },
@@ -789,6 +835,13 @@
             "assemblyVersion": "11.3.12.0",
             "fileVersion": "11.3.12.0"
           }
+        },
+        "runtimeTargets": {
+          "runtimes/osx/native/libAvaloniaNative.dylib": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "osx"
+          }
         }
       },
       "Avalonia.Remote.Protocol/11.3.12": {
@@ -803,7 +856,9 @@
         "dependencies": {
           "Avalonia": "11.3.12",
           "HarfBuzzSharp": "8.3.1.1",
-          "SkiaSharp": "3.119.1"
+          "HarfBuzzSharp.NativeAssets.Linux": "8.3.1.1",
+          "SkiaSharp": "3.119.1",
+          "SkiaSharp.NativeAssets.Linux": "3.119.1"
         },
         "runtime": {
           "lib/net8.0/Avalonia.Skia.dll": {
@@ -1133,16 +1188,97 @@
           }
         }
       },
+      "HarfBuzzSharp.NativeAssets.Linux/8.3.1.1": {
+        "runtimeTargets": {
+          "runtimes/linux-arm/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-arm"
+          },
+          "runtimes/linux-arm64/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-loongarch64/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-loongarch64"
+          },
+          "runtimes/linux-musl-arm/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-musl-arm"
+          },
+          "runtimes/linux-musl-arm64/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-musl-arm64"
+          },
+          "runtimes/linux-musl-loongarch64/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-musl-loongarch64"
+          },
+          "runtimes/linux-musl-riscv64/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-musl-riscv64"
+          },
+          "runtimes/linux-musl-x64/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-musl-x64"
+          },
+          "runtimes/linux-riscv64/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-riscv64"
+          },
+          "runtimes/linux-x64/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-x64"
+          },
+          "runtimes/linux-x86/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-x86"
+          }
+        }
+      },
       "HarfBuzzSharp.NativeAssets.Win32/8.3.1.1": {
-        "native": {
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/libHarfBuzzSharp.dll": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-arm64"
+          },
           "runtimes/win-x64/native/libHarfBuzzSharp.dll": {
-            "fileVersion": "0.0.0.0"
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/libHarfBuzzSharp.dll": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-x86"
+          }
+        }
+      },
+      "HarfBuzzSharp.NativeAssets.macOS/8.3.1.1": {
+        "runtimeTargets": {
+          "runtimes/osx/native/libHarfBuzzSharp.dylib": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "osx"
           }
         }
       },
       "HarfBuzzSharp/8.3.1.1": {
         "dependencies": {
-          "HarfBuzzSharp.NativeAssets.Win32": "8.3.1.1"
+          "HarfBuzzSharp.NativeAssets.Win32": "8.3.1.1",
+          "HarfBuzzSharp.NativeAssets.macOS": "8.3.1.1"
         },
         "runtime": {
           "lib/net8.0/HarfBuzzSharp.dll": {
@@ -1174,7 +1310,8 @@
         "dependencies": {
           "Avalonia.Desktop": "11.3.12",
           "MFAAvalonia.Core": "1.1.0",
-          "MFAAvalonia.Core.Reference": "2.12.0.0"
+          "MFAAvalonia.Core.Reference": "2.12.0.0",
+          "Packaging.Targets": "0.1.232"
         },
         "runtime": {
           "MATR.dll": {}
@@ -1641,15 +1778,86 @@
         }
       },
       "Onigwrap/1.0.10": {
-        "native": {
-          "runtimes/win-x64/native/libonigwrap.dll": {
-            "fileVersion": "0.0.0.0"
-          }
-        },
         "runtime": {
           "lib/netstandard2.0/Onigwrap.dll": {
             "assemblyVersion": "1.0.10.0",
             "fileVersion": "1.0.10.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-arm64/native/libonigwrap.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-bionic-arm64/native/libonigwrap.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-bionic-arm64"
+          },
+          "runtimes/linux-bionic-x64/native/libonigwrap.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-bionic-x64"
+          },
+          "runtimes/linux-musl-arm64/native/libonigwrap.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-musl-arm64"
+          },
+          "runtimes/linux-musl-x64/native/libonigwrap.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-musl-x64"
+          },
+          "runtimes/linux-x64/native/libonigwrap.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-x64"
+          },
+          "runtimes/maccatalyst-arm64/native/libonigwrap.dylib": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "maccatalyst-arm64"
+          },
+          "runtimes/maccatalyst-x64/native/libonigwrap.dylib": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "maccatalyst-x64"
+          },
+          "runtimes/osx-arm64/native/libonigwrap.dylib": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "osx-arm64"
+          },
+          "runtimes/osx-x64/native/libonigwrap.dylib": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-arm64/native/libonigwrap.dll": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-x64/native/libonigwrap.dll": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/libonigwrap.dll": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-x86"
+          }
+        }
+      },
+      "Packaging.Targets/0.1.232": {
+        "runtimeTargets": {
+          "runtimes/win7-x64/native/lzma.dll": {
+            "assetType": "native",
+            "fileVersion": "5.2.3.0",
+            "rid": "win7-x64"
           }
         }
       },
@@ -1748,15 +1956,62 @@
         }
       },
       "SharpHook/7.1.1": {
-        "native": {
-          "runtimes/win-x64/native/uiohook.dll": {
-            "fileVersion": "0.0.0.0"
-          }
-        },
         "runtime": {
           "lib/net10.0/SharpHook.dll": {
             "assemblyVersion": "7.1.1.0",
             "fileVersion": "7.1.1.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-arm/native/libuiohook.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-arm"
+          },
+          "runtimes/linux-arm64/native/libuiohook.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-x64/native/libuiohook.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-x64"
+          },
+          "runtimes/maccatalyst-arm64/native/libuiohook.dylib": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "maccatalyst-arm64"
+          },
+          "runtimes/maccatalyst-x64/native/libuiohook.dylib": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "maccatalyst-x64"
+          },
+          "runtimes/osx-arm64/native/libuiohook.dylib": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "osx-arm64"
+          },
+          "runtimes/osx-x64/native/libuiohook.dylib": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-arm64/native/uiohook.dll": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-x64/native/uiohook.dll": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/uiohook.dll": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-x86"
           }
         }
       },
@@ -1768,16 +2023,97 @@
           }
         }
       },
+      "SkiaSharp.NativeAssets.Linux/3.119.1": {
+        "runtimeTargets": {
+          "runtimes/linux-arm/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-arm"
+          },
+          "runtimes/linux-arm64/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-loongarch64/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-loongarch64"
+          },
+          "runtimes/linux-musl-arm/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-musl-arm"
+          },
+          "runtimes/linux-musl-arm64/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-musl-arm64"
+          },
+          "runtimes/linux-musl-loongarch64/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-musl-loongarch64"
+          },
+          "runtimes/linux-musl-riscv64/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-musl-riscv64"
+          },
+          "runtimes/linux-musl-x64/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-musl-x64"
+          },
+          "runtimes/linux-riscv64/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-riscv64"
+          },
+          "runtimes/linux-x64/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-x64"
+          },
+          "runtimes/linux-x86/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-x86"
+          }
+        }
+      },
       "SkiaSharp.NativeAssets.Win32/3.119.1": {
-        "native": {
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/libSkiaSharp.dll": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-arm64"
+          },
           "runtimes/win-x64/native/libSkiaSharp.dll": {
-            "fileVersion": "0.0.0.0"
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/libSkiaSharp.dll": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-x86"
+          }
+        }
+      },
+      "SkiaSharp.NativeAssets.macOS/3.119.1": {
+        "runtimeTargets": {
+          "runtimes/osx/native/libSkiaSharp.dylib": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "osx"
           }
         }
       },
       "SkiaSharp/3.119.1": {
         "dependencies": {
-          "SkiaSharp.NativeAssets.Win32": "3.119.1"
+          "SkiaSharp.NativeAssets.Win32": "3.119.1",
+          "SkiaSharp.NativeAssets.macOS": "3.119.1"
         },
         "runtime": {
           "lib/net8.0/SkiaSharp.dll": {
@@ -1787,15 +2123,87 @@
         }
       },
       "SoundFlow/1.4.0": {
-        "native": {
-          "runtimes/win-x64/native/miniaudio.dll": {
-            "fileVersion": "0.0.0.0"
-          }
-        },
         "runtime": {
           "lib/net8.0/SoundFlow.dll": {
             "assemblyVersion": "1.4.0.0",
             "fileVersion": "1.4.0.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/android-arm/native/libminiaudio.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "android-arm"
+          },
+          "runtimes/android-arm64/native/libminiaudio.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "android-arm64"
+          },
+          "runtimes/android-x64/native/libminiaudio.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "android-x64"
+          },
+          "runtimes/freebsd-arm64/native/libminiaudio.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "freebsd-arm64"
+          },
+          "runtimes/freebsd-x64/native/libminiaudio.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "freebsd-x64"
+          },
+          "runtimes/ios-arm64/native/miniaudio.framework/Info.plist": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "ios-arm64"
+          },
+          "runtimes/ios-arm64/native/miniaudio.framework/miniaudio": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "ios-arm64"
+          },
+          "runtimes/linux-arm/native/libminiaudio.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-arm"
+          },
+          "runtimes/linux-arm64/native/libminiaudio.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-x64/native/libminiaudio.so": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx-arm64/native/libminiaudio.dylib": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "osx-arm64"
+          },
+          "runtimes/osx-x64/native/libminiaudio.dylib": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-arm64/native/miniaudio.dll": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-x64/native/miniaudio.dll": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/miniaudio.dll": {
+            "assetType": "native",
+            "fileVersion": "0.0.0.0",
+            "rid": "win-x86"
           }
         }
       },
@@ -1810,6 +2218,7 @@
           "CalcBindingAva": "2.5.3",
           "FluentIcons.Avalonia.Fluent": "2.0.318",
           "SkiaSharp": "3.119.1",
+          "SkiaSharp.NativeAssets.Linux": "3.119.1",
           "System.Linq.Dynamic.Core": "1.7.1"
         },
         "runtime": {
@@ -1888,17 +2297,33 @@
           "System.CodeDom": "10.0.0"
         },
         "runtime": {
-          "runtimes/win/lib/net10.0/System.Management.dll": {
+          "lib/net10.0/System.Management.dll": {
             "assemblyVersion": "10.0.0.0",
             "fileVersion": "10.0.25.52411"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net10.0/System.Management.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "assetType": "runtime",
+            "fileVersion": "10.0.25.52411",
+            "rid": "win"
           }
         }
       },
       "System.Security.Cryptography.Pkcs/8.0.1": {
         "runtime": {
-          "runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll": {
+          "lib/net8.0/System.Security.Cryptography.Pkcs.dll": {
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.0.1024.46610"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "assetType": "runtime",
+            "fileVersion": "8.0.1024.46610",
+            "rid": "win"
           }
         }
       },
