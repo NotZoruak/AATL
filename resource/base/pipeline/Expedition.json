@@ -1196,9 +1196,13 @@
       }
     },
     "next": [
-      "E_WaitRefresh"
+      "E_WaitRefresh",
+      "Expedition"
     ],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": [
+      "Expedition"
+    ]
   },
   "E_ClickExpeditionReturn_Exp": {
     "recognition": "OCR",

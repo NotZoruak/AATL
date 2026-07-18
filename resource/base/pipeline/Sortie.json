@@ -384,6 +384,7 @@
     "next": [
       "S_PostSortieHub"
     ],
+    "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
   },
   "S_PostSortieHub": {
@@ -432,7 +433,8 @@
       "S_IsTroopDepleted",
       "S_IsMarching",
       "S_IsFormationSelect",
-      "S_FallbackWait"
+      "S_FallbackWait",
+      "S_DetectWhereAmI"
     ]
   },
   "S_IsTroopDepleted": {
