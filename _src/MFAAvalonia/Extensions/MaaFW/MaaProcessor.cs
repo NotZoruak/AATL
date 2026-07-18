@@ -46,6 +46,8 @@ public class MaaProcessor
 
     private static readonly Random Random = new();
     private int _taskQueueTotal;
+    private int _taskSuccessCount;
+    private int _taskFailureCount;
     private readonly BlockingCollection<Func<Task>> _commandQueue = new();
     private readonly object _commandThreadLock = new();
     private readonly CancellationTokenSource _commandThreadCts = new();
@@ -2940,7 +2942,6 @@ public class MaaProcessor
     {
         while (TaskQueue.Count > 0 && !token.IsCancellationRequested)
         {
-            // 等待 modal 弹窗确认（display=modal 时任务队列暂停推进）
             while (_isWaitingForModal && !token.IsCancellationRequested)
             {
                 await Task.Delay(100, token);
@@ -2952,11 +2953,13 @@ public class MaaProcessor
             if (status != MFATask.MFATaskStatus.SUCCEEDED)
             {
                 Status = status;
-                return;
+                break;
             }
         }
         if (Status == MFATask.MFATaskStatus.NOT_STARTED)
             Status = !token.IsCancellationRequested ? MFATask.MFATaskStatus.SUCCEEDED : MFATask.MFATaskStatus.STOPPED;
+        var stopped = token.IsCancellationRequested;
+        AddLog(stopped ? $"任务已停止：{_taskSuccessCount} 个成功，{_taskFailureCount} 个失败" : $"任务执行完毕：{_taskSuccessCount} 个成功，{_taskFailureCount} 个失败", (IBrush?)null);
     }
 
     public class NodeAndParam
@@ -3622,21 +3625,21 @@ public class MaaProcessor
 
     private void AddCoreTasksAsync(List<NodeAndParam> taskAndParams, CancellationToken token)
     {
+        _taskSuccessCount = 0;
+        _taskFailureCount = 0;
         foreach (var task in taskAndParams)
         {
             TaskQueue.Enqueue(CreateMaaFWTask(task.Name,
                 async () =>
                 {
                     token.ThrowIfCancellationRequested();
-                    // if (task.Tasks != null)
-                    //     NodeDictionary = task.Tasks;
-                    await TryRunTasksAsync(MaaTasker, task.Entry, task.Param, token);
+                    await TryRunTasksAsync(MaaTasker, task.Entry, task.Param, task.Name, token, isCoreTask: true);
                 }, task.Count ?? 1
             ));
         }
     }
 
-    async private Task TryRunTasksAsync(MaaTasker? maa, string? task, string? param, CancellationToken token)
+    async private Task TryRunTasksAsync(MaaTasker? maa, string? task, string? param, string? taskName, CancellationToken token, bool isCoreTask = false)
     {
         if (maa == null || task == null) return;
 
@@ -3650,7 +3653,16 @@ public class MaaProcessor
                 jobStatus = job.Wait().ThrowIfNot(MaaJobStatus.Succeeded);
         }), token, (ex) => throw ex, name: "队列任务", catchException: true, shouldLog: false);
 
-        AddLogByKey(jobStatus == MaaJobStatus.Succeeded ? LangKeys.TaskCompleted : LangKeys.TaskFailed, (IBrush?)null);
+        if (isCoreTask)
+        {
+            if (jobStatus == MaaJobStatus.Succeeded)
+                _taskSuccessCount++;
+            else
+                _taskFailureCount++;
+        }
+
+        var statusText = jobStatus == MaaJobStatus.Succeeded ? "任务完成" : "任务失败";
+        AddLog($"{taskName} {statusText}", (IBrush?)null);
 
         // 等待 PostStop 清理完成，防止下一轮 AppendTask 被中断
         await Task.Delay(500, token);
