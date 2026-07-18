@@ -3627,8 +3627,9 @@ public class MaaProcessor
     {
         _taskSuccessCount = 0;
         _taskFailureCount = 0;
-        foreach (var task in taskAndParams)
+        for (int i = 0; i < taskAndParams.Count; i++)
         {
+            var task = taskAndParams[i];
             TaskQueue.Enqueue(CreateMaaFWTask(task.Name,
                 async () =>
                 {
@@ -3636,6 +3637,14 @@ public class MaaProcessor
                     await TryRunTasksAsync(MaaTasker, task.Entry, task.Param, task.Name, token, isCoreTask: true);
                 }, task.Count ?? 1
             ));
+            // 不同任务之间插入回本丸（最后一个任务不插）
+            if (i < taskAndParams.Count - 1)
+            {
+                TaskQueue.Enqueue(CreateMaaFWTask("回本丸", async () =>
+                {
+                    await TryRunTasksAsync(MaaTasker, "GoHome", "{}", "回本丸", token);
+                }));
+            }
         }
     }
 
