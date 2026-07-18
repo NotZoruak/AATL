@@ -2441,5 +2441,14 @@
     "next": [
       "U_DetectWhereAmI"
     ]
+  },
+  "U_DragCaptain": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DragCaptainAction"
+    },
+    "next": [
+      "U_IsPreSortieConfirm"
+    ]
   }
 }

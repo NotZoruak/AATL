@@ -3396,5 +3396,14 @@
     "next": [
       "S_DetectWhereAmI"
     ]
+  },
+  "S_DragCaptain": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DragCaptainAction"
+    },
+    "next": [
+      "S_IsPreSortieConfirm"
+    ]
   }
 }

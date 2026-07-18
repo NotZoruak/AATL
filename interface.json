@@ -4465,7 +4465,12 @@
         },
         {
           "name": "队内拖拽",
-          "DisplayName": "队内拖拽（待实现）",
+          "DisplayName": "队内拖拽",
+          "pipeline_override": {
+            "S_CaptainHub": { "next": ["S_DragCaptain", "S_IsPreSortieConfirm"] },
+            "LR_CaptainHub": { "next": ["LR_DragCaptain", "LR_IsPreSortieConfirm"] },
+            "U_CaptainHub": { "next": ["U_DragCaptain", "U_IsPreSortieConfirm"] }
+          },
           "option": ["拖拽跳过位置"]
         }
       ]

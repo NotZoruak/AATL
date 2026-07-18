@@ -1705,5 +1705,14 @@
     "next": [
       "LR_DetectWhereAmI"
     ]
+  },
+  "LR_DragCaptain": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DragCaptainAction"
+    },
+    "next": [
+      "LR_IsPreSortieConfirm"
+    ]
   }
 }

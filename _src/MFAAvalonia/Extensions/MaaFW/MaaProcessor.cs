@@ -4343,6 +4343,7 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.CustomProgramAction());
             tasker.Resource.Register(new Custom.KillProcessAction());
             tasker.Resource.Register(new Custom.RestartGameAction());
+            tasker.Resource.Register(new Custom.DragCaptainAction());
             tasker.Resource.Register(new Custom.ComputerOperationAction());
             tasker.Resource.Register(new Custom.WebhookAction());
             LoggerHelper.Info("已注册内置特殊任务动作。");
