@@ -4483,7 +4483,7 @@
         { "name": "位置五" },
         { "name": "位置六" }
       ],
-      "default_case": ["位置一"]
+      "default_case": []
     }
   },
   "github": "https://github.com/NotZoruak/MATR"
