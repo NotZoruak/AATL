@@ -75,13 +75,14 @@
       "repeatable": true,
       "repeat_count": 1,
       "option": [
-        "LR_换队长",
-        "LR_部队交替",
         "LR_选择部队",
-        "LR_选择难度"
+        "LR_选择难度",
+        "LR_同步远征",
+        "LR_换队长",
+        "LR_部队交替"
       ],
       "label": "陆联",
-      "description": "联队战（陆联）活动自动化出阵。\n\n- **换队长**：切换队长的方式可在全局设置中修改\n- **部队交替**：在行动选择界面自动切换部队，勾选后点击齿轮设置队伍序列\n- **选择部队**：选择出阵部队（第1轮使用）\n- **选择难度**：易/普/难/超难\n- **重复次数**：检测到通行令牌不足弹窗时会自动购买，一次购买三枚\n\n> ⚠️ **注意**：游戏本身会在通行令牌不足时自动使用道具"
+      "description": "联队战（陆联）活动自动化出阵。\n\n- **换队长**：切换队长的方式可在全局设置中修改\n- **部队交替**：在行动选择界面自动切换部队，勾选后点击齿轮设置队伍序列\n- **选择部队**：选择出阵部队（第1轮使用）\n- **选择难度**：易/普/难/超难\n- **重复次数**：检测到通行令牌不足弹窗时会自动购买，一次购买三枚\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保陆联使用的队伍在远征任务中设置为「休息」\n\n> ⚠️ **注意**：游戏本身会在通行令牌不足时自动使用道具"
     },
     {
       "name": "刷花",
@@ -4323,6 +4324,160 @@
               ]
             },
             "U_WaitRefresh": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "LR_同步远征": {
+      "name": "LR_同步远征",
+      "label": "同步远征",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "LR_IsHome": {
+              "next": [
+                "Expedition"
+              ]
+            },
+            "E_CheckTeam1": {
+              "enabled": true
+            },
+            "E_SelectMap1": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 1
+                }
+              },
+              "next": [
+                "E_ConfirmDispatch1"
+              ]
+            },
+            "E_ClickSmallMap1": {
+              "enabled": false
+            },
+            "E_SelectMap2": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 2
+                }
+              },
+              "next": [
+                "E_ConfirmDispatch2"
+              ]
+            },
+            "E_ClickSmallMap2": {
+              "enabled": false
+            },
+            "E_SelectMap3": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 3
+                }
+              },
+              "next": [
+                "E_ConfirmDispatch3"
+              ]
+            },
+            "E_ClickSmallMap3": {
+              "enabled": false
+            },
+            "E_SelectMap4": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 4
+                }
+              },
+              "next": [
+                "E_ConfirmDispatch4"
+              ]
+            },
+            "E_ClickSmallMap4": {
+              "enabled": false
+            },
+            "E_SelectMap5": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 5
+                }
+              },
+              "next": [
+                "E_ConfirmDispatch5"
+              ]
+            },
+            "E_ClickSmallMap5": {
+              "enabled": false
+            },
+            "E_VerifyScreen1": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen2": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen3": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen4": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_VerifyScreen5": {
+              "on_error": [
+                "E_CheckTeamStatus"
+              ]
+            },
+            "E_ClickBackToHome": {
+              "action": {
+                "type": "Click",
+                "param": {
+                  "target": [
+                    1037,
+                    169,
+                    110,
+                    44
+                  ],
+                  "target_offset": [
+                    6,
+                    4,
+                    0,
+                    0
+                  ]
+                }
+              },
+              "next": [
+                "LR_WaitRefresh"
+              ],
+              "on_error": [
+                "LR_DetectWhereAmI"
+              ]
+            },
+            "E_AllTeamsBusy": {
+              "next": [
+                "LR_NavigateToUnderground"
+              ]
+            },
+            "LR_WaitRefresh": {
               "enabled": true
             }
           }

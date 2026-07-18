@@ -86,11 +86,34 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         void FlushBatch()
         {
             if (checkboxBatch.Count == 0) return;
-            var grid = new UniformGrid { Columns = 2, Margin = new Thickness(10, 4, 10, 4) };
+            var grid = new UniformGrid
+            {
+                Columns = 2,
+                Margin = new Thickness(10, 4, 10, 4),
+                HorizontalAlignment = HorizontalAlignment.Stretch
+            };
             foreach (var (opt, ifOpt) in checkboxBatch)
             {
                 grid.Children.Add(CreateCheckboxControl(opt, ifOpt, dragItem));
             }
+            grid.SizeChanged += (sender, _) =>
+            {
+                if (sender is not UniformGrid ug || ug.Children.Count == 0) return;
+                double maxChildWidth = 0;
+                foreach (var child in ug.Children)
+                {
+                    if (child is Control c)
+                    {
+                        c.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                        if (c.DesiredSize.Width > maxChildWidth)
+                            maxChildWidth = c.DesiredSize.Width;
+                    }
+                }
+                if (maxChildWidth <= 0) return;
+                var available = ug.Bounds.Width - ug.Margin.Left - ug.Margin.Right;
+                var cols = Math.Max(1, (int)(available / maxChildWidth));
+                ug.Columns = cols;
+            };
             panel.Children.Add(grid);
             checkboxBatch.Clear();
         }

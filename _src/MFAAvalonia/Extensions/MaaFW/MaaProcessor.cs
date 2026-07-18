@@ -3252,8 +3252,8 @@ public class MaaProcessor
         // 4. 合并任务自身的 option（task.option，最高优先级）
         UpdateTaskDictionary(ref taskModels, task.InterfaceItem?.Option, task.InterfaceItem?.Advanced);
 
-        // 5. 合战场/地下城同步远征：自动复用远征任务的队伍配置
-        if (task.InterfaceItem?.Entry == "Sortie" || task.InterfaceItem?.Entry == "Underground")
+        // 5. 合战场/地下城/陆联同步远征：自动复用远征任务的队伍配置
+        if (task.InterfaceItem?.Entry == "Sortie" || task.InterfaceItem?.Entry == "Underground" || task.InterfaceItem?.Entry == "LRentaisen")
         {
             var syncExpEnabled = task.InterfaceItem?.Option
                 ?.FirstOrDefault(o => (o.Name ?? "").EndsWith("同步远征"))
