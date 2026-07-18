@@ -114,7 +114,12 @@ public class DragCaptainAction : IMaaCustomAction
         var skipSet = new HashSet<int>();
         var iface = MaaProcessor.Interface;
         var globalOpts = iface?.GlobalSelectOptions;
-        var dragSkipOpt = globalOpts?.FirstOrDefault(o => o.Name == "拖拽跳过位置");
+        if (globalOpts == null) return skipSet;
+
+        // 「拖拽跳过位置」是「换队长方式」的子选项，需穿透 SubOptions 查找
+        var captainOpt = globalOpts.FirstOrDefault(o => o.Name == "换队长方式");
+        var dragSkipOpt = captainOpt?.SubOptions?.FirstOrDefault(o => o.Name == "拖拽跳过位置");
+        LoggerHelper.Info($"[DragCaptain] dragSkipOpt found={dragSkipOpt != null}, SelectedCases={string.Join(",", dragSkipOpt?.SelectedCases ?? new List<string>())}");
         if (dragSkipOpt?.SelectedCases == null) return skipSet;
 
         foreach (var name in dragSkipOpt.SelectedCases)
@@ -126,6 +131,7 @@ public class DragCaptainAction : IMaaCustomAction
             else if (name == "位置五") skipSet.Add(4);
             else if (name == "位置六") skipSet.Add(5);
         }
+        LoggerHelper.Info($"[DragCaptain] 跳过位置: [{string.Join(",", skipSet)}]");
         return skipSet;
     }
 }
