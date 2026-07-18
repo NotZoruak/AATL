@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "合战场任务设计.md",
+                "file": "远征任务设计.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "合战场任务设计"
+              "title": "远征任务设计"
             }
           }
         ]
@@ -95,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "合战场任务设计.md",
+                "file": "习合任务设计.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +105,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "合战场任务设计 的反向链接列表"
+              "title": "习合任务设计 的反向链接列表"
             }
           },
           {
@@ -186,22 +186,23 @@
   },
   "active": "94ddccee65a65409",
   "lastOpenFiles": [
+    "远征任务设计.md.tmp.35348.d766efabe2a6",
+    "合战场任务设计.md",
+    "远征任务设计.md.tmp.16160.128042e0d518",
+    "远征任务设计.md",
+    "标准化.md",
+    "习合任务设计.md",
+    "后续优化规划.md.tmp.16160.8db2e8797f80",
+    "后续优化规划.md.tmp.16160.bf5179f02a18",
+    "后续优化规划.md.tmp.16160.a23d6d82edfa",
+    "后续优化规划.md.tmp.16160.4343e9a76fa4",
+    "开发日志.md.tmp.16160.3a0e09ca3b90",
     "合战场任务设计.md.tmp.16160.71c6d3118ef6",
     "开发日志.md.tmp.16160.a5d012d54ebd",
     "后续优化规划.md.tmp.16160.1f47419d086b",
     "后续优化规划.md.tmp.16160.104cb31d8c15",
-    "后续优化规划.md.tmp.16160.9a21eefcb01f",
-    "远征任务设计.md",
-    "后续优化规划.md.tmp.16160.8aab8af7ab0a",
-    "远征任务设计.md.tmp.16160.69308de8cd91",
-    "远征任务设计.md.tmp.16160.e6dc36f89004",
-    "远征任务设计.md.tmp.16160.b537b4e1156e",
-    "远征任务设计.md.tmp.16160.e58d577df1a7",
-    "远征任务设计.md.tmp.16160.986927960081",
     "后续优化规划.md",
     "陆联任务设计.md",
-    "合战场任务设计.md",
-    "习合任务设计.md",
     "刷花任务设计.md",
     "任务选项配置说明.md",
     "刮刮乐识别设计.md",
