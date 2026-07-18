@@ -182,6 +182,13 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
                     Index = saved.Index,
                     Data = saved.Data != null ? new Dictionary<string, string?>(saved.Data) : null,
                     SelectedCases = saved.SelectedCases != null ? new List<string>(saved.SelectedCases) : null,
+                    SubOptions = saved.SubOptions?.Select(s => new MaaInterface.MaaInterfaceSelectOption
+                    {
+                        Name = s.Name,
+                        Index = s.Index,
+                        Data = s.Data != null ? new Dictionary<string, string?>(s.Data) : null,
+                        SelectedCases = s.SelectedCases != null ? new List<string>(s.SelectedCases) : null,
+                    }).ToList(),
                 };
                 SetDefaultOptionValue(maaInterface, savedOption);
                 return savedOption;
@@ -836,6 +843,13 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
                     Index = saved.Index,
                     Data = saved.Data != null ? new Dictionary<string, string?>(saved.Data) : null,
                     SelectedCases = saved.SelectedCases != null ? new List<string>(saved.SelectedCases) : null,
+                    SubOptions = saved.SubOptions?.Select(s => new MaaInterface.MaaInterfaceSelectOption
+                    {
+                        Name = s.Name,
+                        Index = s.Index,
+                        Data = s.Data != null ? new Dictionary<string, string?>(s.Data) : null,
+                        SelectedCases = s.SelectedCases != null ? new List<string>(s.SelectedCases) : null,
+                    }).ToList(),
                 };
                 SetDefaultOptionValue(maaInterface, savedOption);
                 return savedOption;

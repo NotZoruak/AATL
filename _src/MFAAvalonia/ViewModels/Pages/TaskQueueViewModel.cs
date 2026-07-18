@@ -2413,12 +2413,13 @@ public partial class TaskQueueViewModel : ViewModelBase
             .Where(m => m.IsResourceOptionItem && m.ResourceItem?.SelectOptions != null)
             .ToList();
 
-        var globalItem = allItems.FirstOrDefault(m => m.ResourceItem?.Name == "__GlobalOption__");
-        if (globalItem?.ResourceItem?.SelectOptions != null)
+        // 保存全局选项（直接从 GlobalSelectOptions，不再依赖任务列表中的 __GlobalOption__）
+        var globalSelectOptions = MaaProcessor.Interface?.GlobalSelectOptions;
+        if (globalSelectOptions != null && globalSelectOptions.Count > 0)
         {
             instanceConfig.SetValue(
                 ConfigurationKeys.GlobalOptionItems,
-                globalItem.ResourceItem.SelectOptions);
+                globalSelectOptions);
         }
 
         const string controllerPrefix = "__ControllerOption__";
