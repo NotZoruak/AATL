@@ -13,4 +13,4 @@ cp _src/bin/AnyCPU/Release/publish/MATR.dll ./
 cp _src/bin/AnyCPU/Release/publish/MATR.exe ./
 ```
 
-> ⚠️ **常见坑**：`_src/bin/AnyCPU/Release/MFAAvalonia.Core.dll` 是桌面项目拷贝的旧缓存，文件大小和 `_src/MFAAvalonia/bin/Release/net10.0/` 不同，**必须从项目自身输出目录拷贝**。
+> ⚠️ `_src/bin/AnyCPU/Release/MFAAvalonia.Core.dll` 是桌面项目拷贝的旧缓存，文件大小和 `_src/MFAAvalonia/bin/Release/net10.0/` 不同，**必须从项目自身输出目录拷贝**。

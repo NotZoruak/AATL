@@ -388,6 +388,7 @@
   },
   "S_PostSortieHub": {
     "pre_delay": 0,
+    "on_error": ["S_DetectWhereAmI"],
     "next": [
       "S_IsPreDamage1",
       "S_StopOnDamagePopup",

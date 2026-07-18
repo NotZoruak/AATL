@@ -620,7 +620,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         var displayValue = currentValue == MaaInterface.MaaInterfaceOption.ExplicitNullMarker ? "null" : currentValue;
         var textBox = new TextBox
         {
-            MinWidth = 120,
+            MinWidth = 200,
             Margin = new Thickness(0, 2, 0, 2),
             BorderThickness = new Thickness(1),
             Text = displayValue,

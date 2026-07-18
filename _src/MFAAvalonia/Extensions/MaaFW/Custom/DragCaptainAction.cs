@@ -18,12 +18,12 @@ public class DragCaptainAction : IMaaCustomAction
     /// <summary>六个位置的疲劳值 OCR ROI [x, y, w, h]</summary>
     private static readonly int[][] FatigueRois =
     [
-        [338, 189, 38, 19], // 位置一（队长槽）
-        [338, 284, 38, 19], // 位置二
-        [338, 379, 38, 19], // 位置三
-        [338, 474, 38, 19], // 位置四
-        [338, 569, 38, 19], // 位置五
-        [338, 663, 38, 19], // 位置六
+        [338, 189, 37, 19], // 位置一（队长槽）
+        [338, 284, 37, 19], // 位置二
+        [338, 378, 37, 19], // 位置三
+        [338, 473, 36, 19], // 位置四
+        [338, 569, 37, 19], // 位置五
+        [338, 663, 37, 19], // 位置六
     ];
 
     public bool Run<T>(T context, in RunArgs args, in RunResults results) where T : IMaaContext
@@ -44,7 +44,7 @@ public class DragCaptainAction : IMaaCustomAction
                 if (skipPositions.Contains(i)) continue; // 跳过位置不 OCR
                 var roi = FatigueRois[i];
                 var text = image != null ? context.GetText(roi[0], roi[1], roi[2], roi[3], image) : null;
-                if (text != null && int.TryParse(text.Trim(), out var val) && val >= 0)
+                if (text != null && int.TryParse(text.Trim().Replace('B', '8').Replace('O', '0').Replace('S', '5'), out var val) && val >= 0)
                     fatigueValues[i] = val;
                 // 空槽位或 OCR 失败保持 null，不参与比较
             }
@@ -70,14 +70,16 @@ public class DragCaptainAction : IMaaCustomAction
 
             LoggerHelper.Info($"[DragCaptain] 疲劳值: [{string.Join(",", fatigueValues)}], 最低位置: {bestPos + 1} (值={bestVal})");
 
-            // 最低值已在队长槽（位置一），跳过拖拽
-            if (bestPos == 0)
+            // 跳过位置一时自动跳过位置二，位置二成为新的"队长槽"
+            if (skipPositions.Contains(0)) skipPositions.Add(1);
+            if (bestPos == 0 || (bestPos == 1 && skipPositions.Contains(1)))
             {
-                LoggerHelper.Info("[DragCaptain] 最低疲劳已在队长槽，跳过拖拽");
+                LoggerHelper.Info($"[DragCaptain] 最低疲劳在位置{bestPos + 1}，跳过拖拽");
                 return true;
             }
 
-            // 确定拖拽目标：跳过位置含位置一时目标为位置二，否则目标为位置一
+            // 跳过位置一时自动跳过位置二，位置二成为新的"队长槽"
+            if (skipPositions.Contains(0)) skipPositions.Add(1);
             int targetPos = skipPositions.Contains(0) ? 1 : 0;
             var src = FatigueRois[bestPos];
             var dst = FatigueRois[targetPos];
