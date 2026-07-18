@@ -4474,7 +4474,32 @@
             },
             "E_AllTeamsBusy": {
               "next": [
+                "E_TimerStart"
+              ]
+            },
+            "E_TimerStart": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionTimerAction",
+                "custom_action_param": {
+                  "mode": "start"
+                }
+              },
+              "next": [
                 "LR_NavigateToUnderground"
+              ]
+            },
+            "LR_IsEventPage": {
+              "next": [
+                "E_CheckTimerExpired"
+              ]
+            },
+            "E_CheckTimerExpired": {
+              "next": [
+                "LR_SelectDifficulty"
+              ],
+              "on_error": [
+                "E_GoHome"
               ]
             },
             "LR_WaitRefresh": {

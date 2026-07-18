@@ -1214,7 +1214,7 @@
     "next": [
       "E_WaitRefresh"
     ],
-    "pre_delay": 100,
+    "pre_delay": 1000,
     "on_error": [
       "Expedition"
     ]
@@ -1727,6 +1727,35 @@
       }
     },
     "next": [
+      "E_GoHome"
+    ]
+  },
+  "E_TimerReset": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "ExpeditionTimerAction",
+      "custom_action_param": {
+        "mode": "reset"
+      }
+    },
+    "next": []
+  },
+  "E_TimerStart": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "ExpeditionTimerAction"
+    },
+    "next": []
+  },
+  "E_CheckTimerExpired": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "ExpeditionTimerCheckAction"
+    },
+    "next": [
+      "LR_SelectDifficulty"
+    ],
+    "on_error": [
       "E_GoHome"
     ]
   },

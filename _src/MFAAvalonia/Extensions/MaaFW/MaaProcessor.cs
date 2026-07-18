@@ -3269,6 +3269,32 @@ public class MaaProcessor
                 {
                     var teamOptionNames = new List<string> { "部队一", "部队二", "部队三", "部队四", "部队五" };
                     ProcessOptions(ref taskModels, expTask.Option, teamOptionNames);
+
+                    // 注入远征刷新间隔到计时器节点
+                    var refreshOpt = expTask.Option.FirstOrDefault(o => o.Name == "RefreshInterval");
+                    if (refreshOpt?.Data != null &&
+                        refreshOpt.Data.TryGetValue("seconds", out var secondsStr) &&
+                        int.TryParse(secondsStr, out var seconds))
+                    {
+                        var timerParam = new Dictionary<string, JToken>
+                        {
+                            ["action"] = new JObject
+                            {
+                                ["type"] = "Custom",
+                                ["custom_action"] = "ExpeditionTimerAction",
+                                ["custom_action_param"] = new JObject
+                                {
+                                    ["mode"] = "start",
+                                    ["interval"] = seconds
+                                }
+                            },
+                            ["next"] = new JArray("LR_NavigateToUnderground")
+                        };
+                        taskModels.Merge(new Dictionary<string, JToken>
+                        {
+                            ["E_TimerStart"] = JToken.FromObject(timerParam)
+                        });
+                    }
                 }
             }
         }
@@ -4353,6 +4379,9 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.KillProcessAction());
             tasker.Resource.Register(new Custom.RestartGameAction());
             tasker.Resource.Register(new Custom.DragCaptainAction());
+            tasker.Resource.Register(new Custom.ExpeditionTimerAction());
+            tasker.Resource.Register(new Custom.ExpeditionTimerCheckAction());
+            tasker.Resource.Register(new Custom.ExpeditionTimerRecognition());
             tasker.Resource.Register(new Custom.ComputerOperationAction());
             tasker.Resource.Register(new Custom.WebhookAction());
             LoggerHelper.Info("已注册内置特殊任务动作。");
