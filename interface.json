@@ -4465,9 +4465,25 @@
         },
         {
           "name": "队内拖拽",
-          "DisplayName": "队内拖拽（待实现）"
+          "DisplayName": "队内拖拽（待实现）",
+          "option": ["拖拽跳过位置"]
         }
       ]
+    },
+    "拖拽跳过位置": {
+      "name": "拖拽跳过位置",
+      "label": "拖拽跳过位置",
+      "type": "checkbox",
+      "description": "队内拖拽换队长时跳过指定位置（被跳过的位置不参与疲劳值比较）",
+      "cases": [
+        { "name": "位置一" },
+        { "name": "位置二" },
+        { "name": "位置三" },
+        { "name": "位置四" },
+        { "name": "位置五" },
+        { "name": "位置六" }
+      ],
+      "default_case": ["位置一"]
     }
   },
   "github": "https://github.com/NotZoruak/MATR"
