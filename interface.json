@@ -2479,17 +2479,22 @@
     },
     "RefreshInterval": {
       "name": "RefreshInterval",
-      "label": "刷新间隔（分钟）",
+      "label": "刷新间隔（秒）",
       "type": "input",
       "inputs": [
         {
-          "name": "minutes",
-          "label": "间隔（分钟）",
-          "default": "10",
+          "name": "seconds",
+          "label": "间隔（秒）",
+          "default": "600",
           "pipeline_type": "int",
-          "description": "设置过短可能导致游戏卡顿"
+          "description": "默认 600 秒 = 10 分钟"
         }
-      ]
+      ],
+      "pipeline_override": {
+        "E_WaitRefresh": {
+          "post_delay": "{seconds}000"
+        }
+      }
     },
     "难度选择": {
       "name": "难度选择",
