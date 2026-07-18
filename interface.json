@@ -135,7 +135,7 @@
   ],
   "global_option": [
     "换队长方式",
-    "卡死等待时间"
+    "卡死重启"
   ],
   "option": {
     "部队一": {
@@ -4416,6 +4416,47 @@
             "M_NoFilterClick3": { "enabled": true },
             "M_NoFilterClick4": { "enabled": true }
           }
+        }
+      ]
+    },
+    "卡死重启": {
+      "name": "卡死重启",
+      "label": "卡死重启",
+      "type": "switch",
+      "default_case": "Yes",
+      "cases": [
+        {
+          "name": "Yes",
+          "label": "开启",
+          "option": ["卡死等待时间", "目标应用"],
+          "pipeline_override": {
+            "S_FallbackWait": { "enabled": false },
+            "M_FallbackWait": { "enabled": false },
+            "LR_FallbackWait": { "enabled": false },
+            "FB_FallbackWait": { "enabled": false },
+            "D_FallbackWait": { "enabled": false },
+            "U_FallbackWait": { "enabled": false },
+            "EC_FallbackWait": { "enabled": false },
+            "G_FallbackWait": { "enabled": false },
+            "E_FallbackWait": { "enabled": false }
+          }
+        },
+        {
+          "name": "No",
+          "label": "关闭"
+        }
+      ]
+    },
+    "目标应用": {
+      "name": "目标应用",
+      "label": "目标应用",
+      "type": "input",
+      "inputs": [
+        {
+          "name": "package_name",
+          "label": "应用包名",
+          "default": "com.youzu.djlw",
+          "pipeline_type": "string"
         }
       ]
     },
