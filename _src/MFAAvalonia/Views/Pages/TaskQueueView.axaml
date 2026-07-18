@@ -1022,7 +1022,7 @@
                                      Classes="Inner"
                                      GroupName="SettingA"
                                      IsChecked="{calcBinding:Binding '!IsCommon'}">
-                            <TextBlock Text="{markup:I18n {x:Static helper:LangKeys.AdvancedSetting}}" />
+                            <TextBlock Text="全局" />
                         </RadioButton>
                     </StackPanel>
                 </dashboard:DashboardCard.HeaderActions>
@@ -1037,7 +1037,7 @@
                                     x:Name="CommonOptionSettings"
                                     Orientation="Vertical" />
                         <StackPanel IsVisible="{calcBinding:Binding '!IsCommon &amp;&amp; !IsSubPageOpen'}"
-                                    x:Name="AdvancedOptionSettings"
+                                    x:Name="GlobalOptionSettings"
                                     Orientation="Vertical" />
                         <!-- 子选项页面 -->
                         <StackPanel IsVisible="{Binding IsSubPageOpen}"

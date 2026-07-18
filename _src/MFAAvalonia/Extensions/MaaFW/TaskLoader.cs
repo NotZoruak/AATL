@@ -704,13 +704,13 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
         // 创建最终的任务列表
         var finalItems = new List<DragItemViewModel>();
 
-        // 如果有 global_option，置顶显示一个全局设置项（包含所有全局选项）
-        if (maaInterface?.GlobalOption is { Count: > 0 } && maaInterface.GlobalSelectOptions is { Count: > 0 })
-        {
-            var globalOptionItem = CreateGlobalOptionItem(drags);
-            if (globalOptionItem != null)
-                finalItems.Add(globalOptionItem);
-        }
+        // 全局选项已通过「全局」标签页提供，不再在任务列表中显示
+        // if (maaInterface?.GlobalOption is { Count: > 0 } && maaInterface.GlobalSelectOptions is { Count: > 0 })
+        // {
+        //     var globalOptionItem = CreateGlobalOptionItem(drags);
+        //     if (globalOptionItem != null)
+        //         finalItems.Add(globalOptionItem);
+        // }
 
         // 如果当前资源有 option 配置，在全局选项后添加资源设置项
         if (currentResource?.Option is {Count: > 0})

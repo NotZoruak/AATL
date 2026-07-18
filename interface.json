@@ -133,6 +133,9 @@
       "description": "自动习合（合成强化）操作。每轮仅处理前6把刀剑，搓糖开启后前6把均达乱舞7级时自动停止。推荐先刀解清理非搓糖刀种，再开启搓糖+关闭刀种筛选以获得最佳体验。\n\n- **搓糖**：习合至乱舞等级7级后跳过该刀剑，关闭则无等级限制。上锁刀剑不受此选项限制\n- **刀种筛选**：点击齿轮选择要筛选的刀种，关闭则跳过筛选直接习合全部刀剑"
     }
   ],
+  "global_option": [
+    "卡死等待时间"
+  ],
   "option": {
     "部队一": {
       "name": "部队一",
@@ -4409,6 +4412,30 @@
           }
         }
       ]
+    },
+    "卡死等待时间": {
+      "name": "卡死等待时间",
+      "label": "卡死等待时间",
+      "type": "input",
+      "inputs": [
+        {
+          "name": "timeout_seconds",
+          "label": "卡死等待时间（秒）",
+          "default": "120",
+          "pipeline_type": "int"
+        }
+      ],
+      "pipeline_override": {
+        "S_DetectWhereAmI": { "timeout": "{timeout_seconds}000" },
+        "M_DetectWhereAmI": { "timeout": "{timeout_seconds}000" },
+        "LR_DetectWhereAmI": { "timeout": "{timeout_seconds}000" },
+        "FB_DetectWhereAmI": { "timeout": "{timeout_seconds}000" },
+        "D_DetectWhereAmI": { "timeout": "{timeout_seconds}000" },
+        "U_DetectWhereAmI": { "timeout": "{timeout_seconds}000" },
+        "EC_DetectWhereAmI": { "timeout": "{timeout_seconds}000" },
+        "G_DetectWhereAmI": { "timeout": "{timeout_seconds}000" },
+        "Expedition": { "timeout": "{timeout_seconds}000" }
+      }
     }
   },
   "github": "https://github.com/NotZoruak/MATR"

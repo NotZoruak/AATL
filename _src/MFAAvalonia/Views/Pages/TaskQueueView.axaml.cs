@@ -592,18 +592,18 @@ public partial class TaskQueueView : UserControl
     #region 任务选项
 
     private readonly ConcurrentDictionary<string, Control> CommonPanelCache = new();
-    private readonly ConcurrentDictionary<string, Control> AdvancedPanelCache = new();
+    private readonly ConcurrentDictionary<string, Control> GlobalPanelCache = new();
     private readonly ConcurrentDictionary<string, string> IntroductionsCache = new();
     private readonly ConcurrentDictionary<string, bool> ShowCache = new();
 
     public void ResetOptionPanels()
     {
         CommonPanelCache.Clear();
-        AdvancedPanelCache.Clear();
+        GlobalPanelCache.Clear();
         IntroductionsCache.Clear();
         ShowCache.Clear();
         CommonOptionSettings?.Children.Clear();
-        AdvancedOptionSettings?.Children.Clear();
+        GlobalOptionSettings?.Children.Clear();
         Introduction.Markdown = "";
         SetHiddenMode();
     }
@@ -678,7 +678,8 @@ public partial class TaskQueueView : UserControl
 
         HideAllPanels();
         InvalidatePanelCache(cacheKey);
-        var juggle = dragItem.InterfaceItem is { Advanced: { Count: > 0 }, Option: { Count: > 0 } };
+        var hasGlobalOptions = MaaProcessor.Interface?.GlobalOption is { Count: > 0 };
+        var juggle = dragItem.InterfaceItem is { Option: { Count: > 0 } } || hasGlobalOptions == true;
         vm.ShowSettings = juggle;
         // 处理资源设置项的选项
         if (dragItem.IsResourceOptionItem)
@@ -706,7 +707,6 @@ public partial class TaskQueueView : UserControl
                 {
                     var p = new StackPanel();
                     new TaskOptionGenerator(vm, SaveConfiguration).GeneratePanelContent(p, dragItem);
-                    // GeneratePanelContent(p, dragItem);
                     CommonOptionSettings.Children.Add(p);
                     return p;
                 });
@@ -720,23 +720,25 @@ public partial class TaskQueueView : UserControl
                     {
                         var p = new StackPanel();
                         new TaskOptionGenerator(vm, SaveConfiguration).GenerateCommonPanelContent(p, dragItem);
-                        // GenerateCommonPanelContent(p, dragItem);
                         CommonOptionSettings.Children.Add(p);
                         return p;
                     });
                     commonPanel.IsVisible = true;
                 }
-                var advancedPanel = AdvancedPanelCache.GetOrAdd(cacheKey, key =>
+            }
+            // 全局面板始终生成（独立于任务的 juggle）
+            if (hasGlobalOptions == true)
+            {
+                var globalPanel = GlobalPanelCache.GetOrAdd("__global__", key =>
                 {
                     var p = new StackPanel();
-                    new TaskOptionGenerator(vm, SaveConfiguration).GenerateAdvancedPanelContent(p, dragItem);
-                    // GenerateAdvancedPanelContent(p, dragItem);
-                    AdvancedOptionSettings.Children.Add(p);
+                    new TaskOptionGenerator(vm, SaveConfiguration).GenerateGlobalPanelContent(p);
+                    GlobalOptionSettings.Children.Add(p);
                     return p;
                 });
                 if (!init)
                 {
-                    advancedPanel.IsVisible = true;
+                    globalPanel.IsVisible = true;
                 }
             }
         }
@@ -793,7 +795,7 @@ public partial class TaskQueueView : UserControl
     {
         // // 清空 Popup 中的内容
         // PopupCommonOptionSettings.Children.Clear();
-        // PopupAdvancedOptionSettings.Children.Clear();
+        // PopupGlobalOptionSettings.Children.Clear();
         //
         // var cacheKey = dragItem.IsResourceOptionItem
         //     ? $"ResourceOption_{dragItem.ResourceItem?.Name}_{dragItem.ResourceItem?.GetHashCode()}"
@@ -820,7 +822,7 @@ public partial class TaskQueueView : UserControl
         //     else
         //     {
         //         GenerateCommonPanelContent(PopupCommonOptionSettings, dragItem);
-        //         GenerateAdvancedPanelContent(PopupAdvancedOptionSettings, dragItem);
+        //         GenerateAdvancedPanelContent(PopupGlobalOptionSettings, dragItem);
         //     }
         // }
         //
@@ -839,7 +841,7 @@ public partial class TaskQueueView : UserControl
         //
         // // 检查是否有设置选项
         // bool hasSettings = PopupCommonOptionSettings.Children.Count > 0
-        //     || PopupAdvancedOptionSettings.Children.Count > 0;
+        //     || PopupGlobalOptionSettings.Children.Count > 0;
         // // Instances.TaskQueueViewModel.HasPopupSettings = hasSettings;
 
     }
@@ -993,7 +995,7 @@ public partial class TaskQueueView : UserControl
         {
             oldPanel.IsVisible = false;
         }
-        if (AdvancedPanelCache.TryGetValue(key, out var oldaPanel))
+        if (GlobalPanelCache.TryGetValue(key, out var oldaPanel))
         {
             oldaPanel.IsVisible = false;
         }
@@ -1009,9 +1011,9 @@ public partial class TaskQueueView : UserControl
             CommonOptionSettings.Children.Remove(commonPanel);
         }
 
-        if (AdvancedPanelCache.TryRemove(key, out var advancedPanel))
+        if (GlobalPanelCache.TryRemove(key, out var advancedPanel))
         {
-            AdvancedOptionSettings.Children.Remove(advancedPanel);
+            GlobalOptionSettings.Children.Remove(advancedPanel);
         }
 
         IntroductionsCache.TryRemove(key, out _);
@@ -2921,10 +2923,10 @@ public partial class TaskQueueView : UserControl
     private void ClearOptionPanelCaches()
     {
         CommonPanelCache.Clear();
-        AdvancedPanelCache.Clear();
+        GlobalPanelCache.Clear();
         IntroductionsCache.Clear();
         CommonOptionSettings?.Children.Clear();
-        AdvancedOptionSettings?.Children.Clear();
+        GlobalOptionSettings?.Children.Clear();
         Introduction.Markdown = "";
     }
 

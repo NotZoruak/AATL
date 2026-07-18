@@ -123,7 +123,17 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
             }
         }
     }
-    
+
+    public void GenerateGlobalPanelContent(StackPanel panel)
+    {
+        var globalOptions = MaaProcessor.Interface?.GlobalSelectOptions;
+        if (globalOptions == null || globalOptions.Count == 0) return;
+        foreach (var option in globalOptions)
+        {
+            AddOption(panel, option, null!);
+        }
+    }
+
     public void GenerateResourceOptionPanelContent(StackPanel panel, DragItemViewModel dragItem)
     {
         if (dragItem.ResourceItem?.SelectOptions == null)
