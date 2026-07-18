@@ -52,7 +52,7 @@
       "entry": "Sortie",
       "default_check": false,
       "repeatable": false,
-      "repeat_count": 0,
+      "repeat_count": -1,
       "option": [
         "S_重伤处理",
         "S_选择部队",
@@ -91,15 +91,6 @@
       "repeat_count": 1,
       "label": "刷花",
       "description": "仅支持部队一单骑出阵1-1刷花，请提前解散部队一并为且仅为需要刷花的刀剑男士装备刀装"
-    },
-    {
-      "name": "回到本丸",
-      "entry": "GoHome",
-      "default_check": false,
-      "repeatable": false,
-      "repeat_count": 0,
-      "label": "回到本丸",
-      "description": "检测当前界面，自动关闭弹窗并回到本丸。推荐穿插在连续任务之间，确保后续任务从本丸开始运行"
     },
     {
       "name": "刀解",
@@ -4509,8 +4500,14 @@
           "DisplayName": "队内拖拽",
           "pipeline_override": {
             "S_CaptainHub": { "next": ["S_DragCaptain", "S_IsPreSortieConfirm"] },
+            "S_IsSwordSelect": { "enabled": false },
+            "S_DetectSortOrder": { "enabled": false },
             "LR_CaptainHub": { "next": ["LR_DragCaptain", "LR_IsPreSortieConfirm"] },
-            "U_CaptainHub": { "next": ["U_DragCaptain", "U_IsPreSortieConfirm"] }
+            "LR_IsSwordSelect": { "enabled": false },
+            "LR_DetectSortOrder": { "enabled": false },
+            "U_CaptainHub": { "next": ["U_DragCaptain", "U_IsPreSortieConfirm"] },
+            "U_IsSwordSelect": { "enabled": false },
+            "U_DetectSortOrder": { "enabled": false }
           },
           "option": ["拖拽跳过位置"]
         }
