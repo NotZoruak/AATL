@@ -72,7 +72,8 @@
       }
     },
     "next": [
-      "E_ExpSubHub1"
+      "E_IsTeamStatusPanel",
+      "Expedition"
     ],
     "post_delay": 1000,
     "pre_delay": 100
