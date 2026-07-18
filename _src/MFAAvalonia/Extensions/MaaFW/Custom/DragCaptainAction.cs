@@ -18,12 +18,12 @@ public class DragCaptainAction : IMaaCustomAction
     /// <summary>六个位置的疲劳值 OCR ROI [x, y, w, h]</summary>
     private static readonly int[][] FatigueRois =
     [
-        [338, 189, 37, 19], // 位置一（队长槽）
-        [338, 284, 37, 19], // 位置二
-        [338, 378, 37, 19], // 位置三
-        [338, 473, 36, 19], // 位置四
-        [338, 569, 37, 19], // 位置五
-        [338, 663, 37, 19], // 位置六
+        [340, 187, 80, 22], // 位置一（队长槽）
+        [340, 282, 80, 22], // 位置二
+        [340, 376, 80, 22], // 位置三
+        [340, 471, 80, 22], // 位置四
+        [340, 565, 80, 22], // 位置五
+        [340, 660, 80, 22], // 位置六
     ];
 
     public bool Run<T>(T context, in RunArgs args, in RunResults results) where T : IMaaContext
@@ -44,8 +44,14 @@ public class DragCaptainAction : IMaaCustomAction
                 if (skipPositions.Contains(i)) continue; // 跳过位置不 OCR
                 var roi = FatigueRois[i];
                 var text = image != null ? context.GetText(roi[0], roi[1], roi[2], roi[3], image) : null;
-                if (text != null && int.TryParse(text.Trim().Replace('B', '8').Replace('O', '0').Replace('S', '5'), out var val) && val >= 0)
-                    fatigueValues[i] = val;
+                LoggerHelper.Info($"[DragCaptain] 位置{i+1} OCR原始: '{text}'");
+                if (text != null)
+                {
+                    var clean = text.Trim().Replace('B', '8').Replace('O', '0').Replace('S', '5');
+                    if (clean.Contains('/')) clean = clean.Split('/')[0];
+                    if (int.TryParse(clean.Trim(), out var val) && val >= 0)
+                        fatigueValues[i] = val;
+                }
                 // 空槽位或 OCR 失败保持 null，不参与比较
             }
 

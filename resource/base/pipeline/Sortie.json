@@ -387,7 +387,7 @@
     "pre_delay": 100
   },
   "S_PostSortieHub": {
-    "pre_delay": 0,
+    "timeout": 30000,
     "on_error": ["S_DetectWhereAmI"],
     "next": [
       "S_IsPreDamage1",
@@ -427,6 +427,7 @@
   },
   "S_DetectAfterSortieNow": {
     "pre_delay": 0,
+    "on_error": ["S_DetectWhereAmI"],
     "next": [
       "S_IsTroopDepleted",
       "S_IsMarching",
