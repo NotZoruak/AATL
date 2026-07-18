@@ -271,10 +271,10 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
                     Text = caseOption.DisplayName,
                     FontSize = 14,
                     FontWeight = FontWeight.Bold,
-                    Margin = new Thickness(0, 4, 0, 4),
+                    Margin = new Thickness(0, 15, 0, 2),
                 };
                 subPanel.Children.Add(caseHeader);
-                var subWrap = new WrapPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 2, 0, 0) };
+                var subWrap = new WrapPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, -10, 0, 0) };
                 foreach (var subName in caseOption.Option)
                 {
                     if (MaaProcessor.Interface?.Option?.TryGetValue(subName, out var subDef) != true) continue;
