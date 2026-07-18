@@ -134,6 +134,7 @@
     }
   ],
   "global_option": [
+    "换队长方式",
     "卡死等待时间"
   ],
   "option": {
@@ -4441,6 +4442,32 @@
         "G_DetectWhereAmI": { "timeout": "{timeout_seconds}000" },
         "Expedition": { "timeout": "{timeout_seconds}000" }
       }
+    },
+    "换队长方式": {
+      "name": "换队长方式",
+      "label": "换队长方式",
+      "type": "select",
+      "default_case": "马匹筛选",
+      "cases": [
+        {
+          "name": "马匹筛选",
+          "DisplayName": "马匹筛选（默认）"
+        },
+        {
+          "name": "刀装筛选",
+          "DisplayName": "刀装筛选",
+          "pipeline_override": {
+            "S_ClickCaptain3": { "target": [220, 512, 107, 29] },
+            "LR_ClickCaptain3": { "target": [220, 512, 107, 29] },
+            "U_ClickCaptain3": { "target": [220, 512, 107, 29] },
+            "EC_ClickCaptain3": { "target": [220, 512, 107, 29] }
+          }
+        },
+        {
+          "name": "队内拖拽",
+          "DisplayName": "队内拖拽（待实现）"
+        }
+      ]
     }
   },
   "github": "https://github.com/NotZoruak/MATR"
