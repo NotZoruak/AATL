@@ -55,9 +55,9 @@ public class ExpeditionTimeTracker : IMaaCustomAction
 
         if (minRemaining.HasValue && minRemaining.Value > 0)
         {
-            var returnTime = DateTime.Now.AddSeconds(minRemaining.Value + 10);
+            var returnTime = DateTime.Now.AddSeconds(minRemaining.Value);
             ExpeditionReturnTracker.SetEarliestReturn(returnTime);
-            LoggerHelper.Info($"[远征扫描] 最早归队: {returnTime:HH:mm:ss}（{minRemaining.Value}秒 + 10秒缓冲）");
+            LoggerHelper.Info($"[远征扫描] 最早归队: {returnTime:HH:mm:ss}（{minRemaining.Value}秒）");
         }
         else
         {

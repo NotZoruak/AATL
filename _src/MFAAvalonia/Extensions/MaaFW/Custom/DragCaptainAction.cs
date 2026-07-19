@@ -26,6 +26,17 @@ public class DragCaptainAction : IMaaCustomAction
         [340, 660, 80, 22], // 位置六
     ];
 
+    /// <summary>六个位置的拖拽点击坐标 [x, y]</summary>
+    private static readonly int[][] DragPoints =
+    [
+        [477, 163], // 位置一（队长槽）
+        [477, 258], // 位置二
+        [477, 353], // 位置三
+        [477, 447], // 位置四
+        [477, 542], // 位置五
+        [477, 637], // 位置六
+    ];
+
     public bool Run<T>(T context, in RunArgs args, in RunResults results) where T : IMaaContext
     {
         try
@@ -87,20 +98,18 @@ public class DragCaptainAction : IMaaCustomAction
             // 跳过位置一时自动跳过位置二，位置二成为新的"队长槽"
             if (skipPositions.Contains(0)) skipPositions.Add(1);
             int targetPos = skipPositions.Contains(0) ? 1 : 0;
-            var src = FatigueRois[bestPos];
-            var dst = FatigueRois[targetPos];
-            int srcCx = src[0] + src[2] / 2;
-            int srcCy = src[1] + src[3] / 2;
-            int dstCx = dst[0] + dst[2] / 2;
-            int dstCy = dst[1] + dst[3] / 2;
+            int srcX = DragPoints[bestPos][0];
+            int srcY = DragPoints[bestPos][1];
+            int dstX = DragPoints[targetPos][0];
+            int dstY = DragPoints[targetPos][1];
 
-            LoggerHelper.Info($"[DragCaptain] 拖拽: 位置{bestPos + 1}({srcCx},{srcCy}) → 位置{targetPos + 1}({dstCx},{dstCy})");
+            LoggerHelper.Info($"[DragCaptain] 拖拽: 位置{bestPos + 1}({srcX},{srcY}) → 位置{targetPos + 1}({dstX},{dstY})");
 
             // 长按 1s
-            tasker.TouchDown(0, srcCx, srcCy, 1);
+            tasker.TouchDown(0, srcX, srcY, 1);
             Thread.Sleep(1000);
             // 拖拽 500ms
-            tasker.Swipe(srcCx, srcCy, dstCx, dstCy, 500);
+            tasker.Swipe(srcX, srcY, dstX, dstY, 500);
 
             return true;
         }

@@ -700,7 +700,7 @@
         "template": "游戏图标.png",
         "green_mask": true,
         "threshold": [
-          0.95
+          0.88
         ]
       }
     },
@@ -2443,6 +2443,7 @@
     ]
   },
   "U_DragCaptain": {
+    "enabled": false,
     "action": {
       "type": "Custom",
       "custom_action": "DragCaptainAction"

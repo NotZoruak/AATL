@@ -1196,7 +1196,7 @@
         "template": "游戏图标.png",
         "green_mask": true,
         "threshold": [
-          0.95
+          0.88
         ]
       }
     },

@@ -40,7 +40,7 @@ public class ExpeditionTimerAction : IMaaCustomAction
                     var earliest = ExpeditionTimeTracker.ScanAndStore(context);
                     if (earliest.HasValue && earliest.Value > 0)
                     {
-                        intervalSeconds = Math.Min(earliest.Value + 10, configuredInterval);
+                        intervalSeconds = Math.Min(earliest.Value, configuredInterval);
                         LoggerHelper.Info($"[远征计时] 最早 {earliest.Value}s, 实际 {intervalSeconds}s");
                     }
                 }
