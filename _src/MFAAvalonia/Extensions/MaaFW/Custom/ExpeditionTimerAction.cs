@@ -8,6 +8,7 @@ namespace MFAAvalonia.Extensions.MaaFW.Custom;
 
 /// <summary>
 /// 远征后台计时器动作：记录倒计时起点，供 ExpeditionTimerRecognition 检查。
+/// 当全局开关"远征智能调度"开启时，自动 OCR 部队面板计算最早归队时间。
 /// </summary>
 public class ExpeditionTimerAction : IMaaCustomAction
 {
@@ -28,12 +29,35 @@ public class ExpeditionTimerAction : IMaaCustomAction
                 return true;
             }
 
-            int intervalSeconds = (int?)json["interval"] ?? 600;
+            int configuredInterval = (int?)json["interval"] ?? 600;
+            int intervalSeconds = configuredInterval;
+
+            // 智能调度：OCR 部队面板剩余时间，动态调整计时器间隔
+            if (ExpeditionTimeTracker.IsSmartSchedulingEnabled())
+            {
+                try
+                {
+                    var earliest = ExpeditionTimeTracker.ScanAndStore(context);
+                    if (earliest.HasValue && earliest.Value > 0)
+                    {
+                        intervalSeconds = Math.Min(earliest.Value + 10, configuredInterval);
+                        LoggerHelper.Info($"[远征计时] 最早 {earliest.Value}s, 实际 {intervalSeconds}s");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LoggerHelper.Warning($"[远征计时] 智能 OCR 失败，回退固定间隔 {configuredInterval}秒: {ex.Message}");
+                }
+                // 始终关闭队伍状态面板（E_AllTeamsBusy 被改为 DoNothing，不点的话面板不会关）
+                try { context.Click(ExpeditionTimeTracker.ClosePanelX, ExpeditionTimeTracker.ClosePanelY); }
+                catch (Exception ex) { LoggerHelper.Warning($"[远征计时] 关闭面板失败: {ex.Message}"); }
+            }
+
             ExpeditionTimerRecognition.StartTimer(intervalSeconds);
             var display = intervalSeconds >= 60
-                ? $"{intervalSeconds / 60} 分钟"
-                : $"{intervalSeconds} 秒";
-            var msg = $"远征检查倒计时开始：{display}";
+                ? $"{intervalSeconds / 60}分{intervalSeconds % 60}s"
+                : $"{intervalSeconds}s";
+            var msg = $"[远征计时] 倒计时开始：{display}";
             LoggerHelper.Info(msg);
             try { MaaProcessorManager.Instance.Current?.AddLog(msg); } catch { }
             return true;
@@ -44,7 +68,7 @@ public class ExpeditionTimerAction : IMaaCustomAction
         }
         catch (Exception e)
         {
-            LoggerHelper.Error($"[ExpeditionTimerAction] 错误: {e.Message}");
+            LoggerHelper.Error($"[远征计时] 错误: {e.Message}");
             return false;
         }
     }

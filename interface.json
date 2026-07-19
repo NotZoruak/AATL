@@ -127,7 +127,8 @@
   ],
   "global_option": [
     "换队长方式",
-    "卡死重启"
+    "卡死重启",
+    "远征智能调度"
   ],
   "option": {
     "部队一": {
@@ -2709,6 +2710,9 @@
             },
             "S_ClickCaptainSlot": {
               "enabled": true
+            },
+            "S_DragCaptain": {
+              "enabled": true
             }
           }
         }
@@ -3316,6 +3320,9 @@
             },
             "LR_ClickCaptain5": {
               "enabled": true
+            },
+            "LR_DragCaptain": {
+              "enabled": true
             }
           }
         }
@@ -3579,6 +3586,14 @@
           "pipeline_override": {
             "S_IsHome": {
               "next": [
+                "E_CheckTimerExpired"
+              ]
+            },
+            "E_CheckTimerExpired": {
+              "next": [
+                "S_NavigateToSortie"
+              ],
+              "on_error": [
                 "Expedition"
               ]
             },
@@ -3711,6 +3726,18 @@
               ]
             },
             "E_AllTeamsBusy": {
+              "next": [
+                "E_TimerStart"
+              ]
+            },
+            "E_TimerStart": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionTimerAction",
+                "custom_action_param": {
+                  "mode": "start"
+                }
+              },
               "next": [
                 "S_NavigateToSortie"
               ]
@@ -4031,6 +4058,9 @@
               "enabled": true
             },
             "U_ClickCaptainSlot": {
+              "enabled": true
+            },
+            "U_DragCaptain": {
               "enabled": true
             }
           }
@@ -4832,7 +4862,7 @@
       "name": "卡死重启",
       "label": "卡死重启",
       "type": "switch",
-      "default_case": "Yes",
+      "default_case": "No",
       "cases": [
         {
           "name": "Yes",
@@ -4868,6 +4898,49 @@
             },
             "E_FallbackWait": {
               "enabled": false
+            }
+          }
+        },
+        {
+          "name": "No",
+          "label": "关闭"
+        }
+      ]
+    },
+    "远征智能调度": {
+      "name": "远征智能调度",
+      "label": "远征智能调度",
+      "type": "switch",
+      "default_case": "No",
+      "cases": [
+        {
+          "name": "Yes",
+          "label": "开启",
+          "pipeline_override": {
+            "E_AllTeamsBusy": {
+              "action": "DoNothing",
+              "next": [
+                "E_TrackerOCR"
+              ]
+            },
+            "E_TrackerOCR": {
+              "enabled": true
+            },
+            "E_WaitRefresh": {
+              "enabled": false
+            },
+            "E_SmartWait": {
+              "enabled": true
+            },
+            "E_ClickBackToHome": {
+              "next": [
+                "E_SmartWait"
+              ]
+            },
+            "E_VerifyLeftMenu": {
+              "on_error": [
+                "E_SmartWait"
+              ]
             }
           }
         },

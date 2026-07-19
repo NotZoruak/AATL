@@ -1036,6 +1036,17 @@
     ],
     "pre_delay": 100
   },
+  "E_TrackerOCR": {
+    "enabled": false,
+    "action": {
+      "type": "Custom",
+      "custom_action": "ExpeditionTimeTracker"
+    },
+    "next": [
+      "E_GoHome"
+    ],
+    "pre_delay": 500
+  },
   "E_StartExpedition": {
     "action": {
       "type": "Click",
@@ -1268,6 +1279,16 @@
       "Expedition"
     ]
   },
+  "E_SmartWait": {
+    "enabled": false,
+    "action": {
+      "type": "Custom",
+      "custom_action": "SmartWaitAction"
+    },
+    "next": [
+      "Expedition"
+    ]
+  },
   "E_DetectExpeditionScreen": {
     "recognition": {
       "type": "TemplateMatch",
@@ -1408,7 +1429,7 @@
         "template": "游戏图标.png",
         "green_mask": true,
         "threshold": [
-          0.95
+          0.88
         ]
       }
     },

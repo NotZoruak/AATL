@@ -3276,6 +3276,13 @@ public class MaaProcessor
                         refreshOpt.Data.TryGetValue("seconds", out var secondsStr) &&
                         int.TryParse(secondsStr, out var seconds))
                     {
+                        // 根据任务入口确定计时器结束后的返回目标
+                        var timerNext = task.InterfaceItem?.Entry switch
+                        {
+                            "Sortie" => "S_NavigateToSortie",
+                            "Underground" => "U_NavigateToUnderground",
+                            _ => "LR_NavigateToUnderground"
+                        };
                         var timerParam = new Dictionary<string, JToken>
                         {
                             ["action"] = new JObject
@@ -3288,7 +3295,7 @@ public class MaaProcessor
                                     ["interval"] = seconds
                                 }
                             },
-                            ["next"] = new JArray("LR_NavigateToUnderground")
+                            ["next"] = new JArray(timerNext)
                         };
                         taskModels.Merge(new Dictionary<string, JToken>
                         {
@@ -4382,6 +4389,8 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.ExpeditionTimerAction());
             tasker.Resource.Register(new Custom.ExpeditionTimerCheckAction());
             tasker.Resource.Register(new Custom.ExpeditionTimerRecognition());
+            tasker.Resource.Register(new Custom.ExpeditionTimeTracker());
+            tasker.Resource.Register(new Custom.SmartWaitAction());
             tasker.Resource.Register(new Custom.ComputerOperationAction());
             tasker.Resource.Register(new Custom.WebhookAction());
             LoggerHelper.Info("已注册内置特殊任务动作。");

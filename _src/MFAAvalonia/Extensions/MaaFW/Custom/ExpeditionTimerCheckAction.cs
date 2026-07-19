@@ -21,7 +21,7 @@ public class ExpeditionTimerCheckAction : IMaaCustomAction
 
             if (ExpeditionTimerRecognition.IsExpired())
             {
-                var msg = "远征检查倒计时已到，即将回本丸检查远征";
+                var msg = "[远征计时] 倒计时结束";
                 LoggerHelper.Info(msg);
                 try { MaaProcessorManager.Instance.Current?.AddLog(msg); } catch { }
                 return false;
@@ -37,7 +37,7 @@ public class ExpeditionTimerCheckAction : IMaaCustomAction
         }
         catch (Exception e)
         {
-            LoggerHelper.Error($"[ExpeditionTimerCheckAction] 错误: {e.Message}");
+            LoggerHelper.Error($"[远征计时] 错误: {e.Message}");
             return false;
         }
     }
