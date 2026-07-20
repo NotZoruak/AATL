@@ -98,6 +98,8 @@ public class FatigueCheckAction : IMaaCustomAction
             LoggerHelper.Info($"[疲劳检测] mode={mode}, 阈值={threshold}");
             LoggerHelper.Info($"[疲劳检测] 六位疲劳: [{string.Join(", ", values.Select(v => v?.ToString() ?? "空"))}]");
 
+            var team = (int?)json["team"] ?? 0;
+
             if (mode == "check_captain")
             {
                 if (!values[0].HasValue) { LoggerHelper.Warning("[疲劳检测] 队长位 OCR 失败"); return false; }
@@ -112,7 +114,11 @@ public class FatigueCheckAction : IMaaCustomAction
                 var ok = bestVal >= threshold;
                 LoggerHelper.Info($"[疲劳检测] 最低位=位置{bestPos + 1}, 值={bestVal}, > {threshold}? {ok}");
                 FlowerStateTracker.CurrentFatigueLowest = bestVal;
-                if (!ok) { try { MaaProcessorManager.Instance.Current?.AddLog($"[远征疲劳检测] 有刀剑疲劳低于阈值，进入刷花"); } catch { } }
+                if (!ok)
+                {
+                    if (team > 0) FlowerStateTracker.BeginTeam(team);
+                    try { MaaProcessorManager.Instance.Current?.AddLog($"[远征疲劳检测] 有刀剑疲劳低于阈值，进入刷花"); } catch { }
+                }
                 return ok;
             }
         }

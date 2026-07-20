@@ -20,6 +20,48 @@
               "icon": "lucide-file",
               "title": "长期远征计划设计"
             }
+          },
+          {
+            "id": "f4c0994f9de08e05",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "合战场任务设计.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "合战场任务设计"
+            }
+          },
+          {
+            "id": "3486b03a6343b757",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "远征任务设计.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "远征任务设计"
+            }
+          },
+          {
+            "id": "f0cc56d094670089",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "复用节点清单.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "复用节点清单"
+            }
           }
         ]
       }
@@ -186,23 +228,25 @@
   },
   "active": "94ddccee65a65409",
   "lastOpenFiles": [
-    "长期远征计划设计.md.tmp.23944.f4c5df353dbc",
-    "长期远征计划设计.md.tmp.23944.bba039487d55",
+    "长期远征计划设计.md.tmp.35204.822bccc0b04b",
+    "长期远征计划设计.md.tmp.35204.40df981492b5",
+    "长期远征计划设计.md.tmp.35204.e022bb1c178f",
+    "长期远征计划设计.md.tmp.35204.44a793fc8cd8",
+    "长期远征计划设计.md.tmp.35204.b1825143f64d",
+    "长期远征计划设计.md.tmp.35204.cd3c25e95040",
+    "合战场任务设计.md",
+    "长期远征计划设计.md.tmp.35204.5515b1ffb031",
+    "长期远征计划设计.md.tmp.35204.0d5d9ef21529",
+    "复用节点清单.md",
     "远征任务设计.md",
     "长期远征计划设计.md",
-    "长期远征计划设计.md.tmp.23944.9473bacda501",
-    "长期远征计划设计.md.tmp.23944.955a3da57a64",
-    "长期远征计划设计.md.tmp.23944.345e2d562075",
-    "长期远征计划设计.md.tmp.23944.c0918e8d332a",
-    "复用节点清单.md",
-    "长期远征计划设计.md.tmp.23944.148989c32c2a",
-    "长期远征计划设计.md.tmp.23944.cc825b20caef",
-    "长期远征计划设计.md.tmp.23944.43fdd8d175b8",
-    "长期远征计划设计.md.tmp.23944.51ce45d3a648",
-    "长期远征计划设计.md.tmp.23944.545bbde53cc5",
+    "长期远征计划设计.md.tmp.35204.a465b3d63340",
+    "长期远征计划设计.md.tmp.35204.7bc529ec042c",
+    "长期远征计划设计.md.tmp.35204.eb47ec4847eb",
+    "刷花任务设计.md",
+    "陆联任务设计.md",
     "数据查找表设计.md",
     "刮刮乐识别设计.md",
-    "合战场任务设计.md",
     "后续优化规划.md",
     "ALAS任务调度器分析.md",
     "MATR长期公告.md",
@@ -212,8 +256,6 @@
     "更新公告/v0.6.1-beta.md",
     "标准化.md",
     "习合任务设计.md",
-    "陆联任务设计.md",
-    "刷花任务设计.md",
     "任务选项配置说明.md",
     "开发日志.md",
     "on_error兜底补完计划.md",

@@ -2357,14 +2357,15 @@
       "type": "Custom",
       "custom_action": "FatigueCheckAction",
       "custom_action_param": {
-        "mode": "check_all"
+        "mode": "check_all",
+        "team": 1
       }
     },
     "next": [
       "E_StartExpedition"
     ],
     "on_error": [
-      "E_FlowerNavigate"
+      "E_FlowerBattleHub"
     ],
     "pre_delay": 100
   },
@@ -2373,14 +2374,15 @@
       "type": "Custom",
       "custom_action": "FatigueCheckAction",
       "custom_action_param": {
-        "mode": "check_all"
+        "mode": "check_all",
+        "team": 2
       }
     },
     "next": [
       "E_StartExpedition"
     ],
     "on_error": [
-      "E_FlowerNavigate"
+      "E_FlowerBattleHub"
     ],
     "pre_delay": 100
   },
@@ -2389,14 +2391,15 @@
       "type": "Custom",
       "custom_action": "FatigueCheckAction",
       "custom_action_param": {
-        "mode": "check_all"
+        "mode": "check_all",
+        "team": 3
       }
     },
     "next": [
       "E_StartExpedition"
     ],
     "on_error": [
-      "E_FlowerNavigate"
+      "E_FlowerBattleHub"
     ],
     "pre_delay": 100
   },
@@ -2405,14 +2408,15 @@
       "type": "Custom",
       "custom_action": "FatigueCheckAction",
       "custom_action_param": {
-        "mode": "check_all"
+        "mode": "check_all",
+        "team": 4
       }
     },
     "next": [
       "E_StartExpedition"
     ],
     "on_error": [
-      "E_FlowerNavigate"
+      "E_FlowerBattleHub"
     ],
     "pre_delay": 100
   },
@@ -2421,20 +2425,24 @@
       "type": "Custom",
       "custom_action": "FatigueCheckAction",
       "custom_action_param": {
-        "mode": "check_all"
+        "mode": "check_all",
+        "team": 5
       }
     },
     "next": [
       "E_StartExpedition"
     ],
     "on_error": [
-      "E_FlowerNavigate"
+      "E_FlowerBattleHub"
     ],
     "pre_delay": 100
   },
   "E_FlowerNavigate": {
     "next": [
       "E_FlowerClickMenuForSortie"
+    ],
+    "on_error": [
+      "E_FlowerBattleHub"
     ]
   },
   "E_FlowerClickMenuForSortie": {
@@ -2464,7 +2472,10 @@
     "next": [
       "E_FlowerClickSortieInMenu"
     ],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
   },
   "E_FlowerClickSortieInMenu": {
     "recognition": {
@@ -2493,7 +2504,10 @@
     "next": [
       "E_FlowerIsEraSelect"
     ],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
   },
   "E_FlowerClickFirstEra": {
     "action": {
@@ -2517,7 +2531,10 @@
       "E_FlowerClickEraConfirm"
     ],
     "post_delay": 500,
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
   },
   "E_FlowerClickEraConfirm": {
     "action": {
@@ -2541,7 +2558,10 @@
       "E_FlowerDetectRegionSelect"
     ],
     "pre_delay": 100,
-    "post_delay": 500
+    "post_delay": 500,
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
   },
   "E_FlowerDetectRegionSelect": {
     "recognition": {
@@ -2562,6 +2582,9 @@
     },
     "next": [
       "E_FlowerClickRegion1_1"
+    ],
+    "on_error": [
+      "E_FlowerBattleHub"
     ]
   },
   "E_FlowerClickRegion1_1": {
@@ -2583,30 +2606,11 @@
       }
     },
     "next": [
-      "E_FlowerTeamSelect1"
+      "E_FlowerTeamSelect"
     ],
-    "pre_delay": 100
-  },
-  "E_FlowerTeamSelect1": {
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          154,
-          93,
-          1,
-          1
-        ],
-        "target_offset": [
-          8,
-          0,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "E_FlowerCheckCaptain"
+    "pre_delay": 100,
+    "on_error": [
+      "E_FlowerBattleHub"
     ]
   },
   "E_FlowerCheckCaptain": {
@@ -2621,7 +2625,7 @@
       "E_FlowerDone"
     ],
     "on_error": [
-      "E_FlowerDissolve"
+      "E_FlowerBattleHub"
     ],
     "pre_delay": 100
   },
@@ -2658,6 +2662,9 @@
     "action": "Click",
     "next": [
       "E_FlowerDissolve"
+    ],
+    "on_error": [
+      "E_FlowerBattleHub"
     ]
   },
   "E_FlowerCaptainClickSlot": {
@@ -2682,7 +2689,10 @@
       "E_FlowerIsSwordSelect"
     ],
     "post_delay": 1000,
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
   },
   "E_FlowerIsSwordSelect": {
     "recognition": {
@@ -2726,7 +2736,10 @@
       "E_FlowerCaptainClick2"
     ],
     "post_delay": 800,
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
   },
   "E_FlowerCaptainClick2": {
     "action": {
@@ -2750,7 +2763,10 @@
       "E_FlowerCaptainClickFav"
     ],
     "post_delay": 800,
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
   },
   "E_FlowerCaptainClickFav": {
     "action": {
@@ -2773,7 +2789,10 @@
     "next": [
       "E_FlowerCaptainClick4"
     ],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
   },
   "E_FlowerCaptainClick4": {
     "action": {
@@ -2797,7 +2816,10 @@
       "E_FlowerCaptainClick5"
     ],
     "post_delay": 800,
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
   },
   "E_FlowerCaptainClick5": {
     "action": {
@@ -2820,7 +2842,10 @@
     "next": [
       "E_FlowerDetectSortOrder"
     ],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
   },
   "E_FlowerDetectSortOrder": {
     "next": [
@@ -2933,6 +2958,9 @@
       }
     },
     "next": [
+      "E_FlowerBattleHub"
+    ],
+    "on_error": [
       "E_FlowerBattleHub"
     ]
   },
@@ -3050,6 +3078,21 @@
     },
     "next": [
       "E_FlowerClickFirstEra"
+    ],
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
+  },
+  "E_FlowerTeamSelect": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "SelectFlowerTeamAction"
+    },
+    "next": [
+      "E_FlowerCheckCaptain"
+    ],
+    "on_error": [
+      "E_FlowerBattleHub"
     ]
   }
 }

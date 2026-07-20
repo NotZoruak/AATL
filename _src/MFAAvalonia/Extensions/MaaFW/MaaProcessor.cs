@@ -4395,6 +4395,7 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.WebhookAction());
             tasker.Resource.Register(new Custom.FatigueCheckAction());
             tasker.Resource.Register(new Custom.PageScrollAndHoldAction());
+            tasker.Resource.Register(new Custom.SelectFlowerTeamAction());
             LoggerHelper.Info("已注册内置特殊任务动作。");
 
             // 获取当前资源的自定义目录
