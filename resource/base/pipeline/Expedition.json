@@ -2438,14 +2438,6 @@
     "pre_delay": 100
   },
   "E_FlowerNavigate": {
-    "next": [
-      "E_FlowerClickMenuForSortie"
-    ],
-    "on_error": [
-      "E_FlowerBattleHub"
-    ]
-  },
-  "E_FlowerClickMenuForSortie": {
     "recognition": {
       "type": "OCR",
       "param": {
@@ -2470,12 +2462,9 @@
       }
     },
     "next": [
-      "E_FlowerClickSortieInMenu"
-    ],
-    "pre_delay": 100,
-    "on_error": [
       "E_FlowerBattleHub"
-    ]
+    ],
+    "pre_delay": 100
   },
   "E_FlowerClickSortieInMenu": {
     "recognition": {
@@ -2502,14 +2491,30 @@
       }
     },
     "next": [
-      "E_FlowerIsEraSelect"
+      "E_FlowerBattleHub"
     ],
-    "pre_delay": 100,
     "on_error": [
       "E_FlowerBattleHub"
-    ]
+    ],
+    "pre_delay": 100
   },
   "E_FlowerClickFirstEra": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          564,
+          54,
+          157,
+          54
+        ],
+        "template": "时代选择.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
@@ -2528,42 +2533,15 @@
       }
     },
     "next": [
-      "E_FlowerClickEraConfirm"
+      "E_FlowerBattleHub"
     ],
-    "post_delay": 500,
-    "pre_delay": 100,
     "on_error": [
       "E_FlowerBattleHub"
-    ]
-  },
-  "E_FlowerClickEraConfirm": {
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [
-          1199,
-          633,
-          3,
-          1
-        ],
-        "target_offset": [
-          1,
-          0,
-          0,
-          0
-        ]
-      }
-    },
-    "next": [
-      "E_FlowerDetectRegionSelect"
     ],
-    "pre_delay": 100,
     "post_delay": 500,
-    "on_error": [
-      "E_FlowerBattleHub"
-    ]
+    "pre_delay": 100
   },
-  "E_FlowerDetectRegionSelect": {
+  "E_FlowerClickRegion1_1": {
     "recognition": {
       "type": "TemplateMatch",
       "param": {
@@ -2580,14 +2558,6 @@
         ]
       }
     },
-    "next": [
-      "E_FlowerClickRegion1_1"
-    ],
-    "on_error": [
-      "E_FlowerBattleHub"
-    ]
-  },
-  "E_FlowerClickRegion1_1": {
     "action": {
       "type": "Click",
       "param": {
@@ -2606,12 +2576,12 @@
       }
     },
     "next": [
-      "E_FlowerTeamSelect"
+      "E_FlowerBattleHub"
     ],
-    "pre_delay": 100,
     "on_error": [
       "E_FlowerBattleHub"
-    ]
+    ],
+    "pre_delay": 100
   },
   "E_FlowerCheckCaptain": {
     "action": {
@@ -2979,6 +2949,10 @@
       "E_FlowerMarching",
       "E_FlowerFormation",
       "E_FlowerBattleResult",
+      "E_FlowerClickSortieInMenu",
+      "E_FlowerClickFirstEra",
+      "E_FlowerClickRegion1_1",
+      "E_FlowerTeamSelect",
       "E_CheckHomeBrightness",
       "E_FallbackWait"
     ],
@@ -3059,31 +3033,15 @@
       "E_GoHome"
     ]
   },
-  "E_FlowerIsEraSelect": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [
-          564,
-          54,
-          157,
-          54
-        ],
-        "template": "时代选择.png",
-        "green_mask": true,
-        "threshold": [
-          0.98
-        ]
-      }
-    },
-    "next": [
-      "E_FlowerClickFirstEra"
-    ],
-    "on_error": [
-      "E_FlowerBattleHub"
-    ]
-  },
   "E_FlowerTeamSelect": {
+    "recognition": "OCR",
+    "roi": [
+      561,
+      1,
+      160,
+      49
+    ],
+    "expected": "部队选择",
     "action": {
       "type": "Custom",
       "custom_action": "SelectFlowerTeamAction"
@@ -3093,6 +3051,7 @@
     ],
     "on_error": [
       "E_FlowerBattleHub"
-    ]
+    ],
+    "pre_delay": 100
   }
 }
