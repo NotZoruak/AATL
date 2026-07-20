@@ -15,6 +15,7 @@
       "E_IsGameUpdatePopup",
       "E_IsInGameUpdatePopup",
       "E_IsInternalReport",
+      "E_IsSwordDropColor",
       "E_FallbackWait"
     ],
     "timeout": 120000,
@@ -1389,6 +1390,48 @@
       "Expedition"
     ],
     "pre_delay": 100
+  },
+  "E_IsSwordDropColor": {
+    "recognition": "ColorMatch",
+    "roi": [
+      598,
+      543,
+      66,
+      1
+    ],
+    "upper": [
+      96,
+      56,
+      10
+    ],
+    "lower": [
+      88,
+      48,
+      2
+    ],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          1067,
+          558,
+          120,
+          79
+        ],
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
+        ]
+      }
+    },
+    "next": [
+      "Expedition"
+    ],
+    "on_error": [
+      "Expedition"
+    ]
   },
   "E_FallbackWait": {
     "action": "DoNothing",
