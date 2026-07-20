@@ -1436,7 +1436,7 @@
   "E_FallbackWait": {
     "action": "DoNothing",
     "next": [
-      "Expedition"
+      "E_FlowerBattleHub"
     ]
   },
   "E_VerifyTeamSelect": {
@@ -1877,7 +1877,8 @@
     "action": "Click",
     "next": [
       "E_UseTeamRecord_Step2_Rec1"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step1_Rec2": {
     "recognition": {
@@ -1899,7 +1900,8 @@
     "action": "Click",
     "next": [
       "E_UseTeamRecord_Step2_Rec2"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step1_Rec3": {
     "recognition": {
@@ -1921,7 +1923,8 @@
     "action": "Click",
     "next": [
       "E_UseTeamRecord_Step2_Rec3"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step1_Rec4": {
     "recognition": {
@@ -1943,7 +1946,8 @@
     "action": "Click",
     "next": [
       "E_UseTeamRecord_Step2_Rec4"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step1_Rec5": {
     "recognition": {
@@ -1965,7 +1969,8 @@
     "action": "Click",
     "next": [
       "E_UseTeamRecord_Step2_Rec5"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step2_Rec1": {
     "recognition": {
@@ -2003,7 +2008,8 @@
     },
     "next": [
       "E_UseTeamRecord_Step3"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step2_Rec2": {
     "recognition": {
@@ -2041,7 +2047,8 @@
     },
     "next": [
       "E_UseTeamRecord_Step3_Rec2"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step2_Rec3": {
     "recognition": {
@@ -2079,7 +2086,8 @@
     },
     "next": [
       "E_UseTeamRecord_Step3_Rec3"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step2_Rec4": {
     "recognition": {
@@ -2117,7 +2125,8 @@
     },
     "next": [
       "E_UseTeamRecord_Step3_Rec4"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step2_Rec5": {
     "recognition": {
@@ -2155,7 +2164,8 @@
     },
     "next": [
       "E_UseTeamRecord_Step3_Rec5"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step3": {
     "action": {
@@ -2171,7 +2181,8 @@
     },
     "next": [
       "E_UseTeamRecord_Step4"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step3_Rec2": {
     "action": {
@@ -2187,7 +2198,8 @@
     },
     "next": [
       "E_UseTeamRecord_Step4_Rec2"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step3_Rec3": {
     "action": {
@@ -2203,7 +2215,8 @@
     },
     "next": [
       "E_UseTeamRecord_Step4_Rec3"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step3_Rec4": {
     "action": {
@@ -2219,7 +2232,8 @@
     },
     "next": [
       "E_UseTeamRecord_Step4_Rec4"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step3_Rec5": {
     "action": {
@@ -2235,7 +2249,8 @@
     },
     "next": [
       "E_UseTeamRecord_Step4_Rec5"
-    ]
+    ],
+    "post_delay": 300
   },
   "E_UseTeamRecord_Step4": {
     "action": {
@@ -2365,7 +2380,7 @@
       "E_StartExpedition"
     ],
     "on_error": [
-      "E_FlowerBattleHub"
+      "E_FlowerNavigate"
     ],
     "pre_delay": 100
   },
@@ -2382,7 +2397,7 @@
       "E_StartExpedition"
     ],
     "on_error": [
-      "E_FlowerBattleHub"
+      "E_FlowerNavigate"
     ],
     "pre_delay": 100
   },
@@ -2399,7 +2414,7 @@
       "E_StartExpedition"
     ],
     "on_error": [
-      "E_FlowerBattleHub"
+      "E_FlowerNavigate"
     ],
     "pre_delay": 100
   },
@@ -2416,7 +2431,7 @@
       "E_StartExpedition"
     ],
     "on_error": [
-      "E_FlowerBattleHub"
+      "E_FlowerNavigate"
     ],
     "pre_delay": 100
   },
@@ -2433,7 +2448,7 @@
       "E_StartExpedition"
     ],
     "on_error": [
-      "E_FlowerBattleHub"
+      "E_FlowerNavigate"
     ],
     "pre_delay": 100
   },
@@ -2464,7 +2479,8 @@
     "next": [
       "E_FlowerBattleHub"
     ],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "post_delay": 1000
   },
   "E_FlowerClickSortieInMenu": {
     "recognition": {
@@ -2496,7 +2512,8 @@
     "on_error": [
       "E_FlowerBattleHub"
     ],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "post_delay": 1000
   },
   "E_FlowerClickFirstEra": {
     "recognition": {
@@ -2511,7 +2528,7 @@
         "template": "时代选择.png",
         "green_mask": true,
         "threshold": [
-          0.98
+          0.95
         ]
       }
     },
@@ -2533,13 +2550,29 @@
       }
     },
     "next": [
-      "E_FlowerBattleHub"
+      "E_FlowerConfirmEra"
     ],
     "on_error": [
       "E_FlowerBattleHub"
     ],
     "post_delay": 500,
     "pre_delay": 100
+  },
+  "E_FlowerConfirmEra": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          1163,
+          622,
+          86,
+          43
+        ]
+      }
+    },
+    "next": [
+      "E_FlowerBattleHub"
+    ]
   },
   "E_FlowerClickRegion1_1": {
     "recognition": {
@@ -2554,7 +2587,7 @@
         "template": "地域选择.png",
         "green_mask": true,
         "threshold": [
-          0.98
+          0.95
         ]
       }
     },
@@ -2595,7 +2628,7 @@
       "E_FlowerDone"
     ],
     "on_error": [
-      "E_FlowerBattleHub"
+      "E_FlowerSortie"
     ],
     "pre_delay": 100
   },
@@ -2896,7 +2929,7 @@
     },
     "action": "Click",
     "next": [
-      "E_FlowerSortie"
+      "E_FlowerCheckCaptain"
     ],
     "pre_delay": 100
   },
@@ -2934,6 +2967,50 @@
       "E_FlowerBattleHub"
     ]
   },
+  "E_FlowerHomeBrightness": {
+    "recognition": "ColorMatch",
+    "roi": [
+      66,
+      58,
+      11,
+      13
+    ],
+    "upper": [
+      40,
+      155,
+      30
+    ],
+    "lower": [
+      23,
+      95,
+      15
+    ],
+    "action": "DoNothing",
+    "next": [
+      "E_FlowerIsHome"
+    ]
+  },
+  "E_FlowerIsHome": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          8,
+          1,
+          71,
+          107
+        ],
+        "template": "本丸.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "E_FlowerNavigate"
+    ]
+  },
   "E_FlowerBattleHub": {
     "next": [
       "E_IsAnnouncementPopup",
@@ -2953,7 +3030,7 @@
       "E_FlowerClickFirstEra",
       "E_FlowerClickRegion1_1",
       "E_FlowerTeamSelect",
-      "E_CheckHomeBrightness",
+      "E_FlowerHomeBrightness",
       "E_FallbackWait"
     ],
     "timeout": 120000,
@@ -2978,6 +3055,7 @@
         ]
       }
     },
+    "action": "Click",
     "next": [
       "E_FlowerBattleHub"
     ],
@@ -3002,7 +3080,17 @@
         ]
       }
     },
-    "action": "Click",
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          588,
+          404,
+          74,
+          46
+        ]
+      }
+    },
     "next": [
       "E_FlowerBattleHub"
     ],
@@ -3047,7 +3135,7 @@
       "custom_action": "SelectFlowerTeamAction"
     },
     "next": [
-      "E_FlowerCheckCaptain"
+      "E_FlowerDissolve"
     ],
     "on_error": [
       "E_FlowerBattleHub"

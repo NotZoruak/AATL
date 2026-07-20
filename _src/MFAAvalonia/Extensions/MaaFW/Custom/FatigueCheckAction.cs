@@ -52,7 +52,7 @@ public class FatigueCheckAction : IMaaCustomAction
             {
                 var clean = text.Trim().Replace('B', '8').Replace('O', '0').Replace('S', '5');
                 if (clean.Contains('/')) clean = clean.Split('/')[0];
-                if (int.TryParse(clean.Trim(), out var val) && val >= 0)
+                if (int.TryParse(clean.Trim(), out var val) && val > 0)
                     values[i] = val;
             }
         }
@@ -71,13 +71,16 @@ public class FatigueCheckAction : IMaaCustomAction
         return (bestPos, bestVal);
     }
 
-    /// <summary>获取用户阈值，默认 91</summary>
+    /// <summary>获取用户阈值，默认 91。「疲劳阈值」是「长期远征计划」的子选项，需穿透 SubOptions 查找。</summary>
     public static int GetThreshold()
     {
         var globalOpts = MaaProcessor.Interface?.GlobalSelectOptions;
-        var fatigueOpt = globalOpts?.FirstOrDefault(o => o.Name == "疲劳阈值");
-        if (fatigueOpt?.SelectedCases != null && fatigueOpt.SelectedCases.Count > 0
-            && int.TryParse(fatigueOpt.SelectedCases[0], out var t) && t > 0)
+        // 「疲劳阈值」是「长期远征计划」的子选项，需穿透 SubOptions 查找
+        var planOpt = globalOpts?.FirstOrDefault(o => o.Name == "长期远征计划");
+        var fatigueOpt = planOpt?.SubOptions?.FirstOrDefault(o => o.Name == "疲劳阈值");
+        if (fatigueOpt?.Data != null
+            && fatigueOpt.Data.TryGetValue("threshold", out var strVal)
+            && int.TryParse(strVal, out var t) && t > 0)
             return t;
         return 91;
     }
@@ -106,6 +109,8 @@ public class FatigueCheckAction : IMaaCustomAction
                 var ok = values[0].Value >= threshold;
                 LoggerHelper.Info($"[疲劳检测] 首位={values[0]}, > {threshold}? {ok}");
                 FlowerStateTracker.CurrentFatigueLowest = values[0].Value;
+                if (ok)
+                    try { MaaProcessorManager.Instance.Current?.AddLog($"[远征疲劳检测] 疲劳值恢复完成"); } catch { }
                 return ok;
             }
             else
