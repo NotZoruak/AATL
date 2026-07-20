@@ -1,8 +1,8 @@
 {
   "name": "MATR",
-  "version": "0.6.1-beta",
+  "version": "0.6.1",
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.6.1-beta | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.6.1 | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
