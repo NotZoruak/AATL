@@ -4393,6 +4393,8 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.SmartWaitAction());
             tasker.Resource.Register(new Custom.ComputerOperationAction());
             tasker.Resource.Register(new Custom.WebhookAction());
+            tasker.Resource.Register(new Custom.FatigueCheckAction());
+            tasker.Resource.Register(new Custom.PageScrollAndHoldAction());
             LoggerHelper.Info("已注册内置特殊任务动作。");
 
             // 获取当前资源的自定义目录

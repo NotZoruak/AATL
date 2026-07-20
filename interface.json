@@ -128,7 +128,8 @@
   "global_option": [
     "换队长方式",
     "卡死重启",
-    "远征智能调度"
+    "远征智能调度",
+    "长期远征计划"
   ],
   "option": {
     "部队一": {
@@ -5126,6 +5127,65 @@
         }
       ],
       "default_case": []
+    },
+    "长期远征计划": {
+      "name": "长期远征计划",
+      "label": "长期远征计划",
+      "type": "switch",
+      "default_case": "No",
+      "cases": [
+        {
+          "name": "No",
+          "pipeline_override": {}
+        },
+        {
+          "name": "Yes",
+          "option": [
+            "疲劳阈值"
+          ],
+          "pipeline_override": {
+            "E_MarkTeam1": {
+              "next": [
+                "E_UseTeamRecord1"
+              ]
+            },
+            "E_MarkTeam2": {
+              "next": [
+                "E_UseTeamRecord2"
+              ]
+            },
+            "E_MarkTeam3": {
+              "next": [
+                "E_UseTeamRecord3"
+              ]
+            },
+            "E_MarkTeam4": {
+              "next": [
+                "E_UseTeamRecord4"
+              ]
+            },
+            "E_MarkTeam5": {
+              "next": [
+                "E_UseTeamRecord5"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "疲劳阈值": {
+      "name": "疲劳阈值",
+      "label": "疲劳阈值",
+      "type": "input",
+      "default_case": "91",
+      "inputs": [
+        {
+          "name": "threshold",
+          "label": "疲劳阈值",
+          "default": "91",
+          "pipeline_type": "int"
+        }
+      ]
     }
   },
   "github": "https://github.com/NotZoruak/MATR"
