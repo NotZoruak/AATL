@@ -2574,7 +2574,7 @@
       "E_FlowerBattleHub"
     ]
   },
-  "E_FlowerClickRegion1_1": {
+  "E_FlowerIsRegionSelect": {
     "recognition": {
       "type": "TemplateMatch",
       "param": {
@@ -2587,10 +2587,45 @@
         "template": "地域选择.png",
         "green_mask": true,
         "threshold": [
-          0.95
+          0.98
         ]
       }
     },
+    "next": [
+      "E_FlowerVerifyRegionSelect",
+      "E_FlowerBattleHub"
+    ],
+    "on_error": [
+      "E_FlowerBattleHub"
+    ],
+    "pre_delay": 300
+  },
+  "E_FlowerVerifyRegionSelect": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          558,
+          55,
+          169,
+          54
+        ],
+        "template": "地域选择.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "E_FlowerClickRegion1_1"
+    ],
+    "on_error": [
+      "E_FlowerBattleHub"
+    ],
+    "pre_delay": 300
+  },
+  "E_FlowerClickRegion1_1": {
     "action": {
       "type": "Click",
       "param": {
@@ -2614,7 +2649,7 @@
     "on_error": [
       "E_FlowerBattleHub"
     ],
-    "pre_delay": 100
+    "pre_delay": 300
   },
   "E_FlowerCheckCaptain": {
     "action": {
@@ -3028,7 +3063,7 @@
       "E_FlowerBattleResult",
       "E_FlowerClickSortieInMenu",
       "E_FlowerClickFirstEra",
-      "E_FlowerClickRegion1_1",
+      "E_FlowerIsRegionSelect",
       "E_FlowerTeamSelect",
       "E_FlowerHomeBrightness",
       "E_FallbackWait"

@@ -588,7 +588,77 @@
         ]
       }
     },
-    "action": "Click",
+    "action": "DoNothing",
+    "enabled": false,
+    "on_error": [
+      "S_DetectAfterSortieNow"
+    ],
+    "next": [
+      "S_PreCheckClickRecord1"
+    ]
+  },
+  "S_PreCheckClickRecord1": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 140, 30, 71],
+        "target_offset": [6, 4, 0, 0]
+      }
+    },
+    "enabled": false,
+    "next": ["S_PreCheckUseRecordBtn"]
+  },
+  "S_PreCheckClickRecord2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 250, 30, 71],
+        "target_offset": [6, 4, 0, 0]
+      }
+    },
+    "enabled": false,
+    "next": ["S_PreCheckUseRecordBtn"]
+  },
+  "S_PreCheckClickRecord3": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 360, 30, 71],
+        "target_offset": [6, 4, 0, 0]
+      }
+    },
+    "enabled": false,
+    "next": ["S_PreCheckUseRecordBtn"]
+  },
+  "S_PreCheckClickRecord4": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 465, 30, 71],
+        "target_offset": [6, 4, 0, 0]
+      }
+    },
+    "enabled": false,
+    "next": ["S_PreCheckUseRecordBtn"]
+  },
+  "S_PreCheckClickRecord5": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 575, 30, 71],
+        "target_offset": [6, 4, 0, 0]
+      }
+    },
+    "enabled": false,
+    "next": ["S_PreCheckUseRecordBtn"]
+  },
+  "S_PreCheckUseRecordBtn": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [707, 53, 72, 64]
+      }
+    },
     "enabled": false,
     "on_error": [
       "S_DetectAfterSortieNow"

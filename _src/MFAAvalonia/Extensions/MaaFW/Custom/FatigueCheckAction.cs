@@ -3,6 +3,7 @@ using MaaFramework.Binding.Custom;
 using MFAAvalonia.Helper;
 using System;
 using System.Linq;
+using System.Threading;
 
 namespace MFAAvalonia.Extensions.MaaFW.Custom;
 
@@ -96,6 +97,27 @@ public class FatigueCheckAction : IMaaCustomAction
 
             var rois = mode == "check_captain" ? FatigueRoisSortie : FatigueRoisExpedition;
             var values = ReadFatigue(context, rois);
+
+            // check_all 模式下首位必须读到疲劳值，OCR 失败时重试（最多 10 次，每次间隔 200ms）
+            if (mode != "check_captain")
+            {
+                for (int retry = 0; retry < 10 && !values[0].HasValue; retry++)
+                {
+                    LoggerHelper.Info($"[疲劳检测] 首位 OCR 失败，重试 {retry + 1}/10");
+                    Thread.Sleep(200);
+                    using var retryImage = context.GetImage();
+                    if (retryImage == null) continue;
+                    var text = context.GetText(rois[0][0], rois[0][1], rois[0][2], rois[0][3], retryImage);
+                    if (!string.IsNullOrWhiteSpace(text))
+                    {
+                        var clean = text.Trim().Replace('B', '8').Replace('O', '0').Replace('S', '5');
+                        if (clean.Contains('/')) clean = clean.Split('/')[0];
+                        if (int.TryParse(clean.Trim(), out var val) && val > 0)
+                            values[0] = val;
+                    }
+                }
+            }
+
             var (bestPos, bestVal) = FindLowest(values);
 
             LoggerHelper.Info($"[疲劳检测] mode={mode}, 阈值={threshold}");

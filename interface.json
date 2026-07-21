@@ -2758,6 +2758,9 @@
                 1,
                 1
               ]
+            },
+            "S_PreCheckUseRecord": {
+              "next": ["S_PreCheckClickRecord1"]
             }
           }
         },
@@ -2772,6 +2775,9 @@
                 1,
                 1
               ]
+            },
+            "S_PreCheckUseRecord": {
+              "next": ["S_PreCheckClickRecord2"]
             }
           }
         },
@@ -2786,6 +2792,9 @@
                 1,
                 1
               ]
+            },
+            "S_PreCheckUseRecord": {
+              "next": ["S_PreCheckClickRecord3"]
             }
           }
         },
@@ -2800,6 +2809,9 @@
                 1,
                 1
               ]
+            },
+            "S_PreCheckUseRecord": {
+              "next": ["S_PreCheckClickRecord4"]
             }
           }
         },
@@ -2814,6 +2826,9 @@
                 1,
                 1
               ]
+            },
+            "S_PreCheckUseRecord": {
+              "next": ["S_PreCheckClickRecord5"]
             }
           }
         }
