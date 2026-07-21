@@ -3083,14 +3083,14 @@
     "next": [
       "E_IsAnnouncementPopup",
       "E_IsLoginReward",
-      "E_IsGameIcon",
-      "E_IsLoginButton",
-      "E_IsGameUpdatePopup",
-      "E_IsInGameUpdatePopup",
-      "E_IsInternalReport",
-      "E_ClickExpeditionReturn_Exp",
-      "E_ClickExpeditionReturn_Title",
-      "E_IsSwordDropColor",
+      "E_FlowerIsGameIcon",
+      "E_FlowerIsLoginButton",
+      "E_FlowerIsGameUpdatePopup",
+      "E_FlowerIsInGameUpdatePopup",
+      "E_FlowerIsInternalReport",
+      "E_FlowerClickExpeditionReturn_Exp",
+      "E_FlowerClickExpeditionReturn_Title",
+      "E_FlowerIsSwordDropColor",
       "E_FlowerMarching",
       "E_FlowerFormation",
       "E_FlowerBattleResult",
@@ -3103,7 +3103,7 @@
     ],
     "timeout": 120000,
     "on_error": [
-      "E_RestartGame"
+      "E_FlowerRestartGame"
     ]
   },
   "E_FlowerMarching": {
@@ -3209,5 +3209,230 @@
       "E_FlowerBattleHub"
     ],
     "pre_delay": 100
+  },
+  "E_FlowerIsGameIcon": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          0,
+          0,
+          1600,
+          900
+        ],
+        "template": "游戏图标.png",
+        "green_mask": true,
+        "threshold": [
+          0.88
+        ]
+      }
+    },
+    "action": "Click",
+    "post_delay": 3000,
+    "pre_delay": 100,
+    "next": [
+      "E_FlowerBattleHub"
+    ],
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
+  },
+  "E_FlowerIsLoginButton": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          665,
+          529,
+          124,
+          78
+        ],
+        "template": "登录.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "post_delay": 3000,
+    "pre_delay": 100,
+    "next": [
+      "E_FlowerBattleHub"
+    ],
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
+  },
+  "E_FlowerIsGameUpdatePopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          443,
+          431,
+          120,
+          46
+        ],
+        "template": "游戏更新.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "post_delay": 2000,
+    "pre_delay": 100,
+    "next": [
+      "E_FlowerBattleHub"
+    ],
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
+  },
+  "E_FlowerIsInGameUpdatePopup": {
+    "recognition": "OCR",
+    "roi": [
+      498,
+      291,
+      77,
+      50
+    ],
+    "expected": "更新",
+    "action": "Click",
+    "target": [
+      578,
+      440,
+      130,
+      55
+    ],
+    "post_delay": 2000,
+    "pre_delay": 100,
+    "next": [
+      "E_FlowerBattleHub"
+    ],
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
+  },
+  "E_FlowerIsInternalReport": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          569,
+          322,
+          138,
+          31
+        ],
+        "template": "内番报告.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "next": [
+      "E_FlowerBattleHub"
+    ],
+    "on_error": [
+      "E_FlowerBattleHub"
+    ],
+    "pre_delay": 100
+  },
+  "E_FlowerClickExpeditionReturn_Exp": {
+    "recognition": "OCR",
+    "roi": [
+      388,
+      59,
+      54,
+      25
+    ],
+    "expected": "经验",
+    "action": "Click",
+    "target": [
+      388,
+      59,
+      54,
+      25
+    ],
+    "next": [
+      "E_FlowerBattleHub"
+    ],
+    "pre_delay": 100
+  },
+  "E_FlowerClickExpeditionReturn_Title": {
+    "recognition": "OCR",
+    "roi": [
+      558,
+      1,
+      162,
+      52
+    ],
+    "expected": "远征结果",
+    "action": "Click",
+    "target": [
+      388,
+      59,
+      54,
+      25
+    ],
+    "next": [
+      "E_FlowerBattleHub"
+    ],
+    "pre_delay": 100
+  },
+  "E_FlowerIsSwordDropColor": {
+    "recognition": "ColorMatch",
+    "roi": [
+      598,
+      543,
+      66,
+      1
+    ],
+    "upper": [
+      96,
+      56,
+      10
+    ],
+    "lower": [
+      88,
+      48,
+      2
+    ],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          1067,
+          558,
+          120,
+          79
+        ],
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
+        ]
+      }
+    },
+    "next": [
+      "E_FlowerBattleHub"
+    ],
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
+  },
+  "E_FlowerRestartGame": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": [
+      "E_FlowerBattleHub"
+    ]
   }
 }
