@@ -1436,7 +1436,7 @@
   "E_FallbackWait": {
     "action": "DoNothing",
     "next": [
-      "E_FlowerBattleHub"
+      "Expedition"
     ]
   },
   "E_VerifyTeamSelect": {
@@ -3046,6 +3046,12 @@
       "E_FlowerNavigate"
     ]
   },
+  "E_FlowerFallbackWait": {
+    "action": "DoNothing",
+    "next": [
+      "E_FlowerBattleHub"
+    ]
+  },
   "E_FlowerBattleHub": {
     "next": [
       "E_IsAnnouncementPopup",
@@ -3066,7 +3072,7 @@
       "E_FlowerIsRegionSelect",
       "E_FlowerTeamSelect",
       "E_FlowerHomeBrightness",
-      "E_FallbackWait"
+      "E_FlowerFallbackWait"
     ],
     "timeout": 120000,
     "on_error": [
