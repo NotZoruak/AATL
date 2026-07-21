@@ -95,27 +95,6 @@
     ],
     "pre_delay": 100
   },
-  "EC_IsBattleResult_Title": {
-    "recognition": "OCR",
-    "roi": [
-      558,
-      1,
-      162,
-      52
-    ],
-    "expected": "战斗结果",
-    "action": "Click",
-    "target": [
-      388,
-      59,
-      54,
-      25
-    ],
-    "next": [
-      "EC_DetectWhereAmI"
-    ],
-    "pre_delay": 100
-  },
   "EC_IsSpecialDrop": {
     "recognition": {
       "type": "TemplateMatch",
@@ -418,27 +397,6 @@
       25
     ],
     "expected": "经验",
-    "action": "Click",
-    "target": [
-      388,
-      59,
-      54,
-      25
-    ],
-    "next": [
-      "EC_PostBossDetect"
-    ],
-    "pre_delay": 100
-  },
-  "EC_PostBossBattleResult_Title": {
-    "recognition": "OCR",
-    "roi": [
-      558,
-      1,
-      162,
-      52
-    ],
-    "expected": "战斗结果",
     "action": "Click",
     "target": [
       388,

@@ -13,7 +13,6 @@
       "S_HasExpeditionReturn_Title",
       "S_IsMarching",
       "S_IsBattleResult_Exp",
-      "S_IsBattleResult_Title",
       "S_IsSwordDropColor",
       "S_IsKebiishi",
       "S_IsFormationSelect",
@@ -111,27 +110,6 @@
       25
     ],
     "expected": "经验",
-    "action": "Click",
-    "target": [
-      388,
-      59,
-      54,
-      25
-    ],
-    "next": [
-      "S_DetectWhereAmI"
-    ],
-    "pre_delay": 100
-  },
-  "S_IsBattleResult_Title": {
-    "recognition": "OCR",
-    "roi": [
-      558,
-      1,
-      162,
-      52
-    ],
-    "expected": "战斗结果",
     "action": "Click",
     "target": [
       388,
