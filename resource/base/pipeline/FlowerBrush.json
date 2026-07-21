@@ -468,6 +468,14 @@
     ]
   },
   "FB_ClickSortieNow": {
+    "recognition": "OCR",
+    "roi": [
+      1156,
+      584,
+      96,
+      47
+    ],
+    "expected": "即刻",
     "action": {
       "type": "Click",
       "param": {
