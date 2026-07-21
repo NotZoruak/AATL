@@ -2773,7 +2773,7 @@
     "next": [
       "E_FlowerCaptainClick2"
     ],
-    "post_delay": 800,
+    "post_delay": 500,
     "pre_delay": 100,
     "on_error": [
       "E_FlowerBattleHub"
@@ -2798,9 +2798,36 @@
       }
     },
     "next": [
+      "E_FlowerCaptainClick3"
+    ],
+    "post_delay": 500,
+    "pre_delay": 100,
+    "on_error": [
+      "E_FlowerBattleHub"
+    ]
+  },
+  "E_FlowerCaptainClick3": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          226,
+          514,
+          109,
+          26
+        ],
+        "target_offset": [
+          6,
+          4,
+          0,
+          0
+        ]
+      }
+    },
+    "next": [
       "E_FlowerCaptainClickFav"
     ],
-    "post_delay": 800,
+    "post_delay": 500,
     "pre_delay": 100,
     "on_error": [
       "E_FlowerBattleHub"
@@ -2853,7 +2880,7 @@
     "next": [
       "E_FlowerCaptainClick5"
     ],
-    "post_delay": 800,
+    "post_delay": 500,
     "pre_delay": 100,
     "on_error": [
       "E_FlowerBattleHub"

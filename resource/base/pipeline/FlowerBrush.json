@@ -421,27 +421,51 @@
         "expected": "升序"
       }
     },
-    "action": {
-      "type": "Click",
+    "next": [
+      "FB_CaptainFind",
+      "FB_CaptainSwipe"
+    ],
+    "pre_delay": 100
+  },
+  "FB_CaptainFind": {
+    "recognition": {
+      "type": "ColorMatch",
       "param": {
-        "target": [
-          1189,
-          140,
-          37,
-          61
+        "roi": [
+          1224,
+          137,
+          11,
+          553
         ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
-        ]
+        "upper": [
+          206,
+          108,
+          108
+        ],
+        "lower": [
+          200,
+          102,
+          102
+        ],
+        "method": 4,
+        "count": 1,
+        "connected": true
       }
     },
+    "action": "Click",
     "next": [
       "FB_ClickSortieNow"
     ],
     "pre_delay": 100
+  },
+  "FB_CaptainSwipe": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "PageScrollAndHoldAction"
+    },
+    "next": [
+      "FB_CaptainFind"
+    ]
   },
   "FB_ClickSortieNow": {
     "action": {
