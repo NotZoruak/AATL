@@ -3353,6 +3353,58 @@ public class MaaProcessor
             }
         }
 
+        // 王点匹配效率优化：根据选择时代禁用非本时代 boss 节点，减少模板匹配数量
+        if (task.InterfaceItem?.Entry == "Sortie")
+        {
+            var eraOption = task.InterfaceItem?.Option
+                ?.FirstOrDefault(o => o.Name == "S_选择时代");
+            if (eraOption?.Index is int eraIndex && eraIndex >= 1)
+            {
+                var bossNodePrefixes = new Dictionary<int, string[]>
+                {
+                    [1] = ["S_Boss_E2_"],
+                    [2] = ["S_Boss_E3_"],
+                    [3] = ["S_Boss_E4_"],
+                    [4] = ["S_Boss_E5_"],
+                    [5] = ["S_Boss_E6_", "S_MidRetreat_E6_"],
+                    [6] = ["S_Boss_E7_"],
+                    [7] = ["S_Boss_E8_", "S_MidRetreat_E8_"]
+                };
+
+                // 全部 boss + 道中节点
+                var allBossNodes = new[]
+                {
+                    "S_Boss_E2_R1", "S_Boss_E2_R2_1", "S_Boss_E2_R2_2",
+                    "S_Boss_E2_R3_1", "S_Boss_E2_R3_2", "S_Boss_E2_R3_3", "S_Boss_E2_R4",
+                    "S_Boss_E3_R1", "S_Boss_E3_R2", "S_Boss_E3_R3", "S_Boss_E3_R4",
+                    "S_Boss_E4_R1", "S_Boss_E4_R2", "S_Boss_E4_R3", "S_Boss_E4_R4",
+                    "S_Boss_E5_R1", "S_Boss_E5_R3", "S_Boss_E5_R3_2",
+                    "S_Boss_E5_R4_1", "S_Boss_E5_R4_2",
+                    "S_Boss_E6_R1", "S_Boss_E6_R2", "S_Boss_E6_R3", "S_Boss_E6_R4",
+                    "S_MidRetreat_E6_R1",
+                    "S_Boss_E7_R1", "S_Boss_E7_R2_1", "S_Boss_E7_R2_2",
+                    "S_Boss_E7_R3_1", "S_Boss_E7_R3_2", "S_Boss_E7_R4",
+                    "S_Boss_E8_R1", "S_Boss_E8_R2", "S_Boss_E8_R3", "S_Boss_E8_R4",
+                    "S_MidRetreat_E8_R1", "S_MidRetreat_E8_R2",
+                    "S_MidRetreat_E8_R3", "S_MidRetreat_E8_R4"
+                };
+
+                if (bossNodePrefixes.TryGetValue(eraIndex, out var prefixes))
+                {
+                    var disableNodes = new Dictionary<string, JToken>();
+                    foreach (var node in allBossNodes)
+                    {
+                        if (!prefixes.Any(p => node.StartsWith(p)))
+                        {
+                            disableNodes[node] = JToken.FromObject(new { enabled = false });
+                        }
+                    }
+                    if (disableNodes.Count > 0)
+                        taskModels.Merge(disableNodes);
+                }
+            }
+        }
+
         var taskParams = SerializeTaskParams(taskModels);
         // var settings = new JsonSerializerSettings
         // {
