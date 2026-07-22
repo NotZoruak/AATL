@@ -3,7 +3,6 @@ using MaaFramework.Binding.Custom;
 using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.Helper;
 using System;
-using System.Linq;
 using System.Threading;
 
 namespace MFAAvalonia.Extensions.MaaFW.Custom;
@@ -22,20 +21,24 @@ public class SmartWaitAction : IMaaCustomAction
         {
             ActionParamHelper.ThrowIfStopping(context);
 
-            int intervalSeconds = GetRefreshIntervalSeconds();
+            var json = ActionParamHelper.Parse(args.ActionParam);
+            int intervalSeconds = (int?)json["interval"] ?? 600;
             int remainingSeconds = ExpeditionReturnTracker.GetRemainingSeconds();
 
             int waitSeconds;
+            string startMsg;
             if (remainingSeconds > 0)
             {
                 waitSeconds = Math.Min(remainingSeconds, intervalSeconds);
-                LoggerHelper.Info($"[远征计时] 最早 {remainingSeconds}s, 实际 {waitSeconds}s");
+                startMsg = $"[远征计时] 最早归队 {FormatSeconds(remainingSeconds)}，实际等待 {FormatSeconds(waitSeconds)}";
             }
             else
             {
                 waitSeconds = intervalSeconds;
-                LoggerHelper.Info($"[远征计时] 无远征, 间隔 {waitSeconds}s");
+                startMsg = $"[远征计时] 无进行中的远征，间隔 {FormatSeconds(waitSeconds)}";
             }
+
+            Log(startMsg);
 
             if (waitSeconds > 0)
             {
@@ -50,34 +53,35 @@ public class SmartWaitAction : IMaaCustomAction
                 }
             }
 
+            Log("[远征计时] 倒计时结束");
             return true;
         }
         catch (MaaStopException)
         {
-            LoggerHelper.Info("[远征计时] 检测到手动停止");
+            Log("[远征计时] 检测到手动停止");
             return false;
         }
         catch (Exception e)
         {
-            LoggerHelper.Error($"[远征计时] 错误: {e.Message}");
+            Log($"[远征计时] 错误: {e.Message}");
             return false;
         }
     }
 
-    /// <summary>从全局选项读取 RefreshInterval</summary>
-    private static int GetRefreshIntervalSeconds()
+    private static string FormatSeconds(int totalSeconds)
     {
+        if (totalSeconds < 60)
+            return $"{totalSeconds}秒";
+        return $"{totalSeconds / 60}分{totalSeconds % 60}秒";
+    }
+
+    private static void Log(string message)
+    {
+        LoggerHelper.Info(message);
         try
         {
-            var iface = MaaProcessor.Interface;
-            var globalOpts = iface?.GlobalSelectOptions;
-            var refreshOpt = globalOpts?.FirstOrDefault(o => o.Name == "RefreshInterval");
-            if (refreshOpt?.Data != null &&
-                refreshOpt.Data.TryGetValue("seconds", out var str) &&
-                int.TryParse(str, out var val))
-                return val;
+            MaaProcessorManager.Instance.Current?.AddLog(message);
         }
         catch { }
-        return 600; // 默认 10 分钟
     }
 }

@@ -1295,7 +1295,7 @@
         <value>スライダーコントロール</value>
     </data>
   <data name="SoftwarePath" xml:space="preserve">
-        <value>エミュレータパス</value>
+        <value>ゲームパス</value>
     </data>
   <data name="SoftwareUpdate" xml:space="preserve">
         <value>ソフトウェアをアップデートする</value>

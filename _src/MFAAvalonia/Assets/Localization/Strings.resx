@@ -943,7 +943,7 @@
         <value>滑动获取器</value>
     </data>
     <data name="SoftwarePath" xml:space="preserve">
-        <value>模拟器路径</value>
+        <value>游戏路径</value>
     </data>
     <data name="SoftwareUpdate" xml:space="preserve">
         <value>软件更新</value>

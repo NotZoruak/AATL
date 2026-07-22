@@ -934,7 +934,7 @@
         <value>Slider Control</value>
     </data>
     <data name="SoftwarePath" xml:space="preserve">
-        <value>Emulator Path</value>
+        <value>Game Path</value>
     </data>
     <data name="SoftwareUpdate" xml:space="preserve">
         <value>Update Software</value>

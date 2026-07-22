@@ -1,0 +1,57 @@
+using MaaFramework.Binding;
+using MaaFramework.Binding.Custom;
+using MFAAvalonia.Extensions.MaaFW;
+using MFAAvalonia.Helper;
+using System.Linq;
+
+namespace MFAAvalonia.Extensions.MaaFW.Custom;
+
+public class StopOnDamageAction : IMaaCustomAction
+{
+    public string Name { get; set; } = nameof(StopOnDamageAction);
+
+    public bool Run<T>(T context, in RunArgs args, in RunResults results) where T : IMaaContext
+    {
+        var processor = MaaProcessorManager.Instance.Current;
+        if (processor == null)
+        {
+            Log("无法获取当前任务处理器");
+            return true;
+        }
+
+        var currentTaskName = processor.ViewModel?.CurrentTaskName ?? "未知任务";
+
+        // 当前任务已被 Dequeue，队列头部即为下一任务（跳过回本丸等自动插入的中间任务）
+        var nextTask = processor.TaskQueue.FirstOrDefault(t => t.Name != "回本丸");
+        var nextTaskName = nextTask?.Name != null
+            ? LanguageHelper.GetLocalizedString(nextTask.Name)
+            : null;
+
+        var message = nextTaskName != null
+            ? $"[重伤检测] 检测到刀剑男士重伤，{currentTaskName} 任务终止，开始{nextTaskName}"
+            : $"[重伤检测] 检测到刀剑男士重伤，{currentTaskName} 任务终止，所有任务运行完毕";
+
+        Log(message);
+
+        // 系统托盘通知（使用应用内 Toast 弹窗）
+        DispatcherHelper.PostOnMainThread(() =>
+        {
+            ToastHelper.Warn("重伤检测", message, duration: 10);
+        });
+
+        return true; // 流水线节点成功 → MaaTasker 任务结束 → 队列自动移至下一任务
+    }
+
+    private static void Log(string message)
+    {
+        LoggerHelper.Info(message);
+        try
+        {
+            MaaProcessorManager.Instance.Current?.AddLog(message);
+        }
+        catch
+        {
+            // 静默忽略，确保不影响流水线执行
+        }
+    }
+}

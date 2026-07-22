@@ -49,7 +49,12 @@ public partial class ObservableQueue<T> : ObservableObject
     {
         return _queue.Any(predicate);
     }
-    
+
+    public T? FirstOrDefault(Func<T, bool>? predicate = null)
+    {
+        return predicate == null ? _queue.FirstOrDefault() : _queue.FirstOrDefault(predicate);
+    }
+
     public class CountChangedEventArgs(int oldValue, int newValue) : EventArgs
     {
         public int OldValue => oldValue;

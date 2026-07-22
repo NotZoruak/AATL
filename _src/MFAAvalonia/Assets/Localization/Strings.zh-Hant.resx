@@ -934,7 +934,7 @@
         <value>滑動獲取器</value>
     </data>
     <data name="SoftwarePath" xml:space="preserve">
-        <value>模擬器路徑</value>
+        <value>遊戲路徑</value>
     </data>
     <data name="SoftwareUpdate" xml:space="preserve">
         <value>軟體更新</value>

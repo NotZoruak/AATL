@@ -2327,6 +2327,17 @@
         ]
       }
     },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          788,
+          465,
+          1,
+          1
+        ]
+      }
+    },
     "enabled": false,
     "pre_delay": 100,
     "next": [
@@ -2389,18 +2400,24 @@
       "type": "Custom",
       "custom_action": "DamageLogAction",
       "custom_action_param": {
-        "message": "[重伤检测] 检测到刀剑男士重伤，任务终止"
+        "message": "[重伤检测] 检测到刀剑男士重伤"
       }
-    }
+    },
+    "next": [
+      "U_NavigateToHomeFromStop"
+    ]
   },
   "U_LogStopOnDamageText": {
     "action": {
       "type": "Custom",
       "custom_action": "DamageLogAction",
       "custom_action_param": {
-        "message": "[重伤检测] 检测到刀剑男士重伤，任务终止"
+        "message": "[重伤检测] 检测到刀剑男士重伤"
       }
-    }
+    },
+    "next": [
+      "U_NavigateToHomeFromStop"
+    ]
   },
   "U_LogStopOnDamageRepair": {
     "action": {
@@ -2429,5 +2446,117 @@
     "next": [
       "U_IsPreSortieConfirm"
     ]
+  },
+  "U_NavigateToHomeFromStop": {
+    "next": [
+      "U_ClickMenuStop",
+      "U_DetectWhereAmI"
+    ],
+    "post_delay": 300
+  },
+  "U_ClickMenuStop": {
+    "recognition": "OCR",
+    "roi": [
+      1179,
+      8,
+      95,
+      56
+    ],
+    "expected": "目录",
+    "action": "Click",
+    "target_offset": [
+      5,
+      3,
+      0,
+      0
+    ],
+    "next": [
+      "U_ClickHomeStop"
+    ],
+    "on_error": [
+      "U_DetectWhereAmI"
+    ],
+    "pre_delay": 100
+  },
+  "U_ClickHomeStop": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          581,
+          28,
+          112,
+          57
+        ],
+        "template": "菜单目录.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "action": "Click",
+    "target": [
+      1037,
+      169,
+      110,
+      44
+    ],
+    "target_offset": [
+      6,
+      4,
+      0,
+      0
+    ],
+    "next": [
+      "U_VerifyHomeScreen"
+    ],
+    "on_error": [
+      "U_ClickMenuStop"
+    ],
+    "pre_delay": 100
+  },
+  "U_VerifyHomeScreen": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [
+          8,
+          1,
+          71,
+          107
+        ],
+        "template": "本丸.png",
+        "green_mask": true,
+        "threshold": [
+          0.98
+        ]
+      }
+    },
+    "next": [
+      "U_TerminateOnDamage"
+    ],
+    "on_error": [
+      "U_ClickHomeFallback"
+    ]
+  },
+  "U_ClickHomeFallback": {
+    "action": "Click",
+    "target": [
+      185,
+      22,
+      15,
+      18
+    ],
+    "next": [
+      "U_VerifyHomeScreen"
+    ],
+    "pre_delay": 100
+  },
+  "U_TerminateOnDamage": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "StopOnDamageAction"
+    }
   }
 }

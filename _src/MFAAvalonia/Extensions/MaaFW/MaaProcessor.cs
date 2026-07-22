@@ -3301,8 +3301,55 @@ public class MaaProcessor
                         {
                             ["E_TimerStart"] = JToken.FromObject(timerParam)
                         });
+
+                        // 同时注入到 E_SmartWait，供 SmartWaitAction 读取
+                        var smartWaitParam = new Dictionary<string, JToken>
+                        {
+                            ["action"] = new JObject
+                            {
+                                ["type"] = "Custom",
+                                ["custom_action"] = "SmartWaitAction",
+                                ["custom_action_param"] = new JObject
+                                {
+                                    ["interval"] = seconds
+                                }
+                            }
+                        };
+                        taskModels.Merge(new Dictionary<string, JToken>
+                        {
+                            ["E_SmartWait"] = JToken.FromObject(smartWaitParam),
+                            ["U_SmartWait"] = JToken.FromObject(smartWaitParam)
+                        });
                     }
                 }
+            }
+        }
+
+        // 远征任务自身：注入 RefreshInterval 到 E_SmartWait
+        if (task.InterfaceItem?.Entry == "Expedition")
+        {
+            var expRefreshOpt = task.InterfaceItem?.Option
+                ?.FirstOrDefault(o => o.Name == "RefreshInterval");
+            if (expRefreshOpt?.Data != null &&
+                expRefreshOpt.Data.TryGetValue("seconds", out var expSecondsStr) &&
+                int.TryParse(expSecondsStr, out var expSeconds))
+            {
+                var smartWaitParam = new Dictionary<string, JToken>
+                {
+                    ["action"] = new JObject
+                    {
+                        ["type"] = "Custom",
+                        ["custom_action"] = "SmartWaitAction",
+                        ["custom_action_param"] = new JObject
+                        {
+                            ["interval"] = expSeconds
+                        }
+                    }
+                };
+                taskModels.Merge(new Dictionary<string, JToken>
+                {
+                    ["E_SmartWait"] = JToken.FromObject(smartWaitParam)
+                });
             }
         }
 
