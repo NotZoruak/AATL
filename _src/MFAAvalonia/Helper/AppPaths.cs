@@ -189,7 +189,7 @@ public static class AppPaths
         }
     }
 
-    public static void CleanupOldDebugLogs(int retainDays = 3, Action<string>? logInfo = null, Action<string>? logWarning = null)
+    public static void CleanupOldDebugLogs(int retainDays = 1, Action<string>? logInfo = null, Action<string>? logWarning = null)
     {
         try
         {
@@ -201,6 +201,22 @@ public static class AppPaths
                 return;
 
             var cutoff = DateTime.Now.AddDays(-retainDays);
+
+            // 轮转主日志 maafw.log（启动时重命名为备份，MaaFramework 会自动创建新的）
+            var mainLog = Path.Combine(debugPath, "maafw.log");
+            if (File.Exists(mainLog) && new FileInfo(mainLog).Length > 0)
+            {
+                try
+                {
+                    var bakName = $"maafw.bak.{DateTime.Now:yyyyMMdd_HHmmss}.log";
+                    File.Move(mainLog, Path.Combine(debugPath, bakName));
+                    logInfo?.Invoke($"已轮转调试日志：{bakName}");
+                }
+                catch (Exception ex)
+                {
+                    logWarning?.Invoke($"轮转调试日志失败：原因={ex.Message}");
+                }
+            }
 
             // 清理过期的备份日志
             foreach (var file in Directory.EnumerateFiles(debugPath, "maafw.bak.*.log"))
@@ -219,6 +235,27 @@ public static class AppPaths
                     logWarning?.Invoke($"清理调试日志失败：文件={file}，原因={ex.Message}");
                 }
             }
+
+            // 清理过期的调试截图
+            foreach (var pattern in new[] { "*.png", "*.jpg", "*.jpeg" })
+            {
+                foreach (var file in Directory.EnumerateFiles(debugPath, pattern))
+                {
+                    try
+                    {
+                        if (File.GetLastWriteTime(file) < cutoff)
+                        {
+                            File.SetAttributes(file, FileAttributes.Normal);
+                            File.Delete(file);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        logWarning?.Invoke($"清理调试截图失败：文件={file}，原因={ex.Message}");
+                    }
+                }
+            }
+            logInfo?.Invoke("调试文件清理完成");
         }
         catch (Exception ex)
         {

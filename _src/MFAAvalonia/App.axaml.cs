@@ -135,7 +135,6 @@ public partial class App : Application
                 message => LoggerHelper.Info(message),
                 message => LoggerHelper.Warning(message));
             AppPaths.CleanupOldDebugLogs(
-                retainDays: 3,
                 logInfo: message => LoggerHelper.Info(message),
                 logWarning: message => LoggerHelper.Warning(message));
             AvaloniaXamlLoader.Load(this);
