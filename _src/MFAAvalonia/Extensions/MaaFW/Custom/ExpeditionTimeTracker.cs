@@ -53,7 +53,7 @@ public class ExpeditionTimeTracker : IMaaCustomAction
                 minRemaining = seconds.Value;
         }
 
-        if (minRemaining.HasValue && minRemaining.Value > 0)
+        if (minRemaining.HasValue)
         {
             var returnTime = DateTime.Now.AddSeconds(minRemaining.Value);
             ExpeditionReturnTracker.SetEarliestReturn(returnTime);

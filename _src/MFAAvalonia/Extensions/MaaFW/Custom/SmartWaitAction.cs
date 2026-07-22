@@ -32,6 +32,11 @@ public class SmartWaitAction : IMaaCustomAction
                 waitSeconds = Math.Min(remainingSeconds, intervalSeconds);
                 startMsg = $"[远征计时] 最早归队 {FormatSeconds(remainingSeconds)}，实际等待 {FormatSeconds(waitSeconds)}";
             }
+            else if (remainingSeconds == 0)
+            {
+                waitSeconds = 0;
+                startMsg = "[远征计时] 检测到队伍已归队";
+            }
             else
             {
                 waitSeconds = intervalSeconds;
