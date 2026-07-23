@@ -4534,14 +4534,14 @@
                 "LR_NavigateToUnderground"
               ]
             },
-            "LR_IsEventPage": {
+            "LR_IsTeamSelect": {
               "next": [
                 "E_CheckTimerExpired"
               ]
             },
             "E_CheckTimerExpired": {
               "next": [
-                "LR_SelectDifficulty"
+                "LR_ClickTeam"
               ],
               "on_error": [
                 "E_GoHome"

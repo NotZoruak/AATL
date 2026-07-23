@@ -20,6 +20,7 @@ Copy-Item "$Root\MATR.dll" $TempDir
 Copy-Item "$Root\MATR.deps.json" $TempDir
 Copy-Item "$Root\MATR.runtimeconfig.json" $TempDir
 Copy-Item "$Root\libloader.dll" $TempDir
+Copy-Item "$Root\DependencySetup_*.bat" $TempDir
 Copy-Item "$Root\README.md" $TempDir
 Copy-Item "$Root\LICENSE" $TempDir
 Copy-Item "$Root\interface.json" $TempDir

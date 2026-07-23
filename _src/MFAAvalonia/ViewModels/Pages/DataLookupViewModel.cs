@@ -176,12 +176,9 @@ public partial class DataLookupViewModel : ViewModelBase
 
 public class ExpeditionRewardDisplayItem
 {
-    private static readonly SolidColorBrush Transparent = new(Colors.Transparent);
-    private static readonly Color LightColor = Color.Parse("#FFC878");
-    private static readonly Color DeepColor = Color.Parse("#FF8C1E");
-    private const double AlphaLight = 0.12;
-    private const double AlphaDeep = 0.45;
-    private const double ThresholdRatio = 0.3;
+    private static readonly SolidColorBrush Tier1Bg = new(Color.Parse("#59187000"));
+    private static readonly SolidColorBrush Tier2Bg = new(Color.Parse("#5950A000"));
+    private static readonly SolidColorBrush Tier3Bg = new(Color.Parse("#59A0D858"));
 
     public string Name { get; }
     public string Duration { get; }
@@ -269,15 +266,11 @@ public class ExpeditionRewardDisplayItem
 
     private static IBrush MakeBg(double efficiency, double max)
     {
-        if (max <= 0 || efficiency <= 0) return Transparent;
-        var threshold = max * ThresholdRatio;
-        if (efficiency <= threshold) return Transparent;
-
-        var t = (efficiency - threshold) / (max - threshold);
-        var alpha = AlphaLight + (AlphaDeep - AlphaLight) * t;
-        var r = (byte)(LightColor.R + (DeepColor.R - LightColor.R) * t);
-        var g = (byte)(LightColor.G + (DeepColor.G - LightColor.G) * t);
-        var b = (byte)(LightColor.B + (DeepColor.B - LightColor.B) * t);
-        return new SolidColorBrush(new Color((byte)(alpha * 255), r, g, b));
+        if (max <= 0 || efficiency <= 0) return Brushes.Transparent;
+        var ratio = efficiency / max;
+        if (ratio <= 0.40) return Brushes.Transparent;
+        if (ratio <= 0.70) return Tier3Bg;
+        if (ratio <= 0.90) return Tier2Bg;
+        return Tier1Bg;
     }
 }

@@ -10,11 +10,11 @@
 <p align="center">
     <img src="https://img.shields.io/badge/Platform-Windows-0078D7?style=flat-square&logo=Windows" alt="Platform" />
     <img src="https://img.shields.io/badge/Language-C%23%20%2F%20Pipeline-%23239120?style=flat-square&logo=csharp" alt="Language" />
-    <img alt="license" src="https://img.shields.io/github/license/NotZoruak/MATR?style=flat-square">
-    <a href="https://github.com/MaaXYZ/MaaFramework" target="_blank"><img alt="MaaFramework" src="https://raw.githubusercontent.com/MaaXYZ/MaaFramework/refs/heads/main/docs/static/maafw.svg"></a>
+    <img alt="license" src="https://img.shields.io/github/license/NotZoruak/MATR?style=flat-square" />
+    <a href="https://github.com/MaaXYZ/MaaFramework" target="_blank"><img alt="MaaFramework" src="https://raw.githubusercontent.com/MaaXYZ/MaaFramework/refs/heads/main/docs/static/maafw.svg" /></a>
     <br/>
-    <img alt="stars" src="https://img.shields.io/github/stars/NotZoruak/MATR?style=flat-square&logo=github&color=darkgreen">
-    <img alt="downloads" src="https://img.shields.io/github/downloads/NotZoruak/MATR/total?style=flat-square&logo=github&color=darkgreen">
+    <img alt="stars" src="https://img.shields.io/github/stars/NotZoruak/MATR?style=flat-square&logo=github&color=darkgreen" />
+    <img alt="downloads" src="https://img.shields.io/github/downloads/NotZoruak/MATR/total?style=flat-square&logo=github&color=darkgreen" />
 </p>
 <br>
 
@@ -62,7 +62,7 @@
 
 双击 `matr.exe` 即可运行。首次启动耗时可能较长，请耐心等待。
 
-> 启动时若弹出 ".NET Desktop Runtime 10.0" 或 "VCRUNTIME140.dll" 等系统错误提示，说明缺少运行依赖。回到 Releases 页面下载 `DependencySetup_win.bat`，右键 → **以管理员身份运行**，安装完成后重新启动 MATR。
+> 启动时若弹出 ".NET Desktop Runtime 10.0" 或 "VCRUNTIME140.dll" 等系统错误提示，说明缺少运行依赖。右键 `DependencySetup_依赖库安装_win.bat` → **以管理员身份运行**，安装完成后重新启动 MATR。
 
 ## 功能介绍
 
