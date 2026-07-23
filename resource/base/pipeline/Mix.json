@@ -31,23 +31,24 @@
   "M_DetectEmptyMailbox": {
     "recognition": "ColorMatch",
     "roi": [142, 178, 82, 75],
-    "upper": [
-      216,
-      214,
-      207
-    ],
-    "lower": [
-      206,
-      204,
-      197
-    ],
+    "upper": [216, 214, 207],
+    "lower": [206, 204, 197],
     "count": 6150,
-    "action": { "type": "Click", "param": { "target": [1231, 8, 38, 39] } },
-    "next": ["M_EmptyMailboxClick2"],
-    "on_error": ["M_DetectWhereAmI"]
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1231, 8, 38, 39]
+      }
+    },
+    "next": ["M_EmptyMailboxClick2"]
   },
   "M_EmptyMailboxClick2": {
-    "action": { "type": "Click", "param": { "target": [1231, 8, 38, 39] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1231, 8, 38, 39]
+      }
+    },
     "pre_delay": 0,
     "next": []
   },
@@ -57,8 +58,7 @@
     "expected": "经验",
     "action": "Click",
     "target": [388, 59, 54, 25],
-    "next": ["M_DetectWhereAmI"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"]
   },
   "M_HasExpeditionReturn_Title": {
     "recognition": "OCR",
@@ -66,17 +66,12 @@
     "expected": "远征结果",
     "action": "Click",
     "target": [388, 59, 54, 25],
-    "next": ["M_DetectWhereAmI"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"]
   },
   "M_CheckHomeBrightness": {
     "recognition": "ColorMatch",
     "roi": [66, 58, 11, 13],
-    "upper": [
-      40,
-      155,
-      30
-    ],
+    "upper": [40, 155, 30],
     "lower": [
       23,
       95,
@@ -95,7 +90,12 @@
         "threshold": [0.98]
       }
     },
-    "action": { "type": "Click", "param": { "target": [1179, 8, 95, 56] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1179, 8, 95, 56]
+      }
+    },
     "next": ["M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
   },
@@ -109,9 +109,13 @@
         "threshold": [0.98]
       }
     },
-    "action": { "type": "Click", "param": { "target": [453, 278, 84, 32] } },
-    "next": ["M_DetectWhereAmI"],
-    "on_error": ["M_DetectWhereAmI"]
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [453, 278, 84, 32]
+      }
+    },
+    "next": ["M_DetectWhereAmI"]
   },
   "M_DetectRefine": {
     "recognition": {
@@ -121,9 +125,13 @@
         "expected": "合成"
       }
     },
-    "action": { "type": "Click", "param": { "target": [13, 315, 22, 52] } },
-    "next": ["M_DetectWhereAmI"],
-    "on_error": ["M_DetectWhereAmI"]
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [13, 315, 22, 52]
+      }
+    },
+    "next": ["M_DetectWhereAmI"]
   },
   "M_DetectMix": {
     "recognition": {
@@ -134,32 +142,33 @@
       }
     },
     "action": "DoNothing",
-    "next": ["M_HideUnmixable"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_HideUnmixable"]
   },
   "M_HideUnmixable": {
     "recognition": "ColorMatch",
     "roi": [137, 106, 2, 4],
-    "upper": [
-      180,
-      35,
-      34
-    ],
-    "lower": [
-      176,
-      31,
-      30
-    ],
+    "upper": [180, 35, 34],
+    "lower": [176, 31, 30],
     "action": "DoNothing",
     "next": ["M_ClickFilter"],
     "on_error": ["M_ClickHideUnmixable"]
   },
   "M_ClickHideUnmixable": {
-    "action": { "type": "Click", "param": { "target": [137, 106, 2, 4] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [137, 106, 2, 4]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_ClickFilter": {
-    "action": { "type": "Click", "param": { "target": [823, 85, 40, 20] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [823, 85, 40, 20]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_DetectMixSub": {
@@ -173,8 +182,7 @@
     "action": "DoNothing",
     "pre_delay": 500,
     "post_delay": 500,
-    "next": ["M_CheckSubLevel", "M_ClickSelectAll"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_CheckSubLevel", "M_ClickSelectAll"]
   },
   "M_CheckSubLevel": {
     "enabled": false,
@@ -198,45 +206,61 @@
     "on_error": ["M_ClickSelectAll"]
   },
   "M_ClickSelectAll": {
-    "action": { "type": "Click", "param": { "target": [1158, 463, 80, 36] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1158, 463, 80, 36]
+      }
+    },
     "pre_delay": 500,
     "post_delay": 1000,
-    "next": ["M_CheckAndMix", "M_ExitNoMaterial"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_CheckAndMix", "M_ExitNoMaterial"]
   },
   "M_CheckAndMix": {
     "recognition": "ColorMatch",
     "roi": [1166, 586, 71, 19],
-    "upper": [
-      25,
-      86,
-      182
-    ],
-    "lower": [
-      21,
-      82,
-      178
-    ],
-    "action": { "type": "Click", "param": { "target": [1166, 586, 71, 19] } },
+    "upper": [25, 86, 182],
+    "lower": [21, 82, 178],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1166, 586, 71, 19]
+      }
+    },
     "pre_delay": 500,
     "post_delay": 500,
     "next": ["M_ConfirmMix1"],
     "on_error": ["M_ExitNoMaterial"]
   },
   "M_ExitNoMaterial": {
-    "action": { "type": "Click", "param": { "target": [143, 11, 19, 25] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [143, 11, 19, 25]
+      }
+    },
     "pre_delay": 500,
     "post_delay": 500,
     "next": ["M_DetectWhereAmI"]
   },
   "M_ConfirmMix1": {
-    "action": { "type": "Click", "param": { "target": [746, 611, 82, 36] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [746, 611, 82, 36]
+      }
+    },
     "pre_delay": 500,
     "post_delay": 500,
     "next": ["M_ConfirmMix2"]
   },
   "M_ConfirmMix2": {
-    "action": { "type": "Click", "param": { "target": [746, 611, 82, 36] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [746, 611, 82, 36]
+      }
+    },
     "pre_delay": 500,
     "post_delay": 500,
     "next": ["M_CheckSubLevel", "M_ClickSelectAll"]
@@ -248,16 +272,8 @@
   "M_DetectEmpty1": {
     "recognition": "ColorMatch",
     "roi": [88, 127, 7, 8],
-    "upper": [
-      222,
-      222,
-      222
-    ],
-    "lower": [
-      218,
-      218,
-      218
-    ],
+    "upper": [222, 222, 222],
+    "lower": [218, 218, 218],
     "action": "DoNothing",
     "next": ["M_GoToMailboxFromMix"],
     "on_error": ["M_DetectLocked1"]
@@ -265,22 +281,21 @@
   "M_DetectLocked1": {
     "recognition": "ColorMatch",
     "roi": [88, 127, 7, 8],
-    "upper": [
-      214,
-      175,
-      33
+    "upper": [214, 175, 33
     ],
-    "lower": [
-      210,
-      171,
-      29
+    "lower": [210, 171, 29
     ],
     "action": "DoNothing",
     "next": ["M_ClickMixBtn1"],
     "on_error": ["M_CheckLevel1"]
   },
   "M_ClickMixBtn1": {
-    "action": { "type": "Click", "param": { "target": [1216, 164, 9, 9] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1216, 164, 9, 9]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_CheckLevel1": {
@@ -304,7 +319,12 @@
   },
   "M_ClickMixDirect1": {
     "enabled": true,
-    "action": { "type": "Click", "param": { "target": [1216, 164, 9, 9] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1216, 164, 9, 9]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_CheckPos2": {
@@ -314,16 +334,8 @@
   "M_DetectEmpty2": {
     "recognition": "ColorMatch",
     "roi": [88, 228, 7, 8],
-    "upper": [
-      222,
-      222,
-      222
-    ],
-    "lower": [
-      218,
-      218,
-      218
-    ],
+    "upper": [222, 222, 222],
+    "lower": [218, 218, 218],
     "action": "DoNothing",
     "next": ["M_GoToMailboxFromMix"],
     "on_error": ["M_DetectLocked2"]
@@ -331,22 +343,19 @@
   "M_DetectLocked2": {
     "recognition": "ColorMatch",
     "roi": [88, 228, 7, 8],
-    "upper": [
-      214,
-      175,
-      33
-    ],
-    "lower": [
-      210,
-      171,
-      29
-    ],
+    "upper": [214, 175, 33],
+    "lower": [210, 171, 29],
     "action": "DoNothing",
     "next": ["M_ClickMixBtn2"],
     "on_error": ["M_CheckLevel2"]
   },
   "M_ClickMixBtn2": {
-    "action": { "type": "Click", "param": { "target": [1216, 265, 9, 9] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1216, 265, 9, 9]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_CheckLevel2": {
@@ -370,7 +379,12 @@
   },
   "M_ClickMixDirect2": {
     "enabled": true,
-    "action": { "type": "Click", "param": { "target": [1216, 265, 9, 9] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1216, 265, 9, 9]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_CheckPos3": {
@@ -380,16 +394,8 @@
   "M_DetectEmpty3": {
     "recognition": "ColorMatch",
     "roi": [88, 329, 7, 8],
-    "upper": [
-      222,
-      222,
-      222
-    ],
-    "lower": [
-      218,
-      218,
-      218
-    ],
+    "upper": [222, 222, 222],
+    "lower": [218, 218, 218],
     "action": "DoNothing",
     "next": ["M_GoToMailboxFromMix"],
     "on_error": ["M_DetectLocked3"]
@@ -397,22 +403,19 @@
   "M_DetectLocked3": {
     "recognition": "ColorMatch",
     "roi": [88, 329, 7, 8],
-    "upper": [
-      214,
-      175,
-      33
-    ],
-    "lower": [
-      210,
-      171,
-      29
-    ],
+    "upper": [214, 175, 33],
+    "lower": [210, 171, 29],
     "action": "DoNothing",
     "next": ["M_ClickMixBtn3"],
     "on_error": ["M_CheckLevel3"]
   },
   "M_ClickMixBtn3": {
-    "action": { "type": "Click", "param": { "target": [1216, 366, 9, 9] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1216, 366, 9, 9]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_CheckLevel3": {
@@ -436,7 +439,12 @@
   },
   "M_ClickMixDirect3": {
     "enabled": true,
-    "action": { "type": "Click", "param": { "target": [1216, 366, 9, 9] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1216, 366, 9, 9]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_CheckPos4": {
@@ -446,16 +454,8 @@
   "M_DetectEmpty4": {
     "recognition": "ColorMatch",
     "roi": [88, 430, 7, 8],
-    "upper": [
-      222,
-      222,
-      222
-    ],
-    "lower": [
-      218,
-      218,
-      218
-    ],
+    "upper": [222, 222, 222],
+    "lower": [218, 218, 218],
     "action": "DoNothing",
     "next": ["M_GoToMailboxFromMix"],
     "on_error": ["M_DetectLocked4"]
@@ -463,22 +463,19 @@
   "M_DetectLocked4": {
     "recognition": "ColorMatch",
     "roi": [88, 430, 7, 8],
-    "upper": [
-      214,
-      175,
-      33
-    ],
-    "lower": [
-      210,
-      171,
-      29
-    ],
+    "upper": [214, 175, 33],
+    "lower": [210, 171, 29],
     "action": "DoNothing",
     "next": ["M_ClickMixBtn4"],
     "on_error": ["M_CheckLevel4"]
   },
   "M_ClickMixBtn4": {
-    "action": { "type": "Click", "param": { "target": [1216, 467, 9, 9] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1216, 467, 9, 9]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_CheckLevel4": {
@@ -502,7 +499,12 @@
   },
   "M_ClickMixDirect4": {
     "enabled": true,
-    "action": { "type": "Click", "param": { "target": [1216, 467, 9, 9] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1216, 467, 9, 9]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_CheckPos5": {
@@ -512,16 +514,8 @@
   "M_DetectEmpty5": {
     "recognition": "ColorMatch",
     "roi": [88, 531, 7, 8],
-    "upper": [
-      222,
-      222,
-      222
-    ],
-    "lower": [
-      218,
-      218,
-      218
-    ],
+    "upper": [222, 222, 222],
+    "lower": [218, 218, 218],
     "action": "DoNothing",
     "next": ["M_GoToMailboxFromMix"],
     "on_error": ["M_DetectLocked5"]
@@ -529,22 +523,19 @@
   "M_DetectLocked5": {
     "recognition": "ColorMatch",
     "roi": [88, 531, 7, 8],
-    "upper": [
-      214,
-      175,
-      33
-    ],
-    "lower": [
-      210,
-      171,
-      29
-    ],
+    "upper": [214, 175, 33],
+    "lower": [210, 171, 29],
     "action": "DoNothing",
     "next": ["M_ClickMixBtn5"],
     "on_error": ["M_CheckLevel5"]
   },
   "M_ClickMixBtn5": {
-    "action": { "type": "Click", "param": { "target": [1216, 568, 9, 9] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1216, 568, 9, 9]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_CheckLevel5": {
@@ -568,7 +559,12 @@
   },
   "M_ClickMixDirect5": {
     "enabled": true,
-    "action": { "type": "Click", "param": { "target": [1216, 568, 9, 9] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1216, 568, 9, 9]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_CheckPos6": {
@@ -578,16 +574,8 @@
   "M_DetectEmpty6": {
     "recognition": "ColorMatch",
     "roi": [88, 632, 7, 8],
-    "upper": [
-      222,
-      222,
-      222
-    ],
-    "lower": [
-      218,
-      218,
-      218
-    ],
+    "upper": [222, 222, 222],
+    "lower": [218, 218, 218],
     "action": "DoNothing",
     "next": ["M_GoToMailboxFromMix"],
     "on_error": ["M_DetectLocked6"]
@@ -595,22 +583,19 @@
   "M_DetectLocked6": {
     "recognition": "ColorMatch",
     "roi": [88, 632, 7, 8],
-    "upper": [
-      214,
-      175,
-      33
-    ],
-    "lower": [
-      210,
-      171,
-      29
-    ],
+    "upper": [214, 175, 33],
+    "lower": [210, 171, 29],
     "action": "DoNothing",
     "next": ["M_ClickMixBtn6"],
     "on_error": ["M_CheckLevel6"]
   },
   "M_ClickMixBtn6": {
-    "action": { "type": "Click", "param": { "target": [1216, 669, 9, 9] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1216, 669, 9, 9]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_CheckLevel6": {
@@ -634,11 +619,21 @@
   },
   "M_ClickMixDirect6": {
     "enabled": true,
-    "action": { "type": "Click", "param": { "target": [1216, 669, 9, 9] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1216, 669, 9, 9]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   },
   "M_GoToMailboxFromMix": {
-    "action": { "type": "Click", "param": { "target": [1179, 8, 95, 56] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1179, 8, 95, 56]
+      }
+    },
     "pre_delay": 500,
     "timeout": 3000,
     "next": ["M_VerifyMenuFromMix"],
@@ -655,7 +650,12 @@
         "threshold": [0.98]
       }
     },
-    "action": { "type": "Click", "param": { "target": [999, 372, 43, 45] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [999, 372, 43, 45]
+      }
+    },
     "post_delay": 1000,
     "next": ["M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
@@ -668,9 +668,13 @@
         "expected": "筛选"
       }
     },
-    "action": { "type": "Click", "param": { "target": [752, 145, 100, 25] } },
-    "next": ["M_FilterSwordHub"],
-    "on_error": ["M_DetectWhereAmI"]
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [752, 145, 100, 25]
+      }
+    },
+    "next": ["M_FilterSwordHub"]
   },
   "M_DetectPurchasePopup": {
     "recognition": {
@@ -680,9 +684,13 @@
         "expected": "购买详情"
       }
     },
-    "action": { "type": "Click", "param": { "target": [1231, 8, 38, 39] } },
-    "next": ["M_MailboxCloseFinal"],
-    "on_error": ["M_DetectWhereAmI"]
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1231, 8, 38, 39]
+      }
+    },
+    "next": ["M_MailboxCloseFinal"]
   },
   "M_DetectMailbox": {
     "recognition": {
@@ -692,34 +700,58 @@
         "expected": "收件箱"
       }
     },
-    "action": { "type": "Click", "param": { "target": [967, 113, 48, 22] } },
-    "next": ["M_DetectWhereAmI"],
-    "on_error": ["M_DetectWhereAmI"]
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [967, 113, 48, 22]
+      }
+    },
+    "next": ["M_DetectWhereAmI"]
   },
   "M_NoFilterClick1": {
     "enabled": false,
-    "action": { "type": "Click", "param": { "target": [989, 123, 1, 1] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [989, 123, 1, 1]
+      }
+    },
     "pre_delay": 300,
     "post_delay": 500,
     "next": ["M_NoFilterClick2"]
   },
   "M_NoFilterClick2": {
     "enabled": false,
-    "action": { "type": "Click", "param": { "target": [799, 157, 1, 1] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [799, 157, 1, 1]
+      }
+    },
     "pre_delay": 300,
     "post_delay": 500,
     "next": ["M_NoFilterClick3"]
   },
   "M_NoFilterClick3": {
     "enabled": false,
-    "action": { "type": "Click", "param": { "target": [1009, 303, 1, 1] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1009, 303, 1, 1]
+      }
+    },
     "pre_delay": 300,
     "post_delay": 500,
     "next": ["M_NoFilterClick4"]
   },
   "M_NoFilterClick4": {
     "enabled": false,
-    "action": { "type": "Click", "param": { "target": [639, 625, 1, 1] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [639, 625, 1, 1]
+      }
+    },
     "pre_delay": 300,
     "post_delay": 500,
     "next": ["M_FilterPostHub"]
@@ -742,7 +774,12 @@
     ]
   },
   "M_FilterSword1": {
-    "action": { "type": "Click", "param": { "target": [235, 217, 83, 27] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [235, 217, 83, 27]
+      }
+    },
     "enabled": false,
     "next": [
       "M_FilterSword2",
@@ -755,39 +792,73 @@
     ]
   },
   "M_FilterSword2": {
-    "action": { "type": "Click", "param": { "target": [419, 218, 66, 30] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [419, 218, 66, 30]
+      }
+    },
     "enabled": false,
     "next": ["M_FilterSword3", "M_FilterSword4", "M_FilterSword5", "M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"]
   },
   "M_FilterSword3": {
-    "action": { "type": "Click", "param": { "target": [596, 218, 56, 27] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [596, 218, 56, 27]
+      }
+    },
     "enabled": false,
     "next": ["M_FilterSword4", "M_FilterSword5", "M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"]
   },
   "M_FilterSword4": {
-    "action": { "type": "Click", "param": { "target": [772, 215, 63, 32] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [772, 215, 63, 32]
+      }
+    },
     "enabled": false,
     "next": ["M_FilterSword5", "M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"]
   },
   "M_FilterSword5": {
-    "action": { "type": "Click", "param": { "target": [241, 289, 74, 33] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [241, 289, 74, 33]
+      }
+    },
     "enabled": false,
     "next": ["M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"]
   },
   "M_FilterSword6": {
-    "action": { "type": "Click", "param": { "target": [423, 290, 52, 31] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [423, 290, 52, 31]
+      }
+    },
     "enabled": false,
     "next": ["M_FilterSword7", "M_FilterConfirm"]
   },
   "M_FilterSword7": {
-    "action": { "type": "Click", "param": { "target": [588, 287, 68, 34] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [588, 287, 68, 34]
+      }
+    },
     "enabled": false,
     "next": ["M_FilterConfirm"]
   },
   "M_FilterConfirm": {
-    "action": { "type": "Click", "param": { "target": [588, 604, 99, 39] } },
-    "next": ["M_FilterPostHub"],
-    "on_error": ["M_DetectWhereAmI"]
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [588, 604, 99, 39]
+      }
+    },
+    "next": ["M_FilterPostHub"]
   },
   "M_FilterPostHub": {
     "next": ["M_PostFilterReward", "M_PostFilterMix", "M_DetectEmptyMailbox", "M_PostFilterMailbox", "M_DetectWhereAmI"]
@@ -801,8 +872,7 @@
       }
     },
     "action": "DoNothing",
-    "next": ["M_CheckPos1"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_CheckPos1"]
   },
   "M_PostFilterReward": {
     "recognition": {
@@ -812,7 +882,12 @@
         "expected": "励确认"
       }
     },
-    "action": { "type": "Click", "param": { "target": [1128, 28, 35, 35] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1128, 28, 35, 35]
+      }
+    },
     "next": ["M_DetectPurchase", "M_MailboxCloseFinal"],
     "on_error": ["M_FilterPostHub"]
   },
@@ -824,7 +899,12 @@
         "expected": "收件箱"
       }
     },
-    "action": { "type": "Click", "param": { "target": [1121, 582, 91, 83] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1121, 582, 91, 83]
+      }
+    },
     "next": ["M_DetectReward"],
     "on_error": ["M_FilterPostHub"]
   },
@@ -836,7 +916,12 @@
         "expected": "励确认"
       }
     },
-    "action": { "type": "Click", "param": { "target": [1128, 28, 35, 35] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1128, 28, 35, 35]
+      }
+    },
     "next": ["M_DetectPurchase", "M_MailboxCloseFinal"],
     "on_error": ["M_FilterPostHub"]
   },
@@ -848,17 +933,26 @@
         "expected": "购买详情"
       }
     },
-    "action": { "type": "Click", "param": { "target": [1231, 8, 38, 39] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1231, 8, 38, 39]
+      }
+    },
     "next": ["M_MailboxCloseFinal"],
     "on_error": ["M_MailboxCloseFinal"]
   },
   "M_MailboxCloseFinal": {
-    "action": { "type": "Click", "param": { "target": [1231, 8, 38, 39] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1231, 8, 38, 39]
+      }
+    },
     "pre_delay": 300,
     "post_delay": 500,
     "timeout": 3000,
-    "next": ["M_MailboxCloseVerify"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_MailboxCloseVerify"]
   },
   "M_MailboxCloseVerify": {
     "recognition": {
@@ -868,7 +962,12 @@
         "expected": "收件箱"
       }
     },
-    "action": { "type": "Click", "param": { "target": [1231, 8, 38, 39] } },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1231, 8, 38, 39]
+      }
+    },
     "pre_delay": 200,
     "post_delay": 500,
     "next": ["M_DetectWhereAmI"],
@@ -887,8 +986,7 @@
     "action": "Click",
     "timeout": 3000,
     "pre_delay": 100,
-    "next": ["M_IsAnnouncementPopup"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_IsAnnouncementPopup"]
   },
   "M_IsLoginReward": {
     "recognition": {
@@ -902,8 +1000,7 @@
     },
     "action": "Click",
     "pre_delay": 100,
-    "next": ["M_LoginRewardClick2"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_LoginRewardClick2"]
   },
   "M_LoginRewardClick2": {
     "action": "Click",
@@ -931,8 +1028,7 @@
     },
     "action": "Click",
     "pre_delay": 100,
-    "next": ["M_DetectWhereAmI"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"]
   },
   "M_IsGameIcon": {
     "recognition": {
@@ -947,8 +1043,7 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["M_DetectWhereAmI"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"]
   },
   "M_IsLoginButton": {
     "recognition": {
@@ -963,8 +1058,7 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["M_DetectWhereAmI"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"]
   },
   "M_IsGameUpdatePopup": {
     "recognition": {
@@ -979,8 +1073,7 @@
     "action": "Click",
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["M_DetectWhereAmI"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"]
   },
   "M_IsInGameUpdatePopup": {
     "recognition": "OCR",
@@ -990,11 +1083,13 @@
     "target": [578, 440, 130, 55],
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["M_DetectWhereAmI"],
-    "on_error": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"]
   },
   "M_RestartGame": {
-    "action": { "type": "Custom", "custom_action": "RestartGameAction" },
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
     "next": ["M_DetectWhereAmI"]
   }
 }

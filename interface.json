@@ -90,8 +90,11 @@
       "default_check": false,
       "repeatable": true,
       "repeat_count": 1,
+      "option": [
+        "FB_选择部队"
+      ],
       "label": "刷花",
-      "description": "目前仅支持部队一单骑出阵1-1刷花，请提前解散部队一并为需要刷花的刀剑男士装备刀装"
+      "description": "单骑出阵1-1刷花，请提前解散目标部队并为需要刷花的刀剑男士装备刀装"
     },
     {
       "name": "刀解",
@@ -128,7 +131,8 @@
   "global_option": [
     "换队长方式",
     "远征智能调度",
-    "长期远征计划"
+    "长期远征计划",
+    "卡死重启"
   ],
   "option": {
     "部队一": {
@@ -1533,101 +1537,6 @@
         }
       ]
     },
-    "EC_出阵队伍": {
-      "name": "EC_出阵队伍",
-      "label": "出阵队伍",
-      "default_case": "部队一",
-      "cases": [
-        {
-          "name": "部队一",
-          "DisplayName": "部队一",
-          "pipeline_override": {
-            "EC_SelectTeam": {
-              "target": [154, 93, 1, 1]
-            }
-          }
-        },
-        {
-          "name": "部队二",
-          "DisplayName": "部队二",
-          "pipeline_override": {
-            "EC_SelectTeam": {
-              "target": [282, 94, 1, 1]
-            }
-          }
-        },
-        {
-          "name": "部队三",
-          "DisplayName": "部队三",
-          "pipeline_override": {
-            "EC_SelectTeam": {
-              "target": [398, 91, 1, 1]
-            }
-          }
-        },
-        {
-          "name": "部队四",
-          "DisplayName": "部队四",
-          "pipeline_override": {
-            "EC_SelectTeam": {
-              "target": [519, 89, 1, 1]
-            }
-          }
-        },
-        {
-          "name": "部队五",
-          "DisplayName": "部队五",
-          "pipeline_override": {
-            "EC_SelectTeam": {
-              "target": [635, 91, 1, 1]
-            }
-          }
-        }
-      ]
-    },
-    "EC_换队长": {
-      "name": "EC_换队长",
-      "label": "换队长",
-      "type": "checkbox",
-      "cases": [
-        {
-          "name": "",
-          "pipeline_override": {
-            "EC_IsSwordSelect": {
-              "enabled": true
-            },
-            "EC_DetectSortOrder": {
-              "enabled": true
-            },
-            "EC_ClickDescending": {
-              "enabled": true
-            },
-            "EC_ConfirmSortAsc": {
-              "enabled": true
-            },
-            "EC_ClickCaptain1": {
-              "enabled": true
-            },
-            "EC_ClickCaptain2": {
-              "enabled": true
-            },
-            "EC_ClickCaptain3": {
-              "enabled": true
-            },
-            "EC_ClickCaptain4": {
-              "enabled": true
-            },
-            "EC_ClickCaptain5": {
-              "enabled": true
-            },
-            "EC_ClickCaptainSlot": {
-              "enabled": true
-            }
-          }
-        }
-      ],
-      "default_case": []
-    },
     "S_换队长": {
       "name": "S_换队长",
       "label": "换队长",
@@ -1667,28 +1576,6 @@
               "enabled": true
             },
             "S_DragCaptain": {
-              "enabled": true
-            }
-          }
-        }
-      ],
-      "default_case": []
-    },
-    "EC_补充门票": {
-      "name": "EC_补充门票",
-      "label": "补充门票",
-      "type": "checkbox",
-      "cases": [
-        {
-          "name": "",
-          "pipeline_override": {
-            "EC_ReplenishTicket": {
-              "enabled": true
-            },
-            "EC_ClickRestore3": {
-              "enabled": true
-            },
-            "EC_ClickReplenishConfirm": {
               "enabled": true
             }
           }
@@ -2394,35 +2281,65 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 1 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 1
+                }
+              },
               "next": ["E_ConfirmDispatch1"]
             },
             "E_ClickSmallMap1": {
               "enabled": false
             },
             "E_SelectMap2": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 2 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 2
+                }
+              },
               "next": ["E_ConfirmDispatch2"]
             },
             "E_ClickSmallMap2": {
               "enabled": false
             },
             "E_SelectMap3": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 3 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 3
+                }
+              },
               "next": ["E_ConfirmDispatch3"]
             },
             "E_ClickSmallMap3": {
               "enabled": false
             },
             "E_SelectMap4": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 4 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 4
+                }
+              },
               "next": ["E_ConfirmDispatch4"]
             },
             "E_ClickSmallMap4": {
               "enabled": false
             },
             "E_SelectMap5": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 5 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 5
+                }
+              },
               "next": ["E_ConfirmDispatch5"]
             },
             "E_ClickSmallMap5": {
@@ -2444,7 +2361,12 @@
               "on_error": ["E_CheckTeamStatus"]
             },
             "E_ClickBackToHome": {
-              "action": { "type": "Click", "param": { "target": [1037, 169, 110, 44] } },
+              "action": {
+                "type": "Click",
+                "param": {
+                  "target": [1037, 169, 110, 44]
+                }
+              },
               "next": ["S_WaitRefresh"],
               "on_error": ["S_DetectWhereAmI"]
             },
@@ -2452,7 +2374,13 @@
               "next": ["E_TimerStart"]
             },
             "E_TimerStart": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionTimerAction", "custom_action_param": { "mode": "start" } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionTimerAction",
+                "custom_action_param": {
+                  "mode": "start"
+                }
+              },
               "next": ["S_NavigateToSortie"]
             },
             "S_WaitRefresh": {
@@ -2764,7 +2692,45 @@
       "pipeline_override": {
         "U_SelectFloor": {
           "on_error": ["U_DetectWhereAmI"],
-          "custom_action_param": { "target_floor": "{target_floor}", "tens_roi": [ 985, 303, 60, 99 ], "ones_roi": [ 1053, 303, 60, 99 ], "tens_up": [ 988, 275, 54, 18 ], "tens_down": [ 988, 412, 54, 18 ], "ones_up": [ 1058, 275, 54, 18 ], "ones_down": [ 1058, 412, 54, 18 ] }
+          "custom_action_param": {
+            "target_floor": "{target_floor}",
+            "tens_roi": [
+              985,
+              303,
+              60,
+              99
+            ],
+            "ones_roi": [
+              1053,
+              303,
+              60,
+              99
+            ],
+            "tens_up": [
+              988,
+              275,
+              54,
+              18
+            ],
+            "tens_down": [
+              988,
+              412,
+              54,
+              18
+            ],
+            "ones_up": [
+              1058,
+              275,
+              54,
+              18
+            ],
+            "ones_down": [
+              1058,
+              412,
+              54,
+              18
+            ]
+          }
         }
       }
     },
@@ -2777,7 +2743,12 @@
           "name": "",
           "pipeline_override": {
             "U_FallbackWait": {
-              "action": { "type": "Click", "param": { "target": [180, 11, 25, 28] } }
+              "action": {
+                "type": "Click",
+                "param": {
+                  "target": [180, 11, 25, 28]
+                }
+              }
             }
           }
         }
@@ -2799,35 +2770,65 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 1 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 1
+                }
+              },
               "next": ["E_ConfirmDispatch1"]
             },
             "E_ClickSmallMap1": {
               "enabled": false
             },
             "E_SelectMap2": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 2 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 2
+                }
+              },
               "next": ["E_ConfirmDispatch2"]
             },
             "E_ClickSmallMap2": {
               "enabled": false
             },
             "E_SelectMap3": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 3 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 3
+                }
+              },
               "next": ["E_ConfirmDispatch3"]
             },
             "E_ClickSmallMap3": {
               "enabled": false
             },
             "E_SelectMap4": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 4 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 4
+                }
+              },
               "next": ["E_ConfirmDispatch4"]
             },
             "E_ClickSmallMap4": {
               "enabled": false
             },
             "E_SelectMap5": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 5 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 5
+                }
+              },
               "next": ["E_ConfirmDispatch5"]
             },
             "E_ClickSmallMap5": {
@@ -2849,7 +2850,12 @@
               "on_error": ["E_CheckTeamStatus"]
             },
             "E_ClickBackToHome": {
-              "action": { "type": "Click", "param": { "target": [1037, 169, 110, 44] } },
+              "action": {
+                "type": "Click",
+                "param": {
+                  "target": [1037, 169, 110, 44]
+                }
+              },
               "next": ["U_WaitRefresh"],
               "on_error": ["U_DetectWhereAmI"]
             },
@@ -2879,35 +2885,65 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 1 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 1
+                }
+              },
               "next": ["E_ConfirmDispatch1"]
             },
             "E_ClickSmallMap1": {
               "enabled": false
             },
             "E_SelectMap2": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 2 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 2
+                }
+              },
               "next": ["E_ConfirmDispatch2"]
             },
             "E_ClickSmallMap2": {
               "enabled": false
             },
             "E_SelectMap3": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 3 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 3
+                }
+              },
               "next": ["E_ConfirmDispatch3"]
             },
             "E_ClickSmallMap3": {
               "enabled": false
             },
             "E_SelectMap4": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 4 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 4
+                }
+              },
               "next": ["E_ConfirmDispatch4"]
             },
             "E_ClickSmallMap4": {
               "enabled": false
             },
             "E_SelectMap5": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 5 } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {
+                  "team": 5
+                }
+              },
               "next": ["E_ConfirmDispatch5"]
             },
             "E_ClickSmallMap5": {
@@ -2929,7 +2965,12 @@
               "on_error": ["E_CheckTeamStatus"]
             },
             "E_ClickBackToHome": {
-              "action": { "type": "Click", "param": { "target": [1037, 169, 110, 44] } },
+              "action": {
+                "type": "Click",
+                "param": {
+                  "target": [1037, 169, 110, 44]
+                }
+              },
               "next": ["LR_WaitRefresh"],
               "on_error": ["LR_DetectWhereAmI"]
             },
@@ -2937,7 +2978,13 @@
               "next": ["E_TimerStart"]
             },
             "E_TimerStart": {
-              "action": { "type": "Custom", "custom_action": "ExpeditionTimerAction", "custom_action_param": { "mode": "start" } },
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionTimerAction",
+                "custom_action_param": {
+                  "mode": "start"
+                }
+              },
               "next": ["LR_NavigateToUnderground"]
             },
             "LR_IsTeamSelect": {
@@ -3259,9 +3306,6 @@
             "U_FallbackWait": {
               "enabled": false
             },
-            "EC_FallbackWait": {
-              "enabled": false
-            },
             "G_FallbackWait": {
               "enabled": false
             },
@@ -3364,9 +3408,6 @@
         "U_DetectWhereAmI": {
           "timeout": "{timeout_seconds}000"
         },
-        "EC_DetectWhereAmI": {
-          "timeout": "{timeout_seconds}000"
-        },
         "G_DetectWhereAmI": {
           "timeout": "{timeout_seconds}000"
         },
@@ -3396,9 +3437,6 @@
               "target": [220, 512, 107, 29]
             },
             "U_ClickCaptain3": {
-              "target": [220, 512, 107, 29]
-            },
-            "EC_ClickCaptain3": {
               "target": [220, 512, 107, 29]
             }
           }
@@ -3498,6 +3536,58 @@
             },
             "E_MarkTeam5": {
               "next": ["E_UseTeamRecord5"]
+            }
+          }
+        }
+      ]
+    },
+    "FB_选择部队": {
+      "name": "FB_选择部队",
+      "label": "选择部队",
+      "default_case": "部队一",
+      "cases": [
+        {
+          "name": "部队一",
+          "DisplayName": "部队一",
+          "pipeline_override": {
+            "FB_ClickTeam": {
+              "target": [154, 93, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "部队二",
+          "DisplayName": "部队二",
+          "pipeline_override": {
+            "FB_ClickTeam": {
+              "target": [282, 94, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "部队三",
+          "DisplayName": "部队三",
+          "pipeline_override": {
+            "FB_ClickTeam": {
+              "target": [398, 91, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "部队四",
+          "DisplayName": "部队四",
+          "pipeline_override": {
+            "FB_ClickTeam": {
+              "target": [519, 89, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "部队五",
+          "DisplayName": "部队五",
+          "pipeline_override": {
+            "FB_ClickTeam": {
+              "target": [636, 85, 1, 1]
             }
           }
         }

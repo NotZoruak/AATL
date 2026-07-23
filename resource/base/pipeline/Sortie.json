@@ -2,13 +2,26 @@
   "Sortie": {
     "next": ["S_DetectWhereAmI"]
   },
+  "S_IsTroopRecordPage": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [577, 8, 130, 35],
+        "template": "部队记录页面.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": "Click",
+    "target": [63, 28, 17, 17],
+    "next": ["S_DetectWhereAmI"]
+  },
   "S_DetectWhereAmI": {
     "pre_delay": 0,
     "next": [
       "S_IsAnnouncementPopup",
       "S_IsLoginReward",
       "S_HasExpeditionReturn_Exp",
-      "S_HasExpeditionReturn_Title",
       "S_IsMarching",
       "S_IsBattleResult_Exp",
       "S_IsSwordDropColor",
@@ -29,6 +42,7 @@
       "S_IsGameUpdatePopup",
       "S_IsInGameUpdatePopup",
       "S_IsInternalReport",
+      "S_IsTroopRecordPage",
       "S_FallbackWait"
     ],
     "timeout": 120000,
@@ -41,15 +55,6 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["S_IsMarching", "S_DetectWhereAmI"],
-    "pre_delay": 100
-  },
-  "S_HasExpeditionReturn_Title": {
-    "recognition": "OCR",
-    "roi": [558, 1, 162, 52],
-    "expected": "远征结果",
-    "action": "Click",
-    "target": [388, 59, 54, 25],
-    "next": ["S_DetectWhereAmI"],
     "pre_delay": 100
   },
   "S_IsMarching": {
@@ -76,16 +81,8 @@
   "S_IsSwordDropColor": {
     "recognition": "ColorMatch",
     "roi": [598, 543, 66, 1],
-    "upper": [
-      96,
-      56,
-      10
-    ],
-    "lower": [
-      88,
-      48,
-      2
-    ],
+    "upper": [96, 56, 10],
+    "lower": [88, 48, 2],
     "action": {
       "type": "Click",
       "param": {
@@ -93,7 +90,6 @@
       }
     },
     "next": ["S_IsMarching", "S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
   },
   "S_IsFormationSelect": {
@@ -160,7 +156,6 @@
     "enabled": false,
     "post_delay": 800,
     "next": ["S_DetectSortOrder"],
-    "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
   },
   "S_ConfirmSortAsc": {
@@ -179,14 +174,12 @@
     },
     "enabled": false,
     "next": ["S_IsPreSortieConfirm"],
-    "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
   },
   "S_IsPreSortieConfirm": {
     "recognition": "OCR",
     "roi": [1156, 584, 96, 47],
     "expected": "即刻",
-    "on_error": ["S_DetectWhereAmI"],
     "next": ["S_ClickSortieNow"]
   },
   "S_ClickSortieNow": {
@@ -224,12 +217,10 @@
     "action": "Click",
     "enabled": false,
     "next": ["S_PreCheckTroopRecord"],
-    "on_error": ["S_ClickTeam"],
     "post_delay": 500
   },
   "S_DetectAfterSortieNow": {
     "pre_delay": 0,
-    "on_error": ["S_DetectWhereAmI"],
     "next": ["S_IsTroopDepleted", "S_IsMarching", "S_IsFormationSelect", "S_FallbackWait", "S_DetectWhereAmI"]
   },
   "S_IsTroopDepleted": {
@@ -417,8 +408,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["S_VerifyRegionSelect", "S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_VerifyRegionSelect", "S_DetectWhereAmI"]
   },
   "S_VerifyRegionSelect": {
     "recognition": {
@@ -430,8 +420,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["S_ClickRegion"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRegion"]
   },
   "S_ClickRegion": {
     "action": {
@@ -484,10 +473,12 @@
   },
   "S_ClickMenu": {
     "recognition": {
-      "type": "OCR",
+      "type": "TemplateMatch",
       "param": {
-        "roi": [1174, 3, 105, 66],
-        "expected": "目录"
+        "roi": [1194, 22, 65, 34],
+        "template": "目录.png",
+        "green_mask": true,
+        "threshold": [0.95]
       }
     },
     "action": {
@@ -510,7 +501,6 @@
       "type": "Click",
       "param": {}
     },
-    "on_error": ["S_DetectWhereAmI"],
     "next": ["S_VerifyMenuClosed", "S_DetectWhereAmI"],
     "pre_delay": 100
   },
@@ -524,8 +514,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["S_TryClickSortie", "S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_TryClickSortie", "S_DetectWhereAmI"]
   },
   "S_TryClickSortie": {
     "next": ["S_ClickSortieInMenu", "S_DetectWhereAmI"]
@@ -590,10 +579,12 @@
   },
   "S_ClickMenuFromRepair": {
     "recognition": {
-      "type": "OCR",
+      "type": "TemplateMatch",
       "param": {
-        "roi": [1174, 3, 105, 66],
-        "expected": "目录"
+        "roi": [1194, 22, 65, 34],
+        "template": "目录.png",
+        "green_mask": true,
+        "threshold": [0.95]
       }
     },
     "action": {
@@ -660,7 +651,8 @@
       "S_Boss_E8_R3",
       "S_Boss_E8_R4",
       "S_PostClickMarching"
-    ]
+    ],
+    "on_error": ["S_DetectWhereAmI"]
   },
   "S_PostClickMarching": {
     "action": {
@@ -995,7 +987,6 @@
     },
     "enabled": false,
     "next": ["S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
   },
   "S_IsPreDamage1": {
@@ -1037,8 +1028,7 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "next": ["S_LogMarchingDamage"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_LogMarchingDamage"]
   },
   "S_ConfirmCancelPreDamage2": {
     "recognition": "OCR",
@@ -1055,13 +1045,18 @@
     "post_delay": 300
   },
   "S_ClickMenuForRepair": {
-    "recognition": "OCR",
-    "roi": [1179, 8, 95, 56],
-    "expected": "目录",
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1194, 22, 65, 34],
+        "template": "目录.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
     "action": "Click",
     "post_delay": 300,
     "next": ["S_VerifyMenuOpened"],
-    "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
   },
   "S_ClickRepairInMenu": {
@@ -1070,7 +1065,6 @@
     "expected": "修复",
     "action": "Click",
     "next": ["S_VerifyRepairMenuClosed"],
-    "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
   },
   "S_SelectDamagedSword": {
@@ -1170,9 +1164,15 @@
     "next": ["S_DirAfterRepair"]
   },
   "S_DirAfterRepair": {
-    "recognition": "OCR",
-    "roi": [1179, 8, 95, 56],
-    "expected": "目录",
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1194, 22, 65, 34],
+        "template": "目录.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
     "action": "Click",
     "next": ["S_VerifyMenuAfterRepair"],
     "on_error": ["S_DetectWhereAmI"],
@@ -1184,7 +1184,6 @@
     "expected": "出阵",
     "action": "Click",
     "next": ["S_VerifyAfterRepairMenuClosed"],
-    "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
   },
   "S_ConfirmReturnHome": {
@@ -1205,14 +1204,21 @@
     "pre_delay": 100
   },
   "S_VerifyMenuOpened": {
-    "recognition": "OCR",
-    "roi": [586, 33, 102, 47],
-    "expected": "目录",
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1194, 22, 65, 34],
+        "template": "目录.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
     "on_error": ["S_ClickMenuForRepair"],
     "next": ["S_ClickRepairInMenu"]
   },
   "S_PostClickMenuHub": {
-    "next": ["S_VerifyMenuSortie", "S_CheckNavDirForRetry", "S_DetectWhereAmI"]
+    "next": ["S_VerifyMenuSortie", "S_CheckNavDirForRetry", "S_DetectWhereAmI"],
+    "on_error": ["S_DetectWhereAmI"]
   },
   "S_VerifyMenuSortie": {
     "recognition": {
@@ -1227,13 +1233,18 @@
     "next": ["S_ClickSortieInMenu"]
   },
   "S_CheckNavDirForRetry": {
-    "recognition": "OCR",
-    "roi": [1179, 8, 95, 56],
-    "expected": "目录",
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1194, 22, 65, 34],
+        "template": "目录.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
     "action": "Click",
     "next": ["S_PostClickMenuHub"],
-    "pre_delay": 100,
-    "on_error": ["S_DetectWhereAmI"]
+    "pre_delay": 100
   },
   "S_VerifyLeftMenuSortie": {
     "recognition": {
@@ -1403,7 +1414,6 @@
     },
     "action": "Click",
     "next": ["S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
   },
   "S_FallbackWait": {
@@ -1484,8 +1494,7 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_DetectWhereAmI"]
   },
   "S_IsLoginButton": {
     "recognition": {
@@ -1500,8 +1509,7 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_DetectWhereAmI"]
   },
   "S_IsGameUpdatePopup": {
     "recognition": {
@@ -1516,8 +1524,7 @@
     "action": "Click",
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_DetectWhereAmI"]
   },
   "S_IsInGameUpdatePopup": {
     "recognition": "OCR",
@@ -1527,8 +1534,7 @@
     "target": [578, 440, 130, 55],
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_DetectWhereAmI"]
   },
   "S_Boss_E2_R1": {
     "recognition": {
@@ -1675,8 +1681,7 @@
     "action": "Click",
     "timeout": 3000,
     "pre_delay": 100,
-    "next": ["S_IsAnnouncementPopup"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_IsAnnouncementPopup"]
   },
   "S_IsLoginReward": {
     "recognition": {
@@ -1690,8 +1695,7 @@
     },
     "action": "Click",
     "pre_delay": 100,
-    "next": ["S_LoginRewardClick2"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_LoginRewardClick2"]
   },
   "S_LoginRewardClick2": {
     "action": "Click",
@@ -1765,16 +1769,8 @@
   "S_CheckHomeBrightness": {
     "recognition": "ColorMatch",
     "roi": [66, 58, 11, 13],
-    "upper": [
-      40,
-      155,
-      30
-    ],
-    "lower": [
-      23,
-      95,
-      15
-    ],
+    "upper": [40, 155, 30],
+    "lower": [23, 95, 15],
     "action": "DoNothing",
     "next": ["S_IsHome", "S_DetectWhereAmI"]
   },
@@ -1817,8 +1813,7 @@
       }
     },
     "action": "DoNothing",
-    "pre_delay": 100,
-    "on_error": ["S_ClickTeam"]
+    "pre_delay": 100
   },
   "S_StopOnDamagePopup": {
     "recognition": {
@@ -1924,15 +1919,21 @@
   },
   "S_NavigateToHomeFromStop": {
     "next": ["S_ClickMenuStop", "S_DetectWhereAmI"],
+    "on_error": ["S_DetectWhereAmI"],
     "post_delay": 300
   },
   "S_ClickMenuStop": {
-    "recognition": "OCR",
-    "roi": [1179, 8, 95, 56],
-    "expected": "目录",
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1194, 22, 65, 34],
+        "template": "目录.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
     "action": "Click",
     "next": ["S_ClickHomeStop"],
-    "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
   },
   "S_ClickHomeStop": {
@@ -1977,4 +1978,3 @@
     }
   }
 }
-
