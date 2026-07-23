@@ -150,12 +150,6 @@
           558,
           120,
           79
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -198,12 +192,6 @@
           421,
           1,
           1
-        ],
-        "target_offset": [
-          4,
-          2,
-          0,
-          0
         ]
       }
     },
@@ -222,12 +210,6 @@
           421,
           1,
           1
-        ],
-        "target_offset": [
-          4,
-          2,
-          0,
-          0
         ]
       }
     },
@@ -276,14 +258,7 @@
     },
     "action": {
       "type": "Click",
-      "param": {
-        "target_offset": [
-          4,
-          2,
-          0,
-          0
-        ]
-      }
+      "param": {}
     },
     "enabled": false,
     "post_delay": 800,
@@ -313,12 +288,6 @@
           140,
           37,
           61
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -353,24 +322,22 @@
           629,
           1,
           1
-        ],
-        "target_offset": [
-          4,
-          2,
-          0,
-          0
         ]
       }
     },
     "next": [
       "S_PostSortieHub"
     ],
-    "on_error": ["S_DetectWhereAmI"],
+    "on_error": [
+      "S_DetectWhereAmI"
+    ],
     "pre_delay": 100
   },
   "S_PostSortieHub": {
     "timeout": 30000,
-    "on_error": ["S_DetectWhereAmI"],
+    "on_error": [
+      "S_DetectWhereAmI"
+    ],
     "next": [
       "S_IsPreDamage1",
       "S_StopOnDamagePopup",
@@ -409,7 +376,9 @@
   },
   "S_DetectAfterSortieNow": {
     "pre_delay": 0,
-    "on_error": ["S_DetectWhereAmI"],
+    "on_error": [
+      "S_DetectWhereAmI"
+    ],
     "next": [
       "S_IsTroopDepleted",
       "S_IsMarching",
@@ -445,12 +414,6 @@
           420,
           1,
           1
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -469,12 +432,6 @@
           520,
           1,
           1
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -512,12 +469,6 @@
           93,
           1,
           1
-        ],
-        "target_offset": [
-          8,
-          0,
-          0,
-          0
         ]
       }
     },
@@ -582,62 +533,97 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [1209, 140, 30, 71],
-        "target_offset": [6, 4, 0, 0]
+        "target": [
+          1209,
+          140,
+          30,
+          71
+        ]
       }
     },
     "enabled": false,
-    "next": ["S_PreCheckUseRecordBtn"]
+    "next": [
+      "S_PreCheckUseRecordBtn"
+    ]
   },
   "S_PreCheckClickRecord2": {
     "action": {
       "type": "Click",
       "param": {
-        "target": [1209, 250, 30, 71],
-        "target_offset": [6, 4, 0, 0]
+        "target": [
+          1209,
+          250,
+          30,
+          71
+        ]
       }
     },
     "enabled": false,
-    "next": ["S_PreCheckUseRecordBtn"]
+    "next": [
+      "S_PreCheckUseRecordBtn"
+    ]
   },
   "S_PreCheckClickRecord3": {
     "action": {
       "type": "Click",
       "param": {
-        "target": [1209, 360, 30, 71],
-        "target_offset": [6, 4, 0, 0]
+        "target": [
+          1209,
+          360,
+          30,
+          71
+        ]
       }
     },
     "enabled": false,
-    "next": ["S_PreCheckUseRecordBtn"]
+    "next": [
+      "S_PreCheckUseRecordBtn"
+    ]
   },
   "S_PreCheckClickRecord4": {
     "action": {
       "type": "Click",
       "param": {
-        "target": [1209, 465, 30, 71],
-        "target_offset": [6, 4, 0, 0]
+        "target": [
+          1209,
+          465,
+          30,
+          71
+        ]
       }
     },
     "enabled": false,
-    "next": ["S_PreCheckUseRecordBtn"]
+    "next": [
+      "S_PreCheckUseRecordBtn"
+    ]
   },
   "S_PreCheckClickRecord5": {
     "action": {
       "type": "Click",
       "param": {
-        "target": [1209, 575, 30, 71],
-        "target_offset": [6, 4, 0, 0]
+        "target": [
+          1209,
+          575,
+          30,
+          71
+        ]
       }
     },
     "enabled": false,
-    "next": ["S_PreCheckUseRecordBtn"]
+    "next": [
+      "S_PreCheckUseRecordBtn"
+    ]
   },
   "S_PreCheckUseRecordBtn": {
     "action": {
       "type": "Click",
       "param": {
-        "target": [707, 53, 72, 64]
+        "target": [
+          707,
+          53,
+          72,
+          64
+        ]
       }
     },
     "enabled": false,
@@ -678,12 +664,6 @@
           389,
           1,
           1
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -701,12 +681,6 @@
           642,
           1,
           1
-        ],
-        "target_offset": [
-          4,
-          2,
-          0,
-          0
         ]
       }
     },
@@ -773,12 +747,6 @@
           365,
           97,
           96
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -818,12 +786,6 @@
           202,
           1,
           1
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -876,14 +838,7 @@
     },
     "action": {
       "type": "Click",
-      "param": {
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
-        ]
-      }
+      "param": {}
     },
     "next": [
       "S_PostClickMenuHub"
@@ -908,14 +863,7 @@
     },
     "action": {
       "type": "Click",
-      "param": {
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
-        ]
-      }
+      "param": {}
     },
     "on_error": [
       "S_DetectWhereAmI"
@@ -1002,12 +950,6 @@
           580,
           1,
           1
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -1026,12 +968,6 @@
           580,
           1,
           1
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -1062,14 +998,7 @@
     },
     "action": {
       "type": "Click",
-      "param": {
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
-        ]
-      }
+      "param": {}
     },
     "enabled": false,
     "next": [
@@ -1086,12 +1015,6 @@
           169,
           110,
           44
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -1157,12 +1080,6 @@
           563,
           110,
           69
-        ],
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
         ]
       }
     },
@@ -1683,12 +1600,6 @@
           449,
           1,
           1
-        ],
-        "target_offset": [
-          4,
-          2,
-          0,
-          0
         ]
       }
     },
@@ -1720,12 +1631,6 @@
           469,
           1,
           1
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -1810,12 +1715,6 @@
       48,
       44
     ],
-    "target_offset": [
-      4,
-      2,
-      0,
-      0
-    ],
     "next": [
       "S_LogMarchingDamage2"
     ],
@@ -1833,12 +1732,6 @@
     ],
     "expected": "否",
     "action": "Click",
-    "target_offset": [
-      4,
-      2,
-      0,
-      0
-    ],
     "next": [
       "S_DecideDamage_Pre"
     ],
@@ -1858,12 +1751,6 @@
     ],
     "expected": "否",
     "action": "Click",
-    "target_offset": [
-      4,
-      2,
-      0,
-      0
-    ],
     "next": [
       "S_ReturnHomeAfterMarchDamage"
     ],
@@ -1890,12 +1777,6 @@
     ],
     "expected": "目录",
     "action": "Click",
-    "target_offset": [
-      5,
-      3,
-      0,
-      0
-    ],
     "post_delay": 300,
     "next": [
       "S_VerifyMenuOpened"
@@ -1915,12 +1796,6 @@
     ],
     "expected": "修复",
     "action": "Click",
-    "target_offset": [
-      4,
-      2,
-      0,
-      0
-    ],
     "next": [
       "S_VerifyRepairMenuClosed"
     ],
@@ -1965,12 +1840,6 @@
     ],
     "expected": "未使用",
     "action": "Click",
-    "target_offset": [
-      4,
-      2,
-      0,
-      0
-    ],
     "next": [
       "S_ConfirmSelectSlot"
     ],
@@ -1986,12 +1855,6 @@
     ],
     "expected": "未使用",
     "action": "Click",
-    "target_offset": [
-      4,
-      2,
-      0,
-      0
-    ],
     "next": [
       "S_ConfirmSelectSlot"
     ],
@@ -2007,12 +1870,6 @@
     ],
     "expected": "未使用",
     "action": "Click",
-    "target_offset": [
-      4,
-      2,
-      0,
-      0
-    ],
     "next": [
       "S_ConfirmSelectSlot"
     ],
@@ -2032,12 +1889,6 @@
       1,
       1
     ],
-    "target_offset": [
-      4,
-      2,
-      0,
-      0
-    ],
     "next": [
       "S_ConfirmReturnHome"
     ],
@@ -2053,12 +1904,6 @@
     ],
     "expected": "选",
     "action": "Click",
-    "target_offset": [
-      4,
-      2,
-      0,
-      0
-    ],
     "next": [
       "S_CheckAccel"
     ],
@@ -2093,12 +1938,6 @@
           241,
           27,
           25
-        ],
-        "target_offset": [
-          2,
-          1,
-          0,
-          0
         ]
       }
     },
@@ -2117,12 +1956,6 @@
     ],
     "expected": "修复",
     "action": "Click",
-    "target_offset": [
-      4,
-      2,
-      0,
-      0
-    ],
     "next": [
       "S_LogRepairDone"
     ],
@@ -2150,12 +1983,6 @@
     ],
     "expected": "目录",
     "action": "Click",
-    "target_offset": [
-      5,
-      3,
-      0,
-      0
-    ],
     "next": [
       "S_VerifyMenuAfterRepair"
     ],
@@ -2174,12 +2001,6 @@
     ],
     "expected": "出阵",
     "action": "Click",
-    "target_offset": [
-      5,
-      3,
-      0,
-      0
-    ],
     "next": [
       "S_VerifyAfterRepairMenuClosed"
     ],
@@ -2207,12 +2028,6 @@
       469,
       1,
       1
-    ],
-    "target_offset": [
-      6,
-      4,
-      0,
-      0
     ],
     "next": [
       "S_DetectWhereAmI"
@@ -2277,12 +2092,6 @@
     ],
     "expected": "目录",
     "action": "Click",
-    "target_offset": [
-      5,
-      3,
-      0,
-      0
-    ],
     "next": [
       "S_PostClickMenuHub"
     ],
@@ -2373,12 +2182,6 @@
           82,
           68,
           25
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -2398,12 +2201,6 @@
           137,
           97,
           29
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -2423,12 +2220,6 @@
           510,
           90,
           31
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -2448,12 +2239,6 @@
           438,
           91,
           34
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -2473,12 +2258,6 @@
           603,
           107,
           46
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -2497,12 +2276,6 @@
           140,
           30,
           50
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -2527,12 +2300,6 @@
           512,
           1,
           4
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -3496,12 +3263,6 @@
     ],
     "expected": "目录",
     "action": "Click",
-    "target_offset": [
-      5,
-      3,
-      0,
-      0
-    ],
     "next": [
       "S_ClickHomeStop"
     ],
@@ -3533,12 +3294,6 @@
       169,
       110,
       44
-    ],
-    "target_offset": [
-      6,
-      4,
-      0,
-      0
     ],
     "next": [
       "S_VerifyHomeScreen"

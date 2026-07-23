@@ -160,12 +160,6 @@
           8,
           95,
           56
-        ],
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
         ]
       }
     },
@@ -564,14 +558,7 @@
     },
     "action": {
       "type": "Click",
-      "param": {
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
-        ]
-      }
+      "param": {}
     },
     "pre_delay": 300,
     "post_delay": 500,
@@ -609,12 +596,6 @@
           8,
           95,
           56
-        ],
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
         ]
       }
     },

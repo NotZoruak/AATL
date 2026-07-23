@@ -2759,7 +2759,9 @@
               ]
             },
             "S_PreCheckUseRecord": {
-              "next": ["S_PreCheckClickRecord1"]
+              "next": [
+                "S_PreCheckClickRecord1"
+              ]
             }
           }
         },
@@ -2776,7 +2778,9 @@
               ]
             },
             "S_PreCheckUseRecord": {
-              "next": ["S_PreCheckClickRecord2"]
+              "next": [
+                "S_PreCheckClickRecord2"
+              ]
             }
           }
         },
@@ -2793,7 +2797,9 @@
               ]
             },
             "S_PreCheckUseRecord": {
-              "next": ["S_PreCheckClickRecord3"]
+              "next": [
+                "S_PreCheckClickRecord3"
+              ]
             }
           }
         },
@@ -2810,7 +2816,9 @@
               ]
             },
             "S_PreCheckUseRecord": {
-              "next": ["S_PreCheckClickRecord4"]
+              "next": [
+                "S_PreCheckClickRecord4"
+              ]
             }
           }
         },
@@ -2827,7 +2835,9 @@
               ]
             },
             "S_PreCheckUseRecord": {
-              "next": ["S_PreCheckClickRecord5"]
+              "next": [
+                "S_PreCheckClickRecord5"
+              ]
             }
           }
         }
@@ -3724,12 +3734,6 @@
                     169,
                     110,
                     44
-                  ],
-                  "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
                   ]
                 }
               },
@@ -4207,12 +4211,6 @@
                     11,
                     25,
                     28
-                  ],
-                  "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
                   ]
                 }
               }
@@ -4347,12 +4345,6 @@
                     169,
                     110,
                     44
-                  ],
-                  "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
                   ]
                 }
               },
@@ -4501,12 +4493,6 @@
                     169,
                     110,
                     44
-                  ],
-                  "target_offset": [
-                    6,
-                    4,
-                    0,
-                    0
                   ]
                 }
               },

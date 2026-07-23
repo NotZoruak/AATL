@@ -432,12 +432,6 @@
           558,
           120,
           79
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -514,12 +508,6 @@
           299,
           32,
           89
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -574,14 +562,7 @@
     },
     "action": {
       "type": "Click",
-      "param": {
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
-        ]
-      }
+      "param": {}
     },
     "on_error": [
       "LR_DetectWhereAmI"
@@ -655,12 +636,6 @@
     ],
     "expected": "目录",
     "action": "Click",
-    "target_offset": [
-      5,
-      3,
-      0,
-      0
-    ],
     "next": [
       "LR_PostClickMenuHub"
     ],
@@ -684,14 +659,7 @@
     },
     "action": {
       "type": "Click",
-      "param": {
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
-        ]
-      }
+      "param": {}
     },
     "next": [
       "LR_DetectWhereAmI"
@@ -711,12 +679,6 @@
           82,
           68,
           25
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -736,12 +698,6 @@
           137,
           97,
           29
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -761,12 +717,6 @@
           510,
           90,
           31
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -786,12 +736,6 @@
           438,
           91,
           34
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -811,12 +755,6 @@
           603,
           107,
           46
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -847,14 +785,7 @@
     },
     "action": {
       "type": "Click",
-      "param": {
-        "target_offset": [
-          4,
-          2,
-          0,
-          0
-        ]
-      }
+      "param": {}
     },
     "enabled": false,
     "post_delay": 800,
@@ -884,12 +815,6 @@
           140,
           37,
           61
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -908,12 +833,6 @@
           93,
           1,
           1
-        ],
-        "target_offset": [
-          8,
-          0,
-          0,
-          0
         ]
       }
     },
@@ -946,12 +865,6 @@
           169,
           110,
           44
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -1109,18 +1022,13 @@
           614,
           120,
           49
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
     "pre_delay": 500,
     "post_delay": 800,
     "next": [
+      "LR_IsTeamSelect",
       "LR_DetectWhereAmI"
     ]
   },
@@ -1183,12 +1091,6 @@
           584,
           96,
           89
-        ],
-        "target_offset": [
-          8,
-          6,
-          0,
-          0
         ]
       }
     },
@@ -1267,12 +1169,6 @@
           449,
           78,
           38
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -1294,12 +1190,6 @@
           582,
           81,
           41
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
@@ -1323,14 +1213,7 @@
     },
     "action": {
       "type": "Click",
-      "param": {
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
-        ]
-      }
+      "param": {}
     },
     "next": [
       "LR_PostClickMenuHub"
@@ -1365,12 +1248,6 @@
           629,
           1,
           1
-        ],
-        "target_offset": [
-          4,
-          2,
-          0,
-          0
         ]
       }
     },
@@ -1395,12 +1272,6 @@
           140,
           30,
           50
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },

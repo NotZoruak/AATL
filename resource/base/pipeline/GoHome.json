@@ -39,14 +39,7 @@
     },
     "action": {
       "type": "Click",
-      "param": {
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
-        ]
-      }
+      "param": {}
     },
     "next": [
       "G_VerifyMenuDir"
@@ -170,14 +163,7 @@
     },
     "action": {
       "type": "Click",
-      "param": {
-        "target_offset": [
-          5,
-          3,
-          0,
-          0
-        ]
-      }
+      "param": {}
     },
     "pre_delay": 3000,
     "next": [
@@ -221,12 +207,6 @@
           169,
           110,
           44
-        ],
-        "target_offset": [
-          6,
-          4,
-          0,
-          0
         ]
       }
     },
