@@ -3281,7 +3281,7 @@ public class MaaProcessor
                         {
                             "Sortie" => "S_NavigateToSortie",
                             "Underground" => "U_NavigateToUnderground",
-                            _ => "LR_NavigateToUnderground"
+                            _ => "LR_NavigateToActivity"
                         };
                         var timerParam = new Dictionary<string, JToken>
                         {

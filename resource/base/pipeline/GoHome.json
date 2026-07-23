@@ -28,15 +28,7 @@
     ]
   },
   "G_IsMenuDirectory": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [1194, 22, 65, 34],
-        "template": "目录.png",
-        "green_mask": true,
-        "threshold": [0.95]
-      }
-    },
+    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
     "action": {
       "type": "Click",
       "param": {}
@@ -108,15 +100,7 @@
     ]
   },
   "G_ClickDirectoryTop": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [1194, 22, 65, 34],
-        "template": "目录.png",
-        "green_mask": true,
-        "threshold": [0.95]
-      }
-    },
+    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
     "action": {
       "type": "Click",
       "param": {}

@@ -604,15 +604,7 @@
     "pre_delay": 100
   },
   "U_ClickMenu": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [1194, 22, 65, 34],
-        "template": "目录.png",
-        "green_mask": true,
-        "threshold": [0.95]
-      }
-    },
+    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
     "action": {
       "type": "Click",
       "param": {}
@@ -622,30 +614,14 @@
     "pre_delay": 100
   },
   "U_ClickMenuForRepair": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [1194, 22, 65, 34],
-        "template": "目录.png",
-        "green_mask": true,
-        "threshold": [0.95]
-      }
-    },
+    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
     "action": "Click",
     "post_delay": 300,
     "next": ["U_VerifyMenuOpened"],
     "pre_delay": 100
   },
   "U_ClickMenuFromRepair": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [1194, 22, 65, 34],
-        "template": "目录.png",
-        "green_mask": true,
-        "threshold": [0.95]
-      }
-    },
+    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
     "action": {
       "type": "Click",
       "param": {}
@@ -772,15 +748,7 @@
     "next": ["U_ClickDescending", "U_ConfirmSortAsc"]
   },
   "U_DirAfterRepair": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [1194, 22, 65, 34],
-        "template": "目录.png",
-        "green_mask": true,
-        "threshold": [0.95]
-      }
-    },
+    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
     "action": "Click",
     "next": ["U_VerifyMenuAfterRepair"],
     "on_error": ["U_DetectWhereAmI"],
@@ -988,15 +956,7 @@
     "next": ["U_TryClickSortie", "U_DetectWhereAmI"]
   },
   "U_VerifyMenuOpened": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [1194, 22, 65, 34],
-        "template": "目录.png",
-        "green_mask": true,
-        "threshold": [0.95]
-      }
-    },
+    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
     "on_error": ["U_ClickMenuForRepair"],
     "next": ["U_ClickRepairInMenu"]
   },
@@ -1036,15 +996,7 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_CheckNavDirForRetry": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [1194, 22, 65, 34],
-        "template": "目录.png",
-        "green_mask": true,
-        "threshold": [0.95]
-      }
-    },
+    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
     "action": "Click",
     "next": ["U_PostClickMenuHub"],
     "pre_delay": 100
@@ -1270,15 +1222,7 @@
     "post_delay": 300
   },
   "U_ClickMenuStop": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [1194, 22, 65, 34],
-        "template": "目录.png",
-        "green_mask": true,
-        "threshold": [0.95]
-      }
-    },
+    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
     "action": "Click",
     "next": ["U_ClickHomeStop"],
     "pre_delay": 100

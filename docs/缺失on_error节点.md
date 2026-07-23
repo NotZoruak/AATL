@@ -2,7 +2,7 @@
 
 > 排除：已在多 next parent node 列表中的 child node、纯 click/Custom/Log 无 recognition 节点。
 
-## Sortie（合战场）— 3
+## Sortie（合战场）— ✅
 
 | 节点                         | 类型      | 审核结果 |
 | -------------------------- | ------- | ---- |
@@ -11,31 +11,30 @@
 | `S_CheckAccel`             | routing | 已通过  |
 
 
-## Expedition（远征）— 21
+## Expedition（远征）— ✅
 
-| 节点 | 类型 |
-|------|------|
-| `E_GoHome` | routing |
-| `E_PostClickDirectoryHub` | routing |
-| `E_ExpSubHub1` | routing |
-| `E_UseTeamRecord1` | routing |
-| `E_UseTeamRecord2` | routing |
-| `E_UseTeamRecord3` | routing |
-| `E_UseTeamRecord4` | routing |
-| `E_UseTeamRecord5` | routing |
-| `E_UseTeamRecord_Step1_Rec1` | routing |
-| `E_UseTeamRecord_Step1_Rec2` | routing |
-| `E_UseTeamRecord_Step1_Rec3` | routing |
-| `E_UseTeamRecord_Step1_Rec4` | routing |
-| `E_UseTeamRecord_Step1_Rec5` | routing |
-| `E_UseTeamRecord_Step2_Rec1` | routing |
-| `E_UseTeamRecord_Step2_Rec2` | routing |
-| `E_UseTeamRecord_Step2_Rec3` | routing |
-| `E_UseTeamRecord_Step2_Rec4` | routing |
-| `E_UseTeamRecord_Step2_Rec5` | routing |
-| `E_FlowerNavigate` | routing |
-| `E_FlowerIsHome` | recog |
-| `E_FlowerDone` | routing |
+| 节点                           | 类型      | 审核  |
+| ---------------------------- | ------- | --- |
+| `E_GoHome`                   | routing | 已通过 |
+| `E_ExpSubHub1`               | routing | 已通过 |
+| `E_UseTeamRecord1`           | routing | 已通过 |
+| `E_UseTeamRecord2`           | routing | 已通过 |
+| `E_UseTeamRecord3`           | routing | 已通过 |
+| `E_UseTeamRecord4`           | routing | 已通过 |
+| `E_UseTeamRecord5`           | routing | 已通过 |
+| `E_UseTeamRecord_Step1_Rec1` | routing | 已通过 |
+| `E_UseTeamRecord_Step1_Rec2` | routing | 已通过 |
+| `E_UseTeamRecord_Step1_Rec3` | routing | 已通过 |
+| `E_UseTeamRecord_Step1_Rec4` | routing | 已通过 |
+| `E_UseTeamRecord_Step1_Rec5` | routing | 已通过 |
+| `E_UseTeamRecord_Step2_Rec1` | routing | 已通过 |
+| `E_UseTeamRecord_Step2_Rec2` | routing | 已通过 |
+| `E_UseTeamRecord_Step2_Rec3` | routing | 已通过 |
+| `E_UseTeamRecord_Step2_Rec4` | routing | 已通过 |
+| `E_UseTeamRecord_Step2_Rec5` | routing | 已通过 |
+| `E_FlowerNavigate`           | routing | 已通过 |
+| `E_FlowerIsHome`             | recog   | 已通过 |
+| `E_FlowerDone`               | routing | 已通过 |
 
 ## LRentaisen（陆联）— 5
 

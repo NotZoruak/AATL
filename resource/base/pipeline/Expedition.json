@@ -555,7 +555,7 @@
         "target": [1148, 577, 106, 95]
       }
     },
-    "post_delay": 800,
+    "post_delay": 1000,
     "next": ["E_VerifyConfirmPopup"],
     "pre_delay": 100
   },
@@ -585,15 +585,7 @@
     "next": ["E_ClickDirectoryTop"]
   },
   "E_ClickDirectoryTop": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [1194, 22, 65, 34],
-        "template": "目录.png",
-        "green_mask": true,
-        "threshold": [0.95]
-      }
-    },
+    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
     "action": {
       "type": "Click",
       "param": {}
@@ -603,7 +595,8 @@
     "pre_delay": 3000
   },
   "E_PostClickDirectoryHub": {
-    "next": ["E_VerifyMenuDir", "E_CheckNavDirRetry_Exp", "Expedition"]
+    "next": ["E_VerifyMenuDir", "E_CheckNavDirRetry_Exp", "Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_VerifyMenuDir": {
     "recognition": {
@@ -618,15 +611,7 @@
     "next": ["E_ClickBackToHome"]
   },
   "E_CheckNavDirRetry_Exp": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [1194, 22, 65, 34],
-        "template": "目录.png",
-        "green_mask": true,
-        "threshold": [0.95]
-      }
-    },
+    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
     "action": "Click",
     "next": ["E_PostClickDirectoryHub"],
     "pre_delay": 100
@@ -730,8 +715,16 @@
   "E_IsSwordDropColor": {
     "recognition": "ColorMatch",
     "roi": [598, 543, 66, 1],
-    "upper": [96, 56, 10],
-    "lower": [88, 48, 2],
+    "upper": [
+      96,
+      56,
+      10
+    ],
+    "lower": [
+      88,
+      48,
+      2
+    ],
     "action": {
       "type": "Click",
       "param": {
@@ -856,8 +849,16 @@
   "E_CheckHomeBrightness": {
     "recognition": "ColorMatch",
     "roi": [66, 58, 11, 13],
-    "upper": [40, 155, 30],
-    "lower": [23, 95, 15],
+    "upper": [
+      40,
+      155,
+      30
+    ],
+    "lower": [
+      23,
+      95,
+      15
+    ],
     "action": "DoNothing",
     "next": ["E_DetectHome"]
   },
@@ -1013,7 +1014,8 @@
     },
     "action": "Click",
     "next": ["E_UseTeamRecord_Step2_Rec1"],
-    "post_delay": 300
+    "post_delay": 300,
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord_Step1_Rec2": {
     "recognition": {
@@ -1027,7 +1029,8 @@
     },
     "action": "Click",
     "next": ["E_UseTeamRecord_Step2_Rec2"],
-    "post_delay": 300
+    "post_delay": 300,
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord_Step1_Rec3": {
     "recognition": {
@@ -1041,7 +1044,8 @@
     },
     "action": "Click",
     "next": ["E_UseTeamRecord_Step2_Rec3"],
-    "post_delay": 300
+    "post_delay": 300,
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord_Step1_Rec4": {
     "recognition": {
@@ -1055,7 +1059,8 @@
     },
     "action": "Click",
     "next": ["E_UseTeamRecord_Step2_Rec4"],
-    "post_delay": 300
+    "post_delay": 300,
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord_Step1_Rec5": {
     "recognition": {
@@ -1069,7 +1074,8 @@
     },
     "action": "Click",
     "next": ["E_UseTeamRecord_Step2_Rec5"],
-    "post_delay": 300
+    "post_delay": 300,
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord_Step2_Rec1": {
     "recognition": {
@@ -1087,8 +1093,9 @@
         "target": [1209, 140, 30, 71]
       }
     },
-    "next": ["E_UseTeamRecord_Step3"],
-    "post_delay": 300
+    "next": ["E_UseTeamRecord_Step3_Rec1"],
+    "post_delay": 300,
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord_Step2_Rec2": {
     "recognition": {
@@ -1107,7 +1114,8 @@
       }
     },
     "next": ["E_UseTeamRecord_Step3_Rec2"],
-    "post_delay": 300
+    "post_delay": 300,
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord_Step2_Rec3": {
     "recognition": {
@@ -1126,7 +1134,8 @@
       }
     },
     "next": ["E_UseTeamRecord_Step3_Rec3"],
-    "post_delay": 300
+    "post_delay": 300,
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord_Step2_Rec4": {
     "recognition": {
@@ -1145,7 +1154,8 @@
       }
     },
     "next": ["E_UseTeamRecord_Step3_Rec4"],
-    "post_delay": 300
+    "post_delay": 300,
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord_Step2_Rec5": {
     "recognition": {
@@ -1164,17 +1174,17 @@
       }
     },
     "next": ["E_UseTeamRecord_Step3_Rec5"],
-    "post_delay": 300
+    "post_delay": 300,
+    "on_error": ["Expedition"]
   },
-  "E_UseTeamRecord_Step3": {
+  "E_UseTeamRecord_Step3_Rec1": {
     "action": {
       "type": "Click",
       "param": {
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4"],
-    "post_delay": 300
+    "next": ["E_UseTeamRecord_Step4_Rec1"]
   },
   "E_UseTeamRecord_Step3_Rec2": {
     "action": {
@@ -1183,8 +1193,7 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec2"],
-    "post_delay": 300
+    "next": ["E_UseTeamRecord_Step4_Rec2"]
   },
   "E_UseTeamRecord_Step3_Rec3": {
     "action": {
@@ -1193,8 +1202,7 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec3"],
-    "post_delay": 300
+    "next": ["E_UseTeamRecord_Step4_Rec3"]
   },
   "E_UseTeamRecord_Step3_Rec4": {
     "action": {
@@ -1203,8 +1211,7 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec4"],
-    "post_delay": 300
+    "next": ["E_UseTeamRecord_Step4_Rec4"]
   },
   "E_UseTeamRecord_Step3_Rec5": {
     "action": {
@@ -1213,10 +1220,16 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec5"],
-    "post_delay": 300
+    "next": ["E_UseTeamRecord_Step4_Rec5"]
   },
-  "E_UseTeamRecord_Step4": {
+  "E_UseTeamRecord_Step4_Rec1": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [576, 151, 126, 34],
+        "expected": "部队记录"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
@@ -1224,9 +1237,17 @@
       }
     },
     "next": ["E_CheckFatigue1"],
+    "on_error": ["Expedition"],
     "post_delay": 1000
   },
   "E_UseTeamRecord_Step4_Rec2": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [576, 151, 126, 34],
+        "expected": "部队记录"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
@@ -1234,9 +1255,17 @@
       }
     },
     "next": ["E_CheckFatigue2"],
+    "on_error": ["Expedition"],
     "post_delay": 1000
   },
   "E_UseTeamRecord_Step4_Rec3": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [576, 151, 126, 34],
+        "expected": "部队记录"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
@@ -1244,9 +1273,17 @@
       }
     },
     "next": ["E_CheckFatigue3"],
+    "on_error": ["Expedition"],
     "post_delay": 1000
   },
   "E_UseTeamRecord_Step4_Rec4": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [576, 151, 126, 34],
+        "expected": "部队记录"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
@@ -1254,9 +1291,17 @@
       }
     },
     "next": ["E_CheckFatigue4"],
+    "on_error": ["Expedition"],
     "post_delay": 1000
   },
   "E_UseTeamRecord_Step4_Rec5": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [576, 151, 126, 34],
+        "expected": "部队记录"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
@@ -1264,6 +1309,7 @@
       }
     },
     "next": ["E_CheckFatigue5"],
+    "on_error": ["Expedition"],
     "post_delay": 1000
   },
   "E_CheckFatigue1": {
@@ -1332,22 +1378,15 @@
     "pre_delay": 100
   },
   "E_FlowerNavigate": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [1194, 22, 65, 34],
-        "template": "目录.png",
-        "green_mask": true,
-        "threshold": [0.95]
-      }
-    },
+    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
     "action": {
       "type": "Click",
       "param": {}
     },
     "next": ["E_FlowerBattleHub"],
     "pre_delay": 100,
-    "post_delay": 1000
+    "post_delay": 1000,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerClickSortieInMenu": {
     "recognition": {
@@ -1452,8 +1491,16 @@
       "type": "ColorMatch",
       "param": {
         "roi": [1075, 211, 36, 420],
-        "upper": [46, 46, 46],
-        "lower": [40, 40, 40],
+        "upper": [
+          46,
+          46,
+          46
+        ],
+        "lower": [
+          40,
+          40,
+          40
+        ],
         "method": 4,
         "count": 1
       }
@@ -1598,9 +1645,13 @@
       "type": "Custom",
       "custom_action": "PageScrollAndHoldAction"
     },
-    "next": ["E_FlowerCaptainFind"]
+    "next": ["E_FlowerCaptainFind"],
+    "post_delay": 1000
   },
   "E_FlowerSortie": {
+    "recognition": "OCR",
+    "roi": [1156, 584, 96, 47],
+    "expected": "即刻",
     "action": {
       "type": "Click",
       "param": {
@@ -1613,8 +1664,16 @@
   "E_FlowerHomeBrightness": {
     "recognition": "ColorMatch",
     "roi": [66, 58, 11, 13],
-    "upper": [40, 155, 30],
-    "lower": [23, 95, 15],
+    "upper": [
+      40,
+      155,
+      30
+    ],
+    "lower": [
+      23,
+      95,
+      15
+    ],
     "action": "DoNothing",
     "next": ["E_FlowerIsHome"]
   },
@@ -1628,7 +1687,8 @@
         "threshold": [0.98]
       }
     },
-    "next": ["E_FlowerNavigate"]
+    "next": ["E_FlowerNavigate"],
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerFallbackWait": {
     "action": "DoNothing",
@@ -1802,8 +1862,16 @@
   "E_FlowerIsSwordDropColor": {
     "recognition": "ColorMatch",
     "roi": [598, 543, 66, 1],
-    "upper": [96, 56, 10],
-    "lower": [88, 48, 2],
+    "upper": [
+      96,
+      56,
+      10
+    ],
+    "lower": [
+      88,
+      48,
+      2
+    ],
     "action": {
       "type": "Click",
       "param": {
