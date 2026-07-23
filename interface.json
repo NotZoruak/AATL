@@ -153,20 +153,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -178,20 +168,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -203,20 +183,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -228,20 +198,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -253,20 +213,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -278,20 +228,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -303,20 +243,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -328,20 +258,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -353,20 +273,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -378,20 +288,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -403,20 +303,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -428,20 +318,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -453,20 +333,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -478,20 +348,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -503,20 +363,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -528,20 +378,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -553,20 +393,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -578,20 +408,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -603,20 +423,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -628,20 +438,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         }
@@ -666,20 +466,10 @@
           "DisplayName": "1-1",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -688,20 +478,10 @@
           "DisplayName": "1-2",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -710,20 +490,10 @@
           "DisplayName": "1-3",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -732,20 +502,10 @@
           "DisplayName": "1-4",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -754,20 +514,10 @@
           "DisplayName": "2-1",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -776,20 +526,10 @@
           "DisplayName": "2-2",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -798,20 +538,10 @@
           "DisplayName": "2-3",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -820,20 +550,10 @@
           "DisplayName": "2-4",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -842,20 +562,10 @@
           "DisplayName": "3-1",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -864,20 +574,10 @@
           "DisplayName": "3-2",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -886,20 +586,10 @@
           "DisplayName": "3-3",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -908,20 +598,10 @@
           "DisplayName": "3-4",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -930,20 +610,10 @@
           "DisplayName": "4-1",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -952,20 +622,10 @@
           "DisplayName": "4-2",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -974,20 +634,10 @@
           "DisplayName": "4-3",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -996,20 +646,10 @@
           "DisplayName": "4-4",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1018,20 +658,10 @@
           "DisplayName": "5-1",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1040,20 +670,10 @@
           "DisplayName": "5-2",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1062,20 +682,10 @@
           "DisplayName": "5-3",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1084,20 +694,10 @@
           "DisplayName": "5-4",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         }
@@ -1122,20 +722,10 @@
           "DisplayName": "1-1",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1144,20 +734,10 @@
           "DisplayName": "1-2",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1166,20 +746,10 @@
           "DisplayName": "1-3",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1188,20 +758,10 @@
           "DisplayName": "1-4",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1210,20 +770,10 @@
           "DisplayName": "2-1",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1232,20 +782,10 @@
           "DisplayName": "2-2",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1254,20 +794,10 @@
           "DisplayName": "2-3",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1276,20 +806,10 @@
           "DisplayName": "2-4",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1298,20 +818,10 @@
           "DisplayName": "3-1",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1320,20 +830,10 @@
           "DisplayName": "3-2",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1342,20 +842,10 @@
           "DisplayName": "3-3",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1364,20 +854,10 @@
           "DisplayName": "3-4",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1386,20 +866,10 @@
           "DisplayName": "4-1",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1408,20 +878,10 @@
           "DisplayName": "4-2",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1430,20 +890,10 @@
           "DisplayName": "4-3",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1452,20 +902,10 @@
           "DisplayName": "4-4",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1474,20 +914,10 @@
           "DisplayName": "5-1",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1496,20 +926,10 @@
           "DisplayName": "5-2",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1518,20 +938,10 @@
           "DisplayName": "5-3",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1540,20 +950,10 @@
           "DisplayName": "5-4",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         }
@@ -1578,20 +978,10 @@
           "DisplayName": "1-1",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1600,20 +990,10 @@
           "DisplayName": "1-2",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1622,20 +1002,10 @@
           "DisplayName": "1-3",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1644,20 +1014,10 @@
           "DisplayName": "1-4",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1666,20 +1026,10 @@
           "DisplayName": "2-1",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1688,20 +1038,10 @@
           "DisplayName": "2-2",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1710,20 +1050,10 @@
           "DisplayName": "2-3",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1732,20 +1062,10 @@
           "DisplayName": "2-4",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1754,20 +1074,10 @@
           "DisplayName": "3-1",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1776,20 +1086,10 @@
           "DisplayName": "3-2",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1798,20 +1098,10 @@
           "DisplayName": "3-3",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1820,20 +1110,10 @@
           "DisplayName": "3-4",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1842,20 +1122,10 @@
           "DisplayName": "4-1",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1864,20 +1134,10 @@
           "DisplayName": "4-2",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1886,20 +1146,10 @@
           "DisplayName": "4-3",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1908,20 +1158,10 @@
           "DisplayName": "4-4",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1930,20 +1170,10 @@
           "DisplayName": "5-1",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1952,20 +1182,10 @@
           "DisplayName": "5-2",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1974,20 +1194,10 @@
           "DisplayName": "5-3",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1996,20 +1206,10 @@
           "DisplayName": "5-4",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         }
@@ -2034,20 +1234,10 @@
           "DisplayName": "1-1",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -2056,20 +1246,10 @@
           "DisplayName": "1-2",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -2078,20 +1258,10 @@
           "DisplayName": "1-3",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -2100,20 +1270,10 @@
           "DisplayName": "1-4",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -2122,20 +1282,10 @@
           "DisplayName": "2-1",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -2144,20 +1294,10 @@
           "DisplayName": "2-2",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -2166,20 +1306,10 @@
           "DisplayName": "2-3",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -2188,20 +1318,10 @@
           "DisplayName": "2-4",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -2210,20 +1330,10 @@
           "DisplayName": "3-1",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -2232,20 +1342,10 @@
           "DisplayName": "3-2",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -2254,20 +1354,10 @@
           "DisplayName": "3-3",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -2276,20 +1366,10 @@
           "DisplayName": "3-4",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -2298,20 +1378,10 @@
           "DisplayName": "4-1",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -2320,20 +1390,10 @@
           "DisplayName": "4-2",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -2342,20 +1402,10 @@
           "DisplayName": "4-3",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -2364,20 +1414,10 @@
           "DisplayName": "4-4",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -2386,20 +1426,10 @@
           "DisplayName": "5-1",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -2408,20 +1438,10 @@
           "DisplayName": "5-2",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -2430,20 +1450,10 @@
           "DisplayName": "5-3",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -2452,20 +1462,10 @@
           "DisplayName": "5-4",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         }
@@ -2500,12 +1500,7 @@
           "DisplayName": "易",
           "pipeline_override": {
             "ClickDifficulty": {
-              "target": [
-                127,
-                267,
-                208,
-                112
-              ]
+              "target": [127, 267, 208, 112]
             }
           }
         },
@@ -2514,12 +1509,7 @@
           "DisplayName": "普",
           "pipeline_override": {
             "ClickDifficulty": {
-              "target": [
-                393,
-                250,
-                265,
-                141
-              ]
+              "target": [393, 250, 265, 141]
             }
           }
         },
@@ -2528,12 +1518,7 @@
           "DisplayName": "难",
           "pipeline_override": {
             "ClickDifficulty": {
-              "target": [
-                698,
-                244,
-                248,
-                155
-              ]
+              "target": [698, 244, 248, 155]
             }
           }
         },
@@ -2542,12 +1527,7 @@
           "DisplayName": "超难",
           "pipeline_override": {
             "ClickDifficulty": {
-              "target": [
-                1012,
-                262,
-                220,
-                117
-              ]
+              "target": [1012, 262, 220, 117]
             }
           }
         }
@@ -2563,12 +1543,7 @@
           "DisplayName": "部队一",
           "pipeline_override": {
             "EC_SelectTeam": {
-              "target": [
-                154,
-                93,
-                1,
-                1
-              ]
+              "target": [154, 93, 1, 1]
             }
           }
         },
@@ -2577,12 +1552,7 @@
           "DisplayName": "部队二",
           "pipeline_override": {
             "EC_SelectTeam": {
-              "target": [
-                282,
-                94,
-                1,
-                1
-              ]
+              "target": [282, 94, 1, 1]
             }
           }
         },
@@ -2591,12 +1561,7 @@
           "DisplayName": "部队三",
           "pipeline_override": {
             "EC_SelectTeam": {
-              "target": [
-                398,
-                91,
-                1,
-                1
-              ]
+              "target": [398, 91, 1, 1]
             }
           }
         },
@@ -2605,12 +1570,7 @@
           "DisplayName": "部队四",
           "pipeline_override": {
             "EC_SelectTeam": {
-              "target": [
-                519,
-                89,
-                1,
-                1
-              ]
+              "target": [519, 89, 1, 1]
             }
           }
         },
@@ -2619,12 +1579,7 @@
           "DisplayName": "部队五",
           "pipeline_override": {
             "EC_SelectTeam": {
-              "target": [
-                635,
-                91,
-                1,
-                1
-              ]
+              "target": [635, 91, 1, 1]
             }
           }
         }
@@ -2751,17 +1706,10 @@
           "DisplayName": "部队一",
           "pipeline_override": {
             "S_ClickTeam": {
-              "target": [
-                154,
-                93,
-                1,
-                1
-              ]
+              "target": [154, 93, 1, 1]
             },
             "S_PreCheckUseRecord": {
-              "next": [
-                "S_PreCheckClickRecord1"
-              ]
+              "next": ["S_PreCheckClickRecord1"]
             }
           }
         },
@@ -2770,17 +1718,10 @@
           "DisplayName": "部队二",
           "pipeline_override": {
             "S_ClickTeam": {
-              "target": [
-                282,
-                94,
-                1,
-                1
-              ]
+              "target": [282, 94, 1, 1]
             },
             "S_PreCheckUseRecord": {
-              "next": [
-                "S_PreCheckClickRecord2"
-              ]
+              "next": ["S_PreCheckClickRecord2"]
             }
           }
         },
@@ -2789,17 +1730,10 @@
           "DisplayName": "部队三",
           "pipeline_override": {
             "S_ClickTeam": {
-              "target": [
-                398,
-                91,
-                1,
-                1
-              ]
+              "target": [398, 91, 1, 1]
             },
             "S_PreCheckUseRecord": {
-              "next": [
-                "S_PreCheckClickRecord3"
-              ]
+              "next": ["S_PreCheckClickRecord3"]
             }
           }
         },
@@ -2808,17 +1742,10 @@
           "DisplayName": "部队四",
           "pipeline_override": {
             "S_ClickTeam": {
-              "target": [
-                519,
-                89,
-                1,
-                1
-              ]
+              "target": [519, 89, 1, 1]
             },
             "S_PreCheckUseRecord": {
-              "next": [
-                "S_PreCheckClickRecord4"
-              ]
+              "next": ["S_PreCheckClickRecord4"]
             }
           }
         },
@@ -2827,17 +1754,10 @@
           "DisplayName": "部队五",
           "pipeline_override": {
             "S_ClickTeam": {
-              "target": [
-                635,
-                91,
-                1,
-                1
-              ]
+              "target": [635, 91, 1, 1]
             },
             "S_PreCheckUseRecord": {
-              "next": [
-                "S_PreCheckClickRecord5"
-              ]
+              "next": ["S_PreCheckClickRecord5"]
             }
           }
         }
@@ -2853,12 +1773,7 @@
           "DisplayName": "时代一",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                246,
-                389,
-                1,
-                1
-              ]
+              "target": [246, 389, 1, 1]
             }
           }
         },
@@ -2867,12 +1782,7 @@
           "DisplayName": "时代二",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                345,
-                516,
-                1,
-                1
-              ]
+              "target": [345, 516, 1, 1]
             }
           }
         },
@@ -2881,12 +1791,7 @@
           "DisplayName": "时代三",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                447,
-                379,
-                1,
-                1
-              ]
+              "target": [447, 379, 1, 1]
             }
           }
         },
@@ -2895,12 +1800,7 @@
           "DisplayName": "时代四",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                546,
-                511,
-                3,
-                1
-              ]
+              "target": [546, 511, 3, 1]
             }
           }
         },
@@ -2909,12 +1809,7 @@
           "DisplayName": "时代五",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                644,
-                375,
-                1,
-                1
-              ]
+              "target": [644, 375, 1, 1]
             }
           }
         },
@@ -2923,12 +1818,7 @@
           "DisplayName": "时代六",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                750,
-                508,
-                1,
-                1
-              ]
+              "target": [750, 508, 1, 1]
             }
           }
         },
@@ -2937,12 +1827,7 @@
           "DisplayName": "时代七",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                849,
-                378,
-                1,
-                1
-              ]
+              "target": [849, 378, 1, 1]
             }
           }
         },
@@ -2951,12 +1836,7 @@
           "DisplayName": "时代八",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                956,
-                519,
-                1,
-                1
-              ]
+              "target": [956, 519, 1, 1]
             }
           }
         }
@@ -2972,12 +1852,7 @@
           "DisplayName": "地域一",
           "pipeline_override": {
             "S_ClickRegion": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -2986,12 +1861,7 @@
           "DisplayName": "地域二",
           "pipeline_override": {
             "S_ClickRegion": {
-              "target": [
-                520,
-                243,
-                1,
-                1
-              ]
+              "target": [520, 243, 1, 1]
             }
           }
         },
@@ -3000,12 +1870,7 @@
           "DisplayName": "地域三",
           "pipeline_override": {
             "S_ClickRegion": {
-              "target": [
-                837,
-                234,
-                1,
-                1
-              ]
+              "target": [837, 234, 1, 1]
             }
           }
         },
@@ -3014,12 +1879,7 @@
           "DisplayName": "地域四",
           "pipeline_override": {
             "S_ClickRegion": {
-              "target": [
-                1118,
-                243,
-                1,
-                1
-              ]
+              "target": [1118, 243, 1, 1]
             }
           }
         }
@@ -3044,20 +1904,10 @@
           "DisplayName": "鱼鳞阵",
           "pipeline_override": {
             "S_ClickFormation1": {
-              "target": [
-                212,
-                234,
-                1,
-                1
-              ]
+              "target": [212, 234, 1, 1]
             },
             "S_ClickFormation2": {
-              "target": [
-                212,
-                234,
-                1,
-                1
-              ]
+              "target": [212, 234, 1, 1]
             }
           }
         },
@@ -3066,20 +1916,10 @@
           "DisplayName": "横队阵",
           "pipeline_override": {
             "S_ClickFormation1": {
-              "target": [
-                591,
-                234,
-                1,
-                1
-              ]
+              "target": [591, 234, 1, 1]
             },
             "S_ClickFormation2": {
-              "target": [
-                591,
-                234,
-                1,
-                1
-              ]
+              "target": [591, 234, 1, 1]
             }
           }
         },
@@ -3088,20 +1928,10 @@
           "DisplayName": "雁行阵",
           "pipeline_override": {
             "S_ClickFormation1": {
-              "target": [
-                1037,
-                222,
-                1,
-                1
-              ]
+              "target": [1037, 222, 1, 1]
             },
             "S_ClickFormation2": {
-              "target": [
-                1037,
-                222,
-                1,
-                1
-              ]
+              "target": [1037, 222, 1, 1]
             }
           }
         },
@@ -3110,20 +1940,10 @@
           "DisplayName": "鹤翼阵",
           "pipeline_override": {
             "S_ClickFormation1": {
-              "target": [
-                195,
-                431,
-                1,
-                1
-              ]
+              "target": [195, 431, 1, 1]
             },
             "S_ClickFormation2": {
-              "target": [
-                195,
-                431,
-                1,
-                1
-              ]
+              "target": [195, 431, 1, 1]
             }
           }
         },
@@ -3132,20 +1952,10 @@
           "DisplayName": "方阵",
           "pipeline_override": {
             "S_ClickFormation1": {
-              "target": [
-                625,
-                407,
-                1,
-                1
-              ]
+              "target": [625, 407, 1, 1]
             },
             "S_ClickFormation2": {
-              "target": [
-                625,
-                407,
-                1,
-                1
-              ]
+              "target": [625, 407, 1, 1]
             }
           }
         },
@@ -3154,12 +1964,7 @@
           "DisplayName": "逆行阵",
           "pipeline_override": {
             "S_ClickFormation1": {
-              "target": [
-                1017,
-                421,
-                1,
-                1
-              ]
+              "target": [1017, 421, 1, 1]
             }
           }
         }
@@ -3199,12 +2004,7 @@
           "name": "易",
           "pipeline_override": {
             "LR_ClickDifficulty": {
-              "target": [
-                158,
-                308,
-                55,
-                4
-              ]
+              "target": [158, 308, 55, 4]
             }
           }
         },
@@ -3212,12 +2012,7 @@
           "name": "普",
           "pipeline_override": {
             "LR_ClickDifficulty": {
-              "target": [
-                439,
-                277,
-                179,
-                103
-              ]
+              "target": [439, 277, 179, 103]
             }
           }
         },
@@ -3225,12 +2020,7 @@
           "name": "难",
           "pipeline_override": {
             "LR_ClickDifficulty": {
-              "target": [
-                747,
-                289,
-                152,
-                81
-              ]
+              "target": [747, 289, 152, 81]
             }
           }
         },
@@ -3238,12 +2028,7 @@
           "name": "超难",
           "pipeline_override": {
             "LR_ClickDifficulty": {
-              "target": [
-                1110,
-                319,
-                18,
-                18
-              ]
+              "target": [1110, 319, 18, 18]
             }
           }
         }
@@ -3258,12 +2043,7 @@
           "name": "部队一",
           "pipeline_override": {
             "LR_ClickTeam": {
-              "target": [
-                154,
-                93,
-                1,
-                1
-              ]
+              "target": [154, 93, 1, 1]
             }
           }
         },
@@ -3271,12 +2051,7 @@
           "name": "部队二",
           "pipeline_override": {
             "LR_ClickTeam": {
-              "target": [
-                282,
-                94,
-                1,
-                1
-              ]
+              "target": [282, 94, 1, 1]
             }
           }
         },
@@ -3284,12 +2059,7 @@
           "name": "部队三",
           "pipeline_override": {
             "LR_ClickTeam": {
-              "target": [
-                398,
-                91,
-                1,
-                1
-              ]
+              "target": [398, 91, 1, 1]
             }
           }
         },
@@ -3297,12 +2067,7 @@
           "name": "部队四",
           "pipeline_override": {
             "LR_ClickTeam": {
-              "target": [
-                519,
-                89,
-                1,
-                1
-              ]
+              "target": [519, 89, 1, 1]
             }
           }
         }
@@ -3407,6 +2172,15 @@
           "DisplayName": "修刀",
           "pipeline_override": {
             "S_IsRepair": {
+              "enabled": true
+            },
+            "S_ClickRepair": {
+              "enabled": true
+            },
+            "S_ConfirmRepair": {
+              "enabled": true
+            },
+            "S_ClickMenuFromRepair": {
               "enabled": true
             },
             "S_IsStopOnDamage": {
@@ -3610,156 +2384,76 @@
           "name": "",
           "pipeline_override": {
             "S_IsHome": {
-              "next": [
-                "E_CheckTimerExpired"
-              ]
+              "next": ["E_CheckTimerExpired"]
             },
             "E_CheckTimerExpired": {
-              "next": [
-                "S_NavigateToSortie"
-              ],
-              "on_error": [
-                "Expedition"
-              ]
+              "next": ["S_NavigateToSortie"],
+              "on_error": ["Expedition"]
             },
             "E_CheckTeam1": {
               "enabled": true
             },
             "E_SelectMap1": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 1
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch1"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 1 } },
+              "next": ["E_ConfirmDispatch1"]
             },
             "E_ClickSmallMap1": {
               "enabled": false
             },
             "E_SelectMap2": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 2
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch2"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 2 } },
+              "next": ["E_ConfirmDispatch2"]
             },
             "E_ClickSmallMap2": {
               "enabled": false
             },
             "E_SelectMap3": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 3
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch3"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 3 } },
+              "next": ["E_ConfirmDispatch3"]
             },
             "E_ClickSmallMap3": {
               "enabled": false
             },
             "E_SelectMap4": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 4
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch4"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 4 } },
+              "next": ["E_ConfirmDispatch4"]
             },
             "E_ClickSmallMap4": {
               "enabled": false
             },
             "E_SelectMap5": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 5
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch5"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 5 } },
+              "next": ["E_ConfirmDispatch5"]
             },
             "E_ClickSmallMap5": {
               "enabled": false
             },
             "E_VerifyScreen1": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen2": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen3": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen4": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen5": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_ClickBackToHome": {
-              "action": {
-                "type": "Click",
-                "param": {
-                  "target": [
-                    1037,
-                    169,
-                    110,
-                    44
-                  ]
-                }
-              },
-              "next": [
-                "S_WaitRefresh"
-              ],
-              "on_error": [
-                "S_DetectWhereAmI"
-              ]
+              "action": { "type": "Click", "param": { "target": [1037, 169, 110, 44] } },
+              "next": ["S_WaitRefresh"],
+              "on_error": ["S_DetectWhereAmI"]
             },
             "E_AllTeamsBusy": {
-              "next": [
-                "E_TimerStart"
-              ]
+              "next": ["E_TimerStart"]
             },
             "E_TimerStart": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionTimerAction",
-                "custom_action_param": {
-                  "mode": "start"
-                }
-              },
-              "next": [
-                "S_NavigateToSortie"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionTimerAction", "custom_action_param": { "mode": "start" } },
+              "next": ["S_NavigateToSortie"]
             },
             "S_WaitRefresh": {
               "enabled": true
@@ -3834,12 +2528,7 @@
           "DisplayName": "部队一",
           "pipeline_override": {
             "U_ClickTeam": {
-              "target": [
-                154,
-                93,
-                1,
-                1
-              ]
+              "target": [154, 93, 1, 1]
             }
           }
         },
@@ -3848,12 +2537,7 @@
           "DisplayName": "部队二",
           "pipeline_override": {
             "U_ClickTeam": {
-              "target": [
-                282,
-                94,
-                1,
-                1
-              ]
+              "target": [282, 94, 1, 1]
             }
           }
         },
@@ -3862,12 +2546,7 @@
           "DisplayName": "部队三",
           "pipeline_override": {
             "U_ClickTeam": {
-              "target": [
-                398,
-                91,
-                1,
-                1
-              ]
+              "target": [398, 91, 1, 1]
             }
           }
         },
@@ -3876,12 +2555,7 @@
           "DisplayName": "部队四",
           "pipeline_override": {
             "U_ClickTeam": {
-              "target": [
-                519,
-                89,
-                1,
-                1
-              ]
+              "target": [519, 89, 1, 1]
             }
           }
         },
@@ -3890,12 +2564,7 @@
           "DisplayName": "部队五",
           "pipeline_override": {
             "U_ClickTeam": {
-              "target": [
-                635,
-                91,
-                1,
-                1
-              ]
+              "target": [635, 91, 1, 1]
             }
           }
         }
@@ -3920,20 +2589,10 @@
           "DisplayName": "鱼鳞阵",
           "pipeline_override": {
             "U_ClickFormation1": {
-              "target": [
-                212,
-                234,
-                1,
-                1
-              ]
+              "target": [212, 234, 1, 1]
             },
             "U_ClickFormation2": {
-              "target": [
-                212,
-                234,
-                1,
-                1
-              ]
+              "target": [212, 234, 1, 1]
             }
           }
         },
@@ -3942,20 +2601,10 @@
           "DisplayName": "横队阵",
           "pipeline_override": {
             "U_ClickFormation1": {
-              "target": [
-                591,
-                234,
-                1,
-                1
-              ]
+              "target": [591, 234, 1, 1]
             },
             "U_ClickFormation2": {
-              "target": [
-                591,
-                234,
-                1,
-                1
-              ]
+              "target": [591, 234, 1, 1]
             }
           }
         },
@@ -3964,20 +2613,10 @@
           "DisplayName": "雁行阵",
           "pipeline_override": {
             "U_ClickFormation1": {
-              "target": [
-                1037,
-                222,
-                1,
-                1
-              ]
+              "target": [1037, 222, 1, 1]
             },
             "U_ClickFormation2": {
-              "target": [
-                1037,
-                222,
-                1,
-                1
-              ]
+              "target": [1037, 222, 1, 1]
             }
           }
         },
@@ -3986,20 +2625,10 @@
           "DisplayName": "鹤翼阵",
           "pipeline_override": {
             "U_ClickFormation1": {
-              "target": [
-                195,
-                431,
-                1,
-                1
-              ]
+              "target": [195, 431, 1, 1]
             },
             "U_ClickFormation2": {
-              "target": [
-                195,
-                431,
-                1,
-                1
-              ]
+              "target": [195, 431, 1, 1]
             }
           }
         },
@@ -4008,20 +2637,10 @@
           "DisplayName": "方阵",
           "pipeline_override": {
             "U_ClickFormation1": {
-              "target": [
-                625,
-                407,
-                1,
-                1
-              ]
+              "target": [625, 407, 1, 1]
             },
             "U_ClickFormation2": {
-              "target": [
-                625,
-                407,
-                1,
-                1
-              ]
+              "target": [625, 407, 1, 1]
             }
           }
         },
@@ -4030,12 +2649,7 @@
           "DisplayName": "逆行阵",
           "pipeline_override": {
             "U_ClickFormation1": {
-              "target": [
-                1017,
-                421,
-                1,
-                1
-              ]
+              "target": [1017, 421, 1, 1]
             }
           }
         }
@@ -4149,48 +2763,8 @@
       ],
       "pipeline_override": {
         "U_SelectFloor": {
-          "on_error": [
-            "U_DetectWhereAmI"
-          ],
-          "custom_action_param": {
-            "target_floor": "{target_floor}",
-            "tens_roi": [
-              985,
-              303,
-              60,
-              99
-            ],
-            "ones_roi": [
-              1053,
-              303,
-              60,
-              99
-            ],
-            "tens_up": [
-              988,
-              275,
-              54,
-              18
-            ],
-            "tens_down": [
-              988,
-              412,
-              54,
-              18
-            ],
-            "ones_up": [
-              1058,
-              275,
-              54,
-              18
-            ],
-            "ones_down": [
-              1058,
-              412,
-              54,
-              18
-            ]
-          }
+          "on_error": ["U_DetectWhereAmI"],
+          "custom_action_param": { "target_floor": "{target_floor}", "tens_roi": [ 985, 303, 60, 99 ], "ones_roi": [ 1053, 303, 60, 99 ], "tens_up": [ 988, 275, 54, 18 ], "tens_down": [ 988, 412, 54, 18 ], "ones_up": [ 1058, 275, 54, 18 ], "ones_down": [ 1058, 412, 54, 18 ] }
         }
       }
     },
@@ -4203,17 +2777,7 @@
           "name": "",
           "pipeline_override": {
             "U_FallbackWait": {
-              "action": {
-                "type": "Click",
-                "param": {
-                  "target": [
-                    180,
-                    11,
-                    25,
-                    28
-                  ]
-                }
-              }
+              "action": { "type": "Click", "param": { "target": [180, 11, 25, 28] } }
             }
           }
         }
@@ -4229,136 +2793,68 @@
           "name": "",
           "pipeline_override": {
             "U_IsHome": {
-              "next": [
-                "Expedition"
-              ]
+              "next": ["Expedition"]
             },
             "E_CheckTeam1": {
               "enabled": true
             },
             "E_SelectMap1": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 1
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch1"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 1 } },
+              "next": ["E_ConfirmDispatch1"]
             },
             "E_ClickSmallMap1": {
               "enabled": false
             },
             "E_SelectMap2": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 2
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch2"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 2 } },
+              "next": ["E_ConfirmDispatch2"]
             },
             "E_ClickSmallMap2": {
               "enabled": false
             },
             "E_SelectMap3": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 3
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch3"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 3 } },
+              "next": ["E_ConfirmDispatch3"]
             },
             "E_ClickSmallMap3": {
               "enabled": false
             },
             "E_SelectMap4": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 4
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch4"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 4 } },
+              "next": ["E_ConfirmDispatch4"]
             },
             "E_ClickSmallMap4": {
               "enabled": false
             },
             "E_SelectMap5": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 5
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch5"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 5 } },
+              "next": ["E_ConfirmDispatch5"]
             },
             "E_ClickSmallMap5": {
               "enabled": false
             },
             "E_VerifyScreen1": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen2": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen3": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen4": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen5": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_ClickBackToHome": {
-              "action": {
-                "type": "Click",
-                "param": {
-                  "target": [
-                    1037,
-                    169,
-                    110,
-                    44
-                  ]
-                }
-              },
-              "next": [
-                "U_WaitRefresh"
-              ],
-              "on_error": [
-                "U_DetectWhereAmI"
-              ]
+              "action": { "type": "Click", "param": { "target": [1037, 169, 110, 44] } },
+              "next": ["U_WaitRefresh"],
+              "on_error": ["U_DetectWhereAmI"]
             },
             "E_AllTeamsBusy": {
-              "next": [
-                "U_NavigateToUnderground"
-              ]
+              "next": ["U_NavigateToUnderground"]
             },
             "U_WaitRefresh": {
               "enabled": true
@@ -4377,161 +2873,79 @@
           "name": "",
           "pipeline_override": {
             "LR_IsHome": {
-              "next": [
-                "Expedition"
-              ]
+              "next": ["Expedition"]
             },
             "E_CheckTeam1": {
               "enabled": true
             },
             "E_SelectMap1": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 1
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch1"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 1 } },
+              "next": ["E_ConfirmDispatch1"]
             },
             "E_ClickSmallMap1": {
               "enabled": false
             },
             "E_SelectMap2": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 2
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch2"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 2 } },
+              "next": ["E_ConfirmDispatch2"]
             },
             "E_ClickSmallMap2": {
               "enabled": false
             },
             "E_SelectMap3": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 3
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch3"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 3 } },
+              "next": ["E_ConfirmDispatch3"]
             },
             "E_ClickSmallMap3": {
               "enabled": false
             },
             "E_SelectMap4": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 4
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch4"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 4 } },
+              "next": ["E_ConfirmDispatch4"]
             },
             "E_ClickSmallMap4": {
               "enabled": false
             },
             "E_SelectMap5": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 5
-                }
-              },
-              "next": [
-                "E_ConfirmDispatch5"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionMapSelectAction", "custom_action_param": { "team": 5 } },
+              "next": ["E_ConfirmDispatch5"]
             },
             "E_ClickSmallMap5": {
               "enabled": false
             },
             "E_VerifyScreen1": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen2": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen3": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen4": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen5": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_ClickBackToHome": {
-              "action": {
-                "type": "Click",
-                "param": {
-                  "target": [
-                    1037,
-                    169,
-                    110,
-                    44
-                  ]
-                }
-              },
-              "next": [
-                "LR_WaitRefresh"
-              ],
-              "on_error": [
-                "LR_DetectWhereAmI"
-              ]
+              "action": { "type": "Click", "param": { "target": [1037, 169, 110, 44] } },
+              "next": ["LR_WaitRefresh"],
+              "on_error": ["LR_DetectWhereAmI"]
             },
             "E_AllTeamsBusy": {
-              "next": [
-                "E_TimerStart"
-              ]
+              "next": ["E_TimerStart"]
             },
             "E_TimerStart": {
-              "action": {
-                "type": "Custom",
-                "custom_action": "ExpeditionTimerAction",
-                "custom_action_param": {
-                  "mode": "start"
-                }
-              },
-              "next": [
-                "LR_NavigateToUnderground"
-              ]
+              "action": { "type": "Custom", "custom_action": "ExpeditionTimerAction", "custom_action_param": { "mode": "start" } },
+              "next": ["LR_NavigateToUnderground"]
             },
             "LR_IsTeamSelect": {
-              "next": [
-                "E_CheckTimerExpired"
-              ]
+              "next": ["E_CheckTimerExpired"]
             },
             "E_CheckTimerExpired": {
-              "next": [
-                "LR_ClickTeam"
-              ],
-              "on_error": [
-                "E_GoHome"
-              ]
+              "next": ["LR_ClickTeam"],
+              "on_error": ["E_GoHome"]
             },
             "LR_WaitRefresh": {
               "enabled": true
@@ -4724,82 +3138,40 @@
               "enabled": false
             },
             "M_CheckPos1": {
-              "next": [
-                "M_DetectEmpty1",
-                "M_DetectLocked1",
-                "M_CheckLevel1",
-                "M_ClickMixBtn1"
-              ]
+              "next": ["M_DetectEmpty1", "M_DetectLocked1", "M_CheckLevel1", "M_ClickMixBtn1"]
             },
             "M_CheckPos2": {
-              "next": [
-                "M_DetectEmpty2",
-                "M_DetectLocked2",
-                "M_CheckLevel2",
-                "M_ClickMixBtn2"
-              ]
+              "next": ["M_DetectEmpty2", "M_DetectLocked2", "M_CheckLevel2", "M_ClickMixBtn2"]
             },
             "M_CheckPos3": {
-              "next": [
-                "M_DetectEmpty3",
-                "M_DetectLocked3",
-                "M_CheckLevel3",
-                "M_ClickMixBtn3"
-              ]
+              "next": ["M_DetectEmpty3", "M_DetectLocked3", "M_CheckLevel3", "M_ClickMixBtn3"]
             },
             "M_CheckPos4": {
-              "next": [
-                "M_DetectEmpty4",
-                "M_DetectLocked4",
-                "M_CheckLevel4",
-                "M_ClickMixBtn4"
-              ]
+              "next": ["M_DetectEmpty4", "M_DetectLocked4", "M_CheckLevel4", "M_ClickMixBtn4"]
             },
             "M_CheckPos5": {
-              "next": [
-                "M_DetectEmpty5",
-                "M_DetectLocked5",
-                "M_CheckLevel5",
-                "M_ClickMixBtn5"
-              ]
+              "next": ["M_DetectEmpty5", "M_DetectLocked5", "M_CheckLevel5", "M_ClickMixBtn5"]
             },
             "M_CheckPos6": {
-              "next": [
-                "M_DetectEmpty6",
-                "M_DetectLocked6",
-                "M_CheckLevel6",
-                "M_ClickMixBtn6"
-              ]
+              "next": ["M_DetectEmpty6", "M_DetectLocked6", "M_CheckLevel6", "M_ClickMixBtn6"]
             },
             "M_DetectLocked1": {
-              "on_error": [
-                "M_CheckLevel1"
-              ]
+              "on_error": ["M_CheckLevel1"]
             },
             "M_DetectLocked2": {
-              "on_error": [
-                "M_CheckLevel2"
-              ]
+              "on_error": ["M_CheckLevel2"]
             },
             "M_DetectLocked3": {
-              "on_error": [
-                "M_CheckLevel3"
-              ]
+              "on_error": ["M_CheckLevel3"]
             },
             "M_DetectLocked4": {
-              "on_error": [
-                "M_CheckLevel4"
-              ]
+              "on_error": ["M_CheckLevel4"]
             },
             "M_DetectLocked5": {
-              "on_error": [
-                "M_CheckLevel5"
-              ]
+              "on_error": ["M_CheckLevel5"]
             },
             "M_DetectLocked6": {
-              "on_error": [
-                "M_CheckLevel6"
-              ]
+              "on_error": ["M_CheckLevel6"]
             }
           }
         },
@@ -4834,14 +3206,10 @@
           "label": "不筛选",
           "pipeline_override": {
             "M_HideUnmixable": {
-              "next": [
-                "M_FilterPostHub"
-              ]
+              "next": ["M_FilterPostHub"]
             },
             "M_DetectMailbox": {
-              "next": [
-                "M_NoFilterClick1"
-              ]
+              "next": ["M_NoFilterClick1"]
             },
             "M_NoFilterClick1": {
               "enabled": true
@@ -4921,9 +3289,7 @@
           "pipeline_override": {
             "E_AllTeamsBusy": {
               "action": "DoNothing",
-              "next": [
-                "E_TrackerOCR"
-              ]
+              "next": ["E_TrackerOCR"]
             },
             "E_TrackerOCR": {
               "enabled": true
@@ -4935,14 +3301,10 @@
               "enabled": true
             },
             "E_ClickBackToHome": {
-              "next": [
-                "E_SmartWait"
-              ]
+              "next": ["E_SmartWait"]
             },
             "E_VerifyLeftMenu": {
-              "on_error": [
-                "E_SmartWait"
-              ]
+              "on_error": ["E_SmartWait"]
             }
           }
         },
@@ -5022,36 +3384,16 @@
           "DisplayName": "刀装筛选",
           "pipeline_override": {
             "S_ClickCaptain3": {
-              "target": [
-                220,
-                512,
-                107,
-                29
-              ]
+              "target": [220, 512, 107, 29]
             },
             "LR_ClickCaptain3": {
-              "target": [
-                220,
-                512,
-                107,
-                29
-              ]
+              "target": [220, 512, 107, 29]
             },
             "U_ClickCaptain3": {
-              "target": [
-                220,
-                512,
-                107,
-                29
-              ]
+              "target": [220, 512, 107, 29]
             },
             "EC_ClickCaptain3": {
-              "target": [
-                220,
-                512,
-                107,
-                29
-              ]
+              "target": [220, 512, 107, 29]
             }
           }
         },
@@ -5060,10 +3402,7 @@
           "DisplayName": "队内拖拽",
           "pipeline_override": {
             "S_CaptainHub": {
-              "next": [
-                "S_DragCaptain",
-                "S_IsPreSortieConfirm"
-              ]
+              "next": ["S_DragCaptain", "S_IsPreSortieConfirm"]
             },
             "S_IsSwordSelect": {
               "enabled": false
@@ -5072,10 +3411,7 @@
               "enabled": false
             },
             "LR_CaptainHub": {
-              "next": [
-                "LR_DragCaptain",
-                "LR_IsPreSortieConfirm"
-              ]
+              "next": ["LR_DragCaptain", "LR_IsPreSortieConfirm"]
             },
             "LR_IsSwordSelect": {
               "enabled": false
@@ -5084,10 +3420,7 @@
               "enabled": false
             },
             "U_CaptainHub": {
-              "next": [
-                "U_DragCaptain",
-                "U_IsPreSortieConfirm"
-              ]
+              "next": ["U_DragCaptain", "U_IsPreSortieConfirm"]
             },
             "U_IsSwordSelect": {
               "enabled": false
@@ -5146,29 +3479,19 @@
           ],
           "pipeline_override": {
             "E_MarkTeam1": {
-              "next": [
-                "E_UseTeamRecord1"
-              ]
+              "next": ["E_UseTeamRecord1"]
             },
             "E_MarkTeam2": {
-              "next": [
-                "E_UseTeamRecord2"
-              ]
+              "next": ["E_UseTeamRecord2"]
             },
             "E_MarkTeam3": {
-              "next": [
-                "E_UseTeamRecord3"
-              ]
+              "next": ["E_UseTeamRecord3"]
             },
             "E_MarkTeam4": {
-              "next": [
-                "E_UseTeamRecord4"
-              ]
+              "next": ["E_UseTeamRecord4"]
             },
             "E_MarkTeam5": {
-              "next": [
-                "E_UseTeamRecord5"
-              ]
+              "next": ["E_UseTeamRecord5"]
             }
           }
         }

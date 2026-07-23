@@ -7,16 +7,23 @@
     <list default="true" id="404bc1c5-b364-4787-9804-888f83c8e73c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.claude/skills/gstack" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/skills/gstack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MATR.dll" beforeDir="false" afterPath="$PROJECT_DIR$/MATR.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/MFAAvalonia.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/MFAAvalonia.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/Pages/DataLookupModels.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/Pages/DataLookupModels.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/Pages/DataLookupViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/Pages/DataLookupViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.obsidian/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.obsidian/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.obsidian/appearance.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.obsidian/appearance.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.obsidian/core-plugins.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.obsidian/core-plugins.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.obsidian/workspace.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matr.exe" beforeDir="false" afterPath="$PROJECT_DIR$/matr.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pack.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/pack.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/announcement/1-v0.6.1 更新公告.md" beforeDir="false" afterPath="$PROJECT_DIR$/resource/announcement/1-v0.6.1 更新公告.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/MFAAvalonia.Core.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/MFAAvalonia.Core.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/合战场任务设计.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/合战场任务设计.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/开发日志.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/开发日志.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface.json" beforeDir="false" afterPath="$PROJECT_DIR$/interface.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/base/image/重伤.png" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/image/重伤.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Disassemble.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Disassemble.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/EdoCastle.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/EdoCastle.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Expedition.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Expedition.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/FlowerBrush.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/FlowerBrush.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/GoHome.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/GoHome.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/LRentaisen.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/LRentaisen.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Mix.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Mix.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Sortie.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Sortie.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Underground.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Underground.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
