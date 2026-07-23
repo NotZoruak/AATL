@@ -334,7 +334,13 @@
     "next": ["LR_ClickSortieInMenu"]
   },
   "LR_CheckNavDirForRetry": {
-    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1183, 18, 87, 40],
+        "expected": "目"
+      }
+    },
     "action": "Click",
     "next": ["LR_PostClickMenuHub"],
     "pre_delay": 100
@@ -666,7 +672,13 @@
     "next": ["LR_DetectWhereAmI"]
   },
   "LR_ClickMenu": {
-    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1183, 18, 87, 40],
+        "expected": "目"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {}
@@ -911,5 +923,15 @@
   "LR_NavigateToActivity": {
     "next": ["LR_ClickMenu"],
     "on_error": ["LR_DetectWhereAmI"]
+  },
+  "LR_CloseTicketPopup": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [782, 465, 1, 1]
+      }
+    },
+    "next": ["LR_TerminateNoTicket"],
+    "pre_delay": 100
   }
 }
