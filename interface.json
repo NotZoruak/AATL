@@ -3267,6 +3267,12 @@
             },
             "E_FallbackWait": {
               "enabled": false
+            },
+            "E_FlowerFallbackWait": {
+              "enabled": false
+            },
+            "FB_PostFallbackWait": {
+              "enabled": false
             }
           }
         },
