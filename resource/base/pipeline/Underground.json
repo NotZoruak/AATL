@@ -12,6 +12,7 @@
       "U_HasExpeditionReturn_Title",
       "U_IsMarching",
       "U_IsBattleResult_Exp",
+      "U_IsBattleResult_Title",
       "U_IsSwordDropColor",
       "U_IsSpecialDrop",
       "U_IsFormationSelect",
@@ -127,6 +128,14 @@
     "expected": "经验",
     "action": "Click",
     "target": [388, 59, 54, 25],
+    "next": ["U_DetectWhereAmI"],
+    "pre_delay": 100
+  },
+  "U_IsBattleResult_Title": {
+    "recognition": "OCR",
+    "roi": [558, 1, 162, 52],
+    "expected": "战斗结果",
+    "action": "Click",
     "next": ["U_DetectWhereAmI"],
     "pre_delay": 100
   },

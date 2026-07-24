@@ -202,6 +202,14 @@
     "next": ["LR_DetectWhereAmI"],
     "pre_delay": 100
   },
+  "LR_IsBattleResult_Title": {
+    "recognition": "OCR",
+    "roi": [558, 1, 162, 52],
+    "expected": "战斗结果",
+    "action": "Click",
+    "next": ["LR_DetectWhereAmI"],
+    "pre_delay": 100
+  },
   "LR_IsSwordDropColor": {
     "recognition": "ColorMatch",
     "roi": [598, 543, 66, 1],
@@ -510,6 +518,7 @@
       "LR_IsSwordSelect",
       "LR_IsTeamSelect",
       "LR_IsBattleResult_Exp",
+      "LR_IsBattleResult_Title",
       "LR_IsActionSelect",
       "LR_IsSwordDropColor",
       "LR_IsSpecialDrop",
