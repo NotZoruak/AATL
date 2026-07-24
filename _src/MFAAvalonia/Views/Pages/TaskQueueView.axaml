@@ -1497,19 +1497,6 @@
                                 ClipToBounds="False"
                                 HorizontalAlignment="Right">
                         <Button Classes="BasicTight TaskQueueBasicTight"
-                                Command="{Binding PackLogsCommand}"
-                                IsEnabled="{Binding CurrentInstanceIdle, Source={x:Static helper:Instances.RootViewModel}}"
-                                Padding="0"
-                                Margin="3,-3,3,0"
-                                ToolTip.Tip="一键打包日志"
-                                VerticalAlignment="Center">
-                            <avalonia1:FluentIcon Height="20"
-                                                  Icon="Bug"
-                                                  IconSize="Size16"
-                                                  VerticalAlignment="Center"
-                                                  IconVariant="Regular" />
-                        </Button>
-                        <Button Classes="BasicTight TaskQueueBasicTight"
                                 Command="{Binding ExportCommand}"
                                 IsEnabled="{Binding CurrentInstanceIdle, Source={x:Static helper:Instances.RootViewModel}}"
                                 Padding="0"

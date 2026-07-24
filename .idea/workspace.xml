@@ -6,10 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="404bc1c5-b364-4787-9804-888f83c8e73c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.claude/skills/gstack" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/skills/gstack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.obsidian/workspace.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/刮刮乐识别设计.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/LRentaisen.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/LRentaisen.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MATR.dll" beforeDir="false" afterPath="$PROJECT_DIR$/MATR.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Helper/AppPaths.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Helper/AppPaths.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/Pages/TaskQueueViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/Pages/TaskQueueViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Views/Pages/TaskQueueView.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Views/Pages/TaskQueueView.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/开发日志.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/开发日志.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface.json" beforeDir="false" afterPath="$PROJECT_DIR$/interface.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matr.exe" beforeDir="false" afterPath="$PROJECT_DIR$/matr.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/announcement/1-v0.6.1 更新公告.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/announcement/2-长期公告.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/announcement/3-v0.7.0-alpha 更新公告.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/GoHome.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/GoHome.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/libs/MFAAvalonia.Core.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/MFAAvalonia.Core.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

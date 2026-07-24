@@ -19,6 +19,7 @@
       "G_IsGameUpdatePopup",
       "G_IsInGameUpdatePopup",
       "G_IsInternalReport",
+      "G_VerifyMenuDir",
       "G_IsMenuDirectory",
       "G_FallbackWait"
     ],

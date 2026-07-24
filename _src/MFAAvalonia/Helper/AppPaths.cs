@@ -208,7 +208,7 @@ public static class AppPaths
             {
                 try
                 {
-                    var bakName = $"maafw.bak.{DateTime.Now:yyyyMMdd_HHmmss}.log";
+                    var bakName = $"maafw.bak.{DateTime.Now:yyyy.MM.dd-HH.mm.ss.fff}.log";
                     File.Move(mainLog, Path.Combine(debugPath, bakName));
                     logInfo?.Invoke($"已轮转调试日志：{bakName}");
                 }

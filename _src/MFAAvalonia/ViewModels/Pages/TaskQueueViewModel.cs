@@ -1672,16 +1672,6 @@ public partial class TaskQueueViewModel : ViewModelBase
         return Task.CompletedTask;
     }
 
-    [RelayCommand]
-    private async Task PackLogs()
-    {
-        using var _ = BeginUiLogScope("PackLogs");
-        LoggerHelper.UserAction("一键打包日志", null,
-            operation: "PackLogs", instanceId: Processor.InstanceId, instanceName: InstanceName);
-
-        await FileLogExporter.CompressRecentLogs(Instances.StorageProvider);
-    }
-
     public void AutoDetectDevice(CancellationToken token = default, bool showToast = true, bool strictLaunchTarget = false)
     {
         if (CurrentController == MaaControllerTypes.PlayCover)
