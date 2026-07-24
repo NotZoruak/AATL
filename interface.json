@@ -31,23 +31,6 @@
   ],
   "task": [
     {
-      "name": "远征",
-      "entry": "Expedition",
-      "default_check": true,
-      "repeatable": false,
-      "repeat_count": 0,
-      "option": [
-        "部队一",
-        "部队二",
-        "部队三",
-        "部队四",
-        "部队五",
-        "RefreshInterval"
-      ],
-      "label": "远征",
-      "description": "请保证编队符合远征要求。"
-    },
-    {
       "name": "合战场",
       "entry": "Sortie",
       "default_check": false,
@@ -127,6 +110,23 @@
       ],
       "label": "习合",
       "description": "自动习合（合成强化）操作。每轮仅处理前6把刀剑，搓糖开启后前6把均达乱舞7级时自动停止。推荐先刀解清理非搓糖刀种，再开启搓糖+关闭刀种筛选以获得最佳体验。\n\n- **搓糖**：习合至乱舞等级7级后跳过该刀剑，关闭则无等级限制。上锁刀剑不受此选项限制\n- **刀种筛选**：点击齿轮选择要筛选的刀种，关闭则跳过筛选直接习合全部刀剑"
+    },
+    {
+      "name": "远征",
+      "entry": "Expedition",
+      "default_check": true,
+      "repeatable": false,
+      "repeat_count": 0,
+      "option": [
+        "部队一",
+        "部队二",
+        "部队三",
+        "部队四",
+        "部队五",
+        "RefreshInterval"
+      ],
+      "label": "远征",
+      "description": "请保证编队符合远征要求。"
     }
   ],
   "global_option": [

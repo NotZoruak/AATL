@@ -365,7 +365,6 @@ public static class FileLogExporter
             ExportLogTimeRange.All => (DateTime?)null,
             ExportLogTimeRange.Last24Hours => now.AddDays(-1),
             ExportLogTimeRange.Last3Days => now.AddDays(-3),
-            ExportLogTimeRange.Last7Days => now.AddDays(-7),
             _ => null
         };
 
@@ -476,8 +475,7 @@ public enum ExportLogTimeRange
 {
     All,
     Last24Hours,
-    Last3Days,
-    Last7Days
+    Last3Days
 }
 
 public enum ExportLogResult

@@ -189,7 +189,7 @@ public static class AppPaths
         }
     }
 
-    public static void CleanupOldDebugLogs(int retainDays = 1, Action<string>? logInfo = null, Action<string>? logWarning = null)
+    public static void CleanupOldDebugLogs(int retainDays = 3, Action<string>? logInfo = null, Action<string>? logWarning = null)
     {
         try
         {
@@ -219,7 +219,7 @@ public static class AppPaths
             }
 
             // 清理过期的备份日志
-            foreach (var file in Directory.EnumerateFiles(debugPath, "maafw.bak.*.log"))
+            foreach (var file in Directory.EnumerateFiles(debugPath, "maafw.bak.*.log", SearchOption.AllDirectories))
             {
                 try
                 {
@@ -239,7 +239,7 @@ public static class AppPaths
             // 清理过期的调试截图
             foreach (var pattern in new[] { "*.png", "*.jpg", "*.jpeg" })
             {
-                foreach (var file in Directory.EnumerateFiles(debugPath, pattern))
+                foreach (var file in Directory.EnumerateFiles(debugPath, pattern, SearchOption.AllDirectories))
                 {
                     try
                     {

@@ -61,8 +61,7 @@ public sealed partial class ExportLogDialogViewModel : ViewModelBase
         [
             new ExportLogTimeRangeOption(ExportLogTimeRange.All, LangKeys.AllFilter.ToLocalization()),
             new ExportLogTimeRangeOption(ExportLogTimeRange.Last24Hours, LangKeys.ExportLogTimeRangeLast24Hours.ToLocalization()),
-            new ExportLogTimeRangeOption(ExportLogTimeRange.Last3Days, LangKeys.ExportLogTimeRangeLast3Days.ToLocalization()),
-            new ExportLogTimeRangeOption(ExportLogTimeRange.Last7Days, LangKeys.ExportLogTimeRangeLast7Days.ToLocalization())
+            new ExportLogTimeRangeOption(ExportLogTimeRange.Last3Days, LangKeys.ExportLogTimeRangeLast3Days.ToLocalization())
         ];
 
         _selectedOnErrorImageTimeRange = ImageTimeRangeOptions[0];

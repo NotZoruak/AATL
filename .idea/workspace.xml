@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="404bc1c5-b364-4787-9804-888f83c8e73c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.claude/skills/gstack" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/skills/gstack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.obsidian/workspace.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/刮刮乐识别设计.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/LRentaisen.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/LRentaisen.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

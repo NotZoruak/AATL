@@ -78,15 +78,8 @@
   "LR_CheckHomeBrightness": {
     "recognition": "ColorMatch",
     "roi": [66, 58, 11, 13],
-    "upper": [
-      40,
-      155,
-      30
-    ],
-    "lower": [
-      23,
-      95,
-      15
+    "upper": [40, 155, 30],
+    "lower": [23, 95, 15
     ],
     "action": "DoNothing",
     "next": ["LR_IsHome"]
@@ -467,6 +460,7 @@
     },
     "enabled": false,
     "next": ["LR_VerifyHomeMenuClosed"],
+    "on_error": ["LR_DetectWhereAmI"],
     "pre_delay": 100
   },
   "LR_VerifyHomeMenuClosed": {
@@ -740,7 +734,8 @@
   "LR_CheckSwordDropAfterSpecial": {
     "pre_delay": 1000,
     "timeout": 5000,
-    "next": ["LR_IsSwordDropAfter", "LR_WaitForEventPage"]
+    "next": ["LR_IsSwordDropAfter", "LR_WaitForEventPage"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsSwordDropAfter": {
     "recognition": "ColorMatch",
