@@ -49,7 +49,7 @@
         "S_同步远征"
       ],
       "label": "合战场",
-      "description": "通用合战场出阵自动化，无限循环。\n与自动行军同时开启时，「刀装破坏时停止」和「中伤时停止」设置无法生效，请注意截图延迟与游戏卡顿影响。\n\n- **换队长**：换队长的方式可在全局设置中修改\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用部队X则保存至记录X\n- **王点前撤退**：1-1至1-4、5-2、6-1图中该功能不生效，7-4仅长线生效。使用该功能时请保证模拟器分辨率为1280*720，240DPI。\n- **道中撤退**：需同时开启王点前撤退。包含8-1王点前三点处撤退，8-2与8-4不过桥，8-3玉钢点后撤退\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保合战场使用的队伍在远征任务中设置为「休息」"
+      "description": "通用合战场出阵自动化，无限循环。\n与自动行军同时开启时，「刀装破坏时停止」和「中伤时停止」设置无法生效，请注意截图延迟与游戏卡顿影响。\n\n- **换队长**：换队长的方式可在全局设置中修改\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n- **王点前撤退**：1-1至1-4、5-2、6-1图中该功能不生效，7-4仅长线生效。使用该功能时请保证模拟器分辨率为1280*720，240DPI。\n- **道中撤退**：需同时开启王点前撤退。包含8-1王点前三点处撤退，8-2与8-4不过桥，8-3玉钢点后撤退\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保合战场使用的队伍在远征任务中设置为「休息」"
     },
     {
       "name": "陆联",
@@ -66,7 +66,7 @@
         "LR_不购买门票"
       ],
       "label": "陆联",
-      "description": "联队战（陆联）活动自动化出阵。\n\n- **换队长**：换队长的方式可在全局设置中修改\n- **部队交替**：在行动选择界面自动切换部队，勾选后点击齿轮设置队伍序列\n- **选择部队**：选择出阵部队（第1轮使用）\n- **选择难度**：易/普/难/超难\n- **不购买门票**：勾选后令牌不足时自动结束任务，不再购买（注意：仅停止当前单次执行，若设置了重复次数，后续轮次仍会启动然后终止，可能造成日志刷屏）\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保陆联使用的队伍在远征任务中设置为「休息」\n未开启智能调度时，任务不会主动返回本丸检查远征。\n\n> ⚠️ **注意**：游戏本身会在通行令牌不足时自动使用多倍道具而不是弹出通行令牌不足弹窗导致"
+      "description": "联队战（陆联）活动自动化出阵。\n\n- **换队长**：换队长的方式可在全局设置中修改\n- **部队交替**：在行动选择界面自动切换部队，勾选后点击齿轮设置队伍序列\n- **选择部队**：选择出阵部队（第1轮使用）\n- **选择难度**：易/普/难/超难\n- **不购买门票**：勾选后令牌不足时自动结束任务，不再购买（注意：仅停止当前单次执行，若设置了重复次数，后续轮次仍会启动然后终止，可能造成日志刷屏）\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保陆联使用的队伍在远征任务中设置为「休息」。\n\n> ⚠️ **注意**：游戏本身会在通行令牌不足时自动使用多倍道具。"
     },
     {
       "name": "刷花",
@@ -161,12 +161,7 @@
               "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -298,20 +293,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -323,20 +308,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -348,20 +323,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -373,20 +338,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -398,20 +353,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -423,20 +368,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -448,20 +383,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -473,20 +398,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -498,20 +413,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -523,20 +428,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -548,20 +443,10 @@
               "enabled": true
             },
             "E_SelectMap1": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         }
@@ -586,20 +471,10 @@
           "DisplayName": "1-1",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -608,20 +483,10 @@
           "DisplayName": "1-2",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -630,20 +495,10 @@
           "DisplayName": "1-3",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -652,20 +507,10 @@
           "DisplayName": "1-4",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -674,20 +519,10 @@
           "DisplayName": "2-1",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -696,20 +531,10 @@
           "DisplayName": "2-2",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -718,20 +543,10 @@
           "DisplayName": "2-3",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -740,20 +555,10 @@
           "DisplayName": "2-4",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -762,20 +567,10 @@
           "DisplayName": "3-1",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -784,20 +579,10 @@
           "DisplayName": "3-2",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -806,20 +591,10 @@
           "DisplayName": "3-3",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -828,20 +603,10 @@
           "DisplayName": "3-4",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -850,20 +615,10 @@
           "DisplayName": "4-1",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -872,20 +627,10 @@
           "DisplayName": "4-2",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -894,20 +639,10 @@
           "DisplayName": "4-3",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -916,20 +651,10 @@
           "DisplayName": "4-4",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -938,20 +663,10 @@
           "DisplayName": "5-1",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -960,20 +675,10 @@
           "DisplayName": "5-2",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -982,20 +687,10 @@
           "DisplayName": "5-3",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1004,20 +699,10 @@
           "DisplayName": "5-4",
           "pipeline_override": {
             "E_SelectMap2": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap2": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         }
@@ -1042,20 +727,10 @@
           "DisplayName": "1-1",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1064,20 +739,10 @@
           "DisplayName": "1-2",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1086,20 +751,10 @@
           "DisplayName": "1-3",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1108,20 +763,10 @@
           "DisplayName": "1-4",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1130,20 +775,10 @@
           "DisplayName": "2-1",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1152,20 +787,10 @@
           "DisplayName": "2-2",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1174,20 +799,10 @@
           "DisplayName": "2-3",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1196,20 +811,10 @@
           "DisplayName": "2-4",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1218,20 +823,10 @@
           "DisplayName": "3-1",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1240,20 +835,10 @@
           "DisplayName": "3-2",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1262,20 +847,10 @@
           "DisplayName": "3-3",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1284,20 +859,10 @@
           "DisplayName": "3-4",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1306,20 +871,10 @@
           "DisplayName": "4-1",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1328,20 +883,10 @@
           "DisplayName": "4-2",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1350,20 +895,10 @@
           "DisplayName": "4-3",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1372,20 +907,10 @@
           "DisplayName": "4-4",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1394,20 +919,10 @@
           "DisplayName": "5-1",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1416,20 +931,10 @@
           "DisplayName": "5-2",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1438,20 +943,10 @@
           "DisplayName": "5-3",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1460,20 +955,10 @@
           "DisplayName": "5-4",
           "pipeline_override": {
             "E_SelectMap3": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap3": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         }
@@ -1498,20 +983,10 @@
           "DisplayName": "1-1",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1520,20 +995,10 @@
           "DisplayName": "1-2",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1542,20 +1007,10 @@
           "DisplayName": "1-3",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1564,20 +1019,10 @@
           "DisplayName": "1-4",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1586,20 +1031,10 @@
           "DisplayName": "2-1",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1608,20 +1043,10 @@
           "DisplayName": "2-2",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1630,20 +1055,10 @@
           "DisplayName": "2-3",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1652,20 +1067,10 @@
           "DisplayName": "2-4",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1674,20 +1079,10 @@
           "DisplayName": "3-1",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1696,20 +1091,10 @@
           "DisplayName": "3-2",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1718,20 +1103,10 @@
           "DisplayName": "3-3",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1740,20 +1115,10 @@
           "DisplayName": "3-4",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1762,20 +1127,10 @@
           "DisplayName": "4-1",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1784,20 +1139,10 @@
           "DisplayName": "4-2",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1806,20 +1151,10 @@
           "DisplayName": "4-3",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1828,20 +1163,10 @@
           "DisplayName": "4-4",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -1850,20 +1175,10 @@
           "DisplayName": "5-1",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1872,20 +1187,10 @@
           "DisplayName": "5-2",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1894,20 +1199,10 @@
           "DisplayName": "5-3",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -1916,20 +1211,10 @@
           "DisplayName": "5-4",
           "pipeline_override": {
             "E_SelectMap4": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap4": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         }
@@ -1954,20 +1239,10 @@
           "DisplayName": "1-1",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -1976,20 +1251,10 @@
           "DisplayName": "1-2",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -1998,20 +1263,10 @@
           "DisplayName": "1-3",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -2020,20 +1275,10 @@
           "DisplayName": "1-4",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                276,
-                188,
-                37,
-                39
-              ]
+              "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -2042,20 +1287,10 @@
           "DisplayName": "2-1",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -2064,20 +1299,10 @@
           "DisplayName": "2-2",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -2086,20 +1311,10 @@
           "DisplayName": "2-3",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -2108,20 +1323,10 @@
           "DisplayName": "2-4",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                469,
-                178,
-                50,
-                40
-              ]
+              "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -2130,20 +1335,10 @@
           "DisplayName": "3-1",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -2152,20 +1347,10 @@
           "DisplayName": "3-2",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -2174,20 +1359,10 @@
           "DisplayName": "3-3",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -2196,20 +1371,10 @@
           "DisplayName": "3-4",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                661,
-                183,
-                50,
-                35
-              ]
+              "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -2218,20 +1383,10 @@
           "DisplayName": "4-1",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -2240,20 +1395,10 @@
           "DisplayName": "4-2",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -2262,20 +1407,10 @@
           "DisplayName": "4-3",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -2284,20 +1419,10 @@
           "DisplayName": "4-4",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                891,
-                190,
-                50,
-                36
-              ]
+              "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         },
@@ -2306,20 +1431,10 @@
           "DisplayName": "5-1",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -2328,20 +1443,10 @@
           "DisplayName": "5-2",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                487,
-                373,
-                84,
-                113
-              ]
+              "target": [487, 373, 84, 113]
             }
           }
         },
@@ -2350,20 +1455,10 @@
           "DisplayName": "5-3",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                767,
-                370,
-                81,
-                115
-              ]
+              "target": [767, 370, 81, 115]
             }
           }
         },
@@ -2372,20 +1467,10 @@
           "DisplayName": "5-4",
           "pipeline_override": {
             "E_SelectMap5": {
-              "target": [
-                1078,
-                191,
-                45,
-                34
-              ]
+              "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap5": {
-              "target": [
-                1098,
-                368,
-                67,
-                79
-              ]
+              "target": [1098, 368, 67, 79]
             }
           }
         }
@@ -2420,12 +1505,7 @@
           "DisplayName": "易",
           "pipeline_override": {
             "ClickDifficulty": {
-              "target": [
-                127,
-                267,
-                208,
-                112
-              ]
+              "target": [127, 267, 208, 112]
             }
           }
         },
@@ -2434,12 +1514,7 @@
           "DisplayName": "普",
           "pipeline_override": {
             "ClickDifficulty": {
-              "target": [
-                393,
-                250,
-                265,
-                141
-              ]
+              "target": [393, 250, 265, 141]
             }
           }
         },
@@ -2448,12 +1523,7 @@
           "DisplayName": "难",
           "pipeline_override": {
             "ClickDifficulty": {
-              "target": [
-                698,
-                244,
-                248,
-                155
-              ]
+              "target": [698, 244, 248, 155]
             }
           }
         },
@@ -2462,12 +1532,7 @@
           "DisplayName": "超难",
           "pipeline_override": {
             "ClickDifficulty": {
-              "target": [
-                1012,
-                262,
-                220,
-                117
-              ]
+              "target": [1012, 262, 220, 117]
             }
           }
         }
@@ -2529,12 +1594,7 @@
           "DisplayName": "部队一",
           "pipeline_override": {
             "S_ClickTeam": {
-              "target": [
-                154,
-                93,
-                1,
-                1
-              ]
+              "target": [154, 93, 1, 1]
             },
             "S_PreCheckUseRecord": {
               "next": [
@@ -2548,12 +1608,7 @@
           "DisplayName": "部队二",
           "pipeline_override": {
             "S_ClickTeam": {
-              "target": [
-                282,
-                94,
-                1,
-                1
-              ]
+              "target": [282, 94, 1, 1]
             },
             "S_PreCheckUseRecord": {
               "next": [
@@ -2567,12 +1622,7 @@
           "DisplayName": "部队三",
           "pipeline_override": {
             "S_ClickTeam": {
-              "target": [
-                398,
-                91,
-                1,
-                1
-              ]
+              "target": [398, 91, 1, 1]
             },
             "S_PreCheckUseRecord": {
               "next": [
@@ -2586,12 +1636,7 @@
           "DisplayName": "部队四",
           "pipeline_override": {
             "S_ClickTeam": {
-              "target": [
-                519,
-                89,
-                1,
-                1
-              ]
+              "target": [519, 89, 1, 1]
             },
             "S_PreCheckUseRecord": {
               "next": [
@@ -2605,12 +1650,7 @@
           "DisplayName": "部队五",
           "pipeline_override": {
             "S_ClickTeam": {
-              "target": [
-                635,
-                91,
-                1,
-                1
-              ]
+              "target": [635, 91, 1, 1]
             },
             "S_PreCheckUseRecord": {
               "next": [
@@ -2631,12 +1671,7 @@
           "DisplayName": "时代一",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                246,
-                389,
-                1,
-                1
-              ]
+              "target": [246, 389, 1, 1]
             }
           }
         },
@@ -2645,12 +1680,7 @@
           "DisplayName": "时代二",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                345,
-                516,
-                1,
-                1
-              ]
+              "target": [345, 516, 1, 1]
             }
           }
         },
@@ -2659,12 +1689,7 @@
           "DisplayName": "时代三",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                447,
-                379,
-                1,
-                1
-              ]
+              "target": [447, 379, 1, 1]
             }
           }
         },
@@ -2673,12 +1698,7 @@
           "DisplayName": "时代四",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                546,
-                511,
-                3,
-                1
-              ]
+              "target": [546, 511, 3, 1]
             }
           }
         },
@@ -2687,12 +1707,7 @@
           "DisplayName": "时代五",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                644,
-                375,
-                1,
-                1
-              ]
+              "target": [644, 375, 1, 1]
             }
           }
         },
@@ -2701,12 +1716,7 @@
           "DisplayName": "时代六",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                750,
-                508,
-                1,
-                1
-              ]
+              "target": [750, 508, 1, 1]
             }
           }
         },
@@ -2715,12 +1725,7 @@
           "DisplayName": "时代七",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                849,
-                378,
-                1,
-                1
-              ]
+              "target": [849, 378, 1, 1]
             }
           }
         },
@@ -2729,12 +1734,7 @@
           "DisplayName": "时代八",
           "pipeline_override": {
             "S_ClickEra": {
-              "target": [
-                956,
-                519,
-                1,
-                1
-              ]
+              "target": [956, 519, 1, 1]
             }
           }
         }
@@ -2750,12 +1750,7 @@
           "DisplayName": "地域一",
           "pipeline_override": {
             "S_ClickRegion": {
-              "target": [
-                173,
-                365,
-                97,
-                96
-              ]
+              "target": [173, 365, 97, 96]
             }
           }
         },
@@ -2764,12 +1759,7 @@
           "DisplayName": "地域二",
           "pipeline_override": {
             "S_ClickRegion": {
-              "target": [
-                520,
-                243,
-                1,
-                1
-              ]
+              "target": [520, 243, 1, 1]
             }
           }
         },
@@ -2778,12 +1768,7 @@
           "DisplayName": "地域三",
           "pipeline_override": {
             "S_ClickRegion": {
-              "target": [
-                837,
-                234,
-                1,
-                1
-              ]
+              "target": [837, 234, 1, 1]
             }
           }
         },
@@ -2792,12 +1777,7 @@
           "DisplayName": "地域四",
           "pipeline_override": {
             "S_ClickRegion": {
-              "target": [
-                1118,
-                243,
-                1,
-                1
-              ]
+              "target": [1118, 243, 1, 1]
             }
           }
         }
@@ -2822,20 +1802,10 @@
           "DisplayName": "鱼鳞阵",
           "pipeline_override": {
             "S_ClickFormation1": {
-              "target": [
-                212,
-                234,
-                1,
-                1
-              ]
+              "target": [212, 234, 1, 1]
             },
             "S_ClickFormation2": {
-              "target": [
-                212,
-                234,
-                1,
-                1
-              ]
+              "target": [212, 234, 1, 1]
             }
           }
         },
@@ -2844,20 +1814,10 @@
           "DisplayName": "横队阵",
           "pipeline_override": {
             "S_ClickFormation1": {
-              "target": [
-                591,
-                234,
-                1,
-                1
-              ]
+              "target": [591, 234, 1, 1]
             },
             "S_ClickFormation2": {
-              "target": [
-                591,
-                234,
-                1,
-                1
-              ]
+              "target": [591, 234, 1, 1]
             }
           }
         },
@@ -2866,20 +1826,10 @@
           "DisplayName": "雁行阵",
           "pipeline_override": {
             "S_ClickFormation1": {
-              "target": [
-                1037,
-                222,
-                1,
-                1
-              ]
+              "target": [1037, 222, 1, 1]
             },
             "S_ClickFormation2": {
-              "target": [
-                1037,
-                222,
-                1,
-                1
-              ]
+              "target": [1037, 222, 1, 1]
             }
           }
         },
@@ -2888,20 +1838,10 @@
           "DisplayName": "鹤翼阵",
           "pipeline_override": {
             "S_ClickFormation1": {
-              "target": [
-                195,
-                431,
-                1,
-                1
-              ]
+              "target": [195, 431, 1, 1]
             },
             "S_ClickFormation2": {
-              "target": [
-                195,
-                431,
-                1,
-                1
-              ]
+              "target": [195, 431, 1, 1]
             }
           }
         },
@@ -2910,20 +1850,10 @@
           "DisplayName": "方阵",
           "pipeline_override": {
             "S_ClickFormation1": {
-              "target": [
-                625,
-                407,
-                1,
-                1
-              ]
+              "target": [625, 407, 1, 1]
             },
             "S_ClickFormation2": {
-              "target": [
-                625,
-                407,
-                1,
-                1
-              ]
+              "target": [625, 407, 1, 1]
             }
           }
         },
@@ -2932,12 +1862,7 @@
           "DisplayName": "逆行阵",
           "pipeline_override": {
             "S_ClickFormation1": {
-              "target": [
-                1017,
-                421,
-                1,
-                1
-              ]
+              "target": [1017, 421, 1, 1]
             }
           }
         }
@@ -2977,12 +1902,7 @@
           "name": "易",
           "pipeline_override": {
             "LR_ClickDifficulty": {
-              "target": [
-                158,
-                308,
-                55,
-                4
-              ]
+              "target": [158, 308, 55, 4]
             }
           }
         },
@@ -2990,12 +1910,7 @@
           "name": "普",
           "pipeline_override": {
             "LR_ClickDifficulty": {
-              "target": [
-                439,
-                277,
-                179,
-                103
-              ]
+              "target": [439, 277, 179, 103]
             }
           }
         },
@@ -3003,12 +1918,7 @@
           "name": "难",
           "pipeline_override": {
             "LR_ClickDifficulty": {
-              "target": [
-                747,
-                289,
-                152,
-                81
-              ]
+              "target": [747, 289, 152, 81]
             }
           }
         },
@@ -3016,12 +1926,7 @@
           "name": "超难",
           "pipeline_override": {
             "LR_ClickDifficulty": {
-              "target": [
-                1110,
-                319,
-                18,
-                18
-              ]
+              "target": [1110, 319, 18, 18]
             }
           }
         }
@@ -3036,12 +1941,7 @@
           "name": "部队一",
           "pipeline_override": {
             "LR_ClickTeam": {
-              "target": [
-                154,
-                93,
-                1,
-                1
-              ]
+              "target": [154, 93, 1, 1]
             }
           }
         },
@@ -3049,12 +1949,7 @@
           "name": "部队二",
           "pipeline_override": {
             "LR_ClickTeam": {
-              "target": [
-                282,
-                94,
-                1,
-                1
-              ]
+              "target": [282, 94, 1, 1]
             }
           }
         },
@@ -3062,12 +1957,7 @@
           "name": "部队三",
           "pipeline_override": {
             "LR_ClickTeam": {
-              "target": [
-                398,
-                91,
-                1,
-                1
-              ]
+              "target": [398, 91, 1, 1]
             }
           }
         },
@@ -3075,12 +1965,7 @@
           "name": "部队四",
           "pipeline_override": {
             "LR_ClickTeam": {
-              "target": [
-                519,
-                89,
-                1,
-                1
-              ]
+              "target": [519, 89, 1, 1]
             }
           }
         }
@@ -3534,12 +2419,7 @@
               "action": {
                 "type": "Click",
                 "param": {
-                  "target": [
-                    1037,
-                    169,
-                    110,
-                    44
-                  ]
+                  "target": [1037, 169, 110, 44]
                 }
               },
               "next": [
@@ -3639,12 +2519,7 @@
           "DisplayName": "部队一",
           "pipeline_override": {
             "U_ClickTeam": {
-              "target": [
-                154,
-                93,
-                1,
-                1
-              ]
+              "target": [154, 93, 1, 1]
             }
           }
         },
@@ -3653,12 +2528,7 @@
           "DisplayName": "部队二",
           "pipeline_override": {
             "U_ClickTeam": {
-              "target": [
-                282,
-                94,
-                1,
-                1
-              ]
+              "target": [282, 94, 1, 1]
             }
           }
         },
@@ -3667,12 +2537,7 @@
           "DisplayName": "部队三",
           "pipeline_override": {
             "U_ClickTeam": {
-              "target": [
-                398,
-                91,
-                1,
-                1
-              ]
+              "target": [398, 91, 1, 1]
             }
           }
         },
@@ -3681,12 +2546,7 @@
           "DisplayName": "部队四",
           "pipeline_override": {
             "U_ClickTeam": {
-              "target": [
-                519,
-                89,
-                1,
-                1
-              ]
+              "target": [519, 89, 1, 1]
             }
           }
         },
@@ -3695,12 +2555,7 @@
           "DisplayName": "部队五",
           "pipeline_override": {
             "U_ClickTeam": {
-              "target": [
-                635,
-                91,
-                1,
-                1
-              ]
+              "target": [635, 91, 1, 1]
             }
           }
         }
@@ -3725,20 +2580,10 @@
           "DisplayName": "鱼鳞阵",
           "pipeline_override": {
             "U_ClickFormation1": {
-              "target": [
-                212,
-                234,
-                1,
-                1
-              ]
+              "target": [212, 234, 1, 1]
             },
             "U_ClickFormation2": {
-              "target": [
-                212,
-                234,
-                1,
-                1
-              ]
+              "target": [212, 234, 1, 1]
             }
           }
         },
@@ -3747,20 +2592,10 @@
           "DisplayName": "横队阵",
           "pipeline_override": {
             "U_ClickFormation1": {
-              "target": [
-                591,
-                234,
-                1,
-                1
-              ]
+              "target": [591, 234, 1, 1]
             },
             "U_ClickFormation2": {
-              "target": [
-                591,
-                234,
-                1,
-                1
-              ]
+              "target": [591, 234, 1, 1]
             }
           }
         },
@@ -3769,20 +2604,10 @@
           "DisplayName": "雁行阵",
           "pipeline_override": {
             "U_ClickFormation1": {
-              "target": [
-                1037,
-                222,
-                1,
-                1
-              ]
+              "target": [1037, 222, 1, 1]
             },
             "U_ClickFormation2": {
-              "target": [
-                1037,
-                222,
-                1,
-                1
-              ]
+              "target": [1037, 222, 1, 1]
             }
           }
         },
@@ -3791,20 +2616,10 @@
           "DisplayName": "鹤翼阵",
           "pipeline_override": {
             "U_ClickFormation1": {
-              "target": [
-                195,
-                431,
-                1,
-                1
-              ]
+              "target": [195, 431, 1, 1]
             },
             "U_ClickFormation2": {
-              "target": [
-                195,
-                431,
-                1,
-                1
-              ]
+              "target": [195, 431, 1, 1]
             }
           }
         },
@@ -3813,20 +2628,10 @@
           "DisplayName": "方阵",
           "pipeline_override": {
             "U_ClickFormation1": {
-              "target": [
-                625,
-                407,
-                1,
-                1
-              ]
+              "target": [625, 407, 1, 1]
             },
             "U_ClickFormation2": {
-              "target": [
-                625,
-                407,
-                1,
-                1
-              ]
+              "target": [625, 407, 1, 1]
             }
           }
         },
@@ -3835,12 +2640,7 @@
           "DisplayName": "逆行阵",
           "pipeline_override": {
             "U_ClickFormation1": {
-              "target": [
-                1017,
-                421,
-                1,
-                1
-              ]
+              "target": [1017, 421, 1, 1]
             }
           }
         }
@@ -3959,42 +2759,12 @@
           ],
           "custom_action_param": {
             "target_floor": "{target_floor}",
-            "tens_roi": [
-              985,
-              303,
-              60,
-              99
-            ],
-            "ones_roi": [
-              1053,
-              303,
-              60,
-              99
-            ],
-            "tens_up": [
-              988,
-              275,
-              54,
-              18
-            ],
-            "tens_down": [
-              988,
-              412,
-              54,
-              18
-            ],
-            "ones_up": [
-              1058,
-              275,
-              54,
-              18
-            ],
-            "ones_down": [
-              1058,
-              412,
-              54,
-              18
-            ]
+            "tens_roi": [985, 303, 60, 99],
+            "ones_roi": [1053, 303, 60, 99],
+            "tens_up": [988, 275, 54, 18],
+            "tens_down": [988, 412, 54, 18],
+            "ones_up": [1058, 275, 54, 18],
+            "ones_down": [1058, 412, 54, 18]
           }
         }
       }
@@ -4011,12 +2781,7 @@
               "action": {
                 "type": "Click",
                 "param": {
-                  "target": [
-                    180,
-                    11,
-                    25,
-                    28
-                  ]
+                  "target": [180, 11, 25, 28]
                 }
               }
             }
@@ -4145,12 +2910,7 @@
               "action": {
                 "type": "Click",
                 "param": {
-                  "target": [
-                    1037,
-                    169,
-                    110,
-                    44
-                  ]
+                  "target": [1037, 169, 110, 44]
                 }
               },
               "next": [
@@ -4293,12 +3053,7 @@
               "action": {
                 "type": "Click",
                 "param": {
-                  "target": [
-                    1037,
-                    169,
-                    110,
-                    44
-                  ]
+                  "target": [1037, 169, 110, 44]
                 }
               },
               "next": [
@@ -4828,28 +3583,13 @@
           "DisplayName": "刀装筛选",
           "pipeline_override": {
             "S_ClickCaptain3": {
-              "target": [
-                220,
-                512,
-                107,
-                29
-              ]
+              "target": [220, 512, 107, 29]
             },
             "LR_ClickCaptain3": {
-              "target": [
-                220,
-                512,
-                107,
-                29
-              ]
+              "target": [220, 512, 107, 29]
             },
             "U_ClickCaptain3": {
-              "target": [
-                220,
-                512,
-                107,
-                29
-              ]
+              "target": [220, 512, 107, 29]
             }
           }
         },
@@ -4982,12 +3722,7 @@
           "DisplayName": "部队一",
           "pipeline_override": {
             "FB_ClickTeam": {
-              "target": [
-                154,
-                93,
-                1,
-                1
-              ]
+              "target": [154, 93, 1, 1]
             }
           }
         },
@@ -4996,12 +3731,7 @@
           "DisplayName": "部队二",
           "pipeline_override": {
             "FB_ClickTeam": {
-              "target": [
-                282,
-                94,
-                1,
-                1
-              ]
+              "target": [282, 94, 1, 1]
             }
           }
         },
@@ -5010,12 +3740,7 @@
           "DisplayName": "部队三",
           "pipeline_override": {
             "FB_ClickTeam": {
-              "target": [
-                398,
-                91,
-                1,
-                1
-              ]
+              "target": [398, 91, 1, 1]
             }
           }
         },
@@ -5024,12 +3749,7 @@
           "DisplayName": "部队四",
           "pipeline_override": {
             "FB_ClickTeam": {
-              "target": [
-                519,
-                89,
-                1,
-                1
-              ]
+              "target": [519, 89, 1, 1]
             }
           }
         },
@@ -5038,12 +3758,7 @@
           "DisplayName": "部队五",
           "pipeline_override": {
             "FB_ClickTeam": {
-              "target": [
-                636,
-                85,
-                1,
-                1
-              ]
+              "target": [636, 85, 1, 1]
             }
           }
         }
