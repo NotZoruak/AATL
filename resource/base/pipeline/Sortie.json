@@ -589,6 +589,7 @@
     },
     "enabled": false,
     "next": ["S_VerifyHomeMenuClosed"],
+    "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
   },
   "S_CheckBossBeforeMarch": {
@@ -1320,7 +1321,8 @@
       }
     },
     "enabled": false,
-    "next": ["S_IsPreSortieConfirm"]
+    "next": ["S_IsPreSortieConfirm"],
+    "on_error": ["S_DetectWhereAmI"]
   },
   "S_WaitRefresh": {
     "recognition": {
@@ -1660,7 +1662,8 @@
     "target": [1092, 318, 1, 1],
     "timeout": 3000,
     "pre_delay": 1000,
-    "next": ["S_IsLoginReward"]
+    "next": ["S_IsLoginReward"],
+    "on_error": ["S_DetectWhereAmI"]
   },
   "S_MidRetreat_E8_R1": {
     "recognition": {

@@ -557,6 +557,7 @@
     },
     "post_delay": 1000,
     "next": ["E_VerifyConfirmPopup"],
+    "on_error": ["E_GoHome"],
     "pre_delay": 100
   },
   "E_VerifyConfirmPopup": {
@@ -1184,7 +1185,8 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec1"]
+    "next": ["E_UseTeamRecord_Step4_Rec1"],
+    "on_error": ["E_GoHome"]
   },
   "E_UseTeamRecord_Step3_Rec2": {
     "action": {
@@ -1193,7 +1195,8 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec2"]
+    "next": ["E_UseTeamRecord_Step4_Rec2"],
+    "on_error": ["E_GoHome"]
   },
   "E_UseTeamRecord_Step3_Rec3": {
     "action": {
@@ -1202,7 +1205,8 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec3"]
+    "next": ["E_UseTeamRecord_Step4_Rec3"],
+    "on_error": ["E_GoHome"]
   },
   "E_UseTeamRecord_Step3_Rec4": {
     "action": {
@@ -1211,7 +1215,8 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec4"]
+    "next": ["E_UseTeamRecord_Step4_Rec4"],
+    "on_error": ["E_GoHome"]
   },
   "E_UseTeamRecord_Step3_Rec5": {
     "action": {
@@ -1220,7 +1225,8 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec5"]
+    "next": ["E_UseTeamRecord_Step4_Rec5"],
+    "on_error": ["E_GoHome"]
   },
   "E_UseTeamRecord_Step4_Rec1": {
     "recognition": {
@@ -1516,6 +1522,7 @@
       }
     },
     "next": ["E_FlowerIsSwordSelect"],
+    "on_error": ["E_GoHome"],
     "post_delay": 1000,
     "pre_delay": 100
   },
