@@ -4,6 +4,7 @@
     "next": [
       "E_IsTroopRecordPage",
       "E_IsAnnouncementPopup",
+      "E_IsTrainingLetter",
       "E_IsLoginReward",
       "E_ClickExpeditionReturn_Exp",
       "E_ClickExpeditionReturn_Title",
@@ -716,16 +717,8 @@
   "E_IsSwordDropColor": {
     "recognition": "ColorMatch",
     "roi": [598, 543, 66, 1],
-    "upper": [
-      96,
-      56,
-      10
-    ],
-    "lower": [
-      88,
-      48,
-      2
-    ],
+    "upper": [96, 56, 10],
+    "lower": [88, 48, 2],
     "action": {
       "type": "Click",
       "param": {
@@ -1704,6 +1697,7 @@
   "E_FlowerBattleHub": {
     "next": [
       "E_IsAnnouncementPopup",
+      "E_FlowerIsTrainingLetter",
       "E_IsLoginReward",
       "E_FlowerIsGameIcon",
       "E_FlowerIsLoginButton",
@@ -1893,5 +1887,33 @@
       "custom_action": "RestartGameAction"
     },
     "next": ["E_FlowerBattleHub"]
+  },
+  "E_FlowerIsTrainingLetter": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1037, 438, 206, 76],
+        "template": "修行书信.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": "Click",
+    "next": ["E_FlowerBattleHub"],
+    "pre_delay": 100
+  },
+  "E_IsTrainingLetter": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1037, 438, 206, 76],
+        "template": "修行书信.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": "Click",
+    "next": ["Expedition"],
+    "pre_delay": 100
   }
 }
