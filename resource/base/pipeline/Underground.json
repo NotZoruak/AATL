@@ -44,12 +44,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          1056,
-          463,
-          63,
-          193
-        ],
+        "roi": [1056,463,63,193],
         "template": "公告弹窗.png",
         "green_mask": true,
         "threshold": [
@@ -68,12 +63,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          816,
-          577,
-          182,
-          59
-        ],
+        "roi": [816,577,182,59],
         "template": "登录奖励.png",
         "green_mask": true,
         "threshold": [
@@ -89,12 +79,7 @@
   },
   "U_LoginRewardClick2": {
     "action": "Click",
-    "target": [
-      1092,
-      318,
-      1,
-      1
-    ],
+    "target": [1092,318,1,1],
     "pre_delay": 1000,
     "next": [
       "U_LoginRewardClick3"
@@ -102,12 +87,7 @@
   },
   "U_LoginRewardClick3": {
     "action": "Click",
-    "target": [
-      1092,
-      318,
-      1,
-      1
-    ],
+    "target": [1092,318,1,1],
     "timeout": 3000,
     "pre_delay": 1000,
     "next": [
@@ -121,12 +101,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          856,
-          387,
-          35,
-          30
-        ],
+        "roi": [856,387,35,30],
         "template": "地下城教程.png",
         "green_mask": true,
         "threshold": [
@@ -142,20 +117,10 @@
   },
   "U_HasExpeditionReturn_Exp": {
     "recognition": "OCR",
-    "roi": [
-      388,
-      59,
-      54,
-      25
-    ],
+    "roi": [388,59,54,25],
     "expected": "经验",
     "action": "Click",
-    "target": [
-      388,
-      59,
-      54,
-      25
-    ],
+    "target": [388,59,54,25],
     "next": [
       "U_DetectWhereAmI"
     ],
@@ -163,20 +128,10 @@
   },
   "U_HasExpeditionReturn_Title": {
     "recognition": "OCR",
-    "roi": [
-      558,
-      1,
-      162,
-      52
-    ],
+    "roi": [558,1,162,52],
     "expected": "远征结果",
     "action": "Click",
-    "target": [
-      388,
-      59,
-      54,
-      25
-    ],
+    "target": [388,59,54,25],
     "next": [
       "U_DetectWhereAmI"
     ],
@@ -186,12 +141,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          1067,
-          558,
-          120,
-          79
-        ],
+        "roi": [1067,558,120,79],
         "template": "合战场_行军.png",
         "green_mask": true,
         "threshold": [
@@ -205,20 +155,10 @@
   },
   "U_IsBattleResult_Exp": {
     "recognition": "OCR",
-    "roi": [
-      388,
-      59,
-      54,
-      25
-    ],
+    "roi": [388,59,54,25],
     "expected": "经验",
     "action": "Click",
-    "target": [
-      388,
-      59,
-      54,
-      25
-    ],
+    "target": [388,59,54,25],
     "next": [
       "U_DetectWhereAmI"
     ],
@@ -226,12 +166,7 @@
   },
   "U_IsBattleResult_Title": {
     "recognition": "OCR",
-    "roi": [
-      558,
-      1,
-      162,
-      52
-    ],
+    "roi": [558,1,162,52],
     "expected": "战斗结果",
     "action": "Click",
     "next": [
@@ -241,31 +176,13 @@
   },
   "U_IsSwordDropColor": {
     "recognition": "ColorMatch",
-    "roi": [
-      598,
-      543,
-      66,
-      1
-    ],
-    "upper": [
-      96,
-      56,
-      10
-    ],
-    "lower": [
-      88,
-      48,
-      2
-    ],
+    "roi": [598,543,66,1],
+    "upper": [96,56,10],
+    "lower": [88,48,2],
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1067,
-          558,
-          120,
-          79
-        ]
+        "target": [1067,558,120,79]
       }
     },
     "next": [
@@ -277,12 +194,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          1044,
-          29,
-          166,
-          87
-        ],
+        "roi": [1044,29,166,87],
         "template": "特殊掉落_地下城.png",
         "green_mask": true,
         "threshold": [
@@ -300,12 +212,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          570,
-          1,
-          139,
-          45
-        ],
+        "roi": [570,1,139,45],
         "template": "阵形选择.png",
         "green_mask": true,
         "threshold": [
@@ -321,12 +228,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1017,
-          421,
-          1,
-          1
-        ]
+        "target": [1017,421,1,1]
       }
     },
     "post_delay": 200,
@@ -339,12 +241,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1017,
-          421,
-          1,
-          1
-        ]
+        "target": [1017,421,1,1]
       }
     },
     "next": [
@@ -356,12 +253,7 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          530,
-          6,
-          224,
-          45
-        ],
+        "roi": [530,6,224,45],
         "expected": "刀剑男士选择"
       }
     },
@@ -374,12 +266,7 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          561,
-          1,
-          160,
-          49
-        ],
+        "roi": [561,1,160,49],
         "expected": "部队选择"
       }
     },
@@ -393,12 +280,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          154,
-          93,
-          1,
-          1
-        ]
+        "target": [154,93,1,1]
       }
     },
     "next": [
@@ -410,12 +292,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          3,
-          164,
-          43,
-          92
-        ],
+        "roi": [3,164,43,92],
         "template": "合战场选中.png",
         "green_mask": true,
         "threshold": [
@@ -431,12 +308,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          8,
-          299,
-          32,
-          89
-        ]
+        "target": [8,299,32,89]
       }
     },
     "next": [
@@ -448,12 +320,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          427,
-          69,
-          388,
-          52
-        ],
+        "roi": [427,69,388,52],
         "template": "地下城.png",
         "green_mask": true,
         "threshold": [
@@ -469,12 +336,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          427,
-          69,
-          388,
-          52
-        ],
+        "roi": [427,69,388,52],
         "template": "地下城.png",
         "green_mask": true,
         "threshold": [
@@ -503,12 +365,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1141,
-          614,
-          120,
-          49
-        ]
+        "target": [1141,614,120,49]
       }
     },
     "next": [
@@ -521,12 +378,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          581,
-          28,
-          112,
-          57
-        ],
+        "roi": [581,28,112,57],
         "template": "菜单目录.png",
         "green_mask": true,
         "threshold": [
@@ -544,12 +396,7 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          160,
-          158,
-          97,
-          62
-        ],
+        "roi": [160,158,97,62],
         "expected": "出阵"
       }
     },
@@ -567,22 +414,9 @@
   },
   "U_CheckHomeBrightness": {
     "recognition": "ColorMatch",
-    "roi": [
-      66,
-      58,
-      11,
-      13
-    ],
-    "upper": [
-      40,
-      155,
-      30
-    ],
-    "lower": [
-      23,
-      95,
-      15
-    ],
+    "roi": [66,58,11,13],
+    "upper": [40,155,30],
+    "lower": [23,95,15],
     "action": "DoNothing",
     "next": [
       "U_IsHome"
@@ -628,12 +462,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          0,
-          0,
-          1600,
-          900
-        ],
+        "roi": [0,0,1600,900],
         "template": "游戏图标.png",
         "green_mask": true,
         "threshold": [
@@ -652,12 +481,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          665,
-          529,
-          124,
-          78
-        ],
+        "roi": [665,529,124,78],
         "template": "登录.png",
         "green_mask": true,
         "threshold": [
@@ -676,12 +500,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          443,
-          431,
-          120,
-          46
-        ],
+        "roi": [443,431,120,46],
         "template": "游戏更新.png",
         "green_mask": true,
         "threshold": [
@@ -698,20 +517,10 @@
   },
   "U_IsInGameUpdatePopup": {
     "recognition": "OCR",
-    "roi": [
-      498,
-      291,
-      77,
-      50
-    ],
+    "roi": [498,291,77,50],
     "expected": "更新",
     "action": "Click",
-    "target": [
-      578,
-      440,
-      130,
-      55
-    ],
+    "target": [578,440,130,55],
     "post_delay": 2000,
     "pre_delay": 100,
     "next": [
@@ -722,12 +531,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1067,
-          558,
-          120,
-          79
-        ]
+        "target": [1067,558,120,79]
       }
     },
     "next": [
@@ -745,12 +549,7 @@
   },
   "U_CheckRoundComplete": {
     "recognition": "OCR",
-    "roi": [
-      947,
-      148,
-      101,
-      34
-    ],
+    "roi": [947,148,101,34],
     "expected": "传送凭证",
     "action": "DoNothing",
     "next": [
@@ -762,12 +561,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1067,
-          558,
-          120,
-          79
-        ]
+        "target": [1067,558,120,79]
       }
     },
     "enabled": true,
@@ -780,12 +574,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1208,
-          449,
-          1,
-          1
-        ]
+        "target": [1208,449,1,1]
       }
     },
     "enabled": false,
@@ -798,12 +587,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          569,
-          322,
-          138,
-          31
-        ],
+        "roi": [569,322,138,31],
         "template": "内番报告.png",
         "green_mask": true,
         "threshold": [
@@ -819,20 +603,10 @@
   },
   "U_IsConnectionInterrupted": {
     "recognition": "OCR",
-    "roi": [
-      588,
-      274,
-      96,
-      25
-    ],
+    "roi": [588,274,96,25],
     "expected": "连接中断",
     "action": "Click",
-    "target": [
-      738,
-      449,
-      100,
-      39
-    ],
+    "target": [738,449,100,39],
     "next": [
       "U_DetectWhereAmI"
     ],
@@ -859,12 +633,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          423,
-          484,
-          145,
-          56
-        ],
+        "roi": [423,484,145,56],
         "template": "整备刀装.png",
         "green_mask": true,
         "threshold": [
@@ -886,12 +655,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1156,
-          241,
-          27,
-          25
-        ]
+        "target": [1156,241,27,25]
       }
     },
     "next": [
@@ -904,12 +668,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          828,
-          82,
-          68,
-          25
-        ]
+        "target": [828,82,68,25]
       }
     },
     "post_delay": 800,
@@ -923,12 +682,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          752,
-          137,
-          97,
-          29
-        ]
+        "target": [752,137,97,29]
       }
     },
     "post_delay": 800,
@@ -942,12 +696,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          407,
-          510,
-          90,
-          31
-        ]
+        "target": [407,510,90,31]
       }
     },
     "post_delay": 800,
@@ -961,12 +710,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          965,
-          438,
-          91,
-          34
-        ]
+        "target": [965,438,91,34]
       }
     },
     "post_delay": 800,
@@ -980,12 +724,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          592,
-          603,
-          107,
-          46
-        ]
+        "target": [592,603,107,46]
       }
     },
     "next": [
@@ -998,12 +737,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1024,
-          140,
-          30,
-          50
-        ]
+        "target": [1024,140,30,50]
       }
     },
     "next": [
@@ -1016,12 +750,7 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          939,
-          77,
-          56,
-          39
-        ],
+        "roi": [939,77,56,39],
         "expected": "降序"
       }
     },
@@ -1040,12 +769,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1037,
-          169,
-          110,
-          44
-        ]
+        "target": [1037,169,110,44]
       }
     },
     "enabled": false,
@@ -1058,12 +782,7 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          1183,
-          18,
-          87,
-          40
-        ],
+        "roi": [1183,18,87,40],
         "expected": "目"
       }
     },
@@ -1083,12 +802,7 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          1183,
-          18,
-          87,
-          40
-        ],
+        "roi": [1183,18,87,40],
         "expected": "目"
       }
     },
@@ -1103,12 +817,7 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          1183,
-          18,
-          87,
-          40
-        ],
+        "roi": [1183,18,87,40],
         "expected": "目"
       }
     },
@@ -1124,12 +833,7 @@
   },
   "U_ClickRepairInMenu": {
     "recognition": "OCR",
-    "roi": [
-      451,
-      379,
-      84,
-      40
-    ],
+    "roi": [451,379,84,40],
     "expected": "修复",
     "action": "Click",
     "next": [
@@ -1141,12 +845,7 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          160,
-          158,
-          97,
-          62
-        ],
+        "roi": [160,158,97,62],
         "expected": "出阵"
       }
     },
@@ -1164,12 +863,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1204,
-          629,
-          1,
-          1
-        ]
+        "target": [1204,629,1,1]
       }
     },
     "next": [
@@ -1181,12 +875,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          576,
-          60,
-          127,
-          33
-        ],
+        "roi": [576,60,127,33],
         "template": "出阵确认.png",
         "green_mask": true,
         "threshold": [
@@ -1195,12 +884,7 @@
       }
     },
     "action": "Click",
-    "target": [
-      706,
-      582,
-      154,
-      42
-    ],
+    "target": [706,582,154,42],
     "next": [
       "U_PostSortieHub"
     ],
@@ -1211,12 +895,7 @@
   },
   "U_ConfirmCancelMarchingDamage2": {
     "recognition": "OCR",
-    "roi": [
-      763,
-      446,
-      48,
-      44
-    ],
+    "roi": [763,446,48,44],
     "expected": "否",
     "action": "Click",
     "next": [
@@ -1230,12 +909,7 @@
   },
   "U_ConfirmCancelPreDamage2": {
     "recognition": "OCR",
-    "roi": [
-      772,
-      448,
-      32,
-      40
-    ],
+    "roi": [772,448,32,40],
     "expected": "否",
     "action": "Click",
     "next": [
@@ -1249,12 +923,7 @@
   },
   "U_ConfirmSelectSlot": {
     "recognition": "OCR",
-    "roi": [
-      1052,
-      138,
-      32,
-      31
-    ],
+    "roi": [1052,138,32,31],
     "expected": "选",
     "action": "Click",
     "next": [
@@ -1281,24 +950,14 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          939,
-          77,
-          56,
-          39
-        ],
+        "roi": [939,77,56,39],
         "expected": "升序"
       }
     },
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1189,
-          140,
-          37,
-          61
-        ]
+        "target": [1189,140,37,61]
       }
     },
     "enabled": false,
@@ -1333,12 +992,7 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          1183,
-          18,
-          87,
-          40
-        ],
+        "roi": [1183,18,87,40],
         "expected": "目"
       }
     },
@@ -1353,12 +1007,7 @@
   },
   "U_FindSlot1": {
     "recognition": "OCR",
-    "roi": [
-      380,
-      185,
-      113,
-      46
-    ],
+    "roi": [380,185,113,46],
     "expected": "未使用",
     "action": "Click",
     "next": [
@@ -1368,12 +1017,7 @@
   },
   "U_FindSlot2": {
     "recognition": "OCR",
-    "roi": [
-      383,
-      323,
-      110,
-      42
-    ],
+    "roi": [383,323,110,42],
     "expected": "未使用",
     "action": "Click",
     "next": [
@@ -1383,12 +1027,7 @@
   },
   "U_FindSlot3": {
     "recognition": "OCR",
-    "roi": [
-      381,
-      462,
-      110,
-      38
-    ],
+    "roi": [381,462,110,38],
     "expected": "未使用",
     "action": "Click",
     "next": [
@@ -1400,12 +1039,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          8,
-          1,
-          71,
-          107
-        ],
+        "roi": [8,1,71,107],
         "template": "本丸.png",
         "green_mask": true,
         "threshold": [
@@ -1421,12 +1055,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          229,
-          116,
-          90,
-          569
-        ],
+        "roi": [229,116,90,569],
         "template": "重伤.png",
         "green_mask": true,
         "threshold": [
@@ -1435,12 +1064,7 @@
       }
     },
     "action": "Click",
-    "target": [
-      763,
-      446,
-      48,
-      44
-    ],
+    "target": [763,446,48,44],
     "next": [
       "U_LogMarchingDamage2"
     ]
@@ -1449,12 +1073,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          233,
-          128,
-          71,
-          549
-        ],
+        "roi": [233,128,71,549],
         "template": "重伤.png",
         "green_mask": true,
         "threshold": [
@@ -1465,12 +1084,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          772,
-          448,
-          32,
-          40
-        ]
+        "target": [772,448,32,40]
       }
     },
     "next": [
@@ -1481,12 +1095,7 @@
   },
   "U_IsPreDamage2": {
     "recognition": "OCR",
-    "roi": [
-      465,
-      310,
-      46,
-      24
-    ],
+    "roi": [465,310,46,24],
     "expected": "重伤",
     "next": [
       "U_LogPreDamage2"
@@ -1495,12 +1104,7 @@
   },
   "U_IsPreSortieConfirm": {
     "recognition": "OCR",
-    "roi": [
-      1156,
-      584,
-      96,
-      47
-    ],
+    "roi": [1156,584,96,47],
     "expected": "即刻",
     "next": [
       "U_ClickSortieNow"
@@ -1536,12 +1140,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          1139,
-          132,
-          124,
-          41
-        ],
+        "roi": [1139,132,124,41],
         "template": "部队记录.png",
         "green_mask": true,
         "threshold": [
@@ -1562,12 +1161,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          707,
-          53,
-          72,
-          64
-        ],
+        "roi": [707,53,72,64],
         "template": "使用记录.png",
         "green_mask": true,
         "threshold": [
@@ -1588,12 +1182,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          789,
-          512,
-          1,
-          4
-        ]
+        "target": [789,512,1,4]
       }
     },
     "enabled": false,
@@ -1608,12 +1197,7 @@
   },
   "U_ReturnHomeAfterMarchDamage": {
     "action": "Click",
-    "target": [
-      1208,
-      449,
-      1,
-      1
-    ],
+    "target": [1208,449,1,1],
     "next": [
       "U_ConfirmReturnHome"
     ],
@@ -1631,12 +1215,7 @@
   },
   "U_CheckRepairScreen": {
     "recognition": "OCR",
-    "roi": [
-      554,
-      56,
-      175,
-      49
-    ],
+    "roi": [554,56,175,49],
     "expected": "修复",
     "next": [
       "U_SelectDamagedSword"
@@ -1647,12 +1226,7 @@
   },
   "U_SortieAfterRepair": {
     "recognition": "OCR",
-    "roi": [
-      165,
-      163,
-      87,
-      52
-    ],
+    "roi": [165,163,87,52],
     "expected": "出阵",
     "action": "Click",
     "next": [
@@ -1676,12 +1250,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          581,
-          28,
-          112,
-          57
-        ],
+        "roi": [581,28,112,57],
         "template": "菜单目录.png",
         "green_mask": true,
         "threshold": [
@@ -1700,12 +1269,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          581,
-          28,
-          112,
-          57
-        ],
+        "roi": [581,28,112,57],
         "template": "菜单目录.png",
         "green_mask": true,
         "threshold": [
@@ -1722,12 +1286,7 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          1183,
-          18,
-          87,
-          40
-        ],
+        "roi": [1183,18,87,40],
         "expected": "目"
       }
     },
@@ -1742,12 +1301,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          581,
-          28,
-          112,
-          57
-        ],
+        "roi": [581,28,112,57],
         "template": "菜单目录.png",
         "green_mask": true,
         "threshold": [
@@ -1766,12 +1320,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          8,
-          1,
-          71,
-          107
-        ],
+        "roi": [8,1,71,107],
         "template": "本丸.png",
         "green_mask": true,
         "threshold": [
@@ -1803,12 +1352,7 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          1183,
-          18,
-          87,
-          40
-        ],
+        "roi": [1183,18,87,40],
         "expected": "目"
       }
     },
@@ -1820,12 +1364,7 @@
   },
   "U_ClickRepairDone": {
     "recognition": "OCR",
-    "roi": [
-      1159,
-      588,
-      83,
-      44
-    ],
+    "roi": [1159,588,83,44],
     "expected": "修复",
     "action": "Click",
     "next": [
@@ -1849,12 +1388,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1050,
-          580,
-          1,
-          1
-        ]
+        "target": [1050,580,1,1]
       }
     },
     "enabled": false,
@@ -1868,22 +1402,12 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          548,
-          295,
-          182,
-          56
-        ],
+        "roi": [548,295,182,56],
         "expected": "确认返回本丸"
       }
     },
     "action": "Click",
-    "target": [
-      490,
-      469,
-      1,
-      1
-    ],
+    "target": [490,469,1,1],
     "next": [
       "U_DetectWhereAmI"
     ],
@@ -1897,12 +1421,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          1050,
-          580,
-          1,
-          1
-        ]
+        "target": [1050,580,1,1]
       }
     },
     "enabled": false,
@@ -1915,12 +1434,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          581,
-          28,
-          112,
-          57
-        ],
+        "roi": [581,28,112,57],
         "template": "菜单目录.png",
         "green_mask": true,
         "threshold": [
@@ -1940,12 +1454,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          581,
-          28,
-          112,
-          57
-        ],
+        "roi": [581,28,112,57],
         "template": "菜单目录.png",
         "green_mask": true,
         "threshold": [
@@ -1965,12 +1474,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          581,
-          28,
-          112,
-          57
-        ],
+        "roi": [581,28,112,57],
         "template": "菜单目录.png",
         "green_mask": true,
         "threshold": [
@@ -1998,12 +1502,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          423,
-          484,
-          145,
-          56
-        ],
+        "roi": [423,484,145,56],
         "template": "整备刀装.png",
         "green_mask": true,
         "threshold": [
@@ -2021,12 +1520,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          233,
-          128,
-          71,
-          549
-        ],
+        "roi": [233,128,71,549],
         "template": "重伤.png",
         "green_mask": true,
         "threshold": [
@@ -2037,12 +1531,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [
-          788,
-          465,
-          1,
-          1
-        ]
+        "target": [788,465,1,1]
       }
     },
     "enabled": false,
@@ -2053,12 +1542,7 @@
   },
   "U_StopOnDamageText": {
     "recognition": "OCR",
-    "roi": [
-      465,
-      310,
-      46,
-      24
-    ],
+    "roi": [465,310,46,24],
     "expected": "重伤",
     "enabled": false,
     "pre_delay": 100,
@@ -2165,12 +1649,7 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [
-          1183,
-          18,
-          87,
-          40
-        ],
+        "roi": [1183,18,87,40],
         "expected": "目"
       }
     },
@@ -2184,12 +1663,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          581,
-          28,
-          112,
-          57
-        ],
+        "roi": [581,28,112,57],
         "template": "菜单目录.png",
         "green_mask": true,
         "threshold": [
@@ -2198,12 +1672,7 @@
       }
     },
     "action": "Click",
-    "target": [
-      1037,
-      169,
-      110,
-      44
-    ],
+    "target": [1037,169,110,44],
     "next": [
       "U_VerifyHomeScreen"
     ],
@@ -2216,12 +1685,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          8,
-          1,
-          71,
-          107
-        ],
+        "roi": [8,1,71,107],
         "template": "本丸.png",
         "green_mask": true,
         "threshold": [
@@ -2238,12 +1702,7 @@
   },
   "U_ClickHomeFallback": {
     "action": "Click",
-    "target": [
-      185,
-      22,
-      15,
-      18
-    ],
+    "target": [185,22,15,18],
     "next": [
       "U_VerifyHomeScreen"
     ],
@@ -2259,12 +1718,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [
-          1037,
-          438,
-          206,
-          76
-        ],
+        "roi": [1037,438,206,76],
         "template": "修行书信.png",
         "green_mask": true,
         "threshold": [

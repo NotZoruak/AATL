@@ -843,16 +843,8 @@
   "E_CheckHomeBrightness": {
     "recognition": "ColorMatch",
     "roi": [66, 58, 11, 13],
-    "upper": [
-      40,
-      155,
-      30
-    ],
-    "lower": [
-      23,
-      95,
-      15
-    ],
+    "upper": [40,155,30],
+    "lower": [23,95,15],
     "action": "DoNothing",
     "next": ["E_DetectHome"]
   },
@@ -1490,16 +1482,8 @@
       "type": "ColorMatch",
       "param": {
         "roi": [1075, 211, 36, 420],
-        "upper": [
-          46,
-          46,
-          46
-        ],
-        "lower": [
-          40,
-          40,
-          40
-        ],
+        "upper": [46,46,46],
+        "lower": [40,40,40],
         "method": 4,
         "count": 1
       }
@@ -1664,16 +1648,8 @@
   "E_FlowerHomeBrightness": {
     "recognition": "ColorMatch",
     "roi": [66, 58, 11, 13],
-    "upper": [
-      40,
-      155,
-      30
-    ],
-    "lower": [
-      23,
-      95,
-      15
-    ],
+    "upper": [40, 155, 30],
+    "lower": [23, 95, 15],
     "action": "DoNothing",
     "next": ["E_FlowerIsHome"]
   },
@@ -1863,16 +1839,9 @@
   "E_FlowerIsSwordDropColor": {
     "recognition": "ColorMatch",
     "roi": [598, 543, 66, 1],
-    "upper": [
-      96,
-      56,
-      10
+    "upper": [96, 56, 10
     ],
-    "lower": [
-      88,
-      48,
-      2
-    ],
+    "lower": [88, 48, 2],
     "action": {
       "type": "Click",
       "param": {

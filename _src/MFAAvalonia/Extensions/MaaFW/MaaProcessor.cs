@@ -3140,12 +3140,18 @@ public class MaaProcessor
                 }
             }
             // 处理 select/switch 类型
-            else if (selectOption.Index is int index
-                     && interfaceOption.Cases is { } cases
-                     && index >= 0
-                     && index < cases.Count)
+            else if (interfaceOption.Cases is { } cases && cases.Count > 0)
             {
-                var selectedCase = cases[index];
+                var index = selectOption.Index;
+                if (index == null && interfaceOption.DefaultCase != null)
+                {
+                    // Index 未初始化时从 default_case 反查
+                    index = cases.FindIndex(c => c.Name == interfaceOption.DefaultCase);
+                    if (index < 0) index = 0;
+                }
+                if (index is not (>= 0 and < int.MaxValue) || index.Value >= cases.Count)
+                    continue;
+                var selectedCase = cases[index.Value];
 
                 // 合并当前 case 的 pipeline_override
                 if (selectedCase.PipelineOverride != null)
