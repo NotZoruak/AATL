@@ -21,9 +21,13 @@ public class ExpeditionTimerCheckAction : IMaaCustomAction
 
             if (ExpeditionTimerRecognition.IsExpired())
             {
-                var msg = "[远征计时] 倒计时结束";
-                LoggerHelper.Info(msg);
-                try { MaaProcessorManager.Instance.Current?.AddLog(msg); } catch { }
+                // 智能调度关闭时计时器从未启动，不输出误导性日志
+                if (ExpeditionTimeTracker.IsSmartSchedulingEnabled())
+                {
+                    var msg = "[远征计时] 倒计时结束";
+                    LoggerHelper.Info(msg);
+                    try { MaaProcessorManager.Instance.Current?.AddLog(msg); } catch { }
+                }
                 return false;
             }
             else

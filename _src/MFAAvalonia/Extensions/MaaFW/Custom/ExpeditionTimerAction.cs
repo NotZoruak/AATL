@@ -51,15 +51,22 @@ public class ExpeditionTimerAction : IMaaCustomAction
                 // 始终关闭队伍状态面板（E_AllTeamsBusy 被改为 DoNothing，不点的话面板不会关）
                 try { context.Click(ExpeditionTimeTracker.ClosePanelX, ExpeditionTimeTracker.ClosePanelY); }
                 catch (Exception ex) { LoggerHelper.Warning($"[远征计时] 关闭面板失败: {ex.Message}"); }
+
+                ExpeditionTimerRecognition.StartTimer(intervalSeconds);
+                var display = intervalSeconds >= 60
+                    ? $"{intervalSeconds / 60}分{intervalSeconds % 60}s"
+                    : $"{intervalSeconds}s";
+                var msg = $"[远征计时] 倒计时开始：{display}";
+                LoggerHelper.Info(msg);
+                try { MaaProcessorManager.Instance.Current?.AddLog(msg); } catch { }
+            }
+            else
+            {
+                // 智能调度关闭：只关面板，不启计时器
+                try { context.Click(ExpeditionTimeTracker.ClosePanelX, ExpeditionTimeTracker.ClosePanelY); }
+                catch (Exception ex) { LoggerHelper.Warning($"[远征计时] 关闭面板失败: {ex.Message}"); }
             }
 
-            ExpeditionTimerRecognition.StartTimer(intervalSeconds);
-            var display = intervalSeconds >= 60
-                ? $"{intervalSeconds / 60}分{intervalSeconds % 60}s"
-                : $"{intervalSeconds}s";
-            var msg = $"[远征计时] 倒计时开始：{display}";
-            LoggerHelper.Info(msg);
-            try { MaaProcessorManager.Instance.Current?.AddLog(msg); } catch { }
             return true;
         }
         catch (MaaStopException)

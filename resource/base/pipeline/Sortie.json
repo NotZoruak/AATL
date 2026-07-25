@@ -84,7 +84,7 @@
     "roi": [558, 1, 162, 52],
     "expected": "战斗结果",
     "action": "Click",
-    "next": ["S_DetectWhereAmI"],
+    "next": ["S_IsMarching","S_DetectWhereAmI"],
     "pre_delay": 100
   },
   "S_IsSwordDropColor": {
@@ -1347,7 +1347,7 @@
       "type": "DoNothing",
       "param": {}
     },
-    "post_delay": 3000,
+    "post_delay": 1000,
     "next": ["E_CheckTeamStatus"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1644,7 +1644,7 @@
     "action": "Click",
     "timeout": 3000,
     "pre_delay": 100,
-    "next": ["S_IsAnnouncementPopup"]
+    "next": ["S_IsAnnouncementPopup", "S_DetectWhereAmI"]
   },
   "S_IsLoginReward": {
     "recognition": {

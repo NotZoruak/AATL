@@ -3080,11 +3080,6 @@
                 "LR_NavigateToActivity"
               ]
             },
-            "LR_IsTeamSelect": {
-              "next": [
-                "E_CheckTimerExpired"
-              ]
-            },
             "E_CheckTimerExpired": {
               "next": [
                 "LR_ClickTeam"
@@ -3482,6 +3477,11 @@
           "name": "Yes",
           "label": "开启",
           "pipeline_override": {
+            "LR_IsTeamSelect": {
+              "next": [
+                "E_CheckTimerExpired"
+              ]
+            },
             "E_AllTeamsBusy": {
               "action": "DoNothing",
               "next": [
