@@ -379,7 +379,7 @@
         "target": [173, 365, 97, 96]
       }
     },
-    "next": ["S_DetectWhereAmI"],
+    "next": ["S_IsTeamSelect", "S_DetectWhereAmI"],
     "pre_delay": 500,
     "post_delay": 800
   },
@@ -1018,9 +1018,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "DamageLogAction",
-      "custom_action_param": {
-        "message": "未检测到可修复刀剑"
-      }
+      "custom_action_param": {"message": "未检测到可修复刀剑"}
     },
     "next": ["S_DetectWhereAmI"]
   },
@@ -1050,9 +1048,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "DamageLogAction",
-      "custom_action_param": {
-        "message": "[重伤检测] 修复完成"
-      }
+      "custom_action_param": {"message": "[重伤检测] 修复完成"}
     },
     "next": ["S_DirAfterRepair"]
   },
@@ -1753,9 +1749,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "DamageLogAction",
-      "custom_action_param": {
-        "message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"
-      }
+      "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"}
     },
     "next": ["S_DecideDamage_Pre"]
   },
@@ -1763,9 +1757,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "DamageLogAction",
-      "custom_action_param": {
-        "message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"
-      }
+      "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"}
     },
     "next": ["S_ConfirmCancelPreDamage2"]
   },
@@ -1773,9 +1765,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "DamageLogAction",
-      "custom_action_param": {
-        "message": "[重伤检测] 检测到刀剑男士重伤，撤退撤退"
-      }
+      "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，撤退撤退"}
     },
     "next": ["S_ReturnHomeAfterMarchDamage"]
   },
@@ -1783,9 +1773,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "DamageLogAction",
-      "custom_action_param": {
-        "message": "[重伤检测] 检测到刀剑男士重伤"
-      }
+      "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤"}
     },
     "next": ["S_NavigateToHomeFromStop"]
   },
@@ -1793,9 +1781,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "DamageLogAction",
-      "custom_action_param": {
-        "message": "[重伤检测] 检测到刀剑男士重伤"
-      }
+      "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤"}
     },
     "next": ["S_NavigateToHomeFromStop"]
   },
@@ -1803,9 +1789,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "DamageLogAction",
-      "custom_action_param": {
-        "message": "[重伤检测] 检测到刀剑男士重伤，任务终止"
-      }
+      "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，任务终止"}
     }
   },
   "S_RestartGame": {
@@ -1917,7 +1901,7 @@
     "pre_delay": 0,
     "timeout": 120000,
     "on_error": ["SF_RestartGame"],
-    "next": ["SF_IsAnnouncementPopup", "SF_IsTrainingLetter", "SF_IsLoginReward", "SF_HasExpeditionReturn_Exp", "SF_HasExpeditionReturn_Title", "SF_IsGameIcon", "SF_IsLoginButton", "SF_IsGameUpdatePopup", "SF_IsInGameUpdatePopup", "SF_IsInternalReport", "SF_CheckHomeBrightness", "SF_ClickMenu", "SF_IsEraSelect", "SF_IsRegionSelect", "SF_IsSortieActivity", "SF_IsTeamSelect", "SF_IsMarching", "SF_IsFormationSelect", "SF_IsBattleResult_Exp", "SF_IsBattleResult_Title", "SF_IsSwordDrop", "SF_FallbackWait"]
+    "next": ["SF_IsAnnouncementPopup", "SF_IsTrainingLetter", "SF_IsLoginReward", "SF_HasExpeditionReturn_Exp", "SF_HasExpeditionReturn_Title", "SF_IsGameIcon", "SF_IsLoginButton", "SF_IsGameUpdatePopup", "SF_IsInGameUpdatePopup", "SF_IsInternalReport", "SF_CheckHomeBrightness", "SF_IsEraSelect", "SF_IsRegionSelect", "SF_IsSortieActivity", "SF_IsTeamSelect", "SF_IsMarching", "SF_IsFormationSelect", "SF_IsBattleResult_Exp", "SF_IsBattleResult_Title", "SF_IsSwordDrop", "SF_FallbackWait"]
   },
   "SF_IsAnnouncementPopup": {
     "recognition": {
@@ -2191,7 +2175,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [225, 344, 1, 1]
+        "target": [194, 213, 8, 1]
       }
     },
     "pre_delay": 100,
@@ -2496,7 +2480,6 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "enabled": false,
     "next": ["SF_UseRecord_Step4"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2515,7 +2498,6 @@
       }
     },
     "post_delay": 1000,
-    "enabled": false,
     "next": ["SF_NavigateBack"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2647,7 +2629,6 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "enabled": false,
     "next": ["SF_EqRefill_Step4"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2666,7 +2647,6 @@
       }
     },
     "post_delay": 1000,
-    "enabled": false,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },

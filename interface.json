@@ -22,9 +22,7 @@
   "resource": [
     {
       "name": "刀剑乱舞",
-      "path": [
-        "{PROJECT_DIR}/resource/base"
-      ],
+      "path": ["{PROJECT_DIR}/resource/base"],
       "DisplayName": "刀剑乱舞",
       "DisplayDescription": "刀剑乱舞（Touken Ranbu）自动化资源"
     }
@@ -36,19 +34,7 @@
       "default_check": false,
       "repeatable": false,
       "repeat_count": -1,
-      "option": [
-        "S_选择部队",
-        "S_选择时代",
-        "S_选择地域",
-        "S_选择阵形",
-        "S_重伤处理",
-        "S_疲劳处理",
-        "S_换队长",
-        "S_补充刀装",
-        "S_王点前撤退",
-        "S_道中撤退",
-        "S_同步远征"
-      ],
+      "option": ["S_选择部队", "S_选择时代", "S_选择地域", "S_选择阵形", "S_重伤处理", "S_疲劳处理", "S_换队长", "S_补充刀装", "S_王点前撤退", "S_道中撤退", "S_同步远征"],
       "label": "合战场",
       "description": "通用合战场出阵自动化，无限循环。\n与自动行军同时开启时，「刀装破坏时停止」和「中伤时停止」设置无法生效，请注意截图延迟与游戏卡顿影响。\n\n- **换队长**：换队长的方式可在全局设置中修改\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n- **王点前撤退**：1-1至1-4、5-2、6-1图中该功能不生效，7-4仅长线生效。使用该功能时请保证模拟器分辨率为1280*720，240DPI。\n- **道中撤退**：需同时开启王点前撤退。包含8-1王点前三点处撤退，8-2与8-4不过桥，8-3玉钢点后撤退\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保合战场使用的队伍在远征任务中设置为「休息」"
     },
@@ -58,14 +44,7 @@
       "default_check": false,
       "repeatable": true,
       "repeat_count": 1,
-      "option": [
-        "LR_选择部队",
-        "LR_选择难度",
-        "LR_同步远征",
-        "LR_换队长",
-        "LR_部队交替",
-        "LR_不购买门票"
-      ],
+      "option": ["LR_选择部队", "LR_选择难度", "LR_同步远征", "LR_换队长", "LR_部队交替", "LR_不购买门票"],
       "label": "陆联",
       "description": "联队战（陆联）活动自动化出阵。\n\n- **换队长**：换队长的方式可在全局设置中修改\n- **部队交替**：在行动选择界面自动切换部队，勾选后点击齿轮设置队伍序列\n- **选择部队**：选择出阵部队（第1轮使用）\n- **选择难度**：易/普/难/超难\n- **不购买门票**：勾选后令牌不足时自动结束任务，不再购买（注意：仅停止当前单次执行，若设置了重复次数，后续轮次仍会启动然后终止，可能造成日志刷屏）\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保陆联使用的队伍在远征任务中设置为「休息」。\n\n> ⚠️ **注意**：游戏本身会在通行令牌不足时自动使用多倍道具。"
     },
@@ -75,9 +54,7 @@
       "default_check": false,
       "repeatable": true,
       "repeat_count": 1,
-      "option": [
-        "FB_选择部队"
-      ],
+      "option": ["FB_选择部队"],
       "label": "刷花",
       "description": "通过刀装和樱吹雪筛选并选择刀剑男士，单骑出阵1-1刷花。当选择的部队不是部队一时，请保证所选部队有刀剑男士位于队长位，或部队一队长不符合刷花筛选条件。"
     },
@@ -87,15 +64,7 @@
       "default_check": false,
       "repeatable": false,
       "repeat_count": 0,
-      "option": [
-        "短",
-        "胁",
-        "打",
-        "太",
-        "大太",
-        "枪",
-        "薙"
-      ],
+      "option": ["短", "胁", "打", "太", "大太", "枪", "薙"],
       "label": "刀解",
       "description": "⚠该功能测试数据较少，请在有人值守时使用。\n\n 自动刀解 + 收邮箱循环，邮箱清空后任务终止。游戏运行速度对稳定性影响较大，邮箱刀剑较多时建议分刀种多次运行，避免单次处理量过大。"
     },
@@ -105,10 +74,7 @@
       "default_check": false,
       "repeatable": false,
       "repeat_count": 0,
-      "option": [
-        "搓糖",
-        "刀种筛选"
-      ],
+      "option": ["搓糖", "刀种筛选"],
       "label": "习合",
       "description": "⚠该功能测试数据较少，请在有人值守时使用。\n\n 自动习合操作。每轮仅处理前6把刀剑，搓糖开启后前6把均达乱舞7级时自动停止。推荐先刀解清理非搓糖刀种，再开启搓糖+关闭刀种筛选以获得最佳体验。\n\n- **搓糖**：习合至乱舞等级7级后跳过该刀剑，关闭则无等级限制。上锁刀剑不受此选项限制\n- **刀种筛选**：点击齿轮选择要筛选的刀种，关闭则跳过筛选直接习合全部刀剑"
     },
@@ -118,24 +84,12 @@
       "default_check": true,
       "repeatable": false,
       "repeat_count": 0,
-      "option": [
-        "部队一",
-        "部队二",
-        "部队三",
-        "部队四",
-        "部队五",
-        "RefreshInterval"
-      ],
+      "option": ["部队一", "部队二", "部队三", "部队四", "部队五", "RefreshInterval"],
       "label": "远征",
       "description": "请保证编队符合远征要求。\n\n- 若停止远征后启动其他任务失败，是因为停止指令在下一次点击时才会执行。远征处于倒计时等待期间无点击操作，停止未实际生效，此时新任务无法正常运行。关闭 MATR 重新打开即可。"
     }
   ],
-  "global_option": [
-    "换队长方式",
-    "远征智能调度",
-    "长期远征计划",
-    "卡死重启"
-  ],
+  "global_option": ["换队长方式", "远征智能调度", "长期远征计划", "卡死重启"],
   "option": {
     "部队一": {
       "name": "部队一",
@@ -146,18 +100,14 @@
           "name": "休息",
           "DisplayName": "休息",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": false
-            }
+            "E_CheckTeam1": {"enabled": false}
           }
         },
         {
           "name": "1-1",
           "DisplayName": "1-1",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [276, 188, 37, 39]
             },
@@ -170,9 +120,7 @@
           "name": "1-2",
           "DisplayName": "1-2",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [276, 188, 37, 39]
             },
@@ -185,9 +133,7 @@
           "name": "1-3",
           "DisplayName": "1-3",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [276, 188, 37, 39]
             },
@@ -200,9 +146,7 @@
           "name": "1-4",
           "DisplayName": "1-4",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [276, 188, 37, 39]
             },
@@ -215,9 +159,7 @@
           "name": "2-1",
           "DisplayName": "2-1",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [469, 178, 50, 40]
             },
@@ -230,9 +172,7 @@
           "name": "2-2",
           "DisplayName": "2-2",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [469, 178, 50, 40]
             },
@@ -245,9 +185,7 @@
           "name": "2-3",
           "DisplayName": "2-3",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [469, 178, 50, 40]
             },
@@ -260,9 +198,7 @@
           "name": "2-4",
           "DisplayName": "2-4",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [469, 178, 50, 40]
             },
@@ -275,9 +211,7 @@
           "name": "3-1",
           "DisplayName": "3-1",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [661, 183, 50, 35]
             },
@@ -290,9 +224,7 @@
           "name": "3-2",
           "DisplayName": "3-2",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [661, 183, 50, 35]
             },
@@ -305,9 +237,7 @@
           "name": "3-3",
           "DisplayName": "3-3",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [661, 183, 50, 35]
             },
@@ -320,9 +250,7 @@
           "name": "3-4",
           "DisplayName": "3-4",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [661, 183, 50, 35]
             },
@@ -335,9 +263,7 @@
           "name": "4-1",
           "DisplayName": "4-1",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [891, 190, 50, 36]
             },
@@ -350,9 +276,7 @@
           "name": "4-2",
           "DisplayName": "4-2",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [891, 190, 50, 36]
             },
@@ -365,9 +289,7 @@
           "name": "4-3",
           "DisplayName": "4-3",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [891, 190, 50, 36]
             },
@@ -380,9 +302,7 @@
           "name": "4-4",
           "DisplayName": "4-4",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [891, 190, 50, 36]
             },
@@ -395,9 +315,7 @@
           "name": "5-1",
           "DisplayName": "5-1",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [1078, 191, 45, 34]
             },
@@ -410,9 +328,7 @@
           "name": "5-2",
           "DisplayName": "5-2",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [1078, 191, 45, 34]
             },
@@ -425,9 +341,7 @@
           "name": "5-3",
           "DisplayName": "5-3",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [1078, 191, 45, 34]
             },
@@ -440,9 +354,7 @@
           "name": "5-4",
           "DisplayName": "5-4",
           "pipeline_override": {
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "target": [1078, 191, 45, 34]
             },
@@ -462,9 +374,7 @@
           "name": "休息",
           "DisplayName": "休息",
           "pipeline_override": {
-            "E_CheckTeam2": {
-              "enabled": false
-            }
+            "E_CheckTeam2": {"enabled": false}
           }
         },
         {
@@ -718,9 +628,7 @@
           "name": "休息",
           "DisplayName": "休息",
           "pipeline_override": {
-            "E_CheckTeam3": {
-              "enabled": false
-            }
+            "E_CheckTeam3": {"enabled": false}
           }
         },
         {
@@ -974,9 +882,7 @@
           "name": "休息",
           "DisplayName": "休息",
           "pipeline_override": {
-            "E_CheckTeam4": {
-              "enabled": false
-            }
+            "E_CheckTeam4": {"enabled": false}
           }
         },
         {
@@ -1230,9 +1136,7 @@
           "name": "休息",
           "DisplayName": "休息",
           "pipeline_override": {
-            "E_CheckTeam5": {
-              "enabled": false
-            }
+            "E_CheckTeam5": {"enabled": false}
           }
         },
         {
@@ -1491,9 +1395,7 @@
         }
       ],
       "pipeline_override": {
-        "E_WaitRefresh": {
-          "post_delay": "{seconds}000"
-        }
+        "E_WaitRefresh": {"post_delay": "{seconds}000"}
       }
     },
     "难度选择": {
@@ -1547,37 +1449,19 @@
         {
           "name": "",
           "pipeline_override": {
-            "S_IsSwordSelect": {
-              "enabled": true
-            },
-            "S_DetectSortOrder": {
-              "enabled": true
-            },
-            "S_ClickDescending": {
-              "enabled": true
-            },
+            "S_IsSwordSelect": {"enabled": true},
+            "S_DetectSortOrder": {"enabled": true},
+            "S_ClickDescending": {"enabled": true},
             "S_ConfirmSortAsc": {
               "enabled": true,
               "next": ["S_FatigueCheck"]
             },
-            "S_ClickCaptain1": {
-              "enabled": true
-            },
-            "S_ClickCaptain2": {
-              "enabled": true
-            },
-            "S_ClickCaptain3": {
-              "enabled": true
-            },
-            "S_ClickCaptain4": {
-              "enabled": true
-            },
-            "S_ClickCaptain5": {
-              "enabled": true
-            },
-            "S_ClickCaptainSlot": {
-              "enabled": true
-            },
+            "S_ClickCaptain1": {"enabled": true},
+            "S_ClickCaptain2": {"enabled": true},
+            "S_ClickCaptain3": {"enabled": true},
+            "S_ClickCaptain4": {"enabled": true},
+            "S_ClickCaptain5": {"enabled": true},
+            "S_ClickCaptainSlot": {"enabled": true},
             "S_DragCaptain": {
               "enabled": true,
               "next": ["S_FatigueCheck"]
@@ -1600,22 +1484,14 @@
               "target": [154, 93, 1, 1]
             },
             "S_PreCheckUseRecord": {
-              "next": [
-                "S_PreCheckClickRecord1"
-              ]
+              "next": ["S_PreCheckClickRecord1"]
             },
-            "S_PreCheckClickRecord1": {
-              "enabled": true
-            },
+            "S_PreCheckClickRecord1": {"enabled": true},
             "SF_ClickTeamN": {
               "target": [154, 93, 1, 1]
             },
-            "SF_UseRecord_Step2_Rec1": {
-              "enabled": true
-            },
-            "SF_EqRefill_Step2_Rec1": {
-              "enabled": true
-            }
+            "SF_UseRecord_Step2_Rec1": {"enabled": true},
+            "SF_EqRefill_Step2_Rec1": {"enabled": true}
           }
         },
         {
@@ -1626,22 +1502,14 @@
               "target": [282, 94, 1, 1]
             },
             "S_PreCheckUseRecord": {
-              "next": [
-                "S_PreCheckClickRecord2"
-              ]
+              "next": ["S_PreCheckClickRecord2"]
             },
-            "S_PreCheckClickRecord2": {
-              "enabled": true
-            },
+            "S_PreCheckClickRecord2": {"enabled": true},
             "SF_ClickTeamN": {
               "target": [282, 94, 1, 1]
             },
-            "SF_UseRecord_Step2_Rec2": {
-              "enabled": true
-            },
-            "SF_EqRefill_Step2_Rec2": {
-              "enabled": true
-            }
+            "SF_UseRecord_Step2_Rec2": {"enabled": true},
+            "SF_EqRefill_Step2_Rec2": {"enabled": true}
           }
         },
         {
@@ -1652,22 +1520,14 @@
               "target": [398, 91, 1, 1]
             },
             "S_PreCheckUseRecord": {
-              "next": [
-                "S_PreCheckClickRecord3"
-              ]
+              "next": ["S_PreCheckClickRecord3"]
             },
-            "S_PreCheckClickRecord3": {
-              "enabled": true
-            },
+            "S_PreCheckClickRecord3": {"enabled": true},
             "SF_ClickTeamN": {
               "target": [398, 91, 1, 1]
             },
-            "SF_UseRecord_Step2_Rec3": {
-              "enabled": true
-            },
-            "SF_EqRefill_Step2_Rec3": {
-              "enabled": true
-            }
+            "SF_UseRecord_Step2_Rec3": {"enabled": true},
+            "SF_EqRefill_Step2_Rec3": {"enabled": true}
           }
         },
         {
@@ -1678,22 +1538,14 @@
               "target": [519, 89, 1, 1]
             },
             "S_PreCheckUseRecord": {
-              "next": [
-                "S_PreCheckClickRecord4"
-              ]
+              "next": ["S_PreCheckClickRecord4"]
             },
-            "S_PreCheckClickRecord4": {
-              "enabled": true
-            },
+            "S_PreCheckClickRecord4": {"enabled": true},
             "SF_ClickTeamN": {
               "target": [519, 89, 1, 1]
             },
-            "SF_UseRecord_Step2_Rec4": {
-              "enabled": true
-            },
-            "SF_EqRefill_Step2_Rec4": {
-              "enabled": true
-            }
+            "SF_UseRecord_Step2_Rec4": {"enabled": true},
+            "SF_EqRefill_Step2_Rec4": {"enabled": true}
           }
         },
         {
@@ -1704,22 +1556,14 @@
               "target": [635, 91, 1, 1]
             },
             "S_PreCheckUseRecord": {
-              "next": [
-                "S_PreCheckClickRecord5"
-              ]
+              "next": ["S_PreCheckClickRecord5"]
             },
-            "S_PreCheckClickRecord5": {
-              "enabled": true
-            },
+            "S_PreCheckClickRecord5": {"enabled": true},
             "SF_ClickTeamN": {
               "target": [635, 91, 1, 1]
             },
-            "SF_UseRecord_Step2_Rec5": {
-              "enabled": true
-            },
-            "SF_EqRefill_Step2_Rec5": {
-              "enabled": true
-            }
+            "SF_UseRecord_Step2_Rec5": {"enabled": true},
+            "SF_EqRefill_Step2_Rec5": {"enabled": true}
           }
         }
       ]
@@ -1855,9 +1699,7 @@
           "name": "不启用",
           "DisplayName": "不启用",
           "pipeline_override": {
-            "S_IsFormationSelect": {
-              "enabled": false
-            }
+            "S_IsFormationSelect": {"enabled": false}
           }
         },
         {
@@ -1939,21 +1781,11 @@
         {
           "name": "",
           "pipeline_override": {
-            "S_CheckEquipmentPopup": {
-              "enabled": true
-            },
-            "S_PreCheckTroopRecord": {
-              "enabled": true
-            },
-            "S_PreCheckUseRecord": {
-              "enabled": true
-            },
-            "S_PreCheckUseRecordBtn": {
-              "enabled": true
-            },
-            "S_PreConfirmSupply": {
-              "enabled": true
-            }
+            "S_CheckEquipmentPopup": {"enabled": true},
+            "S_PreCheckTroopRecord": {"enabled": true},
+            "S_PreCheckUseRecord": {"enabled": true},
+            "S_PreCheckUseRecordBtn": {"enabled": true},
+            "S_PreConfirmSupply": {"enabled": true}
           }
         }
       ],
@@ -2045,39 +1877,17 @@
         {
           "name": "",
           "pipeline_override": {
-            "LR_IsSwordSelect": {
-              "enabled": true
-            },
-            "LR_ClickCaptainSlot": {
-              "enabled": true
-            },
-            "LR_DetectSortOrder": {
-              "enabled": true
-            },
-            "LR_ClickDescending": {
-              "enabled": true
-            },
-            "LR_ConfirmSortAsc": {
-              "enabled": true
-            },
-            "LR_ClickCaptain1": {
-              "enabled": true
-            },
-            "LR_ClickCaptain2": {
-              "enabled": true
-            },
-            "LR_ClickCaptain3": {
-              "enabled": true
-            },
-            "LR_ClickCaptain4": {
-              "enabled": true
-            },
-            "LR_ClickCaptain5": {
-              "enabled": true
-            },
-            "LR_DragCaptain": {
-              "enabled": true
-            }
+            "LR_IsSwordSelect": {"enabled": true},
+            "LR_ClickCaptainSlot": {"enabled": true},
+            "LR_DetectSortOrder": {"enabled": true},
+            "LR_ClickDescending": {"enabled": true},
+            "LR_ConfirmSortAsc": {"enabled": true},
+            "LR_ClickCaptain1": {"enabled": true},
+            "LR_ClickCaptain2": {"enabled": true},
+            "LR_ClickCaptain3": {"enabled": true},
+            "LR_ClickCaptain4": {"enabled": true},
+            "LR_ClickCaptain5": {"enabled": true},
+            "LR_DragCaptain": {"enabled": true}
           }
         }
       ],
@@ -2098,9 +1908,7 @@
       ],
       "pipeline_override": {
         "LR_RunTeamSwitch": {
-          "custom_action_param": {
-            "team_config": "{team_config}"
-          }
+          "custom_action_param": {"team_config": "{team_config}"}
         }
       }
     },
@@ -2111,16 +1919,10 @@
       "cases": [
         {
           "name": "",
-          "option": [
-            "LR_换队配置"
-          ],
+          "option": ["LR_换队配置"],
           "pipeline_override": {
-            "LR_ClickSwitchTeam": {
-              "enabled": true
-            },
-            "LR_RunTeamSwitch": {
-              "enabled": true
-            }
+            "LR_ClickSwitchTeam": {"enabled": true},
+            "LR_RunTeamSwitch": {"enabled": true}
           }
         }
       ],
@@ -2135,9 +1937,7 @@
           "name": "",
           "pipeline_override": {
             "LR_HandleTicketPopup": {
-              "next": [
-                "LR_CloseTicketPopup"
-              ]
+              "next": ["LR_CloseTicketPopup"]
             }
           }
         }
@@ -2153,57 +1953,27 @@
           "name": "修刀",
           "DisplayName": "修刀",
           "pipeline_override": {
-            "S_IsRepair": {
-              "enabled": true
-            },
-            "S_ClickRepair": {
-              "enabled": true
-            },
-            "S_ConfirmRepair": {
-              "enabled": true
-            },
-            "S_ClickMenuFromRepair": {
-              "enabled": true
-            },
-            "S_IsStopOnDamage": {
-              "enabled": false
-            },
-            "S_IsPreDamage1": {
-              "enabled": true
-            },
-            "S_IsPreDamage2": {
-              "enabled": true
-            },
-            "S_StopOnDamagePopup": {
-              "enabled": false
-            },
-            "S_StopOnDamageText": {
-              "enabled": false
-            }
+            "S_IsRepair": {"enabled": true},
+            "S_ClickRepair": {"enabled": true},
+            "S_ConfirmRepair": {"enabled": true},
+            "S_ClickMenuFromRepair": {"enabled": true},
+            "S_IsStopOnDamage": {"enabled": false},
+            "S_IsPreDamage1": {"enabled": true},
+            "S_IsPreDamage2": {"enabled": true},
+            "S_StopOnDamagePopup": {"enabled": false},
+            "S_StopOnDamageText": {"enabled": false}
           }
         },
         {
           "name": "停止",
           "DisplayName": "停止",
           "pipeline_override": {
-            "S_IsRepair": {
-              "enabled": false
-            },
-            "S_IsStopOnDamage": {
-              "enabled": true
-            },
-            "S_IsPreDamage1": {
-              "enabled": false
-            },
-            "S_IsPreDamage2": {
-              "enabled": false
-            },
-            "S_StopOnDamagePopup": {
-              "enabled": true
-            },
-            "S_StopOnDamageText": {
-              "enabled": true
-            }
+            "S_IsRepair": {"enabled": false},
+            "S_IsStopOnDamage": {"enabled": true},
+            "S_IsPreDamage1": {"enabled": false},
+            "S_IsPreDamage2": {"enabled": false},
+            "S_StopOnDamagePopup": {"enabled": true},
+            "S_StopOnDamageText": {"enabled": true}
           }
         }
       ]
@@ -2211,6 +1981,7 @@
     "S_疲劳处理": {
       "name": "S_疲劳处理",
       "label": "疲劳处理",
+      "description": "需与换队长同时开启方可生效",
       "default_case": "无",
       "cases": [
         {
@@ -2221,16 +1992,21 @@
           "name": "刷花",
           "DisplayName": "刷花",
           "pipeline_override": {
-            "S_FatigueCheck": { "enabled": true },
-            "SF_Hub": { "enabled": true }
+            "S_FatigueCheck": {"enabled": true},
+            "SF_Hub": {"enabled": true},
+            "SF_UseRecord_Step1": {"enabled": true},
+            "SF_EqRefill_Step1": {"enabled": true}
           }
         },
         {
           "name": "停止",
           "DisplayName": "停止",
           "pipeline_override": {
-            "S_FatigueCheck": { "enabled": true, "on_error": [] },
-            "SF_Hub": { "enabled": false }
+            "S_FatigueCheck": {
+              "enabled": true,
+              "on_error": []
+            },
+            "SF_Hub": {"enabled": false}
           }
         }
       ]
@@ -2243,21 +2019,11 @@
         {
           "name": "",
           "pipeline_override": {
-            "S_MidRetreat_E6_R1": {
-              "enabled": true
-            },
-            "S_MidRetreat_E8_R1": {
-              "enabled": true
-            },
-            "S_MidRetreat_E8_R2": {
-              "enabled": true
-            },
-            "S_MidRetreat_E8_R3": {
-              "enabled": true
-            },
-            "S_MidRetreat_E8_R4": {
-              "enabled": true
-            }
+            "S_MidRetreat_E6_R1": {"enabled": true},
+            "S_MidRetreat_E8_R1": {"enabled": true},
+            "S_MidRetreat_E8_R2": {"enabled": true},
+            "S_MidRetreat_E8_R3": {"enabled": true},
+            "S_MidRetreat_E8_R4": {"enabled": true}
           }
         }
       ],
@@ -2271,114 +2037,42 @@
         {
           "name": "",
           "pipeline_override": {
-            "S_Boss_E2_R1": {
-              "enabled": true
-            },
-            "S_Boss_E2_R2_1": {
-              "enabled": true
-            },
-            "S_Boss_E2_R2_2": {
-              "enabled": true
-            },
-            "S_Boss_E2_R3_1": {
-              "enabled": true
-            },
-            "S_Boss_E2_R3_2": {
-              "enabled": true
-            },
-            "S_Boss_E2_R3_3": {
-              "enabled": true
-            },
-            "S_Boss_E2_R4": {
-              "enabled": true
-            },
-            "S_Boss_E3_R1": {
-              "enabled": true
-            },
-            "S_Boss_E3_R2": {
-              "enabled": true
-            },
-            "S_Boss_E3_R3": {
-              "enabled": true
-            },
-            "S_Boss_E3_R4": {
-              "enabled": true
-            },
-            "S_Boss_E4_R1": {
-              "enabled": true
-            },
-            "S_Boss_E4_R2": {
-              "enabled": true
-            },
-            "S_Boss_E4_R3": {
-              "enabled": true
-            },
-            "S_Boss_E4_R4": {
-              "enabled": true
-            },
-            "S_Boss_E5_R1": {
-              "enabled": true
-            },
-            "S_Boss_E5_R3": {
-              "enabled": true
-            },
-            "S_Boss_E5_R3_2": {
-              "enabled": true
-            },
-            "S_Boss_E5_R4_1": {
-              "enabled": true
-            },
-            "S_Boss_E5_R4_2": {
-              "enabled": true
-            },
-            "S_Boss_E6_R1": {
-              "enabled": true
-            },
-            "S_Boss_E6_R2": {
-              "enabled": true
-            },
-            "S_Boss_E6_R3": {
-              "enabled": true
-            },
-            "S_Boss_E6_R4": {
-              "enabled": true
-            },
-            "S_Boss_E7_R1": {
-              "enabled": true
-            },
-            "S_Boss_E7_R2_1": {
-              "enabled": true
-            },
-            "S_Boss_E7_R2_2": {
-              "enabled": true
-            },
-            "S_Boss_E7_R3_1": {
-              "enabled": true
-            },
-            "S_Boss_E7_R3_2": {
-              "enabled": true
-            },
-            "S_Boss_E7_R4": {
-              "enabled": true
-            },
-            "S_Boss_E8_R1": {
-              "enabled": true
-            },
-            "S_Boss_E8_R2": {
-              "enabled": true
-            },
-            "S_Boss_E8_R3": {
-              "enabled": true
-            },
-            "S_Boss_E8_R4": {
-              "enabled": true
-            },
-            "S_ClickRetreat": {
-              "enabled": true
-            },
-            "S_ConfirmRetreat": {
-              "enabled": true
-            }
+            "S_Boss_E2_R1": {"enabled": true},
+            "S_Boss_E2_R2_1": {"enabled": true},
+            "S_Boss_E2_R2_2": {"enabled": true},
+            "S_Boss_E2_R3_1": {"enabled": true},
+            "S_Boss_E2_R3_2": {"enabled": true},
+            "S_Boss_E2_R3_3": {"enabled": true},
+            "S_Boss_E2_R4": {"enabled": true},
+            "S_Boss_E3_R1": {"enabled": true},
+            "S_Boss_E3_R2": {"enabled": true},
+            "S_Boss_E3_R3": {"enabled": true},
+            "S_Boss_E3_R4": {"enabled": true},
+            "S_Boss_E4_R1": {"enabled": true},
+            "S_Boss_E4_R2": {"enabled": true},
+            "S_Boss_E4_R3": {"enabled": true},
+            "S_Boss_E4_R4": {"enabled": true},
+            "S_Boss_E5_R1": {"enabled": true},
+            "S_Boss_E5_R3": {"enabled": true},
+            "S_Boss_E5_R3_2": {"enabled": true},
+            "S_Boss_E5_R4_1": {"enabled": true},
+            "S_Boss_E5_R4_2": {"enabled": true},
+            "S_Boss_E6_R1": {"enabled": true},
+            "S_Boss_E6_R2": {"enabled": true},
+            "S_Boss_E6_R3": {"enabled": true},
+            "S_Boss_E6_R4": {"enabled": true},
+            "S_Boss_E7_R1": {"enabled": true},
+            "S_Boss_E7_R2_1": {"enabled": true},
+            "S_Boss_E7_R2_2": {"enabled": true},
+            "S_Boss_E7_R3_1": {"enabled": true},
+            "S_Boss_E7_R3_2": {"enabled": true},
+            "S_Boss_E7_R4": {"enabled": true},
+            "S_Boss_E8_R1": {"enabled": true},
+            "S_Boss_E8_R2": {"enabled": true},
+            "S_Boss_E8_R3": {"enabled": true},
+            "S_Boss_E8_R4": {"enabled": true},
+            "S_ClickRetreat": {"enabled": true},
+            "S_ConfirmRetreat": {"enabled": true}
           }
         }
       ],
@@ -2393,120 +2087,72 @@
           "name": "",
           "pipeline_override": {
             "S_IsHome": {
-              "next": [
-                "E_CheckTimerExpired"
-              ]
+              "next": ["E_CheckTimerExpired"]
             },
             "E_CheckTimerExpired": {
-              "next": [
-                "S_NavigateToSortie"
-              ],
-              "on_error": [
-                "Expedition"
-              ]
+              "next": ["S_NavigateToSortie"],
+              "on_error": ["Expedition"]
             },
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 1
-                }
+                "custom_action_param": {"team": 1}
               },
-              "next": [
-                "E_ConfirmDispatch1"
-              ]
+              "next": ["E_ConfirmDispatch1"]
             },
-            "E_ClickSmallMap1": {
-              "enabled": false
-            },
+            "E_ClickSmallMap1": {"enabled": false},
             "E_SelectMap2": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 2
-                }
+                "custom_action_param": {"team": 2}
               },
-              "next": [
-                "E_ConfirmDispatch2"
-              ]
+              "next": ["E_ConfirmDispatch2"]
             },
-            "E_ClickSmallMap2": {
-              "enabled": false
-            },
+            "E_ClickSmallMap2": {"enabled": false},
             "E_SelectMap3": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 3
-                }
+                "custom_action_param": {"team": 3}
               },
-              "next": [
-                "E_ConfirmDispatch3"
-              ]
+              "next": ["E_ConfirmDispatch3"]
             },
-            "E_ClickSmallMap3": {
-              "enabled": false
-            },
+            "E_ClickSmallMap3": {"enabled": false},
             "E_SelectMap4": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 4
-                }
+                "custom_action_param": {"team": 4}
               },
-              "next": [
-                "E_ConfirmDispatch4"
-              ]
+              "next": ["E_ConfirmDispatch4"]
             },
-            "E_ClickSmallMap4": {
-              "enabled": false
-            },
+            "E_ClickSmallMap4": {"enabled": false},
             "E_SelectMap5": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 5
-                }
+                "custom_action_param": {"team": 5}
               },
-              "next": [
-                "E_ConfirmDispatch5"
-              ]
+              "next": ["E_ConfirmDispatch5"]
             },
-            "E_ClickSmallMap5": {
-              "enabled": false
-            },
+            "E_ClickSmallMap5": {"enabled": false},
             "E_VerifyScreen1": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen2": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen3": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen4": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen5": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_ClickBackToHome": {
               "action": {
@@ -2515,33 +2161,21 @@
                   "target": [1037, 169, 110, 44]
                 }
               },
-              "next": [
-                "S_WaitRefresh"
-              ],
-              "on_error": [
-                "S_DetectWhereAmI"
-              ]
+              "next": ["S_WaitRefresh"],
+              "on_error": ["S_DetectWhereAmI"]
             },
             "E_AllTeamsBusy": {
-              "next": [
-                "E_TimerStart"
-              ]
+              "next": ["E_TimerStart"]
             },
             "E_TimerStart": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionTimerAction",
-                "custom_action_param": {
-                  "mode": "start"
-                }
+                "custom_action_param": {"mode": "start"}
               },
-              "next": [
-                "S_NavigateToSortie"
-              ]
+              "next": ["S_NavigateToSortie"]
             },
-            "S_WaitRefresh": {
-              "enabled": true
-            }
+            "S_WaitRefresh": {"enabled": true}
           }
         }
       ],
@@ -2556,48 +2190,24 @@
           "name": "修刀",
           "DisplayName": "修刀",
           "pipeline_override": {
-            "U_IsRepair": {
-              "enabled": true
-            },
-            "U_IsStopOnDamage": {
-              "enabled": false
-            },
-            "U_IsPreDamage1": {
-              "enabled": true
-            },
-            "U_IsPreDamage2": {
-              "enabled": true
-            },
-            "U_StopOnDamagePopup": {
-              "enabled": false
-            },
-            "U_StopOnDamageText": {
-              "enabled": false
-            }
+            "U_IsRepair": {"enabled": true},
+            "U_IsStopOnDamage": {"enabled": false},
+            "U_IsPreDamage1": {"enabled": true},
+            "U_IsPreDamage2": {"enabled": true},
+            "U_StopOnDamagePopup": {"enabled": false},
+            "U_StopOnDamageText": {"enabled": false}
           }
         },
         {
           "name": "停止",
           "DisplayName": "停止",
           "pipeline_override": {
-            "U_IsRepair": {
-              "enabled": false
-            },
-            "U_IsStopOnDamage": {
-              "enabled": true
-            },
-            "U_IsPreDamage1": {
-              "enabled": false
-            },
-            "U_IsPreDamage2": {
-              "enabled": false
-            },
-            "U_StopOnDamagePopup": {
-              "enabled": true
-            },
-            "U_StopOnDamageText": {
-              "enabled": true
-            }
+            "U_IsRepair": {"enabled": false},
+            "U_IsStopOnDamage": {"enabled": true},
+            "U_IsPreDamage1": {"enabled": false},
+            "U_IsPreDamage2": {"enabled": false},
+            "U_StopOnDamagePopup": {"enabled": true},
+            "U_StopOnDamageText": {"enabled": true}
           }
         }
       ]
@@ -2663,9 +2273,7 @@
           "name": "不启用",
           "DisplayName": "不启用",
           "pipeline_override": {
-            "U_IsFormationSelect": {
-              "enabled": false
-            }
+            "U_IsFormationSelect": {"enabled": false}
           }
         },
         {
@@ -2747,39 +2355,17 @@
         {
           "name": "",
           "pipeline_override": {
-            "U_IsSwordSelect": {
-              "enabled": true
-            },
-            "U_DetectSortOrder": {
-              "enabled": true
-            },
-            "U_ClickDescending": {
-              "enabled": true
-            },
-            "U_ConfirmSortAsc": {
-              "enabled": true
-            },
-            "U_ClickCaptain1": {
-              "enabled": true
-            },
-            "U_ClickCaptain2": {
-              "enabled": true
-            },
-            "U_ClickCaptain3": {
-              "enabled": true
-            },
-            "U_ClickCaptain4": {
-              "enabled": true
-            },
-            "U_ClickCaptain5": {
-              "enabled": true
-            },
-            "U_ClickCaptainSlot": {
-              "enabled": true
-            },
-            "U_DragCaptain": {
-              "enabled": true
-            }
+            "U_IsSwordSelect": {"enabled": true},
+            "U_DetectSortOrder": {"enabled": true},
+            "U_ClickDescending": {"enabled": true},
+            "U_ConfirmSortAsc": {"enabled": true},
+            "U_ClickCaptain1": {"enabled": true},
+            "U_ClickCaptain2": {"enabled": true},
+            "U_ClickCaptain3": {"enabled": true},
+            "U_ClickCaptain4": {"enabled": true},
+            "U_ClickCaptain5": {"enabled": true},
+            "U_ClickCaptainSlot": {"enabled": true},
+            "U_DragCaptain": {"enabled": true}
           }
         }
       ],
@@ -2793,18 +2379,10 @@
         {
           "name": "",
           "pipeline_override": {
-            "U_CheckEquipmentPopup": {
-              "enabled": true
-            },
-            "U_PreCheckTroopRecord": {
-              "enabled": true
-            },
-            "U_PreCheckUseRecord": {
-              "enabled": true
-            },
-            "U_PreConfirmSupply": {
-              "enabled": true
-            }
+            "U_CheckEquipmentPopup": {"enabled": true},
+            "U_PreCheckTroopRecord": {"enabled": true},
+            "U_PreCheckUseRecord": {"enabled": true},
+            "U_PreConfirmSupply": {"enabled": true}
           }
         }
       ],
@@ -2818,12 +2396,8 @@
         {
           "name": "",
           "pipeline_override": {
-            "U_GoHomeAfterRound": {
-              "enabled": true
-            },
-            "U_ContinueNextRound": {
-              "enabled": false
-            },
+            "U_GoHomeAfterRound": {"enabled": true},
+            "U_ContinueNextRound": {"enabled": false},
             "U_ConfirmReturnHome": {
               "next": []
             }
@@ -2847,9 +2421,7 @@
       ],
       "pipeline_override": {
         "U_SelectFloor": {
-          "on_error": [
-            "U_DetectWhereAmI"
-          ],
+          "on_error": ["U_DetectWhereAmI"],
           "custom_action_param": {
             "target_floor": "{target_floor}",
             "tens_roi": [985, 303, 60, 99],
@@ -2892,112 +2464,68 @@
           "name": "",
           "pipeline_override": {
             "U_IsHome": {
-              "next": [
-                "Expedition"
-              ]
+              "next": ["Expedition"]
             },
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 1
-                }
+                "custom_action_param": {"team": 1}
               },
-              "next": [
-                "E_ConfirmDispatch1"
-              ]
+              "next": ["E_ConfirmDispatch1"]
             },
-            "E_ClickSmallMap1": {
-              "enabled": false
-            },
+            "E_ClickSmallMap1": {"enabled": false},
             "E_SelectMap2": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 2
-                }
+                "custom_action_param": {"team": 2}
               },
-              "next": [
-                "E_ConfirmDispatch2"
-              ]
+              "next": ["E_ConfirmDispatch2"]
             },
-            "E_ClickSmallMap2": {
-              "enabled": false
-            },
+            "E_ClickSmallMap2": {"enabled": false},
             "E_SelectMap3": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 3
-                }
+                "custom_action_param": {"team": 3}
               },
-              "next": [
-                "E_ConfirmDispatch3"
-              ]
+              "next": ["E_ConfirmDispatch3"]
             },
-            "E_ClickSmallMap3": {
-              "enabled": false
-            },
+            "E_ClickSmallMap3": {"enabled": false},
             "E_SelectMap4": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 4
-                }
+                "custom_action_param": {"team": 4}
               },
-              "next": [
-                "E_ConfirmDispatch4"
-              ]
+              "next": ["E_ConfirmDispatch4"]
             },
-            "E_ClickSmallMap4": {
-              "enabled": false
-            },
+            "E_ClickSmallMap4": {"enabled": false},
             "E_SelectMap5": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 5
-                }
+                "custom_action_param": {"team": 5}
               },
-              "next": [
-                "E_ConfirmDispatch5"
-              ]
+              "next": ["E_ConfirmDispatch5"]
             },
-            "E_ClickSmallMap5": {
-              "enabled": false
-            },
+            "E_ClickSmallMap5": {"enabled": false},
             "E_VerifyScreen1": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen2": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen3": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen4": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen5": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_ClickBackToHome": {
               "action": {
@@ -3006,21 +2534,13 @@
                   "target": [1037, 169, 110, 44]
                 }
               },
-              "next": [
-                "U_WaitRefresh"
-              ],
-              "on_error": [
-                "U_DetectWhereAmI"
-              ]
+              "next": ["U_WaitRefresh"],
+              "on_error": ["U_DetectWhereAmI"]
             },
             "E_AllTeamsBusy": {
-              "next": [
-                "U_NavigateToUnderground"
-              ]
+              "next": ["U_NavigateToUnderground"]
             },
-            "U_WaitRefresh": {
-              "enabled": true
-            }
+            "U_WaitRefresh": {"enabled": true}
           }
         }
       ],
@@ -3035,112 +2555,68 @@
           "name": "",
           "pipeline_override": {
             "LR_IsHome": {
-              "next": [
-                "Expedition"
-              ]
+              "next": ["Expedition"]
             },
-            "E_CheckTeam1": {
-              "enabled": true
-            },
+            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 1
-                }
+                "custom_action_param": {"team": 1}
               },
-              "next": [
-                "E_ConfirmDispatch1"
-              ]
+              "next": ["E_ConfirmDispatch1"]
             },
-            "E_ClickSmallMap1": {
-              "enabled": false
-            },
+            "E_ClickSmallMap1": {"enabled": false},
             "E_SelectMap2": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 2
-                }
+                "custom_action_param": {"team": 2}
               },
-              "next": [
-                "E_ConfirmDispatch2"
-              ]
+              "next": ["E_ConfirmDispatch2"]
             },
-            "E_ClickSmallMap2": {
-              "enabled": false
-            },
+            "E_ClickSmallMap2": {"enabled": false},
             "E_SelectMap3": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 3
-                }
+                "custom_action_param": {"team": 3}
               },
-              "next": [
-                "E_ConfirmDispatch3"
-              ]
+              "next": ["E_ConfirmDispatch3"]
             },
-            "E_ClickSmallMap3": {
-              "enabled": false
-            },
+            "E_ClickSmallMap3": {"enabled": false},
             "E_SelectMap4": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 4
-                }
+                "custom_action_param": {"team": 4}
               },
-              "next": [
-                "E_ConfirmDispatch4"
-              ]
+              "next": ["E_ConfirmDispatch4"]
             },
-            "E_ClickSmallMap4": {
-              "enabled": false
-            },
+            "E_ClickSmallMap4": {"enabled": false},
             "E_SelectMap5": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionMapSelectAction",
-                "custom_action_param": {
-                  "team": 5
-                }
+                "custom_action_param": {"team": 5}
               },
-              "next": [
-                "E_ConfirmDispatch5"
-              ]
+              "next": ["E_ConfirmDispatch5"]
             },
-            "E_ClickSmallMap5": {
-              "enabled": false
-            },
+            "E_ClickSmallMap5": {"enabled": false},
             "E_VerifyScreen1": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen2": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen3": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen4": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_VerifyScreen5": {
-              "on_error": [
-                "E_CheckTeamStatus"
-              ]
+              "on_error": ["E_CheckTeamStatus"]
             },
             "E_ClickBackToHome": {
               "action": {
@@ -3149,41 +2625,25 @@
                   "target": [1037, 169, 110, 44]
                 }
               },
-              "next": [
-                "LR_WaitRefresh"
-              ],
-              "on_error": [
-                "LR_DetectWhereAmI"
-              ]
+              "next": ["LR_WaitRefresh"],
+              "on_error": ["LR_DetectWhereAmI"]
             },
             "E_AllTeamsBusy": {
-              "next": [
-                "E_TimerStart"
-              ]
+              "next": ["E_TimerStart"]
             },
             "E_TimerStart": {
               "action": {
                 "type": "Custom",
                 "custom_action": "ExpeditionTimerAction",
-                "custom_action_param": {
-                  "mode": "start"
-                }
+                "custom_action_param": {"mode": "start"}
               },
-              "next": [
-                "LR_NavigateToActivity"
-              ]
+              "next": ["LR_NavigateToActivity"]
             },
             "E_CheckTimerExpired": {
-              "next": [
-                "LR_ClickTeam"
-              ],
-              "on_error": [
-                "E_GoHome"
-              ]
+              "next": ["LR_ClickTeam"],
+              "on_error": ["E_GoHome"]
             },
-            "LR_WaitRefresh": {
-              "enabled": true
-            }
+            "LR_WaitRefresh": {"enabled": true}
           }
         }
       ],
@@ -3197,12 +2657,8 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword1": {
-              "enabled": true
-            },
-            "M_FilterSword1": {
-              "enabled": true
-            }
+            "D_FilterSword1": {"enabled": true},
+            "M_FilterSword1": {"enabled": true}
           }
         }
       ],
@@ -3216,12 +2672,8 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword2": {
-              "enabled": true
-            },
-            "M_FilterSword2": {
-              "enabled": true
-            }
+            "D_FilterSword2": {"enabled": true},
+            "M_FilterSword2": {"enabled": true}
           }
         }
       ],
@@ -3235,12 +2687,8 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword3": {
-              "enabled": true
-            },
-            "M_FilterSword3": {
-              "enabled": true
-            }
+            "D_FilterSword3": {"enabled": true},
+            "M_FilterSword3": {"enabled": true}
           }
         }
       ],
@@ -3254,12 +2702,8 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword4": {
-              "enabled": true
-            },
-            "M_FilterSword4": {
-              "enabled": true
-            }
+            "D_FilterSword4": {"enabled": true},
+            "M_FilterSword4": {"enabled": true}
           }
         }
       ],
@@ -3273,12 +2717,8 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword5": {
-              "enabled": true
-            },
-            "M_FilterSword5": {
-              "enabled": true
-            }
+            "D_FilterSword5": {"enabled": true},
+            "M_FilterSword5": {"enabled": true}
           }
         }
       ],
@@ -3292,12 +2732,8 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword6": {
-              "enabled": true
-            },
-            "M_FilterSword6": {
-              "enabled": true
-            }
+            "D_FilterSword6": {"enabled": true},
+            "M_FilterSword6": {"enabled": true}
           }
         }
       ],
@@ -3311,12 +2747,8 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword7": {
-              "enabled": true
-            },
-            "M_FilterSword7": {
-              "enabled": true
-            }
+            "D_FilterSword7": {"enabled": true},
+            "M_FilterSword7": {"enabled": true}
           }
         }
       ],
@@ -3332,122 +2764,54 @@
           "name": "Yes",
           "label": "搓糖开启",
           "pipeline_override": {
-            "M_CheckSubLevel": {
-              "enabled": true
-            },
-            "M_CheckLevel1": {
-              "enabled": true
-            },
-            "M_CheckLevel2": {
-              "enabled": true
-            },
-            "M_CheckLevel3": {
-              "enabled": true
-            },
-            "M_CheckLevel4": {
-              "enabled": true
-            },
-            "M_CheckLevel5": {
-              "enabled": true
-            },
-            "M_CheckLevel6": {
-              "enabled": true
-            },
-            "M_ClickMixDirect1": {
-              "enabled": false
-            },
-            "M_ClickMixDirect2": {
-              "enabled": false
-            },
-            "M_ClickMixDirect3": {
-              "enabled": false
-            },
-            "M_ClickMixDirect4": {
-              "enabled": false
-            },
-            "M_ClickMixDirect5": {
-              "enabled": false
-            },
-            "M_ClickMixDirect6": {
-              "enabled": false
-            },
+            "M_CheckSubLevel": {"enabled": true},
+            "M_CheckLevel1": {"enabled": true},
+            "M_CheckLevel2": {"enabled": true},
+            "M_CheckLevel3": {"enabled": true},
+            "M_CheckLevel4": {"enabled": true},
+            "M_CheckLevel5": {"enabled": true},
+            "M_CheckLevel6": {"enabled": true},
+            "M_ClickMixDirect1": {"enabled": false},
+            "M_ClickMixDirect2": {"enabled": false},
+            "M_ClickMixDirect3": {"enabled": false},
+            "M_ClickMixDirect4": {"enabled": false},
+            "M_ClickMixDirect5": {"enabled": false},
+            "M_ClickMixDirect6": {"enabled": false},
             "M_CheckPos1": {
-              "next": [
-                "M_DetectEmpty1",
-                "M_DetectLocked1",
-                "M_CheckLevel1",
-                "M_ClickMixBtn1"
-              ]
+              "next": ["M_DetectEmpty1", "M_DetectLocked1", "M_CheckLevel1", "M_ClickMixBtn1"]
             },
             "M_CheckPos2": {
-              "next": [
-                "M_DetectEmpty2",
-                "M_DetectLocked2",
-                "M_CheckLevel2",
-                "M_ClickMixBtn2"
-              ]
+              "next": ["M_DetectEmpty2", "M_DetectLocked2", "M_CheckLevel2", "M_ClickMixBtn2"]
             },
             "M_CheckPos3": {
-              "next": [
-                "M_DetectEmpty3",
-                "M_DetectLocked3",
-                "M_CheckLevel3",
-                "M_ClickMixBtn3"
-              ]
+              "next": ["M_DetectEmpty3", "M_DetectLocked3", "M_CheckLevel3", "M_ClickMixBtn3"]
             },
             "M_CheckPos4": {
-              "next": [
-                "M_DetectEmpty4",
-                "M_DetectLocked4",
-                "M_CheckLevel4",
-                "M_ClickMixBtn4"
-              ]
+              "next": ["M_DetectEmpty4", "M_DetectLocked4", "M_CheckLevel4", "M_ClickMixBtn4"]
             },
             "M_CheckPos5": {
-              "next": [
-                "M_DetectEmpty5",
-                "M_DetectLocked5",
-                "M_CheckLevel5",
-                "M_ClickMixBtn5"
-              ]
+              "next": ["M_DetectEmpty5", "M_DetectLocked5", "M_CheckLevel5", "M_ClickMixBtn5"]
             },
             "M_CheckPos6": {
-              "next": [
-                "M_DetectEmpty6",
-                "M_DetectLocked6",
-                "M_CheckLevel6",
-                "M_ClickMixBtn6"
-              ]
+              "next": ["M_DetectEmpty6", "M_DetectLocked6", "M_CheckLevel6", "M_ClickMixBtn6"]
             },
             "M_DetectLocked1": {
-              "on_error": [
-                "M_CheckLevel1"
-              ]
+              "on_error": ["M_CheckLevel1"]
             },
             "M_DetectLocked2": {
-              "on_error": [
-                "M_CheckLevel2"
-              ]
+              "on_error": ["M_CheckLevel2"]
             },
             "M_DetectLocked3": {
-              "on_error": [
-                "M_CheckLevel3"
-              ]
+              "on_error": ["M_CheckLevel3"]
             },
             "M_DetectLocked4": {
-              "on_error": [
-                "M_CheckLevel4"
-              ]
+              "on_error": ["M_CheckLevel4"]
             },
             "M_DetectLocked5": {
-              "on_error": [
-                "M_CheckLevel5"
-              ]
+              "on_error": ["M_CheckLevel5"]
             },
             "M_DetectLocked6": {
-              "on_error": [
-                "M_CheckLevel6"
-              ]
+              "on_error": ["M_CheckLevel6"]
             }
           }
         },
@@ -3467,42 +2831,22 @@
         {
           "name": "Yes",
           "label": "筛选开启",
-          "option": [
-            "短",
-            "胁",
-            "打",
-            "太",
-            "大太",
-            "枪",
-            "薙"
-          ]
+          "option": ["短", "胁", "打", "太", "大太", "枪", "薙"]
         },
         {
           "name": "No",
           "label": "不筛选",
           "pipeline_override": {
             "M_HideUnmixable": {
-              "next": [
-                "M_FilterPostHub"
-              ]
+              "next": ["M_FilterPostHub"]
             },
             "M_DetectMailbox": {
-              "next": [
-                "M_NoFilterClick1"
-              ]
+              "next": ["M_NoFilterClick1"]
             },
-            "M_NoFilterClick1": {
-              "enabled": true
-            },
-            "M_NoFilterClick2": {
-              "enabled": true
-            },
-            "M_NoFilterClick3": {
-              "enabled": true
-            },
-            "M_NoFilterClick4": {
-              "enabled": true
-            }
+            "M_NoFilterClick1": {"enabled": true},
+            "M_NoFilterClick2": {"enabled": true},
+            "M_NoFilterClick3": {"enabled": true},
+            "M_NoFilterClick4": {"enabled": true}
           }
         }
       ]
@@ -3516,41 +2860,18 @@
         {
           "name": "Yes",
           "label": "开启",
-          "option": [
-            "卡死等待时间",
-            "目标应用"
-          ],
+          "option": ["卡死等待时间", "目标应用"],
           "pipeline_override": {
-            "S_FallbackWait": {
-              "enabled": false
-            },
-            "M_FallbackWait": {
-              "enabled": false
-            },
-            "LR_FallbackWait": {
-              "enabled": false
-            },
-            "FB_FallbackWait": {
-              "enabled": false
-            },
-            "D_FallbackWait": {
-              "enabled": false
-            },
-            "U_FallbackWait": {
-              "enabled": false
-            },
-            "G_FallbackWait": {
-              "enabled": false
-            },
-            "E_FallbackWait": {
-              "enabled": false
-            },
-            "E_FlowerFallbackWait": {
-              "enabled": false
-            },
-            "FB_PostFallbackWait": {
-              "enabled": false
-            }
+            "S_FallbackWait": {"enabled": false},
+            "M_FallbackWait": {"enabled": false},
+            "LR_FallbackWait": {"enabled": false},
+            "FB_FallbackWait": {"enabled": false},
+            "D_FallbackWait": {"enabled": false},
+            "U_FallbackWait": {"enabled": false},
+            "G_FallbackWait": {"enabled": false},
+            "E_FallbackWait": {"enabled": false},
+            "E_FlowerFallbackWait": {"enabled": false},
+            "FB_PostFallbackWait": {"enabled": false}
           }
         },
         {
@@ -3571,34 +2892,20 @@
           "label": "开启",
           "pipeline_override": {
             "LR_IsTeamSelect": {
-              "next": [
-                "E_CheckTimerExpired"
-              ]
+              "next": ["E_CheckTimerExpired"]
             },
             "E_AllTeamsBusy": {
               "action": "DoNothing",
-              "next": [
-                "E_TrackerOCR"
-              ]
+              "next": ["E_TrackerOCR"]
             },
-            "E_TrackerOCR": {
-              "enabled": true
-            },
-            "E_WaitRefresh": {
-              "enabled": false
-            },
-            "E_SmartWait": {
-              "enabled": true
-            },
+            "E_TrackerOCR": {"enabled": true},
+            "E_WaitRefresh": {"enabled": false},
+            "E_SmartWait": {"enabled": true},
             "E_ClickBackToHome": {
-              "next": [
-                "E_SmartWait"
-              ]
+              "next": ["E_SmartWait"]
             },
             "E_VerifyLeftMenu": {
-              "on_error": [
-                "E_SmartWait"
-              ]
+              "on_error": ["E_SmartWait"]
             }
           }
         },
@@ -3635,30 +2942,14 @@
         }
       ],
       "pipeline_override": {
-        "S_DetectWhereAmI": {
-          "timeout": "{timeout_seconds}000"
-        },
-        "M_DetectWhereAmI": {
-          "timeout": "{timeout_seconds}000"
-        },
-        "LR_DetectWhereAmI": {
-          "timeout": "{timeout_seconds}000"
-        },
-        "FB_DetectWhereAmI": {
-          "timeout": "{timeout_seconds}000"
-        },
-        "D_DetectWhereAmI": {
-          "timeout": "{timeout_seconds}000"
-        },
-        "U_DetectWhereAmI": {
-          "timeout": "{timeout_seconds}000"
-        },
-        "G_DetectWhereAmI": {
-          "timeout": "{timeout_seconds}000"
-        },
-        "Expedition": {
-          "timeout": "{timeout_seconds}000"
-        }
+        "S_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
+        "M_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
+        "LR_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
+        "FB_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
+        "D_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
+        "U_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
+        "G_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
+        "Expedition": {"timeout": "{timeout_seconds}000"}
       }
     },
     "换队长方式": {
@@ -3691,45 +2982,22 @@
           "DisplayName": "队内拖拽",
           "pipeline_override": {
             "S_CaptainHub": {
-              "next": [
-                "S_DragCaptain",
-                "S_IsPreSortieConfirm"
-              ]
+              "next": ["S_DragCaptain", "S_IsPreSortieConfirm"]
             },
-            "S_IsSwordSelect": {
-              "enabled": false
-            },
-            "S_DetectSortOrder": {
-              "enabled": false
-            },
+            "S_IsSwordSelect": {"enabled": false},
+            "S_DetectSortOrder": {"enabled": false},
             "LR_CaptainHub": {
-              "next": [
-                "LR_DragCaptain",
-                "LR_IsPreSortieConfirm"
-              ]
+              "next": ["LR_DragCaptain", "LR_IsPreSortieConfirm"]
             },
-            "LR_IsSwordSelect": {
-              "enabled": false
-            },
-            "LR_DetectSortOrder": {
-              "enabled": false
-            },
+            "LR_IsSwordSelect": {"enabled": false},
+            "LR_DetectSortOrder": {"enabled": false},
             "U_CaptainHub": {
-              "next": [
-                "U_DragCaptain",
-                "U_IsPreSortieConfirm"
-              ]
+              "next": ["U_DragCaptain", "U_IsPreSortieConfirm"]
             },
-            "U_IsSwordSelect": {
-              "enabled": false
-            },
-            "U_DetectSortOrder": {
-              "enabled": false
-            }
+            "U_IsSwordSelect": {"enabled": false},
+            "U_DetectSortOrder": {"enabled": false}
           },
-          "option": [
-            "拖拽跳过位置"
-          ]
+          "option": ["拖拽跳过位置"]
         }
       ]
     },
@@ -3737,26 +3005,14 @@
       "name": "拖拽跳过位置",
       "label": "拖拽跳过位置",
       "type": "checkbox",
-      "description": "队内拖拽换队长时跳过指定位置",
+      "description": "队内拖拽换队长时跳过指定位置。若在任务中启用了「疲劳处理」，请不要在此处勾选。",
       "cases": [
-        {
-          "name": "位置一"
-        },
-        {
-          "name": "位置二"
-        },
-        {
-          "name": "位置三"
-        },
-        {
-          "name": "位置四"
-        },
-        {
-          "name": "位置五"
-        },
-        {
-          "name": "位置六"
-        }
+        {"name": "位置一"},
+        {"name": "位置二"},
+        {"name": "位置三"},
+        {"name": "位置四"},
+        {"name": "位置五"},
+        {"name": "位置六"}
       ],
       "default_case": []
     },
@@ -3772,34 +3028,22 @@
         },
         {
           "name": "Yes",
-          "option": [
-            "疲劳阈值"
-          ],
+          "option": ["疲劳阈值"],
           "pipeline_override": {
             "E_MarkTeam1": {
-              "next": [
-                "E_UseTeamRecord1"
-              ]
+              "next": ["E_UseTeamRecord1"]
             },
             "E_MarkTeam2": {
-              "next": [
-                "E_UseTeamRecord2"
-              ]
+              "next": ["E_UseTeamRecord2"]
             },
             "E_MarkTeam3": {
-              "next": [
-                "E_UseTeamRecord3"
-              ]
+              "next": ["E_UseTeamRecord3"]
             },
             "E_MarkTeam4": {
-              "next": [
-                "E_UseTeamRecord4"
-              ]
+              "next": ["E_UseTeamRecord4"]
             },
             "E_MarkTeam5": {
-              "next": [
-                "E_UseTeamRecord5"
-              ]
+              "next": ["E_UseTeamRecord5"]
             }
           }
         }

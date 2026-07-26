@@ -149,6 +149,13 @@ public class FatigueCheckAction : IMaaCustomAction
                 var ok = reversed ? sortieValues[0].Value < threshold : sortieValues[0].Value >= threshold;
                 LoggerHelper.Info($"[疲劳检测-合战场] 首位={sortieValues[0]}, 阈值={threshold}, reversed={reversed}, 结果={ok}");
                 FlowerStateTracker.CurrentFatigueLowest = sortieValues[0].Value;
+                if (!ok)
+                {
+                    var msg = reversed
+                        ? $"[合战场疲劳处理] 疲劳值恢复完成"
+                        : $"[合战场疲劳处理] 首位疲劳低于阈值，进入刷花";
+                    try { MaaProcessorManager.Instance.Current?.AddLog(msg); } catch { }
+                }
                 return ok;
             }
             else if (mode == "check_captain")
