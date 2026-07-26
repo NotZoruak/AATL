@@ -810,7 +810,7 @@
     "action": "Click",
     "timeout": 3000,
     "pre_delay": 100,
-    "next": ["E_IsAnnouncementPopup"]
+    "next": ["E_IsAnnouncementPopup","Expedition"]
   },
   "E_IsLoginReward": {
     "recognition": {

@@ -642,7 +642,7 @@
     "timeout": 3000,
     "pre_delay": 100,
     "next": [
-      "D_IsAnnouncementPopup"
+      "D_IsAnnouncementPopup","D_DetectWhereAmI"
     ]
   },
   "D_IsLoginReward": {

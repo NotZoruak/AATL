@@ -56,7 +56,7 @@
     "timeout": 3000,
     "pre_delay": 100,
     "next": [
-      "U_IsAnnouncementPopup"
+      "U_IsAnnouncementPopup","U_DetectWhereAmI"
     ]
   },
   "U_IsLoginReward": {

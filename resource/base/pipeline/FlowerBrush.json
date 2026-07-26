@@ -861,7 +861,7 @@
     "timeout": 3000,
     "pre_delay": 100,
     "next": [
-      "FB_IsAnnouncementPopup"
+      "FB_IsAnnouncementPopup","FB_DetectWhereAmI"
     ]
   },
   "FB_IsLoginReward": {

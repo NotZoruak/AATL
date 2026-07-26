@@ -41,7 +41,7 @@
                                               SelectedIndex="{Binding SelectedSwordTypeIndex}"
                                               MinWidth="108" />
                                     <TextBlock Text="当前经验:" VerticalAlignment="Center" />
-                                    <NumericUpDown Value="{Binding CurrentExp}" Minimum="0" Maximum="9999999"
+                                    <NumericUpDown Value="{Binding CurrentExp}" Minimum="0" Maximum="999999999"
                                                    Increment="1000" MinWidth="150" />
                                     <TextBlock Text="目标等级:" VerticalAlignment="Center" />
                                     <NumericUpDown Value="{Binding TargetLevel}" Minimum="1" Maximum="100"

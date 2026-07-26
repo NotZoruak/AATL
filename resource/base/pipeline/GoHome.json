@@ -61,7 +61,7 @@
     "timeout": 3000,
     "pre_delay": 100,
     "next": [
-      "G_IsAnnouncementPopup"
+      "G_IsAnnouncementPopup","G_DetectWhereAmI"
     ]
   },
   "G_IsLoginReward": {

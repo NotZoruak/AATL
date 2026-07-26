@@ -1183,9 +1183,17 @@
     "pre_delay": 100
   },
   "S_VerifyMenuOpened": {
-    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": "菜单目录.png",
+        "green_mask": true,
+        "threshold": [0.9]
+      }
+    },
     "on_error": ["S_ClickMenuForRepair"],
-    "next": ["S_ClickRepairInMenu"]
+    "next": ["S_ClickRepairInMenu"],
+    "pre_delay": 100
   },
   "S_PostClickMenuHub": {
     "next": ["S_VerifyMenuSortie", "S_CheckNavDirForRetry", "S_DetectWhereAmI"],

@@ -15,7 +15,7 @@
     "timeout": 3000,
     "pre_delay": 100,
     "next": [
-      "LR_IsAnnouncementPopup"
+      "LR_IsAnnouncementPopup","LR_DetectWhereAmI"
     ]
   },
   "LR_IsSupplyPopup": {
