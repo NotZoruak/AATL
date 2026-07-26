@@ -125,7 +125,33 @@ public class FatigueCheckAction : IMaaCustomAction
 
             var team = (int?)json["team"] ?? 0;
 
-            if (mode == "check_captain")
+            if (mode == "check_first")
+            {
+                var sortieRois = FatigueRoisSortie;
+                var sortieValues = ReadFatigue(context, sortieRois);
+                for (int retry = 0; retry < 10 && !sortieValues[0].HasValue; retry++)
+                {
+                    LoggerHelper.Info($"[疲劳检测-合战场] 首位 OCR 失败，重试 {retry + 1}/10");
+                    Thread.Sleep(200);
+                    using var retryImage = context.GetImage();
+                    if (retryImage == null) continue;
+                    var text = context.GetText(sortieRois[0][0], sortieRois[0][1], sortieRois[0][2], sortieRois[0][3], retryImage);
+                    if (!string.IsNullOrWhiteSpace(text))
+                    {
+                        var clean = text.Trim().Replace('B', '8').Replace('O', '0').Replace('S', '5');
+                        if (clean.Contains('/')) clean = clean.Split('/')[0];
+                        if (int.TryParse(clean.Trim(), out var val) && val > 0)
+                            sortieValues[0] = val;
+                    }
+                }
+                if (!sortieValues[0].HasValue) { LoggerHelper.Warning("[疲劳检测-合战场] 首位 OCR 失败"); return false; }
+                var reversed = (bool?)json["reversed"] ?? false;
+                var ok = reversed ? sortieValues[0].Value < threshold : sortieValues[0].Value >= threshold;
+                LoggerHelper.Info($"[疲劳检测-合战场] 首位={sortieValues[0]}, 阈值={threshold}, reversed={reversed}, 结果={ok}");
+                FlowerStateTracker.CurrentFatigueLowest = sortieValues[0].Value;
+                return ok;
+            }
+            else if (mode == "check_captain")
             {
                 if (!values[0].HasValue) { LoggerHelper.Warning("[疲劳检测] 队长位 OCR 失败"); return false; }
                 var ok = values[0].Value >= threshold;
