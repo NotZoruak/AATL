@@ -619,6 +619,18 @@
     "enabled": false,
     "next": ["S_ClickRetreat"]
   },
+  "S_Boss_E5_R2": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1080, 242, 10, 15],
+        "template": "Sortie_boss/王点_5_2.png",
+        "threshold": [0.98]
+      }
+    },
+    "enabled": false,
+    "next": ["S_ClickRetreat"]
+  },
   "S_Boss_E5_R3": {
     "recognition": {
       "type": "TemplateMatch",
@@ -667,12 +679,48 @@
     "enabled": false,
     "next": ["S_ClickRetreat"]
   },
+  "S_MidRetreat_E4_R1": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1080, 242, 10, 15],
+        "template": "Sortie_boss/道中_4_1_1.png",
+        "threshold": [0.98]
+      }
+    },
+    "enabled": false,
+    "next": ["S_ClickRetreat"]
+  },
+  "S_MidRetreat_E4_R2": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1031, 303, 10, 14],
+        "template": "Sortie_boss/道中_4_1_2.png",
+        "threshold": [0.98]
+      }
+    },
+    "enabled": false,
+    "next": ["S_ClickRetreat"]
+  },
   "S_Boss_E6_R1": {
     "recognition": {
       "type": "TemplateMatch",
       "param": {
         "roi": [983, 204, 10, 13],
         "template": "Sortie_boss/王点_6_1_1.png",
+        "threshold": [0.98]
+      }
+    },
+    "enabled": false,
+    "next": ["S_ClickRetreat"]
+  },
+  "S_Boss_E6_R1_2": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1103, 224, 11, 16],
+        "template": "Sortie_boss/王点_6_1_2.png",
         "threshold": [0.98]
       }
     },
@@ -1024,6 +1072,13 @@
   },
   "S_CheckAccel": {
     "next": ["S_ClickAccel"]
+  },
+  "S_ClickRepairDone": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DamageLogAction",
+      "custom_action_param": {"message": "[重伤检测]刀剑修理中"}
+    }
   },
   "S_ClickAccel": {
     "action": {
