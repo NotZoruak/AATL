@@ -1453,8 +1453,7 @@
             "S_DetectSortOrder": {"enabled": true},
             "S_ClickDescending": {"enabled": true},
             "S_ConfirmSortAsc": {
-              "enabled": true,
-              "next": ["S_FatigueCheck"]
+              "enabled": true
             },
             "S_ClickCaptain1": {"enabled": true},
             "S_ClickCaptain2": {"enabled": true},
@@ -1463,8 +1462,7 @@
             "S_ClickCaptain5": {"enabled": true},
             "S_ClickCaptainSlot": {"enabled": true},
             "S_DragCaptain": {
-              "enabled": true,
-              "next": ["S_FatigueCheck"]
+              "enabled": true
             }
           }
         }
@@ -1992,6 +1990,8 @@
           "name": "刷花",
           "DisplayName": "刷花",
           "pipeline_override": {
+            "S_ConfirmSortAsc": {"next": ["S_FatigueCheck"]},
+            "S_DragCaptain": {"next": ["S_FatigueCheck"]},
             "S_FatigueCheck": {"enabled": true},
             "SF_Hub": {"enabled": true},
             "SF_UseRecord_Step1": {"enabled": true},
@@ -2002,6 +2002,8 @@
           "name": "停止",
           "DisplayName": "停止",
           "pipeline_override": {
+            "S_ConfirmSortAsc": {"next": ["S_FatigueCheck"]},
+            "S_DragCaptain": {"next": ["S_FatigueCheck"]},
             "S_FatigueCheck": {
               "enabled": true,
               "on_error": []
@@ -2871,7 +2873,8 @@
             "G_FallbackWait": {"enabled": false},
             "E_FallbackWait": {"enabled": false},
             "E_FlowerFallbackWait": {"enabled": false},
-            "FB_PostFallbackWait": {"enabled": false}
+            "FB_PostFallbackWait": {"enabled": false},
+            "SF_FallbackWait": {"enabled": false}
           }
         },
         {
@@ -2949,6 +2952,7 @@
         "D_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "U_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "G_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
+        "SF_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "Expedition": {"timeout": "{timeout_seconds}000"}
       }
     },

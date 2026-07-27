@@ -1895,7 +1895,8 @@
   },
   "SF_Hub": {
     "enabled": false,
-    "next": ["SF_ClickMenu"]
+    "next": ["SF_ClickMenu"],
+    "on_error": ["SF_DetectWhereAmI"]
   },
   "SF_DetectWhereAmI": {
     "pre_delay": 0,

@@ -95,6 +95,55 @@ public class FatigueCheckAction : IMaaCustomAction
             var mode = (string?)json["mode"] ?? "check_all";
             var threshold = (int?)json["threshold"] ?? GetThreshold();
 
+            // check_first 模式：仅 OCR 出阵编队页面首位疲劳值，不走通用六位扫描
+            if (mode == "check_first")
+            {
+                var sortieRoi = FatigueRoisSortie[0];
+                int? firstValue = null;
+                using (var image = context.GetImage())
+                {
+                    if (image != null)
+                    {
+                        var text = context.GetText(sortieRoi[0], sortieRoi[1], sortieRoi[2], sortieRoi[3], image);
+                        if (!string.IsNullOrWhiteSpace(text))
+                        {
+                            var clean = text.Trim().Replace('B', '8').Replace('O', '0').Replace('S', '5');
+                            if (clean.Contains('/')) clean = clean.Split('/')[0];
+                            if (int.TryParse(clean.Trim(), out var val) && val > 0)
+                                firstValue = val;
+                        }
+                    }
+                }
+                for (int retry = 0; retry < 10 && !firstValue.HasValue; retry++)
+                {
+                    LoggerHelper.Info($"[疲劳检测-合战场] 首位 OCR 失败，重试 {retry + 1}/10");
+                    Thread.Sleep(200);
+                    using var retryImage = context.GetImage();
+                    if (retryImage == null) continue;
+                    var text = context.GetText(sortieRoi[0], sortieRoi[1], sortieRoi[2], sortieRoi[3], retryImage);
+                    if (!string.IsNullOrWhiteSpace(text))
+                    {
+                        var clean = text.Trim().Replace('B', '8').Replace('O', '0').Replace('S', '5');
+                        if (clean.Contains('/')) clean = clean.Split('/')[0];
+                        if (int.TryParse(clean.Trim(), out var val) && val > 0)
+                            firstValue = val;
+                    }
+                }
+                if (!firstValue.HasValue) { LoggerHelper.Warning("[疲劳检测-合战场] 首位 OCR 失败"); return false; }
+                var reversed = (bool?)json["reversed"] ?? false;
+                var ok = reversed ? firstValue.Value < threshold : firstValue.Value >= threshold;
+                LoggerHelper.Info($"[疲劳检测-合战场] 首位={firstValue}, 阈值={threshold}, reversed={reversed}, 结果={ok}");
+                FlowerStateTracker.CurrentFatigueLowest = firstValue.Value;
+                if (!ok)
+                {
+                    var msg = reversed
+                        ? $"[合战场疲劳处理] 疲劳值恢复完成"
+                        : $"[合战场疲劳处理] 首位疲劳低于30，进入刷花";
+                    try { MaaProcessorManager.Instance.Current?.AddLog(msg); } catch { }
+                }
+                return ok;
+            }
+
             var rois = mode == "check_captain" ? FatigueRoisSortie : FatigueRoisExpedition;
             var values = ReadFatigue(context, rois);
 
@@ -125,40 +174,7 @@ public class FatigueCheckAction : IMaaCustomAction
 
             var team = (int?)json["team"] ?? 0;
 
-            if (mode == "check_first")
-            {
-                var sortieRois = FatigueRoisSortie;
-                var sortieValues = ReadFatigue(context, sortieRois);
-                for (int retry = 0; retry < 10 && !sortieValues[0].HasValue; retry++)
-                {
-                    LoggerHelper.Info($"[疲劳检测-合战场] 首位 OCR 失败，重试 {retry + 1}/10");
-                    Thread.Sleep(200);
-                    using var retryImage = context.GetImage();
-                    if (retryImage == null) continue;
-                    var text = context.GetText(sortieRois[0][0], sortieRois[0][1], sortieRois[0][2], sortieRois[0][3], retryImage);
-                    if (!string.IsNullOrWhiteSpace(text))
-                    {
-                        var clean = text.Trim().Replace('B', '8').Replace('O', '0').Replace('S', '5');
-                        if (clean.Contains('/')) clean = clean.Split('/')[0];
-                        if (int.TryParse(clean.Trim(), out var val) && val > 0)
-                            sortieValues[0] = val;
-                    }
-                }
-                if (!sortieValues[0].HasValue) { LoggerHelper.Warning("[疲劳检测-合战场] 首位 OCR 失败"); return false; }
-                var reversed = (bool?)json["reversed"] ?? false;
-                var ok = reversed ? sortieValues[0].Value < threshold : sortieValues[0].Value >= threshold;
-                LoggerHelper.Info($"[疲劳检测-合战场] 首位={sortieValues[0]}, 阈值={threshold}, reversed={reversed}, 结果={ok}");
-                FlowerStateTracker.CurrentFatigueLowest = sortieValues[0].Value;
-                if (!ok)
-                {
-                    var msg = reversed
-                        ? $"[合战场疲劳处理] 疲劳值恢复完成"
-                        : $"[合战场疲劳处理] 首位疲劳低于阈值，进入刷花";
-                    try { MaaProcessorManager.Instance.Current?.AddLog(msg); } catch { }
-                }
-                return ok;
-            }
-            else if (mode == "check_captain")
+            if (mode == "check_captain")
             {
                 if (!values[0].HasValue) { LoggerHelper.Warning("[疲劳检测] 队长位 OCR 失败"); return false; }
                 var ok = values[0].Value >= threshold;
