@@ -746,7 +746,7 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
         }
         else
         {
-            finalItems.AddRange(newItems);
+            finalItems.AddRange(newItems.Where(item => item.InterfaceItem?.ShowInList != false));
         }
 
         // UI 线程更新集合，确保 TaskList 刷新

@@ -662,6 +662,15 @@ public partial class MaaInterface
         [JsonConverter(typeof(GenericSingleOrListConverter<string>))] [JsonProperty("group")]
         public List<string>? Group;
 
+        /// <summary>
+        /// 是否在任务列表中默认显示。设为 false 时仅首启隐藏，仍可通过添加任务对话框手动加入。
+        /// 默认值 true，保持向后兼容。
+        /// </summary>
+        [JsonProperty("show_in_list",
+            NullValueHandling = NullValueHandling.Include,
+            DefaultValueHandling = DefaultValueHandling.Include)]
+        public bool? ShowInList = true;
+
         /// <summary>文档说明（旧版兼容）</summary>
         [JsonConverter(typeof(GenericSingleOrListConverter<string>))] [JsonProperty("doc")]
         public List<string>? Document;
