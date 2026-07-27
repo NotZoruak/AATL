@@ -1969,7 +1969,7 @@
             "S_IsRepair": {"enabled": true},
             "S_ClickRepair": {"enabled": true},
             "S_ConfirmRepair": {"enabled": true},
-            "S_CheckAccel": {"next": ["S_ClickRepairDone"]},
+            "S_CheckAccel": {"next": ["S_ClickRepairandStop"]},
             "S_IsStopOnDamage": {"enabled": false},
             "S_IsPreDamage1": {"enabled": true},
             "S_IsPreDamage2": {"enabled": true},

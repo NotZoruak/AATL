@@ -667,18 +667,6 @@
     "enabled": false,
     "next": ["S_ClickRetreat"]
   },
-  "S_MidRetreat_E6_R1": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [972, 229, 11, 15],
-        "template": "Sortie_boss/道中_6_1_1.png",
-        "threshold": [0.98]
-      }
-    },
-    "enabled": false,
-    "next": ["S_ClickRetreat"]
-  },
   "S_MidRetreat_E4_R1": {
     "recognition": {
       "type": "TemplateMatch",
@@ -697,6 +685,18 @@
       "param": {
         "roi": [1031, 303, 10, 14],
         "template": "Sortie_boss/道中_4_1_2.png",
+        "threshold": [0.98]
+      }
+    },
+    "enabled": false,
+    "next": ["S_ClickRetreat"]
+  },
+  "S_MidRetreat_E6_R1": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [972, 229, 11, 15],
+        "template": "Sortie_boss/道中_6_1_1.png",
         "threshold": [0.98]
       }
     },
@@ -1073,13 +1073,6 @@
   "S_CheckAccel": {
     "next": ["S_ClickAccel"]
   },
-  "S_ClickRepairDone": {
-    "action": {
-      "type": "Custom",
-      "custom_action": "DamageLogAction",
-      "custom_action_param": {"message": "[重伤检测]刀剑修理中"}
-    }
-  },
   "S_ClickAccel": {
     "action": {
       "type": "Click",
@@ -1098,6 +1091,12 @@
     "next": ["S_LogRepairDone"],
     "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
+  },
+  "S_ClickRepairandStop": {
+    "recognition": "OCR",
+    "roi": [1159, 588, 83, 44],
+    "expected": "修复",
+    "action": "Click"
   },
   "S_LogRepairDone": {
     "action": {

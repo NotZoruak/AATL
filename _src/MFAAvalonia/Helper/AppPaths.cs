@@ -236,6 +236,37 @@ public static class AppPaths
                 }
             }
 
+            // debug 目录磁盘占用超 100MB 时仅保留最新两条 maafw.bak.*.log
+            try
+            {
+                var debugDirSize = Directory.EnumerateFiles(debugPath, "*", SearchOption.AllDirectories)
+                    .Sum(f => { try { return new FileInfo(f).Length; } catch { return 0L; } });
+                if (debugDirSize > 100 * 1024 * 1024)
+                {
+                    var excessBakFiles = Directory.EnumerateFiles(debugPath, "maafw.bak.*.log", SearchOption.TopDirectoryOnly)
+                        .OrderByDescending(f => f)
+                        .Skip(2)
+                        .ToList();
+                    foreach (var file in excessBakFiles)
+                    {
+                        try
+                        {
+                            File.SetAttributes(file, FileAttributes.Normal);
+                            File.Delete(file);
+                            logInfo?.Invoke($"debug 目录超 100MB，已清理备份日志：文件={Path.GetFileName(file)}");
+                        }
+                        catch (Exception ex)
+                        {
+                            logWarning?.Invoke($"清理备份日志失败：文件={file}，原因={ex.Message}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logWarning?.Invoke($"检查 debug 目录大小时出错：原因={ex.Message}");
+            }
+
             // 清理过期的调试截图
             foreach (var pattern in new[] { "*.png", "*.jpg", "*.jpeg" })
             {
