@@ -39,6 +39,16 @@
       "description": "通用合战场出阵自动化，无限循环。\n与自动行军同时开启时，请注意截图延迟与游戏卡顿影响。\n\n- **换队长**：换队长的方式可在全局设置中修改。\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n- **王点前撤退**：一图不生效。使用该功能时请保证模拟器分辨率为 1280*720，240DPI。\n- **道中撤退**：需同时开启王点前撤退。包含4-1速刷委托符，8-1王点前三点处撤退，8-2与8-4不过桥，8-3玉钢点后撤退。\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保合战场使用的队伍在远征任务中设置为「休息」。"
     },
     {
+      "name": "地下城",
+      "entry": "Underground",
+      "default_check": false,
+      "repeatable": true,
+      "repeat_count": 1,
+      "option": ["U_层数选择", "U_选择部队", "U_选择阵形", "U_重伤处理", "U_换队长", "U_补充刀装", "U_每轮回本丸", "U_动画跳过", "U_同步远征"],
+      "label": "地下城",
+      "description": "地下城活动自动化出阵。\n\n- **换队长**：换队长的方式可在全局设置中修改。\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n- **每轮回本丸**：每轮战斗结束后返回本丸，适用于未通关99层时避免走到已通关层。\n- **层数选择**：设定目标层数（1-99）。当未通关99层时，须同时启用「每轮回本丸」。\n- **动画跳过**：跳过地下城宝箱等过场动画。\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保地下城使用的队伍在远征任务中设置为「休息」。"
+    },
+    {
       "name": "陆联",
       "entry": "LRentaisen",
       "default_check": false,
@@ -2205,13 +2215,33 @@
     "U_重伤处理": {
       "name": "U_重伤处理",
       "label": "重伤处理",
-      "default_case": "修刀",
+      "default_case": "修刀并继续",
       "cases": [
         {
-          "name": "修刀",
-          "DisplayName": "修刀",
+          "name": "修刀并继续",
+          "DisplayName": "修刀并继续",
           "pipeline_override": {
             "U_IsRepair": {"enabled": true},
+            "U_UseSpeedup": {"enabled": true},
+            "U_ConfirmRepair": {"enabled": true},
+            "U_ClickMenuFromRepair": {"enabled": true},
+            "U_IsStopOnDamage": {"enabled": false},
+            "U_IsPreDamage1": {"enabled": true},
+            "U_IsPreDamage2": {"enabled": true},
+            "U_StopOnDamagePopup": {"enabled": false},
+            "U_StopOnDamageText": {"enabled": false}
+          }
+        },
+        {
+          "name": "修刀并停止",
+          "DisplayName": "修刀并停止",
+          "pipeline_override": {
+            "U_IsRepair": {"enabled": true},
+            "U_UseSpeedup": {"enabled": true},
+            "U_ConfirmRepair": {"enabled": true},
+            "U_CheckAccel": {
+              "next": ["U_ClickRepairandStop"]
+            },
             "U_IsStopOnDamage": {"enabled": false},
             "U_IsPreDamage1": {"enabled": true},
             "U_IsPreDamage2": {"enabled": true},
@@ -2435,7 +2465,7 @@
         {
           "name": "target_floor",
           "label": "层数选择",
-          "default": "51",
+          "default": "99",
           "pipeline_type": "int",
           "description": "设定目标层数（1-99）。当未通过地下城99层时，须同时启用「每轮回本丸」。"
         }
@@ -2559,7 +2589,19 @@
               "on_error": ["U_DetectWhereAmI"]
             },
             "E_AllTeamsBusy": {
+              "next": ["E_TimerStart"]
+            },
+            "E_TimerStart": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionTimerAction",
+                "custom_action_param": {"mode": "start"}
+              },
               "next": ["U_NavigateToUnderground"]
+            },
+            "E_CheckTimerExpired": {
+              "next": ["U_GoHomeAfterRound", "U_ContinueNextRound"],
+              "on_error": ["U_GoHomeForExpedition"]
             },
             "U_WaitRefresh": {"enabled": true}
           }
@@ -2915,6 +2957,9 @@
           "pipeline_override": {
             "LR_IsTeamSelect": {
               "next": ["E_CheckTimerExpired"]
+            },
+            "U_CheckRoundComplete": {
+              "next": ["E_CheckTimerExpired", "U_GoHomeAfterRound", "U_ContinueNextRound"]
             },
             "E_AllTeamsBusy": {
               "action": "DoNothing",

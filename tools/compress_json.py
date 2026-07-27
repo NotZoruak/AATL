@@ -20,18 +20,19 @@ def fmt(obj, indent=0):
         return "{\n" + ",\n".join(items) + f"\n{sp}}}"
 
     elif isinstance(obj, list):
-        # 纯数字四元素 → 单行
-        if len(obj) == 4 and all(isinstance(x, (int, float)) for x in obj):
-            return f"[{obj[0]}, {obj[1]}, {obj[2]}, {obj[3]}]"
-        # 纯数字单元素 → 单行
-        if len(obj) == 1 and isinstance(obj[0], (int, float)):
-            return f"[{obj[0]}]"
+        # 纯数字数组 → 单行
+        if all(isinstance(x, (int, float)) for x in obj):
+            inner = ", ".join(str(x) for x in obj)
+            return f"[{inner}]"
         if not obj:
             return "[]"
-        # 全字符串数组 → 单行
+        # 全字符串数组 → 超过 5 个保持多行，否则单行
         if all(isinstance(x, str) for x in obj):
-            inner = ", ".join(f'"{x}"' for x in obj)
-            return f"[{inner}]"
+            if len(obj) <= 5:
+                inner = ", ".join(f'"{x}"' for x in obj)
+                return f"[{inner}]"
+            items = [f"{sp1}\"{x}\"" for x in obj]
+            return "[\n" + ",\n".join(items) + f"\n{sp}]"
         items = [f"{sp1}{fmt(x, indent + 1)}" for x in obj]
         return "[\n" + ",\n".join(items) + f"\n{sp}]"
 

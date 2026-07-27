@@ -70,10 +70,7 @@
       "type": "OCR",
       "param": {
         "roi": [166, 38, 159, 31],
-        "expected": [
-          "机",
-          "队员"
-        ]
+        "expected": ["机", "队员"]
       }
     },
     "next": ["E_SelectTeam1"],
@@ -163,10 +160,7 @@
       "type": "OCR",
       "param": {
         "roi": [166, 152, 159, 31],
-        "expected": [
-          "机",
-          "队员"
-        ]
+        "expected": ["机", "队员"]
       }
     },
     "next": ["E_SelectTeam2"],
@@ -256,10 +250,7 @@
       "type": "OCR",
       "param": {
         "roi": [166, 268, 159, 31],
-        "expected": [
-          "机",
-          "队员"
-        ]
+        "expected": ["机", "队员"]
       }
     },
     "next": ["E_SelectTeam3"],
@@ -349,10 +340,7 @@
       "type": "OCR",
       "param": {
         "roi": [166, 383, 159, 31],
-        "expected": [
-          "机",
-          "队员"
-        ]
+        "expected": ["机", "队员"]
       }
     },
     "next": ["E_SelectTeam4"],
@@ -442,10 +430,7 @@
       "type": "OCR",
       "param": {
         "roi": [166, 498, 159, 31],
-        "expected": [
-          "机",
-          "队员"
-        ]
+        "expected": ["机", "队员"]
       }
     },
     "next": ["E_SelectTeam5"],
@@ -587,7 +572,13 @@
     "next": ["E_ClickDirectoryTop"]
   },
   "E_ClickDirectoryTop": {
-    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1183, 18, 87, 40],
+        "expected": "目"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {}
@@ -613,7 +604,13 @@
     "next": ["E_ClickBackToHome"]
   },
   "E_CheckNavDirRetry_Exp": {
-    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1183, 18, 87, 40],
+        "expected": "目"
+      }
+    },
     "action": "Click",
     "next": ["E_PostClickDirectoryHub"],
     "pre_delay": 100
@@ -810,7 +807,7 @@
     "action": "Click",
     "timeout": 3000,
     "pre_delay": 100,
-    "next": ["E_IsAnnouncementPopup","Expedition"]
+    "next": ["E_IsAnnouncementPopup", "Expedition"]
   },
   "E_IsLoginReward": {
     "recognition": {
@@ -843,8 +840,8 @@
   "E_CheckHomeBrightness": {
     "recognition": "ColorMatch",
     "roi": [66, 58, 11, 13],
-    "upper": [40,155,30],
-    "lower": [23,95,15],
+    "upper": [40, 155, 30],
+    "lower": [23, 95, 15],
     "action": "DoNothing",
     "next": ["E_DetectHome"]
   },
@@ -935,9 +932,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "DispatchLogAction",
-      "custom_action_param": {
-        "mode": "log"
-      }
+      "custom_action_param": {"mode": "log"}
     },
     "next": ["E_GoHome"]
   },
@@ -945,9 +940,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "ExpeditionTimerAction",
-      "custom_action_param": {
-        "mode": "reset"
-      }
+      "custom_action_param": {"mode": "reset"}
     },
     "next": []
   },
@@ -1369,7 +1362,13 @@
     "pre_delay": 100
   },
   "E_FlowerNavigate": {
-    "recognition": {"type": "OCR", "param": {"roi": [1183, 18, 87, 40], "expected": "目"}},
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1183, 18, 87, 40],
+        "expected": "目"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {}
@@ -1465,9 +1464,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "FatigueCheckAction",
-      "custom_action_param": {
-        "mode": "check_captain"
-      }
+      "custom_action_param": {"mode": "check_captain"}
     },
     "next": ["E_FlowerDone"],
     "on_error": ["E_FlowerSortie"],
@@ -1482,8 +1479,8 @@
       "type": "ColorMatch",
       "param": {
         "roi": [1075, 211, 36, 420],
-        "upper": [46,46,46],
-        "lower": [40,40,40],
+        "upper": [46, 46, 46],
+        "lower": [40, 40, 40],
         "method": 4,
         "count": 1
       }
@@ -1839,8 +1836,7 @@
   "E_FlowerIsSwordDropColor": {
     "recognition": "ColorMatch",
     "roi": [598, 543, 66, 1],
-    "upper": [96, 56, 10
-    ],
+    "upper": [96, 56, 10],
     "lower": [88, 48, 2],
     "action": {
       "type": "Click",

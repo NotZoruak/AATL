@@ -18,7 +18,35 @@
   },
   "S_DetectWhereAmI": {
     "pre_delay": 0,
-    "next": ["S_IsAnnouncementPopup", "S_IsTrainingLetter", "S_IsLoginReward", "S_HasExpeditionReturn_Exp", "S_IsMarching", "S_IsBattleResult_Exp", "S_IsBattleResult_Title", "S_IsSwordDropColor", "S_IsKebiishi", "S_IsFormationSelect", "S_IsSwordSelect", "S_IsTeamSelect", "S_IsEraSelect", "S_IsRegionSelect", "S_IsSortieActivity", "S_IsMenuDirectory", "S_IsTeamStatusPanel", "S_CheckHomeBrightness", "S_IsRepair", "S_IsStopOnDamage", "S_IsGameIcon", "S_IsLoginButton", "S_IsGameUpdatePopup", "S_IsInGameUpdatePopup", "S_IsInternalReport", "S_IsTroopRecordPage", "S_FallbackWait"],
+    "next": [
+      "S_IsAnnouncementPopup",
+      "S_IsTrainingLetter",
+      "S_IsLoginReward",
+      "S_HasExpeditionReturn_Exp",
+      "S_IsMarching",
+      "S_IsBattleResult_Exp",
+      "S_IsBattleResult_Title",
+      "S_IsSwordDropColor",
+      "S_IsKebiishi",
+      "S_IsFormationSelect",
+      "S_IsSwordSelect",
+      "S_IsTeamSelect",
+      "S_IsEraSelect",
+      "S_IsRegionSelect",
+      "S_IsSortieActivity",
+      "S_IsMenuDirectory",
+      "S_IsTeamStatusPanel",
+      "S_CheckHomeBrightness",
+      "S_IsRepair",
+      "S_IsStopOnDamage",
+      "S_IsGameIcon",
+      "S_IsLoginButton",
+      "S_IsGameUpdatePopup",
+      "S_IsInGameUpdatePopup",
+      "S_IsInternalReport",
+      "S_IsTroopRecordPage",
+      "S_FallbackWait"
+    ],
     "timeout": 120000,
     "on_error": ["S_RestartGame"]
   },
@@ -63,16 +91,8 @@
   "S_IsSwordDropColor": {
     "recognition": "ColorMatch",
     "roi": [598, 543, 66, 1],
-    "upper": [
-      96,
-      56,
-      10
-    ],
-    "lower": [
-      88,
-      48,
-      2
-    ],
+    "upper": [96, 56, 10],
+    "lower": [88, 48, 2],
     "action": {
       "type": "Click",
       "param": {
@@ -185,7 +205,14 @@
   "S_PostSortieHub": {
     "timeout": 30000,
     "on_error": ["S_DetectWhereAmI"],
-    "next": ["S_IsPreDamage1", "S_StopOnDamagePopup", "S_IsPreDamage2", "S_StopOnDamageText", "S_CheckEquipmentPopup", "S_DetectAfterSortieNow"]
+    "next": [
+      "S_IsPreDamage1",
+      "S_StopOnDamagePopup",
+      "S_IsPreDamage2",
+      "S_StopOnDamageText",
+      "S_CheckEquipmentPopup",
+      "S_DetectAfterSortieNow"
+    ]
   },
   "S_CheckEquipmentPopup": {
     "recognition": {
@@ -546,7 +573,49 @@
   },
   "S_CheckBossBeforeMarch": {
     "pre_delay": 0,
-    "next": ["S_IsMarchingDamage", "S_Boss_E2_R1", "S_Boss_E3_R1", "S_Boss_E4_R1", "S_Boss_E2_R2_1", "S_Boss_E2_R2_2", "S_Boss_E3_R2", "S_Boss_E3_R3", "S_Boss_E3_R4", "S_Boss_E4_R2", "S_Boss_E2_R3_1", "S_Boss_E2_R3_2", "S_Boss_E2_R3_3", "S_Boss_E4_R3", "S_Boss_E2_R4", "S_Boss_E4_R4", "S_Boss_E5_R1", "S_Boss_E5_R3", "S_Boss_E5_R3_2", "S_Boss_E5_R4_1", "S_Boss_E5_R4_2", "S_MidRetreat_E6_R1", "S_Boss_E6_R1", "S_Boss_E6_R2", "S_Boss_E6_R3", "S_Boss_E6_R4", "S_Boss_E7_R1", "S_Boss_E7_R2_1", "S_Boss_E7_R2_2", "S_Boss_E7_R3_1", "S_Boss_E7_R3_2", "S_Boss_E7_R4", "S_MidRetreat_E8_R1", "S_MidRetreat_E8_R2", "S_MidRetreat_E8_R3", "S_MidRetreat_E8_R4", "S_Boss_E8_R1", "S_Boss_E8_R2", "S_Boss_E8_R3", "S_Boss_E8_R4", "S_PostClickMarching"],
+    "next": [
+      "S_IsMarchingDamage",
+      "S_Boss_E2_R1",
+      "S_Boss_E3_R1",
+      "S_Boss_E4_R1",
+      "S_Boss_E2_R2_1",
+      "S_Boss_E2_R2_2",
+      "S_Boss_E3_R2",
+      "S_Boss_E3_R3",
+      "S_Boss_E3_R4",
+      "S_Boss_E4_R2",
+      "S_Boss_E2_R3_1",
+      "S_Boss_E2_R3_2",
+      "S_Boss_E2_R3_3",
+      "S_Boss_E4_R3",
+      "S_Boss_E2_R4",
+      "S_Boss_E4_R4",
+      "S_Boss_E5_R1",
+      "S_Boss_E5_R3",
+      "S_Boss_E5_R3_2",
+      "S_Boss_E5_R4_1",
+      "S_Boss_E5_R4_2",
+      "S_MidRetreat_E6_R1",
+      "S_Boss_E6_R1",
+      "S_Boss_E6_R2",
+      "S_Boss_E6_R3",
+      "S_Boss_E6_R4",
+      "S_Boss_E7_R1",
+      "S_Boss_E7_R2_1",
+      "S_Boss_E7_R2_2",
+      "S_Boss_E7_R3_1",
+      "S_Boss_E7_R3_2",
+      "S_Boss_E7_R4",
+      "S_MidRetreat_E8_R1",
+      "S_MidRetreat_E8_R2",
+      "S_MidRetreat_E8_R3",
+      "S_MidRetreat_E8_R4",
+      "S_Boss_E8_R1",
+      "S_Boss_E8_R2",
+      "S_Boss_E8_R3",
+      "S_Boss_E8_R4",
+      "S_PostClickMarching"
+    ],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_PostClickMarching": {
@@ -1717,16 +1786,8 @@
   "S_CheckHomeBrightness": {
     "recognition": "ColorMatch",
     "roi": [66, 58, 11, 13],
-    "upper": [
-      40,
-      155,
-      30
-    ],
-    "lower": [
-      23,
-      95,
-      15
-    ],
+    "upper": [40, 155, 30],
+    "lower": [23, 95, 15],
     "action": "DoNothing",
     "next": ["S_IsHome", "S_DetectWhereAmI"]
   },
@@ -1956,7 +2017,29 @@
     "pre_delay": 0,
     "timeout": 120000,
     "on_error": ["SF_RestartGame"],
-    "next": ["SF_IsAnnouncementPopup", "SF_IsTrainingLetter", "SF_IsLoginReward", "SF_HasExpeditionReturn_Exp", "SF_HasExpeditionReturn_Title", "SF_IsGameIcon", "SF_IsLoginButton", "SF_IsGameUpdatePopup", "SF_IsInGameUpdatePopup", "SF_IsInternalReport", "SF_CheckHomeBrightness", "SF_IsEraSelect", "SF_IsRegionSelect", "SF_IsSortieActivity", "SF_IsTeamSelect", "SF_IsMarching", "SF_IsFormationSelect", "SF_IsBattleResult_Exp", "SF_IsBattleResult_Title", "SF_IsSwordDrop", "SF_FallbackWait"]
+    "next": [
+      "SF_IsAnnouncementPopup",
+      "SF_IsTrainingLetter",
+      "SF_IsLoginReward",
+      "SF_HasExpeditionReturn_Exp",
+      "SF_HasExpeditionReturn_Title",
+      "SF_IsGameIcon",
+      "SF_IsLoginButton",
+      "SF_IsGameUpdatePopup",
+      "SF_IsInGameUpdatePopup",
+      "SF_IsInternalReport",
+      "SF_CheckHomeBrightness",
+      "SF_IsEraSelect",
+      "SF_IsRegionSelect",
+      "SF_IsSortieActivity",
+      "SF_IsTeamSelect",
+      "SF_IsMarching",
+      "SF_IsFormationSelect",
+      "SF_IsBattleResult_Exp",
+      "SF_IsBattleResult_Title",
+      "SF_IsSwordDrop",
+      "SF_FallbackWait"
+    ]
   },
   "SF_IsAnnouncementPopup": {
     "recognition": {
@@ -2105,16 +2188,8 @@
   "SF_CheckHomeBrightness": {
     "recognition": "ColorMatch",
     "roi": [66, 58, 11, 13],
-    "upper": [
-      40,
-      155,
-      30
-    ],
-    "lower": [
-      23,
-      95,
-      15
-    ],
+    "upper": [40, 155, 30],
+    "lower": [23, 95, 15],
     "action": "DoNothing",
     "next": ["SF_IsHome", "SF_DetectWhereAmI"]
   },
@@ -2292,16 +2367,8 @@
       "type": "ColorMatch",
       "param": {
         "roi": [1075, 211, 36, 420],
-        "upper": [
-          46,
-          46,
-          46
-        ],
-        "lower": [
-          40,
-          40,
-          40
-        ],
+        "upper": [46, 46, 46],
+        "lower": [40, 40, 40],
         "method": 4,
         "count": 1
       }
@@ -2388,16 +2455,8 @@
   "SF_IsSwordDrop": {
     "recognition": "ColorMatch",
     "roi": [598, 543, 66, 1],
-    "upper": [
-      96,
-      56,
-      10
-    ],
-    "lower": [
-      88,
-      48,
-      2
-    ],
+    "upper": [96, 56, 10],
+    "lower": [88, 48, 2],
     "action": {
       "type": "Click",
       "param": {
