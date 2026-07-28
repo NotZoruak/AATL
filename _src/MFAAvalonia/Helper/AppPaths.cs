@@ -260,6 +260,29 @@ public static class AppPaths
                             logWarning?.Invoke($"清理备份日志失败：文件={file}，原因={ex.Message}");
                         }
                     }
+
+                    // 超 100MB 时清理 on_error 截图，仅保留最新 5 张
+                    var onErrorPath = Path.Combine(debugPath, "on_error");
+                    if (Directory.Exists(onErrorPath))
+                    {
+                        var excessScreenshots = Directory.EnumerateFiles(onErrorPath, "*.png", SearchOption.TopDirectoryOnly)
+                            .OrderByDescending(f => f)
+                            .Skip(5)
+                            .ToList();
+                        foreach (var file in excessScreenshots)
+                        {
+                            try
+                            {
+                                File.SetAttributes(file, FileAttributes.Normal);
+                                File.Delete(file);
+                                logInfo?.Invoke($"debug 目录超 100MB，已清理 on_error 截图：文件={Path.GetFileName(file)}");
+                            }
+                            catch (Exception ex)
+                            {
+                                logWarning?.Invoke($"清理 on_error 截图失败：文件={file}，原因={ex.Message}");
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)

@@ -981,7 +981,8 @@
     },
     "enabled": false,
     "next": ["S_ConfirmRetreat", "S_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "post_delay": 500
   },
   "S_ConfirmRetreat": {
     "recognition": {

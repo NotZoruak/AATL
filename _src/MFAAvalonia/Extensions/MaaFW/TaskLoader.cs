@@ -436,7 +436,13 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
             {
                 continue;
             }
-    
+
+            // 隐藏任务不自动添加，需通过添加任务对话框手动加入
+            if (task.ShowInList == false)
+            {
+                continue;
+            }
+
             // 真正的新任务：不在 existingKeys 中，也不在 deletedTaskKeys 中
             var clonedTask = task.Clone();
             var newItem = new DragItemViewModel(clonedTask) { OwnerViewModel = taskQueueViewModel };
