@@ -357,7 +357,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [225, 344, 1, 1]
+        "target": [191, 308, 62, 3]
       }
     },
     "next": ["FB_DetectWhereAmI"],

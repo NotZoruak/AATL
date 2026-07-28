@@ -1667,7 +1667,7 @@
           "DisplayName": "地域一",
           "pipeline_override": {
             "S_ClickRegion": {
-              "target": [173, 365, 97, 96]
+              "target": [191, 308, 62, 3]
             }
           }
         },
@@ -1676,7 +1676,7 @@
           "DisplayName": "地域二",
           "pipeline_override": {
             "S_ClickRegion": {
-              "target": [520, 243, 1, 1]
+              "target": [495, 307, 42, 3]
             }
           }
         },
@@ -1685,7 +1685,7 @@
           "DisplayName": "地域三",
           "pipeline_override": {
             "S_ClickRegion": {
-              "target": [837, 234, 1, 1]
+              "target": [804, 307, 53, 3]
             }
           }
         },
@@ -1694,7 +1694,7 @@
           "DisplayName": "地域四",
           "pipeline_override": {
             "S_ClickRegion": {
-              "target": [1118, 243, 1, 1]
+              "target": [984, 307, 48, 3]
             }
           }
         }
@@ -1810,7 +1810,7 @@
           "name": "易",
           "pipeline_override": {
             "LR_ClickDifficulty": {
-              "target": [158, 308, 55, 4]
+              "target": [191, 308, 62, 3]
             }
           }
         },
@@ -1818,7 +1818,7 @@
           "name": "普",
           "pipeline_override": {
             "LR_ClickDifficulty": {
-              "target": [439, 277, 179, 103]
+              "target": [495, 307, 42, 3]
             }
           }
         },
@@ -1826,7 +1826,7 @@
           "name": "难",
           "pipeline_override": {
             "LR_ClickDifficulty": {
-              "target": [747, 289, 152, 81]
+              "target": [804, 307, 53, 3]
             }
           }
         },
@@ -1834,7 +1834,7 @@
           "name": "超难",
           "pipeline_override": {
             "LR_ClickDifficulty": {
-              "target": [1110, 319, 18, 18]
+              "target": [984, 307, 48, 3]
             }
           }
         }
