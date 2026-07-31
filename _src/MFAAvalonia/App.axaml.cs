@@ -8,6 +8,7 @@ using MFAAvalonia.Configuration;
 using MFAAvalonia.Extensions;
 using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.Helper;
+using MFAAvalonia.Services;
 using MFAAvalonia.ViewModels.Other;
 using MFAAvalonia.ViewModels.Pages;
 using MFAAvalonia.ViewModels.UsersControls;
@@ -362,6 +363,7 @@ public partial class App : Application
             .AddView<SettingsView, SettingsViewModel>(services)
             .AddView<ScreenshotView, ScreenshotViewModel>(services)
             .AddView<ForgeCalculatorView, ForgeCalculatorViewModel>(services)
+            .AddView<SilhouetteView, SilhouetteViewModel>(services)
             .AddView<DataLookupView, DataLookupViewModel>(services)
 
             // Add additional views
@@ -390,6 +392,7 @@ public partial class App : Application
     {
         services.AddSingleton<ISukiToastManager, SukiToastManager>();
         services.AddSingleton<ISukiDialogManager, SukiDialogManager>();
+        services.AddSingleton<SilhouetteService>();
     }
 
     private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)

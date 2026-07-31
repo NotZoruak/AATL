@@ -7,20 +7,37 @@
     <list default="true" id="404bc1c5-b364-4787-9804-888f83c8e73c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.claude/skills/gstack" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/skills/gstack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MATR.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/MATR.deps.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MATR.dll" beforeDir="false" afterPath="$PROJECT_DIR$/MATR.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Extensions/MaaFW/TaskLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Extensions/MaaFW/TaskLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Helper/AppPaths.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Helper/AppPaths.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MATR.runtimeconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/MATR.runtimeconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/App.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/App.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Extensions/MaaFW/MaaProcessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Extensions/MaaFW/MaaProcessor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Views/Mobile/RootViewContent.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Views/Mobile/RootViewContent.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Views/Pages/DataLookupView.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Views/Pages/DataLookupView.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.obsidian/workspace.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/合战场_疲劳处理_设计.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/合战场_疲劳处理_设计.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/陆联任务设计.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/陆联任务设计.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/刮刮乐识别小工具设计.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/复用节点清单.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/复用节点清单.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/巧克力南瓜任务设计.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/interface.json" beforeDir="false" afterPath="$PROJECT_DIR$/interface.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/matr.exe" beforeDir="false" afterPath="$PROJECT_DIR$/matr.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/announcement/1-v0.7.0-alpha 更新公告.md" beforeDir="false" afterPath="$PROJECT_DIR$/resource/announcement/1-v0.7.0-alpha 更新公告.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/announcement/2-v0.6.1 更新公告.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/announcement/3-长期公告.md" beforeDir="false" afterPath="$PROJECT_DIR$/resource/announcement/2-长期公告.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Expedition.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Expedition.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/FlowerBrush.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/FlowerBrush.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/LRentaisen.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/LRentaisen.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Sortie.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Sortie.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Underground.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Underground.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/runtimes/libs/MFAAvalonia.Core.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/MFAAvalonia.Core.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/win-x64/native/MaaAdbControlUnit.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/win-x64/native/MaaAdbControlUnit.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/win-x64/native/MaaAgentClient.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/win-x64/native/MaaAgentClient.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/win-x64/native/MaaAgentServer.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/win-x64/native/MaaAgentServer.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/win-x64/native/MaaCustomControlUnit.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/win-x64/native/MaaCustomControlUnit.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/win-x64/native/MaaFramework.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/win-x64/native/MaaFramework.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/win-x64/native/MaaGamepadControlUnit.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/win-x64/native/MaaGamepadControlUnit.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/win-x64/native/MaaRecordControlUnit.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/win-x64/native/MaaRecordControlUnit.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/win-x64/native/MaaReplayControlUnit.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/win-x64/native/MaaReplayControlUnit.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/win-x64/native/MaaToolkit.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/win-x64/native/MaaToolkit.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/win-x64/native/MaaUtils.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/win-x64/native/MaaUtils.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/win-x64/native/MaaWin32ControlUnit.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/win-x64/native/MaaWin32ControlUnit.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

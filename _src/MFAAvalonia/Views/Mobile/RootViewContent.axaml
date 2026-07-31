@@ -56,7 +56,7 @@
                                                                 IconVariant=Regular}"
                                                PageContent="{extensions:ServiceProvider ServiceType={x:Type pages:ForgeCalculatorView}}" />
                         <suki:SukiSideMenuItem IsContentMovable="False"
-                                               Header="数据查找表"
+                                               Header="数据库"
                                                Icon="{fluent:FluentIcon Icon=Library,
                                                                 IconVariant=Regular}"
                                                PageContent="{extensions:ServiceProvider ServiceType={x:Type pages:DataLookupView}}" />

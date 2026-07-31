@@ -47,7 +47,8 @@
         "threshold": [0.98]
       }
     },
-    "next": ["E_CheckTeamStatus", "E_DetectHome"]
+    "next": ["E_CheckTeamStatus", "E_DetectHome"],
+    "on_error": ["Expedition"]
   },
   "E_CheckTeamStatus": {
     "recognition": {
@@ -62,7 +63,7 @@
       "param": {}
     },
     "next": ["E_IsTeamStatusPanel", "Expedition"],
-    "post_delay": 1000,
+    "post_delay": 500,
     "pre_delay": 100
   },
   "E_CheckTeam1": {
@@ -1163,7 +1164,8 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec1"],
+    "post_delay": 300,
+    "next": ["E_UseTeamRecord_Step4_Rec1", "E_UseTeamRecord_Step2_Rec1"],
     "on_error": ["E_GoHome"]
   },
   "E_UseTeamRecord_Step3_Rec2": {
@@ -1173,7 +1175,8 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec2"],
+    "post_delay": 300,
+    "next": ["E_UseTeamRecord_Step4_Rec2", "E_UseTeamRecord_Step2_Rec2"],
     "on_error": ["E_GoHome"]
   },
   "E_UseTeamRecord_Step3_Rec3": {
@@ -1183,7 +1186,8 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec3"],
+    "post_delay": 300,
+    "next": ["E_UseTeamRecord_Step4_Rec3", "E_UseTeamRecord_Step2_Rec3"],
     "on_error": ["E_GoHome"]
   },
   "E_UseTeamRecord_Step3_Rec4": {
@@ -1193,7 +1197,8 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec4"],
+    "post_delay": 300,
+    "next": ["E_UseTeamRecord_Step4_Rec4", "E_UseTeamRecord_Step2_Rec4"],
     "on_error": ["E_GoHome"]
   },
   "E_UseTeamRecord_Step3_Rec5": {
@@ -1203,7 +1208,8 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["E_UseTeamRecord_Step4_Rec5"],
+    "post_delay": 300,
+    "next": ["E_UseTeamRecord_Step4_Rec5", "E_UseTeamRecord_Step2_Rec5"],
     "on_error": ["E_GoHome"]
   },
   "E_UseTeamRecord_Step4_Rec1": {

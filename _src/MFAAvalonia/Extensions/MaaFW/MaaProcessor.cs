@@ -3259,7 +3259,7 @@ public class MaaProcessor
         UpdateTaskDictionary(ref taskModels, task.InterfaceItem?.Option, task.InterfaceItem?.Advanced);
 
         // 5. 合战场/地下城/陆联同步远征：自动复用远征任务的队伍配置
-        if (task.InterfaceItem?.Entry == "Sortie" || task.InterfaceItem?.Entry == "Underground" || task.InterfaceItem?.Entry == "LRentaisen")
+        if (task.InterfaceItem?.Entry == "Sortie" || task.InterfaceItem?.Entry == "Underground" || task.InterfaceItem?.Entry == "LRentaisen" || task.InterfaceItem?.Entry == "TacticalTraining")
         {
             var syncExpEnabled = task.InterfaceItem?.Option
                 ?.FirstOrDefault(o => (o.Name ?? "").EndsWith("同步远征"))
@@ -3287,6 +3287,7 @@ public class MaaProcessor
                         {
                             "Sortie" => "S_NavigateToSortie",
                             "Underground" => "U_NavigateToUnderground",
+                            "TacticalTraining" => "TT_NavigateToActivity",
                             _ => "LR_NavigateToActivity"
                         };
                         var timerParam = new Dictionary<string, JToken>

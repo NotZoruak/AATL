@@ -2595,7 +2595,8 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "next": ["SF_UseRecord_Step4"],
+    "post_delay": 300,
+    "next": ["SF_UseRecord_Step4", "SF_UseRecord_Step3"],
     "on_error": ["SF_DetectWhereAmI"]
   },
   "SF_UseRecord_Step4": {

@@ -1,6 +1,6 @@
 {
   "name": "MATR",
-  "version": "v0.7.0-alpha",
+  "version": "v0.7.0-beta.1",
   "icon": "resource/logo/MATR.ico",
   "custom_title": "MATR v0.7.0-alpha | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
@@ -99,9 +99,20 @@
       "option": ["LR_选择部队", "LR_选择难度", "LR_同步远征", "LR_换队长", "LR_部队交替", "LR_不购买门票"],
       "label": "陆联",
       "description": "联队战（陆联）活动自动化出阵。\n\n- **换队长**：换队长的方式可在全局设置中修改\n- **部队交替**：在行动选择界面自动切换部队，勾选后点击齿轮设置队伍序列。\n- **选择部队**：选择出阵部队（第1轮使用）。\n- **选择难度**：易/普/难/超难。\n- **不购买门票**：勾选后令牌不足时自动结束任务，不再购买（注意：仅停止当前单次执行，若设置了重复次数，后续轮次仍会启动然后终止，可能造成日志刷屏）。\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保陆联使用的队伍在远征任务中设置为「休息」。\n\n> ⚠️ **注意**：游戏本身会在通行令牌不足时自动使用多倍道具。"
-    }
+    },
+    {
+      "name": "战术强化训练",
+      "entry": "TacticalTraining",
+      "default_check": false,
+      "show_in_list": true,
+      "repeatable": true,
+      "repeat_count": 1,
+      "option": ["TT_选择部队", "TT_选择难度", "TT_换队长", "TT_不购买门票", "TT_同步远征"],
+      "label": "战术强化训练",
+      "description": "战术强化训练（巧克力/南瓜）活动自动化出阵。\n\n- **换队长**：仅支持队内拖拽方式。\n- **选择部队**：当选择的部队不符合要求时，会自动尝试1-5队。\n- **选择难度**：初级/中级/上级。\n- **不购买门票**：勾选后更新剪影时若令牌不足则停止任务。"
+    },
   ],
-  "global_option": ["换队长方式", "远征智能调度", "长期远征计划", "卡死重启"],
+  "global_option": ["换队长方式", "远征智能调度", "长期远征计划"],
   "option": {
     "部队一": {
       "name": "部队一",
@@ -118,9 +129,7 @@
         {
           "name": "1-1",
           "DisplayName": "1-1",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap1": {
@@ -131,9 +140,7 @@
         {
           "name": "1-2",
           "DisplayName": "1-2",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap1": {
@@ -144,9 +151,7 @@
         {
           "name": "1-3",
           "DisplayName": "1-3",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap1": {
@@ -157,9 +162,7 @@
         {
           "name": "1-4",
           "DisplayName": "1-4",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap1": {
@@ -170,9 +173,7 @@
         {
           "name": "2-1",
           "DisplayName": "2-1",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap1": {
@@ -183,9 +184,7 @@
         {
           "name": "2-2",
           "DisplayName": "2-2",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap1": {
@@ -196,9 +195,7 @@
         {
           "name": "2-3",
           "DisplayName": "2-3",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap1": {
@@ -209,9 +206,7 @@
         {
           "name": "2-4",
           "DisplayName": "2-4",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap1": {
@@ -222,9 +217,7 @@
         {
           "name": "3-1",
           "DisplayName": "3-1",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
@@ -235,9 +228,7 @@
         {
           "name": "3-2",
           "DisplayName": "3-2",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
@@ -248,9 +239,7 @@
         {
           "name": "3-3",
           "DisplayName": "3-3",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
@@ -261,9 +250,7 @@
         {
           "name": "3-4",
           "DisplayName": "3-4",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
@@ -274,9 +261,7 @@
         {
           "name": "4-1",
           "DisplayName": "4-1",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
@@ -287,9 +272,7 @@
         {
           "name": "4-2",
           "DisplayName": "4-2",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
@@ -300,9 +283,7 @@
         {
           "name": "4-3",
           "DisplayName": "4-3",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
@@ -313,9 +294,7 @@
         {
           "name": "4-4",
           "DisplayName": "4-4",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
@@ -326,9 +305,7 @@
         {
           "name": "5-1",
           "DisplayName": "5-1",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
@@ -339,9 +316,7 @@
         {
           "name": "5-2",
           "DisplayName": "5-2",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
@@ -352,9 +327,7 @@
         {
           "name": "5-3",
           "DisplayName": "5-3",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
@@ -365,9 +338,7 @@
         {
           "name": "5-4",
           "DisplayName": "5-4",
-          "pipeline_override": {
-            "E_CheckTeam1": {"enabled": true},
-            "E_SelectMap1": {
+          "pipeline_override": {            "E_SelectMap1": {
               "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
@@ -1954,6 +1925,100 @@
       ],
       "default_case": []
     },
+    "TT_选择难度": {
+      "name": "TT_选择难度",
+      "label": "选择难度",
+      "default_case": "初级",
+      "cases": [
+        {
+          "name": "初级",
+          "pipeline_override": {
+            "TT_ClickDifficulty": { "target": [143, 213, 16, 2] }
+          }
+        },
+        {
+          "name": "中级",
+          "pipeline_override": {
+            "TT_ClickDifficulty": { "target": [300, 213, 16, 2] }
+          }
+        },
+        {
+          "name": "上级",
+          "pipeline_override": {
+            "TT_ClickDifficulty": { "target": [440, 213, 16, 2] }
+          }
+        }
+      ]
+    },
+    "TT_选择部队": {
+      "name": "TT_选择部队",
+      "label": "选择部队",
+      "default_case": "部队一",
+      "cases": [
+        {
+          "name": "部队一",
+          "pipeline_override": {
+            "TT_ClickTargetTeam": { "target": [154, 93, 1, 1] }
+          }
+        },
+        {
+          "name": "部队二",
+          "pipeline_override": {
+            "TT_ClickTargetTeam": { "target": [282, 94, 1, 1] }
+          }
+        },
+        {
+          "name": "部队三",
+          "pipeline_override": {
+            "TT_ClickTargetTeam": { "target": [398, 91, 1, 1] }
+          }
+        },
+        {
+          "name": "部队四",
+          "pipeline_override": {
+            "TT_ClickTargetTeam": { "target": [519, 89, 1, 1] }
+          }
+        },
+        {
+          "name": "部队五",
+          "pipeline_override": {
+            "TT_ClickTargetTeam": { "target": [635, 91, 1, 1] }
+          }
+        }
+      ]
+    },
+    "TT_换队长": {
+      "name": "TT_换队长",
+      "label": "换队长",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "TT_CaptainHub": {
+              "next": ["TT_DragCaptain", "TT_IsPreSortieConfirm"]
+            }
+          }
+        }
+      ],
+      "default_cases": []
+    },
+    "TT_不购买门票": {
+      "name": "TT_不购买门票",
+      "label": "不购买门票",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "TT_IsSilhouettePopup": {
+              "next": ["TT_ConfirmSilhouette", "TT_TerminateNoTicket"]
+            }
+          }
+        }
+      ],
+      "default_cases": []
+    },
     "S_重伤处理": {
       "name": "S_重伤处理",
       "label": "重伤处理",
@@ -2276,7 +2341,11 @@
           "pipeline_override": {
             "U_ClickTeam": {
               "target": [154, 93, 1, 1]
-            }
+            },
+            "U_PreCheckUseRecord": {
+              "next": ["U_PreCheckClickRecord1"]
+            },
+            "U_PreCheckClickRecord1": {"enabled": true}
           }
         },
         {
@@ -2285,7 +2354,11 @@
           "pipeline_override": {
             "U_ClickTeam": {
               "target": [282, 94, 1, 1]
-            }
+            },
+            "U_PreCheckUseRecord": {
+              "next": ["U_PreCheckClickRecord2"]
+            },
+            "U_PreCheckClickRecord2": {"enabled": true}
           }
         },
         {
@@ -2294,7 +2367,11 @@
           "pipeline_override": {
             "U_ClickTeam": {
               "target": [398, 91, 1, 1]
-            }
+            },
+            "U_PreCheckUseRecord": {
+              "next": ["U_PreCheckClickRecord3"]
+            },
+            "U_PreCheckClickRecord3": {"enabled": true}
           }
         },
         {
@@ -2303,7 +2380,11 @@
           "pipeline_override": {
             "U_ClickTeam": {
               "target": [519, 89, 1, 1]
-            }
+            },
+            "U_PreCheckUseRecord": {
+              "next": ["U_PreCheckClickRecord4"]
+            },
+            "U_PreCheckClickRecord4": {"enabled": true}
           }
         },
         {
@@ -2312,7 +2393,11 @@
           "pipeline_override": {
             "U_ClickTeam": {
               "target": [635, 91, 1, 1]
-            }
+            },
+            "U_PreCheckUseRecord": {
+              "next": ["U_PreCheckClickRecord5"]
+            },
+            "U_PreCheckClickRecord5": {"enabled": true}
           }
         }
       ]
@@ -2435,6 +2520,7 @@
             "U_CheckEquipmentPopup": {"enabled": true},
             "U_PreCheckTroopRecord": {"enabled": true},
             "U_PreCheckUseRecord": {"enabled": true},
+            "U_PreCheckUseRecordBtn": {"enabled": true},
             "U_PreConfirmSupply": {"enabled": true}
           }
         }
@@ -2714,6 +2800,109 @@
       ],
       "default_case": []
     },
+    "TT_同步远征": {
+      "name": "TT_同步远征",
+      "label": "同步远征",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "TT_IsHome": {
+              "next": ["Expedition"]
+            },
+            "E_CheckTeam1": {"enabled": true},
+            "E_SelectMap1": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {"team": 1}
+              },
+              "next": ["E_ConfirmDispatch1"]
+            },
+            "E_ClickSmallMap1": {"enabled": false},
+            "E_SelectMap2": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {"team": 2}
+              },
+              "next": ["E_ConfirmDispatch2"]
+            },
+            "E_ClickSmallMap2": {"enabled": false},
+            "E_SelectMap3": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {"team": 3}
+              },
+              "next": ["E_ConfirmDispatch3"]
+            },
+            "E_ClickSmallMap3": {"enabled": false},
+            "E_SelectMap4": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {"team": 4}
+              },
+              "next": ["E_ConfirmDispatch4"]
+            },
+            "E_ClickSmallMap4": {"enabled": false},
+            "E_SelectMap5": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {"team": 5}
+              },
+              "next": ["E_ConfirmDispatch5"]
+            },
+            "E_ClickSmallMap5": {"enabled": false},
+            "E_VerifyScreen1": {
+              "on_error": ["E_CheckTeamStatus"]
+            },
+            "E_VerifyScreen2": {
+              "on_error": ["E_CheckTeamStatus"]
+            },
+            "E_VerifyScreen3": {
+              "on_error": ["E_CheckTeamStatus"]
+            },
+            "E_VerifyScreen4": {
+              "on_error": ["E_CheckTeamStatus"]
+            },
+            "E_VerifyScreen5": {
+              "on_error": ["E_CheckTeamStatus"]
+            },
+            "E_ClickBackToHome": {
+              "action": {
+                "type": "Click",
+                "param": {
+                  "target": [1037, 169, 110, 44]
+                }
+              },
+              "next": ["TT_WaitRefresh"],
+              "on_error": ["TT_DetectWhereAmI"]
+            },
+            "E_AllTeamsBusy": {
+              "next": ["E_TimerStart"]
+            },
+            "E_TimerStart": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionTimerAction",
+                "custom_action_param": {"mode": "start"}
+              },
+              "next": ["TT_NavigateToActivity"]
+            },
+            "E_CheckTimerExpired": {
+              "next": ["TT_ClickTargetTeam"],
+              "on_error": ["E_GoHome"]
+            },
+            "TT_WaitRefresh": {"enabled": true}
+          }
+        }
+      ],
+      "default_case": []
+    },
     "短": {
       "name": "短",
       "type": "checkbox",
@@ -2958,6 +3147,9 @@
           "label": "开启",
           "pipeline_override": {
             "LR_IsTeamSelect": {
+              "next": ["E_CheckTimerExpired"]
+            },
+            "TT_IsTeamSelect": {
               "next": ["E_CheckTimerExpired"]
             },
             "U_CheckRoundComplete": {
