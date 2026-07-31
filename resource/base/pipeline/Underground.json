@@ -586,7 +586,8 @@
     ],
     "action": "DoNothing",
     "next": [
-      "U_IsHome"
+      "U_IsHome",
+      "U_DetectWhereAmI"
     ]
   },
   "U_IsRepair": {

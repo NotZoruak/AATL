@@ -523,7 +523,7 @@
     "upper": [40, 155, 30],
     "lower": [23, 95, 15],
     "action": "DoNothing",
-    "next": ["D_DetectHome"]
+    "next": ["D_DetectHome", "D_DetectWhereAmI"]
   },
   "D_IsAnnouncementPopup": {
     "recognition": {

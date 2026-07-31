@@ -204,7 +204,7 @@
     "action": {
       "type": "DoNothing"
     },
-    "next": ["TT_IsHome"]
+    "next": ["TT_IsHome", "TT_DetectWhereAmI"]
   },
   "TT_IsHome": {
     "recognition": {

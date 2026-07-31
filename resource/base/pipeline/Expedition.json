@@ -844,7 +844,7 @@
     "upper": [40, 155, 30],
     "lower": [23, 95, 15],
     "action": "DoNothing",
-    "next": ["E_DetectHome"]
+    "next": ["E_DetectHome", "Expedition"]
   },
   "E_IsTeamStatusPanel": {
     "recognition": {
@@ -1654,7 +1654,7 @@
     "upper": [40, 155, 30],
     "lower": [23, 95, 15],
     "action": "DoNothing",
-    "next": ["E_FlowerIsHome"]
+    "next": ["E_FlowerIsHome", "E_FlowerBattleHub"]
   },
   "E_FlowerIsHome": {
     "recognition": {

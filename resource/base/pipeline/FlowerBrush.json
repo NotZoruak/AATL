@@ -717,7 +717,7 @@
     "upper": [40, 155, 30],
     "lower": [23, 95, 15],
     "action": "DoNothing",
-    "next": ["FB_IsHome"]
+    "next": ["FB_IsHome", "FB_DetectWhereAmI"]
   },
   "FB_CheckPostHomeBright": {
     "recognition": "ColorMatch",

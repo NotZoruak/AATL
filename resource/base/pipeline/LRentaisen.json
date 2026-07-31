@@ -81,7 +81,7 @@
     "upper": [40, 155, 30],
     "lower": [23, 95, 15],
     "action": "DoNothing",
-    "next": ["LR_IsHome"]
+    "next": ["LR_IsHome", "LR_DetectWhereAmI"]
   },
   "LR_IsHome": {
     "recognition": {
