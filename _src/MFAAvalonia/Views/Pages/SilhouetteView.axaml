@@ -17,7 +17,7 @@
     </Design.DataContext>
 
     <ScrollViewer>
-        <Grid RowDefinitions="Auto,Auto,*" Margin="16,12">
+        <Grid RowDefinitions="Auto,Auto,*" Margin="0">
 
             <StackPanel Orientation="Horizontal" Spacing="12">
                 <Button Command="{Binding RecognizeCommand}"

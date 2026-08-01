@@ -4,7 +4,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [1056, 463, 63, 193],
-        "template": "公告弹窗.png",
+        "template": "Common/公告弹窗.png",
         "green_mask": true,
         "threshold": [0.95]
       }
@@ -19,7 +19,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [24, 37, 57, 91],
-        "template": "补给.png",
+        "template": "Common/补给.png",
         "threshold": [0.98]
       }
     },
@@ -34,7 +34,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [816, 577, 182, 59],
-        "template": "登录奖励.png",
+        "template": "Common/登录奖励.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -88,7 +88,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [8, 1, 71, 107],
-        "template": "本丸.png",
+        "template": "Common/本丸.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -101,7 +101,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [581, 28, 112, 57],
-        "template": "菜单目录.png",
+        "template": "Common/菜单目录.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -115,9 +115,9 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [0, 0, 1600, 900],
-        "template": "游戏图标.png",
+        "template": "Common/游戏图标.png",
         "green_mask": true,
-        "threshold": [0.88]
+        "threshold": [0.85]
       }
     },
     "action": "Click",
@@ -130,7 +130,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [665, 529, 124, 78],
-        "template": "登录.png",
+        "template": "Common/登录.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -145,7 +145,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [443, 431, 120, 46],
-        "template": "游戏更新.png",
+        "template": "Common/游戏更新.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -170,7 +170,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [569, 322, 138, 31],
-        "template": "内番报告.png",
+        "template": "Common/内番报告.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -249,7 +249,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [3, 164, 43, 92],
-        "template": "合战场选中.png",
+        "template": "Common/合战场选中.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -271,7 +271,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [427, 69, 388, 52],
-        "template": "地下城.png",
+        "template": "Activity/地下城.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -302,7 +302,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [581, 28, 112, 57],
-        "template": "菜单目录.png",
+        "template": "Common/菜单目录.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -318,7 +318,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [581, 28, 112, 57],
-        "template": "菜单目录.png",
+        "template": "Common/菜单目录.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -467,7 +467,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [581, 28, 112, 57],
-        "template": "菜单目录.png",
+        "template": "Common/菜单目录.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -483,7 +483,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [577, 8, 130, 35],
-        "template": "部队记录页面.png",
+        "template": "Common/部队记录页面.png",
         "green_mask": true,
         "threshold": [0.95]
       }
@@ -531,7 +531,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [427, 69, 388, 52],
-        "template": "联队战.png",
+        "template": "Activity/联队战.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -557,7 +557,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [427, 69, 388, 52],
-        "template": "联队战.png",
+        "template": "Activity/联队战.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -580,7 +580,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [780, 12, 58, 53],
-        "template": "Sortie_boss/联队战_行动选择.png",
+        "template": "Activity/联队战_行动选择.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -749,7 +749,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [427, 69, 388, 52],
-        "template": "联队战.png",
+        "template": "Activity/联队战.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -885,7 +885,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [8, 1, 71, 107],
-        "template": "本丸.png",
+        "template": "Common/本丸.png",
         "green_mask": true,
         "threshold": [0.98]
       }
@@ -930,7 +930,7 @@
       "type": "TemplateMatch",
       "param": {
         "roi": [1037, 438, 206, 76],
-        "template": "修行书信.png",
+        "template": "Common/修行书信.png",
         "green_mask": true,
         "threshold": [0.95]
       }

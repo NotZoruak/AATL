@@ -1,5 +1,5 @@
 param(
-    [string]$Version = "v0.7.0-beta.1"
+    [string]$Version = "v0.7.0-beta.2"
 )
 
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
