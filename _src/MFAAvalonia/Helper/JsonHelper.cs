@@ -119,7 +119,7 @@ public static class JsonHelper
         {
             Formatting = Formatting.Indented,
             NullValueHandling = NullValueHandling.Ignore,
-            DefaultValueHandling = DefaultValueHandling.Include
+            DefaultValueHandling = DefaultValueHandling.Ignore
         };
         if (converters is { Length: > 0 })
         {

@@ -358,8 +358,6 @@ public static class VersionChecker
             Instances.RootViewModel.SetUpdating(false);
             if (ex.Message.Contains("resource not found"))
                 ToastHelper.Error(LangKeys.CurrentResourcesNotSupportMirror.ToLocalization());
-            else if (ex.Message.Contains("rate limit", StringComparison.OrdinalIgnoreCase) || ex.Message.Contains("速率限制"))
-                LoggerHelper.Warning($"检查资源更新跳过：来源={(isGithub ? "GitHub" : "Mirror")}，原因=GitHub API 速率限制，非关键错误，已静默跳过");
             else
                 ToastHelper.Error(LangKeys.ErrorWhenCheck.ToLocalizationFormatted(true, "Resource"), ex.Message, -1);
             LoggerHelper.Error($"检查资源更新失败：来源={(isGithub ? "GitHub" : "Mirror")}，原因={ex.Message}", ex);
@@ -747,6 +745,22 @@ public static class VersionChecker
             isIncrementalPackage,
             debugEnabled,
             dryRun);
+
+        if (dryRun)
+        {
+            SetProgress(progress, 100);
+            SetStatusText(textBlock, downloadSpeedTextBlock, "UpdateResource DryRun completed");
+            LoggerHelper.Warning($"[UpdateResourceDebug] 已启用 DryRun，跳过实际覆盖与重启。tempExtractDir={tempExtractDir}");
+            ToastHelper.Info("UpdateResource DryRun 已完成", tempExtractDir, 5000);
+            Instances.RootViewModel.SetUpdating(false);
+            if (closeDialog)
+                Dismiss(sukiToast);
+            action?.Invoke();
+            return;
+        }
+
+        await StopTaskersAndAgentsForUpdateAsync();
+        using var updateTransaction = new UpdateFileTransaction(tempPath);
         LoggerHelper.Info((isGithub || isFull || currentVersion.Equals("v0.0.0", StringComparison.OrdinalIgnoreCase)) ? "全量更新" : "增量更新");
         if (isGithub || isFull || currentVersion.Equals("v0.0.0", StringComparison.OrdinalIgnoreCase))
         {
@@ -758,19 +772,16 @@ public static class VersionChecker
                     if (fileName.Equals(ChangelogViewModel.ChangelogFileName, StringComparison.OrdinalIgnoreCase) || fileName.Contains("interface.json", StringComparison.OrdinalIgnoreCase))
                         continue;
 
-                    // 跳过 temp 目录下的文件，避免删除刚解压的更新临时文件
-                    if (rfile.Contains(Path.DirectorySeparatorChar + "temp" + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))
-                        continue;
-
                     try
                     {
                         File.SetAttributes(rfile, FileAttributes.Normal);
                         LoggerHelper.Info($"准备删除旧文件：文件={rfile}");
-                        DeleteFileWithBackup(rfile);
+                        updateTransaction.DeleteFile(rfile);
                     }
                     catch (Exception ex)
                     {
                         LoggerHelper.Error($"删除旧文件失败：文件={rfile}，原因={ex.Message}", ex);
+                        throw;
                     }
                 }
             }
@@ -786,11 +797,12 @@ public static class VersionChecker
                     {
                         File.SetAttributes(rfile, FileAttributes.Normal);
                         LoggerHelper.Info($"准备删除旧文件：文件={rfile}");
-                        DeleteFileWithBackup(rfile);
+                        updateTransaction.DeleteFile(rfile);
                     }
                     catch (Exception ex)
                     {
                         LoggerHelper.Error($"删除旧文件失败：文件={rfile}，原因={ex.Message}", ex);
+                        throw;
                     }
                 }
             }
@@ -813,65 +825,12 @@ public static class VersionChecker
                 try
                 {
                     var changesJson = JsonConvert.DeserializeObject<MirrorChangesJson>(changes);
-                    if (changesJson?.Deleted != null)
-                    {
-                        var delPaths = changesJson.Deleted
-                            .Select(del =>
-                            {
-                                var isSafe = TryGetSafeUpdateTargetPath(del, out var fullPath);
-                                if (!isSafe)
-                                    LoggerHelper.Warning($"跳过越界删除路径: {del}");
-                                return (isSafe, fullPath);
-                            })
-                            .Where(item => item.isSafe && File.Exists(item.fullPath))
-                            .Select(item => item.fullPath);
-
-                        foreach (var delPath in delPaths)
-                        {
-                            try
-                            {
-
-                                LoggerHelper.Info($"准备删除增量更新中标记为 Deleted 的文件：文件={delPath}");
-                                DeleteFileWithBackup(delPath);
-
-                            }
-                            catch (Exception e)
-                            {
-                                LoggerHelper.Error($"删除增量更新中标记为 Deleted 的文件失败：文件={delPath}，原因={e.Message}", e);
-                            }
-                        }
-                    }
-                    if (changesJson?.Modified != null)
-                    {
-                        var delPaths = changesJson.Modified
-                            .Select(del =>
-                            {
-                                var isSafe = TryGetSafeUpdateTargetPath(del, out var fullPath);
-                                if (!isSafe)
-                                    LoggerHelper.Warning($"跳过越界修改路径: {del}");
-                                return (isSafe, fullPath);
-                            })
-                            .Where(item => item.isSafe && File.Exists(item.fullPath))
-                            .Select(item => item.fullPath);
-
-                        foreach (var delPath in delPaths)
-                        {
-                            try
-                            {
-                                LoggerHelper.Info($"准备删除增量更新中标记为 Modified 的旧文件：文件={delPath}");
-                                DeleteFileWithBackup(delPath);
-                            }
-                            catch (Exception e)
-                            {
-                                LoggerHelper.Error($"删除增量更新中标记为 Modified 的旧文件失败：文件={delPath}，原因={e.Message}", e);
-                            }
-
-                        }
-                    }
+                    ApplyIncrementalDeletions(changesJson, updateTransaction);
                 }
                 catch (Exception e)
                 {
                     LoggerHelper.Error($"处理增量更新文件列表失败：changes.json={changesPath}，原因={e.Message}", e);
+                    throw;
                 }
             }
         }
@@ -879,47 +838,11 @@ public static class VersionChecker
 
         SetProgress(progress, 1);
 
-        if (dryRun)
-        {
-            SetProgress(progress, 100);
-            SetStatusText(textBlock, downloadSpeedTextBlock, "UpdateResource DryRun completed");
-            LoggerHelper.Warning($"[UpdateResourceDebug] 已启用 DryRun，跳过实际覆盖与重启。tempExtractDir={tempExtractDir}");
-            ToastHelper.Info("UpdateResource DryRun 已完成", tempExtractDir, 5000);
-            Instances.RootViewModel.SetUpdating(false);
-            if (closeDialog)
-                Dismiss(sukiToast);
-            action?.Invoke();
-            return;
-        }
-
         var di = new DirectoryInfo(originPath);
         if (di.Exists)
         {
-            await CopyUpdatePayload(originPath, progress, true, default, copyDataFiles: true, copyInstallFiles: !containsCoreApplicationFiles);
+            await CopyUpdatePayload(originPath, progress, true, default, copyDataFiles: true, copyInstallFiles: !containsCoreApplicationFiles, updateTransaction: updateTransaction);
         }
-
-        // 最后再更新 interface.json，避免先写元数据后拷资源导致半更新状态
-        var newInterfacePath = Path.Combine(wpfDir, "interface.json");
-        if (File.Exists(interfacePath))
-        {
-            var jsonContent = await File.ReadAllTextAsync(interfacePath);
-            var @interface = JObject.Parse(jsonContent);
-            if (@interface != null)
-            {
-                @interface["github"] = MaaProcessor.Interface?.Github ?? MaaProcessor.Interface?.Url;
-                @interface["version"] = latestVersion;
-            }
-            await File.WriteAllTextAsync(newInterfacePath, @interface.ToString(Formatting.Indented));
-        }
-
-        SetProgress(progress, 100);
-        SetStatusText(textBlock, downloadSpeedTextBlock, LangKeys.UpdateCompleted.ToLocalization());
-        Instances.RootViewModel.SetUpdating(false);
-
-        if (closeDialog)
-            Dismiss(sukiToast);
-        shouldShowToast = true;
-        action?.Invoke();
 
         var restartExecutablePath = exeName;
         if (containsCoreApplicationFiles)
@@ -945,18 +868,137 @@ public static class VersionChecker
                 default,
                 copyDataFiles: false,
                 copyInstallFiles: true,
-                continueOnCopyFailure: true,
-                skipRunningExecutable: true);
+                continueOnCopyFailure: false,
+                skipRunningExecutable: true,
+                updateTransaction: updateTransaction);
 
-            if (HasExecutableFileNameChanged(exeName, restartExecutablePath))
-            {
-                TryRenameExecutableToBackup(exeName, allowCurrentProcessExecutable: true);
-            }
         }
+
+        // 所有数据和安装文件成功写入后再提交版本元数据。
+        var newInterfacePath = Path.Combine(wpfDir, "interface.json");
+        if (File.Exists(interfacePath))
+        {
+            var jsonContent = await File.ReadAllTextAsync(interfacePath);
+            var @interface = JObject.Parse(jsonContent);
+            if (@interface != null)
+            {
+                @interface["github"] = MaaProcessor.Interface?.Github ?? MaaProcessor.Interface?.Url;
+                @interface["version"] = latestVersion;
+            }
+            updateTransaction.WriteAllText(newInterfacePath, @interface.ToString(Formatting.Indented));
+        }
+
+        updateTransaction.Commit();
+
+        if (containsCoreApplicationFiles && HasExecutableFileNameChanged(exeName, restartExecutablePath))
+            TryRenameExecutableToBackup(exeName, allowCurrentProcessExecutable: true);
+
+        SetProgress(progress, 100);
+        SetStatusText(textBlock, downloadSpeedTextBlock, LangKeys.UpdateCompleted.ToLocalization());
+        Instances.RootViewModel.SetUpdating(false);
+
+        if (closeDialog)
+            Dismiss(sukiToast);
+        shouldShowToast = true;
+        action?.Invoke();
 
         // 重启前执行清理（保存配置、释放资源等）
         DispatcherHelper.PostOnMainThread(() => Instances.RootView.BeforeClosed(true, true));
         await RestartApplicationAsync(restartExecutablePath);
+    }
+
+    private static async Task StopTaskersAndAgentsForUpdateAsync()
+    {
+        LoggerHelper.Info("程序更新前开始停止所有 MaaTasker 和 Agent 进程。");
+        await Task.Run(() =>
+        {
+            foreach (var processor in MaaProcessor.Processors.ToList())
+            {
+                try
+                {
+                    processor.SetTasker();
+                }
+                catch (Exception ex)
+                {
+                    LoggerHelper.Error($"程序更新前清理实例失败：实例ID={processor.InstanceId}，原因={ex.Message}", ex);
+                    throw;
+                }
+            }
+        });
+        LoggerHelper.Info("程序更新前所有 MaaTasker 和 Agent 进程已停止。");
+    }
+
+    private static void ApplyIncrementalDeletions(MirrorChangesJson? changes, UpdateFileTransaction updateTransaction)
+    {
+        DeleteIncrementalFiles(changes?.Deleted, "Deleted", updateTransaction);
+        DeleteIncrementalFiles(changes?.Modified, "Modified", updateTransaction);
+
+        var directories = (changes?.DeletedDirectories ?? [])
+            .Select(relativePath =>
+            {
+                if (!TryGetSafeUpdateTargetPath(relativePath, out var fullPath))
+                    throw new InvalidDataException($"增量更新包含越界删除目录：{relativePath}");
+                return (relativePath, fullPath);
+            })
+            .Where(item => Directory.Exists(item.fullPath))
+            .OrderByDescending(item => item.fullPath.Count(c => c == Path.DirectorySeparatorChar || c == Path.AltDirectorySeparatorChar));
+
+        foreach (var (relativePath, fullPath) in directories)
+        {
+            LoggerHelper.Info($"准备删除增量更新中标记为 deleted_dir 的目录：相对路径={relativePath}，目录={fullPath}");
+            DeleteDirectoryForUpdate(relativePath, fullPath);
+        }
+
+        foreach (var relativePath in changes?.AddedDirectories ?? [])
+        {
+            if (!TryGetSafeUpdateTargetPath(relativePath, out var fullPath))
+                throw new InvalidDataException($"增量更新包含越界新增目录：{relativePath}");
+
+            LoggerHelper.Info($"准备创建增量更新中标记为 added_dir 的目录：相对路径={relativePath}，目录={fullPath}");
+            Directory.CreateDirectory(fullPath);
+        }
+    }
+
+    private static void DeleteIncrementalFiles(IEnumerable<string>? relativePaths, string changeType, UpdateFileTransaction updateTransaction)
+    {
+        foreach (var relativePath in relativePaths ?? [])
+        {
+            if (!TryGetSafeUpdateTargetPath(relativePath, out var fullPath))
+                throw new InvalidDataException($"增量更新包含越界{changeType}路径：{relativePath}");
+            if (!File.Exists(fullPath))
+                continue;
+
+            LoggerHelper.Info($"准备删除增量更新中标记为 {changeType} 的文件：文件={fullPath}");
+            updateTransaction.DeleteFile(fullPath);
+            if (File.Exists(fullPath))
+                throw new IOException($"无法删除或备份增量更新文件：{fullPath}");
+        }
+    }
+
+    private static void DeleteDirectoryForUpdate(string relativePath, string directoryPath)
+    {
+        const int maxRetries = 5;
+        for (var attempt = 1; attempt <= maxRetries; attempt++)
+        {
+            try
+            {
+                // deleted_dir entries are processed deepest-first after their files are removed.
+                // Refuse to recursively delete unexpected contents so an incomplete manifest
+                // cannot remove user files or files written later in the same update.
+                Directory.Delete(directoryPath, recursive: false);
+                return;
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            {
+                if (attempt == maxRetries)
+                    break;
+                LoggerHelper.Warning($"删除增量更新目录失败，准备重试：第 {attempt}/{maxRetries} 次，目录={directoryPath}，原因={ex.Message}");
+                Thread.Sleep(500 * attempt);
+            }
+        }
+
+        PendingUpdateDeletionHelper.EnqueueDirectory(relativePath);
+        LoggerHelper.Warning($"删除增量更新目录失败，已加入下次启动待删除清单：相对路径={relativePath}，目录={directoryPath}");
     }
 
     /// <summary>
@@ -1117,7 +1159,7 @@ public static class VersionChecker
         DispatcherHelper.PostOnMainThread(() => progressBar?.IsVisible = false);
     }
 
-    public async static Task CopyUpdatePayload(
+    private async static Task CopyUpdatePayload(
         string sourceRoot,
         ProgressBar? progressBar = null,
         bool saveAnnouncement = false,
@@ -1126,7 +1168,8 @@ public static class VersionChecker
         bool copyInstallFiles = true,
         string? installTargetRootOverride = null,
         bool continueOnCopyFailure = false,
-        bool skipRunningExecutable = false)
+        bool skipRunningExecutable = false,
+        UpdateFileTransaction? updateTransaction = null)
     {
         if (string.IsNullOrWhiteSpace(sourceRoot) || !Directory.Exists(sourceRoot))
             return;
@@ -1173,10 +1216,13 @@ public static class VersionChecker
                     Path.GetFullPath(currentProcessPath),
                     StringComparison.OrdinalIgnoreCase))
             {
-                var replaced = await TryReplaceRunningExecutableAsync(item.SourceFile, targetFile, cancellationToken);
-                if (!replaced)
+                var replacement = await TryReplaceRunningExecutableAsync(item.SourceFile, targetFile, cancellationToken);
+                if (!replacement.replaced)
                 {
-                    LoggerHelper.Warning($"替换当前正在运行的同名主程序失败，已跳过：文件={targetFile}");
+                    if (!continueOnCopyFailure)
+                        throw new IOException($"替换当前正在运行的同名主程序失败：{targetFile}");
+
+                    LoggerHelper.Warning($"替换当前正在运行的同名主程序失败，已按继续模式跳过：文件={targetFile}");
                     progressCounter.Current++;
                     DispatcherHelper.PostOnMainThread(() =>
                     {
@@ -1188,6 +1234,9 @@ public static class VersionChecker
                     });
                     continue;
                 }
+
+                if (updateTransaction != null && replacement.backupPath != null)
+                    updateTransaction.TrackReplacement(targetFile, replacement.backupPath);
 
                 progressCounter.Current++;
                 DispatcherHelper.PostOnMainThread(() =>
@@ -1221,14 +1270,26 @@ public static class VersionChecker
                     await Task.Run(() =>
                     {
                         cancellationToken.ThrowIfCancellationRequested();
-                        if (File.Exists(targetFile))
+                        if (updateTransaction != null)
                         {
-                            DeleteFileWithBackup(targetFile);
-                            if (File.Exists(targetFile))
-                                throw new IOException($"Unable to delete/backup existing file: {targetFile}");
+                            updateTransaction.ReplaceFile(item.SourceFile, targetFile, cancellationToken);
                         }
-
-                        File.Copy(item.SourceFile, targetFile, overwrite: true);
+                        else
+                        {
+                            var tempTarget = targetFile + ".pending_update";
+                            try
+                            {
+                                File.Copy(item.SourceFile, tempTarget, overwrite: true);
+                            }
+                            catch
+                            {
+                                if (File.Exists(tempTarget)) File.Delete(tempTarget);
+                                throw;
+                            }
+                            if (File.Exists(targetFile))
+                                DeleteFileWithBackup(targetFile);
+                            File.Move(tempTarget, targetFile, overwrite: true);
+                        }
                     }, cancellationToken);
 
                     File.SetAttributes(targetFile, FileAttributes.Normal);
@@ -1335,19 +1396,19 @@ public static class VersionChecker
                     await Task.Run(() =>
                     {
                         cancellationToken.ThrowIfCancellationRequested();
-
-                        // 尝试备份/删除目标文件
-                        if (File.Exists(targetFile))
+                        var tempTarget = targetFile + ".pending_update";
+                        try
                         {
-                            DeleteFileWithBackup(targetFile);
-                            // 如果DeleteFileWithBackup失败（文件仍存在），手动抛出异常以触发重试
-                            if (File.Exists(targetFile))
-                            {
-                                throw new IOException($"Unable to delete/backup existing file: {targetFile}");
-                            }
+                            File.Copy(sourceFile, tempTarget, overwrite: true);
                         }
-
-                        File.Copy(sourceFile, targetFile, overwrite: true);
+                        catch
+                        {
+                            if (File.Exists(tempTarget)) File.Delete(tempTarget);
+                            throw;
+                        }
+                        if (File.Exists(targetFile))
+                            DeleteFileWithBackup(targetFile);
+                        File.Move(tempTarget, targetFile, overwrite: true);
                     }, cancellationToken);
 
                     // 12. 设置目标文件为普通属性（清除只读/隐藏等限制）
@@ -1431,6 +1492,148 @@ public static class VersionChecker
     {
         public int Current { get; set; } = 0;
         public int Total { get; set; } = 0;
+    }
+
+    private sealed class UpdateFileTransaction : IDisposable
+    {
+        private sealed record FileChange(string TargetPath, string? BackupPath);
+
+        private readonly string _backupRoot;
+        private readonly List<FileChange> _changes = [];
+        private int _nextBackupId;
+        private bool _committed;
+
+        public UpdateFileTransaction(string tempRoot)
+        {
+            _backupRoot = Path.Combine(tempRoot, $"update_rollback_{Guid.NewGuid():N}");
+            Directory.CreateDirectory(_backupRoot);
+        }
+
+        public void DeleteFile(string targetPath)
+        {
+            if (!File.Exists(targetPath))
+                return;
+
+            var backupPath = NextBackupPath();
+            File.SetAttributes(targetPath, FileAttributes.Normal);
+            File.Move(targetPath, backupPath);
+            _changes.Add(new FileChange(targetPath, backupPath));
+        }
+
+        public void ReplaceFile(string sourcePath, string targetPath, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var targetDirectory = Path.GetDirectoryName(targetPath);
+            if (!string.IsNullOrWhiteSpace(targetDirectory))
+                Directory.CreateDirectory(targetDirectory);
+
+            var pendingPath = targetPath + ".pending_update";
+            try
+            {
+                File.Copy(sourcePath, pendingPath, overwrite: true);
+                cancellationToken.ThrowIfCancellationRequested();
+
+                string? backupPath = null;
+                if (File.Exists(targetPath))
+                {
+                    backupPath = NextBackupPath();
+                    File.SetAttributes(targetPath, FileAttributes.Normal);
+                    File.Move(targetPath, backupPath);
+                }
+
+                // Record the change before publishing the new file so rollback also covers a
+                // failure between moving the old target and moving the pending file into place.
+                _changes.Add(new FileChange(targetPath, backupPath));
+                File.Move(pendingPath, targetPath, overwrite: true);
+            }
+            catch
+            {
+                if (File.Exists(pendingPath))
+                    File.Delete(pendingPath);
+                throw;
+            }
+        }
+
+        public void WriteAllText(string targetPath, string content)
+        {
+            var stagedPath = Path.Combine(_backupRoot, $"staged_{Guid.NewGuid():N}.tmp");
+            File.WriteAllText(stagedPath, content);
+            ReplaceFile(stagedPath, targetPath, CancellationToken.None);
+        }
+
+        public void TrackReplacement(string targetPath, string backupPath)
+        {
+            _changes.Add(new FileChange(targetPath, backupPath));
+        }
+
+        public void Commit()
+        {
+            _committed = true;
+            TryDeleteBackupRoot();
+        }
+
+        public void Dispose()
+        {
+            if (!_committed)
+            {
+                if (Rollback())
+                    TryDeleteBackupRoot();
+                return;
+            }
+
+            TryDeleteBackupRoot();
+        }
+
+        private string NextBackupPath() =>
+            Path.Combine(_backupRoot, $"{_nextBackupId++:D8}.bak");
+
+        private bool Rollback()
+        {
+            var succeeded = true;
+            LoggerHelper.Warning($"更新未完成，开始回滚已修改文件：数量={_changes.Count}");
+            for (var index = _changes.Count - 1; index >= 0; index--)
+            {
+                var change = _changes[index];
+                try
+                {
+                    if (File.Exists(change.TargetPath))
+                    {
+                        File.SetAttributes(change.TargetPath, FileAttributes.Normal);
+                        File.Delete(change.TargetPath);
+                    }
+
+                    if (change.BackupPath != null && File.Exists(change.BackupPath))
+                    {
+                        var targetDirectory = Path.GetDirectoryName(change.TargetPath);
+                        if (!string.IsNullOrWhiteSpace(targetDirectory))
+                            Directory.CreateDirectory(targetDirectory);
+                        File.Move(change.BackupPath, change.TargetPath, overwrite: true);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    succeeded = false;
+                    LoggerHelper.Error($"回滚更新文件失败：目标={change.TargetPath}，备份={change.BackupPath}，原因={ex.Message}", ex);
+                }
+            }
+
+            if (!succeeded)
+                LoggerHelper.Error($"部分更新文件回滚失败，已保留回滚目录供手动恢复：目录={_backupRoot}");
+            return succeeded;
+        }
+
+        private void TryDeleteBackupRoot()
+        {
+            try
+            {
+                if (Directory.Exists(_backupRoot))
+                    Directory.Delete(_backupRoot, recursive: true);
+            }
+            catch (Exception ex)
+            {
+                LoggerHelper.Warning($"清理更新回滚目录失败：目录={_backupRoot}，原因={ex.Message}");
+            }
+        }
     }
 
     static void DeleteFileWithBackup(string filePath)
@@ -1968,9 +2171,7 @@ public static class VersionChecker
             SetProgress(progress, 100);
 
             // 清理与重启（复用ApplySecureUpdate）
-#pragma warning disable CS0618
             await ApplySecureUpdate(sourceDirectory, utf8BaseDirectory, Process.GetCurrentProcess().MainModule.ModuleName);
-#pragma warning restore CS0618
         }
         finally
         {
@@ -2106,7 +2307,7 @@ public static class VersionChecker
                         }
                     }
                 }
-                else if (response.StatusCode == HttpStatusCode.Forbidden || (int)response.StatusCode == 429)
+                else if (response.StatusCode == HttpStatusCode.Forbidden && response.ReasonPhrase?.Contains("403") == true)
                 {
                     LoggerHelper.Error("GitHub API 速率限制已超出，请稍后再试。");
                     throw new Exception("GitHub API速率限制已超出，请稍后再试。");
@@ -2119,11 +2320,8 @@ public static class VersionChecker
             }
             catch (Exception e) when (e is not OperationCanceledException)
             {
-                var msg = e.Message;
-                if (msg.Contains("rate limit", StringComparison.OrdinalIgnoreCase) || msg.Contains("速率限制"))
-                    throw;
-                LoggerHelper.Error($"处理 GitHub 响应失败：原因={msg}", e);
-                throw new Exception($"处理 GitHub 响应失败：原因={msg}");
+                LoggerHelper.Error($"处理 GitHub 响应失败：原因={e.Message}", e);
+                throw new Exception($"处理 GitHub 响应失败：原因={e.Message}");
             }
             page++;
         }
@@ -2387,10 +2585,7 @@ public static class VersionChecker
             }
             else
             {
-                var statusCode = (int)response.StatusCode;
-                LoggerHelper.Error($"请求 GitHub 失败：状态码={statusCode} {response.StatusCode}，原因={response.ReasonPhrase}");
-                if (statusCode == 403 || statusCode == 429)
-                    throw new Exception("GitHub API速率限制已超出，请稍后再试。");
+                LoggerHelper.Error($"请求 GitHub 失败：状态码={(int)response.StatusCode} {response.StatusCode}，原因={response.ReasonPhrase}");
                 throw new Exception($"{response.StatusCode} - {response.ReasonPhrase}");
             }
         }
@@ -2796,6 +2991,8 @@ public static class VersionChecker
         [JsonProperty("modified")] public List<string>? Modified;
         [JsonProperty("deleted")] public List<string>? Deleted;
         [JsonProperty("added")] public List<string>? Added;
+        [JsonProperty("deleted_dir")] public List<string>? DeletedDirectories;
+        [JsonProperty("added_dir")] public List<string>? AddedDirectories;
         [JsonExtensionData]
         public Dictionary<string, object>? AdditionalData { get; set; } = new();
     }
@@ -2811,8 +3008,7 @@ public static class VersionChecker
         var candidateRoots = new List<string>
         {
             tempExtractDir,
-            Path.Combine(tempExtractDir, "assets"),
-            Path.Combine(tempExtractDir, "resource")
+            Path.Combine(tempExtractDir, "assets")
         };
 
         try
@@ -2863,30 +3059,6 @@ public static class VersionChecker
         {
             validationMessage = $"资源包目录不存在: {originPath}";
             return false;
-        }
-
-        if (!isIncrementalPackage && !File.Exists(interfacePath))
-        {
-            // 候选路径均未找到，在解压目录中递归搜索兜底
-            try
-            {
-                var found = Directory.EnumerateFiles(tempExtractDir, "interface.json", SearchOption.AllDirectories)
-                    .FirstOrDefault();
-                if (found != null)
-                {
-                    interfacePath = found;
-                    var foundDir = Path.GetDirectoryName(found);
-                    if (!string.IsNullOrEmpty(foundDir))
-                    {
-                        resourceDirPath = foundDir;
-                        originPath = Path.GetDirectoryName(foundDir) ?? tempExtractDir;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                LoggerHelper.Warning($"递归搜索 interface.json 时出错: {ex.Message}");
-            }
         }
 
         if (!isIncrementalPackage && !File.Exists(interfacePath))
@@ -2977,7 +3149,7 @@ public static class VersionChecker
         var fileName = Path.GetFileName(normalized);
 
         if (normalized.StartsWith("runtimes/", StringComparison.OrdinalIgnoreCase)
-            || normalized.StartsWith("runtimes/libs/", StringComparison.OrdinalIgnoreCase))
+            || normalized.StartsWith("libs/", StringComparison.OrdinalIgnoreCase))
             return true;
 
         if (fileName.Equals("MFAAvalonia.dll", StringComparison.OrdinalIgnoreCase)
@@ -3098,9 +3270,29 @@ public static class VersionChecker
         return backupFilePath;
     }
 
-    private static async Task<bool> TryReplaceRunningExecutableAsync(string sourceFile, string targetFile, CancellationToken cancellationToken)
+    private static async Task<(bool replaced, string? backupPath)> TryReplaceRunningExecutableAsync(
+        string sourceFile,
+        string targetFile,
+        CancellationToken cancellationToken)
     {
         var maxRetries = 5;
+        string? backupPath = null;
+        void RestoreBackupAfterFailure()
+        {
+            if (backupPath == null || !File.Exists(backupPath) || File.Exists(targetFile))
+                return;
+
+            try
+            {
+                File.Move(backupPath, targetFile);
+                backupPath = null;
+            }
+            catch (Exception ex)
+            {
+                LoggerHelper.Error($"恢复替换失败的主程序失败：目标={targetFile}，备份={backupPath}，原因={ex.Message}", ex);
+            }
+        }
+
         for (var i = 0; i < maxRetries; i++)
         {
             try
@@ -3109,31 +3301,57 @@ public static class VersionChecker
                 {
                     cancellationToken.ThrowIfCancellationRequested();
 
-                    var backupPath = GetBackupMfaPath(targetFile);
-                    File.SetAttributes(targetFile, FileAttributes.Normal);
-                    File.Move(targetFile, backupPath);
-                    LoggerHelper.Info($"当前运行中的旧主程序已改名为 backupMFA：源文件={targetFile}，备份文件={backupPath}");
+                    if (backupPath == null)
+                    {
+                        backupPath = GetBackupMfaPath(targetFile);
+                        File.SetAttributes(targetFile, FileAttributes.Normal);
+                        File.Move(targetFile, backupPath);
+                        LoggerHelper.Info($"当前运行中的旧主程序已改名为 backupMFA：源文件={targetFile}，备份文件={backupPath}");
+                    }
 
                     File.Copy(sourceFile, targetFile, overwrite: false);
                     File.SetAttributes(targetFile, FileAttributes.Normal);
                     LoggerHelper.Info($"新的同名主程序已复制完成：源文件={sourceFile}，目标文件={targetFile}");
                 }, cancellationToken);
 
-                return true;
+                return (true, backupPath);
             }
             catch (IOException ex) when (!cancellationToken.IsCancellationRequested)
             {
                 LoggerHelper.Warning($"替换当前运行中的同名主程序失败，准备重试：第 {i + 1}/{maxRetries} 次，源文件={sourceFile}，目标文件={targetFile}，原因={ex.Message}");
-                await Task.Delay(1000, cancellationToken);
+                try
+                {
+                    await Task.Delay(1000, cancellationToken);
+                }
+                catch
+                {
+                    RestoreBackupAfterFailure();
+                    throw;
+                }
             }
             catch (UnauthorizedAccessException ex)
             {
                 LoggerHelper.Warning($"替换当前运行中的同名主程序被拒绝，准备重试：第 {i + 1}/{maxRetries} 次，源文件={sourceFile}，目标文件={targetFile}，原因={ex.Message}");
-                await Task.Delay(1000, cancellationToken);
+                try
+                {
+                    await Task.Delay(1000, cancellationToken);
+                }
+                catch
+                {
+                    RestoreBackupAfterFailure();
+                    throw;
+                }
+            }
+            catch
+            {
+                RestoreBackupAfterFailure();
+                throw;
             }
         }
 
-        return false;
+        RestoreBackupAfterFailure();
+
+        return (false, backupPath);
     }
 
     private static bool HasExecutableFileNameChanged(string currentExecutablePath, string nextExecutablePath)

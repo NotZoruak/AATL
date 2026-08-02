@@ -613,7 +613,7 @@ public partial class TaskQueueViewModel : ViewModelBase
         using var _ = BeginUiLogScope("OpenAddTaskDialog");
         LoggerHelper.UserAction("打开添加任务对话框", DescribeCurrentSelection(),
             operation: "OpenAddTaskDialog", instanceId: Processor.InstanceId, instanceName: InstanceName);
-        Instances.DialogManager.CreateDialog().WithTitle(LangKeys.AdbEditor.ToLocalization()).WithViewModel(dialog => new AddTaskDialogViewModel(dialog, Processor.TasksSource)).TryShow();
+        Instances.DialogManager.CreateDialog().WithTitle(LangKeys.AdbEditor.ToLocalization()).WithViewModel(dialog => new AddTaskDialogViewModel(dialog, Processor.TasksSource, this)).TryShow();
     }
 
     /// <summary>
@@ -2040,16 +2040,16 @@ public partial class TaskQueueViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// 解析 Win32ScreencapMethod，支持旧版 long 格式和新版 string 格式
+    /// 解析 Win32ScreencapMethods，支持旧版 long 格式和新版 string 格式
     /// </summary>
-    private static Win32ScreencapMethod? ParseWin32ScreencapMethod(object? value)
+    private static Win32ScreencapMethods? ParseWin32ScreencapMethods(object? value)
     {
         if (value == null) return null;
 
         // 新版 string 格式（枚举名）
         if (value is string strValue)
         {
-            if (Enum.TryParse<Win32ScreencapMethod>(strValue, ignoreCase: true, out var result))
+            if (Enum.TryParse<Win32ScreencapMethods>(strValue, ignoreCase: true, out var result))
                 return result;
             return null;
         }
@@ -2058,12 +2058,12 @@ public partial class TaskQueueViewModel : ViewModelBase
         var longValue = Convert.ToInt64(value);
         return longValue switch
         {
-            1 => Win32ScreencapMethod.GDI,
-            2 => Win32ScreencapMethod.FramePool,
-            4 => Win32ScreencapMethod.DXGI_DesktopDup,
-            8 => Win32ScreencapMethod.DXGI_DesktopDup_Window,
-            16 => Win32ScreencapMethod.PrintWindow,
-            32 => Win32ScreencapMethod.ScreenDC,
+            1 => Win32ScreencapMethods.GDI,
+            2 => Win32ScreencapMethods.FramePool,
+            4 => Win32ScreencapMethods.DXGI_DesktopDup,
+            8 => Win32ScreencapMethods.DXGI_DesktopDup_Window,
+            16 => Win32ScreencapMethods.PrintWindow,
+            32 => Win32ScreencapMethods.ScreenDC,
             _ => null
         };
     }
@@ -2090,7 +2090,7 @@ public partial class TaskQueueViewModel : ViewModelBase
         {
             var screenCap = controller.Win32?.ScreenCap;
             if (screenCap == null) return;
-            var parsed = ParseWin32ScreencapMethod(screenCap);
+            var parsed = ParseWin32ScreencapMethods(screenCap);
             if (parsed != null)
                 Instances.ConnectSettingsUserControlModel.Win32ControlScreenCapType = parsed.Value;
         }

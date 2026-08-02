@@ -5,6 +5,7 @@ using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.Extensions;
 using MFAAvalonia.Helper;
 using MFAAvalonia.Helper.ValueType;
+using MFAAvalonia.ViewModels.Pages;
 using MFAAvalonia.ViewModels.UsersControls.Settings;
 using SukiUI.Controls;
 using SukiUI.Dialogs;
@@ -332,10 +333,15 @@ public partial class InstanceTabBarViewModel : ViewModelBase
 
     partial void OnActiveTabChanged(InstanceTabViewModel? oldValue, InstanceTabViewModel? newValue)
     {
+        var monitorLiveViewOverrideActive =
+            Instances.TryGetResolved<MonitorViewModel>(out var monitorViewModel)
+            && monitorViewModel.IsLiveViewOverrideActive;
+
         if (oldValue != null)
         {
             oldValue.IsActive = false;
-            oldValue.TaskQueueViewModel?.PauseLiveView();
+            if (!monitorLiveViewOverrideActive)
+                oldValue.TaskQueueViewModel?.PauseLiveView();
         }
 
         if (newValue == null)
@@ -441,14 +447,26 @@ public partial class InstanceTabBarViewModel : ViewModelBase
                     MaaFramework.Binding.AdbInputMethods.Default
                 }, new MFAAvalonia.Helper.Converters.UniversalEnumConverter<MaaFramework.Binding.AdbInputMethods>());
             connect.Win32ControlScreenCapType = config.GetValue(MFAAvalonia.Configuration.ConfigurationKeys.Win32ControlScreenCapType,
-                MaaFramework.Binding.Win32ScreencapMethod.FramePool, MaaFramework.Binding.Win32ScreencapMethod.None,
-                new MFAAvalonia.Helper.Converters.UniversalEnumConverter<MaaFramework.Binding.Win32ScreencapMethod>());
+                MaaFramework.Binding.Win32ScreencapMethods.FramePool, MaaFramework.Binding.Win32ScreencapMethods.None,
+                new MFAAvalonia.Helper.Converters.UniversalEnumConverter<MaaFramework.Binding.Win32ScreencapMethods>());
             connect.Win32ControlMouseType = config.GetValue(MFAAvalonia.Configuration.ConfigurationKeys.Win32ControlMouseType,
                 MaaFramework.Binding.Win32InputMethod.SendMessage, MaaFramework.Binding.Win32InputMethod.None,
                 new MFAAvalonia.Helper.Converters.UniversalEnumConverter<MaaFramework.Binding.Win32InputMethod>());
             connect.Win32ControlKeyboardType = config.GetValue(MFAAvalonia.Configuration.ConfigurationKeys.Win32ControlKeyboardType,
                 MaaFramework.Binding.Win32InputMethod.SendMessage, MaaFramework.Binding.Win32InputMethod.None,
                 new MFAAvalonia.Helper.Converters.UniversalEnumConverter<MaaFramework.Binding.Win32InputMethod>());
+            connect.MacOSControlScreenCapType = config.GetValue(MFAAvalonia.Configuration.ConfigurationKeys.MacOSControlScreenCapType,
+                MaaFramework.Binding.MacOSScreencapMethod.ScreenCaptureKit,
+                default(MaaFramework.Binding.MacOSScreencapMethod), new MFAAvalonia.Helper.Converters.UniversalEnumConverter<MaaFramework.Binding.MacOSScreencapMethod>());
+            connect.MacOSControlInputType = config.GetValue(MFAAvalonia.Configuration.ConfigurationKeys.MacOSControlInputType,
+                MaaFramework.Binding.MacOSInputMethod.GlobalEvent,
+                default(MaaFramework.Binding.MacOSInputMethod), new MFAAvalonia.Helper.Converters.UniversalEnumConverter<MaaFramework.Binding.MacOSInputMethod>());
+            connect.GamepadControlScreenCapType = config.GetValue(MFAAvalonia.Configuration.ConfigurationKeys.GamepadControlScreenCapType,
+                MaaFramework.Binding.Win32ScreencapMethods.FramePool, MaaFramework.Binding.Win32ScreencapMethods.None,
+                new MFAAvalonia.Helper.Converters.UniversalEnumConverter<MaaFramework.Binding.Win32ScreencapMethods>());
+            connect.GamepadType = config.GetValue(MFAAvalonia.Configuration.ConfigurationKeys.GamepadType,
+                MaaFramework.Binding.GamepadType.Xbox360, default(MaaFramework.Binding.GamepadType),
+                new MFAAvalonia.Helper.Converters.UniversalEnumConverter<MaaFramework.Binding.GamepadType>());
             connect.RetryOnDisconnected = config.GetValue(MFAAvalonia.Configuration.ConfigurationKeys.RetryOnDisconnected, false);
             connect.RetryOnDisconnectedWin32 = config.GetValue(MFAAvalonia.Configuration.ConfigurationKeys.RetryOnDisconnectedWin32, false);
             connect.AllowAdbRestart = config.GetValue(MFAAvalonia.Configuration.ConfigurationKeys.AllowAdbRestart, true);

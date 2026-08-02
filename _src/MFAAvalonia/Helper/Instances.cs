@@ -530,12 +530,20 @@ public static partial class Instances
                         MaaFramework.Binding.AdbInputMethods.All,
                         MaaFramework.Binding.AdbInputMethods.Default
                     }, new Converters.UniversalEnumConverter<MaaFramework.Binding.AdbInputMethods>());
-                    connect.Win32ControlScreenCapType = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.Win32ControlScreenCapType, MaaFramework.Binding.Win32ScreencapMethod.FramePool, MaaFramework.Binding.Win32ScreencapMethod.None,
-                        new Converters.UniversalEnumConverter<MaaFramework.Binding.Win32ScreencapMethod>());
+                    connect.Win32ControlScreenCapType = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.Win32ControlScreenCapType, MaaFramework.Binding.Win32ScreencapMethods.FramePool, MaaFramework.Binding.Win32ScreencapMethods.None,
+                        new Converters.UniversalEnumConverter<MaaFramework.Binding.Win32ScreencapMethods>());
                     connect.Win32ControlMouseType = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.Win32ControlMouseType, MaaFramework.Binding.Win32InputMethod.SendMessage, MaaFramework.Binding.Win32InputMethod.None,
                         new Converters.UniversalEnumConverter<MaaFramework.Binding.Win32InputMethod>());
                     connect.Win32ControlKeyboardType = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.Win32ControlKeyboardType, MaaFramework.Binding.Win32InputMethod.SendMessage, MaaFramework.Binding.Win32InputMethod.None,
                         new Converters.UniversalEnumConverter<MaaFramework.Binding.Win32InputMethod>());
+                    connect.MacOSControlScreenCapType = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.MacOSControlScreenCapType, MaaFramework.Binding.MacOSScreencapMethod.ScreenCaptureKit,
+                        default(MaaFramework.Binding.MacOSScreencapMethod), new Converters.UniversalEnumConverter<MaaFramework.Binding.MacOSScreencapMethod>());
+                    connect.MacOSControlInputType = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.MacOSControlInputType, MaaFramework.Binding.MacOSInputMethod.GlobalEvent,
+                        default(MaaFramework.Binding.MacOSInputMethod), new Converters.UniversalEnumConverter<MaaFramework.Binding.MacOSInputMethod>());
+                    connect.GamepadControlScreenCapType = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.GamepadControlScreenCapType, MaaFramework.Binding.Win32ScreencapMethods.FramePool,
+                        MaaFramework.Binding.Win32ScreencapMethods.None, new Converters.UniversalEnumConverter<MaaFramework.Binding.Win32ScreencapMethods>());
+                    connect.GamepadType = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.GamepadType, MaaFramework.Binding.GamepadType.Xbox360,
+                        default(MaaFramework.Binding.GamepadType), new Converters.UniversalEnumConverter<MaaFramework.Binding.GamepadType>());
                     connect.RetryOnDisconnected = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.RetryOnDisconnected, false);
                     connect.RetryOnDisconnectedWin32 = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.RetryOnDisconnectedWin32, false);
                     connect.AllowAdbRestart = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.AllowAdbRestart, true);
@@ -559,6 +567,10 @@ public static partial class Instances
                 start.WaitSoftwareTime = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.WaitSoftwareTime, 60.0);
                 start.BeforeTask = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.BeforeTask, "None");
                 start.AfterTask = ConfigurationManager.CurrentInstance.GetValue(ConfigurationKeys.AfterTask, "None");
+                start.GlobalStartEnabled = GlobalConfiguration.GetValue(
+                    ConfigurationKeys.GlobalStartEnabled,
+                    bool.FalseString) == bool.TrueString;
+                start.RefreshGlobalStartInstancesCommand.Execute(null);
             }
 
             if (IsResolved<GameSettingsUserControlModel>())
@@ -635,7 +647,7 @@ public static partial class Instances
                 if (IsResolved<VersionUpdateSettingsUserControlModel>())
                 {
                     var version = VersionUpdateSettingsUserControlModel;
-                    version.DownloadSourceIndex = ConfigurationManager.Current.GetValue(ConfigurationKeys.DownloadSourceIndex, 0);
+                    version.DownloadSourceIndex = ConfigurationManager.Current.GetValue(ConfigurationKeys.DownloadSourceIndex, 1);
                     version.UIUpdateChannelIndex = ConfigurationManager.Current.GetValue(ConfigurationKeys.UIUpdateChannelIndex, 2);
                     version.ResourceUpdateChannelIndex = ConfigurationManager.Current.GetValue(ConfigurationKeys.ResourceUpdateChannelIndex, 2);
                     version.GitHubToken = SimpleEncryptionHelper.Decrypt(ConfigurationManager.Current.GetValue(ConfigurationKeys.GitHubToken, string.Empty));

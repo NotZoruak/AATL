@@ -1205,7 +1205,7 @@
                         </ListBox.Styles>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Panel>
+                                <Panel IsVisible="{Binding IsVisible}">
                                 <Border BorderBrush="#E85D75" BorderThickness="1" CornerRadius="8"
                                         Margin="-2" Padding="2"
                                         IsVisible="{Binding HasValidationError}" IsHitTestVisible="False"/>

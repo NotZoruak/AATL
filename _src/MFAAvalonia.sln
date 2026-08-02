@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markdown.Avalonia.Tight", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markdown.Avalonia.SyntaxHigh", "Markdown.Avalonia.SyntaxHigh\Markdown.Avalonia.SyntaxHigh.csproj", "{8E5FBE54-5429-4884-843D-5693D8D3B144}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markdown.Avalonia.Math", "Markdown.Avalonia.Math\Markdown.Avalonia.Math.csproj", "{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorDocument.Avalonia", "ColorDocument.Avalonia\ColorDocument.Avalonia.csproj", "{13789D1B-258F-4032-9875-C283B312B89F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorTextBlock.Avalonia", "ColorTextBlock.Avalonia\ColorTextBlock.Avalonia.csproj", "{649B551C-FC7C-42C2-9A8B-196165C41296}"
@@ -68,6 +70,10 @@ Global
 		{8E5FBE54-5429-4884-843D-5693D8D3B144}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E5FBE54-5429-4884-843D-5693D8D3B144}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E5FBE54-5429-4884-843D-5693D8D3B144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13789D1B-258F-4032-9875-C283B312B89F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13789D1B-258F-4032-9875-C283B312B89F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13789D1B-258F-4032-9875-C283B312B89F}.Release|Any CPU.ActiveCfg = Release|Any CPU

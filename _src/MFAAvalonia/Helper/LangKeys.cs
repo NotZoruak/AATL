@@ -55,6 +55,7 @@ public static class LangKeys
 	public static readonly string ButtonSave = "ButtonSave";
 	public static readonly string CannotStart = "CannotStart";
 	public static readonly string CaptureModeOption = "CaptureModeOption";
+	public static readonly string VirtualGamepadType = "VirtualGamepadType";
 	public static readonly string CheckMFA = "CheckMFA";
 	public static readonly string CheckUpdate = "CheckUpdate";
 	public static readonly string CheckResource = "CheckResource";
@@ -86,6 +87,7 @@ public static class LangKeys
 	public static readonly string ConnectionSettings = "ConnectionSettings";
 	public static readonly string ControllerType = "ControllerType";
 	public static readonly string CopiedToClipboard = "CopiedToClipboard";
+	public static readonly string CopySuccess = "CopySuccess";
 	public static readonly string Copy = "Copy";
 	public static readonly string CopyErrorMessage = "CopyErrorMessage";
 	public static readonly string CopyKey = "CopyKey";
@@ -491,6 +493,16 @@ public static class LangKeys
 	public static readonly string Notification = "Notification";
 	public static readonly string NotificationDescription = "NotificationDescription";
 	public static readonly string EmulatorMultiInstanceQuickSettings = "EmulatorMultiInstanceQuickSettings";
+	public static readonly string GlobalBatchStartup = "GlobalBatchStartup";
+	public static readonly string GlobalBatchStartupDescription = "GlobalBatchStartupDescription";
+	public static readonly string InstanceStartupSettings = "InstanceStartupSettings";
+	public static readonly string RefreshInstanceList = "RefreshInstanceList";
+	public static readonly string IncludeInBatchStartup = "IncludeInBatchStartup";
+	public static readonly string ExtraLaunchItems = "ExtraLaunchItems";
+	public static readonly string ExtraLaunchItem = "ExtraLaunchItem";
+	public static readonly string AddExtraLaunchItem = "AddExtraLaunchItem";
+	public static readonly string RemoveExtraLaunchItem = "RemoveExtraLaunchItem";
+	public static readonly string LaunchItemName = "LaunchItemName";
 	public static readonly string EmulatorMultiInstanceEditor = "EmulatorMultiInstanceEditor";
 	public static readonly string MuMuEmulator = "MuMuEmulator";
 	public static readonly string XYAZ = "XYAZ";

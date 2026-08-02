@@ -9,37 +9,10 @@ public class MaaToken
 {
     private List<Dictionary<string, JToken>> Tokens = [];
 
-    /// <summary>
-    /// 将一组节点覆盖合并到管线参数中。
-    /// 同一节点的后续覆盖会深度合并到现有条目中（后续值覆盖先前值），
-    /// 而不是追加为新数组元素，避免跨层同名键的覆盖顺序问题。
-    /// </summary>
+
     public void Merge(Dictionary<string, JToken> token)
     {
-        if (Tokens.Count == 0)
-        {
-            Tokens.Add(CloneTokenDictionary(token));
-            return;
-        }
-
-        var target = Tokens[0];
-        foreach (var kv in token)
-        {
-            if (target.TryGetValue(kv.Key, out var existing)
-                && existing is JObject existingObj
-                && kv.Value is JObject newObj)
-            {
-                // 节点级别深度合并：新属性覆盖同名的旧属性
-                foreach (var prop in newObj.Properties())
-                {
-                    existingObj[prop.Name] = prop.Value.DeepClone();
-                }
-            }
-            else
-            {
-                target[kv.Key] = kv.Value.DeepClone();
-            }
-        }
+        Tokens.Add(CloneTokenDictionary(token));
     }
 
     public static MaaToken FromDictionary(Dictionary<string, JToken> token)

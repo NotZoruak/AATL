@@ -37,6 +37,19 @@ public static class ConfigurationKeys
     public const string SoftwarePath = "SoftwarePath";
     public const string WaitSoftwareTime = "WaitSoftwareTime";
     public const string EmulatorConfig = "EmulatorConfig";
+    public const string IncludeInGlobalStart = "IncludeInGlobalStart";
+
+    #endregion
+
+    #region 全局启动设置
+
+    public const string GlobalStartEnabled = "GlobalStartEnabled";
+    public const string GlobalExtraLaunchCount = "GlobalExtraLaunchCount";
+    public const string GlobalExtraLaunchNameKeyFormat = "GlobalExtraLaunch_{0}_Name";
+    public const string GlobalExtraLaunchPathKeyFormat = "GlobalExtraLaunch_{0}_Path";
+    public const string GlobalExtraLaunchArgsKeyFormat = "GlobalExtraLaunch_{0}_Args";
+    public const string GlobalExtraLaunchWaitKeyFormat = "GlobalExtraLaunch_{0}_Wait";
+    public const string GlobalExtraLaunchEnabledKeyFormat = "GlobalExtraLaunch_{0}_Enabled";
 
     #endregion
 
@@ -58,6 +71,10 @@ public static class ConfigurationKeys
     public const string Win32ControlScreenCapType = "Win32ControlScreenCapType";
     public const string Win32ControlMouseType = "Win32ControlMouseType";
     public const string Win32ControlKeyboardType = "Win32ControlKeyboardType";
+    public const string MacOSControlScreenCapType = "MacOSControlScreenCapType";
+    public const string MacOSControlInputType = "MacOSControlInputType";
+    public const string GamepadControlScreenCapType = "GamepadControlScreenCapType";
+    public const string GamepadType = "GamepadType";
     public const string AllowAdbRestart = "AllowAdbRestart";
     public const string AllowAdbHardRestart = "AllowAdbHardRestart";
     public const string RetryOnDisconnected = "RetryOnDisconnected";
@@ -69,6 +86,7 @@ public static class ConfigurationKeys
     public const string DesktopWindowClassName = "DesktopWindowClassName";
     public const string DesktopWindowName = "DesktopWindowName";
     public const string PlayCoverConfig = "PlayCoverConfig";
+    public const string WlRootsSocketPath = "WlRootsSocketPath";
     public const string CurrentController = "CurrentController";
     public const string CurrentControllerName = "CurrentControllerName";
 
@@ -212,6 +230,10 @@ public static class ConfigurationKeys
         Win32ControlScreenCapType,
         Win32ControlMouseType,
         Win32ControlKeyboardType,
+        MacOSControlScreenCapType,
+        MacOSControlInputType,
+        GamepadControlScreenCapType,
+        GamepadType,
         AllowAdbRestart,
         AllowAdbHardRestart,
         RetryOnDisconnected,
@@ -222,6 +244,7 @@ public static class ConfigurationKeys
         DesktopWindowClassName,
         DesktopWindowName,
         PlayCoverConfig,
+        WlRootsSocketPath,
         CurrentController,
         CurrentControllerName,
         Resource,

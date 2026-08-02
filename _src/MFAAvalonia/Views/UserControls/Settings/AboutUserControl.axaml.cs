@@ -37,7 +37,7 @@ public partial class AboutUserControl : UserControl
     
     private void DisplayAnnouncement(object? sender, RoutedEventArgs e)
     {
-       _ = AnnouncementViewModel.CheckAnnouncement(true);
+       AnnouncementViewModel.CheckAnnouncement(true);
     }
     
     private void ClearCache_Click(object? sender, RoutedEventArgs e)

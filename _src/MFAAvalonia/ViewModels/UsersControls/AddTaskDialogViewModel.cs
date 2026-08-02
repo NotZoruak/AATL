@@ -5,6 +5,7 @@ using MFAAvalonia.Extensions;
 using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.Helper;
 using MFAAvalonia.Helper.ValueType;
+using MFAAvalonia.ViewModels.Pages;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SukiUI.Dialogs;
@@ -54,10 +55,13 @@ public partial class AddTaskDialogViewModel : ViewModelBase, IDisposable
 
     public bool HasUngroupedItems => Items.Count > 0;
 
-    public AddTaskDialogViewModel(ISukiDialog dialog, ICollection<DragItemViewModel> sources)
+    public AddTaskDialogViewModel(ISukiDialog dialog, ICollection<DragItemViewModel> sources, TaskQueueViewModel taskQueueViewModel)
     {
         Dialog = dialog;
-        Sources = sources.Select(s => new AddTaskItemViewModel(s)).ToList();
+        Sources = sources
+            .Where(source => IsTaskAvailableForCurrentContext(source, taskQueueViewModel))
+            .Select(s => new AddTaskItemViewModel(s))
+            .ToList();
         _items = [];
 
         SpecialTasks = new ObservableCollection<AddTaskItemViewModel>
@@ -73,6 +77,25 @@ public partial class AddTaskDialogViewModel : ViewModelBase, IDisposable
 
         LanguageHelper.LanguageChanged += OnLanguageChanged;
         ApplyFilter(string.Empty);
+    }
+
+    private static bool IsTaskAvailableForCurrentContext(DragItemViewModel source, TaskQueueViewModel taskQueueViewModel)
+    {
+        if (source.IsResourceOptionItem)
+            return false;
+
+        var interfaceItem = source.InterfaceItem;
+        if (interfaceItem == null)
+            return false;
+
+        return MaaInterfaceActivationHelper.IsTaskSupportedByResource(
+                   MaaProcessor.Interface,
+                   interfaceItem,
+                   taskQueueViewModel.CurrentResource)
+               && MaaInterfaceActivationHelper.IsTaskSupportedByController(
+                   MaaProcessor.Interface,
+                   interfaceItem,
+                   taskQueueViewModel.GetCurrentControllerName());
     }
 
     [RelayCommand]

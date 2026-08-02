@@ -2546,11 +2546,11 @@ public class MaaProcessor
         }
     }
 
-    private Win32ScreencapMethod ConfigureWin32ScreenCapTypes()
+    private Win32ScreencapMethods ConfigureWin32ScreenCapTypes()
     {
         return InstanceConfiguration.GetValue(ConfigurationKeys.Win32ControlScreenCapType,
-            Win32ScreencapMethod.FramePool, Win32ScreencapMethod.None,
-            new UniversalEnumConverter<Win32ScreencapMethod>());
+            Win32ScreencapMethods.FramePool, Win32ScreencapMethods.None,
+            new UniversalEnumConverter<Win32ScreencapMethods>());
     }
 
     private Win32InputMethod ConfigureWin32MouseInputTypes()
@@ -3371,7 +3371,7 @@ public class MaaProcessor
                 {
                     [1] = ["S_Boss_E2_"],
                     [2] = ["S_Boss_E3_"],
-                    [3] = ["S_Boss_E4_"],
+                    [3] = ["S_Boss_E4_", "S_MidRetreat_E4_"],
                     [4] = ["S_Boss_E5_"],
                     [5] = ["S_Boss_E6_", "S_MidRetreat_E6_"],
                     [6] = ["S_Boss_E7_"],
@@ -3385,6 +3385,7 @@ public class MaaProcessor
                     "S_Boss_E2_R3_1", "S_Boss_E2_R3_2", "S_Boss_E2_R3_3", "S_Boss_E2_R4",
                     "S_Boss_E3_R1", "S_Boss_E3_R2", "S_Boss_E3_R3", "S_Boss_E3_R4",
                     "S_Boss_E4_R1", "S_Boss_E4_R2", "S_Boss_E4_R3", "S_Boss_E4_R4",
+                    "S_MidRetreat_E4_R1", "S_MidRetreat_E4_R2",
                     "S_Boss_E5_R1", "S_Boss_E5_R3", "S_Boss_E5_R3_2",
                     "S_Boss_E5_R4_1", "S_Boss_E5_R4_2",
                     "S_Boss_E6_R1", "S_Boss_E6_R2", "S_Boss_E6_R3", "S_Boss_E6_R4",

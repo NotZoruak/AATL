@@ -27,16 +27,16 @@ public static class PrivatePathHelper
     /// 设置原生库解析器
     /// 使用 AssemblyLoadContext.ResolvingUnmanagedDll 事件，不会与第三方库的 SetDllImportResolver 冲突
     /// </summary>
-    public static void SetupNativeLibraryResolver()
+    public static void SetupNativeLibraryResolver(bool enableManagedLibraryResolver = true)
     {
         try
         {
             string baseDirectory = AppContext.BaseDirectory;
-            var libsPath = Path.Combine(baseDirectory, AppContext.GetData("SubdirectoriesToProbe") as string ?? "runtimes/libs");
+            var libsPath = Path.Combine(baseDirectory, AppContext.GetData("SubdirectoriesToProbe") as string ?? "libs");
 
             lock (_resolverLock)
             {
-                if (!_managedResolverRegistered)
+                if (enableManagedLibraryResolver && !_managedResolverRegistered)
                 {
                     AssemblyLoadContext.Default.Resolving += (_, assemblyName) =>
                     {
@@ -327,7 +327,7 @@ public static class PrivatePathHelper
             var duplicateFiles = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
             // 1. 收集 libs 文件夹中的所有动态库文件
-            lib ??= "runtimes/libs";
+            lib ??= "libs";
             var libsPath = Path.Combine(baseDirectory, lib);
             if (Directory.Exists(libsPath))
             {
