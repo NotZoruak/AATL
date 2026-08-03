@@ -2030,7 +2030,9 @@ public partial class TaskQueueViewModel : ViewModelBase
             2 => Win32InputMethod.SendMessage,
             4 => Win32InputMethod.PostMessage,
             8 => Win32InputMethod.LegacyEvent,
+#pragma warning disable CS0618
             16 => Win32InputMethod.PostThreadMessage,
+#pragma warning restore CS0618
             32 => Win32InputMethod.SendMessageWithCursorPos,
             64 => Win32InputMethod.PostMessageWithCursorPos,
             128 => Win32InputMethod.SendMessageWithWindowPos,

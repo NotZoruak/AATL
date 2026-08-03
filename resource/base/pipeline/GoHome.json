@@ -32,10 +32,7 @@
         "expected": "目"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["G_VerifyMenuDir"]
   },
   "G_IsAnnouncementPopup": {
@@ -96,10 +93,7 @@
         "expected": "目"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "pre_delay": 3000,
     "next": ["G_VerifyMenuDir"],
     "on_error": ["G_DetectWhereAmI"]
@@ -206,18 +200,16 @@
   },
   "G_LeaveTroopRecord": {
     "recognition": {
-      "type": "OCR",
+      "type": "TemplateMatch",
       "param": {
-        "roi": [561, 6, 157, 41],
-        "expected": "部队记录"
+        "roi": [577, 8, 130, 35],
+        "template": "Common/部队记录页面.png",
+        "green_mask": true,
+        "threshold": [0.95]
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [59, 24, 27, 22]
-      }
-    },
+    "action": "Click",
+    "target": [63, 28, 17, 17],
     "next": ["G_DetectWhereAmI"]
   },
   "G_FallbackWait": {

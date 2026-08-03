@@ -2,7 +2,7 @@
   "Sortie": {
     "next": ["S_DetectWhereAmI"]
   },
-  "S_IsTroopRecordPage": {
+  "S_LeaveTroopRecord": {
     "recognition": {
       "type": "TemplateMatch",
       "param": {
@@ -44,7 +44,7 @@
       "S_IsGameUpdatePopup",
       "S_IsInGameUpdatePopup",
       "S_IsInternalReport",
-      "S_IsTroopRecordPage",
+      "S_LeaveTroopRecord",
       "S_FallbackWait"
     ],
     "timeout": 120000,
@@ -159,10 +159,7 @@
         "expected": "降序"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "enabled": false,
     "post_delay": 800,
     "next": ["S_DetectSortOrder"],
@@ -456,10 +453,7 @@
         "expected": "目"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["S_PostClickMenuHub"],
     "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
@@ -472,10 +466,7 @@
         "expected": "出阵"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["S_VerifyMenuClosed", "S_DetectWhereAmI"],
     "pre_delay": 100
   },
@@ -550,10 +541,7 @@
         "expected": "目"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "enabled": false,
     "next": ["S_ClickHomeInMenu"],
     "on_error": ["S_DetectWhereAmI"],
@@ -1397,10 +1385,7 @@
         "threshold": [0.98]
       }
     },
-    "action": {
-      "type": "DoNothing",
-      "param": {}
-    },
+    "action": {"type": "DoNothing"},
     "post_delay": 1000,
     "next": ["E_CheckTeamStatus"],
     "on_error": ["S_DetectWhereAmI"]
@@ -2215,10 +2200,7 @@
         "expected": "目"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "next": ["SF_PostClickMenuHub"],
     "on_error": ["SF_DetectWhereAmI"]
@@ -2249,10 +2231,7 @@
         "expected": "出阵"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_Hub"]
@@ -2774,10 +2753,7 @@
         "expected": "目"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "next": ["S_DetectWhereAmI"],
     "on_error": ["SF_Hub"]

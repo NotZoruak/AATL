@@ -157,7 +157,11 @@ public partial class ConnectSettingsUserControlModel : ViewModelBase
     ];
     public static ObservableCollection<Win32InputMethod> Win32ControlInputTypes =>
     [
-        Win32InputMethod.SendMessage, Win32InputMethod.Seize, Win32InputMethod.PostMessage, Win32InputMethod.LegacyEvent, Win32InputMethod.PostThreadMessage, Win32InputMethod.SendMessageWithCursorPos,
+        Win32InputMethod.SendMessage, Win32InputMethod.Seize, Win32InputMethod.PostMessage, Win32InputMethod.LegacyEvent,
+#pragma warning disable CS0618
+        Win32InputMethod.PostThreadMessage,
+#pragma warning restore CS0618
+        Win32InputMethod.SendMessageWithCursorPos,
         Win32InputMethod.PostMessageWithCursorPos, Win32InputMethod.SendMessageWithWindowPos,
         Win32InputMethod.PostMessageWithWindowPos
     ];

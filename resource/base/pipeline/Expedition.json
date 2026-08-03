@@ -2,7 +2,7 @@
   "Expedition": {
     "pre_delay": 0,
     "next": [
-      "E_IsTroopRecordPage",
+      "E_LeaveTroopRecord",
       "E_IsAnnouncementPopup",
       "E_IsTrainingLetter",
       "E_IsLoginReward",
@@ -23,7 +23,7 @@
     "timeout": 120000,
     "on_error": ["E_RestartGame"]
   },
-  "E_IsTroopRecordPage": {
+  "E_LeaveTroopRecord": {
     "recognition": {
       "type": "TemplateMatch",
       "param": {
@@ -58,10 +58,7 @@
         "expected": "状"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["E_IsTeamStatusPanel", "Expedition"],
     "post_delay": 500,
     "pre_delay": 100
@@ -87,10 +84,7 @@
         "threshold": [0.98]
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["E_VerifyScreen1"],
     "on_error": ["Expedition"],
     "pre_delay": 100
@@ -177,10 +171,7 @@
         "threshold": [0.98]
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["E_VerifyScreen2"],
     "on_error": ["Expedition"],
     "pre_delay": 100
@@ -267,10 +258,7 @@
         "threshold": [0.98]
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["E_VerifyScreen3"],
     "on_error": ["Expedition"],
     "pre_delay": 100
@@ -357,10 +345,7 @@
         "threshold": [0.98]
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["E_VerifyScreen4"],
     "on_error": ["Expedition"],
     "pre_delay": 100
@@ -447,10 +432,7 @@
         "threshold": [0.98]
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["E_VerifyScreen5"],
     "on_error": ["Expedition"],
     "pre_delay": 100
@@ -543,10 +525,7 @@
         "expected": "远征"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "post_delay": 200,
     "next": ["E_VerifyConfirmPopup"],
     "on_error": ["E_GoHome"],
@@ -578,22 +557,6 @@
     "next": ["E_ClickDirectoryTop", "E_LeaveTroopRecord"],
     "on_error": ["Expedition"]
   },
-  "E_LeaveTroopRecord": {
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [561, 6, 157, 41],
-        "expected": "部队记录"
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [59, 24, 27, 22]
-      }
-    },
-    "next": ["E_GoHome"]
-  },
   "E_ClickDirectoryTop": {
     "recognition": {
       "type": "OCR",
@@ -602,10 +565,7 @@
         "expected": "目"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["E_PostClickDirectoryHub"],
     "on_error": ["Expedition"],
     "pre_delay": 3000
@@ -1397,10 +1357,7 @@
         "expected": "目"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["E_FlowerBattleHub"],
     "pre_delay": 100,
     "post_delay": 1000,
@@ -1414,10 +1371,7 @@
         "expected": "出阵"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["E_FlowerBattleHub"],
     "pre_delay": 100,
     "post_delay": 1000

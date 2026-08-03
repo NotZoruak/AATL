@@ -9,10 +9,7 @@
         "threshold": [0.95]
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "timeout": 3000,
     "pre_delay": 100,
     "next": ["TT_IsAnnouncementPopup", "TT_DetectWhereAmI"]
@@ -27,10 +24,7 @@
         "threshold": [0.98]
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "next": ["TT_LoginRewardClick2"]
   },
@@ -66,10 +60,7 @@
         "threshold": [0.98]
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "next": ["TT_DetectWhereAmI"]
   },
@@ -83,10 +74,7 @@
         "threshold": [0.85]
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "post_delay": 3000,
     "pre_delay": 100,
     "next": ["TT_DetectWhereAmI"]
@@ -101,10 +89,7 @@
         "threshold": [0.98]
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "post_delay": 3000,
     "pre_delay": 100,
     "next": ["TT_DetectWhereAmI"]
@@ -119,10 +104,7 @@
         "threshold": [0.98]
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "post_delay": 2000,
     "pre_delay": 100,
     "next": ["TT_DetectWhereAmI"]
@@ -146,9 +128,7 @@
     "next": ["TT_DetectWhereAmI"]
   },
   "TT_FallbackWait": {
-    "action": {
-      "type": "DoNothing"
-    },
+    "action": {"type": "DoNothing"},
     "next": ["TT_DetectWhereAmI"]
   },
   "TT_RestartGame": {
@@ -201,9 +181,7 @@
         "lower": [23, 95, 15]
       }
     },
-    "action": {
-      "type": "DoNothing"
-    },
+    "action": {"type": "DoNothing"},
     "next": ["TT_IsHome", "TT_DetectWhereAmI"]
   },
   "TT_IsHome": {
@@ -253,7 +231,7 @@
     "next": ["TT_DetectWhereAmI"],
     "pre_delay": 100
   },
-  "TT_IsBattleResult_Title":  {
+  "TT_IsBattleResult_Title": {
     "recognition": "OCR",
     "roi": [558, 1, 162, 52],
     "expected": "战斗结果",
@@ -374,7 +352,7 @@
       }
     },
     "post_delay": 300,
-    "next": ["TT_VerifyEventPage","TT_DetectWhereAmI"],
+    "next": ["TT_VerifyEventPage", "TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_VerifyEventPage": {
@@ -388,7 +366,7 @@
       }
     },
     "post_delay": 300,
-    "next": ["TT_CheckSilhouette","TT_EnterEvent"],
+    "next": ["TT_CheckSilhouette", "TT_EnterEvent"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckSilhouette": {
@@ -399,10 +377,7 @@
         "expected": "更新"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "post_delay": 500,
     "next": ["TT_IsSilhouettePopup", "TT_IsSwordDropColor", "TT_CheckSilhouette"],
     "on_error": ["TT_DetectWhereAmI"]
@@ -439,10 +414,7 @@
         "lower": [127, 167, 18]
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
@@ -542,10 +514,7 @@
         "expected": "目"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["TT_PostClickMenuHub"],
     "on_error": ["TT_DetectWhereAmI"],
     "pre_delay": 100
@@ -574,10 +543,7 @@
         "expected": "出阵"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"],
     "pre_delay": 100
@@ -590,10 +556,7 @@
         "expected": "目"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["TT_PostClickMenuHub"],
     "pre_delay": 100
   },
@@ -734,9 +697,7 @@
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_AllTeamsExhausted": {
-    "action": {
-      "type": "DoNothing"
-    },
+    "action": {"type": "DoNothing"},
     "next": []
   },
   "TT_WaitRefresh": {
@@ -756,9 +717,7 @@
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_TerminateNoTicket": {
-    "action": {
-      "type": "DoNothing"
-    },
+    "action": {"type": "DoNothing"},
     "next": []
   },
   "TacticalTraining": {

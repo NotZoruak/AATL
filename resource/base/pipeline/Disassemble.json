@@ -322,10 +322,7 @@
     "roi": [1197, 627, 6, 9],
     "upper": [26, 87, 183],
     "lower": [20, 81, 177],
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "pre_delay": 300,
     "post_delay": 500,
     "next": ["D_DisassembleClickFinal"]

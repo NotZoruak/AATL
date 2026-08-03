@@ -1,0 +1,1360 @@
+[2026-08-02 19:47:40.368][INF] 正在加载配置列表...
+[2026-08-02 19:47:40.395][INF] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:47:40.395][INF] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:47:40.395][INF] 是否使用独立数据目录：False
+[2026-08-02 19:47:40.395][INF] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 19:47:40.395][INF] 是否使用本地配置目录：True
+[2026-08-02 19:47:40.395][INF] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 19:47:40.395][INF] 备份文件数量：0
+[2026-08-02 19:47:40.395][INF] 临时目录是否存在：True
+[2026-08-02 19:47:40.395][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:47:40.397][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:47:40.397][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 19:47:40.397][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 19:47:40.397][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 19:47:40.397][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 19:47:40.397][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 19:47:40.397][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 19:47:40.406][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\MATR\MATR.dll' is denied.
+[2026-08-02 19:47:40.407][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\MATR\runtimes/libs
+[2026-08-02 19:47:40.408][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\MATR\runtimes/libs，目录存在=True
+[2026-08-02 19:47:40.412][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\MATR\runtimes\linux-x64\native, D:\Claude_Workspace\MATR\runtimes\osx-x64\native, D:\Claude_Workspace\MATR\runtimes\win-x64\native]
+[2026-08-02 19:47:40.414][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 19:47:40.414][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 19:47:40.414][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 19:47:40.651][ERR] [cfg=Default] 应用初始化失败：原因=No precompiled XAML found for MFAAvalonia.App, make sure to specify x:Class and include your XAML file as AvaloniaResource
+Avalonia.Markup.Xaml.XamlLoadException: No precompiled XAML found for MFAAvalonia.App, make sure to specify x:Class and include your XAML file as AvaloniaResource
+   at Avalonia.Markup.Xaml.AvaloniaXamlLoader.Load(Object obj)
+   at MFAAvalonia.App.Initialize()
+[2026-08-02 19:48:06.630][INF] 正在加载配置列表...
+[2026-08-02 19:48:06.657][INF] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 19:48:06.657][INF] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 19:48:06.657][INF] 是否使用独立数据目录：False
+[2026-08-02 19:48:06.657][INF] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 19:48:06.657][INF] 是否使用本地配置目录：True
+[2026-08-02 19:48:06.657][INF] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 19:48:06.657][INF] 备份文件数量：0
+[2026-08-02 19:48:06.657][INF] 临时目录是否存在：True
+[2026-08-02 19:48:06.657][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 19:48:06.657][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 19:48:06.657][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 19:48:06.657][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 19:48:06.657][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 19:48:06.657][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 19:48:06.657][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 19:48:06.657][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 19:48:06.666][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\matr\MATR.dll' is denied.
+[2026-08-02 19:48:06.667][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\matr\runtimes/libs
+[2026-08-02 19:48:06.668][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\matr\runtimes/libs，目录存在=True
+[2026-08-02 19:48:06.674][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\matr\runtimes\linux-x64\native, D:\Claude_Workspace\matr\runtimes\osx-x64\native, D:\Claude_Workspace\matr\runtimes\win-x64\native]
+[2026-08-02 19:48:06.677][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 19:48:06.677][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 19:48:06.677][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 19:48:06.929][ERR] [cfg=Default] 应用初始化失败：原因=No precompiled XAML found for MFAAvalonia.App, make sure to specify x:Class and include your XAML file as AvaloniaResource
+Avalonia.Markup.Xaml.XamlLoadException: No precompiled XAML found for MFAAvalonia.App, make sure to specify x:Class and include your XAML file as AvaloniaResource
+   at Avalonia.Markup.Xaml.AvaloniaXamlLoader.Load(Object obj)
+   at MFAAvalonia.App.Initialize()
+[2026-08-02 19:50:18.092][INF] 正在加载配置列表...
+[2026-08-02 19:50:18.121][INF] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 19:50:18.121][INF] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 19:50:18.121][INF] 是否使用独立数据目录：False
+[2026-08-02 19:50:18.121][INF] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 19:50:18.121][INF] 是否使用本地配置目录：True
+[2026-08-02 19:50:18.121][INF] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 19:50:18.121][INF] 备份文件数量：0
+[2026-08-02 19:50:18.121][INF] 临时目录是否存在：True
+[2026-08-02 19:50:18.121][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 19:50:18.121][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 19:50:18.121][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 19:50:18.121][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 19:50:18.121][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 19:50:18.121][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 19:50:18.121][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 19:50:18.121][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 19:50:18.131][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\matr\MATR.dll' is denied.
+[2026-08-02 19:50:18.132][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\matr\runtimes/libs
+[2026-08-02 19:50:18.132][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\matr\runtimes/libs，目录存在=True
+[2026-08-02 19:50:18.138][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\matr\runtimes\linux-x64\native, D:\Claude_Workspace\matr\runtimes\osx-x64\native, D:\Claude_Workspace\matr\runtimes\win-x64\native]
+[2026-08-02 19:50:18.140][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 19:50:18.140][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 19:50:18.140][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 19:50:18.769][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-08-02 19:50:18.816][ERR] [cfg=Default] 应用初始化失败：原因=Unable to load one or more of the requested types.
+Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+Could not load type 'MaaFramework.Binding.MacOSScreencapMethod' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+System.Reflection.ReflectionTypeLoadException: Unable to load one or more of the requested types.
+Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+Could not load type 'MaaFramework.Binding.MacOSScreencapMethod' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeModule.GetDefinedTypes()
+   at System.Reflection.RuntimeModule.GetTypes()
+   at MFAAvalonia.Localization.MFAResxLangPlugin.<Load>b__18_0(Assembly assembly)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Linq.Enumerable.IEnumerableWhereIterator`1.MoveNext()
+   at System.Linq.Enumerable.ToDictionary[TSource,TKey,TElement](IEnumerable`1 source, Func`2 keySelector, Func`2 elementSelector, IEqualityComparer`1 comparer)
+   at System.Linq.Enumerable.ToDictionary[TSource,TKey,TElement](IEnumerable`1 source, Func`2 keySelector, Func`2 elementSelector)
+   at MFAAvalonia.Localization.MFAResxLangPlugin.Load(CultureInfo cultureInfo)
+   at MFAAvalonia.Helper.LanguageHelper.Initialize()
+   at MFAAvalonia.App.Initialize()
+System.TypeLoadException: Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+System.TypeLoadException: Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+System.TypeLoadException: Could not load type 'MaaFramework.Binding.MacOSScreencapMethod' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+System.TypeLoadException: Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+[2026-08-02 19:50:28.982][INF] 正在加载配置列表...
+[2026-08-02 19:50:29.013][INF] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 19:50:29.013][INF] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 19:50:29.013][INF] 是否使用独立数据目录：False
+[2026-08-02 19:50:29.013][INF] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 19:50:29.013][INF] 是否使用本地配置目录：True
+[2026-08-02 19:50:29.013][INF] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 19:50:29.013][INF] 备份文件数量：0
+[2026-08-02 19:50:29.013][INF] 临时目录是否存在：True
+[2026-08-02 19:50:29.013][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 19:50:29.013][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 19:50:29.013][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 19:50:29.013][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 19:50:29.013][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 19:50:29.013][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 19:50:29.013][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 19:50:29.013][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 19:50:29.025][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\matr\MATR.dll' is denied.
+[2026-08-02 19:50:29.026][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\matr\runtimes/libs
+[2026-08-02 19:50:29.026][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\matr\runtimes/libs，目录存在=True
+[2026-08-02 19:50:29.032][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\matr\runtimes\linux-x64\native, D:\Claude_Workspace\matr\runtimes\osx-x64\native, D:\Claude_Workspace\matr\runtimes\win-x64\native]
+[2026-08-02 19:50:29.034][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 19:50:29.034][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 19:50:29.034][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 19:50:29.660][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-08-02 19:50:29.707][ERR] [cfg=Default] 应用初始化失败：原因=Unable to load one or more of the requested types.
+Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+Could not load type 'MaaFramework.Binding.MacOSScreencapMethod' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+System.Reflection.ReflectionTypeLoadException: Unable to load one or more of the requested types.
+Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+Could not load type 'MaaFramework.Binding.MacOSScreencapMethod' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeModule.GetDefinedTypes()
+   at System.Reflection.RuntimeModule.GetTypes()
+   at MFAAvalonia.Localization.MFAResxLangPlugin.<Load>b__18_0(Assembly assembly)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Linq.Enumerable.IEnumerableWhereIterator`1.MoveNext()
+   at System.Linq.Enumerable.ToDictionary[TSource,TKey,TElement](IEnumerable`1 source, Func`2 keySelector, Func`2 elementSelector, IEqualityComparer`1 comparer)
+   at System.Linq.Enumerable.ToDictionary[TSource,TKey,TElement](IEnumerable`1 source, Func`2 keySelector, Func`2 elementSelector)
+   at MFAAvalonia.Localization.MFAResxLangPlugin.Load(CultureInfo cultureInfo)
+   at MFAAvalonia.Helper.LanguageHelper.Initialize()
+   at MFAAvalonia.App.Initialize()
+System.TypeLoadException: Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+System.TypeLoadException: Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+System.TypeLoadException: Could not load type 'MaaFramework.Binding.MacOSScreencapMethod' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+System.TypeLoadException: Could not load type 'MaaFramework.Binding.Win32ScreencapMethods' from assembly 'MaaFramework.Binding, Version=5.8.0.0, Culture=neutral, PublicKeyToken=null'.
+[2026-08-02 19:51:00.260][INF] 正在加载配置列表...
+[2026-08-02 19:51:00.286][INF] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 19:51:00.287][INF] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 19:51:00.287][INF] 是否使用独立数据目录：False
+[2026-08-02 19:51:00.287][INF] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 19:51:00.287][INF] 是否使用本地配置目录：True
+[2026-08-02 19:51:00.287][INF] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 19:51:00.287][INF] 备份文件数量：0
+[2026-08-02 19:51:00.287][INF] 临时目录是否存在：True
+[2026-08-02 19:51:00.287][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 19:51:00.287][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 19:51:00.287][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 19:51:00.287][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 19:51:00.287][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 19:51:00.287][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 19:51:00.287][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 19:51:00.287][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 19:51:00.298][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\matr\MATR.dll' is denied.
+[2026-08-02 19:51:00.299][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\matr\runtimes/libs
+[2026-08-02 19:51:00.300][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\matr\runtimes/libs，目录存在=True
+[2026-08-02 19:51:00.308][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\matr\runtimes\linux-x64\native, D:\Claude_Workspace\matr\runtimes\osx-x64\native, D:\Claude_Workspace\matr\runtimes\win-x64\native]
+[2026-08-02 19:51:00.311][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 19:51:00.311][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 19:51:00.311][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 19:51:00.981][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-08-02 19:51:01.161][INF] [cfg=Default] 当前配置：Default
+[2026-08-02 19:51:01.211][INF] [cfg=Default] 已恢复系统休眠。
+[2026-08-02 19:51:01.214][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-08-02 19:51:01.215][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-08-02 19:51:01.227][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-08-02 19:51:01.227][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-08-02 19:51:01.241][INF] [cfg=Default] [内存管理]释放了1.83 MB（38.3%)
+[2026-08-02 19:51:01.329][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-08-02 19:51:01.339][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 19:51:01.426][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 19:51:01.427][INF] [cfg=Default] 资源版本：v0.7.0-beta.2
+[2026-08-02 19:51:01.427][INF] [cfg=Default] MaaFramework 版本：v5.10.2
+[2026-08-02 19:51:01.485][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 19:51:01.566][INF] [cfg=Default] 窗口大小已加载：宽度=1100，高度=680
+[2026-08-02 19:51:01.572][INF] [cfg=Default] 保存的窗口位置（-32000, -32000）不在有效屏幕范围内，使用默认居中位置
+[2026-08-02 19:51:01.927][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-08-02 19:51:02.000][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-08-02 19:51:02.062][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 19:51:02.062][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-08-02 19:51:02.178][ERR] [cfg=Default] 框架初始化失败：原因=Could not load type 'SukiUI.Animations.FloatingTextExtensions' from assembly 'SukiUI, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null'.
+System.TypeLoadException: Could not load type 'SukiUI.Animations.FloatingTextExtensions' from assembly 'SukiUI, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at CompiledAvaloniaXaml.!AvaloniaResources.Populate:/Assets/Style/MdXamlStyles.axaml(IServiceProvider, Styles)
+   at CompiledAvaloniaXaml.!AvaloniaResources.Populate:/Assets/Style/MdXamlStyles.axaml(IServiceProvider, Styles)
+   at CompiledAvaloniaXaml.!AvaloniaResources.Build:/Assets/Style/MdXamlStyles.axaml(IServiceProvider)
+   at MFAAvalonia.Views.UserControls.Settings.AboutUserControl.!XamlIlPopulate(IServiceProvider, AboutUserControl)
+   at MFAAvalonia.Views.UserControls.Settings.AboutUserControl.!XamlIlPopulateTrampoline(AboutUserControl)
+   at MFAAvalonia.Views.UserControls.Settings.AboutUserControl.InitializeComponent(Boolean loadXaml)
+   at MFAAvalonia.Views.UserControls.Settings.AboutUserControl..ctor()
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at MFAAvalonia.Extensions.ServiceProviderExtension.ProvideValue(IServiceProvider serviceProvider)
+   at MFAAvalonia.Views.Pages.SettingsView.!XamlIlPopulate(IServiceProvider, SettingsView)
+   at MFAAvalonia.Views.Pages.SettingsView.!XamlIlPopulateTrampoline(SettingsView)
+   at MFAAvalonia.Views.Pages.SettingsView.InitializeComponent(Boolean loadXaml)
+   at MFAAvalonia.Views.Pages.SettingsView..ctor()
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at MFAAvalonia.Extensions.ServiceProviderExtension.ProvideValue(IServiceProvider serviceProvider)
+   at MFAAvalonia.Views.Mobile.RootViewContent.!XamlIlPopulate(IServiceProvider, RootViewContent)
+   at MFAAvalonia.Views.Mobile.RootViewContent.!XamlIlPopulateTrampoline(RootViewContent)
+   at MFAAvalonia.Views.Mobile.RootViewContent.InitializeComponent(Boolean loadXaml)
+   at MFAAvalonia.Views.Mobile.RootViewContent..ctor()
+   at MFAAvalonia.Views.Windows.RootView.!XamlIlPopulate(IServiceProvider, RootView)
+   at MFAAvalonia.Views.Windows.RootView.!XamlIlPopulateTrampoline(RootView)
+   at MFAAvalonia.Views.Windows.RootView.InitializeComponent(Boolean loadXaml)
+   at MFAAvalonia.Views.Windows.RootView..ctor()
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at MFAAvalonia.Helper.ViewsHelper.TryCreateView(IServiceProvider provider, Type viewModelType, Control& view)
+   at MFAAvalonia.Helper.ViewsHelper.CreateView[TViewModel](IServiceProvider provider)
+   at MFAAvalonia.App.OnFrameworkInitializationCompleted()
+[2026-08-02 19:51:02.222][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 19:51:59.857][INF] 正在加载配置列表...
+[2026-08-02 19:51:59.883][INF] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 19:51:59.884][INF] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 19:51:59.884][INF] 是否使用独立数据目录：False
+[2026-08-02 19:51:59.884][INF] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 19:51:59.884][INF] 是否使用本地配置目录：True
+[2026-08-02 19:51:59.884][INF] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 19:51:59.884][INF] 备份文件数量：0
+[2026-08-02 19:51:59.884][INF] 临时目录是否存在：True
+[2026-08-02 19:51:59.884][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 19:51:59.884][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 19:51:59.884][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 19:51:59.884][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 19:51:59.884][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 19:51:59.884][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 19:51:59.884][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 19:51:59.884][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 19:51:59.894][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\matr\MATR.dll' is denied.
+[2026-08-02 19:51:59.895][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\matr\runtimes/libs
+[2026-08-02 19:51:59.895][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\matr\runtimes/libs，目录存在=True
+[2026-08-02 19:51:59.902][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\matr\runtimes\linux-x64\native, D:\Claude_Workspace\matr\runtimes\osx-x64\native, D:\Claude_Workspace\matr\runtimes\win-x64\native]
+[2026-08-02 19:51:59.904][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 19:51:59.904][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 19:51:59.904][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 19:52:00.576][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-08-02 19:52:00.742][INF] [cfg=Default] 当前配置：Default
+[2026-08-02 19:52:00.794][INF] [cfg=Default] 已恢复系统休眠。
+[2026-08-02 19:52:00.799][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-08-02 19:52:00.800][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-08-02 19:52:00.810][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-08-02 19:52:00.810][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-08-02 19:52:00.825][INF] [cfg=Default] [内存管理]释放了1.73 MB（36.9%)
+[2026-08-02 19:52:00.889][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-08-02 19:52:00.898][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 19:52:00.982][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 19:52:00.983][INF] [cfg=Default] 资源版本：v0.7.0-beta.2
+[2026-08-02 19:52:00.983][INF] [cfg=Default] MaaFramework 版本：v5.10.2
+[2026-08-02 19:52:01.045][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 19:52:01.121][INF] [cfg=Default] 窗口大小已加载：宽度=1100，高度=680
+[2026-08-02 19:52:01.128][INF] [cfg=Default] 保存的窗口位置（-32000, -32000）不在有效屏幕范围内，使用默认居中位置
+[2026-08-02 19:52:01.466][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-08-02 19:52:01.581][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-08-02 19:52:01.636][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 19:52:01.636][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-08-02 19:52:01.812][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 19:52:01.819][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 19:52:02.208][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 19:52:02.209][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 19:52:02.282][INF] [cfg=Default] 界面初始化开始
+[2026-08-02 19:52:02.371][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 19:52:02.373][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 19:52:02.376][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 19:52:02.377][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 19:52:03.037][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-08-02 19:52:03.345][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-08-02 19:52:03.346][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-08-02 19:52:03.572][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-08-02 19:52:03.573][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-08-02 19:52:03.652][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-08-02 19:52:03.679][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-08-02 19:52:03.686][INF] [cfg=Default] 已自动注入 MuMu EmulatorExtras 配置：安装路径=D:\Apps\MuMu\MuMuPlayer，索引=0，直连地址=127.0.0.1:16384
+[2026-08-02 19:52:03.709][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-08-02 19:52:03.714][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-08-02 19:52:03.715][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\matr\resource\base
+[2026-08-02 19:52:03.715][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-08-02 19:52:03.760][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-08-02 19:52:03.761][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-08-02 19:52:03.762][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-08-02 19:52:03.762][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-08-02 19:52:03.762][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-08-02 19:52:03.764][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:EmulatorExtras,捕获模式:EmulatorExtras
+[2026-08-02 19:52:03.764][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：MuMu安卓设备-MuMuPlayer12 v5
+[2026-08-02 19:52:03.764][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe
+[2026-08-02 19:52:03.764][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：127.0.0.1:16384
+[2026-08-02 19:52:03.764][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：EmulatorExtras
+[2026-08-02 19:52:03.764][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：EmulatorExtras
+[2026-08-02 19:52:03.764][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{"extras":{"mumu":{"enable":true,"path":"D:\\Apps\\MuMu\\MuMuPlayer","index":0}}
+[2026-08-02 19:52:04.029][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-08-02 19:52:04.301][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册内置特殊任务动作。
+[2026-08-02 19:52:04.312][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已启动自定义类目录监听：目录=D:\Claude_Workspace\matr\resource\base\custom
+[2026-08-02 19:52:04.315][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\matr\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 19:52:04.341][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-08-02 19:52:05.188][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\matr\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 19:52:05.188][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\matr\resource\base\custom\DamageLogAction.cs
+[2026-08-02 19:52:05.290][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\matr\resource\base\custom\DamageLogAction.cs
+[2026-08-02 19:52:05.290][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\matr\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 19:52:05.500][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\matr\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 19:52:05.501][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\matr\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 19:52:05.665][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\matr\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 19:52:05.665][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\matr\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 19:52:05.726][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\matr\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 19:52:05.726][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=StopOnDamageAction，文件=D:\Claude_Workspace\matr\resource\base\custom\StopOnDamageAction.cs
+[2026-08-02 19:52:05.813][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] CS1061：“ObservableQueue<MFATask>”未包含“FirstOrDefault”的定义，并且找不到可接受第一个“ObservableQueue<MFATask>”类型参数的可访问扩展方法“FirstOrDefault”(是否缺少 using 指令或程序集引用?） [错误行号：25]  [错误代码行：? $"[重伤检测] 检测到刀剑男士重伤，{currentTaskName} 任务终止，开始{nextTaskName}"]
+[2026-08-02 19:52:05.814][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\matr\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 19:52:05.859][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\matr\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 19:52:05.859][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：CaptainDamageAction
+[2026-08-02 19:52:05.859][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DamageLogAction
+[2026-08-02 19:52:05.860][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DispatchLogAction
+[2026-08-02 19:52:05.860][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DungeonFloorSelectAction
+[2026-08-02 19:52:05.860][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：ExpeditionMapSelectAction
+[2026-08-02 19:52:05.860][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：TeamSwitchAction
+[2026-08-02 19:52:05.860][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 未找到自定义目录：D:\Claude_Workspace\matr\resource\custom
+[2026-08-02 19:52:05.860][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 连接状态变更：已连接。
+[2026-08-02 19:52:05.861][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] MaaFW 调试模式：False
+[2026-08-02 19:52:06.562][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-08-02 19:52:06.563][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-08-02 19:52:06.564][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-08-02 19:52:06.564][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-08-02 19:52:06.565][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-08-02 19:52:06.565][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] [Record] 任务执行完毕：0 个成功，0 个失败
+[2026-08-02 19:52:06.568][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-08-02 19:52:06.570][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-08-02 19:52:06.572][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 2s)
+[2026-08-02 19:52:17.005][INF] 正在加载配置列表...
+[2026-08-02 19:52:17.034][INF] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 19:52:17.034][INF] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 19:52:17.034][INF] 是否使用独立数据目录：False
+[2026-08-02 19:52:17.034][INF] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 19:52:17.034][INF] 是否使用本地配置目录：True
+[2026-08-02 19:52:17.034][INF] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 19:52:17.034][INF] 备份文件数量：0
+[2026-08-02 19:52:17.034][INF] 临时目录是否存在：True
+[2026-08-02 19:52:17.034][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 19:52:17.034][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 19:52:17.034][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 19:52:17.034][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 19:52:17.034][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 19:52:17.034][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 19:52:17.034][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 19:52:17.034][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 19:52:17.045][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\matr\MATR.dll' is denied.
+[2026-08-02 19:52:17.046][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\matr\runtimes/libs
+[2026-08-02 19:52:17.047][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\matr\runtimes/libs，目录存在=True
+[2026-08-02 19:52:17.053][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\matr\runtimes\linux-x64\native, D:\Claude_Workspace\matr\runtimes\osx-x64\native, D:\Claude_Workspace\matr\runtimes\win-x64\native]
+[2026-08-02 19:52:17.055][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 19:52:17.055][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 19:52:17.055][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 19:52:17.716][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-08-02 19:52:17.905][INF] [cfg=Default] 当前配置：Default
+[2026-08-02 19:52:17.952][INF] [cfg=Default] 已恢复系统休眠。
+[2026-08-02 19:52:17.956][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-08-02 19:52:17.956][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-08-02 19:52:17.966][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-08-02 19:52:17.966][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-08-02 19:52:17.983][INF] [cfg=Default] [内存管理]释放了1.78 MB（37.1%)
+[2026-08-02 19:52:18.048][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-08-02 19:52:18.057][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 19:52:18.145][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 19:52:18.145][INF] [cfg=Default] 资源版本：v0.7.0-beta.2
+[2026-08-02 19:52:18.145][INF] [cfg=Default] MaaFramework 版本：v5.10.2
+[2026-08-02 19:52:18.203][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 19:52:18.296][INF] [cfg=Default] 窗口大小已加载：宽度=1100，高度=680
+[2026-08-02 19:52:18.304][INF] [cfg=Default] 保存的窗口位置（-32000, -32000）不在有效屏幕范围内，使用默认居中位置
+[2026-08-02 19:52:18.634][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-08-02 19:52:18.716][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-08-02 19:52:18.770][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 19:52:18.771][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-08-02 19:52:18.938][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 19:52:18.946][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 19:52:19.347][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 19:52:19.348][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 19:52:19.411][INF] [cfg=Default] 界面初始化开始
+[2026-08-02 19:52:19.487][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 19:52:19.489][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 19:52:19.492][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 19:52:19.493][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 19:52:20.113][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-08-02 19:52:20.419][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-08-02 19:52:20.420][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-08-02 19:52:20.639][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-08-02 19:52:20.639][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-08-02 19:52:20.716][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-08-02 19:52:20.729][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-08-02 19:52:20.737][INF] [cfg=Default] 已自动注入 MuMu EmulatorExtras 配置：安装路径=D:\Apps\MuMu\MuMuPlayer，索引=0，直连地址=127.0.0.1:16384
+[2026-08-02 19:52:20.751][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-08-02 19:52:20.778][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-08-02 19:52:20.778][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\matr\resource\base
+[2026-08-02 19:52:20.778][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-08-02 19:52:20.825][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-08-02 19:52:20.827][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-08-02 19:52:20.827][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-08-02 19:52:20.827][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-08-02 19:52:20.828][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-08-02 19:52:20.829][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:EmulatorExtras,捕获模式:EmulatorExtras
+[2026-08-02 19:52:20.830][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：MuMu安卓设备-MuMuPlayer12 v5
+[2026-08-02 19:52:20.830][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe
+[2026-08-02 19:52:20.830][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：127.0.0.1:16384
+[2026-08-02 19:52:20.830][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：EmulatorExtras
+[2026-08-02 19:52:20.830][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：EmulatorExtras
+[2026-08-02 19:52:20.830][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{"extras":{"mumu":{"enable":true,"path":"D:\\Apps\\MuMu\\MuMuPlayer","index":0}}
+[2026-08-02 19:52:21.045][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-08-02 19:52:21.293][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册内置特殊任务动作。
+[2026-08-02 19:52:21.303][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已启动自定义类目录监听：目录=D:\Claude_Workspace\matr\resource\base\custom
+[2026-08-02 19:52:21.305][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\matr\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 19:52:21.418][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-08-02 19:52:22.178][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\matr\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 19:52:22.178][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\matr\resource\base\custom\DamageLogAction.cs
+[2026-08-02 19:52:22.278][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\matr\resource\base\custom\DamageLogAction.cs
+[2026-08-02 19:52:22.278][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\matr\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 19:52:22.491][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\matr\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 19:52:22.491][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\matr\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 19:52:22.655][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\matr\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 19:52:22.655][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\matr\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 19:52:22.715][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\matr\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 19:52:22.715][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=StopOnDamageAction，文件=D:\Claude_Workspace\matr\resource\base\custom\StopOnDamageAction.cs
+[2026-08-02 19:52:22.799][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] CS1061：“ObservableQueue<MFATask>”未包含“FirstOrDefault”的定义，并且找不到可接受第一个“ObservableQueue<MFATask>”类型参数的可访问扩展方法“FirstOrDefault”(是否缺少 using 指令或程序集引用?） [错误行号：25]  [错误代码行：? $"[重伤检测] 检测到刀剑男士重伤，{currentTaskName} 任务终止，开始{nextTaskName}"]
+[2026-08-02 19:52:22.799][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\matr\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 19:52:22.846][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\matr\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 19:52:22.846][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：CaptainDamageAction
+[2026-08-02 19:52:22.846][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DamageLogAction
+[2026-08-02 19:52:22.846][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DispatchLogAction
+[2026-08-02 19:52:22.847][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DungeonFloorSelectAction
+[2026-08-02 19:52:22.847][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：ExpeditionMapSelectAction
+[2026-08-02 19:52:22.847][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：TeamSwitchAction
+[2026-08-02 19:52:22.847][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 未找到自定义目录：D:\Claude_Workspace\matr\resource\custom
+[2026-08-02 19:52:22.847][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 连接状态变更：已连接。
+[2026-08-02 19:52:22.848][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] MaaFW 调试模式：False
+[2026-08-02 19:52:23.563][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-08-02 19:52:23.564][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-08-02 19:52:23.566][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-08-02 19:52:23.566][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-08-02 19:52:23.567][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-08-02 19:52:23.567][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] [Record] 任务执行完毕：0 个成功，0 个失败
+[2026-08-02 19:52:23.571][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-08-02 19:52:23.572][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-08-02 19:52:23.576][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 2s)
+[2026-08-02 19:52:39.045][INF] 正在加载配置列表...
+[2026-08-02 19:52:39.081][INF] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:52:39.081][INF] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:52:39.081][INF] 是否使用独立数据目录：False
+[2026-08-02 19:52:39.081][INF] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 19:52:39.081][INF] 是否使用本地配置目录：True
+[2026-08-02 19:52:39.081][INF] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 19:52:39.081][INF] 备份文件数量：0
+[2026-08-02 19:52:39.081][INF] 临时目录是否存在：True
+[2026-08-02 19:52:39.081][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:52:39.081][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:52:39.081][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 19:52:39.081][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 19:52:39.081][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 19:52:39.081][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 19:52:39.081][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 19:52:39.081][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 19:52:39.096][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\MATR\MATR.dll' is denied.
+[2026-08-02 19:52:39.097][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\MATR\runtimes/libs
+[2026-08-02 19:52:39.098][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\MATR\runtimes/libs，目录存在=True
+[2026-08-02 19:52:39.103][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\MATR\runtimes\linux-x64\native, D:\Claude_Workspace\MATR\runtimes\osx-x64\native, D:\Claude_Workspace\MATR\runtimes\win-x64\native]
+[2026-08-02 19:52:39.105][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 19:52:39.105][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 19:52:39.105][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 19:52:39.682][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-08-02 19:52:39.836][INF] [cfg=Default] 当前配置：Default
+[2026-08-02 19:52:39.885][INF] [cfg=Default] 已恢复系统休眠。
+[2026-08-02 19:52:39.889][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-08-02 19:52:39.890][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-08-02 19:52:39.899][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-08-02 19:52:39.899][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-08-02 19:52:39.915][INF] [cfg=Default] [内存管理]释放了1.76 MB（37.0%)
+[2026-08-02 19:52:39.971][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-08-02 19:52:39.982][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 19:52:40.061][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 19:52:40.061][INF] [cfg=Default] 资源版本：v0.7.0-beta.2
+[2026-08-02 19:52:40.061][INF] [cfg=Default] MaaFramework 版本：v5.10.2
+[2026-08-02 19:52:40.116][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 19:52:40.201][INF] [cfg=Default] 窗口大小已加载：宽度=1100，高度=680
+[2026-08-02 19:52:40.209][INF] [cfg=Default] 保存的窗口位置（-32000, -32000）不在有效屏幕范围内，使用默认居中位置
+[2026-08-02 19:52:40.511][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-08-02 19:52:40.598][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-08-02 19:52:40.647][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 19:52:40.648][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-08-02 19:52:40.793][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 19:52:40.799][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 19:52:41.146][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 19:52:41.147][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 19:52:41.209][INF] [cfg=Default] 界面初始化开始
+[2026-08-02 19:52:41.284][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 19:52:41.286][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 19:52:41.288][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 19:52:41.289][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 19:52:41.881][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-08-02 19:52:42.186][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-08-02 19:52:42.187][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-08-02 19:52:42.455][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-08-02 19:52:42.455][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-08-02 19:52:42.530][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-08-02 19:52:42.544][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-08-02 19:52:42.547][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-08-02 19:52:42.554][INF] [cfg=Default] 已自动注入 MuMu EmulatorExtras 配置：安装路径=D:\Apps\MuMu\MuMuPlayer，索引=0，直连地址=127.0.0.1:16384
+[2026-08-02 19:52:42.564][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-08-02 19:52:42.564][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\MATR\resource\base
+[2026-08-02 19:52:42.564][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-08-02 19:52:42.611][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-08-02 19:52:42.612][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-08-02 19:52:42.612][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-08-02 19:52:42.612][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-08-02 19:52:42.613][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-08-02 19:52:42.614][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:EmulatorExtras,捕获模式:EmulatorExtras
+[2026-08-02 19:52:42.614][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：MuMu安卓设备-MuMuPlayer12 v5
+[2026-08-02 19:52:42.614][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe
+[2026-08-02 19:52:42.614][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：127.0.0.1:16384
+[2026-08-02 19:52:42.614][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：EmulatorExtras
+[2026-08-02 19:52:42.614][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：EmulatorExtras
+[2026-08-02 19:52:42.614][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{"extras":{"mumu":{"enable":true,"path":"D:\\Apps\\MuMu\\MuMuPlayer","index":0}}
+[2026-08-02 19:52:42.829][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-08-02 19:52:43.079][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册内置特殊任务动作。
+[2026-08-02 19:52:43.089][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已启动自定义类目录监听：目录=D:\Claude_Workspace\MATR\resource\base\custom
+[2026-08-02 19:52:43.091][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 19:52:43.186][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-08-02 19:52:43.966][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 19:52:43.966][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DamageLogAction.cs
+[2026-08-02 19:52:44.068][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DamageLogAction.cs
+[2026-08-02 19:52:44.068][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 19:52:44.281][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 19:52:44.281][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 19:52:44.446][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 19:52:44.446][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 19:52:44.505][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 19:52:44.505][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=StopOnDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\StopOnDamageAction.cs
+[2026-08-02 19:52:44.596][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] CS1061：“ObservableQueue<MFATask>”未包含“FirstOrDefault”的定义，并且找不到可接受第一个“ObservableQueue<MFATask>”类型参数的可访问扩展方法“FirstOrDefault”(是否缺少 using 指令或程序集引用?） [错误行号：25]  [错误代码行：? $"[重伤检测] 检测到刀剑男士重伤，{currentTaskName} 任务终止，开始{nextTaskName}"]
+[2026-08-02 19:52:44.596][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 19:52:44.642][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 19:52:44.642][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：CaptainDamageAction
+[2026-08-02 19:52:44.643][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DamageLogAction
+[2026-08-02 19:52:44.643][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DispatchLogAction
+[2026-08-02 19:52:44.643][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DungeonFloorSelectAction
+[2026-08-02 19:52:44.643][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：ExpeditionMapSelectAction
+[2026-08-02 19:52:44.643][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：TeamSwitchAction
+[2026-08-02 19:52:44.643][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 未找到自定义目录：D:\Claude_Workspace\MATR\resource\custom
+[2026-08-02 19:52:44.643][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 连接状态变更：已连接。
+[2026-08-02 19:52:44.644][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] MaaFW 调试模式：False
+[2026-08-02 19:52:45.390][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-08-02 19:52:45.390][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-08-02 19:52:45.392][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-08-02 19:52:45.392][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-08-02 19:52:45.393][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-08-02 19:52:45.394][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] [Record] 任务执行完毕：0 个成功，0 个失败
+[2026-08-02 19:52:45.398][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-08-02 19:52:45.399][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-08-02 19:52:45.402][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 2s)
+[2026-08-02 19:53:38.781][INF] [cfg=Default] 应用已关闭
+[2026-08-02 19:53:38.784][INF] [cfg=Default] 已释放自定义类目录监听器。
+[2026-08-02 19:56:27.559][INF] 正在加载配置列表...
+[2026-08-02 19:56:27.584][INF] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:56:27.584][INF] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:56:27.584][INF] 是否使用独立数据目录：False
+[2026-08-02 19:56:27.584][INF] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 19:56:27.584][INF] 是否使用本地配置目录：True
+[2026-08-02 19:56:27.584][INF] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 19:56:27.584][INF] 备份文件数量：0
+[2026-08-02 19:56:27.584][INF] 临时目录是否存在：True
+[2026-08-02 19:56:27.584][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:56:27.584][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:56:27.584][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 19:56:27.584][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 19:56:27.584][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 19:56:27.584][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 19:56:27.584][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 19:56:27.584][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 19:56:27.593][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\MATR\MATR.dll' is denied.
+[2026-08-02 19:56:27.594][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\MATR\runtimes/libs
+[2026-08-02 19:56:27.594][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\MATR\runtimes/libs，目录存在=True
+[2026-08-02 19:56:27.600][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\MATR\runtimes\linux-x64\native, D:\Claude_Workspace\MATR\runtimes\osx-x64\native, D:\Claude_Workspace\MATR\runtimes\win-x64\native]
+[2026-08-02 19:56:27.603][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 19:56:27.603][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 19:56:27.603][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 19:56:28.207][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-08-02 19:56:28.360][INF] [cfg=Default] 当前配置：Default
+[2026-08-02 19:56:28.408][INF] [cfg=Default] 已恢复系统休眠。
+[2026-08-02 19:56:28.412][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-08-02 19:56:28.412][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-08-02 19:56:28.423][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-08-02 19:56:28.423][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-08-02 19:56:28.437][INF] [cfg=Default] [内存管理]释放了1.80 MB（37.8%)
+[2026-08-02 19:56:28.502][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-08-02 19:56:28.511][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 19:56:28.594][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 19:56:28.595][INF] [cfg=Default] 资源版本：v0.7.0-beta.2
+[2026-08-02 19:56:28.595][INF] [cfg=Default] MaaFramework 版本：v5.10.2
+[2026-08-02 19:56:28.652][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 19:56:28.725][INF] [cfg=Default] 窗口大小已加载：宽度=1100，高度=680
+[2026-08-02 19:56:28.731][INF] [cfg=Default] 保存的窗口位置（-32000, -32000）不在有效屏幕范围内，使用默认居中位置
+[2026-08-02 19:56:29.041][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-08-02 19:56:29.152][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-08-02 19:56:29.201][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 19:56:29.201][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-08-02 19:56:29.349][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 19:56:29.356][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 19:56:29.694][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 19:56:29.695][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 19:56:29.766][INF] [cfg=Default] 界面初始化开始
+[2026-08-02 19:56:29.843][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 19:56:29.844][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 19:56:29.847][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 19:56:29.848][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 19:56:30.502][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-08-02 19:56:30.809][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-08-02 19:56:30.811][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-08-02 19:56:30.996][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-08-02 19:56:30.996][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-08-02 19:56:31.080][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-08-02 19:56:31.105][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-08-02 19:56:31.109][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-08-02 19:56:31.114][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-08-02 19:56:31.115][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\MATR\resource\base
+[2026-08-02 19:56:31.115][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-08-02 19:56:31.116][INF] [cfg=Default] 已自动注入 MuMu EmulatorExtras 配置：安装路径=D:\Apps\MuMu\MuMuPlayer，索引=0，直连地址=127.0.0.1:16384
+[2026-08-02 19:56:31.173][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-08-02 19:56:31.174][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-08-02 19:56:31.174][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-08-02 19:56:31.174][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-08-02 19:56:31.175][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-08-02 19:56:31.176][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:EmulatorExtras,捕获模式:EmulatorExtras
+[2026-08-02 19:56:31.177][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：MuMu安卓设备-MuMuPlayer12 v5
+[2026-08-02 19:56:31.177][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe
+[2026-08-02 19:56:31.177][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：127.0.0.1:16384
+[2026-08-02 19:56:31.177][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：EmulatorExtras
+[2026-08-02 19:56:31.177][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：EmulatorExtras
+[2026-08-02 19:56:31.177][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{"extras":{"mumu":{"enable":true,"path":"D:\\Apps\\MuMu\\MuMuPlayer","index":0}}
+[2026-08-02 19:56:31.415][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-08-02 19:56:31.658][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册内置特殊任务动作。
+[2026-08-02 19:56:31.669][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已启动自定义类目录监听：目录=D:\Claude_Workspace\MATR\resource\base\custom
+[2026-08-02 19:56:31.672][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 19:56:31.807][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-08-02 19:56:32.577][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 19:56:32.577][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DamageLogAction.cs
+[2026-08-02 19:56:32.682][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DamageLogAction.cs
+[2026-08-02 19:56:32.682][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 19:56:32.899][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 19:56:32.900][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 19:56:33.063][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 19:56:33.063][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 19:56:33.124][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 19:56:33.124][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=StopOnDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\StopOnDamageAction.cs
+[2026-08-02 19:56:33.211][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] CS1061：“ObservableQueue<MFATask>”未包含“FirstOrDefault”的定义，并且找不到可接受第一个“ObservableQueue<MFATask>”类型参数的可访问扩展方法“FirstOrDefault”(是否缺少 using 指令或程序集引用?） [错误行号：25]  [错误代码行：? $"[重伤检测] 检测到刀剑男士重伤，{currentTaskName} 任务终止，开始{nextTaskName}"]
+[2026-08-02 19:56:33.212][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 19:56:33.261][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 19:56:33.261][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：CaptainDamageAction
+[2026-08-02 19:56:33.262][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DamageLogAction
+[2026-08-02 19:56:33.262][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DispatchLogAction
+[2026-08-02 19:56:33.262][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DungeonFloorSelectAction
+[2026-08-02 19:56:33.262][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：ExpeditionMapSelectAction
+[2026-08-02 19:56:33.262][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：TeamSwitchAction
+[2026-08-02 19:56:33.262][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 未找到自定义目录：D:\Claude_Workspace\MATR\resource\custom
+[2026-08-02 19:56:33.262][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 连接状态变更：已连接。
+[2026-08-02 19:56:33.297][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] MaaFW 调试模式：False
+[2026-08-02 19:56:33.965][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-08-02 19:56:33.966][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-08-02 19:56:33.967][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-08-02 19:56:33.968][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-08-02 19:56:33.969][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-08-02 19:56:33.969][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] [Record] 任务执行完毕：0 个成功，0 个失败
+[2026-08-02 19:56:33.972][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-08-02 19:56:33.974][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-08-02 19:56:33.976][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 2s)
+[2026-08-02 19:56:58.516][INF] [cfg=Default] [内存管理]释放了7.95 MB（11.4%)
+[2026-08-02 19:57:05.018][INF] [cfg=Default] 应用已关闭
+[2026-08-02 19:57:05.022][INF] [cfg=Default] 已释放自定义类目录监听器。
+[2026-08-02 19:58:55.486][INF] 正在加载配置列表...
+[2026-08-02 19:58:55.512][INF] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:58:55.512][INF] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:58:55.512][INF] 是否使用独立数据目录：False
+[2026-08-02 19:58:55.512][INF] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 19:58:55.512][INF] 是否使用本地配置目录：True
+[2026-08-02 19:58:55.512][INF] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 19:58:55.512][INF] 备份文件数量：0
+[2026-08-02 19:58:55.512][INF] 临时目录是否存在：True
+[2026-08-02 19:58:55.512][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:58:55.512][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 19:58:55.512][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 19:58:55.512][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 19:58:55.512][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 19:58:55.512][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 19:58:55.512][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 19:58:55.512][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 19:58:55.520][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\MATR\MATR.dll' is denied.
+[2026-08-02 19:58:55.521][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\MATR\runtimes/libs
+[2026-08-02 19:58:55.522][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\MATR\runtimes/libs，目录存在=True
+[2026-08-02 19:58:55.527][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\MATR\runtimes\linux-x64\native, D:\Claude_Workspace\MATR\runtimes\osx-x64\native, D:\Claude_Workspace\MATR\runtimes\win-x64\native]
+[2026-08-02 19:58:55.529][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 19:58:55.529][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 19:58:55.529][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 19:58:56.151][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-08-02 19:58:56.314][INF] [cfg=Default] 当前配置：Default
+[2026-08-02 19:58:56.359][INF] [cfg=Default] 已恢复系统休眠。
+[2026-08-02 19:58:56.362][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-08-02 19:58:56.363][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-08-02 19:58:56.375][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-08-02 19:58:56.375][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-08-02 19:58:56.388][INF] [cfg=Default] [内存管理]释放了1.78 MB（38.1%)
+[2026-08-02 19:58:56.453][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-08-02 19:58:56.464][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 19:58:56.548][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 19:58:56.548][INF] [cfg=Default] 资源版本：v0.7.0-beta.2
+[2026-08-02 19:58:56.548][INF] [cfg=Default] MaaFramework 版本：v5.10.2
+[2026-08-02 19:58:56.602][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 19:58:56.676][INF] [cfg=Default] 窗口大小已加载：宽度=1100，高度=680
+[2026-08-02 19:58:56.686][INF] [cfg=Default] 保存的窗口位置（-32000, -32000）不在有效屏幕范围内，使用默认居中位置
+[2026-08-02 19:58:56.985][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-08-02 19:58:57.053][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-08-02 19:58:57.100][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 19:58:57.100][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-08-02 19:58:57.250][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 19:58:57.257][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 19:58:57.592][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 19:58:57.593][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 19:58:57.664][INF] [cfg=Default] 界面初始化开始
+[2026-08-02 19:58:57.748][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 19:58:57.749][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 19:58:57.751][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 19:58:57.752][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 19:58:58.417][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-08-02 19:58:58.738][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-08-02 19:58:58.740][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-08-02 19:58:58.938][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-08-02 19:58:58.938][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-08-02 19:58:59.024][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-08-02 19:58:59.088][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-08-02 19:58:59.093][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-08-02 19:58:59.096][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-08-02 19:58:59.096][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\MATR\resource\base
+[2026-08-02 19:58:59.096][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-08-02 19:58:59.100][INF] [cfg=Default] 已自动注入 MuMu EmulatorExtras 配置：安装路径=D:\Apps\MuMu\MuMuPlayer，索引=0，直连地址=127.0.0.1:16384
+[2026-08-02 19:58:59.141][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-08-02 19:58:59.142][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-08-02 19:58:59.142][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-08-02 19:58:59.142][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-08-02 19:58:59.143][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-08-02 19:58:59.144][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:EmulatorExtras,捕获模式:EmulatorExtras
+[2026-08-02 19:58:59.145][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：MuMu安卓设备-MuMuPlayer12 v5
+[2026-08-02 19:58:59.145][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe
+[2026-08-02 19:58:59.145][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：127.0.0.1:16384
+[2026-08-02 19:58:59.145][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：EmulatorExtras
+[2026-08-02 19:58:59.145][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：EmulatorExtras
+[2026-08-02 19:58:59.145][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{"extras":{"mumu":{"enable":true,"path":"D:\\Apps\\MuMu\\MuMuPlayer","index":0}}
+[2026-08-02 19:58:59.369][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-08-02 19:58:59.624][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册内置特殊任务动作。
+[2026-08-02 19:58:59.645][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已启动自定义类目录监听：目录=D:\Claude_Workspace\MATR\resource\base\custom
+[2026-08-02 19:58:59.648][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 19:58:59.723][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-08-02 19:59:00.534][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 19:59:00.534][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DamageLogAction.cs
+[2026-08-02 19:59:00.638][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DamageLogAction.cs
+[2026-08-02 19:59:00.639][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 19:59:00.849][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 19:59:00.849][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 19:59:01.013][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 19:59:01.013][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 19:59:01.074][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 19:59:01.074][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=StopOnDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\StopOnDamageAction.cs
+[2026-08-02 19:59:01.158][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] CS1061：“ObservableQueue<MFATask>”未包含“FirstOrDefault”的定义，并且找不到可接受第一个“ObservableQueue<MFATask>”类型参数的可访问扩展方法“FirstOrDefault”(是否缺少 using 指令或程序集引用?） [错误行号：25]  [错误代码行：? $"[重伤检测] 检测到刀剑男士重伤，{currentTaskName} 任务终止，开始{nextTaskName}"]
+[2026-08-02 19:59:01.158][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 19:59:01.207][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 19:59:01.207][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：CaptainDamageAction
+[2026-08-02 19:59:01.207][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DamageLogAction
+[2026-08-02 19:59:01.207][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DispatchLogAction
+[2026-08-02 19:59:01.207][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DungeonFloorSelectAction
+[2026-08-02 19:59:01.207][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：ExpeditionMapSelectAction
+[2026-08-02 19:59:01.207][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：TeamSwitchAction
+[2026-08-02 19:59:01.207][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 未找到自定义目录：D:\Claude_Workspace\MATR\resource\custom
+[2026-08-02 19:59:01.208][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 连接状态变更：已连接。
+[2026-08-02 19:59:01.209][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] MaaFW 调试模式：False
+[2026-08-02 19:59:01.899][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-08-02 19:59:01.899][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-08-02 19:59:01.901][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-08-02 19:59:01.901][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-08-02 19:59:01.902][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-08-02 19:59:01.903][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] [Record] 任务执行完毕：0 个成功，0 个失败
+[2026-08-02 19:59:01.907][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-08-02 19:59:01.908][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-08-02 19:59:01.911][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 2s)
+[2026-08-02 19:59:26.470][INF] [cfg=Default] [内存管理]释放了8.82 MB（14.7%)
+[2026-08-02 19:59:35.220][INF] [cfg=Default] 应用已关闭
+[2026-08-02 19:59:35.227][INF] [cfg=Default] 已释放自定义类目录监听器。
+[2026-08-02 20:02:00.279][INF] 正在加载配置列表...
+[2026-08-02 20:02:00.305][INF] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 20:02:00.306][INF] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 20:02:00.306][INF] 是否使用独立数据目录：False
+[2026-08-02 20:02:00.306][INF] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 20:02:00.306][INF] 是否使用本地配置目录：True
+[2026-08-02 20:02:00.306][INF] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 20:02:00.306][INF] 备份文件数量：0
+[2026-08-02 20:02:00.306][INF] 临时目录是否存在：True
+[2026-08-02 20:02:00.306][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 20:02:00.306][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 20:02:00.306][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 20:02:00.306][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 20:02:00.306][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 20:02:00.306][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 20:02:00.306][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 20:02:00.306][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 20:02:00.314][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\MATR\MATR.dll' is denied.
+[2026-08-02 20:02:00.315][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\MATR\runtimes/libs
+[2026-08-02 20:02:00.315][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\MATR\runtimes/libs，目录存在=True
+[2026-08-02 20:02:00.320][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\MATR\runtimes\linux-x64\native, D:\Claude_Workspace\MATR\runtimes\osx-x64\native, D:\Claude_Workspace\MATR\runtimes\win-x64\native]
+[2026-08-02 20:02:00.323][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 20:02:00.323][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 20:02:00.323][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 20:02:00.916][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-08-02 20:02:01.063][INF] [cfg=Default] 当前配置：Default
+[2026-08-02 20:02:01.111][INF] [cfg=Default] 已恢复系统休眠。
+[2026-08-02 20:02:01.115][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-08-02 20:02:01.115][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-08-02 20:02:01.127][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-08-02 20:02:01.127][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-08-02 20:02:01.141][INF] [cfg=Default] [内存管理]释放了1.79 MB（37.6%)
+[2026-08-02 20:02:01.203][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-08-02 20:02:01.213][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 20:02:01.295][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 20:02:01.295][INF] [cfg=Default] 资源版本：v0.7.0-beta.2
+[2026-08-02 20:02:01.295][INF] [cfg=Default] MaaFramework 版本：v5.10.2
+[2026-08-02 20:02:01.350][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 20:02:01.422][INF] [cfg=Default] 窗口大小已加载：宽度=1100，高度=680
+[2026-08-02 20:02:01.429][INF] [cfg=Default] 保存的窗口位置（-32000, -32000）不在有效屏幕范围内，使用默认居中位置
+[2026-08-02 20:02:01.734][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-08-02 20:02:01.850][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-08-02 20:02:01.920][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 20:02:01.920][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-08-02 20:02:02.074][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 20:02:02.081][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 20:02:02.415][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 20:02:02.416][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 20:02:02.492][INF] [cfg=Default] 界面初始化开始
+[2026-08-02 20:02:02.578][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 20:02:02.579][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 20:02:02.582][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 20:02:02.583][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 20:02:03.217][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-08-02 20:02:03.527][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-08-02 20:02:03.529][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-08-02 20:02:03.747][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-08-02 20:02:03.747][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-08-02 20:02:03.821][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-08-02 20:02:03.851][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-08-02 20:02:03.854][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-08-02 20:02:03.858][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-08-02 20:02:03.858][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\MATR\resource\base
+[2026-08-02 20:02:03.858][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-08-02 20:02:03.862][INF] [cfg=Default] 已自动注入 MuMu EmulatorExtras 配置：安装路径=D:\Apps\MuMu\MuMuPlayer，索引=0，直连地址=127.0.0.1:16384
+[2026-08-02 20:02:03.903][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-08-02 20:02:03.904][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-08-02 20:02:03.904][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-08-02 20:02:03.904][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-08-02 20:02:03.905][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-08-02 20:02:03.906][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:EmulatorExtras,捕获模式:EmulatorExtras
+[2026-08-02 20:02:03.907][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：MuMu安卓设备-MuMuPlayer12 v5
+[2026-08-02 20:02:03.907][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe
+[2026-08-02 20:02:03.907][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：127.0.0.1:16384
+[2026-08-02 20:02:03.907][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：EmulatorExtras
+[2026-08-02 20:02:03.907][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：EmulatorExtras
+[2026-08-02 20:02:03.907][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{"extras":{"mumu":{"enable":true,"path":"D:\\Apps\\MuMu\\MuMuPlayer","index":0}}
+[2026-08-02 20:02:04.108][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-08-02 20:02:04.353][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册内置特殊任务动作。
+[2026-08-02 20:02:04.364][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已启动自定义类目录监听：目录=D:\Claude_Workspace\MATR\resource\base\custom
+[2026-08-02 20:02:04.366][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 20:02:04.522][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-08-02 20:02:05.277][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 20:02:05.277][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DamageLogAction.cs
+[2026-08-02 20:02:05.380][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DamageLogAction.cs
+[2026-08-02 20:02:05.380][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 20:02:05.595][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 20:02:05.595][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 20:02:05.759][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 20:02:05.759][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 20:02:05.823][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 20:02:05.823][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=StopOnDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\StopOnDamageAction.cs
+[2026-08-02 20:02:05.913][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] CS1061：“ObservableQueue<MFATask>”未包含“FirstOrDefault”的定义，并且找不到可接受第一个“ObservableQueue<MFATask>”类型参数的可访问扩展方法“FirstOrDefault”(是否缺少 using 指令或程序集引用?） [错误行号：25]  [错误代码行：? $"[重伤检测] 检测到刀剑男士重伤，{currentTaskName} 任务终止，开始{nextTaskName}"]
+[2026-08-02 20:02:05.914][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始解析自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 20:02:05.963][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已成功加载自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 20:02:05.963][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：CaptainDamageAction
+[2026-08-02 20:02:05.963][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DamageLogAction
+[2026-08-02 20:02:05.963][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DispatchLogAction
+[2026-08-02 20:02:05.963][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：DungeonFloorSelectAction
+[2026-08-02 20:02:05.963][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：ExpeditionMapSelectAction
+[2026-08-02 20:02:05.963][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 已注册自定义动作：TeamSwitchAction
+[2026-08-02 20:02:05.964][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 未找到自定义目录：D:\Claude_Workspace\MATR\resource\custom
+[2026-08-02 20:02:05.964][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 连接状态变更：已连接。
+[2026-08-02 20:02:05.965][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] MaaFW 调试模式：False
+[2026-08-02 20:02:06.646][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-08-02 20:02:06.647][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-08-02 20:02:06.648][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-08-02 20:02:06.648][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-08-02 20:02:06.649][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-08-02 20:02:06.651][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] [Record] 任务执行完毕：0 个成功，0 个失败
+[2026-08-02 20:02:06.656][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-08-02 20:02:06.657][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-08-02 20:02:06.660][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 2s)
+[2026-08-02 20:02:12.800][INF] [cfg=Default] 应用已关闭
+[2026-08-02 20:02:12.803][INF] [cfg=Default] 已释放自定义类目录监听器。
+[2026-08-02 20:05:34.430][INF] 正在加载配置列表...
+[2026-08-02 20:05:34.456][INF] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 20:05:34.456][INF] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 20:05:34.456][INF] 是否使用独立数据目录：False
+[2026-08-02 20:05:34.456][INF] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 20:05:34.456][INF] 是否使用本地配置目录：True
+[2026-08-02 20:05:34.457][INF] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 20:05:34.457][INF] 备份文件数量：0
+[2026-08-02 20:05:34.457][INF] 临时目录是否存在：True
+[2026-08-02 20:05:34.457][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 20:05:34.457][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 20:05:34.457][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 20:05:34.457][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 20:05:34.457][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 20:05:34.457][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 20:05:34.457][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 20:05:34.457][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 20:05:34.465][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\MATR\MATR.dll' is denied.
+[2026-08-02 20:05:34.467][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\MATR\runtimes/libs
+[2026-08-02 20:05:34.467][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\MATR\runtimes/libs，目录存在=True
+[2026-08-02 20:05:34.472][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\MATR\runtimes\linux-x64\native, D:\Claude_Workspace\MATR\runtimes\osx-x64\native, D:\Claude_Workspace\MATR\runtimes\win-x64\native]
+[2026-08-02 20:05:34.475][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 20:05:34.475][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 20:05:34.475][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 20:05:35.062][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-08-02 20:05:35.215][INF] [cfg=Default] 当前配置：Default
+[2026-08-02 20:05:35.262][INF] [cfg=Default] 已恢复系统休眠。
+[2026-08-02 20:05:35.265][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-08-02 20:05:35.266][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-08-02 20:05:35.276][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-08-02 20:05:35.276][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-08-02 20:05:35.293][INF] [cfg=Default] [内存管理]释放了1.73 MB（37.1%)
+[2026-08-02 20:05:35.356][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-08-02 20:05:35.366][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 20:05:35.445][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 20:05:35.446][INF] [cfg=Default] 资源版本：v0.7.0-beta.2
+[2026-08-02 20:05:35.446][INF] [cfg=Default] MaaFramework 版本：v5.10.2
+[2026-08-02 20:05:35.500][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 20:05:35.574][INF] [cfg=Default] 窗口大小已加载：宽度=1100，高度=680
+[2026-08-02 20:05:35.581][INF] [cfg=Default] 保存的窗口位置（-32000, -32000）不在有效屏幕范围内，使用默认居中位置
+[2026-08-02 20:05:35.875][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-08-02 20:05:36.068][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-08-02 20:05:36.123][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 20:05:36.123][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-08-02 20:05:36.265][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 20:05:36.272][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 20:05:36.610][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 20:05:36.611][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 20:05:36.679][INF] [cfg=Default] 界面初始化开始
+[2026-08-02 20:05:36.759][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 20:05:36.761][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 20:05:36.764][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 20:05:36.764][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 20:05:37.425][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-08-02 20:05:37.772][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-08-02 20:05:37.773][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-08-02 20:05:37.967][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-08-02 20:05:37.967][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-08-02 20:05:38.108][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-08-02 20:05:38.182][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-08-02 20:05:38.201][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-08-02 20:05:38.202][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\MATR\resource\base
+[2026-08-02 20:05:38.202][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-08-02 20:05:38.249][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-08-02 20:05:38.251][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-08-02 20:05:38.251][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-08-02 20:05:38.251][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-08-02 20:05:38.251][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-08-02 20:05:38.253][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:Default,捕获模式:Default
+[2026-08-02 20:05:38.253][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：
+[2026-08-02 20:05:38.253][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：adb
+[2026-08-02 20:05:38.253][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：
+[2026-08-02 20:05:38.253][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：Default
+[2026-08-02 20:05:38.253][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：Default
+[2026-08-02 20:05:38.253][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{}
+[2026-08-02 20:05:38.283][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器时发生错误！
+[2026-08-02 20:05:38.283][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器失败：message=连接模拟器时发生错误！, reason=The value cannot be an empty string.（Parameter 'info.AdbSerial')
+System.ArgumentException: The value cannot be an empty string. (Parameter 'info.AdbSerial')
+   at System.ArgumentException.ThrowNullOrEmptyException(String argument, String paramName)
+   at System.ArgumentException.ThrowIfNullOrEmpty(String argument, String paramName)
+   at MaaFramework.Binding.MaaAdbController..ctor(AdbDeviceInfo info, LinkOption link, CheckStatusOption check)
+   at MaaFramework.Binding.MaaAdbController..ctor(String adbPath, String adbSerial, AdbScreencapMethods screencapMethods, AdbInputMethods inputMethods, String config, String agentPath, LinkOption link, CheckStatusOption check)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.InitializeController(MaaControllerTypes controllerType, Boolean logConfig)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.<>c__DisplayClass145_0.<InitializeMaaTasker>b__7()
+   at MFAAvalonia.Helper.TaskManager.<>c__DisplayClass6_0`1.<RunTaskAsync>b__0()
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at MFAAvalonia.Helper.TaskManager.RunTaskAsync[TResult](Func`1 function, CancellationToken token, Action`1 handleError, String name, String prompt, Boolean catchException, Boolean shouldLog, Boolean noMessage)
+[2026-08-02 20:05:38.291][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-08-02 20:05:38.291][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器初始化结果为空，已中止本次连接尝试。
+[2026-08-02 20:05:38.328][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-08-02 20:05:38.329][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-08-02 20:05:38.330][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-08-02 20:05:38.330][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-08-02 20:05:38.331][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-08-02 20:05:38.332][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] [Record] 任务执行完毕：0 个成功，0 个失败
+[2026-08-02 20:05:38.335][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-08-02 20:05:38.336][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-08-02 20:05:38.374][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 0s)
+[2026-08-02 20:05:38.418][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-08-02 20:05:38.426][INF] [cfg=Default] 已自动注入 MuMu EmulatorExtras 配置：安装路径=D:\Apps\MuMu\MuMuPlayer，索引=0，直连地址=127.0.0.1:16384
+[2026-08-02 20:05:38.756][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-08-02 20:05:43.069][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 用户操作：重新连接 | controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-08-02 20:05:43.267][INF] [cfg=Default][inst=配置 1/default][src=UI][op=MatchAdbDevice] 当前设备指纹：name=MuMu安卓设备-MuMuPlayer12 v5, serial=127.0.0.1:16384, configLength=78
+[2026-08-02 20:05:43.267][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 按指纹匹配到的设备数量：1
+[2026-08-02 20:05:43.268][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=<none>
+[2026-08-02 20:05:43.268][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-08-02 20:05:43.276][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已自动注入 MuMu EmulatorExtras 配置：安装路径=D:\Apps\MuMu\MuMuPlayer，索引=0，直连地址=127.0.0.1:16384
+[2026-08-02 20:05:43.278][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在载入资源
+[2026-08-02 20:05:43.278][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 资源路径：D:\Claude_Workspace\MATR\resource\base
+[2026-08-02 20:05:43.278][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测开始（异步）。
+[2026-08-02 20:05:43.286][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-08-02 20:05:43.306][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 资源检测完成（异步）。
+[2026-08-02 20:05:43.307][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 启用 GPU 推理：成功
+[2026-08-02 20:05:43.307][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] GPU acceleration: Auto
+[2026-08-02 20:05:43.307][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测开始（异步）。
+[2026-08-02 20:05:43.307][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 正在加载 MAA 控制器配置...
+[2026-08-02 20:05:43.307][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 触控模式:EmulatorExtras,捕获模式:EmulatorExtras
+[2026-08-02 20:05:43.307][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 设备名称：MuMu安卓设备-MuMuPlayer12 v5
+[2026-08-02 20:05:43.307][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 路径：D:/Apps/MuMu/MuMuPlayer/nx_main/adb.exe
+[2026-08-02 20:05:43.307][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] ADB 序列号：127.0.0.1:16384
+[2026-08-02 20:05:43.307][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 截图模式：EmulatorExtras
+[2026-08-02 20:05:43.307][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 输入模式：EmulatorExtras
+[2026-08-02 20:05:43.307][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 控制器配置：{"extras":{"mumu":{"enable":true,"path":"D:\\Apps\\MuMu\\MuMuPlayer","index":0}}
+[2026-08-02 20:05:43.515][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] >>> 任务 控制器检测完成（异步）。
+[2026-08-02 20:05:43.750][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册内置特殊任务动作。
+[2026-08-02 20:05:43.760][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已启动自定义类目录监听：目录=D:\Claude_Workspace\MATR\resource\base\custom
+[2026-08-02 20:05:43.762][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 20:05:44.603][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=CaptainDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\CaptainDamageAction.cs
+[2026-08-02 20:05:44.603][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DamageLogAction.cs
+[2026-08-02 20:05:44.704][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DamageLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DamageLogAction.cs
+[2026-08-02 20:05:44.704][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 20:05:44.934][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DispatchLogAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DispatchLogAction.cs
+[2026-08-02 20:05:44.934][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 20:05:45.089][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=DungeonFloorSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\DungeonFloorSelectAction.cs
+[2026-08-02 20:05:45.089][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 20:05:45.159][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=ExpeditionMapSelectAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\ExpeditionMapSelectAction.cs
+[2026-08-02 20:05:45.160][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=StopOnDamageAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\StopOnDamageAction.cs
+[2026-08-02 20:05:45.249][ERR] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] CS1061：“ObservableQueue<MFATask>”未包含“FirstOrDefault”的定义，并且找不到可接受第一个“ObservableQueue<MFATask>”类型参数的可访问扩展方法“FirstOrDefault”(是否缺少 using 指令或程序集引用?） [错误行号：25]  [错误代码行：? $"[重伤检测] 检测到刀剑男士重伤，{currentTaskName} 任务终止，开始{nextTaskName}"]
+[2026-08-02 20:05:45.250][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 开始解析自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 20:05:45.308][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已成功加载自定义类：名称=TeamSwitchAction，文件=D:\Claude_Workspace\MATR\resource\base\custom\TeamSwitchAction.cs
+[2026-08-02 20:05:45.309][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：CaptainDamageAction
+[2026-08-02 20:05:45.309][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DamageLogAction
+[2026-08-02 20:05:45.309][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DispatchLogAction
+[2026-08-02 20:05:45.309][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：DungeonFloorSelectAction
+[2026-08-02 20:05:45.309][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：ExpeditionMapSelectAction
+[2026-08-02 20:05:45.309][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 已注册自定义动作：TeamSwitchAction
+[2026-08-02 20:05:45.309][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 未找到自定义目录：D:\Claude_Workspace\MATR\resource\custom
+[2026-08-02 20:05:45.309][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] 连接状态变更：已连接。
+[2026-08-02 20:05:45.311][INF] [cfg=Default][inst=配置 1/default][src=UI][op=Reconnect] MaaFW 调试模式：False
+[2026-08-02 20:05:46.766][INF] [cfg=Default] 应用已关闭
+[2026-08-02 20:05:46.769][INF] [cfg=Default] 已释放自定义类目录监听器。
+[2026-08-02 20:07:03.778][INF] 正在加载配置列表...
+[2026-08-02 20:07:03.814][INF] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 20:07:03.815][INF] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 20:07:03.815][INF] 是否使用独立数据目录：False
+[2026-08-02 20:07:03.815][INF] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 20:07:03.815][INF] 是否使用本地配置目录：True
+[2026-08-02 20:07:03.815][INF] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 20:07:03.815][INF] 备份文件数量：0
+[2026-08-02 20:07:03.815][INF] 临时目录是否存在：True
+[2026-08-02 20:07:03.815][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 20:07:03.815][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 20:07:03.815][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 20:07:03.815][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 20:07:03.815][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 20:07:03.815][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 20:07:03.815][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 20:07:03.815][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 20:07:03.828][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\matr\MATR.dll' is denied.
+[2026-08-02 20:07:03.830][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\matr\runtimes/libs
+[2026-08-02 20:07:03.830][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\matr\runtimes/libs，目录存在=True
+[2026-08-02 20:07:03.839][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\matr\runtimes\linux-x64\native, D:\Claude_Workspace\matr\runtimes\osx-x64\native, D:\Claude_Workspace\matr\runtimes\win-x64\native]
+[2026-08-02 20:07:03.841][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 20:07:03.841][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 20:07:03.841][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 20:07:04.463][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-08-02 20:07:04.624][INF] [cfg=Default] 当前配置：Default
+[2026-08-02 20:07:04.672][INF] [cfg=Default] 已恢复系统休眠。
+[2026-08-02 20:07:04.676][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-08-02 20:07:04.677][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-08-02 20:07:04.687][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-08-02 20:07:04.687][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-08-02 20:07:04.702][INF] [cfg=Default] [内存管理]释放了1.75 MB（37.3%)
+[2026-08-02 20:07:04.766][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-08-02 20:07:04.777][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 20:07:04.881][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 20:07:04.882][INF] [cfg=Default] 资源版本：v0.7.0-beta.2
+[2026-08-02 20:07:04.882][INF] [cfg=Default] MaaFramework 版本：v5.10.2
+[2026-08-02 20:07:04.949][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 20:07:05.032][INF] [cfg=Default] 窗口大小已加载：宽度=1100，高度=680
+[2026-08-02 20:07:05.039][INF] [cfg=Default] 保存的窗口位置（-32000, -32000）不在有效屏幕范围内，使用默认居中位置
+[2026-08-02 20:07:05.370][WRN] [cfg=Default] 跨平台数据解密失败：参数错误。
+[2026-08-02 20:07:05.465][WRN] [cfg=Default] 跨平台数据解密失败：The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+[2026-08-02 20:07:05.533][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 20:07:05.534][INF] [cfg=Default] 设置页调试卡片可见性已应用：False
+[2026-08-02 20:07:05.697][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 20:07:05.704][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 20:07:06.065][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 20:07:06.066][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 20:07:06.126][INF] [cfg=Default] 界面初始化开始
+[2026-08-02 20:07:06.199][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 20:07:06.200][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 20:07:06.203][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=, controller=Adb
+[2026-08-02 20:07:06.203][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeResource] 当前资源变更：resource=刀剑乱舞, controller=Adb
+[2026-08-02 20:07:06.762][INF] [cfg=Default] >>> 任务 公告和最新版本检测开始（异步）。
+[2026-08-02 20:07:07.078][INF] [cfg=Default] 正在从配置中读取已保存的 ADB 设备，并启用指纹匹配。
+[2026-08-02 20:07:07.079][INF] [cfg=Default] 已保存设备的指纹：MuMu安卓设备-MuMuPlayer12 v5|0|127.0.0.1|16384
+[2026-08-02 20:07:07.289][INF] [cfg=Default] 按指纹匹配到的设备数量：1
+[2026-08-02 20:07:07.289][INF] [cfg=Default] 已通过指纹匹配到设备：名称=MuMu安卓设备-MuMuPlayer12 v5，ADB 序列号=127.0.0.1:16384
+[2026-08-02 20:07:07.406][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 正在连接至模拟器......
+[2026-08-02 20:07:07.520][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务开始（异步）。
+[2026-08-02 20:07:07.538][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在载入资源
+[2026-08-02 20:07:07.539][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 资源路径：D:\Claude_Workspace\matr\resource\base
+[2026-08-02 20:07:07.539][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测开始（异步）。
+[2026-08-02 20:07:07.584][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 资源检测完成（异步）。
+[2026-08-02 20:07:07.585][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 启用 GPU 推理：成功
+[2026-08-02 20:07:07.585][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] GPU acceleration: Auto
+[2026-08-02 20:07:07.585][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测开始（异步）。
+[2026-08-02 20:07:07.586][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 正在加载 MAA 控制器配置...
+[2026-08-02 20:07:07.588][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 触控模式:Default,捕获模式:Default
+[2026-08-02 20:07:07.588][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 设备名称：
+[2026-08-02 20:07:07.588][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 路径：adb
+[2026-08-02 20:07:07.588][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] ADB 序列号：
+[2026-08-02 20:07:07.588][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 截图模式：Default
+[2026-08-02 20:07:07.588][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 输入模式：Default
+[2026-08-02 20:07:07.588][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器配置：{}
+[2026-08-02 20:07:07.602][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器时发生错误！
+[2026-08-02 20:07:07.602][ERR] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 初始化控制器失败：message=连接模拟器时发生错误！, reason=The value cannot be an empty string.（Parameter 'info.AdbSerial')
+System.ArgumentException: The value cannot be an empty string. (Parameter 'info.AdbSerial')
+   at System.ArgumentException.ThrowNullOrEmptyException(String argument, String paramName)
+   at System.ArgumentException.ThrowIfNullOrEmpty(String argument, String paramName)
+   at MaaFramework.Binding.MaaAdbController..ctor(AdbDeviceInfo info, LinkOption link, CheckStatusOption check)
+   at MaaFramework.Binding.MaaAdbController..ctor(String adbPath, String adbSerial, AdbScreencapMethods screencapMethods, AdbInputMethods inputMethods, String config, String agentPath, LinkOption link, CheckStatusOption check)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.InitializeController(MaaControllerTypes controllerType, Boolean logConfig)
+   at MFAAvalonia.Extensions.MaaFW.MaaProcessor.<>c__DisplayClass145_0.<InitializeMaaTasker>b__7()
+   at MFAAvalonia.Helper.TaskManager.<>c__DisplayClass6_0`1.<RunTaskAsync>b__0()
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at MFAAvalonia.Helper.TaskManager.RunTaskAsync[TResult](Func`1 function, CancellationToken token, Action`1 handleError, String name, String prompt, Boolean catchException, Boolean shouldLog, Boolean noMessage)
+[2026-08-02 20:07:07.610][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 控制器检测完成（异步）。
+[2026-08-02 20:07:07.610][WRN] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 控制器初始化结果为空，已中止本次连接尝试。
+[2026-08-02 20:07:07.622][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测开始（异步）。
+[2026-08-02 20:07:07.623][INF] [cfg=Default][inst=配置 1/default][src=UI][op=ChangeDevice] 当前连接目标变更：controller=Adb, resource=刀剑乱舞, device=MuMu安卓设备-MuMuPlayer12 v5（127.0.0.1:16384)
+[2026-08-02 20:07:07.623][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 开始执行更新任务：名称=查询CDK
+[2026-08-02 20:07:07.624][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] 更新任务完成：名称=查询CDK
+[2026-08-02 20:07:07.625][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动检测完成（异步）。
+[2026-08-02 20:07:07.626][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=ExecuteTaskQueue] >>> 任务 启动任务完成（异步）。
+[2026-08-02 20:07:07.630][INF] [cfg=Default] 已自动注入 MuMu EmulatorExtras 配置：安装路径=D:\Apps\MuMu\MuMuPlayer，索引=0，直连地址=127.0.0.1:16384
+[2026-08-02 20:07:07.639][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] [Record] 任务执行完毕：0 个成功，0 个失败
+[2026-08-02 20:07:07.643][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] 停止前状态：SUCCEEDED
+[2026-08-02 20:07:07.645][INF] [cfg=Default][inst=配置 1/default][src=Worker][op=StopTask] >>> 任务 停止maafw任务开始（异步）。
+[2026-08-02 20:07:07.666][INF] [cfg=Default][inst=配置 1/default][src=Monitor][op=MonitorLog] 任务已全部完成！
+(用时 0h 0m 0s)
+[2026-08-02 20:07:08.066][INF] [cfg=Default] >>> 任务 公告和最新版本检测完成（异步）。
+[2026-08-02 20:09:52.671][INF] 正在加载配置列表...
+[2026-08-02 20:09:52.695][INF] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 20:09:52.696][INF] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 20:09:52.696][INF] 是否使用独立数据目录：False
+[2026-08-02 20:09:52.696][INF] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 20:09:52.696][INF] 是否使用本地配置目录：True
+[2026-08-02 20:09:52.696][INF] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 20:09:52.696][INF] 备份文件数量：0
+[2026-08-02 20:09:52.696][INF] 临时目录是否存在：True
+[2026-08-02 20:09:52.696][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\MATR
+[2026-08-02 20:09:52.696][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\MATR
+[2026-08-02 20:09:52.696][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 20:09:52.696][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\MATR\config
+[2026-08-02 20:09:52.696][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 20:09:52.696][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\MATR\logs
+[2026-08-02 20:09:52.696][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 20:09:52.696][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 20:09:52.704][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\MATR\MATR.dll' is denied.
+[2026-08-02 20:09:52.705][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\MATR\runtimes/libs
+[2026-08-02 20:09:52.705][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\MATR\runtimes/libs，目录存在=True
+[2026-08-02 20:09:52.710][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\MATR\runtimes\linux-x64\native, D:\Claude_Workspace\MATR\runtimes\osx-x64\native, D:\Claude_Workspace\MATR\runtimes\win-x64\native]
+[2026-08-02 20:09:52.712][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 20:09:52.712][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 20:09:52.712][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 20:09:53.323][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-08-02 20:09:53.480][INF] [cfg=Default] 当前配置：Default
+[2026-08-02 20:09:53.526][INF] [cfg=Default] 已恢复系统休眠。
+[2026-08-02 20:09:53.529][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-08-02 20:09:53.530][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-08-02 20:09:53.541][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-08-02 20:09:53.541][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-08-02 20:09:53.554][INF] [cfg=Default] [内存管理]释放了1.78 MB（38.1%)
+[2026-08-02 20:09:53.621][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-08-02 20:09:53.631][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 20:09:53.712][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 20:09:53.712][INF] [cfg=Default] 资源版本：v0.7.0-beta.2
+[2026-08-02 20:09:53.712][INF] [cfg=Default] MaaFramework 版本：v5.10.2
+[2026-08-02 20:09:53.766][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 20:09:53.839][INF] [cfg=Default] 窗口大小已加载：宽度=1100，高度=680
+[2026-08-02 20:09:53.846][INF] [cfg=Default] 保存的窗口位置（-32000, -32000）不在有效屏幕范围内，使用默认居中位置
+[2026-08-02 20:09:54.010][ERR] [cfg=Default] 框架初始化失败：原因=No service for type 'MFAAvalonia.Views.Pages.ForgeCalculatorView' has been registered.
+System.InvalidOperationException: No service for type 'MFAAvalonia.Views.Pages.ForgeCalculatorView' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at MFAAvalonia.Extensions.ServiceProviderExtension.ProvideValue(IServiceProvider serviceProvider)
+   at MFAAvalonia.Views.Mobile.RootViewContent.!XamlIlPopulate(IServiceProvider, RootViewContent)
+   at MFAAvalonia.Views.Mobile.RootViewContent.!XamlIlPopulateTrampoline(RootViewContent)
+   at MFAAvalonia.Views.Mobile.RootViewContent.InitializeComponent(Boolean loadXaml)
+   at MFAAvalonia.Views.Mobile.RootViewContent..ctor()
+   at MFAAvalonia.Views.Windows.RootView.!XamlIlPopulate(IServiceProvider, RootView)
+   at MFAAvalonia.Views.Windows.RootView.!XamlIlPopulateTrampoline(RootView)
+   at MFAAvalonia.Views.Windows.RootView.InitializeComponent(Boolean loadXaml)
+   at MFAAvalonia.Views.Windows.RootView..ctor()
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at MFAAvalonia.Helper.ViewsHelper.TryCreateView(IServiceProvider provider, Type viewModelType, Control& view)
+   at MFAAvalonia.Helper.ViewsHelper.CreateView[TViewModel](IServiceProvider provider)
+   at MFAAvalonia.App.OnFrameworkInitializationCompleted()
+[2026-08-02 20:09:54.051][INF] [cfg=Default] [懒加载] 所有实例加载完成
+[2026-08-02 20:10:09.078][INF] 正在加载配置列表...
+[2026-08-02 20:10:09.114][INF] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 20:10:09.114][INF] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 20:10:09.114][INF] 是否使用独立数据目录：False
+[2026-08-02 20:10:09.114][INF] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 20:10:09.114][INF] 是否使用本地配置目录：True
+[2026-08-02 20:10:09.114][INF] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 20:10:09.114][INF] 备份文件数量：0
+[2026-08-02 20:10:09.114][INF] 临时目录是否存在：True
+[2026-08-02 20:10:09.114][INF] [cfg=Default] 应用安装目录：D:\Claude_Workspace\matr
+[2026-08-02 20:10:09.114][INF] [cfg=Default] 应用数据目录：D:\Claude_Workspace\matr
+[2026-08-02 20:10:09.114][INF] [cfg=Default] 是否使用独立数据目录：False
+[2026-08-02 20:10:09.114][INF] [cfg=Default] 配置目录：D:\Claude_Workspace\matr\config
+[2026-08-02 20:10:09.114][INF] [cfg=Default] 是否使用本地配置目录：True
+[2026-08-02 20:10:09.114][INF] [cfg=Default] 日志目录：D:\Claude_Workspace\matr\logs
+[2026-08-02 20:10:09.114][INF] [cfg=Default] 备份文件数量：0
+[2026-08-02 20:10:09.114][INF] [cfg=Default] 临时目录是否存在：True
+[2026-08-02 20:10:09.122][WRN] [cfg=Default] 删除重复库文件失败：MATR.dll，原因：Access to the path 'D:\Claude_Workspace\matr\MATR.dll' is denied.
+[2026-08-02 20:10:09.123][INF] [cfg=Default] 已通过 Windows API 添加 DLL 搜索目录：D:\Claude_Workspace\matr\runtimes/libs
+[2026-08-02 20:10:09.124][INF] [cfg=Default] 库解析器初始化完成：libsPath=D:\Claude_Workspace\matr\runtimes/libs，目录存在=True
+[2026-08-02 20:10:09.129][INF] [cfg=Default] 检测到 MaaFramework 运行时目录：数量=3，路径=[D:\Claude_Workspace\matr\runtimes\linux-x64\native, D:\Claude_Workspace\matr\runtimes\osx-x64\native, D:\Claude_Workspace\matr\runtimes\win-x64\native]
+[2026-08-02 20:10:09.131][INF] [cfg=Default] 启动参数：数量=0，内容=[]
+[2026-08-02 20:10:09.131][INF] [cfg=Default] 程序版本：v2.13.0
+[2026-08-02 20:10:09.131][INF] [cfg=Default] .NET 运行时：.NET 10.0.8
+[2026-08-02 20:10:09.776][INF] [cfg=Default] 开始初始化语言管理器。
+[2026-08-02 20:10:09.945][INF] [cfg=Default] 当前配置：Default
+[2026-08-02 20:10:09.994][INF] [cfg=Default] 已恢复系统休眠。
+[2026-08-02 20:10:09.998][INF] [cfg=Default] 热键主进程选举：已成为主进程（创建了新的全局互斥锁）。
+[2026-08-02 20:10:09.998][INF] [cfg=Default] 全局热键服务：作为主进程初始化。
+[2026-08-02 20:10:10.008][INF] [cfg=Default] 热键 IPC 端口文件已保存：文件=C:\Users\Alouette\AppData\Local\Temp\MFAAvalonia\hotkey_ipc_port.txt
+[2026-08-02 20:10:10.008][INF] [cfg=Default] 热键 IPC 服务端已启动：端口=52718
+[2026-08-02 20:10:10.024][INF] [cfg=Default] [内存管理]释放了1.74 MB（37.1%)
+[2026-08-02 20:10:10.085][WRN] [cfg=Default] 界面资源接口尚未初始化完成。
+[2026-08-02 20:10:10.095][INF] [cfg=Default] [调试] instances 目录中实际存在的实例文件数量：1, ID列表：[default]
+[2026-08-02 20:10:10.181][INF] [cfg=Default] 本地更新包按钮可见性已刷新：来源=config.Debug(string)，原始值=，解析结果=False
+[2026-08-02 20:10:10.181][INF] [cfg=Default] 资源版本：v0.7.0-beta.2
+[2026-08-02 20:10:10.181][INF] [cfg=Default] MaaFramework 版本：v5.10.2
+[2026-08-02 20:10:10.240][INF] [cfg=Default] [懒加载] 已加载当天有定时任务的实例
+[2026-08-02 20:10:10.312][INF] [cfg=Default] 窗口大小已加载：宽度=1100，高度=680
+[2026-08-02 20:10:10.318][INF] [cfg=Default] 保存的窗口位置（-32000, -32000）不在有效屏幕范围内，使用默认居中位置
+[2026-08-02 20:10:10.576][ERR] [cfg=Default] 框架初始化失败：原因=No service for type 'MFAAvalonia.Views.Pages.ForgeCalculatorView' has been registered.
+System.InvalidOperationException: No service for type 'MFAAvalonia.Views.Pages.ForgeCalculatorView' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at MFAAvalonia.Extensions.ServiceProviderExtension.ProvideValue(IServiceProvider serviceProvider)
+   at MFAAvalonia.Views.Mobile.RootViewContent.!XamlIlPopulate(IServiceProvider, RootViewContent)
+   at MFAAvalonia.Views.Mobile.RootViewContent.!XamlIlPopulateTrampoline(RootViewContent)
+   at MFAAvalonia.Views.Mobile.RootViewContent.InitializeComponent(Boolean loadXaml)
+   at MFAAvalonia.Views.Mobile.RootViewContent..ctor()
+   at MFAAvalonia.Views.Windows.RootView.!XamlIlPopulate(IServiceProvider, RootView)
+   at MFAAvalonia.Views.Windows.RootView.!XamlIlPopulateTrampoline(RootView)
+   at MFAAvalonia.Views.Windows.RootView.InitializeComponent(Boolean loadXaml)
+   at MFAAvalonia.Views.Windows.RootView..ctor()
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at MFAAvalonia.Helper.ViewsHelper.TryCreateView(IServiceProvider provider, Type viewModelType, Control& view)
+   at MFAAvalonia.Helper.ViewsHelper.CreateView[TViewModel](IServiceProvider provider)
+   at MFAAvalonia.App.OnFrameworkInitializationCompleted()
+[2026-08-02 20:10:10.636][INF] [cfg=Default] [懒加载] 所有实例加载完成

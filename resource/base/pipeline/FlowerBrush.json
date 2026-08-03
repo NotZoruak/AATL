@@ -199,10 +199,7 @@
         "expected": "降序"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "post_delay": 800,
     "next": ["FB_DetectSortOrder"],
     "pre_delay": 100
@@ -409,10 +406,7 @@
         "expected": "目"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["FB_VerifyMenuOpened"],
     "on_error": ["FB_DetectWhereAmI"],
     "pre_delay": 100
@@ -425,10 +419,7 @@
         "expected": "出阵"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["FB_VerifySortieMenuClosed", "FB_DetectWhereAmI"],
     "pre_delay": 100
   },

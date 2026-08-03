@@ -7,62 +7,45 @@
     <list default="true" id="404bc1c5-b364-4787-9804-888f83c8e73c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.claude/skills/gstack" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/skills/gstack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLAUDE.md" beforeDir="false" afterPath="$PROJECT_DIR$/CLAUDE.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MATR.dll" beforeDir="false" afterPath="$PROJECT_DIR$/MATR.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Views/Pages/SilhouetteView.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Views/Pages/SilhouetteView.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Assets/logo.ico" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Assets/logo.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Controls/InstanceTabsControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Controls/InstanceTabsControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Extensions/MaaFW/AgentHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Extensions/MaaFW/AgentHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Extensions/MaaFW/MaaProcessorManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Extensions/MaaFW/MaaProcessorManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Helper/VersionChecker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Helper/VersionChecker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/MFAAvalonia.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/MFAAvalonia.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/Pages/TaskQueueViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/Pages/TaskQueueViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/UsersControls/Settings/ConnectSettingsUserControlModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/UsersControls/Settings/ConnectSettingsUserControlModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Views/UserControls/Settings/AboutUserControl.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Views/UserControls/Settings/AboutUserControl.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.obsidian/workspace.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/开发日志.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/开发日志.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/战术强化训练任务设计.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/战术强化训练任务设计.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interface.json" beforeDir="false" afterPath="$PROJECT_DIR$/interface.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/matr.exe" beforeDir="false" afterPath="$PROJECT_DIR$/matr.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pack.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/pack.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/announcement/1-v0.7.0-alpha 更新公告.md" beforeDir="false" afterPath="$PROJECT_DIR$/resource/announcement/1-v0.7.0-alpha 更新公告.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/Sortie_boss/联队战_行动选择.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/使用记录.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/修行书信.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/公告弹窗.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/内番报告.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/出阵确认.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/刀剑对话.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/刀解确认.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/即刻出阵.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/合战场_确认返回本丸.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/合战场_行军.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/合战场选中.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/地下城.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/地下城教程.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/地域选择.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/战术强化训练.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/整备刀装.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/时代选择.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/本丸.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/本丸远征.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/检非.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/活动选中.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/游戏图标.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/游戏更新.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/特殊掉落_地下城.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/登录.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/登录奖励.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/目录.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/空邮箱.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/联队战.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/菜单目录.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/补给.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/远征目的地选择.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/部队记录.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/部队记录使用确认.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/部队记录页面.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/重伤.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/image/阵形选择.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/announcement/1-v0.7.0-beta.2 更新公告.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Disassemble.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Disassemble.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Expedition.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Expedition.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/base/pipeline/FlowerBrush.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/FlowerBrush.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/base/pipeline/GoHome.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/GoHome.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/base/pipeline/LRentaisen.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/LRentaisen.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Mix.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Mix.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Sortie.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Sortie.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/base/pipeline/TacticalTraining.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/TacticalTraining.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Underground.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Underground.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/libs/ColorDocument.Avalonia.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/ColorDocument.Avalonia.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/libs/ColorTextBlock.Avalonia.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/ColorTextBlock.Avalonia.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/runtimes/libs/MFAAvalonia.Core.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/MFAAvalonia.Core.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/libs/MaaFramework.Binding.Native.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/MaaFramework.Binding.Native.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/libs/MaaFramework.Binding.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/MaaFramework.Binding.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.Full.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.Full.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.Html.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.Html.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.Svg.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.Svg.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.SyntaxHigh.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.SyntaxHigh.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/libs/Newtonsoft.Json.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/Newtonsoft.Json.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/libs/SukiUI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/SukiUI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtimes/libs/System.Management.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/System.Management.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/compress_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/compress_json.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,8 +1,8 @@
 {
   "name": "MATR",
-  "version": "v0.7.0-beta.2",
+  "version": "v0.7.0",
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.7.0-beta.2 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.7.0 | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -34,7 +34,19 @@
       "default_check": false,
       "repeatable": false,
       "repeat_count": -1,
-      "option": ["S_选择部队", "S_选择时代", "S_选择地域", "S_选择阵形", "S_重伤处理", "S_疲劳处理", "S_换队长", "S_补充刀装", "S_王点前撤退", "S_道中撤退", "S_同步远征"],
+      "option": [
+        "S_选择部队",
+        "S_选择时代",
+        "S_选择地域",
+        "S_选择阵形",
+        "S_重伤处理",
+        "S_疲劳处理",
+        "S_换队长",
+        "S_补充刀装",
+        "S_王点前撤退",
+        "S_道中撤退",
+        "S_同步远征"
+      ],
       "label": "合战场",
       "description": "通用合战场出阵自动化，无限循环。\n与自动行军同时开启时，请注意截图延迟与游戏卡顿影响。\n\n- **换队长**：换队长的方式可在全局设置中修改。\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n- **王点前撤退**：一图不生效。使用该功能时请保证模拟器分辨率为 1280*720，240DPI。\n- **道中撤退**：需同时开启王点前撤退。包含4-1速刷委托符，8-1王点前三点处撤退，8-2与8-4不过桥，8-3玉钢点后撤退。\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保合战场使用的队伍在远征任务中设置为「休息」。"
     },
@@ -54,7 +66,15 @@
       "default_check": false,
       "repeatable": false,
       "repeat_count": 0,
-      "option": ["短", "胁", "打", "太", "大太", "枪", "薙"],
+      "option": [
+        "短",
+        "胁",
+        "打",
+        "太",
+        "大太",
+        "枪",
+        "薙"
+      ],
       "label": "刀解",
       "description": "⚠该功能测试数据较少，请在有人值守时使用。\n\n 自动刀解 + 收邮箱循环，邮箱清空后任务终止。游戏运行速度对稳定性影响较大，邮箱刀剑较多时建议分刀种多次运行，避免单次处理量过大。"
     },
@@ -74,7 +94,14 @@
       "default_check": true,
       "repeatable": false,
       "repeat_count": 0,
-      "option": ["部队一", "部队二", "部队三", "部队四", "部队五", "RefreshInterval"],
+      "option": [
+        "部队一",
+        "部队二",
+        "部队三",
+        "部队四",
+        "部队五",
+        "RefreshInterval"
+      ],
       "label": "远征",
       "description": "请保证编队符合远征要求。\n\n- 若停止远征后启动其他任务失败，是因为停止指令在下一次点击时才会执行。远征处于倒计时等待期间无点击操作，停止未实际生效，此时新任务无法正常运行。关闭 MATR 重新打开即可。"
     },
@@ -85,7 +112,17 @@
       "show_in_list": false,
       "repeatable": true,
       "repeat_count": 1,
-      "option": ["U_层数选择", "U_选择部队", "U_选择阵形", "U_重伤处理", "U_换队长", "U_补充刀装", "U_每轮回本丸", "U_动画跳过", "U_同步远征"],
+      "option": [
+        "U_层数选择",
+        "U_选择部队",
+        "U_选择阵形",
+        "U_重伤处理",
+        "U_换队长",
+        "U_补充刀装",
+        "U_每轮回本丸",
+        "U_动画跳过",
+        "U_同步远征"
+      ],
       "label": "地下城",
       "description": "地下城活动自动化出阵。\n\n- **换队长**：换队长的方式可在全局设置中修改。\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n- **每轮回本丸**：每轮战斗结束后返回本丸。\n- **层数选择**：设定目标层数（1-99）。当未通关99层时，须同时启用「每轮回本丸」。\n- **动画跳过**：增加一些点击以实现跳过动画的功能。\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保地下城使用的队伍在远征任务中设置为「休息」。"
     },
@@ -96,7 +133,14 @@
       "show_in_list": false,
       "repeatable": true,
       "repeat_count": 1,
-      "option": ["LR_选择部队", "LR_选择难度", "LR_同步远征", "LR_换队长", "LR_部队交替", "LR_不购买门票"],
+      "option": [
+        "LR_选择部队",
+        "LR_选择难度",
+        "LR_同步远征",
+        "LR_换队长",
+        "LR_部队交替",
+        "LR_不购买门票"
+      ],
       "label": "陆联",
       "description": "联队战（陆联）活动自动化出阵。\n\n- **换队长**：换队长的方式可在全局设置中修改\n- **部队交替**：在行动选择界面自动切换部队，勾选后点击齿轮设置队伍序列。\n- **选择部队**：选择出阵部队（第1轮使用）。\n- **选择难度**：易/普/难/超难。\n- **不购买门票**：勾选后令牌不足时自动结束任务，不再购买（注意：仅停止当前单次执行，若设置了重复次数，后续轮次仍会启动然后终止，可能造成日志刷屏）。\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保陆联使用的队伍在远征任务中设置为「休息」。\n\n> ⚠️ **注意**：游戏本身会在通行令牌不足时自动使用多倍道具。"
     },
@@ -110,7 +154,7 @@
       "option": ["TT_选择部队", "TT_选择难度", "TT_换队长", "TT_不购买门票", "TT_同步远征"],
       "label": "战术强化训练",
       "description": "战术强化训练（巧克力/南瓜）活动自动化出阵。\n\n- **换队长**：仅支持队内拖拽方式。\n- **选择部队**：当选择的部队不符合要求时，会自动尝试1-5队。\n- **选择难度**：初级/中级/上级。\n- **不购买门票**：勾选后更新剪影时若令牌不足则停止任务。"
-    },
+    }
   ],
   "global_option": ["换队长方式", "远征智能调度", "长期远征计划"],
   "option": {
@@ -129,7 +173,8 @@
         {
           "name": "1-1",
           "DisplayName": "1-1",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap1": {
@@ -140,7 +185,8 @@
         {
           "name": "1-2",
           "DisplayName": "1-2",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap1": {
@@ -151,7 +197,8 @@
         {
           "name": "1-3",
           "DisplayName": "1-3",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap1": {
@@ -162,7 +209,8 @@
         {
           "name": "1-4",
           "DisplayName": "1-4",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [276, 188, 37, 39]
             },
             "E_ClickSmallMap1": {
@@ -173,7 +221,8 @@
         {
           "name": "2-1",
           "DisplayName": "2-1",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap1": {
@@ -184,7 +233,8 @@
         {
           "name": "2-2",
           "DisplayName": "2-2",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap1": {
@@ -195,7 +245,8 @@
         {
           "name": "2-3",
           "DisplayName": "2-3",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap1": {
@@ -206,7 +257,8 @@
         {
           "name": "2-4",
           "DisplayName": "2-4",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [469, 178, 50, 40]
             },
             "E_ClickSmallMap1": {
@@ -217,7 +269,8 @@
         {
           "name": "3-1",
           "DisplayName": "3-1",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
@@ -228,7 +281,8 @@
         {
           "name": "3-2",
           "DisplayName": "3-2",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
@@ -239,7 +293,8 @@
         {
           "name": "3-3",
           "DisplayName": "3-3",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
@@ -250,7 +305,8 @@
         {
           "name": "3-4",
           "DisplayName": "3-4",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [661, 183, 50, 35]
             },
             "E_ClickSmallMap1": {
@@ -261,7 +317,8 @@
         {
           "name": "4-1",
           "DisplayName": "4-1",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
@@ -272,7 +329,8 @@
         {
           "name": "4-2",
           "DisplayName": "4-2",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
@@ -283,7 +341,8 @@
         {
           "name": "4-3",
           "DisplayName": "4-3",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
@@ -294,7 +353,8 @@
         {
           "name": "4-4",
           "DisplayName": "4-4",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [891, 190, 50, 36]
             },
             "E_ClickSmallMap1": {
@@ -305,7 +365,8 @@
         {
           "name": "5-1",
           "DisplayName": "5-1",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
@@ -316,7 +377,8 @@
         {
           "name": "5-2",
           "DisplayName": "5-2",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
@@ -327,7 +389,8 @@
         {
           "name": "5-3",
           "DisplayName": "5-3",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
@@ -338,7 +401,8 @@
         {
           "name": "5-4",
           "DisplayName": "5-4",
-          "pipeline_override": {            "E_SelectMap1": {
+          "pipeline_override": {
+            "E_SelectMap1": {
               "target": [1078, 191, 45, 34]
             },
             "E_ClickSmallMap1": {
@@ -1435,18 +1499,14 @@
             "S_IsSwordSelect": {"enabled": true},
             "S_DetectSortOrder": {"enabled": true},
             "S_ClickDescending": {"enabled": true},
-            "S_ConfirmSortAsc": {
-              "enabled": true
-            },
+            "S_ConfirmSortAsc": {"enabled": true},
             "S_ClickCaptain1": {"enabled": true},
             "S_ClickCaptain2": {"enabled": true},
             "S_ClickCaptain3": {"enabled": true},
             "S_ClickCaptain4": {"enabled": true},
             "S_ClickCaptain5": {"enabled": true},
             "S_ClickCaptainSlot": {"enabled": true},
-            "S_DragCaptain": {
-              "enabled": true
-            }
+            "S_DragCaptain": {"enabled": true}
           }
         }
       ],
@@ -1933,19 +1993,25 @@
         {
           "name": "初级",
           "pipeline_override": {
-            "TT_ClickDifficulty": { "target": [143, 213, 16, 2] }
+            "TT_ClickDifficulty": {
+              "target": [143, 213, 16, 2]
+            }
           }
         },
         {
           "name": "中级",
           "pipeline_override": {
-            "TT_ClickDifficulty": { "target": [300, 213, 16, 2] }
+            "TT_ClickDifficulty": {
+              "target": [300, 213, 16, 2]
+            }
           }
         },
         {
           "name": "上级",
           "pipeline_override": {
-            "TT_ClickDifficulty": { "target": [440, 213, 16, 2] }
+            "TT_ClickDifficulty": {
+              "target": [440, 213, 16, 2]
+            }
           }
         }
       ]
@@ -1958,31 +2024,41 @@
         {
           "name": "部队一",
           "pipeline_override": {
-            "TT_ClickTargetTeam": { "target": [154, 93, 1, 1] }
+            "TT_ClickTargetTeam": {
+              "target": [154, 93, 1, 1]
+            }
           }
         },
         {
           "name": "部队二",
           "pipeline_override": {
-            "TT_ClickTargetTeam": { "target": [282, 94, 1, 1] }
+            "TT_ClickTargetTeam": {
+              "target": [282, 94, 1, 1]
+            }
           }
         },
         {
           "name": "部队三",
           "pipeline_override": {
-            "TT_ClickTargetTeam": { "target": [398, 91, 1, 1] }
+            "TT_ClickTargetTeam": {
+              "target": [398, 91, 1, 1]
+            }
           }
         },
         {
           "name": "部队四",
           "pipeline_override": {
-            "TT_ClickTargetTeam": { "target": [519, 89, 1, 1] }
+            "TT_ClickTargetTeam": {
+              "target": [519, 89, 1, 1]
+            }
           }
         },
         {
           "name": "部队五",
           "pipeline_override": {
-            "TT_ClickTargetTeam": { "target": [635, 91, 1, 1] }
+            "TT_ClickTargetTeam": {
+              "target": [635, 91, 1, 1]
+            }
           }
         }
       ]
@@ -2046,7 +2122,9 @@
             "S_IsRepair": {"enabled": true},
             "S_ClickRepair": {"enabled": true},
             "S_ConfirmRepair": {"enabled": true},
-            "S_CheckAccel": {"next": ["S_ClickRepairandStop"]},
+            "S_CheckAccel": {
+              "next": ["S_ClickRepairandStop"]
+            },
             "S_IsStopOnDamage": {"enabled": false},
             "S_IsPreDamage1": {"enabled": true},
             "S_IsPreDamage2": {"enabled": true},
@@ -2082,8 +2160,12 @@
           "name": "刷花",
           "DisplayName": "刷花",
           "pipeline_override": {
-            "S_ConfirmSortAsc": {"next": ["S_FatigueCheck"]},
-            "S_DragCaptain": {"next": ["S_FatigueCheck"]},
+            "S_ConfirmSortAsc": {
+              "next": ["S_FatigueCheck"]
+            },
+            "S_DragCaptain": {
+              "next": ["S_FatigueCheck"]
+            },
             "S_FatigueCheck": {"enabled": true},
             "SF_Hub": {"enabled": true},
             "SF_UseRecord_Step1": {"enabled": true},
@@ -2094,8 +2176,12 @@
           "name": "停止",
           "DisplayName": "停止",
           "pipeline_override": {
-            "S_ConfirmSortAsc": {"next": ["S_FatigueCheck"]},
-            "S_DragCaptain": {"next": ["S_FatigueCheck"]},
+            "S_ConfirmSortAsc": {
+              "next": ["S_FatigueCheck"]
+            },
+            "S_DragCaptain": {
+              "next": ["S_FatigueCheck"]
+            },
             "S_FatigueCheck": {
               "enabled": true,
               "on_error": []
@@ -3085,7 +3171,15 @@
         {
           "name": "Yes",
           "label": "筛选开启",
-          "option": ["短", "胁", "打", "太", "大太", "枪", "薙"]
+          "option": [
+            "短",
+            "胁",
+            "打",
+            "太",
+            "大太",
+            "枪",
+            "薙"
+          ]
         },
         {
           "name": "No",

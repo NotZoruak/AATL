@@ -1,5 +1,14 @@
-"""压缩 MATR pipeline JSON 中四元素数组和单键值对到单行。"""
-import json, sys
+"""压缩 MATR pipeline JSON 中四元素数组和单键值对到单行，并删除空的 param。"""
+import json, sys, glob, os
+
+
+def clean_empty_param(obj):
+    """递归删除所有值为 {} 的 "param" 键。"""
+    if isinstance(obj, dict):
+        return {k: clean_empty_param(v) for k, v in obj.items() if not (k == "param" and v == {})}
+    elif isinstance(obj, list):
+        return [clean_empty_param(v) for v in obj]
+    return obj
 
 
 def fmt(obj, indent=0):
@@ -48,10 +57,11 @@ def fmt(obj, indent=0):
 
 
 if __name__ == "__main__":
-    paths = sys.argv[1:] or ["resource/base/pipeline/Sortie.json"]
+    paths = sys.argv[1:] or sorted(glob.glob("resource/base/pipeline/*.json"))
     for path in paths:
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
+        data = clean_empty_param(data)
         with open(path, "w", encoding="utf-8") as f:
             f.write(fmt(data) + "\n")
         print(f"Compressed: {path}")

@@ -435,7 +435,6 @@ public sealed class MaaProcessorManager
     /// 需要延迟加载的实例ID列表
     /// </summary>
     private readonly List<string> _pendingInstanceIds = new();
-    private bool _isLazyLoadingComplete;
 
     /// <summary>
     /// 迁移旧的 mfa_*.json 配置文件到多实例系统
@@ -957,8 +956,6 @@ public sealed class MaaProcessorManager
                         {
                             _pendingInstanceIds.Add(_instanceOrder[i]);
                         }
-
-                        _isLazyLoadingComplete = false;
                     }
 
                     return;
@@ -983,7 +980,6 @@ public sealed class MaaProcessorManager
                 Current.InstanceConfiguration.SetValue(ConfigurationKeys.InstanceName, _instanceNames["default"]);
                 SaveInstanceConfig();
                 _pendingInstanceIds.Clear();
-                _isLazyLoadingComplete = true;
             }
 
             return;
@@ -1135,8 +1131,6 @@ public sealed class MaaProcessorManager
                 if (id != lastActive && validIds.Contains(id))
                     _pendingInstanceIds.Add(id);
             }
-
-            _isLazyLoadingComplete = false;
         }
     }
     /// <summary>
@@ -1297,7 +1291,6 @@ public sealed class MaaProcessorManager
             {
                 if (_pendingInstanceIds.Count == 0)
                 {
-                    _isLazyLoadingComplete = true;
                     return;
                 }
 

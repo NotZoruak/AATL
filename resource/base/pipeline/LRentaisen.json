@@ -290,10 +290,7 @@
         "expected": "出阵"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["LR_VerifyMenuClosed", "LR_DetectWhereAmI"],
     "pre_delay": 100
   },
@@ -409,10 +406,7 @@
         "expected": "降序"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "enabled": false,
     "post_delay": 800,
     "next": ["LR_DetectSortOrder"],
@@ -478,7 +472,7 @@
   "LRentaisen": {
     "next": ["LR_DetectWhereAmI"]
   },
-  "LR_IsTroopRecordPage": {
+  "LR_LeaveTroopRecord": {
     "recognition": {
       "type": "TemplateMatch",
       "param": {
@@ -520,7 +514,7 @@
       "LR_IsInGameUpdatePopup",
       "LR_IsInternalReport",
       "LR_IsConnectionInterrupted",
-      "LR_IsTroopRecordPage",
+      "LR_LeaveTroopRecord",
       "LR_FallbackWait"
     ],
     "timeout": 120000,
@@ -675,10 +669,7 @@
         "expected": "目"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["LR_PostClickMenuHub"],
     "on_error": ["LR_DetectWhereAmI"],
     "pre_delay": 100
@@ -903,10 +894,7 @@
         "expected": "出阵"
       }
     },
-    "action": {
-      "type": "Click",
-      "param": {}
-    },
+    "action": {"type": "Click"},
     "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"],
     "pre_delay": 100

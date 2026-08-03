@@ -2171,7 +2171,9 @@ public static class VersionChecker
             SetProgress(progress, 100);
 
             // 清理与重启（复用ApplySecureUpdate）
+#pragma warning disable CS0618
             await ApplySecureUpdate(sourceDirectory, utf8BaseDirectory, Process.GetCurrentProcess().MainModule.ModuleName);
+#pragma warning restore CS0618
         }
         finally
         {
