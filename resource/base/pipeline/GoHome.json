@@ -18,6 +18,7 @@
       "G_IsInternalReport",
       "G_VerifyMenuDir",
       "G_IsMenuDirectory",
+      "G_LeaveTroopRecord",
       "G_FallbackWait"
     ],
     "timeout": 120000,
@@ -202,6 +203,22 @@
     "action": "Click",
     "next": ["G_DetectWhereAmI"],
     "pre_delay": 100
+  },
+  "G_LeaveTroopRecord": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [561, 6, 157, 41],
+        "expected": "部队记录"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [59, 24, 27, 22]
+      }
+    },
+    "next": ["G_DetectWhereAmI"]
   },
   "G_FallbackWait": {
     "action": "DoNothing",

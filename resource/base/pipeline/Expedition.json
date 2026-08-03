@@ -536,13 +536,18 @@
     "pre_delay": 500
   },
   "E_StartExpedition": {
-    "action": {
-      "type": "Click",
+    "recognition": {
+      "type": "OCR",
       "param": {
-        "target": [1148, 577, 106, 95]
+        "roi": [1157, 587, 92, 38],
+        "expected": "远征"
       }
     },
-    "post_delay": 1000,
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "post_delay": 200,
     "next": ["E_VerifyConfirmPopup"],
     "on_error": ["E_GoHome"],
     "pre_delay": 100
@@ -570,7 +575,24 @@
     "pre_delay": 100
   },
   "E_GoHome": {
-    "next": ["E_ClickDirectoryTop"]
+    "next": ["E_ClickDirectoryTop", "E_LeaveTroopRecord"],
+    "on_error": ["Expedition"]
+  },
+  "E_LeaveTroopRecord": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [561, 6, 157, 41],
+        "expected": "部队记录"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [59, 24, 27, 22]
+      }
+    },
+    "next": ["E_GoHome"]
   },
   "E_ClickDirectoryTop": {
     "recognition": {
@@ -1226,7 +1248,7 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "next": ["E_CheckFatigue1"],
+    "next": ["E_CheckFatigue1", "E_UseTeamRecord_Step4_Rec1"],
     "on_error": ["Expedition"],
     "post_delay": 1000
   },
@@ -1244,7 +1266,7 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "next": ["E_CheckFatigue2"],
+    "next": ["E_CheckFatigue2", "E_UseTeamRecord_Step4_Rec2"],
     "on_error": ["Expedition"],
     "post_delay": 1000
   },
@@ -1262,7 +1284,7 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "next": ["E_CheckFatigue3"],
+    "next": ["E_CheckFatigue3", "E_UseTeamRecord_Step4_Rec3"],
     "on_error": ["Expedition"],
     "post_delay": 1000
   },
@@ -1280,7 +1302,7 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "next": ["E_CheckFatigue4"],
+    "next": ["E_CheckFatigue4", "E_UseTeamRecord_Step4_Rec4"],
     "on_error": ["Expedition"],
     "post_delay": 1000
   },
@@ -1298,7 +1320,7 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "next": ["E_CheckFatigue5"],
+    "next": ["E_CheckFatigue5", "E_UseTeamRecord_Step4_Rec5"],
     "on_error": ["Expedition"],
     "post_delay": 1000
   },
