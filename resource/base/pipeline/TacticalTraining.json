@@ -12,7 +12,8 @@
     "action": {"type": "Click"},
     "timeout": 3000,
     "pre_delay": 100,
-    "next": ["TT_IsAnnouncementPopup", "TT_DetectWhereAmI"]
+    "next": ["TT_IsAnnouncementPopup", "TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsLoginReward": {
     "recognition": {
@@ -26,7 +27,8 @@
     },
     "action": {"type": "Click"},
     "pre_delay": 100,
-    "next": ["TT_LoginRewardClick2"]
+    "next": ["TT_LoginRewardClick2"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_LoginRewardClick2": {
     "action": {
@@ -36,7 +38,8 @@
       }
     },
     "pre_delay": 1000,
-    "next": ["TT_LoginRewardClick3"]
+    "next": ["TT_LoginRewardClick3"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_LoginRewardClick3": {
     "action": {
@@ -62,7 +65,8 @@
     },
     "action": {"type": "Click"},
     "pre_delay": 100,
-    "next": ["TT_DetectWhereAmI"]
+    "next": ["TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsGameIcon": {
     "recognition": {
@@ -77,7 +81,8 @@
     "action": {"type": "Click"},
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["TT_DetectWhereAmI"]
+    "next": ["TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsLoginButton": {
     "recognition": {
@@ -92,7 +97,8 @@
     "action": {"type": "Click"},
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["TT_DetectWhereAmI"]
+    "next": ["TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsGameUpdatePopup": {
     "recognition": {
@@ -107,7 +113,8 @@
     "action": {"type": "Click"},
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["TT_DetectWhereAmI"]
+    "next": ["TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsInGameUpdatePopup": {
     "recognition": {
@@ -125,11 +132,13 @@
     },
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["TT_DetectWhereAmI"]
+    "next": ["TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_FallbackWait": {
     "action": {"type": "DoNothing"},
-    "next": ["TT_DetectWhereAmI"]
+    "next": ["TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_RestartGame": {
     "action": {
@@ -153,7 +162,8 @@
       }
     },
     "next": ["TT_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_HasExpeditionReturn_Title": {
     "recognition": {
@@ -170,7 +180,8 @@
       }
     },
     "next": ["TT_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckHomeBrightness": {
     "recognition": {
@@ -182,7 +193,8 @@
       }
     },
     "action": {"type": "DoNothing"},
-    "next": ["TT_IsHome", "TT_DetectWhereAmI"]
+    "next": ["TT_IsHome", "TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsHome": {
     "recognition": {
@@ -212,7 +224,8 @@
       }
     },
     "next": ["TT_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsBattleResult_Exp": {
     "recognition": {
@@ -229,7 +242,8 @@
       }
     },
     "next": ["TT_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsBattleResult_Title": {
     "recognition": "OCR",
@@ -237,7 +251,8 @@
     "expected": "战斗结果",
     "action": "Click",
     "next": ["TT_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsSwordDropColor": {
     "recognition": {
@@ -256,7 +271,8 @@
     },
     "next": ["TT_CheckRoundComplete", "TT_DetectWhereAmI"],
     "pre_delay": 100,
-    "post_delay": 1000
+    "post_delay": 1000,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckRoundComplete": {
     "recognition": {
@@ -268,7 +284,8 @@
         "threshold": [0.98]
       }
     },
-    "next": []
+    "next": [],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsSortie": {
     "recognition": {
@@ -280,7 +297,8 @@
         "threshold": [0.98]
       }
     },
-    "next": ["TT_OnSortieScreen"]
+    "next": ["TT_OnSortieScreen"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_OnSortieScreen": {
     "action": {
@@ -290,7 +308,8 @@
       }
     },
     "next": ["TT_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsSwordSelect": {
     "recognition": {
@@ -301,7 +320,8 @@
       }
     },
     "enabled": false,
-    "next": ["TT_DetectWhereAmI"]
+    "next": ["TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_DetectWhereAmI": {
     "pre_delay": 0,
@@ -481,7 +501,8 @@
       }
     },
     "post_delay": 500,
-    "next": ["TT_CloseTicketDialog2"]
+    "next": ["TT_CloseTicketDialog2"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CloseTicketDialog2": {
     "action": {
@@ -491,7 +512,8 @@
       }
     },
     "post_delay": 500,
-    "next": ["TT_CloseTicketDialog3"]
+    "next": ["TT_CloseTicketDialog3"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CloseTicketDialog3": {
     "action": {
@@ -500,7 +522,8 @@
         "target": [1039, 54, 1, 1]
       }
     },
-    "next": ["TT_DetectWhereAmI"]
+    "next": ["TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_NavigateToActivity": {
     "next": ["TT_ClickMenu"],
@@ -533,7 +556,8 @@
         "threshold": [0.98]
       }
     },
-    "next": ["TT_ClickActivityInMenu"]
+    "next": ["TT_ClickActivityInMenu"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_ClickActivityInMenu": {
     "recognition": {
@@ -558,7 +582,8 @@
     },
     "action": {"type": "Click"},
     "next": ["TT_PostClickMenuHub"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsTeamSelect": {
     "recognition": {
@@ -568,7 +593,8 @@
         "expected": "部队选择"
       }
     },
-    "next": ["TT_ClickTargetTeam"]
+    "next": ["TT_ClickTargetTeam"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_ClickTargetTeam": {
     "action": {
@@ -579,7 +605,8 @@
     },
     "next": ["TT_CheckCaptainColor"],
     "pre_delay": 100,
-    "post_delay": 800
+    "post_delay": 800,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CaptainHub": {
     "recognition": {
@@ -620,7 +647,8 @@
       }
     },
     "next": ["TT_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckCaptainColor": {
     "next": ["TT_CaptainHub", "TT_TryTeam1"],
@@ -634,7 +662,8 @@
       }
     },
     "next": ["TT_CheckCaptainColorTry1"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckCaptainColorTry1": {
     "next": ["TT_CaptainHub", "TT_TryTeam2"],
@@ -648,7 +677,8 @@
       }
     },
     "next": ["TT_CheckCaptainColorTry2"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckCaptainColorTry2": {
     "next": ["TT_CaptainHub", "TT_TryTeam3"],
@@ -662,7 +692,8 @@
       }
     },
     "next": ["TT_CheckCaptainColorTry3"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckCaptainColorTry3": {
     "next": ["TT_CaptainHub", "TT_TryTeam4"],
@@ -676,7 +707,8 @@
       }
     },
     "next": ["TT_CheckCaptainColorTry4"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckCaptainColorTry4": {
     "next": ["TT_CaptainHub", "TT_TryTeam5"],
@@ -690,7 +722,8 @@
       }
     },
     "next": ["TT_CheckCaptainColorTry5"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckCaptainColorTry5": {
     "next": ["TT_CaptainHub", "TT_AllTeamsExhausted"],
@@ -698,7 +731,8 @@
   },
   "TT_AllTeamsExhausted": {
     "action": {"type": "DoNothing"},
-    "next": []
+    "next": [],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_WaitRefresh": {
     "enabled": false,
@@ -718,9 +752,11 @@
   },
   "TT_TerminateNoTicket": {
     "action": {"type": "DoNothing"},
-    "next": []
+    "next": [],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TacticalTraining": {
-    "next": ["TT_DetectWhereAmI"]
+    "next": ["TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   }
 }

@@ -39,7 +39,8 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["FB_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_HasExpeditionReturn_Title": {
     "recognition": "OCR",
@@ -48,7 +49,8 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["FB_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsBattleResult_Exp": {
     "recognition": "OCR",
@@ -57,7 +59,8 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["FB_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsSwordDropColor": {
     "recognition": "ColorMatch",
@@ -71,7 +74,8 @@
       }
     },
     "next": ["FB_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsFormationSelect": {
     "recognition": {
@@ -83,10 +87,12 @@
         "threshold": [0.98]
       }
     },
-    "next": ["FB_SelectFormation"]
+    "next": ["FB_SelectFormation"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_SelectFormation": {
-    "next": ["FB_ClickFormation1"]
+    "next": ["FB_ClickFormation1"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ClickFormation1": {
     "action": {
@@ -97,7 +103,8 @@
     },
     "post_delay": 500,
     "next": ["FB_ClickFormation2"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ClickFormation2": {
     "action": {
@@ -107,7 +114,8 @@
       }
     },
     "next": ["FB_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsMarching": {
     "recognition": {
@@ -121,7 +129,8 @@
     },
     "action": "Click",
     "next": ["FB_DetectAfterMarching"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsSwordSelect": {
     "recognition": {
@@ -131,7 +140,8 @@
         "expected": "刀剑男士选择"
       }
     },
-    "next": ["FB_ClickFilter"]
+    "next": ["FB_ClickFilter"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ClickFilter": {
     "action": {
@@ -142,7 +152,8 @@
     },
     "post_delay": 800,
     "next": ["FB_ClearResidualFilter"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ClearResidualFilter": {
     "action": {
@@ -153,7 +164,8 @@
     },
     "post_delay": 800,
     "next": ["FB_FilterByTroop"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_FilterByTroop": {
     "action": {
@@ -164,7 +176,8 @@
     },
     "post_delay": 800,
     "next": ["FB_FilterBySakura"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_FilterBySakura": {
     "action": {
@@ -175,7 +188,8 @@
     },
     "post_delay": 800,
     "next": ["FB_ConfirmFilter"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ConfirmFilter": {
     "action": {
@@ -185,7 +199,8 @@
       }
     },
     "next": ["FB_DetectSortOrder"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_DetectSortOrder": {
     "next": ["FB_ClickDescending", "FB_ConfirmSortAsc"],
@@ -202,7 +217,8 @@
     "action": {"type": "Click"},
     "post_delay": 800,
     "next": ["FB_DetectSortOrder"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ConfirmSortAsc": {
     "recognition": {
@@ -213,7 +229,8 @@
       }
     },
     "next": ["FB_CaptainFind", "FB_CaptainSwipe"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_CaptainFind": {
     "recognition": {
@@ -229,14 +246,16 @@
     },
     "action": "Click",
     "next": ["FB_ClickSortieNow"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_CaptainSwipe": {
     "action": {
       "type": "Custom",
       "custom_action": "PageScrollAndHoldAction"
     },
-    "next": ["FB_CaptainFind"]
+    "next": ["FB_CaptainFind"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ClickSortieNow": {
     "recognition": "OCR",
@@ -260,7 +279,8 @@
         "expected": "部队选择"
       }
     },
-    "next": ["FB_ClickTeam"]
+    "next": ["FB_ClickTeam"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ClickTeam": {
     "action": {
@@ -270,10 +290,12 @@
       }
     },
     "next": ["FB_Dissolve"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_Dissolve": {
-    "next": ["FB_DissolveCheck", "FB_ClickCaptainSlot"]
+    "next": ["FB_DissolveCheck", "FB_ClickCaptainSlot"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_DissolveCheck": {
     "recognition": {
@@ -287,7 +309,8 @@
       }
     },
     "action": "Click",
-    "next": ["FB_Dissolve"]
+    "next": ["FB_Dissolve"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ClickCaptainSlot": {
     "action": {
@@ -297,7 +320,8 @@
       }
     },
     "next": ["FB_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsEraSelect": {
     "recognition": {
@@ -309,10 +333,12 @@
         "threshold": [0.98]
       }
     },
-    "next": ["FB_SelectEra"]
+    "next": ["FB_SelectEra"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_SelectEra": {
-    "next": ["FB_ClickFirstEra"]
+    "next": ["FB_ClickFirstEra"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ClickFirstEra": {
     "action": {
@@ -323,7 +349,8 @@
     },
     "post_delay": 500,
     "next": ["FB_ClickEraConfirm"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ClickEraConfirm": {
     "action": {
@@ -333,7 +360,8 @@
       }
     },
     "next": ["FB_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsRegionSelect": {
     "recognition": {
@@ -345,10 +373,12 @@
         "threshold": [0.98]
       }
     },
-    "next": ["FB_SelectRegion"]
+    "next": ["FB_SelectRegion"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_SelectRegion": {
-    "next": ["FB_ClickRegion1_1"]
+    "next": ["FB_ClickRegion1_1"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ClickRegion1_1": {
     "action": {
@@ -358,7 +388,8 @@
       }
     },
     "next": ["FB_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsSortieActivity": {
     "recognition": {
@@ -370,7 +401,8 @@
         "threshold": [0.98]
       }
     },
-    "next": ["FB_ClickBattlefieldTab"]
+    "next": ["FB_ClickBattlefieldTab"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ClickBattlefieldTab": {
     "action": {
@@ -380,7 +412,8 @@
       }
     },
     "next": ["FB_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsHome": {
     "recognition": {
@@ -396,7 +429,8 @@
     "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_NavigateToSortie": {
-    "next": ["FB_ClickMenuForSortie"]
+    "next": ["FB_ClickMenuForSortie"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ClickMenuForSortie": {
     "recognition": {
@@ -421,7 +455,8 @@
     },
     "action": {"type": "Click"},
     "next": ["FB_VerifySortieMenuClosed", "FB_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_DetectAfterMarching": {
     "next": [
@@ -445,7 +480,8 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["FB_DetectAfterMarching"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_PostExpeditionReturn_Title": {
     "recognition": "OCR",
@@ -454,7 +490,8 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["FB_DetectAfterMarching"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_PostBattleResult_Exp": {
     "recognition": "OCR",
@@ -463,7 +500,8 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["FB_DetectAfterMarching"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_PostSwordDropColor": {
     "recognition": "ColorMatch",
@@ -477,7 +515,8 @@
       }
     },
     "next": ["FB_DetectAfterMarching"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_PostFormationSelect": {
     "recognition": {
@@ -489,10 +528,12 @@
         "threshold": [0.98]
       }
     },
-    "next": ["FB_PostSelectFormation"]
+    "next": ["FB_PostSelectFormation"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_PostSelectFormation": {
-    "next": ["FB_PostClickFormation1"]
+    "next": ["FB_PostClickFormation1"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_PostClickFormation1": {
     "action": {
@@ -503,7 +544,8 @@
     },
     "post_delay": 500,
     "next": ["FB_PostClickFormation2"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_PostClickFormation2": {
     "action": {
@@ -513,7 +555,8 @@
       }
     },
     "next": ["FB_DetectAfterMarching"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_PostMarching": {
     "recognition": {
@@ -527,7 +570,8 @@
     },
     "action": "Click",
     "next": ["FB_DetectAfterMarching"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_PostHome": {
     "recognition": {
@@ -539,11 +583,13 @@
         "threshold": [0.98]
       }
     },
-    "action": "DoNothing"
+    "action": "DoNothing",
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_PostFallbackWait": {
     "action": "DoNothing",
-    "next": ["FB_DetectAfterMarching"]
+    "next": ["FB_DetectAfterMarching"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_VerifyMenuOpened": {
     "recognition": {
@@ -583,11 +629,13 @@
     },
     "action": "Click",
     "next": ["FB_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_FallbackWait": {
     "action": "DoNothing",
-    "next": ["FB_DetectWhereAmI"]
+    "next": ["FB_DetectWhereAmI"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_VerifySortieMenuClosed": {
     "recognition": {
@@ -599,10 +647,12 @@
         "threshold": [0.98]
       }
     },
-    "next": ["FB_TryClickSortie", "FB_DetectWhereAmI"]
+    "next": ["FB_TryClickSortie", "FB_DetectWhereAmI"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_TryClickSortie": {
-    "next": ["FB_ClickSortieInMenu", "FB_DetectWhereAmI"]
+    "next": ["FB_ClickSortieInMenu", "FB_DetectWhereAmI"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsGameIcon": {
     "recognition": {
@@ -617,7 +667,8 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["FB_DetectWhereAmI"]
+    "next": ["FB_DetectWhereAmI"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsLoginButton": {
     "recognition": {
@@ -632,7 +683,8 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["FB_DetectWhereAmI"]
+    "next": ["FB_DetectWhereAmI"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsGameUpdatePopup": {
     "recognition": {
@@ -647,7 +699,8 @@
     "action": "Click",
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["FB_DetectWhereAmI"]
+    "next": ["FB_DetectWhereAmI"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsInGameUpdatePopup": {
     "recognition": "OCR",
@@ -657,7 +710,8 @@
     "target": [578, 440, 130, 55],
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["FB_DetectWhereAmI"]
+    "next": ["FB_DetectWhereAmI"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsAnnouncementPopup": {
     "recognition": {
@@ -672,7 +726,8 @@
     "action": "Click",
     "timeout": 3000,
     "pre_delay": 100,
-    "next": ["FB_IsAnnouncementPopup", "FB_DetectWhereAmI"]
+    "next": ["FB_IsAnnouncementPopup", "FB_DetectWhereAmI"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsLoginReward": {
     "recognition": {
@@ -686,13 +741,15 @@
     },
     "action": "Click",
     "pre_delay": 100,
-    "next": ["FB_LoginRewardClick2"]
+    "next": ["FB_LoginRewardClick2"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_LoginRewardClick2": {
     "action": "Click",
     "target": [1092, 318, 1, 1],
     "pre_delay": 1000,
-    "next": ["FB_LoginRewardClick3"]
+    "next": ["FB_LoginRewardClick3"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_LoginRewardClick3": {
     "action": "Click",
@@ -708,7 +765,8 @@
     "upper": [40, 155, 30],
     "lower": [23, 95, 15],
     "action": "DoNothing",
-    "next": ["FB_IsHome", "FB_DetectWhereAmI"]
+    "next": ["FB_IsHome", "FB_DetectWhereAmI"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_CheckPostHomeBright": {
     "recognition": "ColorMatch",
@@ -716,7 +774,8 @@
     "upper": [40, 155, 30],
     "lower": [23, 95, 15],
     "action": "DoNothing",
-    "next": ["FB_PostHome"]
+    "next": ["FB_PostHome"],
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_IsMenuDirectory": {
     "recognition": {
@@ -730,7 +789,8 @@
     },
     "action": "DoNothing",
     "next": ["FB_ClickSortieInMenu"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_RestartGame": {
     "action": {
@@ -751,6 +811,7 @@
     },
     "action": "Click",
     "next": ["FB_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["FB_DetectWhereAmI"]
   }
 }

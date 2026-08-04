@@ -1225,7 +1225,7 @@
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Center"
                                               extensions:CheckBoxExtensions.LimitDragDrop="True"
-                                              IsEnabled="{Binding !IsResourceOptionItem}"
+                                              IsEnabled="{Binding IsCheckBoxEnabled}"
                                               IsChecked="{Binding IsCheckedWithNull}" />
                                     <Grid Grid.Column="1"
                                           ColumnDefinitions="Auto,*"

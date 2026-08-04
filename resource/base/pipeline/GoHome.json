@@ -33,7 +33,8 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["G_VerifyMenuDir"]
+    "next": ["G_VerifyMenuDir"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsAnnouncementPopup": {
     "recognition": {
@@ -48,7 +49,8 @@
     "action": "Click",
     "timeout": 3000,
     "pre_delay": 100,
-    "next": ["G_IsAnnouncementPopup", "G_DetectWhereAmI"]
+    "next": ["G_IsAnnouncementPopup", "G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsLoginReward": {
     "recognition": {
@@ -62,13 +64,15 @@
     },
     "action": "Click",
     "pre_delay": 100,
-    "next": ["G_LoginRewardClick2"]
+    "next": ["G_LoginRewardClick2"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_LoginRewardClick2": {
     "action": "Click",
     "target": [1092, 318, 1, 1],
     "pre_delay": 1000,
-    "next": ["G_LoginRewardClick3"]
+    "next": ["G_LoginRewardClick3"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_LoginRewardClick3": {
     "action": "Click",
@@ -83,7 +87,8 @@
     "roi": [1230, 11, 41, 38],
     "expected": "×",
     "action": "Click",
-    "next": ["G_ClickDirectoryTop"]
+    "next": ["G_ClickDirectoryTop"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_ClickDirectoryTop": {
     "recognition": {
@@ -118,7 +123,8 @@
         "target": [1037, 169, 110, 44]
       }
     },
-    "next": ["G_DetectWhereAmI"]
+    "next": ["G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsHome": {
     "recognition": {
@@ -130,7 +136,8 @@
         "threshold": [0.98]
       }
     },
-    "action": "DoNothing"
+    "action": "DoNothing",
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsGameIcon": {
     "recognition": {
@@ -144,7 +151,8 @@
     },
     "action": "Click",
     "post_delay": 3000,
-    "next": ["G_DetectWhereAmI"]
+    "next": ["G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsLoginButton": {
     "recognition": {
@@ -158,7 +166,8 @@
     },
     "action": "Click",
     "post_delay": 3000,
-    "next": ["G_DetectWhereAmI"]
+    "next": ["G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsGameUpdatePopup": {
     "recognition": {
@@ -172,7 +181,8 @@
     },
     "action": "Click",
     "post_delay": 2000,
-    "next": ["G_DetectWhereAmI"]
+    "next": ["G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsInGameUpdatePopup": {
     "recognition": "OCR",
@@ -182,7 +192,8 @@
     "target": [578, 440, 130, 55],
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["G_DetectWhereAmI"]
+    "next": ["G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsInternalReport": {
     "recognition": {
@@ -196,7 +207,8 @@
     },
     "action": "Click",
     "next": ["G_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_LeaveTroopRecord": {
     "recognition": {
@@ -210,11 +222,13 @@
     },
     "action": "Click",
     "target": [63, 28, 17, 17],
-    "next": ["G_DetectWhereAmI"]
+    "next": ["G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_FallbackWait": {
     "action": "DoNothing",
-    "next": ["G_DetectWhereAmI"]
+    "next": ["G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_RestartGame": {
     "action": {
@@ -235,6 +249,7 @@
     },
     "action": "Click",
     "next": ["G_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["G_DetectWhereAmI"]
   }
 }

@@ -12,7 +12,8 @@
     "action": "Click",
     "timeout": 3000,
     "pre_delay": 100,
-    "next": ["LR_IsAnnouncementPopup", "LR_DetectWhereAmI"]
+    "next": ["LR_IsAnnouncementPopup", "LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsSupplyPopup": {
     "recognition": {
@@ -27,7 +28,8 @@
     "target": [1241, 37, 1, 1],
     "pre_delay": 100,
     "post_delay": 500,
-    "next": ["LR_DetectWhereAmI"]
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsLoginReward": {
     "recognition": {
@@ -41,13 +43,15 @@
     },
     "action": "Click",
     "pre_delay": 100,
-    "next": ["LR_LoginRewardClick2"]
+    "next": ["LR_LoginRewardClick2"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_LoginRewardClick2": {
     "action": "Click",
     "target": [1092, 318, 1, 1],
     "pre_delay": 1000,
-    "next": ["LR_LoginRewardClick3"]
+    "next": ["LR_LoginRewardClick3"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_LoginRewardClick3": {
     "action": "Click",
@@ -64,7 +68,8 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["LR_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_HasExpeditionReturn_Title": {
     "recognition": "OCR",
@@ -73,7 +78,8 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["LR_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_CheckHomeBrightness": {
     "recognition": "ColorMatch",
@@ -81,7 +87,8 @@
     "upper": [40, 155, 30],
     "lower": [23, 95, 15],
     "action": "DoNothing",
-    "next": ["LR_IsHome", "LR_DetectWhereAmI"]
+    "next": ["LR_IsHome", "LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsHome": {
     "recognition": {
@@ -108,7 +115,8 @@
     },
     "action": "DoNothing",
     "next": ["LR_ClickActivityInMenu"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsGameIcon": {
     "recognition": {
@@ -123,7 +131,8 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["LR_DetectWhereAmI"]
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsLoginButton": {
     "recognition": {
@@ -138,7 +147,8 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["LR_DetectWhereAmI"]
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsGameUpdatePopup": {
     "recognition": {
@@ -153,7 +163,8 @@
     "action": "Click",
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["LR_DetectWhereAmI"]
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsInGameUpdatePopup": {
     "recognition": "OCR",
@@ -163,7 +174,8 @@
     "target": [578, 440, 130, 55],
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["LR_DetectWhereAmI"]
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsInternalReport": {
     "recognition": {
@@ -177,7 +189,8 @@
     },
     "action": "Click",
     "next": ["LR_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsConnectionInterrupted": {
     "recognition": "OCR",
@@ -186,11 +199,13 @@
     "action": "Click",
     "target": [738, 449, 100, 39],
     "next": ["LR_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_FallbackWait": {
     "action": "DoNothing",
-    "next": ["LR_DetectWhereAmI"]
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsBattleResult_Exp": {
     "recognition": "OCR",
@@ -199,7 +214,8 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["LR_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsBattleResult_Title": {
     "recognition": "OCR",
@@ -207,7 +223,8 @@
     "expected": "战斗结果",
     "action": "Click",
     "next": ["LR_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsSwordDropColor": {
     "recognition": "ColorMatch",
@@ -221,7 +238,8 @@
       }
     },
     "next": ["LR_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsSwordSelect": {
     "recognition": {
@@ -232,7 +250,8 @@
       }
     },
     "enabled": false,
-    "next": ["LR_ClickCaptain1"]
+    "next": ["LR_ClickCaptain1"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsTeamSelect": {
     "recognition": {
@@ -242,7 +261,8 @@
         "expected": "部队选择"
       }
     },
-    "next": ["LR_ClickTeam"]
+    "next": ["LR_ClickTeam"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsSortie": {
     "recognition": {
@@ -254,7 +274,8 @@
         "threshold": [0.98]
       }
     },
-    "next": ["LR_OnSortieScreen"]
+    "next": ["LR_OnSortieScreen"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_OnSortieScreen": {
     "action": {
@@ -264,7 +285,8 @@
       }
     },
     "next": ["LR_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_VerifyEventPage": {
     "recognition": {
@@ -280,7 +302,8 @@
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_TryClickSortie": {
-    "next": ["LR_ClickSortieInMenu", "LR_DetectWhereAmI"]
+    "next": ["LR_ClickSortieInMenu", "LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickSortieInMenu": {
     "recognition": {
@@ -292,7 +315,8 @@
     },
     "action": {"type": "Click"},
     "next": ["LR_VerifyMenuClosed", "LR_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_VerifyMenuClosed": {
     "recognition": {
@@ -304,7 +328,8 @@
         "threshold": [0.98]
       }
     },
-    "next": ["LR_TryClickSortie", "LR_DetectWhereAmI"]
+    "next": ["LR_TryClickSortie", "LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_PostClickMenuHub": {
     "next": ["LR_VerifyMenuSortie", "LR_CheckNavDirForRetry", "LR_DetectWhereAmI"],
@@ -320,7 +345,8 @@
         "threshold": [0.98]
       }
     },
-    "next": ["LR_ClickSortieInMenu"]
+    "next": ["LR_ClickSortieInMenu"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_CheckNavDirForRetry": {
     "recognition": {
@@ -332,7 +358,8 @@
     },
     "action": "Click",
     "next": ["LR_PostClickMenuHub"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickCaptain1": {
     "enabled": false,
@@ -344,7 +371,8 @@
     },
     "post_delay": 800,
     "next": ["LR_ClickCaptain2"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickCaptain2": {
     "enabled": false,
@@ -356,7 +384,8 @@
     },
     "post_delay": 800,
     "next": ["LR_ClickCaptain3"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickCaptain3": {
     "enabled": false,
@@ -368,7 +397,8 @@
     },
     "post_delay": 800,
     "next": ["LR_ClickCaptain4"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickCaptain4": {
     "enabled": false,
@@ -380,7 +410,8 @@
     },
     "post_delay": 800,
     "next": ["LR_ClickCaptain5"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickCaptain5": {
     "enabled": false,
@@ -391,7 +422,8 @@
       }
     },
     "next": ["LR_DetectSortOrder"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_DetectSortOrder": {
     "enabled": false,
@@ -410,7 +442,8 @@
     "enabled": false,
     "post_delay": 800,
     "next": ["LR_DetectSortOrder"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ConfirmSortAsc": {
     "recognition": {
@@ -428,7 +461,8 @@
     },
     "enabled": false,
     "next": ["LR_AfterCaptain"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickTeam": {
     "action": {
@@ -439,10 +473,12 @@
     },
     "next": ["LR_CaptainHub"],
     "pre_delay": 100,
-    "post_delay": 800
+    "post_delay": 800,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_TryClickHome": {
-    "next": ["LR_ClickHomeInMenu", "LR_DetectWhereAmI"]
+    "next": ["LR_ClickHomeInMenu", "LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickHomeInMenu": {
     "action": {
@@ -470,7 +506,8 @@
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LRentaisen": {
-    "next": ["LR_DetectWhereAmI"]
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_LeaveTroopRecord": {
     "recognition": {
@@ -484,7 +521,8 @@
     },
     "action": "Click",
     "target": [63, 28, 17, 17],
-    "next": ["LR_DetectWhereAmI"]
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_DetectWhereAmI": {
     "pre_delay": 0,
@@ -530,10 +568,12 @@
         "threshold": [0.98]
       }
     },
-    "next": ["LR_SelectDifficulty", "LR_DetectWhereAmI"]
+    "next": ["LR_SelectDifficulty", "LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_SelectDifficulty": {
-    "next": ["LR_ClickDifficulty"]
+    "next": ["LR_ClickDifficulty"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickDifficulty": {
     "action": {
@@ -556,7 +596,8 @@
         "threshold": [0.98]
       }
     },
-    "next": ["LR_EnterEvent", "LR_DetectWhereAmI"]
+    "next": ["LR_EnterEvent", "LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_EnterEvent": {
     "action": {
@@ -567,7 +608,8 @@
     },
     "pre_delay": 200,
     "post_delay": 200,
-    "next": ["LR_IsTeamSelect", "LR_DetectWhereAmI"]
+    "next": ["LR_IsTeamSelect", "LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsActionSelect": {
     "recognition": {
@@ -582,7 +624,8 @@
     "action": "DoNothing",
     "pre_delay": 100,
     "post_delay": 100,
-    "next": ["LR_ActionSelectHub"]
+    "next": ["LR_ActionSelectHub"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsSpecialDrop": {
     "recognition": {
@@ -593,7 +636,8 @@
       }
     },
     "action": "Click",
-    "next": ["LR_CheckMoreSpecialDrops"]
+    "next": ["LR_CheckMoreSpecialDrops"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_AfterCaptain": {
     "action": {
@@ -604,19 +648,23 @@
     },
     "pre_delay": 500,
     "post_delay": 500,
-    "next": ["LR_DetectTicket"]
+    "next": ["LR_DetectTicket"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_DetectTicket": {
-    "next": ["LR_HandleNoTicket", "LR_ConfirmEnterMap"]
+    "next": ["LR_HandleNoTicket", "LR_ConfirmEnterMap"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_HandleNoTicket": {
     "recognition": "OCR",
     "roi": [524, 196, 248, 67],
     "expected": "通行令牌不足",
-    "next": ["LR_ReplenishOrTerminate"]
+    "next": ["LR_ReplenishOrTerminate"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ReplenishOrTerminate": {
-    "next": ["LR_ReplenishTicket", "LR_TerminateNoTicket"]
+    "next": ["LR_ReplenishTicket", "LR_TerminateNoTicket"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ReplenishTicket": {
     "action": {
@@ -626,7 +674,8 @@
       }
     },
     "pre_delay": 100,
-    "next": ["LR_ClickRestore3"]
+    "next": ["LR_ClickRestore3"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickRestore3": {
     "recognition": "OCR",
@@ -645,11 +694,13 @@
       }
     },
     "pre_delay": 500,
-    "next": ["LR_AfterCaptain"]
+    "next": ["LR_AfterCaptain"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_TerminateNoTicket": {
     "action": "DoNothing",
-    "next": []
+    "next": [],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ConfirmEnterMap": {
     "action": {
@@ -659,7 +710,8 @@
       }
     },
     "pre_delay": 100,
-    "next": ["LR_DetectWhereAmI"]
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickMenu": {
     "recognition": {
@@ -678,7 +730,8 @@
     "recognition": "OCR",
     "roi": [1156, 584, 96, 47],
     "expected": "即刻",
-    "next": ["LR_ClickSortieNow"]
+    "next": ["LR_ClickSortieNow"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickSortieNow": {
     "action": {
@@ -688,7 +741,8 @@
       }
     },
     "next": ["LR_PostSortieHub"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_CaptainHub": {
     "next": ["LR_ClickCaptainSlot", "LR_IsPreSortieConfirm"],
@@ -704,21 +758,25 @@
     },
     "next": ["LR_DetectWhereAmI"],
     "post_delay": 1000,
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_TerminateRound": {
     "action": "DoNothing",
-    "next": []
+    "next": [],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsTicketPopup": {
     "recognition": "OCR",
     "roi": [524, 196, 248, 67],
     "expected": "通行令牌不足",
     "action": "DoNothing",
-    "next": ["LR_HandleTicketPopup"]
+    "next": ["LR_HandleTicketPopup"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_HandleTicketPopup": {
-    "next": ["LR_ReplenishTicket", "LR_TerminateNoTicket"]
+    "next": ["LR_ReplenishTicket", "LR_TerminateNoTicket"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_CheckMoreSpecialDrops": {
     "next": ["LR_IsSpecialDrop", "LR_CheckSwordDropAfterSpecial"],
@@ -733,7 +791,8 @@
   "LR_IsSwordDropAfter": {
     "recognition": "ColorMatch",
     "action": "Click",
-    "next": ["LR_WaitForEventPage"]
+    "next": ["LR_WaitForEventPage"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_WaitForEventPage": {
     "recognition": {
@@ -747,10 +806,12 @@
     },
     "timeout": 10000,
     "action": "DoNothing",
-    "next": ["LR_TerminateRound"]
+    "next": ["LR_TerminateRound"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_PostSortieHub": {
-    "next": ["LR_IsTicketPopup", "LR_ClickEnterBattle"]
+    "next": ["LR_IsTicketPopup", "LR_ClickEnterBattle"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickEnterBattle": {
     "action": {
@@ -760,7 +821,8 @@
       }
     },
     "pre_delay": 100,
-    "next": ["LR_DetectWhereAmI"]
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ActionSelectHub": {
     "next": ["LR_ClickSwitchTeam", "LR_CheckCaptainDamage", "LR_ClickContinueBattle", "LR_DetectWhereAmI"],
@@ -776,7 +838,8 @@
     },
     "pre_delay": 200,
     "post_delay": 200,
-    "next": ["LR_RunTeamSwitch"]
+    "next": ["LR_RunTeamSwitch"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_RunTeamSwitch": {
     "enabled": false,
@@ -801,7 +864,8 @@
       "custom_action": "CaptainDamageAction"
     },
     "pre_delay": 100,
-    "next": ["LR_RetreatOnCaptainDamage"]
+    "next": ["LR_RetreatOnCaptainDamage"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_RetreatOnCaptainDamage": {
     "action": {
@@ -812,7 +876,8 @@
     },
     "pre_delay": 100,
     "post_delay": 100,
-    "next": ["LR_ConfirmCaptainRetreat"]
+    "next": ["LR_ConfirmCaptainRetreat"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ConfirmCaptainRetreat": {
     "action": {
@@ -823,7 +888,8 @@
     },
     "pre_delay": 300,
     "post_delay": 100,
-    "next": ["LR_DetectWhereAmI"]
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickContinueBattle": {
     "recognition": {
@@ -837,7 +903,8 @@
     "target": [1032, 581, 123, 62],
     "pre_delay": 100,
     "post_delay": 100,
-    "next": ["LR_DetectWhereAmI"]
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsReplenishDone": {
     "recognition": {
@@ -853,7 +920,8 @@
         "target": [623, 459, 32, 15]
       }
     },
-    "next": ["LR_DetectWhereAmI"]
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_RestartGame": {
     "action": {
@@ -868,7 +936,8 @@
       "type": "Custom",
       "custom_action": "DragCaptainAction"
     },
-    "next": ["LR_IsPreSortieConfirm"]
+    "next": ["LR_IsPreSortieConfirm"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_WaitRefresh": {
     "enabled": false,
@@ -911,7 +980,8 @@
       }
     },
     "next": ["LR_TerminateNoTicket"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsTrainingLetter": {
     "recognition": {
@@ -925,6 +995,7 @@
     },
     "action": "Click",
     "next": ["LR_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["LR_DetectWhereAmI"]
   }
 }

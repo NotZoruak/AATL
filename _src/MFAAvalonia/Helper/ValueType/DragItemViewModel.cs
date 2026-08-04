@@ -25,6 +25,7 @@ public partial class DragItemViewModel : ObservableObject
         UpdateIconFromInterfaceItem();
         InitializeSupportStatus();
         LanguageHelper.LanguageChanged += OnLanguageChanged;
+        Instances.RootViewModel.PropertyChanged += OnRootViewModelPropertyChanged;
     }
 
     /// <summary>
@@ -47,6 +48,18 @@ public partial class DragItemViewModel : ObservableObject
         _isInitialized = true;
 
         LanguageHelper.LanguageChanged += OnLanguageChanged;
+        Instances.RootViewModel.PropertyChanged += OnRootViewModelPropertyChanged;
+    }
+
+    partial void OnIsResourceOptionItemChanged(bool value)
+    {
+        OnPropertyChanged(nameof(IsCheckBoxEnabled));
+    }
+
+    private void OnRootViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(global::MFAAvalonia.ViewModels.Windows.RootViewModel.CurrentInstanceIdle))
+            OnPropertyChanged(nameof(IsCheckBoxEnabled));
     }
 
     [ObservableProperty] private string _name = string.Empty;
@@ -104,6 +117,12 @@ public partial class DragItemViewModel : ObservableObject
 
 
     private bool _enableSetting;
+
+    /// <summary>
+    /// 复选框是否可交互：非资源项且当前实例空闲时可用。
+    /// </summary>
+    [JsonIgnore]
+    public bool IsCheckBoxEnabled => !IsResourceOptionItem && Instances.RootViewModel.CurrentInstanceIdle;
 
     /// <summary>
     /// Gets or sets a value indicating whether gets or sets whether the setting enabled.

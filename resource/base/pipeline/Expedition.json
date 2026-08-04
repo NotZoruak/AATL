@@ -35,7 +35,8 @@
     },
     "action": "Click",
     "target": [63, 28, 17, 17],
-    "next": ["Expedition"]
+    "next": ["Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_DetectHome": {
     "recognition": {
@@ -61,7 +62,8 @@
     "action": {"type": "Click"},
     "next": ["E_IsTeamStatusPanel", "Expedition"],
     "post_delay": 500,
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_CheckTeam1": {
     "recognition": {
@@ -72,7 +74,8 @@
       }
     },
     "next": ["E_SelectTeam1"],
-    "enabled": false
+    "enabled": false,
+    "on_error": ["Expedition"]
   },
   "E_SelectTeam1": {
     "recognition": {
@@ -108,7 +111,8 @@
       }
     },
     "next": ["E_ClickSmallMap1"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_ClickSmallMap1": {
     "action": {
@@ -159,7 +163,8 @@
       }
     },
     "next": ["E_SelectTeam2"],
-    "enabled": true
+    "enabled": true,
+    "on_error": ["Expedition"]
   },
   "E_SelectTeam2": {
     "recognition": {
@@ -195,7 +200,8 @@
       }
     },
     "next": ["E_ClickSmallMap2"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_ClickSmallMap2": {
     "action": {
@@ -246,7 +252,8 @@
       }
     },
     "next": ["E_SelectTeam3"],
-    "enabled": true
+    "enabled": true,
+    "on_error": ["Expedition"]
   },
   "E_SelectTeam3": {
     "recognition": {
@@ -282,7 +289,8 @@
       }
     },
     "next": ["E_ClickSmallMap3"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_ClickSmallMap3": {
     "action": {
@@ -333,7 +341,8 @@
       }
     },
     "next": ["E_SelectTeam4"],
-    "enabled": true
+    "enabled": true,
+    "on_error": ["Expedition"]
   },
   "E_SelectTeam4": {
     "recognition": {
@@ -369,7 +378,8 @@
       }
     },
     "next": ["E_ClickSmallMap4"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_ClickSmallMap4": {
     "action": {
@@ -420,7 +430,8 @@
       }
     },
     "next": ["E_SelectTeam5"],
-    "enabled": true
+    "enabled": true,
+    "on_error": ["Expedition"]
   },
   "E_SelectTeam5": {
     "recognition": {
@@ -456,7 +467,8 @@
       }
     },
     "next": ["E_ClickSmallMap5"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_ClickSmallMap5": {
     "action": {
@@ -506,7 +518,8 @@
       }
     },
     "next": ["E_GoHome"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_TrackerOCR": {
     "enabled": false,
@@ -515,7 +528,8 @@
       "custom_action": "ExpeditionTimeTracker"
     },
     "next": ["E_GoHome"],
-    "pre_delay": 500
+    "pre_delay": 500,
+    "on_error": ["Expedition"]
   },
   "E_StartExpedition": {
     "recognition": {
@@ -551,7 +565,8 @@
     },
     "next": ["E_LogDispatch"],
     "post_delay": 4000,
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_GoHome": {
     "next": ["E_ClickDirectoryTop", "E_LeaveTroopRecord"],
@@ -584,7 +599,8 @@
         "threshold": [0.98]
       }
     },
-    "next": ["E_ClickBackToHome"]
+    "next": ["E_ClickBackToHome"],
+    "on_error": ["Expedition"]
   },
   "E_CheckNavDirRetry_Exp": {
     "recognition": {
@@ -596,7 +612,8 @@
     },
     "action": "Click",
     "next": ["E_PostClickDirectoryHub"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_ClickBackToHome": {
     "action": {
@@ -616,7 +633,8 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["Expedition"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_ClickExpeditionReturn_Title": {
     "recognition": "OCR",
@@ -625,12 +643,14 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["Expedition"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_WaitRefresh": {
     "action": "DoNothing",
     "post_delay": 60000,
-    "next": ["Expedition"]
+    "next": ["Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_SmartWait": {
     "enabled": false,
@@ -638,7 +658,8 @@
       "type": "Custom",
       "custom_action": "SmartWaitAction"
     },
-    "next": ["Expedition"]
+    "next": ["Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_DetectExpeditionScreen": {
     "recognition": {
@@ -650,7 +671,8 @@
         "threshold": [0.98]
       }
     },
-    "next": ["E_GoHome"]
+    "next": ["E_GoHome"],
+    "on_error": ["Expedition"]
   },
   "E_VerifyLeftMenu": {
     "recognition": {
@@ -666,19 +688,24 @@
     "next": ["E_ClickBackToHome"]
   },
   "E_ExpSubHub1": {
-    "next": ["E_CheckTeam1", "E_ExpSubHub2"]
+    "next": ["E_CheckTeam1", "E_ExpSubHub2"],
+    "on_error": ["Expedition"]
   },
   "E_ExpSubHub2": {
-    "next": ["E_CheckTeam2", "E_ExpSubHub3"]
+    "next": ["E_CheckTeam2", "E_ExpSubHub3"],
+    "on_error": ["Expedition"]
   },
   "E_ExpSubHub3": {
-    "next": ["E_CheckTeam3", "E_ExpSubHub4"]
+    "next": ["E_CheckTeam3", "E_ExpSubHub4"],
+    "on_error": ["Expedition"]
   },
   "E_ExpSubHub4": {
-    "next": ["E_CheckTeam4", "E_ExpSubHub5"]
+    "next": ["E_CheckTeam4", "E_ExpSubHub5"],
+    "on_error": ["Expedition"]
   },
   "E_ExpSubHub5": {
-    "next": ["E_CheckTeam5", "E_AllTeamsBusy"]
+    "next": ["E_CheckTeam5", "E_AllTeamsBusy"],
+    "on_error": ["Expedition"]
   },
   "E_IsInternalReport": {
     "recognition": {
@@ -692,7 +719,8 @@
     },
     "action": "Click",
     "next": ["Expedition"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_IsSwordDropColor": {
     "recognition": "ColorMatch",
@@ -705,11 +733,13 @@
         "target": [1067, 558, 120, 79]
       }
     },
-    "next": ["Expedition"]
+    "next": ["Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_FallbackWait": {
     "action": "DoNothing",
-    "next": ["Expedition"]
+    "next": ["Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_VerifyTeamSelect": {
     "recognition": {
@@ -735,7 +765,8 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["Expedition"]
+    "next": ["Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_IsLoginButton": {
     "recognition": {
@@ -750,7 +781,8 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["Expedition"]
+    "next": ["Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_IsGameUpdatePopup": {
     "recognition": {
@@ -765,7 +797,8 @@
     "action": "Click",
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["Expedition"]
+    "next": ["Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_IsInGameUpdatePopup": {
     "recognition": "OCR",
@@ -775,7 +808,8 @@
     "target": [578, 440, 130, 55],
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["Expedition"]
+    "next": ["Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_IsAnnouncementPopup": {
     "recognition": {
@@ -790,7 +824,8 @@
     "action": "Click",
     "timeout": 3000,
     "pre_delay": 100,
-    "next": ["E_IsAnnouncementPopup", "Expedition"]
+    "next": ["E_IsAnnouncementPopup", "Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_IsLoginReward": {
     "recognition": {
@@ -804,13 +839,15 @@
     },
     "action": "Click",
     "pre_delay": 100,
-    "next": ["E_LoginRewardClick2"]
+    "next": ["E_LoginRewardClick2"],
+    "on_error": ["Expedition"]
   },
   "E_LoginRewardClick2": {
     "action": "Click",
     "target": [1092, 318, 1, 1],
     "pre_delay": 1000,
-    "next": ["E_LoginRewardClick3"]
+    "next": ["E_LoginRewardClick3"],
+    "on_error": ["Expedition"]
   },
   "E_LoginRewardClick3": {
     "action": "Click",
@@ -826,7 +863,8 @@
     "upper": [40, 155, 30],
     "lower": [23, 95, 15],
     "action": "DoNothing",
-    "next": ["E_DetectHome", "Expedition"]
+    "next": ["E_DetectHome", "Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_IsTeamStatusPanel": {
     "recognition": {
@@ -840,7 +878,8 @@
     },
     "action": "DoNothing",
     "next": ["E_ExpSubHub1"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_IsMenuDirectory": {
     "recognition": {
@@ -854,7 +893,8 @@
     },
     "action": "DoNothing",
     "next": ["E_ClickBackToHome"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   },
   "E_MarkTeam1": {
     "action": {
@@ -865,7 +905,8 @@
         "team": 1
       }
     },
-    "next": ["E_StartExpedition"]
+    "next": ["E_StartExpedition"],
+    "on_error": ["Expedition"]
   },
   "E_MarkTeam2": {
     "action": {
@@ -876,7 +917,8 @@
         "team": 2
       }
     },
-    "next": ["E_StartExpedition"]
+    "next": ["E_StartExpedition"],
+    "on_error": ["Expedition"]
   },
   "E_MarkTeam3": {
     "action": {
@@ -887,7 +929,8 @@
         "team": 3
       }
     },
-    "next": ["E_StartExpedition"]
+    "next": ["E_StartExpedition"],
+    "on_error": ["Expedition"]
   },
   "E_MarkTeam4": {
     "action": {
@@ -898,7 +941,8 @@
         "team": 4
       }
     },
-    "next": ["E_StartExpedition"]
+    "next": ["E_StartExpedition"],
+    "on_error": ["Expedition"]
   },
   "E_MarkTeam5": {
     "action": {
@@ -909,7 +953,8 @@
         "team": 5
       }
     },
-    "next": ["E_StartExpedition"]
+    "next": ["E_StartExpedition"],
+    "on_error": ["Expedition"]
   },
   "E_LogDispatch": {
     "action": {
@@ -917,7 +962,8 @@
       "custom_action": "DispatchLogAction",
       "custom_action_param": {"mode": "log"}
     },
-    "next": ["E_GoHome"]
+    "next": ["E_GoHome"],
+    "on_error": ["Expedition"]
   },
   "E_TimerReset": {
     "action": {
@@ -925,14 +971,16 @@
       "custom_action": "ExpeditionTimerAction",
       "custom_action_param": {"mode": "reset"}
     },
-    "next": []
+    "next": [],
+    "on_error": ["Expedition"]
   },
   "E_TimerStart": {
     "action": {
       "type": "Custom",
       "custom_action": "ExpeditionTimerAction"
     },
-    "next": []
+    "next": [],
+    "on_error": ["Expedition"]
   },
   "E_CheckTimerExpired": {
     "action": {
@@ -950,19 +998,24 @@
     "next": ["Expedition"]
   },
   "E_UseTeamRecord1": {
-    "next": ["E_UseTeamRecord_Step1_Rec1"]
+    "next": ["E_UseTeamRecord_Step1_Rec1"],
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord2": {
-    "next": ["E_UseTeamRecord_Step1_Rec2"]
+    "next": ["E_UseTeamRecord_Step1_Rec2"],
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord3": {
-    "next": ["E_UseTeamRecord_Step1_Rec3"]
+    "next": ["E_UseTeamRecord_Step1_Rec3"],
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord4": {
-    "next": ["E_UseTeamRecord_Step1_Rec4"]
+    "next": ["E_UseTeamRecord_Step1_Rec4"],
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord5": {
-    "next": ["E_UseTeamRecord_Step1_Rec5"]
+    "next": ["E_UseTeamRecord_Step1_Rec5"],
+    "on_error": ["Expedition"]
   },
   "E_UseTeamRecord_Step1_Rec1": {
     "recognition": {
@@ -1374,7 +1427,8 @@
     "action": {"type": "Click"},
     "next": ["E_FlowerBattleHub"],
     "pre_delay": 100,
-    "post_delay": 1000
+    "post_delay": 1000,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerClickFirstEra": {
     "recognition": {
@@ -1394,7 +1448,8 @@
     },
     "next": ["E_FlowerConfirmEra"],
     "post_delay": 500,
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerConfirmEra": {
     "action": {
@@ -1403,7 +1458,8 @@
         "target": [1163, 622, 86, 43]
       }
     },
-    "next": ["E_FlowerBattleHub"]
+    "next": ["E_FlowerBattleHub"],
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerIsRegionSelect": {
     "recognition": {
@@ -1416,7 +1472,8 @@
       }
     },
     "next": ["E_FlowerVerifyRegionSelect", "E_FlowerBattleHub"],
-    "pre_delay": 300
+    "pre_delay": 300,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerVerifyRegionSelect": {
     "recognition": {
@@ -1429,7 +1486,8 @@
       }
     },
     "next": ["E_FlowerClickRegion1_1"],
-    "pre_delay": 300
+    "pre_delay": 300,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerClickRegion1_1": {
     "action": {
@@ -1468,7 +1526,8 @@
       }
     },
     "action": "Click",
-    "next": ["E_FlowerDissolve"]
+    "next": ["E_FlowerDissolve"],
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerCaptainClickSlot": {
     "action": {
@@ -1574,7 +1633,8 @@
     "action": "Click",
     "target": [945, 87, 42, 19],
     "next": ["E_FlowerDetectSortOrder"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerConfirmSortAsc": {
     "recognition": {
@@ -1585,7 +1645,8 @@
       }
     },
     "next": ["E_FlowerCaptainFind", "E_FlowerCaptainSwipe"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerCaptainFind": {
     "recognition": {
@@ -1601,7 +1662,8 @@
     },
     "action": "Click",
     "next": ["E_FlowerCheckCaptain"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerCaptainSwipe": {
     "action": {
@@ -1609,7 +1671,8 @@
       "custom_action": "PageScrollAndHoldAction"
     },
     "next": ["E_FlowerCaptainFind"],
-    "post_delay": 1000
+    "post_delay": 1000,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerSortie": {
     "recognition": "OCR",
@@ -1630,7 +1693,8 @@
     "upper": [40, 155, 30],
     "lower": [23, 95, 15],
     "action": "DoNothing",
-    "next": ["E_FlowerIsHome", "E_FlowerBattleHub"]
+    "next": ["E_FlowerIsHome", "E_FlowerBattleHub"],
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerIsHome": {
     "recognition": {
@@ -1647,7 +1711,8 @@
   },
   "E_FlowerFallbackWait": {
     "action": "DoNothing",
-    "next": ["E_FlowerBattleHub"]
+    "next": ["E_FlowerBattleHub"],
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerBattleHub": {
     "next": [
@@ -1686,7 +1751,8 @@
       }
     },
     "action": "Click",
-    "next": ["E_FlowerBattleHub"]
+    "next": ["E_FlowerBattleHub"],
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerFormation": {
     "recognition": {
@@ -1704,7 +1770,8 @@
         "target": [588, 404, 74, 46]
       }
     },
-    "next": ["E_FlowerBattleHub"]
+    "next": ["E_FlowerBattleHub"],
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerBattleResult": {
     "recognition": "OCR",
@@ -1712,10 +1779,12 @@
     "expected": "经验",
     "action": "Click",
     "next": ["E_FlowerBattleHub"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerDone": {
-    "next": ["E_GoHome"]
+    "next": ["E_GoHome"],
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerTeamSelect": {
     "recognition": "OCR",
@@ -1726,7 +1795,8 @@
       "custom_action": "SelectFlowerTeamAction"
     },
     "next": ["E_FlowerDissolve"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerIsGameIcon": {
     "recognition": {
@@ -1741,7 +1811,8 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["E_FlowerBattleHub"]
+    "next": ["E_FlowerBattleHub"],
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerIsLoginButton": {
     "recognition": {
@@ -1756,7 +1827,8 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["E_FlowerBattleHub"]
+    "next": ["E_FlowerBattleHub"],
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerIsGameUpdatePopup": {
     "recognition": {
@@ -1771,7 +1843,8 @@
     "action": "Click",
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["E_FlowerBattleHub"]
+    "next": ["E_FlowerBattleHub"],
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerIsInGameUpdatePopup": {
     "recognition": "OCR",
@@ -1781,7 +1854,8 @@
     "target": [578, 440, 130, 55],
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["E_FlowerBattleHub"]
+    "next": ["E_FlowerBattleHub"],
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerIsInternalReport": {
     "recognition": {
@@ -1795,7 +1869,8 @@
     },
     "action": "Click",
     "next": ["E_FlowerBattleHub"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerClickExpeditionReturn_Exp": {
     "recognition": "OCR",
@@ -1804,7 +1879,8 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["E_FlowerBattleHub"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerClickExpeditionReturn_Title": {
     "recognition": "OCR",
@@ -1813,7 +1889,8 @@
     "action": "Click",
     "target": [388, 59, 54, 25],
     "next": ["E_FlowerBattleHub"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerIsSwordDropColor": {
     "recognition": "ColorMatch",
@@ -1826,7 +1903,8 @@
         "target": [1067, 558, 120, 79]
       }
     },
-    "next": ["E_FlowerBattleHub"]
+    "next": ["E_FlowerBattleHub"],
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerRestartGame": {
     "action": {
@@ -1847,7 +1925,8 @@
     },
     "action": "Click",
     "next": ["E_FlowerBattleHub"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_IsTrainingLetter": {
     "recognition": {
@@ -1861,6 +1940,7 @@
     },
     "action": "Click",
     "next": ["Expedition"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["Expedition"]
   }
 }

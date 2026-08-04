@@ -1,6 +1,7 @@
 {
   "Mix": {
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectWhereAmI": {
     "pre_delay": 0,
@@ -41,7 +42,8 @@
         "target": [1231, 8, 38, 39]
       }
     },
-    "next": ["M_EmptyMailboxClick2"]
+    "next": ["M_EmptyMailboxClick2"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_EmptyMailboxClick2": {
     "action": {
@@ -51,7 +53,8 @@
       }
     },
     "pre_delay": 0,
-    "next": []
+    "next": [],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_HasExpeditionReturn_Exp": {
     "recognition": "OCR",
@@ -59,7 +62,8 @@
     "expected": "经验",
     "action": "Click",
     "target": [388, 59, 54, 25],
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_HasExpeditionReturn_Title": {
     "recognition": "OCR",
@@ -67,7 +71,8 @@
     "expected": "远征结果",
     "action": "Click",
     "target": [388, 59, 54, 25],
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckHomeBrightness": {
     "recognition": "ColorMatch",
@@ -75,7 +80,8 @@
     "upper": [40, 155, 30],
     "lower": [23, 95, 15],
     "action": "DoNothing",
-    "next": ["M_DetectHome", "M_DetectWhereAmI"]
+    "next": ["M_DetectHome", "M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectHome": {
     "recognition": {
@@ -112,7 +118,8 @@
         "target": [453, 278, 84, 32]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectRefine": {
     "recognition": {
@@ -128,7 +135,8 @@
         "target": [13, 315, 22, 52]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectMix": {
     "recognition": {
@@ -139,7 +147,8 @@
       }
     },
     "action": "DoNothing",
-    "next": ["M_HideUnmixable"]
+    "next": ["M_HideUnmixable"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_HideUnmixable": {
     "recognition": "ColorMatch",
@@ -157,7 +166,8 @@
         "target": [137, 106, 2, 4]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_ClickFilter": {
     "action": {
@@ -166,7 +176,8 @@
         "target": [823, 85, 40, 20]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectMixSub": {
     "recognition": {
@@ -179,7 +190,8 @@
     "action": "DoNothing",
     "pre_delay": 500,
     "post_delay": 500,
-    "next": ["M_CheckSubLevel", "M_ClickSelectAll"]
+    "next": ["M_CheckSubLevel", "M_ClickSelectAll"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckSubLevel": {
     "enabled": false,
@@ -206,7 +218,8 @@
     },
     "pre_delay": 500,
     "post_delay": 1000,
-    "next": ["M_CheckAndMix", "M_ExitNoMaterial"]
+    "next": ["M_CheckAndMix", "M_ExitNoMaterial"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckAndMix": {
     "recognition": "ColorMatch",
@@ -233,7 +246,8 @@
     },
     "pre_delay": 500,
     "post_delay": 500,
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_ConfirmMix1": {
     "action": {
@@ -244,7 +258,8 @@
     },
     "pre_delay": 500,
     "post_delay": 500,
-    "next": ["M_ConfirmMix2"]
+    "next": ["M_ConfirmMix2"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_ConfirmMix2": {
     "action": {
@@ -255,7 +270,8 @@
     },
     "pre_delay": 500,
     "post_delay": 500,
-    "next": ["M_CheckSubLevel", "M_ClickSelectAll"]
+    "next": ["M_CheckSubLevel", "M_ClickSelectAll"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckPos1": {
     "next": ["M_DetectEmpty1", "M_DetectLocked1", "M_CheckLevel1", "M_ClickMixDirect1"],
@@ -286,7 +302,8 @@
         "target": [1216, 164, 9, 9]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckLevel1": {
     "enabled": false,
@@ -310,7 +327,8 @@
         "target": [1216, 164, 9, 9]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckPos2": {
     "next": ["M_DetectEmpty2", "M_DetectLocked2", "M_CheckLevel2", "M_ClickMixDirect2"],
@@ -341,7 +359,8 @@
         "target": [1216, 265, 9, 9]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckLevel2": {
     "enabled": false,
@@ -365,7 +384,8 @@
         "target": [1216, 265, 9, 9]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckPos3": {
     "next": ["M_DetectEmpty3", "M_DetectLocked3", "M_CheckLevel3", "M_ClickMixDirect3"],
@@ -396,7 +416,8 @@
         "target": [1216, 366, 9, 9]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckLevel3": {
     "enabled": false,
@@ -420,7 +441,8 @@
         "target": [1216, 366, 9, 9]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckPos4": {
     "next": ["M_DetectEmpty4", "M_DetectLocked4", "M_CheckLevel4", "M_ClickMixDirect4"],
@@ -451,7 +473,8 @@
         "target": [1216, 467, 9, 9]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckLevel4": {
     "enabled": false,
@@ -475,7 +498,8 @@
         "target": [1216, 467, 9, 9]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckPos5": {
     "next": ["M_DetectEmpty5", "M_DetectLocked5", "M_CheckLevel5", "M_ClickMixDirect5"],
@@ -506,7 +530,8 @@
         "target": [1216, 568, 9, 9]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckLevel5": {
     "enabled": false,
@@ -530,7 +555,8 @@
         "target": [1216, 568, 9, 9]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckPos6": {
     "next": ["M_DetectEmpty6", "M_DetectLocked6", "M_CheckLevel6", "M_ClickMixDirect6"],
@@ -561,7 +587,8 @@
         "target": [1216, 669, 9, 9]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckLevel6": {
     "enabled": false,
@@ -585,7 +612,8 @@
         "target": [1216, 669, 9, 9]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_GoToMailboxFromMix": {
     "action": {
@@ -634,7 +662,8 @@
         "target": [752, 145, 100, 25]
       }
     },
-    "next": ["M_FilterSwordHub"]
+    "next": ["M_FilterSwordHub"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectPurchasePopup": {
     "recognition": {
@@ -650,7 +679,8 @@
         "target": [1231, 8, 38, 39]
       }
     },
-    "next": ["M_MailboxCloseFinal"]
+    "next": ["M_MailboxCloseFinal"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectMailbox": {
     "recognition": {
@@ -666,7 +696,8 @@
         "target": [967, 113, 48, 22]
       }
     },
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_NoFilterClick1": {
     "enabled": false,
@@ -678,7 +709,8 @@
     },
     "pre_delay": 300,
     "post_delay": 500,
-    "next": ["M_NoFilterClick2"]
+    "next": ["M_NoFilterClick2"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_NoFilterClick2": {
     "enabled": false,
@@ -690,7 +722,8 @@
     },
     "pre_delay": 300,
     "post_delay": 500,
-    "next": ["M_NoFilterClick3"]
+    "next": ["M_NoFilterClick3"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_NoFilterClick3": {
     "enabled": false,
@@ -702,7 +735,8 @@
     },
     "pre_delay": 300,
     "post_delay": 500,
-    "next": ["M_NoFilterClick4"]
+    "next": ["M_NoFilterClick4"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_NoFilterClick4": {
     "enabled": false,
@@ -714,11 +748,13 @@
     },
     "pre_delay": 300,
     "post_delay": 500,
-    "next": ["M_FilterPostHub"]
+    "next": ["M_FilterPostHub"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_FallbackWait": {
     "action": "DoNothing",
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSwordHub": {
     "next": [
@@ -731,7 +767,8 @@
       "M_FilterSword7",
       "M_FilterConfirm",
       "M_DetectWhereAmI"
-    ]
+    ],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword1": {
     "action": {
@@ -749,7 +786,8 @@
       "M_FilterSword6",
       "M_FilterSword7",
       "M_FilterConfirm"
-    ]
+    ],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword2": {
     "action": {
@@ -766,7 +804,8 @@
       "M_FilterSword6",
       "M_FilterSword7",
       "M_FilterConfirm"
-    ]
+    ],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword3": {
     "action": {
@@ -776,7 +815,8 @@
       }
     },
     "enabled": false,
-    "next": ["M_FilterSword4", "M_FilterSword5", "M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"]
+    "next": ["M_FilterSword4", "M_FilterSword5", "M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword4": {
     "action": {
@@ -786,7 +826,8 @@
       }
     },
     "enabled": false,
-    "next": ["M_FilterSword5", "M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"]
+    "next": ["M_FilterSword5", "M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword5": {
     "action": {
@@ -796,7 +837,8 @@
       }
     },
     "enabled": false,
-    "next": ["M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"]
+    "next": ["M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword6": {
     "action": {
@@ -806,7 +848,8 @@
       }
     },
     "enabled": false,
-    "next": ["M_FilterSword7", "M_FilterConfirm"]
+    "next": ["M_FilterSword7", "M_FilterConfirm"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword7": {
     "action": {
@@ -816,7 +859,8 @@
       }
     },
     "enabled": false,
-    "next": ["M_FilterConfirm"]
+    "next": ["M_FilterConfirm"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterConfirm": {
     "action": {
@@ -825,10 +869,12 @@
         "target": [588, 604, 99, 39]
       }
     },
-    "next": ["M_FilterPostHub"]
+    "next": ["M_FilterPostHub"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterPostHub": {
-    "next": ["M_PostFilterReward", "M_PostFilterMix", "M_DetectEmptyMailbox", "M_PostFilterMailbox", "M_DetectWhereAmI"]
+    "next": ["M_PostFilterReward", "M_PostFilterMix", "M_DetectEmptyMailbox", "M_PostFilterMailbox", "M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_PostFilterMix": {
     "recognition": {
@@ -839,7 +885,8 @@
       }
     },
     "action": "DoNothing",
-    "next": ["M_CheckPos1"]
+    "next": ["M_CheckPos1"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_PostFilterReward": {
     "recognition": {
@@ -919,7 +966,8 @@
     "pre_delay": 300,
     "post_delay": 500,
     "timeout": 3000,
-    "next": ["M_MailboxCloseVerify"]
+    "next": ["M_MailboxCloseVerify"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_MailboxCloseVerify": {
     "recognition": {
@@ -953,7 +1001,8 @@
     "action": "Click",
     "timeout": 3000,
     "pre_delay": 100,
-    "next": ["M_IsAnnouncementPopup", "M_DetectWhereAmI"]
+    "next": ["M_IsAnnouncementPopup", "M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_IsLoginReward": {
     "recognition": {
@@ -967,13 +1016,15 @@
     },
     "action": "Click",
     "pre_delay": 100,
-    "next": ["M_LoginRewardClick2"]
+    "next": ["M_LoginRewardClick2"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_LoginRewardClick2": {
     "action": "Click",
     "target": [1092, 318, 1, 1],
     "pre_delay": 500,
-    "next": ["M_LoginRewardClick3"]
+    "next": ["M_LoginRewardClick3"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_LoginRewardClick3": {
     "action": "Click",
@@ -995,7 +1046,8 @@
     },
     "action": "Click",
     "pre_delay": 100,
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_IsGameIcon": {
     "recognition": {
@@ -1010,7 +1062,8 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_IsLoginButton": {
     "recognition": {
@@ -1025,7 +1078,8 @@
     "action": "Click",
     "post_delay": 3000,
     "pre_delay": 100,
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_IsGameUpdatePopup": {
     "recognition": {
@@ -1040,7 +1094,8 @@
     "action": "Click",
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_IsInGameUpdatePopup": {
     "recognition": "OCR",
@@ -1050,7 +1105,8 @@
     "target": [578, 440, 130, 55],
     "post_delay": 2000,
     "pre_delay": 100,
-    "next": ["M_DetectWhereAmI"]
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_RestartGame": {
     "action": {
@@ -1071,6 +1127,7 @@
     },
     "action": "Click",
     "next": ["M_DetectWhereAmI"],
-    "pre_delay": 100
+    "pre_delay": 100,
+    "on_error": ["M_DetectWhereAmI"]
   }
 }
