@@ -138,7 +138,6 @@ public static class PendingUpdateDeletionHelper
     {
         var normalized = relativePath.Replace('\\', '/').TrimStart('/');
         return normalized.StartsWith("resource/", StringComparison.OrdinalIgnoreCase)
-               || normalized.StartsWith("agent/", StringComparison.OrdinalIgnoreCase)
                || normalized.StartsWith("backup/", StringComparison.OrdinalIgnoreCase);
     }
 

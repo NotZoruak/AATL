@@ -129,7 +129,6 @@ public static class VersionChecker
                 dryRun,
                 dataRoot = AppPaths.DataRoot,
                 resourceRoot = AppPaths.ResourceDirectory,
-                agentRoot = AppPaths.AgentDirectory,
                 downloadUrl,
                 tempZipFilePath,
                 tempExtractDir,
@@ -694,7 +693,6 @@ public static class VersionChecker
 
         var wpfDir = AppPaths.DataRoot;
         var resourcePath = AppPaths.ResourceDirectory;
-        var agentPath = AppPaths.AgentDirectory;
         // 获取当前运行的可执行文件路径（最可靠的方式，即使用户重命名了文件也能正确获取）
         var exeName = Process.GetCurrentProcess().MainModule?.FileName ?? string.Empty;
         LoggerHelper.Info($"当前进程可执行文件：{exeName}");
@@ -767,27 +765,6 @@ public static class VersionChecker
             if (Directory.Exists(resourcePath))
             {
                 foreach (var rfile in Directory.EnumerateFiles(resourcePath, "*", SearchOption.AllDirectories))
-                {
-                    var fileName = Path.GetFileName(rfile);
-                    if (fileName.Equals(ChangelogViewModel.ChangelogFileName, StringComparison.OrdinalIgnoreCase) || fileName.Contains("interface.json", StringComparison.OrdinalIgnoreCase))
-                        continue;
-
-                    try
-                    {
-                        File.SetAttributes(rfile, FileAttributes.Normal);
-                        LoggerHelper.Info($"准备删除旧文件：文件={rfile}");
-                        updateTransaction.DeleteFile(rfile);
-                    }
-                    catch (Exception ex)
-                    {
-                        LoggerHelper.Error($"删除旧文件失败：文件={rfile}，原因={ex.Message}", ex);
-                        throw;
-                    }
-                }
-            }
-            if (Directory.Exists(agentPath))
-            {
-                foreach (var rfile in Directory.EnumerateFiles(agentPath, "*", SearchOption.AllDirectories))
                 {
                     var fileName = Path.GetFileName(rfile);
                     if (fileName.Equals(ChangelogViewModel.ChangelogFileName, StringComparison.OrdinalIgnoreCase) || fileName.Contains("interface.json", StringComparison.OrdinalIgnoreCase))
@@ -3133,7 +3110,6 @@ public static class VersionChecker
         var fileName = Path.GetFileName(normalized);
 
         if (normalized.StartsWith("resource/", StringComparison.OrdinalIgnoreCase)
-            || normalized.StartsWith("agent/", StringComparison.OrdinalIgnoreCase)
             || normalized.StartsWith("backup/", StringComparison.OrdinalIgnoreCase))
             return true;
 

@@ -18,7 +18,6 @@ public static class AppPaths
         : _configDirectory;
     public static string InstancesDirectory => Path.Combine(ConfigDirectory, "instances");
     public static string ResourceDirectory => Path.Combine(DataRoot, "resource");
-    public static string AgentDirectory => Path.Combine(DataRoot, "agent");
     public static string LogsDirectory => string.IsNullOrWhiteSpace(_logsDirectory)
         ? Path.Combine(InstallRoot, "debug", "logs")
         : _logsDirectory;
@@ -52,7 +51,6 @@ public static class AppPaths
         Directory.CreateDirectory(ConfigDirectory);
         Directory.CreateDirectory(InstancesDirectory);
         Directory.CreateDirectory(ResourceDirectory);
-        Directory.CreateDirectory(AgentDirectory);
         Directory.CreateDirectory(LogsDirectory);
         Directory.CreateDirectory(TempDirectory);
         Directory.CreateDirectory(BackupDirectory);

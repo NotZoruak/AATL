@@ -1,11 +1,9 @@
-# 调试输出
+# 运行时日志
+/logs/
 /debug/
 
 # 运行时生成目录（首次启动自动创建）
 /config/
-/temp/
-/backup/
-/agent/
 /appsettings.json
 
 # NuGet 输出（publish 时自动生成）
@@ -15,9 +13,6 @@
 
 # Obsidian 配置
 docs/.obsidian/
-
-# Claude 项目配置（不推送至远程）
-/CLAUDE.md
 
 # 打包产物
 /MATR-*.zip
