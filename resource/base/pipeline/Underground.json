@@ -316,9 +316,9 @@
         "target": [1141, 614, 120, 49]
       }
     },
-    "next": ["U_DetectWhereAmI"],
-    "pre_delay": 500,
-    "post_delay": 800,
+    "next": ["U_IsTeamSelect","U_DetectWhereAmI"],
+    "pre_delay": 200,
+    "post_delay": 500,
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsMenuDirectory": {
@@ -454,7 +454,7 @@
   },
   "U_CheckBeforeMarch": {
     "pre_delay": 0,
-    "next": ["U_IsMarchingDamage", "U_CheckRoundComplete", "U_ClickMarching"],
+    "next": ["U_IsMarchingDamage", "U_FatigueDetect", "U_EqCheck", "U_CheckRoundComplete", "U_ClickMarching"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_CheckRoundComplete": {
@@ -1495,6 +1495,299 @@
     "action": "Click",
     "next": ["U_DetectWhereAmI"],
     "pre_delay": 100,
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_FatigueDetect": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [254, 154, 31, 502],
+        "template": "Common/重疲劳.png",
+        "green_mask": true,
+        "threshold": [0.9]
+      }
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheck": {
+    "enabled": false,
+    "next": [
+      "U_EqCheckTemplate",
+      "U_EqCheckC_R0C0",
+      "U_EqCheckC_R0C1",
+      "U_EqCheckC_R0C2",
+      "U_EqCheckC_R1C0",
+      "U_EqCheckC_R1C1",
+      "U_EqCheckC_R1C2",
+      "U_EqCheckC_R2C0",
+      "U_EqCheckC_R2C1",
+      "U_EqCheckC_R2C2",
+      "U_EqCheckC_R3C0",
+      "U_EqCheckC_R3C1",
+      "U_EqCheckC_R3C2",
+      "U_EqCheckC_R4C0",
+      "U_EqCheckC_R4C1",
+      "U_EqCheckC_R4C2",
+      "U_EqCheckC_R5C0",
+      "U_EqCheckC_R5C1",
+      "U_EqCheckC_R5C2",
+      "U_CheckRoundComplete",
+      "U_ClickMarching"
+    ],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckTemplate": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [576, 135, 162, 529],
+        "template": "Common/刀装破坏.png",
+        "green_mask": true,
+        "threshold": [0.85]
+      }
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R0C0": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [591, 184, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R0C1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [650, 184, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R0C2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [708, 184, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R1C0": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [591, 278, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R1C1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [650, 278, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R1C2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [708, 278, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R2C0": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [591, 372, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R2C1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [650, 372, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R2C2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [708, 372, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R3C0": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [591, 466, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R3C1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [650, 466, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R3C2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [708, 466, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R4C0": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [591, 560, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R4C1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [650, 560, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R4C2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [708, 560, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R5C0": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [591, 654, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R5C1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [650, 654, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_EqCheckC_R5C2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [708, 654, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   }
 }

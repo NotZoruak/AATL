@@ -72,7 +72,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["S_CheckBossBeforeMarch"],
+    "next": ["S_IsMarchingDamage", "S_FatigueDetect", "S_EqCheck", "S_CheckBoss", "S_PostClickMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_IsBattleResult_Exp": {
@@ -601,10 +601,9 @@
     "on_error": ["S_DetectWhereAmI"],
     "pre_delay": 100
   },
-  "S_CheckBossBeforeMarch": {
+  "S_CheckBoss": {
     "pre_delay": 0,
     "next": [
-      "S_IsMarchingDamage",
       "S_Boss_E2_R1",
       "S_Boss_E3_R1",
       "S_Boss_E4_R1",
@@ -1106,6 +1105,299 @@
     "next": ["S_LogMarchingDamage"],
     "on_error": ["S_DetectWhereAmI"]
   },
+  "S_FatigueDetect": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [254, 154, 31, 502],
+        "template": "Common/重疲劳.png",
+        "green_mask": true,
+        "threshold": [0.9]
+      }
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheck": {
+    "enabled": false,
+    "next": [
+      "S_EqCheckTemplate",
+      "S_EqCheckC_R0C0",
+      "S_EqCheckC_R0C1",
+      "S_EqCheckC_R0C2",
+      "S_EqCheckC_R1C0",
+      "S_EqCheckC_R1C1",
+      "S_EqCheckC_R1C2",
+      "S_EqCheckC_R2C0",
+      "S_EqCheckC_R2C1",
+      "S_EqCheckC_R2C2",
+      "S_EqCheckC_R3C0",
+      "S_EqCheckC_R3C1",
+      "S_EqCheckC_R3C2",
+      "S_EqCheckC_R4C0",
+      "S_EqCheckC_R4C1",
+      "S_EqCheckC_R4C2",
+      "S_EqCheckC_R5C0",
+      "S_EqCheckC_R5C1",
+      "S_EqCheckC_R5C2",
+      "S_CheckBoss",
+      "S_PostClickMarching"
+    ],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckTemplate": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [576, 135, 162, 529],
+        "template": "Common/刀装破坏.png",
+        "green_mask": true,
+        "threshold": [0.85]
+      }
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R0C0": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [591, 184, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R0C1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [650, 184, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R0C2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [708, 184, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R1C0": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [591, 278, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R1C1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [650, 278, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R1C2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [708, 278, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R2C0": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [591, 372, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R2C1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [650, 372, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R2C2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [708, 372, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R3C0": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [591, 466, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R3C1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [650, 466, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R3C2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [708, 466, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R4C0": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [591, 560, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R4C1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [650, 560, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R4C2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [708, 560, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R5C0": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [591, 654, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R5C1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [650, 654, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_EqCheckC_R5C2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "roi": [708, 654, 1, 1],
+      "upper": [184, 183, 183],
+      "lower": [182, 181, 181]
+    },
+    "action": "Click",
+    "target": [763, 446, 48, 44],
+    "enabled": false,
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
   "S_ConfirmCancelPreDamage2": {
     "recognition": "OCR",
     "roi": [772, 448, 32, 40],
@@ -1186,7 +1478,7 @@
     "on_error": ["S_DetectWhereAmI"],
     "next": ["S_NavigateToRepair", "S_IsStopOnDamage"]
   },
-  "S_ReturnHomeAfterMarchDamage": {
+  "S_ReturnHomeFromMarching": {
     "action": "Click",
     "target": [1208, 449, 1, 1],
     "next": ["S_ConfirmReturnHome"],
@@ -2000,7 +2292,7 @@
       "custom_action": "DamageLogAction",
       "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，撤退撤退"}
     },
-    "next": ["S_ReturnHomeAfterMarchDamage"],
+    "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_LogStopOnDamage": {

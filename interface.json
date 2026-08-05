@@ -35,20 +35,20 @@
       "repeatable": false,
       "repeat_count": -1,
       "option": [
-        "S_选择部队",
         "S_选择时代",
         "S_选择地域",
+        "S_选择部队",
         "S_选择阵形",
         "S_重伤处理",
+        "S_刀装破坏处理",
         "S_疲劳处理",
         "S_换队长",
-        "S_补充刀装",
         "S_王点前撤退",
         "S_道中撤退",
         "S_同步远征"
       ],
       "label": "合战场",
-      "description": "通用合战场出阵自动化，无限循环。\n与自动行军同时开启时，请注意截图延迟与游戏卡顿影响。\n\n- **换队长**：换队长的方式可在全局设置中修改。\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n- **王点前撤退**：一图不生效。使用该功能时请保证模拟器分辨率为 1280*720，240DPI。\n- **道中撤退**：需同时开启王点前撤退。包含4-1速刷委托符，8-1王点前三点处撤退，8-2与8-4不过桥，8-3玉钢点后撤退。\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保合战场使用的队伍在远征任务中设置为「休息」。"
+      "description": "合战场出阵自动化，无限循环。\n与自动行军同时开启时，请注意截图延迟与游戏卡顿影响。\n\n- **换队长**：换队长的方式可在全局设置中修改。\n- **刀装破坏处理**：补充刀装——出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽；刀装保护——行军中检测刀装是否被破坏/接近被破坏并撤退。\n- **疲劳处理**：⚠该功能测试数据较少，请在有人值守时使用。需要同时开启换队长。\n- **王点前撤退**：一图不生效。使用该功能时请保证模拟器分辨率为 1280*720，240DPI。\n- **道中撤退**：需同时开启王点前撤退。包含4-1速刷委托符，8-1王点前三点处撤退，8-2与8-4不过桥，8-3玉钢点后撤退。\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保合战场使用的队伍在远征任务中设置为「休息」。"
     },
     {
       "name": "刷花",
@@ -89,23 +89,6 @@
       "description": "⚠该功能测试数据较少，请在有人值守时使用。\n\n 自动习合操作。每轮仅处理前6把刀剑，搓糖开启后前6把均达乱舞7级时自动停止。推荐先刀解清理非搓糖刀种，再开启搓糖+关闭刀种筛选以获得最佳体验。\n\n- **搓糖**：习合至乱舞等级7级后跳过该刀剑，关闭则无等级限制。上锁刀剑不受此选项限制。\n- **刀种筛选**：点击齿轮选择要筛选的刀种，关闭则跳过筛选直接习合全部刀剑。"
     },
     {
-      "name": "远征",
-      "entry": "Expedition",
-      "default_check": true,
-      "repeatable": false,
-      "repeat_count": 0,
-      "option": [
-        "部队一",
-        "部队二",
-        "部队三",
-        "部队四",
-        "部队五",
-        "RefreshInterval"
-      ],
-      "label": "远征",
-      "description": "请保证编队符合远征要求。\n\n- 若停止远征后启动其他任务失败，是因为停止指令在下一次点击时才会执行。远征处于倒计时等待期间无点击操作，停止未实际生效，此时新任务无法正常运行。关闭 MATR 重新打开即可。"
-    },
-    {
       "name": "地下城",
       "entry": "Underground",
       "default_check": false,
@@ -117,14 +100,15 @@
         "U_选择部队",
         "U_选择阵形",
         "U_重伤处理",
+        "U_刀装破坏处理",
+        "U_疲劳处理",
         "U_换队长",
-        "U_补充刀装",
         "U_每轮回本丸",
         "U_动画跳过",
         "U_同步远征"
       ],
       "label": "地下城",
-      "description": "地下城活动自动化出阵。\n\n- **换队长**：换队长的方式可在全局设置中修改。\n- **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n- **每轮回本丸**：每轮战斗结束后返回本丸。\n- **层数选择**：设定目标层数（1-99）。当未通关99层时，须同时启用「每轮回本丸」。\n- **动画跳过**：增加一些点击以实现跳过动画的功能。\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保地下城使用的队伍在远征任务中设置为「休息」。"
+      "description": "地下城活动自动化出阵。\n\n- **层数选择**：设定目标层数（1-99）。选择不启用时不设目标，直接进入当前层数。\n- **刀装破坏处理**：补充刀装——出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽；刀装保护——行军中检测刀装是否被破坏/接近被破坏并撤退。\n- **疲劳处理**：行军中检测刀剑重疲劳状态，命中后撤退回本丸。\n- **换队长**：换队长的方式可在全局设置中修改。\n- **每轮回本丸**：每轮战斗结束后返回本丸。\n- **动画跳过**：增加一些点击以实现跳过动画的功能。\n- **同步远征**：回本丸后自动检查队伍状态并派遣远征。请确保地下城使用的队伍在远征任务中设置为「休息」。"
     },
     {
       "name": "陆联",
@@ -154,6 +138,23 @@
       "option": ["TT_选择部队", "TT_选择难度", "TT_换队长", "TT_不购买门票", "TT_同步远征"],
       "label": "战术强化训练",
       "description": "战术强化训练（巧克力/南瓜）活动自动化出阵。\n\n- **换队长**：仅支持队内拖拽方式。\n- **选择部队**：当选择的部队不符合要求时，会自动尝试1-5队。\n- **选择难度**：初级/中级/上级。\n- **不购买门票**：勾选后更新剪影时若令牌不足则停止任务。"
+    },
+    {
+      "name": "远征",
+      "entry": "Expedition",
+      "default_check": true,
+      "repeatable": false,
+      "repeat_count": 0,
+      "option": [
+        "部队一",
+        "部队二",
+        "部队三",
+        "部队四",
+        "部队五",
+        "RefreshInterval"
+      ],
+      "label": "远征",
+      "description": "请保证编队符合远征要求。\n\n- 若停止远征后启动其他任务失败，是因为停止指令在下一次点击时才会执行。远征处于倒计时等待期间无点击操作，停止未实际生效，此时新任务无法正常运行。关闭 MATR 重新打开即可。"
     }
   ],
   "global_option": ["换队长方式", "远征智能调度", "长期远征计划", "卡死重启"],
@@ -1445,49 +1446,6 @@
         "E_WaitRefresh": {"post_delay": "{seconds}000"}
       }
     },
-    "难度选择": {
-      "name": "难度选择",
-      "label": "难度选择",
-      "default_case": "易",
-      "cases": [
-        {
-          "name": "易",
-          "DisplayName": "易",
-          "pipeline_override": {
-            "ClickDifficulty": {
-              "target": [127, 267, 208, 112]
-            }
-          }
-        },
-        {
-          "name": "普",
-          "DisplayName": "普",
-          "pipeline_override": {
-            "ClickDifficulty": {
-              "target": [393, 250, 265, 141]
-            }
-          }
-        },
-        {
-          "name": "难",
-          "DisplayName": "难",
-          "pipeline_override": {
-            "ClickDifficulty": {
-              "target": [698, 244, 248, 155]
-            }
-          }
-        },
-        {
-          "name": "超难",
-          "DisplayName": "超难",
-          "pipeline_override": {
-            "ClickDifficulty": {
-              "target": [1012, 262, 220, 117]
-            }
-          }
-        }
-      ]
-    },
     "S_换队长": {
       "name": "S_换队长",
       "label": "换队长",
@@ -1814,13 +1772,18 @@
         }
       ]
     },
-    "S_补充刀装": {
-      "name": "S_补充刀装",
-      "label": "补充刀装",
-      "type": "checkbox",
+    "S_刀装破坏处理": {
+      "name": "S_刀装破坏处理",
+      "label": "刀装破坏处理",
+      "default_case": "补充刀装",
       "cases": [
         {
-          "name": "",
+          "name": "停止",
+          "DisplayName": "停止"
+        },
+        {
+          "name": "补充刀装",
+          "DisplayName": "补充刀装",
           "pipeline_override": {
             "S_CheckEquipmentPopup": {"enabled": true},
             "S_PreCheckTroopRecord": {"enabled": true},
@@ -1828,9 +1791,27 @@
             "S_PreCheckUseRecordBtn": {"enabled": true},
             "S_PreConfirmSupply": {"enabled": true}
           }
+        },
+        {
+          "name": "刀装保护",
+          "DisplayName": "刀装保护",
+          "pipeline_override": {
+            "S_EqCheck": {"enabled": true}
+          }
+        },
+        {
+          "name": "补充+刀装保护",
+          "DisplayName": "补充+刀装保护",
+          "pipeline_override": {
+            "S_CheckEquipmentPopup": {"enabled": true},
+            "S_PreCheckTroopRecord": {"enabled": true},
+            "S_PreCheckUseRecord": {"enabled": true},
+            "S_PreCheckUseRecordBtn": {"enabled": true},
+            "S_PreConfirmSupply": {"enabled": true},
+            "S_EqCheck": {"enabled": true}
+          }
         }
-      ],
-      "default_case": []
+      ]
     },
     "LR_选择难度": {
       "name": "LR_选择难度",
@@ -2105,7 +2086,6 @@
           "DisplayName": "修刀并继续",
           "pipeline_override": {
             "S_IsRepair": {"enabled": true},
-            "S_ClickRepair": {"enabled": true},
             "S_ConfirmRepair": {"enabled": true},
             "S_ClickMenuFromRepair": {"enabled": true},
             "S_IsStopOnDamage": {"enabled": false},
@@ -2120,7 +2100,6 @@
           "DisplayName": "修刀并停止",
           "pipeline_override": {
             "S_IsRepair": {"enabled": true},
-            "S_ClickRepair": {"enabled": true},
             "S_ConfirmRepair": {"enabled": true},
             "S_CheckAccel": {
               "next": ["S_ClickRepairandStop"]
@@ -2149,7 +2128,6 @@
     "S_疲劳处理": {
       "name": "S_疲劳处理",
       "label": "疲劳处理",
-      "description": "需与换队长同时开启方可生效",
       "default_case": "无",
       "cases": [
         {
@@ -2167,6 +2145,7 @@
               "next": ["S_FatigueCheck"]
             },
             "S_FatigueCheck": {"enabled": true},
+            "S_FatigueDetect": {"enabled": true},
             "SF_Hub": {"enabled": true},
             "SF_UseRecord_Step1": {"enabled": true},
             "SF_EqRefill_Step1": {"enabled": true}
@@ -2186,6 +2165,7 @@
               "enabled": true,
               "on_error": []
             },
+            "S_FatigueDetect": {"enabled": true},
             "SF_Hub": {"enabled": false}
           }
         }
@@ -2595,13 +2575,18 @@
       ],
       "default_case": []
     },
-    "U_补充刀装": {
-      "name": "U_补充刀装",
-      "label": "补充刀装",
-      "type": "checkbox",
+    "U_刀装破坏处理": {
+      "name": "U_刀装破坏处理",
+      "label": "刀装破坏处理",
+      "default_case": "补充刀装",
       "cases": [
         {
-          "name": "",
+          "name": "停止",
+          "DisplayName": "停止"
+        },
+        {
+          "name": "补充刀装",
+          "DisplayName": "补充刀装",
           "pipeline_override": {
             "U_CheckEquipmentPopup": {"enabled": true},
             "U_PreCheckTroopRecord": {"enabled": true},
@@ -2609,9 +2594,52 @@
             "U_PreCheckUseRecordBtn": {"enabled": true},
             "U_PreConfirmSupply": {"enabled": true}
           }
+        },
+        {
+          "name": "刀装保护",
+          "DisplayName": "刀装保护",
+          "pipeline_override": {
+            "U_EqCheck": {"enabled": true}
+          }
+        },
+        {
+          "name": "补充+刀装保护",
+          "DisplayName": "补充+刀装保护",
+          "pipeline_override": {
+            "U_CheckEquipmentPopup": {"enabled": true},
+            "U_PreCheckTroopRecord": {"enabled": true},
+            "U_PreCheckUseRecord": {"enabled": true},
+            "U_PreCheckUseRecordBtn": {"enabled": true},
+            "U_PreConfirmSupply": {"enabled": true},
+            "U_EqCheck": {"enabled": true}
+          }
         }
-      ],
-      "default_case": []
+      ]
+    },
+    "U_疲劳处理": {
+      "name": "U_疲劳处理",
+      "label": "疲劳处理",
+      "default_case": "无",
+      "cases": [
+        {
+          "name": "无",
+          "DisplayName": "无"
+        },
+        {
+          "name": "停止",
+          "DisplayName": "停止",
+          "pipeline_override": {
+            "U_FatigueDetect": {"enabled": true}
+          }
+        },
+        {
+          "name": "刷花",
+          "DisplayName": "刷花",
+          "pipeline_override": {
+            "U_FatigueDetect": {"enabled": true}
+          }
+        }
+      ]
     },
     "U_每轮回本丸": {
       "name": "U_每轮回本丸",
@@ -2634,30 +2662,1801 @@
     "U_层数选择": {
       "name": "U_层数选择",
       "label": "层数选择",
-      "type": "input",
-      "inputs": [
+      "type": "select",
+      "default_case": "不启用",
+      "is_searchable": true,
+      "cases": [
         {
-          "name": "target_floor",
-          "label": "层数选择",
-          "default": "99",
-          "pipeline_type": "int",
-          "description": "设定目标层数（1-99）。当未通过地下城99层时，须同时启用「每轮回本丸」。"
-        }
-      ],
-      "pipeline_override": {
-        "U_SelectFloor": {
-          "on_error": ["U_DetectWhereAmI"],
-          "custom_action_param": {
-            "target_floor": "{target_floor}",
-            "tens_roi": [985, 303, 60, 99],
-            "ones_roi": [1053, 303, 60, 99],
-            "tens_up": [988, 275, 54, 18],
-            "tens_down": [988, 412, 54, 18],
-            "ones_up": [1058, 275, 54, 18],
-            "ones_down": [1058, 412, 54, 18]
+          "name": "不启用",
+          "pipeline_override": {
+            "U_VerifyEventPage": {
+              "next": ["U_EnterUnderground", "U_DetectWhereAmI"]
+            }
+          }
+        },
+        {
+          "name": "1",
+          "DisplayName": "1",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "1",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "2",
+          "DisplayName": "2",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "2",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "3",
+          "DisplayName": "3",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "3",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "4",
+          "DisplayName": "4",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "4",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "5",
+          "DisplayName": "5",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "5",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "6",
+          "DisplayName": "6",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "6",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "7",
+          "DisplayName": "7",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "7",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "8",
+          "DisplayName": "8",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "8",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "9",
+          "DisplayName": "9",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "9",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "10",
+          "DisplayName": "10",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "10",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "11",
+          "DisplayName": "11",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "11",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "12",
+          "DisplayName": "12",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "12",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "13",
+          "DisplayName": "13",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "13",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "14",
+          "DisplayName": "14",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "14",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "15",
+          "DisplayName": "15",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "15",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "16",
+          "DisplayName": "16",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "16",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "17",
+          "DisplayName": "17",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "17",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "18",
+          "DisplayName": "18",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "18",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "19",
+          "DisplayName": "19",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "19",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "20",
+          "DisplayName": "20",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "20",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "21",
+          "DisplayName": "21",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "21",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "22",
+          "DisplayName": "22",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "22",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "23",
+          "DisplayName": "23",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "23",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "24",
+          "DisplayName": "24",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "24",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "25",
+          "DisplayName": "25",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "25",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "26",
+          "DisplayName": "26",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "26",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "27",
+          "DisplayName": "27",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "27",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "28",
+          "DisplayName": "28",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "28",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "29",
+          "DisplayName": "29",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "29",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "30",
+          "DisplayName": "30",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "30",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "31",
+          "DisplayName": "31",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "31",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "32",
+          "DisplayName": "32",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "32",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "33",
+          "DisplayName": "33",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "33",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "34",
+          "DisplayName": "34",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "34",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "35",
+          "DisplayName": "35",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "35",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "36",
+          "DisplayName": "36",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "36",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "37",
+          "DisplayName": "37",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "37",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "38",
+          "DisplayName": "38",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "38",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "39",
+          "DisplayName": "39",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "39",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "40",
+          "DisplayName": "40",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "40",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "41",
+          "DisplayName": "41",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "41",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "42",
+          "DisplayName": "42",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "42",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "43",
+          "DisplayName": "43",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "43",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "44",
+          "DisplayName": "44",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "44",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "45",
+          "DisplayName": "45",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "45",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "46",
+          "DisplayName": "46",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "46",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "47",
+          "DisplayName": "47",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "47",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "48",
+          "DisplayName": "48",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "48",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "49",
+          "DisplayName": "49",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "49",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "50",
+          "DisplayName": "50",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "50",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "51",
+          "DisplayName": "51",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "51",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "52",
+          "DisplayName": "52",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "52",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "53",
+          "DisplayName": "53",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "53",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "54",
+          "DisplayName": "54",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "54",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "55",
+          "DisplayName": "55",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "55",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "56",
+          "DisplayName": "56",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "56",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "57",
+          "DisplayName": "57",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "57",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "58",
+          "DisplayName": "58",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "58",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "59",
+          "DisplayName": "59",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "59",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "60",
+          "DisplayName": "60",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "60",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "61",
+          "DisplayName": "61",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "61",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "62",
+          "DisplayName": "62",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "62",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "63",
+          "DisplayName": "63",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "63",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "64",
+          "DisplayName": "64",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "64",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "65",
+          "DisplayName": "65",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "65",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "66",
+          "DisplayName": "66",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "66",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "67",
+          "DisplayName": "67",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "67",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "68",
+          "DisplayName": "68",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "68",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "69",
+          "DisplayName": "69",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "69",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "70",
+          "DisplayName": "70",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "70",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "71",
+          "DisplayName": "71",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "71",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "72",
+          "DisplayName": "72",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "72",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "73",
+          "DisplayName": "73",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "73",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "74",
+          "DisplayName": "74",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "74",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "75",
+          "DisplayName": "75",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "75",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "76",
+          "DisplayName": "76",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "76",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "77",
+          "DisplayName": "77",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "77",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "78",
+          "DisplayName": "78",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "78",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "79",
+          "DisplayName": "79",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "79",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "80",
+          "DisplayName": "80",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "80",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "81",
+          "DisplayName": "81",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "81",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "82",
+          "DisplayName": "82",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "82",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "83",
+          "DisplayName": "83",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "83",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "84",
+          "DisplayName": "84",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "84",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "85",
+          "DisplayName": "85",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "85",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "86",
+          "DisplayName": "86",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "86",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "87",
+          "DisplayName": "87",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "87",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "88",
+          "DisplayName": "88",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "88",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "89",
+          "DisplayName": "89",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "89",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "90",
+          "DisplayName": "90",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "90",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "91",
+          "DisplayName": "91",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "91",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "92",
+          "DisplayName": "92",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "92",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "93",
+          "DisplayName": "93",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "93",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "94",
+          "DisplayName": "94",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "94",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "95",
+          "DisplayName": "95",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "95",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "96",
+          "DisplayName": "96",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "96",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "97",
+          "DisplayName": "97",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "97",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "98",
+          "DisplayName": "98",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "98",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
+          }
+        },
+        {
+          "name": "99",
+          "DisplayName": "99",
+          "pipeline_override": {
+            "U_SelectFloor": {
+              "on_error": ["U_DetectWhereAmI"],
+              "custom_action_param": {
+                "target_floor": "99",
+                "tens_roi": [985, 303, 60, 99],
+                "ones_roi": [1053, 303, 60, 99],
+                "tens_up": [988, 275, 54, 18],
+                "tens_down": [988, 412, 54, 18],
+                "ones_up": [1058, 275, 54, 18],
+                "ones_down": [1058, 412, 54, 18]
+              }
+            }
           }
         }
-      }
+      ]
     },
     "U_动画跳过": {
       "name": "U_动画跳过",
@@ -3235,7 +5034,7 @@
       "label": "远征智能调度",
       "type": "switch",
       "description": "开启后，按远征刷新间隔与最近远征剩余时间中更短者来检查远征状态并补派。对开启了同步远征的其他任务（如合战场）同样适用。",
-      "default_case": "No",
+      "default_case": "Yes",
       "cases": [
         {
           "name": "Yes",

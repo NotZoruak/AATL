@@ -7,45 +7,14 @@
     <list default="true" id="404bc1c5-b364-4787-9804-888f83c8e73c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.claude/skills/gstack" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/skills/gstack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CLAUDE.md" beforeDir="false" afterPath="$PROJECT_DIR$/CLAUDE.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MATR.dll" beforeDir="false" afterPath="$PROJECT_DIR$/MATR.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Assets/logo.ico" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Assets/logo.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Controls/InstanceTabsControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Controls/InstanceTabsControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Extensions/MaaFW/AgentHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Extensions/MaaFW/AgentHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Extensions/MaaFW/MaaProcessorManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Extensions/MaaFW/MaaProcessorManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Helper/VersionChecker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Helper/VersionChecker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/MFAAvalonia.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/MFAAvalonia.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/Pages/TaskQueueViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/Pages/TaskQueueViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/UsersControls/Settings/ConnectSettingsUserControlModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/ViewModels/UsersControls/Settings/ConnectSettingsUserControlModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_src/MFAAvalonia/Views/UserControls/Settings/AboutUserControl.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/_src/MFAAvalonia/Views/UserControls/Settings/AboutUserControl.axaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.obsidian/workspace.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/开发日志.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/开发日志.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/合战场_疲劳处理_设计.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/合战场_疲劳处理_设计.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/合战场任务设计.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/合战场任务设计.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/复用节点清单.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/复用节点清单.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interface.json" beforeDir="false" afterPath="$PROJECT_DIR$/interface.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matr.exe" beforeDir="false" afterPath="$PROJECT_DIR$/matr.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pack.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/pack.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/announcement/1-v0.7.0-beta.2 更新公告.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Disassemble.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Disassemble.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Expedition.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Expedition.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/FlowerBrush.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/FlowerBrush.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/GoHome.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/GoHome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/LRentaisen.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/LRentaisen.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/announcement/1-v0.7.0 更新公告.md" beforeDir="false" afterPath="$PROJECT_DIR$/resource/announcement/1-v0.7.0 更新公告.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Sortie.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Sortie.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/base/pipeline/TacticalTraining.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/TacticalTraining.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/base/pipeline/Underground.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/base/pipeline/Underground.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/ColorDocument.Avalonia.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/ColorDocument.Avalonia.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/ColorTextBlock.Avalonia.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/ColorTextBlock.Avalonia.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/MFAAvalonia.Core.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/MFAAvalonia.Core.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/MaaFramework.Binding.Native.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/MaaFramework.Binding.Native.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/MaaFramework.Binding.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/MaaFramework.Binding.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.Full.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.Full.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.Html.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.Html.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.Svg.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.Svg.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.SyntaxHigh.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.SyntaxHigh.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/Markdown.Avalonia.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/Newtonsoft.Json.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/Newtonsoft.Json.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/SukiUI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/SukiUI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtimes/libs/System.Management.dll" beforeDir="false" afterPath="$PROJECT_DIR$/runtimes/libs/System.Management.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/compress_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/compress_json.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
