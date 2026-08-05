@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img alt="LOGO" src="./resource/logo/MATR.png" width="256" />
+<img alt="LOGO" src="./assets/resource/logo/MATR.png" width="256" />
 
 # MATR — 刀剑乱舞自动化助手
 
@@ -120,24 +120,27 @@ MATR/
 ├── matr.runtimeconfig.json               ← 运行时配置
 ├── libloader.dll                         ← nbeauty 启动钩子
 ├── appsettings.json                      ← 应用配置
-├── resource/
+├── assets/
 │   ├── interface.json                    ← 任务与选项配置
 │   ├── mfa_layout.json                   ← 界面布局配置
-│   ├── base/
-│   │   ├── pipeline/                     ← 自动化任务流水线（JSON）
-│   │   │   ├── Sortie.json               ← 合战场
-│   │   │   ├── Underground.json          ← 地下城
-│   │   │   ├── Expedition.json           ← 远征
-│   │   │   ├── LRentaisen.json           ← 演练
-│   │   │   ├── TacticalTraining.json     ← 战术强化训练
-│   │   │   ├── FlowerBrush.json          ← 刷花
-│   │   │   ├── Disassemble.json          ← 刀解
-│   │   │   ├── Mix.json                  ← 习合
-│   │   │   └── GoHome.json               ← 回到本丸
-│   │   ├── image/                        ← 模板匹配图片
-│   │   └── model/ocr/                    ← OCR 模型
-│   ├── announcement/                     ← 公告
-│   └── logo/                             ← 程序图标
+│   └── resource/
+│       ├── base/
+│       │   ├── pipeline/                 ← 自动化任务流水线（JSON）
+│       │   │   ├── Sortie.json           ← 合战场
+│       │   │   ├── Underground.json      ← 地下城
+│       │   │   ├── Expedition.json       ← 远征
+│       │   │   ├── LRentaisen.json       ← 演练
+│       │   │   ├── TacticalTraining.json ← 战术强化训练
+│       │   │   ├── FlowerBrush.json      ← 刷花
+│       │   │   ├── Disassemble.json      ← 刀解
+│       │   │   ├── Mix.json              ← 习合
+│       │   │   └── GoHome.json           ← 回到本丸
+│       │   ├── image/                    ← 模板匹配图片
+│       │   ├── custom/                   ← 自定义动作脚本
+│       │   └── model/ocr/                ← OCR 模型
+│       ├── logo/                         ← 程序图标
+│       ├── silhouette/                   ← 剪影识别样板
+│       └── announcement/                 ← 公告
 ├── runtimes/
 │   ├── libs/                             ← .NET 托管 DLL
 │   ├── win-x64/native/                   ← 原生引擎

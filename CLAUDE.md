@@ -4,20 +4,21 @@
 
 ```
 MATR/
-├── interface.json               # 项目入口配置（资源版本号、任务定义、pipeline 引用）
+├── assets/
+│   ├── interface.json               # 项目入口配置（资源版本号、任务定义、pipeline 引用）
+│   └── resource/                    # MaaFW 资源包
+│       ├── base/
+│       │   ├── pipeline/            #   Pipeline 流程定义（JSON）
+│       │   ├── custom/              #   自定义动作（C# 脚本，每个文件一个动作类）
+│       │   ├── image/               #   模板匹配图片（1280×720 基准）
+│       │   └── model/               #   OCR 模型文件
+│       ├── logo/                    #   启动 logo 资源
+│       ├── silhouette/              #   剪影识别样板图片
+│       └── announcement/            #   版本更新公告（Markdown）
 ├── _src/                        # C# 源代码（Avalonia 桌面应用）
 │   ├── MFAAvalonia/             #   核心库：Models、ViewModels、Views、Services、Controls 等
 │   ├── MFAAvalonia.Desktop/     #   桌面宿主项目（MATR.exe 入口）
 │   └── MFAAvalonia.Android/     #   Android 宿主项目
-├── resource/                    # MaaFW 资源包
-│   ├── base/
-│   │   ├── pipeline/            #   Pipeline 流程定义（JSON）
-│   │   ├── custom/              #   自定义动作（C# 脚本，每个文件一个动作类）
-│   │   ├── image/               #   模板匹配图片（1280×720 基准）
-│   │   └── model/               #   OCR 模型文件
-│   ├── logo/                    #   启动 logo 资源
-│   ├── silhouette/              #   剪影识别样板图片
-│   └── announcement/            #   版本更新公告（Markdown）
 ├── docs/                        # 项目文档（任务设计、使用规范、开发日志等）
 ├── tools/                       # 构建/发布脚本（clean_build.ps1、compress_json.py、pack.ps1）
 ├── runtimes/                    # .NET 原生运行时库（多平台多架构，git 跟踪）
