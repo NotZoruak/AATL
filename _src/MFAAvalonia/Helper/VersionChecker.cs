@@ -3042,8 +3042,19 @@ public static class VersionChecker
 
         if (!isIncrementalPackage && !File.Exists(interfacePath))
         {
-            validationMessage = "资源包缺少 interface.json";
-            return false;
+            // 新结构：interface.json 可能在 assets/ 子目录下
+            var altInterfacePath = Path.Combine(originPath, "assets", "interface.json");
+            var altResourceDirPath = Path.Combine(originPath, "assets", "resource");
+            if (File.Exists(altInterfacePath))
+            {
+                interfacePath = altInterfacePath;
+                resourceDirPath = altResourceDirPath;
+            }
+            else
+            {
+                validationMessage = "资源包缺少 interface.json";
+                return false;
+            }
         }
 
         if (!isIncrementalPackage && !Directory.Exists(resourceDirPath))
