@@ -1,10 +1,10 @@
 {
   "name": "MATR",
-  "version": "v0.7.1-beta.1",
+  "version": "v0.7.1-alpha",
   "mirrorchyan_rid": "MATR",
   "mirrorchyan_multiplatform": true,
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.7.1-beta.1 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.7.1-alpha | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -24,7 +24,7 @@
   "resource": [
     {
       "name": "刀剑乱舞",
-      "path": ["{PROJECT_DIR}/resource/base"],
+      "path": ["{PROJECT_DIR}/assets/resource/base"],
       "DisplayName": "刀剑乱舞",
       "DisplayDescription": "刀剑乱舞（Touken Ranbu）自动化资源"
     }
