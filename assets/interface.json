@@ -24,7 +24,7 @@
   "resource": [
     {
       "name": "刀剑乱舞",
-      "path": ["{PROJECT_DIR}/assets/resource/base"],
+      "path": ["./resource"],
       "DisplayName": "刀剑乱舞",
       "DisplayDescription": "刀剑乱舞（Touken Ranbu）自动化资源"
     }
