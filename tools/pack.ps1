@@ -2,7 +2,7 @@ param(
     [string]$Version = "v0.7.1"
 )
 
-$Root = Split-Path -Parent $MyInvocation.MyCommand.Path
+$Root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $TempBase = "$Root\_temp_zip"
 $TempDir = "$TempBase\MATR"
 $ZipFile = "$Root\MATR-$Version.zip"

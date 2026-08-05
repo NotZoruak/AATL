@@ -3110,6 +3110,7 @@ public static class VersionChecker
         var fileName = Path.GetFileName(normalized);
 
         if (normalized.StartsWith("resource/", StringComparison.OrdinalIgnoreCase)
+            || normalized.StartsWith("assets/resource/", StringComparison.OrdinalIgnoreCase)
             || normalized.StartsWith("backup/", StringComparison.OrdinalIgnoreCase))
             return true;
 
