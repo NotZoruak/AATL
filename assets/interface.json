@@ -1,10 +1,10 @@
 {
   "name": "MATR",
-  "version": "v0.7.0",
+  "version": "v0.7.1",
   "mirrorchyan_rid": "MATR",
   "mirrorchyan_multiplatform": true,
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.7.0 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.7.1 | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -5107,6 +5107,7 @@
         "U_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "G_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "SF_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
+        "TT_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "Expedition": {"timeout": "{timeout_seconds}000"}
       }
     },

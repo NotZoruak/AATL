@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img alt="LOGO" src="./resource/logo/MATR.png" width="256" />
+<img alt="LOGO" src="./assets/resource/logo/MATR.png" width="256" />
 
 # MATR — 刀剑乱舞自动化助手
 
@@ -56,6 +56,8 @@
 
 前往 [Releases](https://github.com/NotZoruak/MATR/releases) 页面，在最新版本下方点击「Assets」展开文件列表，下载命名为 `MATR-vx.x.x.zip` 的文件，解压到空目录。
 
+> 已安装的用户可通过软件内设置面板检查更新，支持 GitHub 和 [Mirror酱](https://mirrorchyan.com) 双下载源切换（Mirror酱 需购买 CDK 激活）。
+>
 > 注意：Release 基于 x86_64 架构，Windows 系统。Arm 架构（如苹果 M 系列芯片、树莓派等）、Mac 系统、Linux 系统暂不支持。
 
 ### 2. 启动
@@ -83,8 +85,6 @@
 **刀解** — 勾选刀种后自动筛选并解体，自动收取邮箱。
 
 **习合** — 自动刀剑习合，支持搓糖（乱舞 7 级跳过）和刀种筛选。
-
-**回到本丸** — 从任意界面自动返回本丸，适用于任务卡住时的救援恢复。
 
 **卡死重启** — 任务卡死时自动重启模拟器实例与游戏进程，恢复后继续执行。需在全局设置中开启。
 
@@ -115,33 +115,35 @@
 ```
 MATR/
 ├── matr.exe                              ← 桌面启动入口
-├── matr.dll                              ← 桌面主程序集
-├── matr.deps.json                        ← .NET 依赖清单
-├── matr.runtimeconfig.json               ← 运行时配置
-├── libloader.dll                         ← nbeauty 启动钩子
 ├── appsettings.json                      ← 应用配置
-├── resource/
+├── assets/
 │   ├── interface.json                    ← 任务与选项配置
-│   ├── mfa_layout.json                   ← 界面布局配置
-│   ├── base/
-│   │   ├── pipeline/                     ← 自动化任务流水线（JSON）
-│   │   │   ├── Sortie.json               ← 合战场
-│   │   │   ├── Underground.json          ← 地下城
-│   │   │   ├── Expedition.json           ← 远征
-│   │   │   ├── LRentaisen.json           ← 演练
-│   │   │   ├── TacticalTraining.json     ← 战术强化训练
-│   │   │   ├── FlowerBrush.json          ← 刷花
-│   │   │   ├── Disassemble.json          ← 刀解
-│   │   │   ├── Mix.json                  ← 习合
-│   │   │   └── GoHome.json               ← 回到本丸
-│   │   ├── image/                        ← 模板匹配图片
-│   │   └── model/ocr/                    ← OCR 模型
-│   ├── announcement/                     ← 公告
-│   └── logo/                             ← 程序图标
-├── runtimes/
-│   ├── libs/                             ← .NET 托管 DLL
-│   ├── win-x64/native/                   ← 原生引擎
-│   └── plugins/                          ← 插件
+│   └── resource/
+│       ├── base/
+│       │   ├── pipeline/                 ← 自动化任务流水线（JSON）
+│       │   │   ├── Sortie.json           ← 合战场
+│       │   │   ├── Underground.json      ← 地下城
+│       │   │   ├── Expedition.json       ← 远征
+│       │   │   ├── LRentaisen.json       ← 演练
+│       │   │   ├── TacticalTraining.json ← 战术强化训练
+│       │   │   ├── FlowerBrush.json      ← 刷花
+│       │   │   ├── Disassemble.json      ← 刀解
+│       │   │   ├── Mix.json              ← 习合
+│       │   │   └── GoHome.json           ← 回到本丸
+│       │   ├── image/                    ← 模板匹配图片
+│       │   ├── custom/                   ← 自定义动作脚本
+│       │   └── model/ocr/                ← OCR 模型
+│       ├── logo/                         ← 程序图标
+│       ├── silhouette/                   ← 剪影识别样板
+│       └── announcement/                 ← 公告
+├── _src/                                 ← C# 源代码
+├── docs/                                 ← 项目文档
+├── tools/                                ← 构建/发布脚本
+├── runtimes/                             ← .NET 运行时库
+├── .github/                              ← CI/CD workflows
+│   └── workflows/
+│       ├── mirrorchyan_release.yml       ← 发布时上传 Mirror酱
+│       └── check.yml                     ← PR 检查
 └── LICENSE
 ```
 
@@ -151,6 +153,7 @@ MATR/
 
 - [MaaFramework](https://github.com/MaaXYZ/MaaFramework) — 基于图像识别的自动化黑盒测试框架
 - [MFAAvalonia](https://github.com/SweetSmellFox/MFAAvalonia) — 基于 Avalonia UI 的 MaaFramework 通用 GUI 解决方案
+- [Mirror酱](https://mirrorchyan.com) — 软件分发与 CDK 激活管理平台
 - [MaaAssistantArknights](https://github.com/MaaAssistantArknights/MaaAssistantArknights) — 《明日方舟》小助手，全日常一键长草
 - [MFAToolsPlus](https://github.com/SweetSmellFox/MFAToolsPlus) — MaaFramework 新一代开发辅助工具箱
 - [MaaLogAnalyzer](https://github.com/MaaXYZ/MaaLogAnalyzer) — 可视化日志分析工具，告别手翻百万行日志
@@ -158,10 +161,3 @@ MATR/
 ## Star History
 
 如果觉得软件对你有帮助，帮忙点个 Star 吧！（网页最上方右上角的小星星），这就是对我们最大的支持了！
-<a href="https://www.star-history.com/?repos=NotZoruak%2FMATR&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=NotZoruak/MATR&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=NotZoruak/MATR&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=NotZoruak/MATR&type=date&legend=top-left" />
- </picture>
-</a>

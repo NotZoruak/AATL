@@ -40,8 +40,7 @@ public partial class SilhouetteViewModel : ViewModelBase
 
     private void LoadTemplatesIfNeeded()
     {
-        var baseDir = AppContext.BaseDirectory;
-        var silhouetteDir = Path.Combine(baseDir, "resource", "silhouette");
+        var silhouetteDir = Path.Combine(AppPaths.ResourceDirectory, "silhouette");
         if (Directory.Exists(silhouetteDir))
         {
             _service.LoadTemplates(silhouetteDir);

@@ -17,7 +17,7 @@ public static class AppPaths
         ? Path.Combine(InstallRoot, "config")
         : _configDirectory;
     public static string InstancesDirectory => Path.Combine(ConfigDirectory, "instances");
-    public static string ResourceDirectory => Path.Combine(DataRoot, "resource");
+    public static string ResourceDirectory => Path.Combine(DataRoot, "assets", "resource");
     public static string LogsDirectory => string.IsNullOrWhiteSpace(_logsDirectory)
         ? Path.Combine(InstallRoot, "debug", "logs")
         : _logsDirectory;
@@ -27,8 +27,8 @@ public static class AppPaths
     public static string TempResourceDirectory => Path.Combine(TempDirectory, "temp_res");
     public static string TempMfaDirectory => Path.Combine(TempDirectory, "temp_mfa");
     public static string TempMaaFwDirectory => Path.Combine(TempDirectory, "temp_maafw");
-    public static string InterfaceJsonPath => Path.Combine(DataRoot, "interface.json");
-    public static string InterfaceJsoncPath => Path.Combine(DataRoot, "interface.jsonc");
+    public static string InterfaceJsonPath => Path.Combine(DataRoot, "assets", "interface.json");
+    public static string InterfaceJsoncPath => Path.Combine(DataRoot, "assets", "interface.jsonc");
     public static string GlobalConfigPath => Path.Combine(DataRoot, "appsettings.json");
     public static string ChangesPath => Path.Combine(DataRoot, "changes.json");
     public static string BackupDirectory => Path.Combine(DataRoot, "backup");
