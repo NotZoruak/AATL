@@ -16,6 +16,9 @@
 # Obsidian 配置
 docs/.obsidian/
 
+# Claude 项目配置（不推送至远程）
+/CLAUDE.md
+
 # 打包产物
 /MATR-*.zip
 /_temp_zip/
