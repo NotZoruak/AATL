@@ -2021,7 +2021,7 @@ public class MaaProcessor
                         Name = "默认",
                         Path =
                         [
-                            "{PROJECT_DIR}/resource/base",
+                            "{PROJECT_DIR}/assets/resource/base",
                         ],
                     },
                 ],
