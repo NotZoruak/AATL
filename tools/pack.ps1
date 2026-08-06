@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$Version = "v0.8.0-beta.1"
 )
 
@@ -28,6 +28,14 @@ Copy-Item "$Root\runtimes" -Recurse -Destination "$TempDir\runtimes"
 $KeepDirs = @("libs", "plugins", "win-x64")
 Get-ChildItem "$TempDir\runtimes" -Directory | ForEach-Object {
     if ($KeepDirs -notcontains $_.Name) { Remove-Item -Recurse -Force $_.FullName }
+}
+
+# 移除 libs 中与 win-x64/native 重复的原生库（如 libSkiaSharp.dll），
+# 运行时实际加载的是 win-x64/native 下的同名文件，libs 中的副本为发布冗余。
+Get-ChildItem "$TempDir\runtimes\libs" -File | ForEach-Object {
+    if (Test-Path "$TempDir\runtimes\win-x64\native\$($_.Name)") {
+        Remove-Item -Force $_.FullName
+    }
 }
 
 Copy-Item "$Root\assets\resource" -Recurse -Destination "$TempDir\assets\resource"

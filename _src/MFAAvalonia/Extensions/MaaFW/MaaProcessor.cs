@@ -3247,7 +3247,7 @@ public class MaaProcessor
 
         // PI v2.3.0 合并顺序：global_option < resource.option < controller.option < task.option
         // 1. 合并全局选项（global_option，最低优先级）
-        MergeGlobalOptionParams(ref taskModels);
+        MergeGlobalOptionParams(ref taskModels, task.InterfaceItem);
 
         // 2. 合并当前资源的全局选项参数（resource.option）
         MergeResourceOptionParams(ref taskModels);
@@ -3439,11 +3439,31 @@ public class MaaProcessor
     /// <summary>
     /// 合并全局选项参数（global_option，最低优先级）
     /// </summary>
-    private void MergeGlobalOptionParams(ref MaaToken taskModels)
+    /// <param name="taskModels">任务参数</param>
+    /// <param name="task">当前任务；为 null 时不做过滤（保持原行为）</param>
+    private void MergeGlobalOptionParams(ref MaaToken taskModels, MaaInterface.MaaInterfaceTask? task = null)
     {
         var globalSelectOptions = Interface?.GlobalSelectOptions;
         if (globalSelectOptions == null || globalSelectOptions.Count == 0)
             return;
+
+        // 「远征智能调度」仅对远征任务自身与开启同步远征的任务生效。
+        // 对未开启同步远征的任务注入其 override 会劫持队伍选择流程
+        // （TT_IsTeamSelect 等跳转到 E_CheckTimerExpired，而计时器从未启动 → 视为过期 → 回本丸查看远征）。
+        if (task != null)
+        {
+            var syncExpEnabled = task.Option
+                ?.FirstOrDefault(o => (o.Name ?? "").EndsWith("同步远征"))
+                ?.SelectedCases?.Contains("") == true;
+            if (task.Entry != "Expedition" && !syncExpEnabled)
+            {
+                globalSelectOptions = globalSelectOptions
+                    .Where(o => o.Name != "远征智能调度")
+                    .ToList();
+                if (globalSelectOptions.Count == 0)
+                    return;
+            }
+        }
 
         ProcessOptions(ref taskModels, globalSelectOptions);
     }
