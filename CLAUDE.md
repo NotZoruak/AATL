@@ -21,7 +21,7 @@ MATR/
 │   └── MFAAvalonia.Android/     #   Android 宿主项目
 ├── docs/                        # 项目文档（任务设计、使用规范、开发日志等）
 ├── tools/                       # 构建/发布脚本（clean_build.ps1、compress_json.py、pack.ps1）
-├── runtimes/                    # .NET 原生运行时库（多平台多架构，git 跟踪）
+├── runtimes/                    # .NET 原生运行时库（多平台多架构，本地分发资源，不随 git 提交）
 └── .github/                     # Issue 模板
 ```
 

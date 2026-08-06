@@ -1,15 +1,53 @@
 # 运行时日志
 /logs/
 /debug/
+/assets/debug/
+
+# Python 缓存
+__pycache__/
+*.pyc
 
 # 运行时生成目录（首次启动自动创建）
 /config/
+/backup/
+/temp/
 /appsettings.json
+
+# 本地运行配置（含本机模拟器路径，不随仓库分发）
+/assets/config/
 
 # NuGet 输出（publish 时自动生成）
 /libs/
 /plugins/
-/runtimes/win-x64/
+
+# 本地运行时库（pack.ps1 打包时从本地读取，不随仓库分发）
+/runtimes/
+
+# 根目录发布产物（dotnet publish 后手动拷贝，仅用于 pack.ps1 打包）
+/matr.exe
+/MATR.dll
+/MATR.deps.json
+/MATR.runtimeconfig.json
+/libloader.dll
+
+# 构建产物（clean_build.ps1 清理对象）
+**/bin/
+**/obj/
+
+# .NET SDK Resolver 临时备份文件
+*.csproj.SdkResolver.*.proj.Backup.tmp
+
+# IDE 个人设置（.vscode/ 等仓库级共享配置仍跟踪）
+/.idea/
+/.vs/
+*.user
+*.suo
+*.DotSettings.user
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
 
 # Obsidian 配置
 docs/.obsidian/
