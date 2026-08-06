@@ -5,6 +5,7 @@
   },
   "D_DetectWhereAmI": {
     "pre_delay": 0,
+    "timeout": 120000,
     "next": [
       "D_IsAnnouncementPopup",
       "D_IsTrainingLetter",
@@ -26,15 +27,18 @@
       "D_IsInGameUpdatePopup",
       "D_FallbackWait"
     ],
-    "timeout": 120000,
     "on_error": ["D_RestartGame"]
   },
   "D_DetectEmptyMailbox": {
-    "recognition": "ColorMatch",
-    "roi": [142, 178, 82, 75],
-    "upper": [216, 214, 207],
-    "lower": [206, 204, 197],
-    "count": 6150,
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [142, 178, 82, 75],
+        "upper": [216, 214, 207],
+        "lower": [206, 204, 197],
+        "count": 6150
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
@@ -58,22 +62,38 @@
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_HasExpeditionReturn_Exp": {
-    "recognition": "OCR",
-    "roi": [388, 59, 54, 25],
-    "expected": "经验",
-    "action": "Click",
-    "target": [388, 59, 54, 25],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [388, 59, 54, 25],
+        "expected": "经验"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [388, 59, 54, 25]
+      }
+    },
     "pre_delay": 300,
     "post_delay": 500,
     "next": ["D_DetectWhereAmI"],
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_HasExpeditionReturn_Title": {
-    "recognition": "OCR",
-    "roi": [558, 1, 162, 52],
-    "expected": "远征结果",
-    "action": "Click",
-    "target": [388, 59, 54, 25],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [558, 1, 162, 52],
+        "expected": "远征结果"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [388, 59, 54, 25]
+      }
+    },
     "pre_delay": 300,
     "post_delay": 500,
     "next": ["D_DetectWhereAmI"],
@@ -193,13 +213,13 @@
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_FilterSword1": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [235, 217, 83, 27]
       }
     },
-    "enabled": false,
     "pre_delay": 300,
     "post_delay": 500,
     "next": [
@@ -214,13 +234,13 @@
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_FilterSword2": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [419, 218, 66, 30]
       }
     },
-    "enabled": false,
     "pre_delay": 300,
     "post_delay": 500,
     "next": [
@@ -234,65 +254,65 @@
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_FilterSword3": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [596, 218, 56, 27]
       }
     },
-    "enabled": false,
     "pre_delay": 300,
     "post_delay": 500,
     "next": ["D_FilterSword4", "D_FilterSword5", "D_FilterSword6", "D_FilterSword7", "D_FilterConfirm"],
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_FilterSword4": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [772, 215, 63, 32]
       }
     },
-    "enabled": false,
     "pre_delay": 300,
     "post_delay": 500,
     "next": ["D_FilterSword5", "D_FilterSword6", "D_FilterSword7", "D_FilterConfirm"],
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_FilterSword5": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [241, 289, 74, 33]
       }
     },
-    "enabled": false,
     "pre_delay": 300,
     "post_delay": 500,
     "next": ["D_FilterSword6", "D_FilterSword7", "D_FilterConfirm"],
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_FilterSword6": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [423, 290, 52, 31]
       }
     },
-    "enabled": false,
     "pre_delay": 300,
     "post_delay": 500,
     "next": ["D_FilterSword7", "D_FilterConfirm"],
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_FilterSword7": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [588, 287, 68, 34]
       }
     },
-    "enabled": false,
     "pre_delay": 300,
     "post_delay": 500,
     "next": ["D_FilterConfirm"],
@@ -335,10 +355,14 @@
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_DisassembleCheckConfirm": {
-    "recognition": "ColorMatch",
-    "roi": [1197, 627, 6, 9],
-    "upper": [26, 87, 183],
-    "lower": [20, 81, 177],
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [1197, 627, 6, 9],
+        "upper": [26, 87, 183],
+        "lower": [20, 81, 177]
+      }
+    },
     "action": {"type": "Click"},
     "pre_delay": 300,
     "post_delay": 500,
@@ -424,12 +448,12 @@
       }
     },
     "pre_delay": 1000,
-    "next": ["D_DetectWhereAmI"],
     "post_delay": 1000,
+    "next": ["D_DetectWhereAmI"],
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_FallbackWait": {
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
     "next": ["D_DetectWhereAmI"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -542,11 +566,15 @@
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_CheckHomeBrightness": {
-    "recognition": "ColorMatch",
-    "roi": [66, 58, 11, 13],
-    "upper": [40, 155, 30],
-    "lower": [23, 95, 15],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [66, 58, 11, 13],
+        "upper": [40, 155, 30],
+        "lower": [23, 95, 15]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["D_DetectHome", "D_DetectWhereAmI"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -560,9 +588,9 @@
         "threshold": [0.95]
       }
     },
-    "action": "Click",
-    "timeout": 3000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "timeout": 3000,
     "next": ["D_IsAnnouncementPopup", "D_DetectWhereAmI"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -576,23 +604,31 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "next": ["D_LoginRewardClick2"],
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_LoginRewardClick2": {
-    "action": "Click",
-    "target": [1092, 318, 1, 1],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
     "pre_delay": 1000,
     "next": ["D_LoginRewardClick3"],
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_LoginRewardClick3": {
-    "action": "Click",
-    "target": [1092, 318, 1, 1],
-    "timeout": 3000,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
     "pre_delay": 1000,
+    "timeout": 3000,
     "next": ["D_IsLoginReward"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -606,7 +642,7 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "next": ["D_DetectWhereAmI"],
     "on_error": ["D_DetectWhereAmI"]
@@ -621,9 +657,9 @@
         "threshold": [0.85]
       }
     },
-    "action": "Click",
-    "post_delay": 3000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "post_delay": 3000,
     "next": ["D_DetectWhereAmI"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -637,9 +673,9 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "post_delay": 3000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "post_delay": 3000,
     "next": ["D_DetectWhereAmI"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -653,20 +689,28 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "post_delay": 2000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "post_delay": 2000,
     "next": ["D_DetectWhereAmI"],
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_IsInGameUpdatePopup": {
-    "recognition": "OCR",
-    "roi": [498, 291, 77, 50],
-    "expected": "更新",
-    "action": "Click",
-    "target": [578, 440, 130, 55],
-    "post_delay": 2000,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [498, 291, 77, 50],
+        "expected": "更新"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [578, 440, 130, 55]
+      }
+    },
     "pre_delay": 100,
+    "post_delay": 2000,
     "next": ["D_DetectWhereAmI"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -687,9 +731,9 @@
         "threshold": [0.95]
       }
     },
-    "action": "Click",
-    "next": ["D_DetectWhereAmI"],
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["D_DetectWhereAmI"],
     "on_error": ["D_DetectWhereAmI"]
   }
 }

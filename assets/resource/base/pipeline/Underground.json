@@ -5,6 +5,7 @@
   },
   "U_DetectWhereAmI": {
     "pre_delay": 0,
+    "timeout": 120000,
     "next": [
       "U_IsMarching",
       "U_IsAnnouncementPopup",
@@ -35,7 +36,6 @@
       "U_LeaveTroopRecord",
       "U_FallbackWait"
     ],
-    "timeout": 120000,
     "on_error": ["U_RestartGame"]
   },
   "U_IsAnnouncementPopup": {
@@ -48,9 +48,9 @@
         "threshold": [0.95]
       }
     },
-    "action": "Click",
-    "timeout": 3000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "timeout": 3000,
     "next": ["U_IsAnnouncementPopup", "U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -64,23 +64,31 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "next": ["U_LoginRewardClick2"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_LoginRewardClick2": {
-    "action": "Click",
-    "target": [1092, 318, 1, 1],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
     "pre_delay": 1000,
     "next": ["U_LoginRewardClick3"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_LoginRewardClick3": {
-    "action": "Click",
-    "target": [1092, 318, 1, 1],
-    "timeout": 3000,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
     "pre_delay": 1000,
+    "timeout": 3000,
     "next": ["U_IsLoginReward"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -94,29 +102,45 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "next": ["U_DetectWhereAmI"],
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_HasExpeditionReturn_Exp": {
-    "recognition": "OCR",
-    "roi": [388, 59, 54, 25],
-    "expected": "经验",
-    "action": "Click",
-    "target": [947, 533, 67, 75],
-    "next": ["U_DetectWhereAmI"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [388, 59, 54, 25],
+        "expected": "经验"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [947, 533, 67, 75]
+      }
+    },
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_HasExpeditionReturn_Title": {
-    "recognition": "OCR",
-    "roi": [558, 1, 162, 52],
-    "expected": "远征结果",
-    "action": "Click",
-    "target": [947, 533, 67, 75],
-    "next": ["U_DetectWhereAmI"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [558, 1, 162, 52],
+        "expected": "远征结果"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [947, 533, 67, 75]
+      }
+    },
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsMarching": {
@@ -133,38 +157,58 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsBattleResult_Exp": {
-    "recognition": "OCR",
-    "roi": [388, 59, 54, 25],
-    "expected": "经验",
-    "action": "Click",
-    "target": [947, 533, 67, 75],
-    "next": ["U_DetectWhereAmI"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [388, 59, 54, 25],
+        "expected": "经验"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [947, 533, 67, 75]
+      }
+    },
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsBattleResult_Title": {
-    "recognition": "OCR",
-    "roi": [558, 1, 162, 52],
-    "expected": "战斗结果",
-    "action": "Click",
-    "target": [947, 533, 67, 75],
-    "next": ["U_DetectWhereAmI"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [558, 1, 162, 52],
+        "expected": "战斗结果"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [947, 533, 67, 75]
+      }
+    },
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsSwordDropColor": {
-    "recognition": "ColorMatch",
-    "roi": [598, 543, 66, 1],
-    "upper": [96, 56, 10],
-    "lower": [88, 48, 2],
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [598, 543, 66, 1],
+        "upper": [96, 56, 10],
+        "lower": [88, 48, 2]
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
         "target": [1067, 558, 120, 79]
       }
     },
-    "next": ["U_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsSpecialDrop": {
@@ -177,9 +221,9 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "next": ["U_DetectWhereAmI"],
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsFormationSelect": {
@@ -202,9 +246,9 @@
         "target": [1017, 421, 1, 1]
       }
     },
+    "pre_delay": 100,
     "post_delay": 200,
     "next": ["U_ClickFormation2"],
-    "pre_delay": 100,
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickFormation2": {
@@ -214,11 +258,12 @@
         "target": [1017, 421, 1, 1]
       }
     },
-    "next": ["U_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsSwordSelect": {
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -226,7 +271,6 @@
         "expected": "刀剑男士选择"
       }
     },
-    "enabled": false,
     "next": ["U_ClickCaptain1"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -248,8 +292,8 @@
         "target": [154, 93, 1, 1]
       }
     },
-    "next": ["U_CaptainHub"],
     "pre_delay": 100,
+    "next": ["U_CaptainHub"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsSortie": {
@@ -272,8 +316,8 @@
         "target": [8, 299, 32, 89]
       }
     },
-    "next": ["U_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsEventPage": {
@@ -303,9 +347,11 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_SelectFloor": {
-    "action": "Custom",
-    "custom_action": "DungeonFloorSelectAction",
-    "custom_action_param": "{}",
+    "action": {
+      "type": "Custom",
+      "custom_action": "DungeonFloorSelectAction",
+      "custom_action_param": "{}"
+    },
     "pre_delay": 500,
     "next": ["U_EnterUnderground"],
     "on_error": ["U_DetectWhereAmI"]
@@ -317,9 +363,9 @@
         "target": [1141, 614, 120, 49]
       }
     },
-    "next": ["U_IsTeamSelect", "U_DetectWhereAmI"],
     "pre_delay": 200,
     "post_delay": 500,
+    "next": ["U_IsTeamSelect", "U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsMenuDirectory": {
@@ -332,9 +378,9 @@
         "threshold": [0.98]
       }
     },
-    "action": "DoNothing",
-    "next": ["U_ClickUndergroundInMenu"],
+    "action": {"type": "DoNothing"},
     "pre_delay": 100,
+    "next": ["U_ClickUndergroundInMenu"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickUndergroundInMenu": {
@@ -346,20 +392,25 @@
       }
     },
     "action": {"type": "Click"},
+    "pre_delay": 100,
     "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"],
-    "pre_delay": 100
+    "on_error": ["U_DetectWhereAmI"]
   },
   "U_CheckHomeBrightness": {
-    "recognition": "ColorMatch",
-    "roi": [66, 58, 11, 13],
-    "upper": [40, 155, 30],
-    "lower": [23, 95, 15],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [66, 58, 11, 13],
+        "upper": [40, 155, 30],
+        "lower": [23, 95, 15]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["U_IsHome", "U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsRepair": {
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -367,11 +418,11 @@
         "expected": "修复"
       }
     },
-    "enabled": false,
     "next": ["U_UseSpeedup"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsStopOnDamage": {
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -379,7 +430,6 @@
         "expected": "修复"
       }
     },
-    "enabled": false,
     "next": ["U_LogStopOnDamageRepair"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -393,9 +443,9 @@
         "threshold": [0.85]
       }
     },
-    "action": "Click",
-    "post_delay": 3000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "post_delay": 3000,
     "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -409,9 +459,9 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "post_delay": 3000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "post_delay": 3000,
     "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -425,20 +475,28 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "post_delay": 2000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "post_delay": 2000,
     "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsInGameUpdatePopup": {
-    "recognition": "OCR",
-    "roi": [498, 291, 77, 50],
-    "expected": "更新",
-    "action": "Click",
-    "target": [578, 440, 130, 55],
-    "post_delay": 2000,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [498, 291, 77, 50],
+        "expected": "更新"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [578, 440, 130, 55]
+      }
+    },
     "pre_delay": 100,
+    "post_delay": 2000,
     "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -449,8 +507,8 @@
         "target": [1067, 558, 120, 79]
       }
     },
-    "next": ["U_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_CheckBeforeMarch": {
@@ -459,35 +517,39 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_CheckRoundComplete": {
-    "recognition": "OCR",
-    "roi": [947, 148, 101, 34],
-    "expected": "传送凭证",
-    "action": "DoNothing",
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [947, 148, 101, 34],
+        "expected": "传送凭证"
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["U_GoHomeAfterRound", "U_ContinueNextRound"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ContinueNextRound": {
+    "enabled": true,
     "action": {
       "type": "Click",
       "param": {
         "target": [1067, 558, 120, 79]
       }
     },
-    "enabled": true,
-    "next": ["U_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_GoHomeAfterRound": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [1208, 449, 1, 1]
       }
     },
-    "enabled": false,
-    "next": ["U_ConfirmReturnHome"],
     "pre_delay": 100,
+    "next": ["U_ConfirmReturnHome"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsInternalReport": {
@@ -500,19 +562,27 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "next": ["U_DetectWhereAmI"],
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsConnectionInterrupted": {
-    "recognition": "OCR",
-    "roi": [588, 274, 96, 25],
-    "expected": "连接中断",
-    "action": "Click",
-    "target": [738, 449, 100, 39],
-    "next": ["U_DetectWhereAmI"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [588, 274, 96, 25],
+        "expected": "连接中断"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [738, 449, 100, 39]
+      }
+    },
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_LeaveTroopRecord": {
@@ -525,13 +595,17 @@
         "threshold": [0.95]
       }
     },
-    "action": "Click",
-    "target": [63, 28, 17, 17],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [63, 28, 17, 17]
+      }
+    },
     "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_FallbackWait": {
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
     "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -544,6 +618,7 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_CheckEquipmentPopup": {
+    "enabled": false,
     "recognition": {
       "type": "TemplateMatch",
       "param": {
@@ -553,11 +628,10 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "enabled": false,
+    "action": {"type": "Click"},
+    "post_delay": 500,
     "next": ["U_PreCheckTroopRecord"],
-    "on_error": ["U_ClickTeam"],
-    "post_delay": 500
+    "on_error": ["U_ClickTeam"]
   },
   "U_ClickAccel": {
     "action": {
@@ -566,8 +640,8 @@
         "target": [1156, 241, 27, 25]
       }
     },
-    "next": ["U_ClickRepairDone"],
     "pre_delay": 100,
+    "next": ["U_ClickRepairDone"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickCaptain1": {
@@ -578,9 +652,9 @@
         "target": [828, 82, 68, 25]
       }
     },
+    "pre_delay": 100,
     "post_delay": 800,
     "next": ["U_ClickCaptain2"],
-    "pre_delay": 100,
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickCaptain2": {
@@ -591,9 +665,9 @@
         "target": [752, 137, 97, 29]
       }
     },
+    "pre_delay": 100,
     "post_delay": 800,
     "next": ["U_ClickCaptain3"],
-    "pre_delay": 100,
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickCaptain3": {
@@ -604,9 +678,9 @@
         "target": [407, 510, 90, 31]
       }
     },
+    "pre_delay": 100,
     "post_delay": 800,
     "next": ["U_ClickCaptain4"],
-    "pre_delay": 100,
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickCaptain4": {
@@ -617,9 +691,9 @@
         "target": [965, 438, 91, 34]
       }
     },
+    "pre_delay": 100,
     "post_delay": 800,
     "next": ["U_ClickCaptain5"],
-    "pre_delay": 100,
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickCaptain5": {
@@ -630,8 +704,8 @@
         "target": [592, 603, 107, 46]
       }
     },
-    "next": ["U_DetectSortOrder"],
     "pre_delay": 100,
+    "next": ["U_DetectSortOrder"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickCaptainSlot": {
@@ -642,12 +716,13 @@
         "target": [1024, 140, 30, 50]
       }
     },
-    "next": ["U_DetectWhereAmI"],
-    "post_delay": 1000,
     "pre_delay": 100,
+    "post_delay": 1000,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickDescending": {
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -656,22 +731,21 @@
       }
     },
     "action": {"type": "Click"},
-    "enabled": false,
+    "pre_delay": 100,
     "post_delay": 800,
     "next": ["U_DetectSortOrder"],
-    "pre_delay": 100,
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickHomeInMenu": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [1037, 169, 110, 44]
       }
     },
-    "enabled": false,
-    "next": ["U_VerifyHomeMenuClosed"],
     "pre_delay": 100,
+    "next": ["U_VerifyHomeMenuClosed"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickMenu": {
@@ -683,9 +757,9 @@
       }
     },
     "action": {"type": "Click"},
+    "pre_delay": 100,
     "next": ["U_PostClickMenuHub"],
-    "on_error": ["U_DetectWhereAmI"],
-    "pre_delay": 100
+    "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickMenuForRepair": {
     "recognition": {
@@ -695,13 +769,14 @@
         "expected": "目"
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
+    "pre_delay": 100,
     "post_delay": 300,
     "next": ["U_VerifyMenuOpened"],
-    "pre_delay": 100,
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickMenuFromRepair": {
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -710,18 +785,21 @@
       }
     },
     "action": {"type": "Click"},
-    "enabled": false,
-    "next": ["U_ClickHomeInMenu"],
     "pre_delay": 100,
+    "next": ["U_ClickHomeInMenu"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickRepairInMenu": {
-    "recognition": "OCR",
-    "roi": [451, 379, 84, 40],
-    "expected": "修复",
-    "action": "Click",
-    "next": ["U_VerifyRepairMenuClosed"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [451, 379, 84, 40],
+        "expected": "修复"
+      }
+    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["U_VerifyRepairMenuClosed"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickSortieInMenu": {
@@ -733,8 +811,8 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["U_VerifyMenuClosed", "U_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["U_VerifyMenuClosed", "U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickSortieNow": {
@@ -744,8 +822,8 @@
         "target": [1204, 629, 1, 1]
       }
     },
-    "next": ["U_PostSortieHub"],
     "pre_delay": 100,
+    "next": ["U_PostSortieHub"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ConfirmEnterUnderground": {
@@ -758,40 +836,56 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "target": [706, 582, 154, 42],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [706, 582, 154, 42]
+      }
+    },
+    "pre_delay": 100,
     "next": ["U_PostSortieHub"],
-    "on_error": ["U_PostSortieHub"],
-    "pre_delay": 100
+    "on_error": ["U_PostSortieHub"]
   },
   "U_ConfirmCancelMarchingDamage2": {
-    "recognition": "OCR",
-    "roi": [763, 446, 48, 44],
-    "expected": "否",
-    "action": "Click",
-    "next": ["U_ReturnHomeAfterMarchDamage"],
-    "on_error": ["U_DetectWhereAmI"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [763, 446, 48, 44],
+        "expected": "否"
+      }
+    },
+    "action": {"type": "Click"},
+    "pre_delay": 100,
     "post_delay": 300,
-    "pre_delay": 100
+    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "on_error": ["U_DetectWhereAmI"]
   },
   "U_ConfirmCancelPreDamage2": {
-    "recognition": "OCR",
-    "roi": [772, 448, 32, 40],
-    "expected": "否",
-    "action": "Click",
-    "next": ["U_DecideDamage_Pre"],
-    "on_error": ["U_DetectWhereAmI"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [772, 448, 32, 40],
+        "expected": "否"
+      }
+    },
+    "action": {"type": "Click"},
+    "pre_delay": 100,
     "post_delay": 500,
-    "pre_delay": 100
+    "next": ["U_DecideDamage_Pre"],
+    "on_error": ["U_DetectWhereAmI"]
   },
   "U_ConfirmSelectSlot": {
-    "recognition": "OCR",
-    "roi": [1052, 138, 32, 31],
-    "expected": "选",
-    "action": "Click",
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1052, 138, 32, 31],
+        "expected": "选"
+      }
+    },
+    "action": {"type": "Click"},
+    "pre_delay": 100,
     "next": ["U_CheckAccel"],
-    "on_error": ["U_LogNoDamagedSword"],
-    "pre_delay": 100
+    "on_error": ["U_LogNoDamagedSword"]
   },
   "U_LogNoDamagedSword": {
     "action": {
@@ -803,6 +897,7 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ConfirmSortAsc": {
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -816,14 +911,13 @@
         "target": [1189, 140, 37, 61]
       }
     },
-    "enabled": false,
-    "next": ["U_IsPreSortieConfirm"],
     "pre_delay": 100,
+    "next": ["U_IsPreSortieConfirm"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_DecideDamage_Pre": {
-    "on_error": ["U_DetectWhereAmI"],
-    "next": ["U_NavigateToRepair", "U_IsStopOnDamage"]
+    "next": ["U_NavigateToRepair", "U_IsStopOnDamage"],
+    "on_error": ["U_DetectWhereAmI"]
   },
   "U_DetectAfterSortieNow": {
     "pre_delay": 0,
@@ -843,36 +937,48 @@
         "expected": "目"
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
+    "pre_delay": 500,
     "next": ["U_VerifyMenuAfterRepair"],
-    "on_error": ["U_DetectWhereAmI"],
-    "pre_delay": 500
+    "on_error": ["U_DetectWhereAmI"]
   },
   "U_FindSlot1": {
-    "recognition": "OCR",
-    "roi": [380, 185, 113, 46],
-    "expected": "未使用",
-    "action": "Click",
-    "next": ["U_ConfirmSelectSlot"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [380, 185, 113, 46],
+        "expected": "未使用"
+      }
+    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["U_ConfirmSelectSlot"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_FindSlot2": {
-    "recognition": "OCR",
-    "roi": [383, 323, 110, 42],
-    "expected": "未使用",
-    "action": "Click",
-    "next": ["U_ConfirmSelectSlot"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [383, 323, 110, 42],
+        "expected": "未使用"
+      }
+    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["U_ConfirmSelectSlot"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_FindSlot3": {
-    "recognition": "OCR",
-    "roi": [381, 462, 110, 38],
-    "expected": "未使用",
-    "action": "Click",
-    "next": ["U_ConfirmSelectSlot"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [381, 462, 110, 38],
+        "expected": "未使用"
+      }
+    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["U_ConfirmSelectSlot"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsHome": {
@@ -898,12 +1004,17 @@
         "threshold": [0.85]
       }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_LogMarchingDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsPreDamage1": {
+    "enabled": false,
     "recognition": {
       "type": "TemplateMatch",
       "param": {
@@ -919,29 +1030,36 @@
         "target": [772, 448, 32, 40]
       }
     },
-    "next": ["U_LogPreDamage1"],
     "pre_delay": 100,
-    "enabled": false,
+    "next": ["U_LogPreDamage1"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsPreDamage2": {
-    "recognition": "OCR",
-    "roi": [465, 310, 46, 24],
-    "expected": "重伤",
-    "next": ["U_LogPreDamage2"],
     "enabled": false,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [465, 310, 46, 24],
+        "expected": "重伤"
+      }
+    },
+    "next": ["U_LogPreDamage2"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsPreSortieConfirm": {
-    "recognition": "OCR",
-    "roi": [1156, 584, 96, 47],
-    "expected": "即刻",
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1156, 584, 96, 47],
+        "expected": "即刻"
+      }
+    },
     "next": ["U_ClickSortieNow"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_NavigateToRepair": {
-    "next": ["U_ClickMenuForRepair", "U_DetectWhereAmI"],
     "post_delay": 300,
+    "next": ["U_ClickMenuForRepair", "U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_PostClickMenuHub": {
@@ -949,9 +1067,8 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_PostSortieHub": {
-    "timeout": 30000,
-    "on_error": ["U_DetectWhereAmI"],
     "pre_delay": 0,
+    "timeout": 30000,
     "next": [
       "U_ConfirmEnterUnderground",
       "U_IsPreDamage1",
@@ -960,9 +1077,11 @@
       "U_StopOnDamageText",
       "U_CheckEquipmentPopup",
       "U_DetectAfterSortieNow"
-    ]
+    ],
+    "on_error": ["U_DetectWhereAmI"]
   },
   "U_PreCheckTroopRecord": {
+    "enabled": false,
     "recognition": {
       "type": "TemplateMatch",
       "param": {
@@ -972,12 +1091,12 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "enabled": false,
-    "on_error": ["U_DetectAfterSortieNow"],
-    "next": ["U_PreCheckUseRecord"]
+    "action": {"type": "Click"},
+    "next": ["U_PreCheckUseRecord"],
+    "on_error": ["U_DetectAfterSortieNow"]
   },
   "U_PreCheckUseRecord": {
+    "enabled": false,
     "recognition": {
       "type": "TemplateMatch",
       "param": {
@@ -987,78 +1106,78 @@
         "threshold": [0.98]
       }
     },
-    "action": "DoNothing",
-    "enabled": false,
-    "on_error": ["U_DetectAfterSortieNow"],
-    "next": ["U_PreCheckClickRecord1"]
+    "action": {"type": "DoNothing"},
+    "next": ["U_PreCheckClickRecord1"],
+    "on_error": ["U_DetectAfterSortieNow"]
   },
   "U_PreCheckClickRecord1": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [1209, 140, 30, 71]
       }
     },
-    "enabled": false,
     "next": ["U_PreCheckUseRecordBtn"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_PreCheckClickRecord2": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [1209, 250, 30, 71]
       }
     },
-    "enabled": false,
     "next": ["U_PreCheckUseRecordBtn"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_PreCheckClickRecord3": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [1209, 360, 30, 71]
       }
     },
-    "enabled": false,
     "next": ["U_PreCheckUseRecordBtn"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_PreCheckClickRecord4": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [1209, 465, 30, 71]
       }
     },
-    "enabled": false,
     "next": ["U_PreCheckUseRecordBtn"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_PreCheckClickRecord5": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [1209, 575, 30, 71]
       }
     },
-    "enabled": false,
     "next": ["U_PreCheckUseRecordBtn"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_PreCheckUseRecordBtn": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [707, 53, 72, 64]
       }
     },
-    "enabled": false,
     "next": ["U_PreConfirmSupply"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_PreConfirmSupply": {
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -1072,7 +1191,6 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "enabled": false,
     "next": ["U_IsPreSortieConfirm"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1081,10 +1199,14 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ReturnHomeAfterMarchDamage": {
-    "action": "Click",
-    "target": [1208, 449, 1, 1],
-    "next": ["U_ConfirmReturnHome"],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1208, 449, 1, 1]
+      }
+    },
     "pre_delay": 100,
+    "next": ["U_ConfirmReturnHome"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_SelectDamagedSword": {
@@ -1092,19 +1214,27 @@
     "on_error": ["U_CheckRepairScreen"]
   },
   "U_CheckRepairScreen": {
-    "recognition": "OCR",
-    "roi": [554, 56, 175, 49],
-    "expected": "修复",
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [554, 56, 175, 49],
+        "expected": "修复"
+      }
+    },
     "next": ["U_SelectDamagedSword"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_SortieAfterRepair": {
-    "recognition": "OCR",
-    "roi": [165, 163, 87, 52],
-    "expected": "出阵",
-    "action": "Click",
-    "next": ["U_VerifyAfterRepairMenuClosed"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [165, 163, 87, 52],
+        "expected": "出阵"
+      }
+    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["U_VerifyAfterRepairMenuClosed"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_TryClickRepair": {
@@ -1125,8 +1255,8 @@
         "threshold": [0.98]
       }
     },
-    "on_error": ["U_DirAfterRepair"],
-    "next": ["U_SortieAfterRepair"]
+    "next": ["U_SortieAfterRepair"],
+    "on_error": ["U_DirAfterRepair"]
   },
   "U_VerifyMenuClosed": {
     "recognition": {
@@ -1149,8 +1279,8 @@
         "expected": "目"
       }
     },
-    "on_error": ["U_ClickMenuForRepair"],
-    "next": ["U_ClickRepairInMenu"]
+    "next": ["U_ClickRepairInMenu"],
+    "on_error": ["U_ClickMenuForRepair"]
   },
   "U_VerifyRepairMenuClosed": {
     "recognition": {
@@ -1192,25 +1322,33 @@
         "expected": "目"
       }
     },
-    "action": "Click",
-    "next": ["U_PostClickMenuHub"],
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["U_PostClickMenuHub"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickRepairDone": {
-    "recognition": "OCR",
-    "roi": [1159, 588, 83, 44],
-    "expected": "修复",
-    "action": "Click",
-    "next": ["U_LogRepairDone"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1159, 588, 83, 44],
+        "expected": "修复"
+      }
+    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["U_LogRepairDone"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickRepairandStop": {
-    "recognition": "OCR",
-    "roi": [1159, 588, 83, 44],
-    "expected": "修复",
-    "action": "Click",
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1159, 588, 83, 44],
+        "expected": "修复"
+      }
+    },
+    "action": {"type": "Click"},
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_LogRepairDone": {
@@ -1223,16 +1361,16 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ConfirmRepair": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [1050, 580, 1, 1]
       }
     },
-    "enabled": false,
+    "pre_delay": 100,
     "post_delay": 200,
     "next": ["U_ReturnHome"],
-    "pre_delay": 100,
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ConfirmReturnHome": {
@@ -1243,23 +1381,27 @@
         "expected": "确认返回本丸"
       }
     },
-    "action": "Click",
-    "target": [490, 469, 1, 1],
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [490, 469, 1, 1]
+      }
+    },
+    "pre_delay": 100,
     "post_delay": 500,
-    "pre_delay": 100
+    "next": ["U_DetectWhereAmI"],
+    "on_error": ["U_DetectWhereAmI"]
   },
   "U_UseSpeedup": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [1050, 580, 1, 1]
       }
     },
-    "enabled": false,
-    "next": ["U_ConfirmRepair"],
     "pre_delay": 100,
+    "next": ["U_ConfirmRepair"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_VerifyAfterRepairMenuClosed": {
@@ -1319,11 +1461,12 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "on_error": ["U_ClickTeam"]
   },
   "U_StopOnDamagePopup": {
+    "enabled": false,
     "recognition": {
       "type": "TemplateMatch",
       "param": {
@@ -1339,16 +1482,19 @@
         "target": [788, 465, 1, 1]
       }
     },
-    "enabled": false,
     "pre_delay": 100,
     "next": ["U_LogStopOnDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_StopOnDamageText": {
-    "recognition": "OCR",
-    "roi": [465, 310, 46, 24],
-    "expected": "重伤",
     "enabled": false,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [465, 310, 46, 24],
+        "expected": "重伤"
+      }
+    },
     "pre_delay": 100,
     "next": ["U_LogStopOnDamageText"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1423,8 +1569,8 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_NavigateToHomeFromStop": {
-    "next": ["U_ClickMenuStop", "U_DetectWhereAmI"],
     "post_delay": 300,
+    "next": ["U_ClickMenuStop", "U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickMenuStop": {
@@ -1435,9 +1581,9 @@
         "expected": "目"
       }
     },
-    "action": "Click",
-    "next": ["U_ClickHomeStop"],
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["U_ClickHomeStop"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickHomeStop": {
@@ -1450,11 +1596,15 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "target": [1037, 169, 110, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1037, 169, 110, 44]
+      }
+    },
+    "pre_delay": 100,
     "next": ["U_VerifyHomeScreen"],
-    "on_error": ["U_ClickMenuStop"],
-    "pre_delay": 100
+    "on_error": ["U_ClickMenuStop"]
   },
   "U_VerifyHomeScreen": {
     "recognition": {
@@ -1470,10 +1620,14 @@
     "on_error": ["U_ClickHomeFallback"]
   },
   "U_ClickHomeFallback": {
-    "action": "Click",
-    "target": [185, 22, 15, 18],
-    "next": ["U_VerifyHomeScreen"],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [185, 22, 15, 18]
+      }
+    },
     "pre_delay": 100,
+    "next": ["U_VerifyHomeScreen"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_TerminateOnDamage": {
@@ -1493,12 +1647,13 @@
         "threshold": [0.95]
       }
     },
-    "action": "Click",
-    "next": ["U_DetectWhereAmI"],
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_FatigueDetect": {
+    "enabled": false,
     "recognition": {
       "type": "TemplateMatch",
       "param": {
@@ -1508,9 +1663,12 @@
         "threshold": [0.9]
       }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
-    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1551,224 +1709,336 @@
         "threshold": [0.85]
       }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R0C0": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [591, 184, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [591, 184, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R0C1": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [650, 184, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [650, 184, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R0C2": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [708, 184, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [708, 184, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R1C0": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [591, 278, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [591, 278, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R1C1": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [650, 278, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [650, 278, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R1C2": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [708, 278, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [708, 278, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R2C0": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [591, 372, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [591, 372, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R2C1": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [650, 372, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [650, 372, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R2C2": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [708, 372, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [708, 372, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R3C0": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [591, 466, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [591, 466, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R3C1": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [650, 466, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [650, 466, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R3C2": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [708, 466, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [708, 466, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R4C0": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [591, 560, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [591, 560, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R4C1": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [650, 560, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [650, 560, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R4C2": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [708, 560, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [708, 560, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R5C0": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [591, 654, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [591, 654, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R5C1": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [650, 654, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [650, 654, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R5C2": {
     "recognition": {
       "type": "ColorMatch",
-      "roi": [708, 654, 1, 1],
-      "upper": [184, 183, 183],
-      "lower": [182, 181, 181]
+      "param": {
+        "roi": [708, 654, 1, 1],
+        "upper": [184, 183, 183],
+        "lower": [182, 181, 181]
+      }
     },
-    "action": "Click",
-    "target": [763, 446, 48, 44],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [763, 446, 48, 44]
+      }
+    },
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   }

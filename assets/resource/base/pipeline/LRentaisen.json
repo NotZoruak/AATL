@@ -5,6 +5,7 @@
   },
   "LR_DetectWhereAmI": {
     "pre_delay": 0,
+    "timeout": 120000,
     "next": [
       "LR_IsAnnouncementPopup",
       "LR_IsTrainingLetter",
@@ -34,7 +35,6 @@
       "LR_LeaveTroopRecord",
       "LR_FallbackWait"
     ],
-    "timeout": 120000,
     "on_error": ["LR_RestartGame"]
   },
   "LR_IsAnnouncementPopup": {
@@ -47,9 +47,9 @@
         "threshold": [0.95]
       }
     },
-    "action": "Click",
-    "timeout": 3000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "timeout": 3000,
     "next": ["LR_IsAnnouncementPopup", "LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -62,8 +62,12 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "target": [1241, 37, 1, 1],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1241, 37, 1, 1]
+      }
+    },
     "pre_delay": 100,
     "post_delay": 500,
     "next": ["LR_DetectWhereAmI"],
@@ -79,52 +83,80 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "next": ["LR_LoginRewardClick2"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_LoginRewardClick2": {
-    "action": "Click",
-    "target": [1092, 318, 1, 1],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
     "pre_delay": 1000,
     "next": ["LR_LoginRewardClick3"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_LoginRewardClick3": {
-    "action": "Click",
-    "target": [1092, 318, 1, 1],
-    "timeout": 3000,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
     "pre_delay": 1000,
+    "timeout": 3000,
     "next": ["LR_IsLoginReward"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_HasExpeditionReturn_Exp": {
-    "recognition": "OCR",
-    "roi": [388, 59, 54, 25],
-    "expected": "经验",
-    "action": "Click",
-    "target": [388, 59, 54, 25],
-    "next": ["LR_DetectWhereAmI"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [388, 59, 54, 25],
+        "expected": "经验"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [388, 59, 54, 25]
+      }
+    },
     "pre_delay": 100,
+    "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_HasExpeditionReturn_Title": {
-    "recognition": "OCR",
-    "roi": [558, 1, 162, 52],
-    "expected": "远征结果",
-    "action": "Click",
-    "target": [388, 59, 54, 25],
-    "next": ["LR_DetectWhereAmI"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [558, 1, 162, 52],
+        "expected": "远征结果"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [388, 59, 54, 25]
+      }
+    },
     "pre_delay": 100,
+    "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_CheckHomeBrightness": {
-    "recognition": "ColorMatch",
-    "roi": [66, 58, 11, 13],
-    "upper": [40, 155, 30],
-    "lower": [23, 95, 15],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [66, 58, 11, 13],
+        "upper": [40, 155, 30],
+        "lower": [23, 95, 15]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["LR_IsHome", "LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -151,9 +183,9 @@
         "threshold": [0.98]
       }
     },
-    "action": "DoNothing",
-    "next": ["LR_ClickActivityInMenu"],
+    "action": {"type": "DoNothing"},
     "pre_delay": 100,
+    "next": ["LR_ClickActivityInMenu"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsGameIcon": {
@@ -166,9 +198,9 @@
         "threshold": [0.85]
       }
     },
-    "action": "Click",
-    "post_delay": 3000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "post_delay": 3000,
     "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -182,9 +214,9 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "post_delay": 3000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "post_delay": 3000,
     "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -198,20 +230,28 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "post_delay": 2000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "post_delay": 2000,
     "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsInGameUpdatePopup": {
-    "recognition": "OCR",
-    "roi": [498, 291, 77, 50],
-    "expected": "更新",
-    "action": "Click",
-    "target": [578, 440, 130, 55],
-    "post_delay": 2000,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [498, 291, 77, 50],
+        "expected": "更新"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [578, 440, 130, 55]
+      }
+    },
     "pre_delay": 100,
+    "post_delay": 2000,
     "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -225,61 +265,86 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "next": ["LR_DetectWhereAmI"],
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsConnectionInterrupted": {
-    "recognition": "OCR",
-    "roi": [588, 274, 96, 25],
-    "expected": "连接中断",
-    "action": "Click",
-    "target": [738, 449, 100, 39],
-    "next": ["LR_DetectWhereAmI"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [588, 274, 96, 25],
+        "expected": "连接中断"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [738, 449, 100, 39]
+      }
+    },
     "pre_delay": 100,
+    "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_FallbackWait": {
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
     "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsBattleResult_Exp": {
-    "recognition": "OCR",
-    "roi": [388, 59, 54, 25],
-    "expected": "经验",
-    "action": "Click",
-    "target": [388, 59, 54, 25],
-    "next": ["LR_DetectWhereAmI"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [388, 59, 54, 25],
+        "expected": "经验"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [388, 59, 54, 25]
+      }
+    },
     "pre_delay": 100,
+    "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsBattleResult_Title": {
-    "recognition": "OCR",
-    "roi": [558, 1, 162, 52],
-    "expected": "战斗结果",
-    "action": "Click",
-    "next": ["LR_DetectWhereAmI"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [558, 1, 162, 52],
+        "expected": "战斗结果"
+      }
+    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsSwordDropColor": {
-    "recognition": "ColorMatch",
-    "roi": [598, 543, 66, 1],
-    "upper": [96, 56, 10],
-    "lower": [88, 48, 2],
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [598, 543, 66, 1],
+        "upper": [96, 56, 10],
+        "lower": [88, 48, 2]
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
         "target": [1067, 558, 120, 79]
       }
     },
-    "next": ["LR_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsSwordSelect": {
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -287,7 +352,6 @@
         "expected": "刀剑男士选择"
       }
     },
-    "enabled": false,
     "next": ["LR_ClickCaptain1"],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -322,8 +386,8 @@
         "target": [8, 299, 32, 89]
       }
     },
-    "next": ["LR_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_VerifyEventPage": {
@@ -352,8 +416,8 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["LR_VerifyMenuClosed", "LR_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["LR_VerifyMenuClosed", "LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_VerifyMenuClosed": {
@@ -394,9 +458,9 @@
         "expected": "目"
       }
     },
-    "action": "Click",
-    "next": ["LR_PostClickMenuHub"],
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["LR_PostClickMenuHub"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickCaptain1": {
@@ -407,9 +471,9 @@
         "target": [828, 82, 68, 25]
       }
     },
+    "pre_delay": 100,
     "post_delay": 800,
     "next": ["LR_ClickCaptain2"],
-    "pre_delay": 100,
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickCaptain2": {
@@ -420,9 +484,9 @@
         "target": [752, 137, 97, 29]
       }
     },
+    "pre_delay": 100,
     "post_delay": 800,
     "next": ["LR_ClickCaptain3"],
-    "pre_delay": 100,
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickCaptain3": {
@@ -433,9 +497,9 @@
         "target": [407, 510, 90, 31]
       }
     },
+    "pre_delay": 100,
     "post_delay": 800,
     "next": ["LR_ClickCaptain4"],
-    "pre_delay": 100,
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickCaptain4": {
@@ -446,9 +510,9 @@
         "target": [965, 438, 91, 34]
       }
     },
+    "pre_delay": 100,
     "post_delay": 800,
     "next": ["LR_ClickCaptain5"],
-    "pre_delay": 100,
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickCaptain5": {
@@ -459,8 +523,8 @@
         "target": [592, 603, 107, 46]
       }
     },
-    "next": ["LR_DetectSortOrder"],
     "pre_delay": 100,
+    "next": ["LR_DetectSortOrder"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_DetectSortOrder": {
@@ -469,6 +533,7 @@
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickDescending": {
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -477,13 +542,13 @@
       }
     },
     "action": {"type": "Click"},
-    "enabled": false,
+    "pre_delay": 100,
     "post_delay": 800,
     "next": ["LR_DetectSortOrder"],
-    "pre_delay": 100,
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ConfirmSortAsc": {
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -497,9 +562,8 @@
         "target": [1189, 140, 37, 61]
       }
     },
-    "enabled": false,
-    "next": ["LR_AfterCaptain"],
     "pre_delay": 100,
+    "next": ["LR_AfterCaptain"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickTeam": {
@@ -509,9 +573,9 @@
         "target": [154, 93, 1, 1]
       }
     },
-    "next": ["LR_CaptainHub"],
     "pre_delay": 100,
     "post_delay": 500,
+    "next": ["LR_CaptainHub"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_TryClickHome": {
@@ -519,16 +583,16 @@
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickHomeInMenu": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [1037, 169, 110, 44]
       }
     },
-    "enabled": false,
+    "pre_delay": 100,
     "next": ["LR_VerifyHomeMenuClosed"],
-    "on_error": ["LR_DetectWhereAmI"],
-    "pre_delay": 100
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_VerifyHomeMenuClosed": {
     "recognition": {
@@ -553,8 +617,12 @@
         "threshold": [0.95]
       }
     },
-    "action": "Click",
-    "target": [63, 28, 17, 17],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [63, 28, 17, 17]
+      }
+    },
     "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -621,7 +689,7 @@
         "threshold": [0.98]
       }
     },
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
     "pre_delay": 100,
     "post_delay": 100,
     "next": ["LR_ActionSelectHub"],
@@ -635,7 +703,7 @@
         "expected": "完成|撤退"
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
     "next": ["LR_CheckMoreSpecialDrops"],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -656,9 +724,13 @@
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_HandleNoTicket": {
-    "recognition": "OCR",
-    "roi": [524, 196, 248, 67],
-    "expected": "通行令牌不足",
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 196, 248, 67],
+        "expected": "通行令牌不足"
+      }
+    },
     "next": ["LR_ReplenishOrTerminate"],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -678,10 +750,14 @@
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_ClickRestore3": {
-    "recognition": "OCR",
-    "roi": [580, 535, 115, 47],
-    "expected": "恢复3个",
-    "action": "Click",
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [580, 535, 115, 47],
+        "expected": "恢复3个"
+      }
+    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "next": ["LR_ClickReplenishConfirm"],
     "on_error": ["LR_ClickRestore3"]
@@ -698,7 +774,7 @@
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_TerminateNoTicket": {
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
     "next": [],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -722,14 +798,18 @@
       }
     },
     "action": {"type": "Click"},
+    "pre_delay": 100,
     "next": ["LR_PostClickMenuHub"],
-    "on_error": ["LR_DetectWhereAmI"],
-    "pre_delay": 100
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsPreSortieConfirm": {
-    "recognition": "OCR",
-    "roi": [1156, 584, 96, 47],
-    "expected": "即刻",
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1156, 584, 96, 47],
+        "expected": "即刻"
+      }
+    },
     "next": ["LR_ClickSortieNow"],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -740,8 +820,8 @@
         "target": [1204, 629, 1, 1]
       }
     },
-    "next": ["LR_PostSortieHub"],
     "pre_delay": 100,
+    "next": ["LR_PostSortieHub"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_CaptainHub": {
@@ -756,21 +836,25 @@
         "target": [1024, 140, 30, 50]
       }
     },
-    "next": ["LR_DetectWhereAmI"],
-    "post_delay": 1000,
     "pre_delay": 100,
+    "post_delay": 1000,
+    "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_TerminateRound": {
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
     "next": [],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsTicketPopup": {
-    "recognition": "OCR",
-    "roi": [524, 196, 248, 67],
-    "expected": "通行令牌不足",
-    "action": "DoNothing",
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 196, 248, 67],
+        "expected": "通行令牌不足"
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["LR_HandleTicketPopup"],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -789,8 +873,8 @@
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsSwordDropAfter": {
-    "recognition": "ColorMatch",
-    "action": "Click",
+    "recognition": {"type": "ColorMatch"},
+    "action": {"type": "Click"},
     "next": ["LR_WaitForEventPage"],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -804,8 +888,8 @@
         "threshold": [0.98]
       }
     },
+    "action": {"type": "DoNothing"},
     "timeout": 10000,
-    "action": "DoNothing",
     "next": ["LR_TerminateRound"],
     "on_error": ["LR_DetectWhereAmI"]
   },
@@ -899,8 +983,12 @@
         "expected": "战斗"
       }
     },
-    "action": "Click",
-    "target": [1032, 581, 123, 62],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1032, 581, 123, 62]
+      }
+    },
     "pre_delay": 100,
     "post_delay": 100,
     "next": ["LR_DetectWhereAmI"],
@@ -964,9 +1052,9 @@
       }
     },
     "action": {"type": "Click"},
+    "pre_delay": 100,
     "next": ["LR_DetectWhereAmI"],
-    "on_error": ["LR_DetectWhereAmI"],
-    "pre_delay": 100
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_NavigateToActivity": {
     "next": ["LR_ClickMenu"],
@@ -979,8 +1067,8 @@
         "target": [782, 465, 1, 1]
       }
     },
-    "next": ["LR_TerminateNoTicket"],
     "pre_delay": 100,
+    "next": ["LR_TerminateNoTicket"],
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsTrainingLetter": {
@@ -993,9 +1081,9 @@
         "threshold": [0.95]
       }
     },
-    "action": "Click",
-    "next": ["LR_DetectWhereAmI"],
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   }
 }

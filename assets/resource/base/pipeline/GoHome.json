@@ -5,6 +5,7 @@
   },
   "G_DetectWhereAmI": {
     "pre_delay": 0,
+    "timeout": 120000,
     "next": [
       "G_IsAnnouncementPopup",
       "G_IsTrainingLetter",
@@ -21,7 +22,6 @@
       "G_LeaveTroopRecord",
       "G_FallbackWait"
     ],
-    "timeout": 120000,
     "on_error": ["G_RestartGame"]
   },
   "G_IsMenuDirectory": {
@@ -46,9 +46,9 @@
         "threshold": [0.95]
       }
     },
-    "action": "Click",
-    "timeout": 3000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "timeout": 3000,
     "next": ["G_IsAnnouncementPopup", "G_DetectWhereAmI"],
     "on_error": ["G_DetectWhereAmI"]
   },
@@ -62,31 +62,43 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "next": ["G_LoginRewardClick2"],
     "on_error": ["G_DetectWhereAmI"]
   },
   "G_LoginRewardClick2": {
-    "action": "Click",
-    "target": [1092, 318, 1, 1],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
     "pre_delay": 1000,
     "next": ["G_LoginRewardClick3"],
     "on_error": ["G_DetectWhereAmI"]
   },
   "G_LoginRewardClick3": {
-    "action": "Click",
-    "target": [1092, 318, 1, 1],
-    "timeout": 3000,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
     "pre_delay": 1000,
+    "timeout": 3000,
     "next": ["G_IsLoginReward"],
     "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsCloseablePage": {
-    "recognition": "OCR",
-    "roi": [1230, 11, 41, 38],
-    "expected": "×",
-    "action": "Click",
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1230, 11, 41, 38],
+        "expected": "×"
+      }
+    },
+    "action": {"type": "Click"},
     "next": ["G_ClickDirectoryTop"],
     "on_error": ["G_DetectWhereAmI"]
   },
@@ -136,7 +148,7 @@
         "threshold": [0.98]
       }
     },
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
     "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsGameIcon": {
@@ -149,7 +161,7 @@
         "threshold": [0.85]
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
     "post_delay": 3000,
     "next": ["G_DetectWhereAmI"],
     "on_error": ["G_DetectWhereAmI"]
@@ -164,7 +176,7 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
     "post_delay": 3000,
     "next": ["G_DetectWhereAmI"],
     "on_error": ["G_DetectWhereAmI"]
@@ -179,19 +191,27 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
     "post_delay": 2000,
     "next": ["G_DetectWhereAmI"],
     "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsInGameUpdatePopup": {
-    "recognition": "OCR",
-    "roi": [498, 291, 77, 50],
-    "expected": "更新",
-    "action": "Click",
-    "target": [578, 440, 130, 55],
-    "post_delay": 2000,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [498, 291, 77, 50],
+        "expected": "更新"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [578, 440, 130, 55]
+      }
+    },
     "pre_delay": 100,
+    "post_delay": 2000,
     "next": ["G_DetectWhereAmI"],
     "on_error": ["G_DetectWhereAmI"]
   },
@@ -205,9 +225,9 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "next": ["G_DetectWhereAmI"],
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["G_DetectWhereAmI"],
     "on_error": ["G_DetectWhereAmI"]
   },
   "G_LeaveTroopRecord": {
@@ -220,13 +240,17 @@
         "threshold": [0.95]
       }
     },
-    "action": "Click",
-    "target": [63, 28, 17, 17],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [63, 28, 17, 17]
+      }
+    },
     "next": ["G_DetectWhereAmI"],
     "on_error": ["G_DetectWhereAmI"]
   },
   "G_FallbackWait": {
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
     "next": ["G_DetectWhereAmI"],
     "on_error": ["G_DetectWhereAmI"]
   },
@@ -247,9 +271,9 @@
         "threshold": [0.95]
       }
     },
-    "action": "Click",
-    "next": ["G_DetectWhereAmI"],
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["G_DetectWhereAmI"],
     "on_error": ["G_DetectWhereAmI"]
   }
 }

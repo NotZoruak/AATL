@@ -162,6 +162,7 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
                     Name = saved.Name,
                     Index = saved.Index,
                     Data = saved.Data != null ? new Dictionary<string, string?>(saved.Data) : null,
+                    SubOptions = saved.SubOptions != null ? CloneSubOptions(saved.SubOptions) : null,
                     SelectedCases = saved.SelectedCases != null ? new List<string>(saved.SelectedCases) : null,
                 };
                 SetDefaultOptionValue(maaInterface, savedOption);

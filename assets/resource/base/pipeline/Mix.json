@@ -5,6 +5,7 @@
   },
   "M_DetectWhereAmI": {
     "pre_delay": 0,
+    "timeout": 120000,
     "next": [
       "M_IsAnnouncementPopup",
       "M_IsTrainingLetter",
@@ -27,15 +28,18 @@
       "M_IsInGameUpdatePopup",
       "M_FallbackWait"
     ],
-    "timeout": 120000,
     "on_error": ["M_RestartGame"]
   },
   "M_DetectEmptyMailbox": {
-    "recognition": "ColorMatch",
-    "roi": [142, 178, 82, 75],
-    "upper": [216, 214, 207],
-    "lower": [206, 204, 197],
-    "count": 6150,
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [142, 178, 82, 75],
+        "upper": [216, 214, 207],
+        "lower": [206, 204, 197],
+        "count": 6150
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
@@ -57,29 +61,49 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_HasExpeditionReturn_Exp": {
-    "recognition": "OCR",
-    "roi": [388, 59, 54, 25],
-    "expected": "经验",
-    "action": "Click",
-    "target": [388, 59, 54, 25],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [388, 59, 54, 25],
+        "expected": "经验"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [388, 59, 54, 25]
+      }
+    },
     "next": ["M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_HasExpeditionReturn_Title": {
-    "recognition": "OCR",
-    "roi": [558, 1, 162, 52],
-    "expected": "远征结果",
-    "action": "Click",
-    "target": [388, 59, 54, 25],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [558, 1, 162, 52],
+        "expected": "远征结果"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [388, 59, 54, 25]
+      }
+    },
     "next": ["M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckHomeBrightness": {
-    "recognition": "ColorMatch",
-    "roi": [66, 58, 11, 13],
-    "upper": [40, 155, 30],
-    "lower": [23, 95, 15],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [66, 58, 11, 13],
+        "upper": [40, 155, 30],
+        "lower": [23, 95, 15]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_DetectHome", "M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
   },
@@ -146,16 +170,20 @@
         "expected": "隐藏无法习合的刀剑"
       }
     },
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
     "next": ["M_HideUnmixable"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_HideUnmixable": {
-    "recognition": "ColorMatch",
-    "roi": [137, 106, 2, 4],
-    "upper": [180, 35, 34],
-    "lower": [176, 31, 30],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [137, 106, 2, 4],
+        "upper": [180, 35, 34],
+        "lower": [176, 31, 30]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_ClickFilter"],
     "on_error": ["M_ClickHideUnmixable"]
   },
@@ -187,7 +215,7 @@
         "expected": "显示保护中的刀剑男士"
       }
     },
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
     "pre_delay": 500,
     "post_delay": 500,
     "next": ["M_CheckSubLevel", "M_ClickSelectAll"],
@@ -195,7 +223,6 @@
   },
   "M_CheckSubLevel": {
     "enabled": false,
-    "timeout": 1000,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -203,9 +230,10 @@
         "expected": ["7", "8", "9", "10"]
       }
     },
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
     "pre_delay": 300,
     "post_delay": 500,
+    "timeout": 1000,
     "next": ["M_ExitNoMaterial"],
     "on_error": ["M_ClickSelectAll"]
   },
@@ -222,10 +250,14 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckAndMix": {
-    "recognition": "ColorMatch",
-    "roi": [1166, 586, 71, 19],
-    "upper": [25, 86, 182],
-    "lower": [21, 82, 178],
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [1166, 586, 71, 19],
+        "upper": [25, 86, 182],
+        "lower": [21, 82, 178]
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
@@ -278,20 +310,28 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectEmpty1": {
-    "recognition": "ColorMatch",
-    "roi": [88, 127, 7, 8],
-    "upper": [222, 222, 222],
-    "lower": [218, 218, 218],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [88, 127, 7, 8],
+        "upper": [222, 222, 222],
+        "lower": [218, 218, 218]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_GoToMailboxFromMix"],
     "on_error": ["M_DetectLocked1"]
   },
   "M_DetectLocked1": {
-    "recognition": "ColorMatch",
-    "roi": [88, 127, 7, 8],
-    "upper": [214, 175, 33],
-    "lower": [210, 171, 29],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [88, 127, 7, 8],
+        "upper": [214, 175, 33],
+        "lower": [210, 171, 29]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_ClickMixBtn1"],
     "on_error": ["M_CheckLevel1"]
   },
@@ -307,7 +347,6 @@
   },
   "M_CheckLevel1": {
     "enabled": false,
-    "timeout": 1000,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -315,7 +354,8 @@
         "expected": ["7", "8", "9", "10"]
       }
     },
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
+    "timeout": 1000,
     "next": ["M_CheckPos2"],
     "on_error": ["M_ClickMixBtn1"]
   },
@@ -335,20 +375,28 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectEmpty2": {
-    "recognition": "ColorMatch",
-    "roi": [88, 228, 7, 8],
-    "upper": [222, 222, 222],
-    "lower": [218, 218, 218],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [88, 228, 7, 8],
+        "upper": [222, 222, 222],
+        "lower": [218, 218, 218]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_GoToMailboxFromMix"],
     "on_error": ["M_DetectLocked2"]
   },
   "M_DetectLocked2": {
-    "recognition": "ColorMatch",
-    "roi": [88, 228, 7, 8],
-    "upper": [214, 175, 33],
-    "lower": [210, 171, 29],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [88, 228, 7, 8],
+        "upper": [214, 175, 33],
+        "lower": [210, 171, 29]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_ClickMixBtn2"],
     "on_error": ["M_CheckLevel2"]
   },
@@ -364,7 +412,6 @@
   },
   "M_CheckLevel2": {
     "enabled": false,
-    "timeout": 1000,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -372,7 +419,8 @@
         "expected": ["7", "8", "9", "10"]
       }
     },
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
+    "timeout": 1000,
     "next": ["M_CheckPos3"],
     "on_error": ["M_ClickMixBtn2"]
   },
@@ -392,20 +440,28 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectEmpty3": {
-    "recognition": "ColorMatch",
-    "roi": [88, 329, 7, 8],
-    "upper": [222, 222, 222],
-    "lower": [218, 218, 218],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [88, 329, 7, 8],
+        "upper": [222, 222, 222],
+        "lower": [218, 218, 218]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_GoToMailboxFromMix"],
     "on_error": ["M_DetectLocked3"]
   },
   "M_DetectLocked3": {
-    "recognition": "ColorMatch",
-    "roi": [88, 329, 7, 8],
-    "upper": [214, 175, 33],
-    "lower": [210, 171, 29],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [88, 329, 7, 8],
+        "upper": [214, 175, 33],
+        "lower": [210, 171, 29]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_ClickMixBtn3"],
     "on_error": ["M_CheckLevel3"]
   },
@@ -421,7 +477,6 @@
   },
   "M_CheckLevel3": {
     "enabled": false,
-    "timeout": 1000,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -429,7 +484,8 @@
         "expected": ["7", "8", "9", "10"]
       }
     },
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
+    "timeout": 1000,
     "next": ["M_CheckPos4"],
     "on_error": ["M_ClickMixBtn3"]
   },
@@ -449,20 +505,28 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectEmpty4": {
-    "recognition": "ColorMatch",
-    "roi": [88, 430, 7, 8],
-    "upper": [222, 222, 222],
-    "lower": [218, 218, 218],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [88, 430, 7, 8],
+        "upper": [222, 222, 222],
+        "lower": [218, 218, 218]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_GoToMailboxFromMix"],
     "on_error": ["M_DetectLocked4"]
   },
   "M_DetectLocked4": {
-    "recognition": "ColorMatch",
-    "roi": [88, 430, 7, 8],
-    "upper": [214, 175, 33],
-    "lower": [210, 171, 29],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [88, 430, 7, 8],
+        "upper": [214, 175, 33],
+        "lower": [210, 171, 29]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_ClickMixBtn4"],
     "on_error": ["M_CheckLevel4"]
   },
@@ -478,7 +542,6 @@
   },
   "M_CheckLevel4": {
     "enabled": false,
-    "timeout": 1000,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -486,7 +549,8 @@
         "expected": ["7", "8", "9", "10"]
       }
     },
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
+    "timeout": 1000,
     "next": ["M_CheckPos5"],
     "on_error": ["M_ClickMixBtn4"]
   },
@@ -506,20 +570,28 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectEmpty5": {
-    "recognition": "ColorMatch",
-    "roi": [88, 531, 7, 8],
-    "upper": [222, 222, 222],
-    "lower": [218, 218, 218],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [88, 531, 7, 8],
+        "upper": [222, 222, 222],
+        "lower": [218, 218, 218]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_GoToMailboxFromMix"],
     "on_error": ["M_DetectLocked5"]
   },
   "M_DetectLocked5": {
-    "recognition": "ColorMatch",
-    "roi": [88, 531, 7, 8],
-    "upper": [214, 175, 33],
-    "lower": [210, 171, 29],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [88, 531, 7, 8],
+        "upper": [214, 175, 33],
+        "lower": [210, 171, 29]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_ClickMixBtn5"],
     "on_error": ["M_CheckLevel5"]
   },
@@ -535,7 +607,6 @@
   },
   "M_CheckLevel5": {
     "enabled": false,
-    "timeout": 1000,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -543,7 +614,8 @@
         "expected": ["7", "8", "9", "10"]
       }
     },
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
+    "timeout": 1000,
     "next": ["M_CheckPos6"],
     "on_error": ["M_ClickMixBtn5"]
   },
@@ -563,20 +635,28 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectEmpty6": {
-    "recognition": "ColorMatch",
-    "roi": [88, 632, 7, 8],
-    "upper": [222, 222, 222],
-    "lower": [218, 218, 218],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [88, 632, 7, 8],
+        "upper": [222, 222, 222],
+        "lower": [218, 218, 218]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_GoToMailboxFromMix"],
     "on_error": ["M_DetectLocked6"]
   },
   "M_DetectLocked6": {
-    "recognition": "ColorMatch",
-    "roi": [88, 632, 7, 8],
-    "upper": [214, 175, 33],
-    "lower": [210, 171, 29],
-    "action": "DoNothing",
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [88, 632, 7, 8],
+        "upper": [214, 175, 33],
+        "lower": [210, 171, 29]
+      }
+    },
+    "action": {"type": "DoNothing"},
     "next": ["M_ClickMixBtn6"],
     "on_error": ["M_CheckLevel6"]
   },
@@ -592,7 +672,6 @@
   },
   "M_CheckLevel6": {
     "enabled": false,
-    "timeout": 1000,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -600,7 +679,8 @@
         "expected": ["7", "8", "9", "10"]
       }
     },
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
+    "timeout": 1000,
     "next": [],
     "on_error": ["M_ClickMixBtn6"]
   },
@@ -628,7 +708,6 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_VerifyMenuFromMix": {
-    "pre_delay": 500,
     "recognition": {
       "type": "TemplateMatch",
       "param": {
@@ -644,6 +723,7 @@
         "target": [999, 372, 43, 45]
       }
     },
+    "pre_delay": 500,
     "post_delay": 1000,
     "next": ["M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
@@ -752,7 +832,7 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_FallbackWait": {
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
     "next": ["M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
   },
@@ -771,13 +851,13 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword1": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [235, 217, 83, 27]
       }
     },
-    "enabled": false,
     "next": [
       "M_FilterSword2",
       "M_FilterSword3",
@@ -790,13 +870,13 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword2": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [419, 218, 66, 30]
       }
     },
-    "enabled": false,
     "next": [
       "M_FilterSword3",
       "M_FilterSword4",
@@ -808,57 +888,57 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword3": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [596, 218, 56, 27]
       }
     },
-    "enabled": false,
     "next": ["M_FilterSword4", "M_FilterSword5", "M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword4": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [772, 215, 63, 32]
       }
     },
-    "enabled": false,
     "next": ["M_FilterSword5", "M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword5": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [241, 289, 74, 33]
       }
     },
-    "enabled": false,
     "next": ["M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword6": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [423, 290, 52, 31]
       }
     },
-    "enabled": false,
     "next": ["M_FilterSword7", "M_FilterConfirm"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword7": {
+    "enabled": false,
     "action": {
       "type": "Click",
       "param": {
         "target": [588, 287, 68, 34]
       }
     },
-    "enabled": false,
     "next": ["M_FilterConfirm"],
     "on_error": ["M_DetectWhereAmI"]
   },
@@ -884,7 +964,7 @@
         "expected": "隐藏无法习合的刀剑"
       }
     },
-    "action": "DoNothing",
+    "action": {"type": "DoNothing"},
     "next": ["M_CheckPos1"],
     "on_error": ["M_DetectWhereAmI"]
   },
@@ -998,9 +1078,9 @@
         "threshold": [0.95]
       }
     },
-    "action": "Click",
-    "timeout": 3000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "timeout": 3000,
     "next": ["M_IsAnnouncementPopup", "M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
   },
@@ -1014,23 +1094,31 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "next": ["M_LoginRewardClick2"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_LoginRewardClick2": {
-    "action": "Click",
-    "target": [1092, 318, 1, 1],
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
     "pre_delay": 500,
     "next": ["M_LoginRewardClick3"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_LoginRewardClick3": {
-    "action": "Click",
-    "target": [1092, 318, 1, 1],
-    "timeout": 3000,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
     "pre_delay": 500,
+    "timeout": 3000,
     "next": ["M_IsLoginReward"],
     "on_error": ["M_DetectWhereAmI"]
   },
@@ -1044,7 +1132,7 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
+    "action": {"type": "Click"},
     "pre_delay": 100,
     "next": ["M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
@@ -1059,9 +1147,9 @@
         "threshold": [0.85]
       }
     },
-    "action": "Click",
-    "post_delay": 3000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "post_delay": 3000,
     "next": ["M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
   },
@@ -1075,9 +1163,9 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "post_delay": 3000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "post_delay": 3000,
     "next": ["M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
   },
@@ -1091,20 +1179,28 @@
         "threshold": [0.98]
       }
     },
-    "action": "Click",
-    "post_delay": 2000,
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "post_delay": 2000,
     "next": ["M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_IsInGameUpdatePopup": {
-    "recognition": "OCR",
-    "roi": [498, 291, 77, 50],
-    "expected": "更新",
-    "action": "Click",
-    "target": [578, 440, 130, 55],
-    "post_delay": 2000,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [498, 291, 77, 50],
+        "expected": "更新"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [578, 440, 130, 55]
+      }
+    },
     "pre_delay": 100,
+    "post_delay": 2000,
     "next": ["M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
   },
@@ -1125,9 +1221,9 @@
         "threshold": [0.95]
       }
     },
-    "action": "Click",
-    "next": ["M_DetectWhereAmI"],
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["M_DetectWhereAmI"],
     "on_error": ["M_DetectWhereAmI"]
   }
 }

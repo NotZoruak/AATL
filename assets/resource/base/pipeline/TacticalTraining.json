@@ -5,6 +5,7 @@
   },
   "TT_DetectWhereAmI": {
     "pre_delay": 0,
+    "timeout": 120000,
     "next": [
       "TT_IsAnnouncementPopup",
       "TT_IsLoginReward",
@@ -28,7 +29,6 @@
       "TT_IsInternalReport",
       "TT_FallbackWait"
     ],
-    "timeout": 120000,
     "on_error": ["TT_RestartGame"]
   },
   "TT_IsAnnouncementPopup": {
@@ -42,8 +42,8 @@
       }
     },
     "action": {"type": "Click"},
-    "timeout": 3000,
     "pre_delay": 100,
+    "timeout": 3000,
     "next": ["TT_IsAnnouncementPopup", "TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
@@ -80,8 +80,8 @@
         "target": [1092, 318, 1, 1]
       }
     },
-    "timeout": 3000,
     "pre_delay": 1000,
+    "timeout": 3000,
     "next": ["TT_IsLoginReward"],
     "on_error": ["TT_DetectWhereAmI"]
   },
@@ -111,8 +111,8 @@
       }
     },
     "action": {"type": "Click"},
-    "post_delay": 3000,
     "pre_delay": 100,
+    "post_delay": 3000,
     "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
@@ -127,8 +127,8 @@
       }
     },
     "action": {"type": "Click"},
-    "post_delay": 3000,
     "pre_delay": 100,
+    "post_delay": 3000,
     "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
@@ -143,8 +143,8 @@
       }
     },
     "action": {"type": "Click"},
-    "post_delay": 2000,
     "pre_delay": 100,
+    "post_delay": 2000,
     "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
@@ -162,8 +162,8 @@
         "target": [578, 440, 130, 55]
       }
     },
-    "post_delay": 2000,
     "pre_delay": 100,
+    "post_delay": 2000,
     "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
@@ -193,8 +193,8 @@
         "target": [388, 59, 54, 25]
       }
     },
-    "next": ["TT_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_HasExpeditionReturn_Title": {
@@ -211,8 +211,8 @@
         "target": [388, 59, 54, 25]
       }
     },
-    "next": ["TT_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckHomeBrightness": {
@@ -255,8 +255,8 @@
         "target": [738, 449, 100, 39]
       }
     },
-    "next": ["TT_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsBattleResult_Exp": {
@@ -273,17 +273,21 @@
         "target": [388, 59, 54, 25]
       }
     },
-    "next": ["TT_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsBattleResult_Title": {
-    "recognition": "OCR",
-    "roi": [558, 1, 162, 52],
-    "expected": "战斗结果",
-    "action": "Click",
-    "next": ["TT_DetectWhereAmI"],
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [558, 1, 162, 52],
+        "expected": "战斗结果"
+      }
+    },
+    "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsSwordDropColor": {
@@ -301,9 +305,9 @@
         "target": [1067, 558, 120, 79]
       }
     },
-    "next": ["TT_CheckRoundComplete", "TT_DetectWhereAmI"],
     "pre_delay": 100,
     "post_delay": 1000,
+    "next": ["TT_CheckRoundComplete", "TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckRoundComplete": {
@@ -339,11 +343,12 @@
         "target": [8, 299, 32, 89]
       }
     },
-    "next": ["TT_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsSwordSelect": {
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -351,7 +356,6 @@
         "expected": "刀剑男士选择"
       }
     },
-    "enabled": false,
     "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
@@ -542,9 +546,9 @@
       }
     },
     "action": {"type": "Click"},
+    "pre_delay": 100,
     "next": ["TT_PostClickMenuHub"],
-    "on_error": ["TT_DetectWhereAmI"],
-    "pre_delay": 100
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_PostClickMenuHub": {
     "next": ["TT_IsMenuDirectory", "TT_CheckNavDirForRetry", "TT_DetectWhereAmI"],
@@ -572,9 +576,9 @@
       }
     },
     "action": {"type": "Click"},
+    "pre_delay": 100,
     "next": ["TT_DetectWhereAmI"],
-    "on_error": ["TT_DetectWhereAmI"],
-    "pre_delay": 100
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckNavDirForRetry": {
     "recognition": {
@@ -585,8 +589,8 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["TT_PostClickMenuHub"],
     "pre_delay": 100,
+    "next": ["TT_PostClickMenuHub"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsTeamSelect": {
@@ -607,9 +611,9 @@
         "target": [154, 93, 1, 1]
       }
     },
-    "next": ["TT_CheckCaptainColor"],
     "pre_delay": 100,
     "post_delay": 800,
+    "next": ["TT_CheckCaptainColor"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CaptainHub": {
@@ -650,8 +654,8 @@
         "target": [1204, 629, 1, 1]
       }
     },
-    "next": ["TT_DetectWhereAmI"],
     "pre_delay": 100,
+    "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckCaptainColor": {
@@ -665,8 +669,8 @@
         "target": [154, 93, 1, 1]
       }
     },
-    "next": ["TT_CheckCaptainColorTry1"],
     "pre_delay": 100,
+    "next": ["TT_CheckCaptainColorTry1"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckCaptainColorTry1": {
@@ -680,8 +684,8 @@
         "target": [282, 94, 1, 1]
       }
     },
-    "next": ["TT_CheckCaptainColorTry2"],
     "pre_delay": 100,
+    "next": ["TT_CheckCaptainColorTry2"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckCaptainColorTry2": {
@@ -695,8 +699,8 @@
         "target": [398, 91, 1, 1]
       }
     },
-    "next": ["TT_CheckCaptainColorTry3"],
     "pre_delay": 100,
+    "next": ["TT_CheckCaptainColorTry3"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckCaptainColorTry3": {
@@ -710,8 +714,8 @@
         "target": [519, 89, 1, 1]
       }
     },
-    "next": ["TT_CheckCaptainColorTry4"],
     "pre_delay": 100,
+    "next": ["TT_CheckCaptainColorTry4"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckCaptainColorTry4": {
@@ -725,8 +729,8 @@
         "target": [635, 91, 1, 1]
       }
     },
-    "next": ["TT_CheckCaptainColorTry5"],
     "pre_delay": 100,
+    "next": ["TT_CheckCaptainColorTry5"],
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckCaptainColorTry5": {
