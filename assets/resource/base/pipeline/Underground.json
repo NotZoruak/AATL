@@ -6,13 +6,13 @@
   "U_DetectWhereAmI": {
     "pre_delay": 0,
     "next": [
+      "U_IsMarching",
       "U_IsAnnouncementPopup",
       "U_IsTrainingLetter",
       "U_IsLoginReward",
       "U_IsTutorial",
       "U_HasExpeditionReturn_Exp",
       "U_HasExpeditionReturn_Title",
-      "U_IsMarching",
       "U_IsBattleResult_Exp",
       "U_IsBattleResult_Title",
       "U_IsSwordDropColor",
@@ -104,7 +104,7 @@
     "roi": [388, 59, 54, 25],
     "expected": "经验",
     "action": "Click",
-    "target": [388, 59, 54, 25],
+    "target": [947, 533, 67, 75],
     "next": ["U_DetectWhereAmI"],
     "pre_delay": 100,
     "on_error": ["U_DetectWhereAmI"]
@@ -114,7 +114,7 @@
     "roi": [558, 1, 162, 52],
     "expected": "远征结果",
     "action": "Click",
-    "target": [388, 59, 54, 25],
+    "target": [947, 533, 67, 75],
     "next": ["U_DetectWhereAmI"],
     "pre_delay": 100,
     "on_error": ["U_DetectWhereAmI"]
@@ -137,7 +137,7 @@
     "roi": [388, 59, 54, 25],
     "expected": "经验",
     "action": "Click",
-    "target": [388, 59, 54, 25],
+    "target": [947, 533, 67, 75],
     "next": ["U_DetectWhereAmI"],
     "pre_delay": 100,
     "on_error": ["U_DetectWhereAmI"]
@@ -147,6 +147,7 @@
     "roi": [558, 1, 162, 52],
     "expected": "战斗结果",
     "action": "Click",
+    "target": [947, 533, 67, 75],
     "next": ["U_DetectWhereAmI"],
     "pre_delay": 100,
     "on_error": ["U_DetectWhereAmI"]
@@ -316,7 +317,7 @@
         "target": [1141, 614, 120, 49]
       }
     },
-    "next": ["U_IsTeamSelect","U_DetectWhereAmI"],
+    "next": ["U_IsTeamSelect", "U_DetectWhereAmI"],
     "pre_delay": 200,
     "post_delay": 500,
     "on_error": ["U_DetectWhereAmI"]
@@ -1552,7 +1553,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1565,7 +1565,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1578,7 +1577,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1591,7 +1589,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1604,7 +1601,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1617,7 +1613,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1630,7 +1625,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1643,7 +1637,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1656,7 +1649,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1669,7 +1661,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1682,7 +1673,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1695,7 +1685,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1708,7 +1697,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1721,7 +1709,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1734,7 +1721,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1747,7 +1733,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1760,7 +1745,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1773,7 +1757,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1786,7 +1769,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   }

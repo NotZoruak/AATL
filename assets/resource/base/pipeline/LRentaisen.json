@@ -1,4 +1,42 @@
 {
+  "LRentaisen": {
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
+  },
+  "LR_DetectWhereAmI": {
+    "pre_delay": 0,
+    "next": [
+      "LR_IsAnnouncementPopup",
+      "LR_IsTrainingLetter",
+      "LR_IsSupplyPopup",
+      "LR_IsLoginReward",
+      "LR_HasExpeditionReturn_Exp",
+      "LR_HasExpeditionReturn_Title",
+      "LR_IsSortie",
+      "LR_IsEventPage",
+      "LR_CheckHomeBrightness",
+      "LR_IsMenuDirectory",
+      "LR_IsTicketPopup",
+      "LR_IsReplenishDone",
+      "LR_IsSwordSelect",
+      "LR_IsTeamSelect",
+      "LR_IsBattleResult_Exp",
+      "LR_IsBattleResult_Title",
+      "LR_IsActionSelect",
+      "LR_IsSwordDropColor",
+      "LR_IsSpecialDrop",
+      "LR_IsGameIcon",
+      "LR_IsLoginButton",
+      "LR_IsGameUpdatePopup",
+      "LR_IsInGameUpdatePopup",
+      "LR_IsInternalReport",
+      "LR_IsConnectionInterrupted",
+      "LR_LeaveTroopRecord",
+      "LR_FallbackWait"
+    ],
+    "timeout": 120000,
+    "on_error": ["LR_RestartGame"]
+  },
   "LR_IsAnnouncementPopup": {
     "recognition": {
       "type": "TemplateMatch",
@@ -473,7 +511,7 @@
     },
     "next": ["LR_CaptainHub"],
     "pre_delay": 100,
-    "post_delay": 800,
+    "post_delay": 500,
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_TryClickHome": {
@@ -505,10 +543,6 @@
     "next": ["LR_TryClickHome", "LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
-  "LRentaisen": {
-    "next": ["LR_DetectWhereAmI"],
-    "on_error": ["LR_DetectWhereAmI"]
-  },
   "LR_LeaveTroopRecord": {
     "recognition": {
       "type": "TemplateMatch",
@@ -523,40 +557,6 @@
     "target": [63, 28, 17, 17],
     "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
-  },
-  "LR_DetectWhereAmI": {
-    "pre_delay": 0,
-    "next": [
-      "LR_IsAnnouncementPopup",
-      "LR_IsTrainingLetter",
-      "LR_IsSupplyPopup",
-      "LR_IsLoginReward",
-      "LR_HasExpeditionReturn_Exp",
-      "LR_HasExpeditionReturn_Title",
-      "LR_IsSortie",
-      "LR_IsEventPage",
-      "LR_CheckHomeBrightness",
-      "LR_IsMenuDirectory",
-      "LR_IsTicketPopup",
-      "LR_IsReplenishDone",
-      "LR_IsSwordSelect",
-      "LR_IsTeamSelect",
-      "LR_IsBattleResult_Exp",
-      "LR_IsBattleResult_Title",
-      "LR_IsActionSelect",
-      "LR_IsSwordDropColor",
-      "LR_IsSpecialDrop",
-      "LR_IsGameIcon",
-      "LR_IsLoginButton",
-      "LR_IsGameUpdatePopup",
-      "LR_IsInGameUpdatePopup",
-      "LR_IsInternalReport",
-      "LR_IsConnectionInterrupted",
-      "LR_LeaveTroopRecord",
-      "LR_FallbackWait"
-    ],
-    "timeout": 120000,
-    "on_error": ["LR_RestartGame"]
   },
   "LR_IsEventPage": {
     "recognition": {

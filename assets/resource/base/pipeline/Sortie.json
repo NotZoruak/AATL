@@ -3,29 +3,15 @@
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_LeaveTroopRecord": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [577, 8, 130, 35],
-        "template": "Common/部队记录页面.png",
-        "green_mask": true,
-        "threshold": [0.95]
-      }
-    },
-    "action": "Click",
-    "target": [63, 28, 17, 17],
-    "next": ["S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
   "S_DetectWhereAmI": {
     "pre_delay": 0,
     "next": [
+      "S_IsMarching",
       "S_IsAnnouncementPopup",
       "S_IsTrainingLetter",
       "S_IsLoginReward",
       "S_HasExpeditionReturn_Exp",
-      "S_IsMarching",
+      "S_HasExpeditionReturn_Title",
       "S_IsBattleResult_Exp",
       "S_IsBattleResult_Title",
       "S_IsSwordDropColor",
@@ -52,12 +38,37 @@
     "timeout": 120000,
     "on_error": ["S_RestartGame"]
   },
+  "S_LeaveTroopRecord": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [577, 8, 130, 35],
+        "template": "Common/部队记录页面.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": "Click",
+    "target": [63, 28, 17, 17],
+    "next": ["S_DetectWhereAmI"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
   "S_HasExpeditionReturn_Exp": {
     "recognition": "OCR",
     "roi": [388, 59, 54, 25],
     "expected": "经验",
     "action": "Click",
-    "target": [388, 59, 54, 25],
+    "target": [947, 533, 67, 75],
+    "next": ["S_IsMarching", "S_DetectWhereAmI"],
+    "pre_delay": 100,
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_HasExpeditionReturn_Title": {
+    "recognition": "OCR",
+    "roi": [558, 1, 162, 52],
+    "expected": "远征结果",
+    "action": "Click",
+    "target": [947, 533, 67, 75],
     "next": ["S_IsMarching", "S_DetectWhereAmI"],
     "pre_delay": 100,
     "on_error": ["S_DetectWhereAmI"]
@@ -80,7 +91,7 @@
     "roi": [388, 59, 54, 25],
     "expected": "经验",
     "action": "Click",
-    "target": [388, 59, 54, 25],
+    "target": [947, 533, 67, 75],
     "next": ["S_IsMarching", "S_DetectWhereAmI"],
     "pre_delay": 100,
     "on_error": ["S_DetectWhereAmI"]
@@ -90,6 +101,7 @@
     "roi": [558, 1, 162, 52],
     "expected": "战斗结果",
     "action": "Click",
+    "target": [947, 533, 67, 75],
     "next": ["S_IsMarching", "S_DetectWhereAmI"],
     "pre_delay": 100,
     "on_error": ["S_DetectWhereAmI"]
@@ -1160,7 +1172,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1173,7 +1184,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1186,7 +1196,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1199,7 +1208,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1212,7 +1220,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1225,7 +1232,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1238,7 +1244,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1251,7 +1256,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1264,7 +1268,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1277,7 +1280,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1290,7 +1292,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1303,7 +1304,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1316,7 +1316,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1329,7 +1328,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1342,7 +1340,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1355,7 +1352,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1368,7 +1364,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1381,7 +1376,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1394,7 +1388,6 @@
     },
     "action": "Click",
     "target": [763, 446, 48, 44],
-    "enabled": false,
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2526,7 +2519,7 @@
     "roi": [388, 59, 54, 25],
     "expected": "经验",
     "action": "Click",
-    "target": [388, 59, 54, 25],
+    "target": [947, 533, 67, 75],
     "pre_delay": 100,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
@@ -2536,7 +2529,7 @@
     "roi": [558, 1, 162, 52],
     "expected": "远征结果",
     "action": "Click",
-    "target": [388, 59, 54, 25],
+    "target": [947, 533, 67, 75],
     "pre_delay": 100,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
@@ -2877,6 +2870,7 @@
     "roi": [388, 59, 54, 25],
     "expected": "经验",
     "action": "Click",
+    "target": [947, 533, 67, 75],
     "next": ["SF_DetectWhereAmI"],
     "pre_delay": 100,
     "on_error": ["SF_DetectWhereAmI"]
@@ -2886,6 +2880,7 @@
     "roi": [558, 1, 162, 52],
     "expected": "战斗结果",
     "action": "Click",
+    "target": [947, 533, 67, 75],
     "next": ["SF_DetectWhereAmI"],
     "pre_delay": 100,
     "on_error": ["SF_DetectWhereAmI"]

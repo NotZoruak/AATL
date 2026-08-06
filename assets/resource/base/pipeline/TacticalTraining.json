@@ -1,4 +1,36 @@
 {
+  "TacticalTraining": {
+    "next": ["TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
+  },
+  "TT_DetectWhereAmI": {
+    "pre_delay": 0,
+    "next": [
+      "TT_IsAnnouncementPopup",
+      "TT_IsLoginReward",
+      "TT_IsEventPage",
+      "TT_IsSilhouettePopup",
+      "TT_IsTicketReplenishPage",
+      "TT_CheckHomeBrightness",
+      "TT_IsTeamSelect",
+      "TT_IsSwordSelect",
+      "TT_IsSortie",
+      "TT_HasExpeditionReturn_Exp",
+      "TT_HasExpeditionReturn_Title",
+      "TT_IsBattleResult_Exp",
+      "TT_IsBattleResult_Title",
+      "TT_IsSwordDropColor",
+      "TT_IsConnectionInterrupted",
+      "TT_IsGameIcon",
+      "TT_IsLoginButton",
+      "TT_IsGameUpdatePopup",
+      "TT_IsInGameUpdatePopup",
+      "TT_IsInternalReport",
+      "TT_FallbackWait"
+    ],
+    "timeout": 120000,
+    "on_error": ["TT_RestartGame"]
+  },
   "TT_IsAnnouncementPopup": {
     "recognition": {
       "type": "TemplateMatch",
@@ -322,34 +354,6 @@
     "enabled": false,
     "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
-  },
-  "TT_DetectWhereAmI": {
-    "pre_delay": 0,
-    "next": [
-      "TT_IsAnnouncementPopup",
-      "TT_IsLoginReward",
-      "TT_IsEventPage",
-      "TT_IsSilhouettePopup",
-      "TT_IsTicketReplenishPage",
-      "TT_CheckHomeBrightness",
-      "TT_IsTeamSelect",
-      "TT_IsSwordSelect",
-      "TT_IsSortie",
-      "TT_HasExpeditionReturn_Exp",
-      "TT_HasExpeditionReturn_Title",
-      "TT_IsBattleResult_Exp",
-      "TT_IsBattleResult_Title",
-      "TT_IsSwordDropColor",
-      "TT_IsConnectionInterrupted",
-      "TT_IsGameIcon",
-      "TT_IsLoginButton",
-      "TT_IsGameUpdatePopup",
-      "TT_IsInGameUpdatePopup",
-      "TT_IsInternalReport",
-      "TT_FallbackWait"
-    ],
-    "timeout": 120000,
-    "on_error": ["TT_RestartGame"]
   },
   "TT_IsEventPage": {
     "recognition": {
@@ -753,10 +757,6 @@
   "TT_TerminateNoTicket": {
     "action": {"type": "DoNothing"},
     "next": [],
-    "on_error": ["TT_DetectWhereAmI"]
-  },
-  "TacticalTraining": {
-    "next": ["TT_DetectWhereAmI"],
     "on_error": ["TT_DetectWhereAmI"]
   }
 }

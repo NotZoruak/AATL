@@ -631,7 +631,7 @@
     "roi": [388, 59, 54, 25],
     "expected": "经验",
     "action": "Click",
-    "target": [388, 59, 54, 25],
+    "target": [947, 533, 67, 75],
     "next": ["Expedition"],
     "pre_delay": 100,
     "on_error": ["Expedition"]
@@ -641,7 +641,7 @@
     "roi": [558, 1, 162, 52],
     "expected": "远征结果",
     "action": "Click",
-    "target": [388, 59, 54, 25],
+    "target": [947, 533, 67, 75],
     "next": ["Expedition"],
     "pre_delay": 100,
     "on_error": ["Expedition"]
@@ -1780,7 +1780,8 @@
     "action": "Click",
     "next": ["E_FlowerBattleHub"],
     "pre_delay": 100,
-    "on_error": ["E_FlowerBattleHub"]
+    "on_error": ["E_FlowerBattleHub"],
+    "target": [947, 533, 67, 75]
   },
   "E_FlowerDone": {
     "next": ["E_GoHome"],
@@ -1877,7 +1878,7 @@
     "roi": [388, 59, 54, 25],
     "expected": "经验",
     "action": "Click",
-    "target": [388, 59, 54, 25],
+    "target": [947, 533, 67, 75],
     "next": ["E_FlowerBattleHub"],
     "pre_delay": 100,
     "on_error": ["E_FlowerBattleHub"]
@@ -1887,7 +1888,7 @@
     "roi": [558, 1, 162, 52],
     "expected": "远征结果",
     "action": "Click",
-    "target": [388, 59, 54, 25],
+    "target": [947, 533, 67, 75],
     "next": ["E_FlowerBattleHub"],
     "pre_delay": 100,
     "on_error": ["E_FlowerBattleHub"]
