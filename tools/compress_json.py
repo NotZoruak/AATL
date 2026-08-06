@@ -57,7 +57,16 @@ def fmt(obj, indent=0):
 
 
 if __name__ == "__main__":
-    paths = sys.argv[1:] or sorted(glob.glob("resource/base/pipeline/*.json"))
+    # 基于脚本位置推导项目根目录,保证从任意目录运行都能找到资源文件;
+    # 显式传入路径参数时保持原样(相对当前目录)
+    if sys.argv[1:]:
+        paths = sys.argv[1:]
+    else:
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        paths = sorted(glob.glob(os.path.join(project_root, "assets", "resource", "base", "pipeline", "*.json")))
+    if not paths:
+        print("错误: 未找到 pipeline JSON 文件,请检查项目结构或显式传入路径", file=sys.stderr)
+        sys.exit(1)
     for path in paths:
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)

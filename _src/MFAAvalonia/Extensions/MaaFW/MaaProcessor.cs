@@ -424,6 +424,13 @@ public class MaaProcessor
     }
 
     /// <summary>
+    /// {PROJECT_DIR} 占位符的标准替换值：interface 文件所在目录。
+    /// 与 MaaFramework 官方及 MPE 生态的语义保持一致。
+    /// </summary>
+    public static string ProjectDir =>
+        Path.GetDirectoryName(GetInterfaceFilePath() ?? AppPaths.InterfaceJsonPath) ?? AppPaths.DataRoot;
+
+    /// <summary>
     /// 获取 interface 文件路径，优先返回 .jsonc，其次 .json
     /// </summary>
     public static string? GetInterfaceFilePath()
@@ -537,7 +544,7 @@ public class MaaProcessor
             foreach (var customResource in value?.Resource ?? Enumerable.Empty<MaaInterface.MaaInterfaceResource>())
             {
                 var nameKey = customResource.Name?.Trim() ?? string.Empty;
-                var paths = MaaInterface.ReplacePlaceholder(customResource.Path ?? new(), AppPaths.DataRoot);
+                var paths = MaaInterface.ReplacePlaceholder(customResource.Path ?? new(), ProjectDir);
                 customResource.ResolvedPath = paths;
                 value!.Resources[nameKey] = customResource;
             }
@@ -570,7 +577,7 @@ public class MaaProcessor
                 // 加载多语言配置
                 if (value.Languages is { Count: > 0 })
                 {
-                    LanguageHelper.LoadLanguagesFromInterface(value.Languages, AppPaths.DataRoot);
+                    LanguageHelper.LoadLanguagesFromInterface(value.Languages, ProjectDir);
                 }
 
                 if (MaaProcessorManager.IsInstanceCreated)
@@ -598,7 +605,7 @@ public class MaaProcessor
     /// </summary>
     async private static Task LoadContactAndDescriptionAsync(MaaInterface maaInterface)
     {
-        var projectDir = AppPaths.DataRoot;
+        var projectDir = ProjectDir;
 
         if (!Instances.IsResolved<SettingsViewModel>())
         {
@@ -1315,7 +1322,7 @@ public class MaaProcessor
 
             if (controllerConfig?.AttachResourcePath != null)
             {
-                var attachedPaths = MaaInterface.ReplacePlaceholder(controllerConfig.AttachResourcePath, AppPaths.DataRoot);
+                var attachedPaths = MaaInterface.ReplacePlaceholder(controllerConfig.AttachResourcePath, ProjectDir);
                 if (attachedPaths != null)
                 {
                     resources.AddRange(attachedPaths.Select(Path.GetFullPath));
@@ -1431,7 +1438,7 @@ public class MaaProcessor
 
             if (controllerConfig?.AttachResourcePath != null)
             {
-                var attachedPaths = MaaInterface.ReplacePlaceholder(controllerConfig.AttachResourcePath, AppPaths.DataRoot);
+                var attachedPaths = MaaInterface.ReplacePlaceholder(controllerConfig.AttachResourcePath, ProjectDir);
                 if (attachedPaths != null)
                 {
                     resources.AddRange(attachedPaths.Select(Path.GetFullPath));
