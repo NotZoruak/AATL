@@ -2181,8 +2181,8 @@
         {
           "name": "",
           "pipeline_override": {
-            "S_MidRetreat_E4_R1": {"enabled": true},
-            "S_MidRetreat_E4_R2": {"enabled": true},
+            "S_MidRetreat_E4_R1_1": {"enabled": true},
+            "S_MidRetreat_E4_R1_2": {"enabled": true},
             "S_MidRetreat_E6_R1": {"enabled": true},
             "S_MidRetreat_E8_R1": {"enabled": true},
             "S_MidRetreat_E8_R2": {"enabled": true},

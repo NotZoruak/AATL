@@ -663,12 +663,14 @@
       "S_Boss_E2_R1",
       "S_Boss_E3_R1",
       "S_Boss_E4_R1",
+      "S_MidRetreat_E4_R1_1",
       "S_Boss_E2_R2_1",
       "S_Boss_E2_R2_2",
       "S_Boss_E3_R2",
       "S_Boss_E3_R3",
       "S_Boss_E3_R4",
       "S_Boss_E4_R2",
+      "S_MidRetreat_E4_R1_2",
       "S_Boss_E2_R3_1",
       "S_Boss_E2_R3_2",
       "S_Boss_E2_R3_3",
@@ -831,7 +833,7 @@
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_MidRetreat_E4_R1": {
+  "S_MidRetreat_E4_R1_1": {
     "enabled": false,
     "recognition": {
       "type": "TemplateMatch",
@@ -844,7 +846,7 @@
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_MidRetreat_E4_R2": {
+  "S_MidRetreat_E4_R1_2": {
     "enabled": false,
     "recognition": {
       "type": "TemplateMatch",
