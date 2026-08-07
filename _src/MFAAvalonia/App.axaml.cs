@@ -138,6 +138,8 @@ public partial class App : Application
             AppPaths.CleanupOldDebugLogs(
                 logInfo: message => LoggerHelper.Info(message),
                 logWarning: message => LoggerHelper.Warning(message));
+            // 启动 MaaCore 日志运行期切块
+            MaaLogRotator.Start();
             AvaloniaXamlLoader.Load(this);
             LanguageHelper.Initialize();
             ConfigurationManager.Initialize();

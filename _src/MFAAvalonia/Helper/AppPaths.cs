@@ -234,16 +234,16 @@ public static class AppPaths
                 }
             }
 
-            // debug 目录磁盘占用超 100MB 时仅保留最新两条 maafw.bak.*.log
+            // debug 目录磁盘占用超 500MB 时仅保留最新 10 条 maafw.bak.*.log(日志已按 20MiB 切块,单块很小,可多保留历史)
             try
             {
                 var debugDirSize = Directory.EnumerateFiles(debugPath, "*", SearchOption.AllDirectories)
                     .Sum(f => { try { return new FileInfo(f).Length; } catch { return 0L; } });
-                if (debugDirSize > 100 * 1024 * 1024)
+                if (debugDirSize > 500 * 1024 * 1024)
                 {
                     var excessBakFiles = Directory.EnumerateFiles(debugPath, "maafw.bak.*.log", SearchOption.TopDirectoryOnly)
                         .OrderByDescending(f => f)
-                        .Skip(2)
+                        .Skip(10)
                         .ToList();
                     foreach (var file in excessBakFiles)
                     {
@@ -251,7 +251,7 @@ public static class AppPaths
                         {
                             File.SetAttributes(file, FileAttributes.Normal);
                             File.Delete(file);
-                            logInfo?.Invoke($"debug 目录超 100MB，已清理备份日志：文件={Path.GetFileName(file)}");
+                            logInfo?.Invoke($"debug 目录超 500MB，已清理备份日志：文件={Path.GetFileName(file)}");
                         }
                         catch (Exception ex)
                         {
@@ -259,13 +259,13 @@ public static class AppPaths
                         }
                     }
 
-                    // 超 100MB 时清理 on_error 截图，仅保留最新 5 张
+                    // 超 500MB 时清理 on_error 截图，仅保留最新 50 张(单张约 0.8MB,占用有限)
                     var onErrorPath = Path.Combine(debugPath, "on_error");
                     if (Directory.Exists(onErrorPath))
                     {
                         var excessScreenshots = Directory.EnumerateFiles(onErrorPath, "*.png", SearchOption.TopDirectoryOnly)
                             .OrderByDescending(f => f)
-                            .Skip(5)
+                            .Skip(50)
                             .ToList();
                         foreach (var file in excessScreenshots)
                         {
@@ -273,7 +273,7 @@ public static class AppPaths
                             {
                                 File.SetAttributes(file, FileAttributes.Normal);
                                 File.Delete(file);
-                                logInfo?.Invoke($"debug 目录超 100MB，已清理 on_error 截图：文件={Path.GetFileName(file)}");
+                                logInfo?.Invoke($"debug 目录超 500MB，已清理 on_error 截图：文件={Path.GetFileName(file)}");
                             }
                             catch (Exception ex)
                             {

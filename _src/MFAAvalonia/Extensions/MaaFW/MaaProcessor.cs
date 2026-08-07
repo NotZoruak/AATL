@@ -4034,6 +4034,16 @@ public class MaaProcessor
 
             stopAction.Invoke();
 
+            // 任务已停止,日志写入静止,执行一次兜底切块
+            try
+            {
+                MaaLogRotator.TryRotateIfNeeded();
+            }
+            catch (Exception ex)
+            {
+                LoggerHelper.Warning($"停止后日志切块异常: {ex.Message}");
+            }
+
             DispatcherHelper.PostOnMainThread(() => Instances.RootViewModel.Idle = true);
         }, null, "停止maafw任务");
     }

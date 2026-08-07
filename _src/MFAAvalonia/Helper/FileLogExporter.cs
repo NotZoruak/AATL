@@ -14,7 +14,8 @@ namespace MFAAvalonia.Helper;
 public static class FileLogExporter
 {
     public const int MAX_LINES = 42000;
-    private const long MaxArchiveVolumeBytes = 24_500_000;
+    // 导出 zip 分卷阈值:20 MiB,与 MaaLogRotator 日志切块阈值保持一致
+    private const long MaxArchiveVolumeBytes = 20_971_520;
     private const long ZipEntryOverheadBytes = 128;
     private static readonly SemaphoreSlim ExportSemaphore = new(1, 1);
     // 定义需要处理的图片文件扩展名
