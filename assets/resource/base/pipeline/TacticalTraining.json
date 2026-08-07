@@ -7,8 +7,6 @@
     "pre_delay": 0,
     "timeout": 120000,
     "next": [
-      "TT_IsAnnouncementPopup",
-      "TT_IsLoginReward",
       "TT_IsEventPage",
       "TT_IsSilhouettePopup",
       "TT_IsTicketReplenishPage",
@@ -21,6 +19,8 @@
       "TT_IsBattleResult_Exp",
       "TT_IsBattleResult_Title",
       "TT_IsSwordDropColor",
+      "TT_IsAnnouncementPopup",
+      "TT_IsLoginReward",
       "TT_IsConnectionInterrupted",
       "TT_IsGameIcon",
       "TT_IsLoginButton",

@@ -7,10 +7,7 @@
     "pre_delay": 0,
     "timeout": 120000,
     "next": [
-      "LR_IsAnnouncementPopup",
-      "LR_IsTrainingLetter",
       "LR_IsSupplyPopup",
-      "LR_IsLoginReward",
       "LR_HasExpeditionReturn_Exp",
       "LR_HasExpeditionReturn_Title",
       "LR_IsSortie",
@@ -26,13 +23,16 @@
       "LR_IsActionSelect",
       "LR_IsSwordDropColor",
       "LR_IsSpecialDrop",
+      "LR_LeaveTroopRecord",
+      "LR_IsAnnouncementPopup",
+      "LR_IsTrainingLetter",
+      "LR_IsLoginReward",
       "LR_IsGameIcon",
       "LR_IsLoginButton",
       "LR_IsGameUpdatePopup",
       "LR_IsInGameUpdatePopup",
       "LR_IsInternalReport",
       "LR_IsConnectionInterrupted",
-      "LR_LeaveTroopRecord",
       "LR_FallbackWait"
     ],
     "on_error": ["LR_RestartGame"]

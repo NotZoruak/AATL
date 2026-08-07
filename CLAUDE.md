@@ -1,203 +1,204 @@
-# MATR 项目（刀剑乱舞自动化助手）
+# MATR Project (Touken Ranbu Automation Assistant)
 
-## 项目结构
+## Project Structure
 
 ```
 MATR/
 ├── assets/
-│   ├── interface.json               # 项目入口配置（资源版本号、任务定义、pipeline 引用）
-│   └── resource/                    # MaaFW 资源包
+│   ├── interface.json               # Project entry config (resource version, task definitions, pipeline references)
+│   └── resource/                    # MaaFW resource pack
 │       ├── base/
-│       │   ├── pipeline/            #   Pipeline 流程定义（JSON）
-│       │   ├── custom/              #   自定义动作（C# 脚本，每个文件一个动作类）
-│       │   ├── image/               #   模板匹配图片（1280×720 基准）
-│       │   └── model/               #   OCR 模型文件
-│       ├── logo/                    #   启动 logo 资源
-│       ├── silhouette/              #   剪影识别样板图片
-│       └── announcement/            #   版本更新公告（Markdown）
-├── _src/                        # C# 源代码（Avalonia 桌面应用）
-│   ├── MFAAvalonia/             #   核心库：Models、ViewModels、Views、Services、Controls 等
-│   ├── MFAAvalonia.Desktop/     #   桌面宿主项目（MATR.exe 入口）
-│   └── MFAAvalonia.Android/     #   Android 宿主项目
-├── docs/                        # 项目文档（任务设计、使用规范、开发日志等）
-├── tools/                       # 构建/发布脚本（clean_build.ps1、compress_json.py、pack.ps1）
-├── runtimes/                    # .NET 原生运行时库（多平台多架构，本地分发资源，不随 git 提交）
-└── .github/                     # Issue 模板
+│       │   ├── pipeline/            #   Pipeline definitions (JSON)
+│       │   ├── custom/              #   Custom actions (C# scripts, one action class per file)
+│       │   ├── image/               #   Template match images (1280×720 baseline)
+│       │   └── model/               #   OCR model files
+│       ├── logo/                    #   Startup logo resources
+│       ├── silhouette/              #   Silhouette recognition reference images
+│       └── announcement/            #   Version release notes (Markdown)
+├── _src/                        # C# source code (Avalonia desktop app)
+│   ├── MFAAvalonia/             #   Core library: Models, ViewModels, Views, Services, Controls, etc.
+│   ├── MFAAvalonia.Desktop/     #   Desktop host project (MATR.exe entry)
+│   └── MFAAvalonia.Android/     #   Android host project
+├── docs/                        # Project docs (task design, usage conventions, dev logs, etc.)
+├── tools/                       # Build/release scripts (clean_build.ps1, compress_json.py, pack.ps1)
+├── runtimes/                    # .NET native runtime libraries (multi-platform, multi-arch; distributed locally, not committed to git)
+└── .github/                     # Issue templates
 ```
 
-> 以下目录由程序运行时自动生成，已在 `.gitignore` 中排除：`config/`、`debug/`、`logs/`、`temp/`、`backup/`、`libs/`、`plugins/`。
+> The following directories are auto-generated at runtime and excluded in `.gitignore`: `config/`, `debug/`, `logs/`, `temp/`, `backup/`, `libs/`, `plugins/`.
 
-### 上游源码自定义修改
+### Upstream Source Customizations
 
-`_src/` 基于 [MFAAvalonia](https://github.com/SweetSmellFox/MFAAvalonia) 二次开发，以下为 MATR 对上游的修改：
+`_src/` is a second-development fork of [MFAAvalonia](https://github.com/SweetSmellFox/MFAAvalonia). The following lists MATR's customizations over upstream:
 
-| 修改 | 涉及文件 | 说明 |
+| Customization | Files involved | Description |
 |---|---|---|
-| 移除 `agent/` 目录 | `AppPaths.cs`、`VersionChecker.cs`、`PendingUpdateDeletionHelper.cs` | MATR 不使用 Python agent，删除相关路径创建和更新逻辑 |
-| 启动时自动生成流水线坐标 | `Program.cs` | 根据用户设置的屏幕分辨率，启动时调用 `pipeline_gen.py` 动态计算坐标 |
-| 全局选项不显示为任务项 | `TaskLoader.cs` | 全局选项通过设置面板直接控制，不展示在任务列表中 |
-| 替换 EXE 图标 | `MFAAvalonia.Desktop/` | 使用 MATR 自定义图标替代上游默认图标 |
-| 左侧栏增加小工具 | `_src/MFAAvalonia/` | 在界面左侧栏集成了剪影识别、开发日志等实用工具入口 |
-| 调整任务栏宽度 | `_src/MFAAvalonia/` | 修改任务列表侧栏宽度以适配中文显示和操作习惯 |
+| Removed `agent/` directory | `AppPaths.cs`, `VersionChecker.cs`, `PendingUpdateDeletionHelper.cs` | MATR does not use the Python agent; removed related path creation and update logic |
+| Auto-generate pipeline coordinates on startup | `Program.cs` | Generates coordinates dynamically via `pipeline_gen.py` at startup based on the user's screen resolution |
+| Global options not shown as task items | `TaskLoader.cs` | Global options are controlled via the settings panel and not listed in the task list |
+| Replaced EXE icon | `MFAAvalonia.Desktop/` | Uses MATR custom icon instead of the upstream default |
+| Added utility tools to left sidebar | `_src/MFAAvalonia/` | Integrated silhouette recognition, dev logs and other utility entries into the left sidebar |
+| Adjusted task list sidebar width | `_src/MFAAvalonia/` | Modified the sidebar width to fit Chinese display and usage habits |
 
-> 升级 MFAAvalonia 上游版本时，需确认以上修改是否受影响。
+> When upgrading the MFAAvalonia upstream version, verify whether the changes above are affected.
 
-### 关键目录说明
+### Key Directory Notes
 
-| 目录 | 用途 | 何时修改 |
+| Directory | Purpose | When to modify |
 |---|---|---|
-| `resource/base/pipeline/` | Pipeline 流程定义，每个 JSON 对应一个任务 | 新增/修改任务流程 |
-| `resource/base/custom/` | 自定义动作 C# 脚本 | 需要非标准操作时编写新动作 |
-| `resource/base/image/` | 模板匹配图片，基于 1280×720 | 新增识别节点时添加模板图 |
-| `resource/base/model/` | PaddleOCR 模型 | 需要 OCR 识别时放置模型 |
-| `_src/MFAAvalonia/` | 核心 C# 代码 | 修改程序功能、UI、配置 |
+| `resource/base/pipeline/` | Pipeline definitions, one JSON per task | Adding/modifying task flows |
+| `resource/base/custom/` | Custom action C# scripts | Writing a new action for non-standard operations |
+| `resource/base/image/` | Template match images, based on 1280×720 | Adding template images for new recognition nodes |
+| `resource/base/model/` | PaddleOCR models | Placing models when OCR recognition is needed |
+| `_src/MFAAvalonia/` | Core C# code | Modifying program features, UI, config |
 
-### 自定义动作
+### Custom Actions
 
-当前自定义动作位于 `resource/base/custom/`，共 7 个：
+Current custom actions are located in `resource/base/custom/`, 7 in total:
 
-| 文件 | 用途 |
+| File | Purpose |
 |---|---|
-| `TeamSwitchAction.cs` | 队伍切换 |
-| `CaptainDamageAction.cs` | 队长伤害处理 |
-| `DamageLogAction.cs` | 伤害日志记录 |
-| `DungeonFloorSelectAction.cs` | 地下城楼层选择 |
-| `ExpeditionMapSelectAction.cs` | 远征地图选择 |
-| `DispatchLogAction.cs` | 内番日志记录 |
-| `StopOnDamageAction.cs` | 遇伤害停止 |
+| `TeamSwitchAction.cs` | Team switching |
+| `CaptainDamageAction.cs` | Captain damage handling |
+| `DamageLogAction.cs` | Damage logging |
+| `DungeonFloorSelectAction.cs` | Dungeon floor selection |
+| `ExpeditionMapSelectAction.cs` | Expedition map selection |
+| `DispatchLogAction.cs` | Chore (naiban) logging |
+| `StopOnDamageAction.cs` | Stop on damage |
 
-新增自定义动作时，参考已有文件的命名和结构，一个文件对应一个动作类。
+Follow the naming and structure of existing files when adding a custom action: one file per action class.
 
-### Pipeline 任务清单
+### Pipeline Task List
 
-| 文件 | 任务 |
+| File | Task |
 |---|---|
-| `Sortie.json` | 出阵（合战场） |
-| `Expedition.json` | 远征 |
-| `Underground.json` | 地下城（大阪城） |
-| `Disassemble.json` | 刀装解体 |
-| `FlowerBrush.json` | 刷花 |
-| `GoHome.json` | 一键回城 |
-| `LRentaisen.json` | 演练 |
-| `Mix.json` | 习合 |
-| `TacticalTraining.json` | 战术强化训练 |
+| `Sortie.json` | Sortie (battlefield) |
+| `Expedition.json` | Expedition |
+| `Underground.json` | Underground (Osaka Castle) |
+| `Disassemble.json` | Disassemble (arms disposal) |
+| `FlowerBrush.json` | Flower brush (morale recovery) |
+| `GoHome.json` | One-click return home |
+| `LRentaisen.json` | Mock drills (rentaisen) |
+| `Mix.json` | Mix (sword fusion) |
+| `TacticalTraining.json` | Tactical training |
 
-## AI 响应指引
+## AI Response Guidelines
 
-当用户提出以下请求时，AI 应遵循对应的默认做法：
+When the user makes the following requests, the AI should follow the corresponding default approach:
 
-| 用户要求 | AI 默认做法 |
+| User request | Default AI approach |
 |---|---|
-| "修复不稳定节点" | 添加中间识别节点或调整识别阈值/区域 |
-| "失败时重试" | 分析根因（哪个节点、哪个识别不匹配）并修复节点，绝不盲目添加重试 |
-| "写一个 pipeline" | 向用户索要截图、ROI 和界面切换信息后再写，不凭空编造坐标 |
-| "写一个自定义动作" | 遵循 `resource/base/custom/` 现有文件的命名和结构，一个文件一个类 |
+| "Fix unstable node" | Add intermediate recognition nodes or adjust recognition thresholds/ROIs |
+| "Retry on failure" | Analyze the root cause (which node, which recognition mismatch) and fix the node; never add blind retries |
+| "Write a pipeline" | Ask the user for screenshots, ROIs, and screen transition info before writing; never fabricate coordinates |
+| "Write a custom action" | Follow the naming and structure of existing files in `resource/base/custom/`; one class per file |
 
-## 编码风格
+## Coding Style
 
-### C#（_src/ 下）
+### C# (under `_src/`)
 
-- .NET 10.0，C# 14，Nullable 启用
-- 文件级命名空间声明（`namespace MFAAvalonia.Helper;`）
-- 4 空格缩进，PascalCase 公共成员，`_camelCase` 私有字段
-- 日志通过 `LoggerHelper` 输出，避免 `Console.WriteLine`
+- .NET 10.0, C# 14, Nullable enabled
+- File-scoped namespace declarations (`namespace MFAAvalonia.Helper;`)
+- 4-space indentation, PascalCase public members, `_camelCase` private fields
+- Log via `LoggerHelper`; avoid `Console.WriteLine`
 
-### JSON（Pipeline / 资源配置）
+### JSON (Pipeline / Resource Config)
 
-- 4 空格缩进
-- 禁止使用 `target_offset`，所有坐标偏移在 `target` 数组内直接表达
-- 每个节点必须设置 `on_error`
-- 所有坐标、ROI、模板图片基于 **1280×720** 基准分辨率
-- 描述节点层级关系时使用英文 parent node、child node、sibling node，禁止使用"父节点""子节点""兄弟节点"等中文亲属称谓
-- 资源路径统一使用正斜杠 `/`
+- 4-space indentation
+- No `target_offset`; all coordinate offsets are expressed directly in the `target` array
+- Every node must set `on_error`
+- All coordinates, ROIs, and template images are based on the **1280×720** base resolution
+- The Chinese term 节点 is strictly forbidden; always use the English word "node"
+- Use English parent node / child node / sibling node for hierarchy; Chinese kinship terms such as 父节点 / 子节点 / 兄弟节点 are forbidden
+- Resource paths use forward slashes `/`
 
-### 资源文件编码
+### Source File Encoding
 
-- `.ps1` 文件：UTF-8 with BOM
-- 其他所有源文件（`.cs`、`.json`、`.md` 等）：UTF-8 without BOM
+- `.ps1` files: UTF-8 with BOM
+- All other source files (`.cs`, `.json`, `.md`, etc.): UTF-8 without BOM
 
-## 构建与常用命令
+## Build & Common Commands
 
-| 命令 | 用途 |
+| Command | Purpose |
 |---|---|
-| `dotnet build _src/MFAAvalonia.sln` | 编译整个解决方案 |
-| `dotnet publish _src/MFAAvalonia.Desktop` | 发布桌面版本 |
-| `pwsh tools/clean_build.ps1` | 清理构建输出 |
-| `python tools/compress_json.py` | 压缩 JSON 文件 |
-| `pwsh tools/pack.ps1` | 打包发布 |
+| `dotnet build _src/MFAAvalonia.sln` | Build the whole solution |
+| `dotnet publish _src/MFAAvalonia.Desktop` | Publish the desktop version |
+| `pwsh tools/clean_build.ps1` | Clean build output |
+| `python tools/compress_json.py` | Compress JSON files |
+| `pwsh tools/pack.ps1` | Package a release |
 
-## Commit 规范
+## Commit Conventions
 
-遵循 [Conventional Commits](https://www.conventionalcommits.org/zh-hans/) v1.0.0：
+Follow [Conventional Commits](https://www.conventionalcommits.org/zh-hans/) v1.0.0:
 
-| 类型 | 使用场景 |
+| Type | Use case |
 |---|---|
-| `feat` | 新功能（任务、节点、识别逻辑） |
-| `fix` | Bug 修复 |
-| `perf` | 性能优化 |
-| `refactor` | 代码重构（非功能、非修复） |
-| `docs` | 仅文档变更 |
-| `style` | 格式化、空格调整（无语义变更） |
-| `chore` | 依赖更新、构建脚本、维护杂项 |
+| `feat` | New feature (task, node, recognition logic) |
+| `fix` | Bug fix |
+| `perf` | Performance optimization |
+| `refactor` | Code refactoring (non-functional, non-fix) |
+| `docs` | Documentation-only change |
+| `style` | Formatting, whitespace (no semantic change) |
+| `chore` | Dependency updates, build scripts, maintenance |
 
-> **AI 不得自行执行 `git commit` 或 `git push`**，除非用户明确要求提交。
+> **The AI must not run `git commit` or `git push` on its own** unless the user explicitly asks to commit.
 
-## 分支策略
+## Branch Strategy
 
-- **`main`**：稳定发布分支。仅允许以下情况直接提交：
-  - 小范围修复（文档修正、单节点调整、配置更新）
-  - 紧急 bug 修复
-- **`develop`**：日常开发分支。所有新功能、多节点流程改动、需要测试的新逻辑，都应在 `develop` 上开发，验证通过后合并到 `main`
-- 复杂功能可基于 `develop` 创建 `feat/<功能名>` 分支，完成后合并回 `develop`
+- **`main`**: stable release branch. Direct commits are only allowed for:
+  - Small-scope fixes (doc corrections, single-node adjustments, config updates)
+  - Urgent bug fixes
+- **`develop`**: daily development branch. All new features, multi-node flow changes, and new logic that needs testing should be developed on `develop` and merged into `main` after verification
+- Complex features can be developed on a `feat/<feature-name>` branch based on `develop`, then merged back into `develop`
 
-## 审核清单
+## Review Checklist
 
-修改代码或 pipeline 时需确认：
+When modifying code or pipeline, confirm:
 
-- [ ] JSON 字段符合 MaaFW 协议，无拼写错误或不支持的属性
-- [ ] 无 `target_offset`，所有坐标在 `target` 内直接表达
-- [ ] 每个节点都设置了 `on_error`
-- [ ] `next` 列表覆盖了所有可能的后续界面，确保首个识别周期就能命中正确节点
-- [ ] 坐标、ROI、模板图片基于 1280×720 基准
-- [ ] 新增自定义动作已放入 `resource/base/custom/`，文件名即动作类名
-- [ ] Pipeline、interface.json、资源文件保持一致
-- [ ] 异常中断（弹窗、意外对话框）有处理路径
+- [ ] JSON fields conform to the MaaFW protocol; no typos or unsupported properties
+- [ ] No `target_offset`; all coordinates are expressed directly in the `target` array
+- [ ] Every node has `on_error` set
+- [ ] The `next` list covers all possible following screens so the correct node is hit in the first recognition cycle
+- [ ] Coordinates, ROIs, and template images are based on the 1280×720 baseline
+- [ ] New custom actions are placed in `resource/base/custom/`; the file name equals the action class name
+- [ ] Pipeline, interface.json, and resource files stay consistent
+- [ ] Abnormal interruptions (popups, unexpected dialogs) have handling paths
 
-## 版本号规则（SemVer 2.0.0）
+## Version Numbering (SemVer 2.0.0)
 
-全部版本号遵循[语义化版本](https://semver.org/lang/zh-CN/) `MAJOR.MINOR.PATCH` 格式。
+All version numbers follow [Semantic Versioning](https://semver.org/lang/zh-CN/) `MAJOR.MINOR.PATCH`.
 
-### MFAAvalonia 程序本体
+### MFAAvalonia Application
 
-- 版本号在 `_src/MFAAvalonia/MFAAvalonia.csproj` 的 `ApplicationVersion` 和 `_src/MFAAvalonia/ViewModels/Windows/RootViewModel.cs` 的 `Version` 属性，**两处须保持同步**
-- 程序本体更新频率低，发版时手动修改即可
+- Version is defined in `ApplicationVersion` in `_src/MFAAvalonia/MFAAvalonia.csproj` and the `Version` property in `_src/MFAAvalonia/ViewModels/Windows/RootViewModel.cs`; **both must stay in sync**
+- The application itself is updated infrequently; bump manually at release time
 
-### 资源版本
+### Resource Version
 
-- 版本号写在资源包根目录 `interface.json` 的 `Version` 字段
-- 递增规则：
+- Version is defined in the `Version` field of `interface.json` at the resource pack root
+- Increment rules:
 
-| 递增位 | 触发条件 | 示例 |
+| Increment | Trigger | Example |
 |---|---|---|
-| **修订号 PATCH** | 修 bug、微调识别阈值/区域/时序 | `1.2.3 → 1.2.4` |
-| **次版本号 MINOR** | 新增节点/任务/识别逻辑，调整任务结构；向下兼容 | `1.2.3 → 1.3.0` |
-| **主版本号 MAJOR** | 整个流程推翻重来的大规模重构（极少触发） | `1.2.3 → 2.0.0` |
+| **PATCH** | Bug fixes, fine-tuning recognition thresholds/ROIs/timing | `1.2.3 → 1.2.4` |
+| **MINOR** | Adding nodes/tasks/recognition logic, restructuring tasks; backward compatible | `1.2.3 → 1.3.0` |
+| **MAJOR** | Large-scale rewrite that overhauls the entire flow (rare) | `1.2.3 → 2.0.0` |
 
-- 日常的删改节点名、重组织任务是**次版本号**级别，不触发主版本号
-- 递增次版本号时修订号归零；递增主版本号时次版本号和修订号均归零
-- 资源处于 `0.y.z` 阶段视为开发中，稳定后发布 `1.0.0`
+- Daily renaming/deleting of node names and reorganizing tasks are **MINOR**-level changes; they do not trigger a MAJOR bump
+- PATCH resets to zero when MINOR is bumped; MINOR and PATCH both reset to zero when MAJOR is bumped
+- A resource at `0.y.z` is considered in development; release `1.0.0` once stable
 
-## 发布流程
+## Release Process
 
-`dotnet publish` 后必须手动拷贝文件才能运行：
+Files must be copied manually after `dotnet publish` before running:
 
 ```
-# 核心库（含 TaskOptionGenerator、TaskQueueView 等）
+# Core library (incl. TaskOptionGenerator, TaskQueueView, etc.)
 cp _src/MFAAvalonia/bin/Release/net10.0/MFAAvalonia.Core.dll runtimes/libs/
 
-# 桌面宿主
+# Desktop host
 cp _src/bin/AnyCPU/Release/publish/MATR.dll ./
 cp _src/bin/AnyCPU/Release/publish/MATR.exe ./
 ```
 
-> ⚠️ `_src/bin/AnyCPU/Release/MFAAvalonia.Core.dll` 是桌面项目拷贝的旧缓存，文件大小和 `_src/MFAAvalonia/bin/Release/net10.0/` 不同，**必须从项目自身输出目录拷贝**。
+> ⚠️ `_src/bin/AnyCPU/Release/MFAAvalonia.Core.dll` is a stale copy cached by the desktop project; its file size differs from `_src/MFAAvalonia/bin/Release/net10.0/`. **Always copy from the project's own output directory.**
