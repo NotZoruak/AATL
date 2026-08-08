@@ -2383,5 +2383,576 @@
       "custom_action": "RestartGameAction"
     },
     "next": ["UF_DetectWhereAmI"]
+  },
+  "UF_UseRecord_Step1": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1139, 132, 124, 41],
+        "template": "Common/部队记录.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 100
+    },
+    "next": ["UF_UseRecord_Step2_Rec1", "UF_UseRecord_Step2_Rec2", "UF_UseRecord_Step2_Rec3", "UF_UseRecord_Step2_Rec4", "UF_UseRecord_Step2_Rec5"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_UseRecord_Step2_Rec1": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [707, 53, 72, 64],
+        "template": "Common/使用记录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 140, 30, 71]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
+    "next": ["UF_UseRecord_Step3"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_UseRecord_Step2_Rec2": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [707, 53, 72, 64],
+        "template": "Common/使用记录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 250, 30, 71]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
+    "next": ["UF_UseRecord_Step3"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_UseRecord_Step2_Rec3": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [707, 53, 72, 64],
+        "template": "Common/使用记录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 360, 30, 71]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
+    "next": ["UF_UseRecord_Step3"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_UseRecord_Step2_Rec4": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [707, 53, 72, 64],
+        "template": "Common/使用记录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 465, 30, 71]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
+    "next": ["UF_UseRecord_Step3"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_UseRecord_Step2_Rec5": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [707, 53, 72, 64],
+        "template": "Common/使用记录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 575, 30, 71]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
+    "next": ["UF_UseRecord_Step3"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_UseRecord_Step3": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [707, 53, 72, 64]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [442, 253, 395, 125]
+    },
+    "next": ["UF_UseRecord_Step4", "UF_UseRecord_Step3"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_UseRecord_Step4": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [576, 151, 126, 34],
+        "expected": "部队记录"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [789, 512, 1, 4]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 100
+    },
+    "next": ["UF_NavigateBack"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_EqRefill_Step1": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1139, 132, 124, 41],
+        "template": "Common/部队记录.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 100
+    },
+    "next": ["UF_EqRefill_Step2_Rec1", "UF_EqRefill_Step2_Rec2", "UF_EqRefill_Step2_Rec3", "UF_EqRefill_Step2_Rec4", "UF_EqRefill_Step2_Rec5"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_EqRefill_Step2_Rec1": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [707, 53, 72, 64],
+        "template": "Common/使用记录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 140, 30, 71]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
+    "next": ["UF_EqRefill_Step3"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_EqRefill_Step2_Rec2": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [707, 53, 72, 64],
+        "template": "Common/使用记录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 250, 30, 71]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
+    "next": ["UF_EqRefill_Step3"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_EqRefill_Step2_Rec3": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [707, 53, 72, 64],
+        "template": "Common/使用记录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 360, 30, 71]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
+    "next": ["UF_EqRefill_Step3"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_EqRefill_Step2_Rec4": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [707, 53, 72, 64],
+        "template": "Common/使用记录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 465, 30, 71]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
+    "next": ["UF_EqRefill_Step3"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_EqRefill_Step2_Rec5": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [707, 53, 72, 64],
+        "template": "Common/使用记录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1209, 575, 30, 71]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
+    "next": ["UF_EqRefill_Step3"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_EqRefill_Step3": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [707, 53, 72, 64]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [442, 253, 395, 125]
+    },
+    "next": ["UF_EqRefill_Step4"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_EqRefill_Step4": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [576, 151, 126, 34],
+        "expected": "部队记录"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [789, 512, 1, 4]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 100
+    },
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsAnnouncementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1056, 463, 63, 193],
+        "template": "Common/公告弹窗.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [1056, 463, 63, 193]
+    },
+    "timeout": 3000,
+    "next": ["UF_IsAnnouncementPopup"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsTrainingLetter": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1037, 438, 206, 76],
+        "template": "Common/修行书信.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsLoginReward": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [816, 577, 182, 59],
+        "template": "Common/登录奖励.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [232, 99, 817, 568]
+    },
+    "next": ["UF_LoginRewardClick2"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_LoginRewardClick2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [232, 99, 817, 568]
+    },
+    "next": ["UF_LoginRewardClick3"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_LoginRewardClick3": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [232, 99, 817, 568]
+    },
+    "timeout": 3000,
+    "next": ["UF_IsLoginReward"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsGameIcon": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [0, 0, 1600, 900],
+        "template": "Common/游戏图标.png",
+        "green_mask": true,
+        "threshold": [0.85]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsLoginButton": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [665, 529, 124, 78],
+        "template": "Common/登录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsGameUpdatePopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [443, 431, 120, 46],
+        "template": "Common/游戏更新.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsInGameUpdatePopup": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [498, 291, 77, 50],
+        "expected": "更新"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [578, 440, 130, 55]
+      }
+    },
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsInternalReport": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [569, 322, 138, 31],
+        "template": "Common/内番报告.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsHome": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [8, 1, 71, 107],
+        "template": "Common/本丸.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["UF_Hub"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_CheckHomeBrightness": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [66, 58, 11, 13],
+        "upper": [40, 155, 30],
+        "lower": [23, 95, 15]
+      }
+    },
+    "action": {"type": "DoNothing"},
+    "next": ["UF_IsHome", "UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_HasExpeditionReturn_Exp": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [388, 59, 54, 25],
+        "expected": "经验"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [947, 533, 67, 75]
+      }
+    },
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_HasExpeditionReturn_Title": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [558, 1, 162, 52],
+        "expected": "远征结果"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [947, 533, 67, 75]
+      }
+    },
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsSortieActivity": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [0, 302, 49, 86],
+        "template": "Common/活动选中.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
   }
+
 }
