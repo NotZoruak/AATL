@@ -2412,7 +2412,12 @@
             "U_PreCheckUseRecord": {
               "next": ["U_PreCheckClickRecord1"]
             },
-            "U_PreCheckClickRecord1": {"enabled": true}
+            "U_PreCheckClickRecord1": {"enabled": true},
+            "UF_ClickTeamN": {
+              "target": [154, 93, 1, 1]
+            },
+            "UF_UseRecord_Step2_Rec1": {"enabled": true},
+            "UF_EqRefill_Step2_Rec1": {"enabled": true}
           }
         },
         {
@@ -2425,7 +2430,12 @@
             "U_PreCheckUseRecord": {
               "next": ["U_PreCheckClickRecord2"]
             },
-            "U_PreCheckClickRecord2": {"enabled": true}
+            "U_PreCheckClickRecord2": {"enabled": true},
+            "UF_ClickTeamN": {
+              "target": [282, 94, 1, 1]
+            },
+            "UF_UseRecord_Step2_Rec2": {"enabled": true},
+            "UF_EqRefill_Step2_Rec2": {"enabled": true}
           }
         },
         {
@@ -2438,7 +2448,12 @@
             "U_PreCheckUseRecord": {
               "next": ["U_PreCheckClickRecord3"]
             },
-            "U_PreCheckClickRecord3": {"enabled": true}
+            "U_PreCheckClickRecord3": {"enabled": true},
+            "UF_ClickTeamN": {
+              "target": [398, 91, 1, 1]
+            },
+            "UF_UseRecord_Step2_Rec3": {"enabled": true},
+            "UF_EqRefill_Step2_Rec3": {"enabled": true}
           }
         },
         {
@@ -2451,7 +2466,12 @@
             "U_PreCheckUseRecord": {
               "next": ["U_PreCheckClickRecord4"]
             },
-            "U_PreCheckClickRecord4": {"enabled": true}
+            "U_PreCheckClickRecord4": {"enabled": true},
+            "UF_ClickTeamN": {
+              "target": [519, 89, 1, 1]
+            },
+            "UF_UseRecord_Step2_Rec4": {"enabled": true},
+            "UF_EqRefill_Step2_Rec4": {"enabled": true}
           }
         },
         {
@@ -2464,7 +2484,12 @@
             "U_PreCheckUseRecord": {
               "next": ["U_PreCheckClickRecord5"]
             },
-            "U_PreCheckClickRecord5": {"enabled": true}
+            "U_PreCheckClickRecord5": {"enabled": true},
+            "UF_ClickTeamN": {
+              "target": [635, 91, 1, 1]
+            },
+            "UF_UseRecord_Step2_Rec5": {"enabled": true},
+            "UF_EqRefill_Step2_Rec5": {"enabled": true}
           }
         }
       ]
@@ -2643,6 +2668,8 @@
             "U_FatigueCheck": {"enabled": true},
             "U_FatigueDetect": {"enabled": true},
             "UF_Hub": {"enabled": true},
+            "UF_UseRecord_Step1": {"enabled": true},
+            "UF_EqRefill_Step1": {"enabled": true},
             "U_ConfirmSortAsc": {"next": ["U_FatigueCheck"]},
             "U_DragCaptain": {"next": ["U_FatigueCheck"]}
           }
