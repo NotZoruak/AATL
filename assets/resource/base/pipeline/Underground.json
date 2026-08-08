@@ -2042,4 +2042,345 @@
     "next": ["U_ReturnHomeAfterMarchDamage"],
     "on_error": ["U_DetectWhereAmI"]
   }
+,
+  "UF_Hub": {
+    "enabled": false,
+    "next": ["UF_ClickMenu"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_DetectWhereAmI": {
+    "pre_delay": 0,
+    "timeout": 120000,
+    "next": [
+      "U_HasExpeditionReturn_Exp",
+      "U_HasExpeditionReturn_Title",
+      "UF_CheckHomeBrightness",
+      "UF_IsEraSelect",
+      "UF_IsRegionSelect",
+      "UF_IsTeamSelect",
+      "UF_IsMarching",
+      "UF_IsFormationSelect",
+      "UF_IsBattleResult_Exp",
+      "UF_IsBattleResult_Title",
+      "UF_IsSwordDrop",
+      "UF_IsAnnouncementPopup",
+      "UF_IsTrainingLetter",
+      "UF_IsLoginReward",
+      "UF_IsGameIcon",
+      "UF_IsLoginButton",
+      "UF_IsGameUpdatePopup",
+      "UF_IsInGameUpdatePopup",
+      "UF_IsInternalReport",
+      "UF_FallbackWait"
+    ],
+    "on_error": ["UF_RestartGame"]
+  },
+  "UF_ClickMenu": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1183, 18, 87, 40],
+        "expected": "目"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 100
+    },
+    "next": ["UF_PostClickMenuHub"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_PostClickMenuHub": {
+    "next": ["UF_IsMenuDirectory", "UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsMenuDirectory": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [581, 28, 112, 57],
+        "template": "Common/菜单目录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "DoNothing"},
+    "next": ["UF_ClickSortieInMenu"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_ClickSortieInMenu": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [160, 158, 97, 62],
+        "expected": "出阵"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 100
+    },
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_Hub"]
+  },
+  "UF_IsEraSelect": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [564, 54, 157, 54],
+        "template": "Common/时代选择.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["UF_ClickFirstEra"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_ClickFirstEra": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [246, 389, 1, 1]
+      }
+    },
+    "next": ["UF_ConfirmEra"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_ConfirmEra": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1199, 633, 3, 1]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 100
+    },
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsRegionSelect": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [558, 55, 169, 54],
+        "template": "Common/地域选择.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["UF_ClickRegion1_1"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_ClickRegion1_1": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [194, 213, 8, 1]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 100
+    },
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsTeamSelect": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [561, 1, 160, 49],
+        "expected": "部队选择"
+      }
+    },
+    "next": ["UF_CheckEquipmentPopup", "UF_ClickTeamN"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_CheckEquipmentPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [423, 484, 145, 56],
+        "template": "Common/整备刀装.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["UF_EqRefill_Step1"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_ClickTeamN": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [154, 93, 1, 1]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [38, 123, 1059, 561]
+    },
+    "next": ["UF_DissolveHub"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_DissolveHub": {
+    "next": ["UF_DissolveCheck", "UF_CheckFatigue"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_DissolveCheck": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1074, 211, 37, 421],
+        "template": "Common/移除队员.png",
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["UF_DissolveHub"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_CheckFatigue": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FatigueCheckAction",
+      "custom_action_param": {
+        "mode": "check_first",
+        "threshold": 100,
+        "reversed": true
+      }
+    },
+    "next": ["UF_ClickSortieNow"],
+    "on_error": ["UF_UseRecord_Step1"]
+  },
+  "UF_ClickSortieNow": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1156, 584, 96, 47],
+        "expected": "即刻"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1204, 629, 1, 1]
+      }
+    },
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_Hub"]
+  },
+  "UF_IsMarching": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1067, 558, 120, 79],
+        "template": "Common/合战场_行军.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsFormationSelect": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [570, 1, 139, 45],
+        "template": "Common/阵形选择.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1017, 421, 1, 1]
+      }
+    },
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsBattleResult_Exp": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [388, 59, 54, 25],
+        "expected": "经验"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [947, 533, 67, 75]
+      }
+    },
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsBattleResult_Title": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [558, 1, 162, 52],
+        "expected": "战斗结果"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [947, 533, 67, 75]
+      }
+    },
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_IsSwordDrop": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [598, 543, 66, 1],
+        "upper": [96, 56, 10],
+        "lower": [88, 48, 2]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1067, 558, 120, 79]
+      }
+    },
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_NavigateBack": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1183, 18, 87, 40],
+        "expected": "目"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 100
+    },
+    "next": ["U_DetectWhereAmI"],
+    "on_error": ["UF_Hub"]
+  },
+  "UF_FallbackWait": {
+    "action": {"type": "DoNothing"},
+    "next": ["UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_RestartGame": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["UF_DetectWhereAmI"]
+  }
 }
