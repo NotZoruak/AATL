@@ -1565,8 +1565,21 @@
       "type": "Custom",
       "custom_action": "DragCaptainAction"
     },
-    "next": ["U_IsPreSortieConfirm"],
+    "next": ["U_FatigueCheck"],
     "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_FatigueCheck": {
+    "enabled": false,
+    "action": {
+      "type": "Custom",
+      "custom_action": "FatigueCheckAction",
+      "custom_action_param": {
+        "mode": "check_first",
+        "threshold": 30
+      }
+    },
+    "next": ["U_IsPreSortieConfirm"],
+    "on_error": ["UF_Hub"]
   },
   "U_NavigateToHomeFromStop": {
     "post_delay": 300,
