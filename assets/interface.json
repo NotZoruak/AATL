@@ -2637,7 +2637,10 @@
           "name": "刷花",
           "DisplayName": "刷花",
           "pipeline_override": {
-            "U_FatigueDetect": {"enabled": true}
+            "U_FatigueCheck": {"enabled": true},
+            "U_FatigueDetect": {"enabled": true},
+            "UF_Hub": {"enabled": true},
+            "U_DragCaptain": {"next": ["U_FatigueCheck"]}
           }
         }
       ]
