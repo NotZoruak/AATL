@@ -869,21 +869,6 @@
     "next": ["U_PostSortieHub"],
     "on_error": ["U_PostSortieHub"]
   },
-  "U_ConfirmCancelMarchingDamage2": {
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [763, 446, 48, 44],
-        "expected": "否"
-      }
-    },
-    "action": {"type": "Click"},
-    "post_wait_freezes": {
-      "time": 100
-    },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
-    "on_error": ["U_DetectWhereAmI"]
-  },
   "U_ConfirmCancelPreDamage2": {
     "recognition": {
       "type": "OCR",
