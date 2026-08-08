@@ -1565,7 +1565,7 @@
       "type": "Custom",
       "custom_action": "DragCaptainAction"
     },
-    "next": ["U_FatigueCheck"],
+    "next": ["U_IsPreSortieConfirm"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_FatigueCheck": {

@@ -2630,6 +2630,9 @@
           "name": "停止",
           "DisplayName": "停止",
           "pipeline_override": {
+            "U_ConfirmSortAsc": {"next": ["U_FatigueCheck"]},
+            "U_DragCaptain": {"next": ["U_FatigueCheck"]},
+            "U_FatigueCheck": {"enabled": true, "on_error": []},
             "U_FatigueDetect": {"enabled": true}
           }
         },
@@ -2640,6 +2643,7 @@
             "U_FatigueCheck": {"enabled": true},
             "U_FatigueDetect": {"enabled": true},
             "UF_Hub": {"enabled": true},
+            "U_ConfirmSortAsc": {"next": ["U_FatigueCheck"]},
             "U_DragCaptain": {"next": ["U_FatigueCheck"]}
           }
         }
