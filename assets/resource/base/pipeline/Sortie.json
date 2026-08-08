@@ -13,7 +13,6 @@
       "S_IsBattleResult_Exp",
       "S_IsBattleResult_Title",
       "S_IsSwordDropColor",
-      "S_IsKebiishi",
       "S_IsFormationSelect",
       "S_IsSwordSelect",
       "S_IsTeamSelect",
@@ -25,6 +24,7 @@
       "S_CheckHomeBrightness",
       "S_IsRepair",
       "S_IsStopOnDamage",
+      "S_IsKebiishi",
       "S_LeaveTroopRecord",
       "S_IsAnnouncementPopup",
       "S_IsTrainingLetter",
@@ -54,6 +54,10 @@
         "target": [63, 28, 17, 17]
       }
     },
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [577, 8, 130, 35]
+    },
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -71,7 +75,6 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "pre_delay": 100,
     "next": ["S_IsMarching", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -89,7 +92,6 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "pre_delay": 100,
     "next": ["S_IsMarching", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -120,7 +122,6 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "pre_delay": 100,
     "next": ["S_IsMarching", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -138,7 +139,6 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "pre_delay": 100,
     "next": ["S_IsMarching", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -157,7 +157,6 @@
         "target": [1067, 558, 120, 79]
       }
     },
-    "pre_delay": 100,
     "next": ["S_IsMarching", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -181,8 +180,6 @@
         "target": [1017, 421, 1, 1]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 200,
     "next": ["S_ClickFormation2"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -193,7 +190,6 @@
         "target": [1017, 421, 1, 1]
       }
     },
-    "pre_delay": 100,
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -224,8 +220,9 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 800,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_DetectSortOrder"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -244,7 +241,9 @@
         "target": [1189, 140, 37, 61]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_IsPreSortieConfirm"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -266,7 +265,10 @@
         "target": [1204, 629, 1, 1]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [1156, 584, 96, 47]
+    },
     "next": ["S_PostSortieHub"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -294,7 +296,10 @@
       }
     },
     "action": {"type": "Click"},
-    "post_delay": 500,
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [423, 484, 145, 56]
+    },
     "next": ["S_PreCheckTroopRecord"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -321,7 +326,10 @@
         "target": [154, 93, 1, 1]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [38, 123, 1059, 561]
+    },
     "next": ["S_CaptainHub"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -337,6 +345,9 @@
       }
     },
     "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_PreCheckUseRecord"],
     "on_error": ["S_DetectAfterSortieNow"]
   },
@@ -363,6 +374,10 @@
         "target": [1209, 140, 30, 71]
       }
     },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
     "next": ["S_PreCheckUseRecordBtn"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -373,6 +388,10 @@
       "param": {
         "target": [1209, 250, 30, 71]
       }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
     },
     "next": ["S_PreCheckUseRecordBtn"],
     "on_error": ["S_DetectWhereAmI"]
@@ -385,6 +404,10 @@
         "target": [1209, 360, 30, 71]
       }
     },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
     "next": ["S_PreCheckUseRecordBtn"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -395,6 +418,10 @@
       "param": {
         "target": [1209, 465, 30, 71]
       }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
     },
     "next": ["S_PreCheckUseRecordBtn"],
     "on_error": ["S_DetectWhereAmI"]
@@ -407,6 +434,10 @@
         "target": [1209, 575, 30, 71]
       }
     },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
     "next": ["S_PreCheckUseRecordBtn"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -417,6 +448,10 @@
       "param": {
         "target": [707, 53, 72, 64]
       }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [442, 253, 395, 125]
     },
     "next": ["S_PreConfirmSupply"],
     "on_error": ["S_DetectWhereAmI"]
@@ -441,7 +476,6 @@
         "target": [246, 389, 1, 1]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ConfirmEra"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -452,7 +486,9 @@
         "target": [1206, 642, 1, 1]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -466,20 +502,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["S_VerifyRegionSelect", "S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_VerifyRegionSelect": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [558, 55, 169, 54],
-        "template": "Common/地域选择.png",
-        "green_mask": true,
-        "threshold": [0.98]
-      }
-    },
-    "next": ["S_ClickRegion"],
+    "next": ["S_ClickRegion", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_ClickRegion": {
@@ -489,8 +512,9 @@
         "target": [173, 365, 97, 96]
       }
     },
-    "pre_delay": 500,
-    "post_delay": 800,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_IsTeamSelect", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -514,7 +538,9 @@
         "target": [23, 202, 1, 1]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -544,7 +570,9 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_PostClickMenuHub"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -557,7 +585,9 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_VerifyMenuClosed", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -610,7 +640,10 @@
         "target": [1050, 580, 1, 1]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [1050, 580, 1, 1]
+    },
     "next": ["S_ConfirmRepair"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -622,8 +655,9 @@
         "target": [1050, 580, 1, 1]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 200,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_ReturnHome"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -641,7 +675,9 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_ClickHomeInMenu"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -653,8 +689,10 @@
         "target": [1037, 169, 110, 44]
       }
     },
-    "pre_delay": 100,
-    "next": ["S_VerifyHomeMenuClosed"],
+    "post_wait_freezes": {
+      "time": 100
+    },
+    "next": ["S_VerifyHomeMenuClosed","S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_CheckBoss": {
@@ -712,7 +750,6 @@
         "target": [1072, 563, 110, 69]
       }
     },
-    "pre_delay": 100,
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -948,7 +985,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -963,7 +999,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -978,7 +1013,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -993,7 +1027,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1008,7 +1041,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1023,7 +1055,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1038,7 +1069,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1053,7 +1083,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1068,7 +1097,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1083,7 +1111,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1095,8 +1122,10 @@
         "target": [1208, 449, 1, 1]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 500,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [548, 295, 182, 56]
+    },
     "next": ["S_ConfirmRetreat", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1115,7 +1144,6 @@
         "target": [490, 469, 1, 1]
       }
     },
-    "pre_delay": 100,
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1136,7 +1164,10 @@
         "target": [788, 465, 1, 1]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [368, 464, 539, 90]
+    },
     "next": ["S_LogPreDamage1"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1148,6 +1179,10 @@
         "roi": [465, 310, 46, 24],
         "expected": "重伤"
       }
+    },
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [368, 464, 539, 90]
     },
     "next": ["S_LogPreDamage2"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1570,13 +1605,14 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 500,
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [368, 464, 539, 90]
+    },
     "next": ["S_DecideDamage_Pre"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_NavigateToRepair": {
-    "post_delay": 300,
     "next": ["S_ClickMenuForRepair", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1589,8 +1625,9 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_VerifyMenuOpened"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1603,8 +1640,10 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
-    "next": ["S_VerifyRepairMenuClosed"],
+    "post_wait_freezes": {
+      "time": 100
+    },
+    "next": ["S_VerifyRepairMenuClosed", "S_SelectDamagedSword", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_SelectDamagedSword": {
@@ -1631,7 +1670,9 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_ConfirmSelectSlot"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1644,7 +1685,9 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_ConfirmSelectSlot"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1657,7 +1700,9 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_ConfirmSelectSlot"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1669,10 +1714,13 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [1208, 449, 1, 1]
+        "target": [1208, 449, 10, 10]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [548, 295, 182, 56]
+    },
     "next": ["S_ConfirmReturnHome"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1685,7 +1733,10 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [262, 307, 147, 46]
+    },
     "next": ["S_CheckAccel"],
     "on_error": ["S_LogNoDamagedSword"]
   },
@@ -1709,7 +1760,10 @@
         "target": [1156, 241, 27, 25]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [1156, 241, 27, 25]
+    },
     "next": ["S_ClickRepairDone"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1722,7 +1776,10 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [1159, 588, 83, 44]
+    },
     "next": ["S_LogRepairDone"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1743,33 +1800,7 @@
       "custom_action": "DamageLogAction",
       "custom_action_param": {"message": "[重伤检测] 修复完成"}
     },
-    "next": ["S_DirAfterRepair"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_DirAfterRepair": {
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [1183, 18, 87, 40],
-        "expected": "目"
-      }
-    },
-    "action": {"type": "Click"},
-    "pre_delay": 100,
-    "next": ["S_VerifyMenuAfterRepair"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_SortieAfterRepair": {
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [165, 163, 87, 52],
-        "expected": "出阵"
-      }
-    },
-    "action": {"type": "Click"},
-    "pre_delay": 100,
-    "next": ["S_VerifyAfterRepairMenuClosed"],
+    "next": ["S_NavigateToSortie"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_ConfirmReturnHome": {
@@ -1788,8 +1819,6 @@
         "target": [490, 469, 1, 1]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 500,
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1802,7 +1831,6 @@
         "threshold": [0.9]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRepairInMenu"],
     "on_error": ["S_ClickMenuForRepair"]
   },
@@ -1832,7 +1860,9 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_PostClickMenuHub"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1862,19 +1892,6 @@
     "next": ["S_ClickRepairInMenu"],
     "on_error": ["S_SelectDamagedSword"]
   },
-  "S_VerifyMenuAfterRepair": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [581, 28, 112, 57],
-        "template": "Common/菜单目录.png",
-        "green_mask": true,
-        "threshold": [0.98]
-      }
-    },
-    "next": ["S_SortieAfterRepair"],
-    "on_error": ["S_DirAfterRepair"]
-  },
   "S_ClickCaptain1": {
     "enabled": false,
     "action": {
@@ -1883,8 +1900,9 @@
         "target": [828, 82, 68, 25]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 800,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_ClickCaptain2"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1896,8 +1914,10 @@
         "target": [752, 137, 97, 29]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 800,
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [752, 137, 97, 29]
+    },
     "next": ["S_ClickCaptain3"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1909,8 +1929,10 @@
         "target": [407, 510, 90, 31]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 800,
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [407, 510, 90, 31]
+    },
     "next": ["S_ClickCaptain4"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1922,8 +1944,10 @@
         "target": [965, 438, 91, 34]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 800,
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [965, 438, 91, 34]
+    },
     "next": ["S_ClickCaptain5"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1935,7 +1959,9 @@
         "target": [592, 603, 107, 46]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_DetectSortOrder"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1947,8 +1973,9 @@
         "target": [1024, 140, 30, 50]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 1000,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1970,6 +1997,9 @@
       "param": {
         "target": [789, 512, 1, 4]
       }
+    },
+    "post_wait_freezes": {
+      "time": 100
     },
     "next": ["S_IsPreSortieConfirm"],
     "on_error": ["S_DetectWhereAmI"]
@@ -2000,7 +2030,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2015,7 +2044,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2071,23 +2099,6 @@
     "next": ["S_ClickHomeInMenu", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_VerifyAfterRepairMenuClosed": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [581, 28, 112, 57],
-        "template": "Common/菜单目录.png",
-        "green_mask": true,
-        "threshold": [0.98]
-      }
-    },
-    "next": ["S_TryClickAfterRepair", "S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_TryClickAfterRepair": {
-    "next": ["S_SortieAfterRepair", "S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
   "S_IsGameIcon": {
     "recognition": {
       "type": "TemplateMatch",
@@ -2099,8 +2110,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 3000,
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2115,8 +2124,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 3000,
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2131,8 +2138,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 2000,
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2150,8 +2155,6 @@
         "target": [578, 440, 130, 55]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 2000,
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2309,7 +2312,10 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [1056, 463, 63, 193]
+    },
     "timeout": 3000,
     "next": ["S_IsAnnouncementPopup", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
@@ -2325,7 +2331,10 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [232, 99, 817, 568]
+    },
     "next": ["S_LoginRewardClick2"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2336,7 +2345,10 @@
         "target": [1092, 318, 1, 1]
       }
     },
-    "pre_delay": 1000,
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [232, 99, 817, 568]
+    },
     "next": ["S_LoginRewardClick3"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2347,7 +2359,10 @@
         "target": [1092, 318, 1, 1]
       }
     },
-    "pre_delay": 1000,
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [232, 99, 817, 568]
+    },
     "timeout": 3000,
     "next": ["S_IsLoginReward"],
     "on_error": ["S_DetectWhereAmI"]
@@ -2363,7 +2378,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2378,7 +2392,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2393,7 +2406,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2408,7 +2420,6 @@
         "threshold": [0.98]
       }
     },
-    "pre_delay": 100,
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2436,7 +2447,6 @@
       }
     },
     "action": {"type": "DoNothing"},
-    "pre_delay": 100,
     "next": ["E_ExpSubHub1"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2451,7 +2461,6 @@
       }
     },
     "action": {"type": "DoNothing"},
-    "pre_delay": 100,
     "next": ["S_ClickSortieInMenu"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2466,7 +2475,10 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [427, 269, 426, 130]
+    },
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_StopOnDamagePopup": {
@@ -2486,7 +2498,10 @@
         "target": [788, 465, 1, 1]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [368, 464, 539, 90]
+    },
     "next": ["S_LogStopOnDamage"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2499,7 +2514,16 @@
         "expected": "重伤"
       }
     },
-    "pre_delay": 100,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [788, 465, 1, 1]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [368, 464, 539, 90]
+    },
     "next": ["S_LogStopOnDamageText"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2573,7 +2597,6 @@
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_NavigateToHomeFromStop": {
-    "post_delay": 300,
     "next": ["S_ClickMenuStop", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2586,7 +2609,9 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_ClickHomeStop"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2606,7 +2631,9 @@
         "target": [1037, 169, 110, 44]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_VerifyHomeScreen"],
     "on_error": ["S_ClickMenuStop"]
   },
@@ -2630,7 +2657,6 @@
         "target": [185, 22, 15, 18]
       }
     },
-    "pre_delay": 100,
     "next": ["S_VerifyHomeScreen"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2652,7 +2678,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2666,7 +2691,6 @@
         "threshold": 30
       }
     },
-    "pre_delay": 100,
     "next": ["S_IsPreSortieConfirm"],
     "on_error": ["SF_Hub"]
   },
@@ -2714,7 +2738,10 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [1056, 463, 63, 193]
+    },
     "timeout": 3000,
     "next": ["SF_IsAnnouncementPopup"],
     "on_error": ["SF_DetectWhereAmI"]
@@ -2730,7 +2757,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2745,7 +2771,10 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [232, 99, 817, 568]
+    },
     "next": ["SF_LoginRewardClick2"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2756,7 +2785,10 @@
         "target": [1092, 318, 1, 1]
       }
     },
-    "pre_delay": 1000,
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [232, 99, 817, 568]
+    },
     "next": ["SF_LoginRewardClick3"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2767,7 +2799,10 @@
         "target": [1092, 318, 1, 1]
       }
     },
-    "pre_delay": 1000,
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [232, 99, 817, 568]
+    },
     "timeout": 3000,
     "next": ["SF_IsLoginReward"],
     "on_error": ["SF_DetectWhereAmI"]
@@ -2786,7 +2821,6 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "pre_delay": 100,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2804,7 +2838,6 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "pre_delay": 100,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2819,8 +2852,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 3000,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2835,8 +2866,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 3000,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2851,8 +2880,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 2000,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2870,8 +2897,6 @@
         "target": [578, 440, 130, 55]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 2000,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2886,7 +2911,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2925,7 +2949,9 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["SF_PostClickMenuHub"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2944,7 +2970,6 @@
       }
     },
     "action": {"type": "DoNothing"},
-    "pre_delay": 100,
     "next": ["SF_ClickSortieInMenu"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2957,7 +2982,9 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_Hub"]
   },
@@ -2981,8 +3008,6 @@
         "target": [246, 389, 1, 1]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 500,
     "next": ["SF_ConfirmEra"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -2993,7 +3018,9 @@
         "target": [1199, 633, 3, 1]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3017,7 +3044,9 @@
         "target": [194, 213, 8, 1]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3066,7 +3095,10 @@
         "target": [154, 93, 1, 1]
       }
     },
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [38, 123, 1059, 561]
+    },
     "next": ["SF_DissolveHub"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3097,7 +3129,6 @@
         "reversed": true
       }
     },
-    "pre_delay": 100,
     "next": ["SF_ClickSortieNow"],
     "on_error": ["SF_UseRecord_Step1"]
   },
@@ -3115,7 +3146,6 @@
         "target": [1204, 629, 1, 1]
       }
     },
-    "pre_delay": 100,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_Hub"]
   },
@@ -3149,7 +3179,6 @@
         "target": [1017, 421, 1, 1]
       }
     },
-    "post_delay": 500,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3167,7 +3196,6 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "pre_delay": 100,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3185,7 +3213,6 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "pre_delay": 100,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3204,7 +3231,6 @@
         "target": [1067, 558, 120, 79]
       }
     },
-    "pre_delay": 100,
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3225,7 +3251,10 @@
         "target": [1209, 140, 30, 71]
       }
     },
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
     "next": ["SF_UseRecord_Step3"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3246,7 +3275,10 @@
         "target": [1209, 250, 30, 71]
       }
     },
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
     "next": ["SF_UseRecord_Step3"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3267,7 +3299,10 @@
         "target": [1209, 360, 30, 71]
       }
     },
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
     "next": ["SF_UseRecord_Step3"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3288,7 +3323,10 @@
         "target": [1209, 465, 30, 71]
       }
     },
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
     "next": ["SF_UseRecord_Step3"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3309,7 +3347,10 @@
         "target": [1209, 575, 30, 71]
       }
     },
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
     "next": ["SF_UseRecord_Step3"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3325,7 +3366,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["SF_UseRecord_Step2_Rec1", "SF_UseRecord_Step2_Rec2", "SF_UseRecord_Step2_Rec3", "SF_UseRecord_Step2_Rec4", "SF_UseRecord_Step2_Rec5"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3336,7 +3379,10 @@
         "target": [707, 53, 72, 64]
       }
     },
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [442, 253, 395, 125]
+    },
     "next": ["SF_UseRecord_Step4", "SF_UseRecord_Step3"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3354,7 +3400,9 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "post_delay": 1000,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["SF_NavigateBack"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3370,7 +3418,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["SF_EqRefill_Step2_Rec1", "SF_EqRefill_Step2_Rec2", "SF_EqRefill_Step2_Rec3", "SF_EqRefill_Step2_Rec4", "SF_EqRefill_Step2_Rec5"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3391,7 +3441,10 @@
         "target": [1209, 140, 30, 71]
       }
     },
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
     "next": ["SF_EqRefill_Step3"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3412,7 +3465,10 @@
         "target": [1209, 250, 30, 71]
       }
     },
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
     "next": ["SF_EqRefill_Step3"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3433,7 +3489,10 @@
         "target": [1209, 360, 30, 71]
       }
     },
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
     "next": ["SF_EqRefill_Step3"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3454,7 +3513,10 @@
         "target": [1209, 465, 30, 71]
       }
     },
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
     "next": ["SF_EqRefill_Step3"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3475,7 +3537,10 @@
         "target": [1209, 575, 30, 71]
       }
     },
-    "post_delay": 300,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [655, 121, 540, 562]
+    },
     "next": ["SF_EqRefill_Step3"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3485,6 +3550,10 @@
       "param": {
         "target": [707, 53, 72, 64]
       }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [442, 253, 395, 125]
     },
     "next": ["SF_EqRefill_Step4"],
     "on_error": ["SF_DetectWhereAmI"]
@@ -3503,7 +3572,9 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "post_delay": 1000,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3516,7 +3587,9 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
+    "post_wait_freezes": {
+      "time": 100
+    },
     "next": ["S_DetectWhereAmI"],
     "on_error": ["SF_Hub"]
   },

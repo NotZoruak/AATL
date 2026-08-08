@@ -2089,7 +2089,6 @@
           "pipeline_override": {
             "S_IsRepair": {"enabled": true},
             "S_ConfirmRepair": {"enabled": true},
-            "S_ClickMenuFromRepair": {"enabled": true},
             "S_IsStopOnDamage": {"enabled": false},
             "S_IsPreDamage1": {"enabled": true},
             "S_IsPreDamage2": {"enabled": true},
