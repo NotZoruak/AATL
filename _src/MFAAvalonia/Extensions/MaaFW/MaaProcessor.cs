@@ -3437,7 +3437,11 @@ public class MaaProcessor
             Index = index,
             Name = task.Name,
             Entry = task.InterfaceItem?.Entry,
-            Count = task.InterfaceItem?.Repeatable == true ? (task.InterfaceItem?.RepeatCount ?? 1) : 1,
+            // repeat_count < 0 表示无限重复（MFATask 中转为 int.MaxValue），
+            // 挂机任务（如合战场）失败后会自动重新提交，配合重启恢复实现不中断
+            Count = task.InterfaceItem?.RepeatCount < 0
+                ? -1
+                : (task.InterfaceItem?.Repeatable == true ? (task.InterfaceItem?.RepeatCount ?? 1) : 1),
             // Tasks = tasks,
             Param = taskParams
         };
@@ -3809,10 +3813,31 @@ public class MaaProcessor
             {
                 TaskQueue.Enqueue(CreateMaaFWTask("回本丸", async () =>
                 {
-                    await TryRunTasksAsync(MaaTasker, "GoHome", "{}", "回本丸", token);
+                    // 合并全局选项 override（如卡死重启禁用的兜底节点），
+                    // 避免内部任务以 "{}" 启动导致兜底未被禁用、卡死时无限空转
+                    await TryRunTasksAsync(MaaTasker, "GoHome", BuildGoHomeParam(), "回本丸", token);
                 }));
             }
         }
+    }
+
+    /// <summary>
+    /// 生成回本丸任务参数：合并全局选项 override（含卡死重启等），
+    /// 使任务队列插入的回本丸与正常任务应用一致的兜底禁用策略
+    /// </summary>
+    private string BuildGoHomeParam()
+    {
+        var taskModels = JsonConvert.DeserializeObject<Dictionary<string, JToken>>("{}", new JsonSerializerSettings
+        {
+            Formatting = Formatting.Indented,
+            NullValueHandling = NullValueHandling.Ignore,
+            DefaultValueHandling = DefaultValueHandling.Ignore
+        })!.ToMaaToken();
+
+        // 传入 Entry 为 GoHome 的空任务，使「远征智能调度」等仅对特定任务生效的选项被排除
+        var goHomeTask = new MaaInterface.MaaInterfaceTask { Entry = "GoHome" };
+        MergeGlobalOptionParams(ref taskModels, goHomeTask);
+        return SerializeTaskParams(taskModels);
     }
 
     async private Task TryRunTasksAsync(MaaTasker? maa, string? task, string? param, string? taskName, CancellationToken token, bool isCoreTask = false)

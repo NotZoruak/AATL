@@ -188,6 +188,21 @@ All version numbers follow [Semantic Versioning](https://semver.org/lang/zh-CN/)
 - PATCH resets to zero when MINOR is bumped; MINOR and PATCH both reset to zero when MAJOR is bumped
 - A resource at `0.y.z` is considered in development; release `1.0.0` once stable
 
+#### 修改资源版本号时必须同步的位置
+
+每次提升资源版本号，以下位置必须全部同步，否则版本不一致：
+
+| 位置 | 内容 |
+|---|---|
+| `tools/pack.ps1` | `$Version` 参数默认值（发布 zip 命名） |
+| `assets/interface.json` | `"version"` 字段 |
+| `assets/interface.json` | `"custom_title"` 字段（窗口标题中嵌入的版本号） |
+| `assets/resource/announcement/` | 新增对应版本的更新公告 Markdown（文件名格式 `N-vX.Y.Z 更新公告.md`） |
+
+- 版本格式示例：`v0.9.0-beta.2`，四处保持一致
+- 历史版本的公告文件与开发日志中的旧版本记录保持原样，不回改
+- MirrorChyan 上传按 tag 推断频道，发布 tag 必须与 `tools/pack.ps1` 的 `$Version` 一致
+
 ## Release Process
 
 Files must be copied manually after `dotnet publish` before running:

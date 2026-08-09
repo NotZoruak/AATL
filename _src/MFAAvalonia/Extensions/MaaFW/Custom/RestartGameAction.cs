@@ -72,6 +72,13 @@ public class RestartGameAction : IMaaCustomAction
         {
             _mumuCliExe = cliExe;
             _isMuMu12 = true;
+            // 顺带探测旧版主程序，CLI 方式失败时回退用
+            var fallbackLegacyExe = Path.Combine(_mumuPath, "MuMuPlayer.exe");
+            if (File.Exists(fallbackLegacyExe))
+            {
+                _mumuLegacyExe = fallbackLegacyExe;
+                _mumuProcessName = "MuMuPlayer";
+            }
             return;
         }
 
@@ -108,7 +115,7 @@ public class RestartGameAction : IMaaCustomAction
     }
 
     /// <summary>
-    /// MuMu 12+：通过 mumu-cli.exe control restart 重启实例，无需杀进程
+    /// MuMu 12+：通过 mumu-cli.exe control restart 重启实例，失败时回退旧版方式
     /// </summary>
     private void RestartEmulatorViaCli()
     {
@@ -124,33 +131,51 @@ public class RestartGameAction : IMaaCustomAction
             CreateNoWindow = true,
             UseShellExecute = false,
             RedirectStandardOutput = true,
+            RedirectStandardError = true,
         };
-        var proc = Process.Start(restartPsi);
-        proc?.WaitForExit(30000);
+
+        bool cliOk = false;
+        try
+        {
+            using var proc = Process.Start(restartPsi);
+            if (proc != null)
+            {
+                if (!proc.WaitForExit(30000))
+                {
+                    // 超时未退出，不能直接读 ExitCode（会抛异常），按失败处理
+                    LoggerHelper.Info("[RestartGameAction] CLI 重启命令超时，按失败处理");
+                    try { proc.Kill(); } catch { }
+                }
+                else if (proc.ExitCode != 0)
+                {
+                    var output = proc.StandardOutput.ReadToEnd();
+                    var error = proc.StandardError.ReadToEnd();
+                    LoggerHelper.Info($"[RestartGameAction] CLI 重启返回异常: code={proc.ExitCode} out={output.Trim()} err={error.Trim()}");
+                }
+                else
+                {
+                    cliOk = true;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            LoggerHelper.Info($"[RestartGameAction] CLI 重启异常: {e.Message}");
+        }
+
+        // CLI 失败时回退到旧版方式
+        if (!cliOk)
+        {
+            LoggerHelper.Info("[RestartGameAction] CLI 重启未成功，回退到旧版方式");
+            RestartEmulatorLegacy();
+            return;
+        }
 
         // 等待 ADB 重新连接
         LoggerHelper.Info("[RestartGameAction] 等待模拟器启动...");
         Thread.Sleep(10000);
-        for (int i = 0; i < 30; i++)
-        {
-            var checkPsi = new ProcessStartInfo(_adbPath!, $"shell echo ready")
-            {
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-            };
-            if (!string.IsNullOrWhiteSpace(_adbSerial))
-                checkPsi.Arguments = $"-s {_adbSerial} shell echo ready";
-            var checkProc = Process.Start(checkPsi);
-            checkProc?.WaitForExit(5000);
-            if (checkProc?.ExitCode == 0)
-            {
-                LoggerHelper.Info("[RestartGameAction] 模拟器已就绪");
-                return;
-            }
-            Thread.Sleep(2000);
-        }
-        LoggerHelper.Info("[RestartGameAction] 模拟器启动超时，继续后续流程");
+        if (!WaitForAdbReady(30))
+            LoggerHelper.Info("[RestartGameAction] 模拟器启动超时，继续后续流程");
     }
 
     /// <summary>
@@ -171,7 +196,15 @@ public class RestartGameAction : IMaaCustomAction
             UseShellExecute = false,
             RedirectStandardOutput = true,
         };
-        Process.Start(killPsi)?.WaitForExit(5000);
+        try
+        {
+            using var killProc = Process.Start(killPsi);
+            killProc?.WaitForExit(5000);
+        }
+        catch (Exception e)
+        {
+            LoggerHelper.Info($"[RestartGameAction] 关闭模拟器异常: {e.Message}");
+        }
         Thread.Sleep(3000);
 
         LoggerHelper.Info($"[RestartGameAction] 正在启动模拟器（{_mumuLegacyExe}）...");
@@ -180,30 +213,85 @@ public class RestartGameAction : IMaaCustomAction
         {
             UseShellExecute = true,
         };
-        Process.Start(startPsi);
+        try
+        {
+            Process.Start(startPsi);
+        }
+        catch (Exception e)
+        {
+            LoggerHelper.Info($"[RestartGameAction] 启动模拟器异常: {e.Message}");
+            return;
+        }
 
         LoggerHelper.Info("[RestartGameAction] 等待模拟器启动...");
         Thread.Sleep(15000);
-        for (int i = 0; i < 30; i++)
+        if (!WaitForAdbReady(30))
+            LoggerHelper.Info("[RestartGameAction] 模拟器启动超时，继续后续流程");
+    }
+
+    /// <summary>
+    /// 等待 ADB 重新连接，最多尝试 maxAttempts 次
+    /// </summary>
+    private bool WaitForAdbReady(int maxAttempts, int timeoutMs = 5000)
+    {
+        for (int i = 0; i < maxAttempts; i++)
         {
-            var checkPsi = new ProcessStartInfo(_adbPath!, $"shell echo ready")
+            try
             {
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-            };
-            if (!string.IsNullOrWhiteSpace(_adbSerial))
-                checkPsi.Arguments = $"-s {_adbSerial} shell echo ready";
-            var checkProc = Process.Start(checkPsi);
-            checkProc?.WaitForExit(5000);
-            if (checkProc?.ExitCode == 0)
+                var checkPsi = new ProcessStartInfo(_adbPath!, $"shell echo ready")
+                {
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                };
+                if (!string.IsNullOrWhiteSpace(_adbSerial))
+                    checkPsi.Arguments = $"-s {_adbSerial} shell echo ready";
+
+                using var checkProc = Process.Start(checkPsi);
+                if (checkProc == null)
+                {
+                    Thread.Sleep(2000);
+                    continue;
+                }
+                checkProc.WaitForExit(timeoutMs);
+                // WaitForExit 超时后进程可能仍在运行，直接读 ExitCode 会抛异常，先判断是否已退出
+                if (checkProc.HasExited && checkProc.ExitCode == 0)
+                {
+                    LoggerHelper.Info("[RestartGameAction] 模拟器已就绪");
+                    return true;
+                }
+            }
+            catch (Exception e)
             {
-                LoggerHelper.Info("[RestartGameAction] 模拟器已就绪");
-                return;
+                LoggerHelper.Info($"[RestartGameAction] ADB 检查异常: {e.Message}");
             }
             Thread.Sleep(2000);
         }
-        LoggerHelper.Info("[RestartGameAction] 模拟器启动超时，继续后续流程");
+        return false;
+    }
+
+    /// <summary>
+    /// 执行一条 adb 命令，异常不会上抛，确保不中断后续流程
+    /// </summary>
+    private static void RunAdbCommand(string adbPath, string adbSerial, string args)
+    {
+        var psi = new ProcessStartInfo(adbPath, args)
+        {
+            CreateNoWindow = true,
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+        };
+        if (!string.IsNullOrWhiteSpace(adbSerial))
+            psi.Arguments = $"-s {adbSerial} {args}";
+        try
+        {
+            using var proc = Process.Start(psi);
+            proc?.WaitForExit(5000);
+        }
+        catch (Exception e)
+        {
+            LoggerHelper.Info($"[RestartGameAction] 命令执行异常: {e.Message}");
+        }
     }
 
     public bool Run<T>(T context, in RunArgs args, in RunResults results) where T : IMaaContext
@@ -220,28 +308,12 @@ public class RestartGameAction : IMaaCustomAction
 
             // 1. 强制停止游戏进程，确保从卡死状态恢复
             LoggerHelper.Info($"[RestartGameAction] 强制停止游戏进程: {package}");
-            var forceStopPsi = new ProcessStartInfo(_adbPath!, $"shell am force-stop {package}")
-            {
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-            };
-            if (!string.IsNullOrWhiteSpace(_adbSerial))
-                forceStopPsi.Arguments = $"-s {_adbSerial} shell am force-stop {package}";
-            Process.Start(forceStopPsi)?.WaitForExit(5000);
+            RunAdbCommand(_adbPath!, _adbSerial ?? "", $"shell am force-stop {package}");
             Thread.Sleep(2000);
 
             // 2. 重新启动游戏
             LoggerHelper.Info($"[RestartGameAction] 重新启动游戏: {package}");
-            var startPsi = new ProcessStartInfo(_adbPath!, $"shell monkey -p {package} -c android.intent.category.LAUNCHER 1")
-            {
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-            };
-            if (!string.IsNullOrWhiteSpace(_adbSerial))
-                startPsi.Arguments = $"-s {_adbSerial} shell monkey -p {package} -c android.intent.category.LAUNCHER 1";
-            Process.Start(startPsi)?.WaitForExit(3000);
+            RunAdbCommand(_adbPath!, _adbSerial ?? "", $"shell monkey -p {package} -c android.intent.category.LAUNCHER 1");
 
             LoggerHelper.Info("[RestartGameAction] 游戏重启完成");
             return true;
