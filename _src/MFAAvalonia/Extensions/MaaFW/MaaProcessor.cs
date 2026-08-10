@@ -3439,8 +3439,9 @@ public class MaaProcessor
             Entry = task.InterfaceItem?.Entry,
             // repeat_count < 0 表示无限重复（MFATask 中转为 int.MaxValue），
             // 挂机任务（如合战场）失败后会自动重新提交，配合重启恢复实现不中断
-            Count = task.InterfaceItem?.RepeatCount < 0
-                ? -1
+            // repeat_count > 0 时直接生效（不受 Repeatable 限制，GUI 仍按 Repeatable 决定是否显示重复次数选项）
+            Count = task.InterfaceItem?.RepeatCount is > 0
+                ? task.InterfaceItem.RepeatCount.Value
                 : (task.InterfaceItem?.Repeatable == true ? (task.InterfaceItem?.RepeatCount ?? 1) : 1),
             // Tasks = tasks,
             Param = taskParams
