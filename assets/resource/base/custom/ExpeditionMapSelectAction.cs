@@ -27,16 +27,14 @@ public class ExpeditionMapSelectAction : IMaaCustomAction
                 return false;
             }
 
-            // 读取 appsettings.json 获取最后激活的实例名
-            string appSettingsPath = AppPaths.GlobalConfigPath;
-            string instanceName = "default";
-            if (File.Exists(appSettingsPath))
-            {
-                var appSettings = JObject.Parse(File.ReadAllText(appSettingsPath));
-                instanceName = (string)appSettings["Instances.LastActiveName"] ?? "default";
-            }
-
-            string configPath = Path.Combine(instancesDir, $"{instanceName}.json");
+            // 使用当前激活实例的 UUID 定位配置文件（config/instances/{uuid}.json），
+            // 与 InstanceConfiguration.GetConfigFilePath() 保持一致。
+            // 注意：不能使用 appsettings.json 的 Instances.LastActiveName（实例显示名），
+            // 显示名与实例文件名无关；且回退 default.json 会读错其他实例的远征配置。
+            string instanceId = MaaProcessorManager.Instance?.Current?.InstanceId ?? string.Empty;
+            string configPath = string.IsNullOrWhiteSpace(instanceId)
+                ? Path.Combine(instancesDir, "default.json")
+                : Path.Combine(instancesDir, $"{instanceId}.json");
             if (!File.Exists(configPath))
             {
                 configPath = Path.Combine(instancesDir, "default.json");
