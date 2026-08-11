@@ -1,10 +1,10 @@
 {
     "name": "MATR",
-    "version": "v0.9.0-beta.3",
+    "version": "v0.9.0",
     "mirrorchyan_rid": "MATR",
     "mirrorchyan_multiplatform": true,
     "icon": "resource/logo/MATR.ico",
-    "custom_title": "MATR v0.9.0-beta.3 | 刀剑乱舞小助手",
+    "custom_title": "MATR v0.9.0 | 刀剑乱舞小助手",
     "Github": "https://github.com/NotZoruak/MATR",
     "controller": [
         {
@@ -10661,7 +10661,7 @@
             "name": "目标应用",
             "label": "目标应用",
             "type": "input",
-            "description": "⚠ 该功能尚未充分测试，部分任务可能无法生效，请谨慎开启。\n如何获取游戏包名：在模拟器中右键游戏图标 → 发送到桌面。在桌面右键快捷方式 → 属性 → 目标，复制 -p 与 -v 之间的内容至输入框。",
+            "description": "⚠ 该功能尚未充分测试，部分任务可能无法生效，请谨慎开启。\n如何获取游戏包名：在模拟器中右键游戏图标 → 发送到桌面。在桌面右键快捷方式 → 属性 → 目标，复制 -p 与 -v 之间的内容至输入框。\n若出现模拟器无响应等卡死状态，自动恢复后将重新开始运行整个任务队列。",
             "inputs": [
                 {
                     "name": "package_name",
