@@ -47,14 +47,23 @@ public class SmartWaitAction : IMaaCustomAction
 
             if (waitSeconds > 0)
             {
-                // 分段 sleep 以响应停止信号
-                var deadline = DateTime.Now.AddSeconds(waitSeconds);
-                while (DateTime.Now < deadline)
+                // 记录等待窗口，供 MATR 层无响应检测排除合法静默；try/finally 保证停止、异常也清除窗口
+                SmartWaitTracker.BeginWait(DateTime.Now.AddSeconds(waitSeconds));
+                try
                 {
-                    ActionParamHelper.ThrowIfStopping(context);
-                    var chunk = (int)Math.Min(5, (deadline - DateTime.Now).TotalSeconds);
-                    if (chunk <= 0) break;
-                    Thread.Sleep(chunk * 1000);
+                    // 分段 sleep 以响应停止信号
+                    var deadline = DateTime.Now.AddSeconds(waitSeconds);
+                    while (DateTime.Now < deadline)
+                    {
+                        ActionParamHelper.ThrowIfStopping(context);
+                        var chunk = (int)Math.Min(5, (deadline - DateTime.Now).TotalSeconds);
+                        if (chunk <= 0) break;
+                        Thread.Sleep(chunk * 1000);
+                    }
+                }
+                finally
+                {
+                    SmartWaitTracker.Clear();
                 }
             }
 

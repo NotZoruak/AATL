@@ -12,6 +12,7 @@ using MaaFramework.Binding.Buffers;
 using MFAAvalonia.Configuration;
 using MFAAvalonia.Extensions;
 using MFAAvalonia.Extensions.MaaFW;
+using MFAAvalonia.Extensions.MaaFW.Custom;
 using MFAAvalonia.Helper;
 using MFAAvalonia.Helper.Converters;
 using MFAAvalonia.Helper.ValueType;
@@ -46,6 +47,7 @@ public partial class TaskQueueViewModel : ViewModelBase
     public TaskQueueViewModel(string instanceId)
     {
         _processorField = new MaaProcessor(instanceId);
+        _processorField.LoopStuckDetected += OnLoopStuckDetected;
         _currentController = _processorField.InstanceConfiguration.GetValue(ConfigurationKeys.CurrentController, MaaControllerTypes.Adb, MaaControllerTypes.None, new UniversalEnumConverter<MaaControllerTypes>());
         _savedControllerName = _processorField.InstanceConfiguration.GetValue(ConfigurationKeys.CurrentControllerName, string.Empty);
         // 初始化为当前控制器类型，避免首次 AutoDetectDevice 时用 interface.json 覆盖用户已保存的配置
@@ -147,6 +149,9 @@ public partial class TaskQueueViewModel : ViewModelBase
     private bool _suppressAutoConnect = false;
     private bool _lockCurrentAdbSelectionDuringRecovery = false;
     private bool _suppressDeviceSelectionToast = false;
+
+    /// <summary>无响应检测检查循环的取消令牌源(StartTask 启动,StopTask 取消)</summary>
+    private CancellationTokenSource? _stuckCheckCts;
 
     /// <summary>
     /// 记录已应用过 interface.json 控制器设置的控制器类型，
@@ -449,6 +454,80 @@ public partial class TaskQueueViewModel : ViewModelBase
             StartTask();
     }
 
+    /// <summary>
+    /// 循环卡死触发处理:Maa 回调线程触发,切主线程编排恢复流程。
+    /// </summary>
+    private void OnLoopStuckDetected()
+    {
+        DispatcherHelper.PostOnMainThread(() =>
+        {
+            _ = RunAutoRecoverAsync();
+        });
+    }
+
+    /// <summary>
+    /// 循环卡死自动恢复:停止任务 → 重启模拟器与游戏 → 重连 → 重新启动任务队列。
+    /// 任一步失败时记录错误并复位检测,保证后续循环可再次触发重试。
+    /// </summary>
+    private async Task RunAutoRecoverAsync()
+    {
+        try
+        {
+            // 重置最后回调时间,防止恢复流程自身耗时(CLI 超时等)被无响应检测误判为再次触发
+            Processor.ResetLastCallbackTime();
+            LoggerHelper.Warning("自动恢复开始:停止任务 → 重启模拟器 → 重启游戏 → 重连 → 恢复挂机。");
+            StopTask();
+            await Task.Delay(1500);
+            await Task.Run(() => RestartGameAction.RestartAndReloadGame());
+            LoggerHelper.Info("自动恢复:模拟器与游戏重启完成,重新连接模拟器...");
+            await Processor.ReconnectAsync();
+            LoggerHelper.Info("自动恢复:重连完成,重新启动任务队列。");
+            StartTask();
+            Processor.ResetLoopDetector();
+            LoggerHelper.Info("自动恢复:循环检测已复位,恢复流程完成。");
+        }
+        catch (Exception e)
+        {
+            LoggerHelper.Error($"自动恢复失败,原因={e.Message}", e);
+            Processor.ResetLoopDetector();
+        }
+    }
+
+    /// <summary>
+    /// 无响应检测:任务运行中,若连续超过阈值无任何 Maa 回调且不在智能等待窗口,
+    /// 判定模拟器无响应,触发与循环检测相同的自动恢复流程。
+    /// </summary>
+    private const double StuckSilentThresholdSeconds = 120;
+
+    private async Task RunStuckCheckAsync(CancellationToken token)
+    {
+        while (!token.IsCancellationRequested)
+        {
+            try
+            {
+                await Task.Delay(TimeSpan.FromSeconds(10), token);
+                if (!IsRunning)
+                    continue;
+                if (SmartWaitTracker.IsInWaitWindow())
+                    continue;
+                if ((DateTime.Now - Processor.LastCallbackTime).TotalSeconds < StuckSilentThresholdSeconds)
+                    continue;
+
+                LoggerHelper.Warning("检测到模拟器无响应(超过 120 秒无回调且不在智能等待窗口),触发自动恢复。");
+                await RunAutoRecoverAsync();
+                return;
+            }
+            catch (OperationCanceledException)
+            {
+                return;
+            }
+            catch (Exception e)
+            {
+                LoggerHelper.Error($"无响应检测异常: {e.Message}");
+            }
+        }
+    }
+
     public void StartTask()
     {
         using var _ = BeginUiLogScope("StartTask");
@@ -528,11 +607,22 @@ public partial class TaskQueueViewModel : ViewModelBase
         }
 
         Processor.Start();
+
+        // 启动无响应检测检查循环(自动恢复触发 StopTask 会取消本循环,StartTask 重新启动,无重复触发)
+        _stuckCheckCts?.Cancel();
+        _stuckCheckCts = new CancellationTokenSource();
+#pragma warning disable CS4014 // 此调用不等待,检查循环生命周期由取消令牌管理
+        RunStuckCheckAsync(_stuckCheckCts.Token);
+#pragma warning restore CS4014
     }
 
     public void StopTask(Action? action = null)
     {
         Processor.Stop(MFATask.MFATaskStatus.STOPPED, action: action);
+
+        // 停止执行器后取消无响应检测检查循环
+        _stuckCheckCts?.Cancel();
+        _stuckCheckCts = null;
     }
 
     private static string? ValidateOptionsRecursive(IEnumerable<MaaInterface.MaaInterfaceSelectOption> options)

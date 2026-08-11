@@ -163,11 +163,14 @@ public class RestartGameAction : IMaaCustomAction
             LoggerHelper.Info($"[RestartGameAction] CLI 重启异常: {e.Message}");
         }
 
-        // CLI 失败时回退到旧版方式
+        // CLI 失败时回退：先试旧版方式，不可用则强制重启（覆盖模拟器无响应场景）
         if (!cliOk)
         {
             LoggerHelper.Info("[RestartGameAction] CLI 重启未成功，回退到旧版方式");
-            RestartEmulatorLegacy();
+            if (RestartEmulatorLegacy())
+                return;
+            LoggerHelper.Info("[RestartGameAction] 旧版方式不可用，尝试强制重启模拟器进程");
+            RestartEmulatorForce();
             return;
         }
 
@@ -179,14 +182,76 @@ public class RestartGameAction : IMaaCustomAction
     }
 
     /// <summary>
+    /// 无响应场景强制重启：taskkill 强杀 MuMuNxDevice.exe（挂起/无响应进程也能强杀），
+    /// 再用 mumu-cli 重新启动实例。覆盖 CLI 重启超时且旧版 MuMuPlayer.exe 不存在的情况。
+    /// </summary>
+    private void RestartEmulatorForce()
+    {
+        // 1. 强杀设备进程（无响应进程强杀不需要进程响应）
+        LoggerHelper.Info("[RestartGameAction] 强制结束 MuMuNxDevice.exe...");
+        var killPsi = new ProcessStartInfo("taskkill", "/F /IM MuMuNxDevice.exe /T")
+        {
+            CreateNoWindow = true,
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+        };
+        try
+        {
+            using var killProc = Process.Start(killPsi);
+            killProc?.WaitForExit(5000);
+        }
+        catch (Exception e)
+        {
+            LoggerHelper.Info($"[RestartGameAction] 强杀模拟器进程异常: {e.Message}");
+        }
+        Thread.Sleep(5000);
+
+        // 2. 用 mumu-cli 重新启动实例
+        if (!string.IsNullOrWhiteSpace(_mumuCliExe))
+        {
+            LoggerHelper.Info($"[RestartGameAction] 通过 CLI 重新启动模拟器实例 {_mumuIndex}...");
+            var launchPsi = new ProcessStartInfo(_mumuCliExe, $"control --vmindex {_mumuIndex} launch")
+            {
+                CreateNoWindow = true,
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+            };
+            try
+            {
+                using var launchProc = Process.Start(launchPsi);
+                if (launchProc != null && launchProc.WaitForExit(15000) && launchProc.ExitCode == 0)
+                {
+                    LoggerHelper.Info("[RestartGameAction] 模拟器实例启动命令已提交");
+                }
+                else
+                {
+                    LoggerHelper.Info("[RestartGameAction] 模拟器实例启动命令超时或失败，继续等待");
+                }
+            }
+            catch (Exception e)
+            {
+                LoggerHelper.Info($"[RestartGameAction] 启动模拟器异常: {e.Message}");
+            }
+        }
+
+        // 3. 等待 ADB 重新连接
+        LoggerHelper.Info("[RestartGameAction] 等待模拟器启动...");
+        Thread.Sleep(10000);
+        if (!WaitForAdbReady(30))
+            LoggerHelper.Info("[RestartGameAction] 模拟器启动超时，继续后续流程");
+    }
+
+    /// <summary>
     /// 旧版 MuMu：杀 MuMuPlayer.exe 进程后重新启动
     /// </summary>
-    private void RestartEmulatorLegacy()
+    /// <returns>是否成功执行了模拟器重启（无可用主程序时返回 false）</returns>
+    private bool RestartEmulatorLegacy()
     {
         if (string.IsNullOrWhiteSpace(_mumuLegacyExe) || string.IsNullOrWhiteSpace(_mumuProcessName))
         {
             LoggerHelper.Info("[RestartGameAction] 未找到 MuMu 主程序，跳过模拟器重启");
-            return;
+            return false;
         }
 
         LoggerHelper.Info($"[RestartGameAction] 正在关闭模拟器（{_mumuProcessName}）...");
@@ -220,13 +285,14 @@ public class RestartGameAction : IMaaCustomAction
         catch (Exception e)
         {
             LoggerHelper.Info($"[RestartGameAction] 启动模拟器异常: {e.Message}");
-            return;
+            return false;
         }
 
         LoggerHelper.Info("[RestartGameAction] 等待模拟器启动...");
         Thread.Sleep(15000);
         if (!WaitForAdbReady(30))
             LoggerHelper.Info("[RestartGameAction] 模拟器启动超时，继续后续流程");
+        return true;
     }
 
     /// <summary>
@@ -294,28 +360,38 @@ public class RestartGameAction : IMaaCustomAction
         }
     }
 
+    /// <summary>
+    /// 从当前处理器收集模拟器环境，执行完整的"重启模拟器+重启游戏"流程。
+    /// 供 pipeline 节点(Run)与 MATR 层卡死循环检测恢复复用。
+    /// </summary>
+    public static void RestartAndReloadGame()
+    {
+        var action = new RestartGameAction();
+        action.EnsureAdbInfo();
+
+        var package = GetPackageName();
+
+        // 0. 重启模拟器（模拟器重启会连带杀死游戏进程）
+        action.RestartEmulator();
+
+        // 1. 强制停止游戏进程，确保从卡死状态恢复
+        LoggerHelper.Info($"[RestartGameAction] 强制停止游戏进程: {package}");
+        RunAdbCommand(action._adbPath!, action._adbSerial ?? "", $"shell am force-stop {package}");
+        Thread.Sleep(2000);
+
+        // 2. 重新启动游戏
+        LoggerHelper.Info($"[RestartGameAction] 重新启动游戏: {package}");
+        RunAdbCommand(action._adbPath!, action._adbSerial ?? "", $"shell monkey -p {package} -c android.intent.category.LAUNCHER 1");
+
+        LoggerHelper.Info("[RestartGameAction] 游戏重启完成");
+    }
+
     public bool Run<T>(T context, in RunArgs args, in RunResults results) where T : IMaaContext
     {
         try
         {
             ActionParamHelper.ThrowIfStopping(context);
-            EnsureAdbInfo();
-
-            var package = GetPackageName();
-
-            // 0. 重启模拟器（模拟器重启会连带杀死游戏进程）
-            RestartEmulator();
-
-            // 1. 强制停止游戏进程，确保从卡死状态恢复
-            LoggerHelper.Info($"[RestartGameAction] 强制停止游戏进程: {package}");
-            RunAdbCommand(_adbPath!, _adbSerial ?? "", $"shell am force-stop {package}");
-            Thread.Sleep(2000);
-
-            // 2. 重新启动游戏
-            LoggerHelper.Info($"[RestartGameAction] 重新启动游戏: {package}");
-            RunAdbCommand(_adbPath!, _adbSerial ?? "", $"shell monkey -p {package} -c android.intent.category.LAUNCHER 1");
-
-            LoggerHelper.Info("[RestartGameAction] 游戏重启完成");
+            RestartAndReloadGame();
             return true;
         }
         catch (MaaStopException)

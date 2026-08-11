@@ -1074,6 +1074,7 @@ public class MaaProcessor
     private readonly Lock _screencapLogLock = new();
     private bool _screencapAbortLogPending;
     private bool _screencapDisconnectedLogPending;
+    private readonly Helper.LoopDetector _loopDetector = new();
     private int _isConnecting;
     private bool _suppressConnectionAttemptErrorToast;
     public bool IsConnecting => _isConnecting != 0;
@@ -1646,6 +1647,32 @@ public class MaaProcessor
         }
 
     }
+
+    /// <summary>循环卡死检测触发事件(Maa 回调线程触发,订阅方自行调度到主线程)</summary>
+    public event Action? LoopStuckDetected;
+
+    /// <summary>复位循环卡死检测状态(自动恢复流程完成后调用,允许后续循环重新计数)</summary>
+    public void ResetLoopDetector()
+    {
+        _loopDetector.Reset();
+    }
+
+    /// <summary>最后一次 Maa 回调时间(供无响应检测)</summary>
+    public DateTime LastCallbackTime { get; private set; } = DateTime.Now;
+
+    /// <summary>重置最后回调时间(自动恢复开始时调用,防止恢复流程自身耗时被误判为无响应)</summary>
+    public void ResetLastCallbackTime()
+    {
+        LastCallbackTime = DateTime.Now;
+    }
+
+    /// <summary>「卡死重启」全局选项是否开启(Index==0 即 Yes)。开启时循环检测才生效。</summary>
+    private bool IsLoopDetectorEnabled()
+    {
+        return Interface?.GlobalSelectOptions
+            ?.FirstOrDefault(o => o.Name == "卡死重启")?.Index == 0;
+    }
+
 // public void HandleControllerCallBack(object? sender, MaaCallbackEventArgs args)
 // {
 //     var message = args.Message;
@@ -1657,6 +1684,7 @@ public class MaaProcessor
 
     public void HandleCallBack(object? sender, MaaCallbackEventArgs args)
     {
+        LastCallbackTime = DateTime.Now;
         JObject jObject;
         try
         {
@@ -1817,6 +1845,24 @@ public class MaaProcessor
                         }
                     }
                 }
+            }
+        }
+
+        if (args.Message.StartsWith(MaaMsg.Node.Action.Succeeded) && IsLoopDetectorEnabled())
+        {
+            var nodeName = jObject["name"]?.ToString() ?? "";
+            var actionName = jObject["action_details"]?["action"]?.ToString() ?? "";
+            int hitX = 0, hitY = 0;
+            if (jObject["action_details"]?["box"] is JArray boxArr && boxArr.Count >= 2)
+            {
+                hitX = (int)Math.Round(boxArr[0].Value<double>());
+                hitY = (int)Math.Round(boxArr[1].Value<double>());
+            }
+
+            if (_loopDetector.Feed(nodeName, actionName, hitX, hitY))
+            {
+                LoggerHelper.Warning($"检测到动作循环卡死(画面冻结):节点={nodeName}, 动作={actionName}, 坐标=({hitX},{hitY})。触发自动恢复。");
+                LoopStuckDetected?.Invoke();
             }
         }
 
