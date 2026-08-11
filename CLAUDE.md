@@ -217,3 +217,5 @@ cp _src/bin/AnyCPU/Release/publish/MATR.exe ./
 ```
 
 > ⚠️ `_src/bin/AnyCPU/Release/MFAAvalonia.Core.dll` is a stale copy cached by the desktop project; its file size differs from `_src/MFAAvalonia/bin/Release/net10.0/`. **Always copy from the project's own output directory.**
+
+> 运行区（`D:\Apps\小只工具\MATR`）的文件同步由用户自行执行。AI 只把发布产物更新到工作区根目录（上述 cp 命令），不直接拷贝文件到运行区。
