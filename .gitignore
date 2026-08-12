@@ -55,3 +55,6 @@ docs/.obsidian/
 # 打包产物
 /MATR-*.zip
 /_temp_zip/
+
+# 私人数据（合战场效率实测记录，不随仓库分发）
+/docs/合战场资源效率.md
