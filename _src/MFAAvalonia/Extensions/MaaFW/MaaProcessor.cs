@@ -3478,6 +3478,31 @@ public class MaaProcessor
         // var tasks = JsonConvert.DeserializeObject<Dictionary<string, MaaNode>>(json, settings);
         // tasks = tasks.MergeMaaNodes(taskModels);
         LoggerHelper.Info($"[任务管线合并] 任务#{index} 名称=[{task.Name ?? task.InterfaceItem?.Name ?? "<未命名>"}] 入口=[{task.InterfaceItem?.Entry ?? "<空>"}] 参数={taskParams}");
+
+        // 异去模式重复次数联动：「过去/异去」选「异去」时，重复次数取「异去_重复次数」输入值。
+        // 该输入项是「异去」case 的子选项，存储于「过去/异去」选项的 SubOptions 中，不在顶层 Option 列表里；
+        // 异去每轮打完命中 S_IsIsekaiBattleEnd 结束任务，由队列按该值循环 N 轮；
+        // 选「过去」时强制 -1（pipeline 自循环即无限），避免残留的轮数配置影响过去模式
+        var repeatCount = task.InterfaceItem?.RepeatCount;
+        var modeOption = task.InterfaceItem?.Option?.FirstOrDefault(o => o.Name == "过去/异去");
+        if (modeOption != null)
+        {
+            if (modeOption.Index == 1)
+            {
+                var repeatOption = modeOption.SubOptions?.FirstOrDefault(o => o.Name == "异去_重复次数");
+                if (repeatOption?.Data != null
+                    && repeatOption.Data.TryGetValue("repeat_count", out var repeatStr)
+                    && int.TryParse(repeatStr, out var repeatValue))
+                {
+                    repeatCount = repeatValue;
+                }
+            }
+            else
+            {
+                repeatCount = -1;
+            }
+        }
+
         return new NodeAndParam
         {
             Index = index,
@@ -3486,9 +3511,12 @@ public class MaaProcessor
             // repeat_count < 0 表示无限重复（MFATask 中转为 int.MaxValue），
             // 挂机任务（如合战场）失败后会自动重新提交，配合重启恢复实现不中断
             // repeat_count > 0 时直接生效（不受 Repeatable 限制，GUI 仍按 Repeatable 决定是否显示重复次数选项）
-            Count = task.InterfaceItem?.RepeatCount is > 0
-                ? task.InterfaceItem.RepeatCount.Value
-                : (task.InterfaceItem?.Repeatable == true ? (task.InterfaceItem?.RepeatCount ?? 1) : 1),
+            // 异去模式经上述联动传入的 -1 同样直通为无限（否则 Repeatable=false 会被折成单次）
+            Count = repeatCount is > 0
+                ? repeatCount.Value
+                : (repeatCount == -1
+                    ? -1
+                    : (task.InterfaceItem?.Repeatable == true ? (repeatCount ?? 1) : 1)),
             // Tasks = tasks,
             Param = taskParams
         };

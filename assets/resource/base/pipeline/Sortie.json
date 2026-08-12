@@ -8,16 +8,18 @@
     "timeout": 120000,
     "next": [
       "S_IsMarching",
-      "S_HasExpeditionReturn_Exp",
-      "S_HasExpeditionReturn_Title",
       "S_IsBattleResult_Exp",
       "S_IsBattleResult_Title",
+      "S_HasExpeditionReturn_Title",
       "S_IsSwordDropColor",
       "S_IsFormationSelect",
       "S_IsSwordSelect",
       "S_IsTeamSelect",
-      "S_IsEraSelect",
-      "S_IsRegionSelect",
+      "S_IsPastEraSelect",
+      "S_IsIsekaiEraSelect",
+      "S_IsPastRegionSelect",
+      "S_IsIsekaiRegionSelect",
+      "S_IsIsekaiBattleEnd",
       "S_IsSortieActivity",
       "S_IsMenuDirectory",
       "S_IsTeamStatusPanel",
@@ -59,23 +61,6 @@
       "target": [577, 8, 130, 35]
     },
     "next": ["S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_HasExpeditionReturn_Exp": {
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [388, 59, 54, 25],
-        "expected": "经验"
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [947, 533, 67, 75]
-      }
-    },
-    "next": ["S_IsMarching", "S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_HasExpeditionReturn_Title": {
@@ -276,8 +261,62 @@
       "S_IsPreDamage2",
       "S_StopOnDamageText",
       "S_CheckEquipmentPopup",
+      "S_IsIsekaiTicketConfirm",
       "S_DetectAfterSortieNow"
     ],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_IsIsekaiTicketConfirm": {
+    "enabled": false,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [597, 54, 82, 38],
+        "expected": "出阵"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [565, 578, 151, 48]
+      }
+    },
+    "next": ["S_IsIsekaiNoTicket", "S_DetectWhereAmI"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_IsIsekaiNoTicket": {
+    "enabled": false,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [532, 59, 221, 35],
+        "expected": "归城提灯一补充"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [582, 593, 113, 40]
+      }
+    },
+    "next": ["S_IsIsekaiConfirmPurchase"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_IsIsekaiConfirmPurchase": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [600, 58, 78, 36],
+        "expected": "确认"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [729, 581, 101, 43]
+      }
+    },
+    "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_CheckEquipmentPopup": {
@@ -450,17 +489,50 @@
     "next": ["S_PreConfirmSupply"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_IsEraSelect": {
+  "S_IsPastEraSelect": {
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [564, 54, 157, 54],
+        "roi": [104, 331, 49, 235],
         "template": "Common/时代选择.png",
         "green_mask": true,
         "threshold": [0.98]
       }
     },
     "next": ["S_ClickEra"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_IsIsekaiEraSelect": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [104, 331, 49, 235],
+        "template": "Common/时代选择_异去.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["S_ClickPastTab"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_ClickPastTab": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [846, 78, 58, 29]
+      }
+    },
+    "next": ["S_DetectWhereAmI"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_ClickIsekaiTab": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [945, 77, 61, 30]
+      }
+    },
+    "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_ClickEra": {
@@ -485,17 +557,55 @@
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_IsRegionSelect": {
+  "S_IsPastRegionSelect": {
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [558, 55, 169, 54],
+        "roi": [848, 607, 257, 63],
         "template": "Common/地域选择.png",
         "green_mask": true,
         "threshold": [0.98]
       }
     },
     "next": ["S_VerifyEra", "S_ClickBackToEra"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_IsIsekaiRegionSelect": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [833, 617, 152, 41],
+        "template": "Common/地域选择_异去.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["S_ClickBackToEra"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_IsIsekaiBattleEnd": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [610, 331, 52, 26],
+        "template": "Common/异去结算.png",
+        "green_mask": true,
+        "threshold": [0.8]
+      }
+    },
+    "next": ["S_IsIsekaiRegionEnd"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_IsIsekaiRegionEnd": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [833, 617, 152, 41],
+        "template": "Common/地域选择_异去.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_VerifyEra": {
@@ -2964,7 +3074,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [564, 54, 157, 54],
+        "roi": [104, 331, 49, 235],
         "template": "Common/时代选择.png",
         "green_mask": true,
         "threshold": [0.98]
@@ -2999,7 +3109,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [558, 55, 169, 54],
+        "roi": [848, 607, 257, 63],
         "template": "Common/地域选择.png",
         "green_mask": true,
         "threshold": [0.98]
