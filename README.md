@@ -22,15 +22,11 @@
 
 刀剑乱舞 PC 端自动化工具，通过 ADB 连接模拟器运行《刀剑乱舞》，由 MaaFramework 强力驱动！推荐使用 MuMu 模拟器 12，分辨率 1280×720。其他支持 ADB 的模拟器及分辨率亦可运行。
 
-> 为与 MaaFramework 生态命名风格保持统一，本项目由 **AATL** 更名为 MATR。旧仓库地址将自动重定向至本仓库。
-
 </div>
 
 > [!Tip]
 >
-> 本项目还处于早期开发阶段，欢迎提交 PR 和 Issue。
->
-> 遇到问题请先查阅下方常见问题，或前往 [Issues 页面](https://github.com/NotZoruak/MATR/issues) 搜索已有解答。
+> 遇到问题请先前往 [Issues 页面](https://github.com/NotZoruak/MATR/issues) 搜索已有解答，或通过下方反馈渠道提交。
 
 ## ⚠️ 免责声明与风险提示
 
@@ -74,8 +70,6 @@
 
 **地下城** — 大阪地下城活动自动化，可选目标层数、换队长、补充刀装、每轮回本丸（配合远征）、动画跳过。
 
-**演练** — 自动演练，支持部队交替、换队长、重伤检测与停止。
-
 **战术强化训练** — 战术强化训练活动自动化，支持部队交替、换队长、难度选择。
 
 **陆联** — 联队战活动自动化，支持部队交替、换队长、自动购买通行令牌。
@@ -93,8 +87,6 @@
 **限锻计算** — 输入锻刀公式、现有资源及道具，计算达到目标积分所需剩余资源，支持 OCR 一键识别。
 
 **数据查找表** — 极化刀剑男士升级经验表、各地图远征收益对比。
-
-> 更多功能开发中，敬请期待。
 
 ## 反馈与建议
 
@@ -124,7 +116,7 @@ MATR/
 │       │   │   ├── Sortie.json           ← 合战场
 │       │   │   ├── Underground.json      ← 地下城
 │       │   │   ├── Expedition.json       ← 远征
-│       │   │   ├── LRentaisen.json       ← 演练
+│       │   │   ├── LRentaisen.json       ← 陆联（联队战）
 │       │   │   ├── TacticalTraining.json ← 战术强化训练
 │       │   │   ├── FlowerBrush.json      ← 刷花
 │       │   │   ├── Disassemble.json      ← 刀解
@@ -158,6 +150,20 @@ MATR/
 - [MFAToolsPlus](https://github.com/SweetSmellFox/MFAToolsPlus) — MaaFramework 新一代开发辅助工具箱
 - [MaaLogAnalyzer](https://github.com/MaaXYZ/MaaLogAnalyzer) — 可视化日志分析工具，告别手翻百万行日志
 
+### 开发者
+
+感谢以下开发者对 MATR 的贡献：
+
+[![贡献者](https://contrib.rocks/image?repo=NotZoruak/MATR&max=1000)](https://github.com/NotZoruak/MATR/graphs/contributors)
+
 ## Star History
 
 如果觉得软件对你有帮助，帮忙点个 Star 吧！（网页最上方右上角的小星星），这就是对我们最大的支持了！
+
+<a href="https://star-history.com/#NotZoruak/MATR&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=NotZoruak/MATR&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=NotZoruak/MATR&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=NotZoruak/MATR&type=Date" />
+  </picture>
+</a>
