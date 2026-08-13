@@ -25,7 +25,6 @@
       "S_IsTeamStatusPanel",
       "S_CheckHomeBrightness",
       "S_IsRepair",
-      "S_IsStopOnDamage",
       "S_IsKebiishi",
       "S_LeaveTroopRecord",
       "S_IsAnnouncementPopup",
@@ -262,7 +261,7 @@
       "S_StopOnDamageText",
       "S_CheckEquipmentPopup",
       "S_IsIsekaiTicketConfirm",
-      "S_DetectAfterSortieNow"
+      "S_DetectWhereAmI"
     ],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -338,11 +337,6 @@
     "next": ["S_PreCheckTroopRecord"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_DetectAfterSortieNow": {
-    "pre_delay": 0,
-    "next": ["S_IsMarching", "S_IsFormationSelect", "S_FallbackWait", "S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
   "S_IsTeamSelect": {
     "recognition": {
       "type": "OCR",
@@ -382,7 +376,7 @@
     "action": {"type": "Click"},
     "post_wait_freezes": {"time": 100},
     "next": ["S_PreCheckUseRecord"],
-    "on_error": ["S_DetectAfterSortieNow"]
+    "on_error": ["S_DetectWhereAmI"]
   },
   "S_PreCheckUseRecord": {
     "enabled": false,
@@ -397,7 +391,7 @@
     },
     "action": {"type": "DoNothing"},
     "next": ["S_PreCheckClickRecord1"],
-    "on_error": ["S_DetectAfterSortieNow"]
+    "on_error": ["S_DetectWhereAmI"]
   },
   "S_PreCheckClickRecord1": {
     "enabled": false,
@@ -734,18 +728,6 @@
       }
     },
     "next": ["S_UseSpeedup"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_IsStopOnDamage": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [555, -1, 167, 53],
-        "expected": "修复"
-      }
-    },
-    "next": ["S_LogStopOnDamageRepair"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_UseSpeedup": {
@@ -1808,7 +1790,7 @@
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_DecideDamage_Pre": {
-    "next": ["S_NavigateToRepair", "S_IsStopOnDamage"],
+    "next": ["S_NavigateToRepair", "S_LogStopOnDamageRepair"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_ReturnHomeFromMarching": {
@@ -2648,19 +2630,15 @@
   "S_LogStopOnDamage": {
     "action": {
       "type": "Custom",
-      "custom_action": "DamageLogAction",
-      "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤"}
+      "custom_action": "StopOnDamageAction"
     },
-    "next": ["S_NavigateToHomeFromStop"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_LogStopOnDamageText": {
     "action": {
       "type": "Custom",
-      "custom_action": "DamageLogAction",
-      "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤"}
+      "custom_action": "StopOnDamageAction"
     },
-    "next": ["S_NavigateToHomeFromStop"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_LogStopOnDamageRepair": {
@@ -2685,73 +2663,6 @@
       "custom_action": "DragCaptainAction"
     },
     "next": ["S_IsPreSortieConfirm"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_NavigateToHomeFromStop": {
-    "next": ["S_ClickMenuStop", "S_DetectWhereAmI"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_ClickMenuStop": {
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [1183, 18, 87, 40],
-        "expected": "目"
-      }
-    },
-    "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
-    "next": ["S_ClickHomeStop"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_ClickHomeStop": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [581, 28, 112, 57],
-        "template": "Common/菜单目录.png",
-        "green_mask": true,
-        "threshold": [0.98]
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1037, 169, 110, 44]
-      }
-    },
-    "post_wait_freezes": {"time": 100},
-    "next": ["S_VerifyHomeScreen"],
-    "on_error": ["S_ClickMenuStop"]
-  },
-  "S_VerifyHomeScreen": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [8, 1, 71, 107],
-        "template": "Common/本丸.png",
-        "green_mask": true,
-        "threshold": [0.98]
-      }
-    },
-    "next": ["S_TerminateOnDamage"],
-    "on_error": ["S_ClickHomeFallback"]
-  },
-  "S_ClickHomeFallback": {
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [185, 22, 15, 18]
-      }
-    },
-    "next": ["S_VerifyHomeScreen"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_TerminateOnDamage": {
-    "action": {
-      "type": "Custom",
-      "custom_action": "StopOnDamageAction"
-    },
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_IsTrainingLetter": {

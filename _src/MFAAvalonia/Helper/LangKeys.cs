@@ -343,6 +343,7 @@ public static class LangKeys
 	public static readonly string TaskNotFoundError = "TaskNotFoundError";
 	public static readonly string TaskSettings = "TaskSettings";
 	public static readonly string TaskStackError = "TaskStackError";
+	public static readonly string TaskRoundComplete = "TaskRoundComplete";
 	public static readonly string TaskStart = "TaskStart";
 	public static readonly string TaskStopped = "TaskStopped";
 	public static readonly string TaskAddedToast = "TaskAddedToast";

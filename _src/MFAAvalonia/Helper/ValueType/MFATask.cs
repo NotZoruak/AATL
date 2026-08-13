@@ -42,6 +42,7 @@ public partial class MFATask : ObservableObject
     {
         try
         {
+            var infinite = Count < 0;   // 无限重复标记，先记录再转 int.MaxValue
             if (Count < 0)
                 Count = int.MaxValue;
             for (int i = 0; i < Count; i++)
@@ -53,6 +54,12 @@ public partial class MFATask : ObservableObject
                     OwnerViewModel?.SetCurrentTaskName(LanguageHelper.GetLocalizedString(Name));
                 }
                 await Action();
+                // 有限重复的 MAAFW 任务每轮结束后报告进度；无限重复与单次任务不报
+                if (!infinite && Count > 1 && Type == MFATaskType.MAAFW)
+                {
+                    OwnerViewModel?.AddLogByKey(LangKeys.TaskRoundComplete, (Avalonia.Media.IBrush?)null, true, true,
+                        LanguageHelper.GetLocalizedString(Name), (i + 1).ToString(), Count.ToString());
+                }
             }
             return MFATaskStatus.SUCCEEDED;
         }

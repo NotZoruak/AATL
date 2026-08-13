@@ -22,13 +22,11 @@ public class StopOnDamageAction : IMaaCustomAction
         var currentTaskName = processor.ViewModel?.CurrentTaskName ?? "未知任务";
 
         // 当前任务已被 Dequeue，队列头部即为下一任务（跳过回本丸等自动插入的中间任务）
-        var nextTask = processor.TaskQueue.FirstOrDefault(t => t.Name != "回本丸");
-        var nextTaskName = nextTask?.Name != null
-            ? LanguageHelper.GetLocalizedString(nextTask.Name)
-            : null;
+        // ObservableQueue 不提供遍历，仅用 Any 判断是否存在下一个非回本丸任务
+        var hasNextTask = processor.TaskQueue.Any(t => t.Name != "回本丸");
 
-        var message = nextTaskName != null
-            ? $"[重伤检测] 检测到刀剑男士重伤，{currentTaskName} 任务终止，开始{nextTaskName}"
+        var message = hasNextTask
+            ? $"[重伤检测] 检测到刀剑男士重伤，{currentTaskName} 任务终止，开始下一任务"
             : $"[重伤检测] 检测到刀剑男士重伤，{currentTaskName} 任务终止，所有任务运行完毕";
 
         Log(message);

@@ -1023,6 +1023,9 @@
     <data name="TaskStackError" xml:space="preserve">
         <value>辨識{0}時發生錯誤: {1}</value>
     </data>
+    <data name="TaskRoundComplete" xml:space="preserve">
+        <value>任務完成: {0} 進度 {1}/{2}</value>
+    </data>
     <data name="TaskStart" xml:space="preserve">
         <value>開始任務: {0}</value>
     </data>

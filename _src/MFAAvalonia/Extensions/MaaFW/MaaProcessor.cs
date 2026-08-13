@@ -3486,7 +3486,7 @@ public class MaaProcessor
         // 异去模式重复次数联动：「过去/异去」选「异去」时，重复次数取「异去_重复次数」输入值。
         // 该输入项是「异去」case 的子选项，存储于「过去/异去」选项的 SubOptions 中，不在顶层 Option 列表里；
         // 异去每轮打完命中 S_IsIsekaiBattleEnd 结束任务，由队列按该值循环 N 轮；
-        // 选「过去」时强制 -1（pipeline 自循环即无限），避免残留的轮数配置影响过去模式
+        // 选「过去」时强制 3 轮（不使用 UI 设置的重复次数；如需调整轮数请修改此处代码）
         var repeatCount = task.InterfaceItem?.RepeatCount;
         var modeOption = task.InterfaceItem?.Option?.FirstOrDefault(o => o.Name == "过去/异去");
         if (modeOption != null)
@@ -3503,7 +3503,8 @@ public class MaaProcessor
             }
             else
             {
-                repeatCount = -1;
+                // 过去：强制 3 轮，不使用 UI 设置的重复次数
+                repeatCount = 3;
             }
         }
 
@@ -3941,8 +3942,10 @@ public class MaaProcessor
                 _taskFailureCount++;
         }
 
-        var statusText = jobStatus == MaaJobStatus.Succeeded ? "任务完成" : "任务失败";
-        AddLog($"{taskName} {statusText}", (IBrush?)null);
+        // 成功时不再输出「任务完成」：轮次进度日志（任务完成: X 进度 Y/Z）已包含完成信息；
+        // 失败时仍输出「任务失败」便于定位问题
+        if (jobStatus != MaaJobStatus.Succeeded)
+            AddLog($"{taskName} 任务失败", (IBrush?)null);
 
         // 等待 PostStop 清理完成，防止下一轮 AppendTask 被中断
         await Task.Delay(500, token);

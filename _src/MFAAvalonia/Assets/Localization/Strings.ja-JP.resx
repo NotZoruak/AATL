@@ -319,6 +319,9 @@
   <data name="TaskSettings" xml:space="preserve">
     <value>タスク設定</value>
   </data>
+  <data name="TaskRoundComplete" xml:space="preserve">
+    <value>タスク完了: {0} 進度 {1}/{2}</value>
+  </data>
   <data name="TaskStart" xml:space="preserve">
     <value>タスク開始: {0}</value>
   </data>
