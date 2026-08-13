@@ -1059,7 +1059,7 @@
                                     </StackPanel>
                                 </Button>
                             </StackPanel>
-                            <ContentControl Content="{Binding SubPageContent}" Margin="0,-20,0,0" />
+                            <ContentControl Content="{Binding SubPageContent}" Margin="0,8,0,0" />
                         </StackPanel>
                     </Grid>
                 </ScrollViewer>

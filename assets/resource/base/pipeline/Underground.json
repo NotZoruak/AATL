@@ -334,7 +334,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["U_VerifyEventPage"],
+    "next": ["U_VerifyEventPage", "U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_VerifyEventPage": {
@@ -527,7 +527,7 @@
         "target": [1067, 558, 120, 79]
       }
     },
-    "next": ["U_DetectWhereAmI"],
+    "next": [],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_GoHomeAfterRound": {
@@ -1221,7 +1221,7 @@
     "next": ["U_ClickMenuFromRepair"],
     "on_error": ["U_DetectWhereAmI"]
   },
-  "U_ReturnHomeAfterMarchDamage": {
+  "U_ReturnHomeAfterMarch": {
     "action": {
       "type": "Click",
       "param": {
@@ -1556,7 +1556,7 @@
       "custom_action": "DamageLogAction",
       "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，撤退撤退"}
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_LogStopOnDamage": {
@@ -1712,7 +1712,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheck": {
@@ -1758,7 +1758,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R0C0": {
@@ -1776,7 +1776,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R0C1": {
@@ -1794,7 +1794,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R0C2": {
@@ -1812,7 +1812,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R1C0": {
@@ -1830,7 +1830,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R1C1": {
@@ -1848,7 +1848,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R1C2": {
@@ -1866,7 +1866,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R2C0": {
@@ -1884,7 +1884,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R2C1": {
@@ -1902,7 +1902,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R2C2": {
@@ -1920,7 +1920,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R3C0": {
@@ -1938,7 +1938,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R3C1": {
@@ -1956,7 +1956,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R3C2": {
@@ -1974,7 +1974,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R4C0": {
@@ -1992,7 +1992,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R4C1": {
@@ -2010,7 +2010,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R4C2": {
@@ -2028,7 +2028,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R5C0": {
@@ -2046,7 +2046,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R5C1": {
@@ -2064,7 +2064,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R5C2": {
@@ -2082,7 +2082,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarchDamage"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "UF_Hub": {

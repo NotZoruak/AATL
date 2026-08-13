@@ -11,11 +11,11 @@ namespace MFAAvalonia.Helper;
 /// </summary>
 public sealed class LoopDetector
 {
-    /// <summary>连续相同动作次数阈值:画面冻结约 70-400 秒(按 350ms-2s 循环周期)</summary>
-    public const int LoopThreshold = 200;
+    /// <summary>连续相同动作次数阈值:画面冻结约 30-200 秒(按 350ms-2s 循环周期)</summary>
+    public const int LoopThreshold = 80;
 
     /// <summary>达到阈值后的二次确认追加次数,确认期内动作键变化则放弃判定</summary>
-    public const int ConfirmCount = 50;
+    public const int ConfirmCount = 20;
 
     /// <summary>状态读写锁:Feed(回调线程)与 Reset(主线程)可能跨线程调用</summary>
     private readonly object _lock = new();

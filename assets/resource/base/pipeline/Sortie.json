@@ -826,6 +826,7 @@
       "S_Boss_E2_R4",
       "S_Boss_E4_R4",
       "S_Boss_E5_R1",
+      "S_Boss_E5_R2",
       "S_Boss_E5_R3",
       "S_Boss_E5_R3_2",
       "S_Boss_E5_R4_1",
@@ -933,7 +934,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [1080, 242, 10, 15],
+        "roi": [1115, 312, 9, 15],
         "template": "Sortie_boss/王点_5_2.png",
         "threshold": [0.98]
       }

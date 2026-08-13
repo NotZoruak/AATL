@@ -1848,9 +1848,11 @@ public class MaaProcessor
             }
         }
 
-        if (args.Message.StartsWith(MaaMsg.Node.Action.Succeeded) && IsLoopDetectorEnabled())
+        // MaaFW 5.10 动作完成消息为 Node.PipelineNode.Succeeded(含 action_details),
+        // 节点名需取 action_details.name(外层 name 为流程上下文,冻结循环中轮流变化)
+        if (args.Message.StartsWith(MaaMsg.Node.PipelineNode.Succeeded) && IsLoopDetectorEnabled())
         {
-            var nodeName = jObject["name"]?.ToString() ?? "";
+            var nodeName = jObject["action_details"]?["name"]?.ToString() ?? "";
             var actionName = jObject["action_details"]?["action"]?.ToString() ?? "";
             int hitX = 0, hitY = 0;
             if (jObject["action_details"]?["box"] is JArray boxArr && boxArr.Count >= 2)
@@ -1859,7 +1861,9 @@ public class MaaProcessor
                 hitY = (int)Math.Round(boxArr[1].Value<double>());
             }
 
-            if (_loopDetector.Feed(nodeName, actionName, hitX, hitY))
+            // 只统计点击/滑动等真实交互动作:DoNothing(纯检测)与 Custom(如智能等待)
+            // 在正常等待期会持续执行,参与计数会导致误判画面冻结
+            if ((actionName is "Click" or "Swipe") && _loopDetector.Feed(nodeName, actionName, hitX, hitY))
             {
                 LoggerHelper.Warning($"检测到动作循环卡死(画面冻结):节点={nodeName}, 动作={actionName}, 坐标=({hitX},{hitY})。触发自动恢复。");
                 LoopStuckDetected?.Invoke();

@@ -289,15 +289,18 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
             foreach (var caseOption in interfaceOption.Cases ?? [])
             {
                 if (caseOption.Option == null || caseOption.Option.Count == 0) continue;
-                var caseHeader = new TextBlock
+                // case 无 DisplayName 时（单选项场景）不渲染标题，避免产生多余空隙
+                if (!string.IsNullOrWhiteSpace(caseOption.DisplayName))
                 {
-                    Text = caseOption.DisplayName,
-                    FontSize = 14,
-                    FontWeight = FontWeight.Bold,
-                    Margin = new Thickness(0, 15, 0, 2),
-                };
-                subPanel.Children.Add(caseHeader);
-                var subWrap = new WrapPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, -10, 0, 0) };
+                    subPanel.Children.Add(new TextBlock
+                    {
+                        Text = caseOption.DisplayName,
+                        FontSize = 14,
+                        FontWeight = FontWeight.Bold,
+                        Margin = new Thickness(0, 2, 0, 2),
+                    });
+                }
+                var subWrap = new WrapPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0, 0, 0) };
                 foreach (var subName in caseOption.Option)
                 {
                     if (MaaProcessor.Interface?.Option?.TryGetValue(subName, out var subDef) != true) continue;
