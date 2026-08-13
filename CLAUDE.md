@@ -205,7 +205,7 @@ All version numbers follow [Semantic Versioning](https://semver.org/lang/zh-CN/)
 
 ## Release Process
 
-Files must be copied manually after `dotnet publish` before running:
+When only JSON resources (under `assets/`) have changed, `dotnet publish` is not needed — just run `tools/pack.ps1` to package. Run publish and copy the artifacts below only when code has changed.
 
 ```
 # Core library (incl. TaskOptionGenerator, TaskQueueView, etc.)
