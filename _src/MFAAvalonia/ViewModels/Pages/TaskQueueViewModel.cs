@@ -1064,8 +1064,8 @@ public partial class TaskQueueViewModel : ViewModelBase
         // 更新任务的资源支持状态
         UpdateTasksForResource(CurrentResource);
 
-        // 保存配置
-        Processor.InstanceConfiguration.SetValue(ConfigurationKeys.TaskItems, TaskItemViewModels.ToList().Select(model => model.InterfaceItem));
+        // 保存配置（必须 .ToList() 物化，惰性 IEnumerable 存入后 GetValue<List<T>> 类型转换失败会返回空列表）
+        Processor.InstanceConfiguration.SetValue(ConfigurationKeys.TaskItems, TaskItemViewModels.Select(model => model.InterfaceItem).ToList());
         LoggerHelper.UserAction("重置任务列表", $"taskCount={TaskItemViewModels.Count}",
             operation: "ResetTasks", instanceId: Processor.InstanceId, instanceName: InstanceName);
     }

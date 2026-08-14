@@ -2608,9 +2608,9 @@ public partial class TaskQueueView : UserControl
 
         var instanceConfig = vm.Processor.InstanceConfiguration;
 
-        // 保存普通任务项配置
+        // 保存普通任务项配置（必须 .ToList() 物化，惰性 IEnumerable 存入后 GetValue<List<T>> 类型转换失败会返回空列表）
         instanceConfig.SetValue(ConfigurationKeys.TaskItems,
-            vm.TaskItemViewModels.Where(m => !m.IsResourceOptionItem).Select(m => m.InterfaceItem));
+            vm.TaskItemViewModels.Where(m => !m.IsResourceOptionItem).Select(m => m.InterfaceItem).ToList());
 
         // 保存资源选项配置
         SaveResourceOptionConfiguration(vm);

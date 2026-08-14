@@ -3327,7 +3327,27 @@ public class MaaProcessor
                 var savedTasks = InstanceConfiguration.GetValue(
                     ConfigurationKeys.TaskItems,
                     new List<MaaInterface.MaaInterfaceTask>());
+
+                // 兜底：缓存中 TaskItems 为空时（可能被惰性 IEnumerable 污染导致类型转换失败，
+                // 或实例配置尚未同步），从磁盘重新加载后再读一次
+                if (savedTasks == null || savedTasks.Count == 0)
+                {
+                    InstanceConfiguration.ReloadFromDisk();
+                    savedTasks = InstanceConfiguration.GetValue(
+                        ConfigurationKeys.TaskItems,
+                        new List<MaaInterface.MaaInterfaceTask>());
+                }
+
                 var expTask = savedTasks?.FirstOrDefault(t => t.Entry == "Expedition");
+
+                // 诊断日志:同步后勤合并时 expTask 的读取结果,用于排查部队选项未合并问题
+                var diagTeam4 = expTask?.Option?.FirstOrDefault(o => o.Name == "部队四");
+                var diagTeam5 = expTask?.Option?.FirstOrDefault(o => o.Name == "部队五");
+                LoggerHelper.Info(
+                    $"[同步后勤] savedTasks={savedTasks?.Count ?? -1} expTask={expTask?.Name ?? "null"}(entry={expTask?.Entry ?? "null"}) " +
+                    $"option数={expTask?.Option?.Count ?? -1} 部队四Index={diagTeam4?.Index?.ToString() ?? "null"} 部队五Index={diagTeam5?.Index?.ToString() ?? "null"} " +
+                    $"部队五选项在列表中={(expTask?.Option?.Any(o => o.Name == "部队五") ?? false)}");
+
                 if (expTask?.Option != null)
                 {
                     var teamOptionNames = new List<string> { "部队一", "部队二", "部队三", "部队四", "部队五" };
