@@ -724,7 +724,7 @@
     "on_error": ["Expedition"]
   },
   "E_ExpSubHub5": {
-    "next": ["E_CheckTeam5", "E_AllTeamsBusy"],
+    "next": ["E_CheckTeam5", "E_WorkshopHub"],
     "on_error": ["Expedition"]
   },
   "E_IsInternalReport": {
@@ -2062,5 +2062,182 @@
     "pre_delay": 100,
     "next": ["Expedition"],
     "on_error": ["Expedition"]
+  },
+  "E_WorkshopHub": {
+    "next": ["E_CheckWorkshop1", "E_WorkshopHub2"],
+    "on_error": ["E_AllTeamsBusy"]
+  },
+  "E_WorkshopHub2": {
+    "next": ["E_CheckWorkshop2", "E_WorkshopHub3"],
+    "on_error": ["E_AllTeamsBusy"]
+  },
+  "E_WorkshopHub3": {
+    "next": ["E_CheckWorkshop3", "E_WorkshopHub4"],
+    "on_error": ["E_AllTeamsBusy"]
+  },
+  "E_WorkshopHub4": {
+    "next": ["E_CheckWorkshop4", "E_AllTeamsBusy"],
+    "on_error": ["E_AllTeamsBusy"]
+  },
+  "E_CheckWorkshop1": {
+    "enabled": false,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1039, 37, 81, 35],
+        "expected": "未使用"
+      }
+    },
+    "next": ["E_ClickRepairButton", "E_WorkshopHub2"],
+    "on_error": ["E_WorkshopHub2"]
+  },
+  "E_CheckWorkshop2": {
+    "enabled": false,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1039, 98, 81, 34],
+        "expected": "未使用"
+      }
+    },
+    "next": ["E_ClickRepairButton", "E_WorkshopHub3"],
+    "on_error": ["E_WorkshopHub3"]
+  },
+  "E_CheckWorkshop3": {
+    "enabled": false,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1038, 158, 82, 36],
+        "expected": "未使用"
+      }
+    },
+    "next": ["E_ClickRepairButton", "E_WorkshopHub4"],
+    "on_error": ["E_WorkshopHub4"]
+  },
+  "E_CheckWorkshop4": {
+    "enabled": false,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1036, 221, 83, 37],
+        "expected": "未使用"
+      }
+    },
+    "next": ["E_ClickRepairButton", "E_AllTeamsBusy"],
+    "on_error": ["E_AllTeamsBusy"]
+  },
+  "E_ClickRepairButton": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1221, 47, 36, 100],
+        "template": "Common/本丸修复.png",
+        "threshold": [0.9]
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 200},
+    "next": ["E_VerifyRepairScreen", "E_ClickRepairButton"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_VerifyRepairScreen": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [553, 62, 172, 38],
+        "expected": "修复状况"
+      }
+    },
+    "action": {"type": "DoNothing"},
+    "next": ["E_SelectRepairSlot1", "E_SelectRepairSlot2", "E_SelectRepairSlot3", "E_SelectRepairSlot4", "E_GoHome"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_SelectRepairSlot1": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [307, 163, 255, 89],
+        "template": "Common/未使用修刀槽.png",
+        "threshold": [0.9]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot1"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_SelectRepairSlot2": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [303, 300, 255, 90],
+        "template": "Common/未使用修刀槽.png",
+        "threshold": [0.9]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot2"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_SelectRepairSlot3": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [304, 432, 255, 90],
+        "template": "Common/未使用修刀槽.png",
+        "threshold": [0.9]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot3"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_SelectRepairSlot4": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [304, 565, 255, 90],
+        "template": "Common/未使用修刀槽.png",
+        "threshold": [0.9]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot4"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_VerifyRepairSelect": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [195, 129, 151, 34],
+        "expected": "修复刀剑男士"
+      }
+    },
+    "next": ["E_FindRepairableSword", "E_SelectRepairSlot1"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_ConfirmRepair": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1156, 587, 85, 44],
+        "expected": "修复"
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["E_GoHome", "E_VerifyRepairSelect"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_FindRepairableSword": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "ClickTopRepairableSwordAction"
+    },
+    "next": ["E_ConfirmRepair"],
+    "on_error": ["E_GoHome"]
   }
 }

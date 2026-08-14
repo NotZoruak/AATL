@@ -104,7 +104,8 @@ public class DispatchLogAction : IMaaCustomAction
             string teamName = TeamToConfigName(team);
             foreach (var item in taskItems)
             {
-                if ((string)item["name"] == "远征")
+                // 按 entry 匹配后勤任务(任务由「远征」改名而来,兼容旧名)
+                if ((string)item["entry"] == "Expedition" || (string)item["name"] == "远征")
                 {
                     var options = item["option"] as JArray;
                     if (options != null)

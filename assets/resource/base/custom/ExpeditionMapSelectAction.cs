@@ -53,11 +53,11 @@ public class ExpeditionMapSelectAction : IMaaCustomAction
                 return false;
             }
 
-            // 从「远征」任务配置中找到该部队的地图选择
+            // 从「后勤」任务配置中找到该部队的地图选择(按 entry 匹配,兼容任务改名)
             int mapIndex = -1;
             foreach (var item in taskItems)
             {
-                if ((string)item["name"] == "远征")
+                if ((string)item["entry"] == "Expedition")
                 {
                     var options = item["option"] as JArray;
                     if (options != null)

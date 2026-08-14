@@ -3333,6 +3333,11 @@ public class MaaProcessor
                     var teamOptionNames = new List<string> { "部队一", "部队二", "部队三", "部队四", "部队五" };
                     ProcessOptions(ref taskModels, expTask.Option, teamOptionNames);
 
+                    // 同步后勤场景复用修刀配置：修刀 switch 及修复工坊子选项一并合并，
+                    // 使其他任务同步后勤跳转远征流水线时修刀检查同样生效
+                    var repairOptionNames = new List<string> { "修刀" };
+                    ProcessOptions(ref taskModels, expTask.Option, repairOptionNames);
+
                     // 注入远征刷新间隔到计时器节点
                     var refreshOpt = expTask.Option.FirstOrDefault(o => o.Name == "RefreshInterval");
                     if (refreshOpt?.Data != null &&
@@ -4647,6 +4652,7 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.FatigueCheckAction());
             tasker.Resource.Register(new Custom.PageScrollAndHoldAction());
             tasker.Resource.Register(new Custom.SelectFlowerTeamAction());
+            tasker.Resource.Register(new Custom.ClickTopRepairableSwordAction());
             LoggerHelper.Info("已注册内置特殊任务动作。");
 
             // 获取当前资源的自定义目录
