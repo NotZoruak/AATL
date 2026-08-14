@@ -200,6 +200,7 @@ All version numbers follow [Semantic Versioning](https://semver.org/lang/zh-CN/)
 | `assets/resource/announcement/` | 新增对应版本的更新公告 Markdown（文件名格式 `N-vX.Y.Z 更新公告.md`） |
 
 - 版本格式示例：`v0.9.0-beta.2`，四处保持一致
+- 更新公告末尾追加「版本变更」行（`**版本变更**：vX.Y.Z → vX.Y.Z`）：正式版写上一正式版 → 本版，测试版写上一测试版 → 本测试版
 - 历史版本的公告文件与开发日志中的旧版本记录保持原样，不回改
 - MirrorChyan 上传按 tag 推断频道，发布 tag 必须与 `tools/pack.ps1` 的 `$Version` 一致
 

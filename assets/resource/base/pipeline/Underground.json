@@ -758,7 +758,7 @@
     },
     "action": {"type": "Click"},
     "post_wait_freezes": {"time": 200},
-    "next": ["U_ClickRepairInMenu","U_ClickMenuForRepair"],
+    "next": ["U_ClickRepairInMenu", "U_ClickMenuForRepair"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickMenuFromRepair": {
@@ -785,7 +785,7 @@
     },
     "action": {"type": "Click"},
     "post_wait_freezes": {"time": 100},
-    "next": ["U_VerifyRepairMenuClosed","U_SelectDamagedSword"],
+    "next": ["U_VerifyRepairMenuClosed", "U_SelectDamagedSword"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickSortieInMenu": {
