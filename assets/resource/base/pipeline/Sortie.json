@@ -244,10 +244,8 @@
   "S_PostSortieHub": {
     "timeout": 30000,
     "next": [
-      "S_IsPreDamage1",
+      "S_IsPreDamage",
       "S_StopOnDamagePopup",
-      "S_IsPreDamage2",
-      "S_StopOnDamageText",
       "S_CheckEquipmentPopup",
       "S_IsIsekaiTicketConfirm",
       "S_DetectWhereAmI"
@@ -1211,7 +1209,7 @@
     },
     "next": ["S_DetectWhereAmI"]
   },
-  "S_IsPreDamage1": {
+  "S_IsPreDamage": {
     "enabled": false,
     "recognition": {
       "type": "TemplateMatch",
@@ -1232,23 +1230,7 @@
       "time": 100,
       "target": [368, 464, 539, 90]
     },
-    "next": ["S_LogPreDamage1"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_IsPreDamage2": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [465, 310, 46, 24],
-        "expected": "重伤"
-      }
-    },
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [368, 464, 539, 90]
-    },
-    "next": ["S_LogPreDamage2"],
+    "next": ["S_LogPreDamage"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_IsMarchingDamage": {
@@ -1658,22 +1640,6 @@
       }
     },
     "next": ["S_ReturnHomeFromMarching"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_ConfirmCancelPreDamage2": {
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [772, 448, 32, 40],
-        "expected": "否"
-      }
-    },
-    "action": {"type": "Click"},
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [368, 464, 539, 90]
-    },
-    "next": ["S_DecideDamage_Pre"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_NavigateToRepair": {
@@ -2517,44 +2483,13 @@
     "next": ["S_LogStopOnDamage"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_StopOnDamageText": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [465, 310, 46, 24],
-        "expected": "重伤"
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [788, 465, 1, 1]
-      }
-    },
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [368, 464, 539, 90]
-    },
-    "next": ["S_LogStopOnDamageText"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_LogPreDamage1": {
+  "S_LogPreDamage": {
     "action": {
       "type": "Custom",
       "custom_action": "DamageLogAction",
       "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"}
     },
     "next": ["S_DecideDamage_Pre"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_LogPreDamage2": {
-    "action": {
-      "type": "Custom",
-      "custom_action": "DamageLogAction",
-      "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"}
-    },
-    "next": ["S_ConfirmCancelPreDamage2"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_LogMarchingDamage": {
@@ -2567,13 +2502,6 @@
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_LogStopOnDamage": {
-    "action": {
-      "type": "Custom",
-      "custom_action": "StopOnDamageAction"
-    },
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_LogStopOnDamageText": {
     "action": {
       "type": "Custom",
       "custom_action": "StopOnDamageAction"

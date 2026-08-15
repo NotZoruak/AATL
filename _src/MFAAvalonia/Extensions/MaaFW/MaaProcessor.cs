@@ -3372,7 +3372,7 @@ public class MaaProcessor
                         var timerNext = task.InterfaceItem?.Entry switch
                         {
                             "Sortie" => "S_NavigateToSortie",
-                            "Underground" => "U_NavigateToUnderground",
+                            "Underground" => "U_NavigateToActivity",
                             "TacticalTraining" => "TT_NavigateToActivity",
                             _ => "LR_NavigateToActivity"
                         };

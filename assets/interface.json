@@ -2162,10 +2162,8 @@
           "pipeline_override": {
             "S_IsRepair": {"enabled": true},
             "S_ConfirmRepair": {"enabled": true},
-            "S_IsPreDamage1": {"enabled": true},
-            "S_IsPreDamage2": {"enabled": true},
-            "S_StopOnDamagePopup": {"enabled": false},
-            "S_StopOnDamageText": {"enabled": false}
+            "S_IsPreDamage": {"enabled": true},
+            "S_StopOnDamagePopup": {"enabled": false}
           }
         },
         {
@@ -2177,10 +2175,8 @@
             "S_CheckAccel": {
               "next": ["S_ClickRepairandStop"]
             },
-            "S_IsPreDamage1": {"enabled": true},
-            "S_IsPreDamage2": {"enabled": true},
-            "S_StopOnDamagePopup": {"enabled": false},
-            "S_StopOnDamageText": {"enabled": false}
+            "S_IsPreDamage": {"enabled": true},
+            "S_StopOnDamagePopup": {"enabled": false}
           }
         },
         {
@@ -2189,10 +2185,8 @@
           "pipeline_override": {
             "S_IsRepair": {"enabled": false},
             "S_NavigateToRepair": {"enabled": false},
-            "S_IsPreDamage1": {"enabled": false},
-            "S_IsPreDamage2": {"enabled": false},
-            "S_StopOnDamagePopup": {"enabled": true},
-            "S_StopOnDamageText": {"enabled": true}
+            "S_IsPreDamage": {"enabled": false},
+            "S_StopOnDamagePopup": {"enabled": true}
           }
         }
       ]
@@ -2510,10 +2504,8 @@
             "U_UseSpeedup": {"enabled": true},
             "U_ConfirmRepair": {"enabled": true},
             "U_ClickMenuFromRepair": {"enabled": true},
-            "U_IsPreDamage1": {"enabled": true},
-            "U_IsPreDamage2": {"enabled": true},
-            "U_StopOnDamagePopup": {"enabled": false},
-            "U_StopOnDamageText": {"enabled": false}
+            "U_IsPreDamage": {"enabled": true},
+            "U_StopOnDamagePopup": {"enabled": false}
           }
         },
         {
@@ -2523,13 +2515,11 @@
             "U_IsRepair": {"enabled": true},
             "U_UseSpeedup": {"enabled": true},
             "U_ConfirmRepair": {"enabled": true},
-            "U_CheckAccel": {
+            "U_ClickAccel": {
               "next": ["U_ClickRepairandStop"]
             },
-            "U_IsPreDamage1": {"enabled": true},
-            "U_IsPreDamage2": {"enabled": true},
-            "U_StopOnDamagePopup": {"enabled": false},
-            "U_StopOnDamageText": {"enabled": false}
+            "U_IsPreDamage": {"enabled": true},
+            "U_StopOnDamagePopup": {"enabled": false}
           }
         },
         {
@@ -2538,10 +2528,8 @@
           "pipeline_override": {
             "U_IsRepair": {"enabled": false},
             "U_NavigateToRepair": {"enabled": false},
-            "U_IsPreDamage1": {"enabled": false},
-            "U_IsPreDamage2": {"enabled": false},
-            "U_StopOnDamagePopup": {"enabled": true},
-            "U_StopOnDamageText": {"enabled": true}
+            "U_IsPreDamage": {"enabled": false},
+            "U_StopOnDamagePopup": {"enabled": true}
           }
         }
       ]
@@ -2864,7 +2852,7 @@
         {
           "name": "不启用",
           "pipeline_override": {
-            "U_VerifyEventPage": {
+            "U_IsEventPage": {
               "next": ["U_EnterUnderground", "U_DetectWhereAmI"]
             }
           }
@@ -4765,7 +4753,7 @@
                 "custom_action": "ExpeditionTimerAction",
                 "custom_action_param": {"mode": "start"}
               },
-              "next": ["U_NavigateToUnderground"]
+              "next": ["U_NavigateToActivity"]
             },
             "E_CheckTimerExpired": {
               "next": ["U_GoHomeAfterRound", "U_ContinueNextRound"],
