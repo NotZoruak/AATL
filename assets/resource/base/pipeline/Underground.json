@@ -1,7 +1,6 @@
 {
   "Underground": {
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_DetectWhereAmI": {
     "pre_delay": 0,
@@ -50,11 +49,8 @@
     "action": {"type": "Click"},
     "timeout": 3000,
     "post_wait_freezes": {
-      "time": 100,
-      "target": [1056, 463, 63, 193]
-    },
-    "next": ["U_IsAnnouncementPopup", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+      "time": 200    },
+    "next": ["U_IsAnnouncementPopup", "U_DetectWhereAmI"]
   },
   "U_IsLoginReward": {
     "recognition": {
@@ -68,9 +64,7 @@
     },
     "action": {"type": "Click"},
     "post_wait_freezes": {
-      "time": 500,
-      "target": [232, 99, 817, 568]
-    },
+      "time": 200,      "roi": [240, 104, 803, 561]    },
     "next": ["U_LoginRewardClick2"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -82,9 +76,7 @@
       }
     },
     "post_wait_freezes": {
-      "time": 500,
-      "target": [232, 99, 817, 568]
-    },
+      "time": 200,      "roi": [240, 104, 803, 561]    },
     "next": ["U_LoginRewardClick3"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -96,10 +88,6 @@
       }
     },
     "timeout": 3000,
-    "post_wait_freezes": {
-      "time": 500,
-      "target": [232, 99, 817, 568]
-    },
     "next": ["U_IsLoginReward"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -114,8 +102,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_HasExpeditionReturn_Exp": {
     "recognition": {
@@ -131,8 +118,7 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_HasExpeditionReturn_Title": {
     "recognition": {
@@ -148,8 +134,7 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_IsMarching": {
     "recognition": {
@@ -178,8 +163,7 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_IsBattleResult_Title": {
     "recognition": {
@@ -195,8 +179,7 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_IsSwordDropColor": {
     "recognition": {
@@ -213,8 +196,7 @@
         "target": [1067, 558, 120, 79]
       }
     },
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_IsSpecialDrop": {
     "recognition": {
@@ -227,8 +209,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_IsFormationSelect": {
     "recognition": {
@@ -260,8 +241,7 @@
         "target": [1017, 421, 1, 1]
       }
     },
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_IsSwordSelect": {
     "enabled": false,
@@ -320,8 +300,7 @@
         "target": [8, 299, 32, 89]
       }
     },
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_IsEventPage": {
     "recognition": {
@@ -333,8 +312,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["U_VerifyEventPage", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_VerifyEventPage", "U_DetectWhereAmI"]
   },
   "U_VerifyEventPage": {
     "recognition": {
@@ -346,8 +324,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["U_SelectFloor", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_SelectFloor", "U_DetectWhereAmI"]
   },
   "U_SelectFloor": {
     "action": {
@@ -366,8 +343,7 @@
       }
     },
     "post_wait_freezes": {"time": 100},
-    "next": ["U_IsTeamSelect", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_IsTeamSelect", "U_DetectWhereAmI"]
   },
   "U_IsMenuDirectory": {
     "recognition": {
@@ -379,7 +355,6 @@
         "threshold": [0.98]
       }
     },
-    "action": {"type": "DoNothing"},
     "next": ["U_ClickUndergroundInMenu"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -392,8 +367,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_CheckHomeBrightness": {
     "recognition": {
@@ -404,9 +378,7 @@
         "lower": [23, 95, 15]
       }
     },
-    "action": {"type": "DoNothing"},
-    "next": ["U_IsHome", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_IsHome", "U_DetectWhereAmI"]
   },
   "U_IsRepair": {
     "enabled": false,
@@ -431,8 +403,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_IsLoginButton": {
     "recognition": {
@@ -445,8 +416,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_IsGameUpdatePopup": {
     "recognition": {
@@ -459,8 +429,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_IsInGameUpdatePopup": {
     "recognition": {
@@ -476,8 +445,7 @@
         "target": [578, 440, 130, 55]
       }
     },
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_ClickMarching": {
     "action": {
@@ -486,8 +454,7 @@
         "target": [1067, 558, 120, 79]
       }
     },
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_CheckBeforeMarch": {
     "pre_delay": 0,
@@ -502,7 +469,6 @@
         "expected": "传送凭证"
       }
     },
-    "action": {"type": "DoNothing"},
     "next": ["U_GoHomeAfterRound", "U_ContinueNextRound"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -539,8 +505,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_IsConnectionInterrupted": {
     "recognition": {
@@ -556,8 +521,7 @@
         "target": [738, 449, 100, 39]
       }
     },
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_LeaveTroopRecord": {
     "recognition": {
@@ -575,17 +539,10 @@
         "target": [63, 28, 17, 17]
       }
     },
-    "post_wait_freezes": {
-      "time": 500,
-      "target": [577, 8, 130, 35]
-    },
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_FallbackWait": {
-    "action": {"type": "DoNothing"},
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_CaptainHub": {
     "next": ["U_ClickCaptainSlot", "U_IsPreSortieConfirm"],
@@ -706,8 +663,7 @@
       }
     },
     "post_wait_freezes": {"time": 100},
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_ClickDescending": {
     "enabled": false,
@@ -798,8 +754,7 @@
     },
     "action": {"type": "Click"},
     "post_wait_freezes": {"time": 100},
-    "next": ["U_VerifyMenuClosed", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_VerifyMenuClosed", "U_DetectWhereAmI"]
   },
   "U_ClickSortieNow": {
     "action": {
@@ -872,8 +827,7 @@
       "custom_action": "DamageLogAction",
       "custom_action_param": {"message": "未检测到可修复刀剑"}
     },
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_ConfirmSortAsc": {
     "enabled": false,
@@ -1038,12 +992,10 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_NavigateToRepair": {
-    "next": ["U_ClickMenuForRepair", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_ClickMenuForRepair", "U_DetectWhereAmI"]
   },
   "U_PostClickMenuHub": {
-    "next": ["U_VerifyMenuSortie", "U_CheckNavDirForRetry", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_VerifyMenuSortie", "U_CheckNavDirForRetry", "U_DetectWhereAmI"]
   },
   "U_PostSortieHub": {
     "pre_delay": 0,
@@ -1056,8 +1008,7 @@
       "U_StopOnDamageText",
       "U_CheckEquipmentPopup",
       "U_DetectWhereAmI"
-    ],
-    "on_error": ["U_DetectWhereAmI"]
+    ]
   },
   "U_PreCheckTroopRecord": {
     "enabled": false,
@@ -1086,7 +1037,6 @@
         "threshold": [0.98]
       }
     },
-    "action": {"type": "DoNothing"},
     "next": ["U_PreCheckClickRecord1"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1245,8 +1195,7 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_TryClickSortie": {
-    "next": ["U_ClickSortieInMenu", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_ClickSortieInMenu", "U_DetectWhereAmI"]
   },
   "U_VerifyMenuAfterRepair": {
     "recognition": {
@@ -1271,8 +1220,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["U_TryClickSortie", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_TryClickSortie", "U_DetectWhereAmI"]
   },
   "U_VerifyRepairMenuClosed": {
     "recognition": {
@@ -1297,10 +1245,8 @@
         "threshold": [0.98]
       }
     },
-    "action": {"type": "DoNothing"},
     "post_delay": 3000,
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_NavigateToUnderground": {
     "next": ["U_ClickMenu"],
@@ -1381,8 +1327,7 @@
         "target": [490, 469, 1, 1]
       }
     },
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_UseSpeedup": {
     "enabled": false,
@@ -1409,8 +1354,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["U_TryClickAfterRepair", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_TryClickAfterRepair", "U_DetectWhereAmI"]
   },
   "U_VerifyHomeMenuClosed": {
     "recognition": {
@@ -1422,8 +1366,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["U_TryClickHome", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_TryClickHome", "U_DetectWhereAmI"]
   },
   "U_VerifyMenuSortie": {
     "recognition": {
@@ -1439,12 +1382,10 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_TryClickAfterRepair": {
-    "next": ["U_SortieAfterRepair", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_SortieAfterRepair", "U_DetectWhereAmI"]
   },
   "U_TryClickHome": {
-    "next": ["U_ClickHomeInMenu", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_ClickHomeInMenu", "U_DetectWhereAmI"]
   },
   "U_StopOnEquipmentPopup": {
     "recognition": {
@@ -1592,8 +1533,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"]
   },
   "U_FatigueDetect": {
     "enabled": false,
@@ -2045,7 +1985,6 @@
         "threshold": [0.98]
       }
     },
-    "action": {"type": "DoNothing"},
     "next": ["UF_ClickSortieInMenu"],
     "on_error": ["UF_DetectWhereAmI"]
   },
@@ -2327,7 +2266,6 @@
     "on_error": ["UF_Hub"]
   },
   "UF_FallbackWait": {
-    "action": {"type": "DoNothing"},
     "next": ["UF_DetectWhereAmI"],
     "on_error": ["UF_DetectWhereAmI"]
   },
@@ -2849,7 +2787,6 @@
         "lower": [23, 95, 15]
       }
     },
-    "action": {"type": "DoNothing"},
     "next": ["UF_IsHome", "UF_DetectWhereAmI"],
     "on_error": ["UF_DetectWhereAmI"]
   },

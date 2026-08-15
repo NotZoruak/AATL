@@ -39,8 +39,7 @@
         "target": [63, 28, 17, 17]
       }
     },
-    "next": ["Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["Expedition"]
   },
   "E_DetectHome": {
     "recognition": {
@@ -52,8 +51,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["E_CheckTeamStatus", "E_DetectHome","Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["E_CheckTeamStatus", "E_DetectHome","Expedition"]
   },
   "E_CheckTeamStatus": {
     "recognition": {
@@ -65,8 +63,7 @@
     },
     "action": {"type": "Click"},
     "post_wait_freezes": {"time": 200, "roi": [0,629,136,91]},
-    "next": ["E_IsTeamStatusPanel", "Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["E_IsTeamStatusPanel", "Expedition"]
   },
   "E_CheckTeam1": {
     "enabled": false,
@@ -630,8 +627,7 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "next": ["Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["Expedition"]
   },
   "E_ClickExpeditionReturn_Title": {
     "recognition": {
@@ -647,14 +643,11 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "next": ["Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["Expedition"]
   },
   "E_WaitRefresh": {
-    "action": {"type": "DoNothing"},
     "post_delay": 60000,
-    "next": ["Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["Expedition"]
   },
   "E_SmartWait": {
     "enabled": false,
@@ -662,8 +655,7 @@
       "type": "Custom",
       "custom_action": "SmartWaitAction"
     },
-    "next": ["Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["Expedition"]
   },
   "E_DetectExpeditionScreen": {
     "recognition": {
@@ -723,8 +715,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["Expedition"]
   },
   "E_IsSwordDropColor": {
     "recognition": {
@@ -741,13 +732,10 @@
         "target": [1067, 558, 120, 79]
       }
     },
-    "next": ["Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["Expedition"]
   },
   "E_FallbackWait": {
-    "action": {"type": "DoNothing"},
-    "next": ["Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["Expedition"]
   },
   "E_VerifyTeamSelect": {
     "recognition": {
@@ -771,8 +759,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["Expedition"]
   },
   "E_IsLoginButton": {
     "recognition": {
@@ -785,8 +772,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["Expedition"]
   },
   "E_IsGameUpdatePopup": {
     "recognition": {
@@ -799,8 +785,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["Expedition"]
   },
   "E_IsInGameUpdatePopup": {
     "recognition": {
@@ -816,8 +801,7 @@
         "target": [578, 440, 130, 55]
       }
     },
-    "next": ["Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["Expedition"]
   },
   "E_IsAnnouncementPopup": {
     "recognition": {
@@ -831,8 +815,7 @@
     },
     "action": {"type": "Click"},
     "post_wait_freezes": {"time": 200},
-    "next": ["E_IsAnnouncementPopup", "Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["E_IsAnnouncementPopup", "Expedition"]
   },
   "E_IsLoginReward": {
     "recognition": {
@@ -881,9 +864,7 @@
         "lower": [23, 95, 15]
       }
     },
-    "action": {"type": "DoNothing"},
-    "next": ["E_DetectHome", "Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["E_DetectHome", "Expedition"]
   },
   "E_IsTeamStatusPanel": {
     "recognition": {
@@ -895,7 +876,6 @@
         "threshold": [0.98]
       }
     },
-    "action": {"type": "DoNothing"},
     "next": ["E_ExpSubHub1"],
     "on_error": ["Expedition"]
   },
@@ -909,7 +889,6 @@
         "threshold": [0.98]
       }
     },
-    "action": {"type": "DoNothing"},
     "next": ["E_ClickBackToHome"],
     "on_error": ["Expedition"]
   },
@@ -1744,7 +1723,6 @@
         "lower": [23, 95, 15]
       }
     },
-    "action": {"type": "DoNothing"},
     "next": ["E_FlowerIsHome", "E_FlowerBattleHub"],
     "on_error": ["E_FlowerBattleHub"]
   },
@@ -1762,7 +1740,6 @@
     "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerFallbackWait": {
-    "action": {"type": "DoNothing"},
     "next": ["E_FlowerBattleHub"],
     "on_error": ["E_FlowerBattleHub"]
   },
@@ -2031,8 +2008,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["Expedition"],
-    "on_error": ["Expedition"]
+    "next": ["Expedition"]
   },
   "E_WorkshopHub": {
     "next": ["E_CheckWorkshop1", "E_WorkshopHub2"],
@@ -2120,7 +2096,6 @@
         "expected": "修复状况"
       }
     },
-    "action": {"type": "DoNothing"},
     "next": ["E_SelectRepairSlot1", "E_SelectRepairSlot2", "E_SelectRepairSlot3", "E_SelectRepairSlot4", "E_GoHome"],
     "on_error": ["E_GoHome"]
   },
@@ -2224,7 +2199,6 @@
         "expected": "待机中"
       }
     },
-    "action": {"type": "DoNothing"},
     "next": ["E_NaibanClickEntry", "E_AllTeamsBusy"],
     "on_error": ["E_AllTeamsBusy"]
   },

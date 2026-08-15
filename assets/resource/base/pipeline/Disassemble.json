@@ -1,7 +1,6 @@
 {
   "Disassemble": {
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_DetectWhereAmI": {
     "pre_delay": 0,
@@ -77,8 +76,7 @@
     },
     "pre_delay": 300,
     "post_delay": 500,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_HasExpeditionReturn_Title": {
     "recognition": {
@@ -96,8 +94,7 @@
     },
     "pre_delay": 300,
     "post_delay": 500,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_DetectHome": {
     "recognition": {
@@ -117,8 +114,7 @@
     },
     "pre_delay": 300,
     "post_delay": 500,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_DetectMenu": {
     "recognition": {
@@ -138,8 +134,7 @@
     },
     "pre_delay": 300,
     "post_delay": 500,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_DetectForge": {
     "recognition": {
@@ -157,8 +152,7 @@
     },
     "pre_delay": 300,
     "post_delay": 500,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_DetectDisassemble": {
     "recognition": {
@@ -176,8 +170,7 @@
     },
     "pre_delay": 300,
     "post_delay": 500,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_DetectFilter": {
     "recognition": {
@@ -209,8 +202,7 @@
       "D_FilterSword7",
       "D_FilterConfirm",
       "D_DetectWhereAmI"
-    ],
-    "on_error": ["D_DetectWhereAmI"]
+    ]
   },
   "D_FilterSword1": {
     "enabled": false,
@@ -332,8 +324,7 @@
   },
   "D_FilterPostHub": {
     "timeout": 5000,
-    "next": ["D_PostFilterReward", "D_PostFilterDisassemble", "D_DetectEmptyMailbox", "D_PostFilterMailbox", "D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_PostFilterReward", "D_PostFilterDisassemble", "D_DetectEmptyMailbox", "D_PostFilterMailbox", "D_DetectWhereAmI"]
   },
   "D_PostFilterDisassemble": {
     "recognition": {
@@ -411,8 +402,7 @@
     },
     "pre_delay": 300,
     "post_delay": 2000,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_PostFilterMailbox": {
     "recognition": {
@@ -449,13 +439,10 @@
     },
     "pre_delay": 1000,
     "post_delay": 1000,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_FallbackWait": {
-    "action": {"type": "DoNothing"},
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_PostFilterReward": {
     "recognition": {
@@ -562,8 +549,7 @@
     },
     "pre_delay": 200,
     "post_delay": 500,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_CheckHomeBrightness": {
     "recognition": {
@@ -574,9 +560,7 @@
         "lower": [23, 95, 15]
       }
     },
-    "action": {"type": "DoNothing"},
-    "next": ["D_DetectHome", "D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectHome", "D_DetectWhereAmI"]
   },
   "D_IsAnnouncementPopup": {
     "recognition": {
@@ -589,10 +573,12 @@
       }
     },
     "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200
+    },
     "pre_delay": 100,
     "timeout": 3000,
-    "next": ["D_IsAnnouncementPopup", "D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_IsAnnouncementPopup", "D_DetectWhereAmI"]
   },
   "D_IsLoginReward": {
     "recognition": {
@@ -605,6 +591,10 @@
       }
     },
     "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "roi": [240, 104, 803, 561]
+    },
     "pre_delay": 100,
     "next": ["D_LoginRewardClick2"],
     "on_error": ["D_DetectWhereAmI"]
@@ -615,6 +605,10 @@
       "param": {
         "target": [1092, 318, 1, 1]
       }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "roi": [240, 104, 803, 561]
     },
     "pre_delay": 1000,
     "next": ["D_LoginRewardClick3"],
@@ -644,8 +638,7 @@
     },
     "action": {"type": "Click"},
     "pre_delay": 100,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_IsGameIcon": {
     "recognition": {
@@ -660,8 +653,7 @@
     "action": {"type": "Click"},
     "pre_delay": 100,
     "post_delay": 3000,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_IsLoginButton": {
     "recognition": {
@@ -676,8 +668,7 @@
     "action": {"type": "Click"},
     "pre_delay": 100,
     "post_delay": 3000,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_IsGameUpdatePopup": {
     "recognition": {
@@ -692,8 +683,7 @@
     "action": {"type": "Click"},
     "pre_delay": 100,
     "post_delay": 2000,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_IsInGameUpdatePopup": {
     "recognition": {
@@ -711,8 +701,7 @@
     },
     "pre_delay": 100,
     "post_delay": 2000,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   },
   "D_RestartGame": {
     "action": {
@@ -733,7 +722,6 @@
     },
     "action": {"type": "Click"},
     "pre_delay": 100,
-    "next": ["D_DetectWhereAmI"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_DetectWhereAmI"]
   }
 }
