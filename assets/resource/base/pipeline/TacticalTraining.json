@@ -61,7 +61,7 @@
     "action": {"type": "Click"},
     "post_wait_freezes": {
       "time": 200,
-      "roi": [240, 104, 803, 561]
+      "target": [240, 104, 803, 561]
     },
     "pre_delay": 100,
     "next": ["TT_LoginRewardClick2"],
@@ -76,7 +76,7 @@
     },
     "post_wait_freezes": {
       "time": 200,
-      "roi": [240, 104, 803, 561]
+      "target": [240, 104, 803, 561]
     },
     "pre_delay": 1000,
     "next": ["TT_LoginRewardClick3"],

@@ -1,10 +1,10 @@
 {
   "name": "MATR",
-  "version": "v0.10.1-alpha.2",
+  "version": "v0.10.1-beta.1",
   "mirrorchyan_rid": "MATR",
   "mirrorchyan_multiplatform": true,
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.10.1-alpha.2 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.10.1-beta.1 | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -5530,7 +5530,10 @@
         {
           "name": "Yes",
           "label": "开启",
-          "option": ["修复工坊一", "修复工坊二", "修复工坊三", "修复工坊四"]
+          "option": ["修复工坊一", "修复工坊二", "修复工坊三", "修复工坊四"],
+          "pipeline_override": {
+            "E_WorkshopHub": {"enabled": true}
+          }
         }
       ]
     },

@@ -56,7 +56,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [816, 577, 182, 59],
+        "target": [816, 577, 182, 59],
         "template": "Common/登录奖励.png",
         "green_mask": true,
         "threshold": [0.98]
@@ -64,7 +64,7 @@
     },
     "action": {"type": "Click"},
     "post_wait_freezes": {
-      "time": 200,      "roi": [240, 104, 803, 561]    },
+      "time": 200,      "target": [240, 104, 803, 561]    },
     "next": ["U_LoginRewardClick2"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -76,7 +76,7 @@
       }
     },
     "post_wait_freezes": {
-      "time": 200,      "roi": [240, 104, 803, 561]    },
+      "time": 200,      "target": [240, 104, 803, 561]    },
     "next": ["U_LoginRewardClick3"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -163,7 +163,7 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "next": ["U_DetectWhereAmI"]
+    "next": ["U_IsMarching","U_DetectWhereAmI"]
   },
   "U_IsBattleResult_Title": {
     "recognition": {
@@ -179,7 +179,7 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "next": ["U_DetectWhereAmI"]
+    "next": ["U_IsMarching","U_DetectWhereAmI"]
   },
   "U_IsSwordDropColor": {
     "recognition": {
@@ -325,7 +325,7 @@
         "target": [1141, 614, 120, 49]
       }
     },
-    "post_wait_freezes": {"time": 200, "roi": [0, 0, 1280, 720]},
+    "post_wait_freezes": {"time": 200, "target": [0, 0, 1280, 720]},
     "next": ["U_IsTeamSelect", "U_DetectWhereAmI"]
   },
   "U_IsMenuDirectory": {
@@ -474,7 +474,7 @@
         "target": [1208, 449, 1, 1]
       }
     },
-    "post_wait_freezes": {"time": 100, "roi": [369, 287, 546, 238]},
+    "post_wait_freezes": {"time": 100, "target": [369, 287, 546, 238]},
     "next": ["U_ConfirmReturnHome"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1051,7 +1051,7 @@
         "target": [1208, 449, 1, 1]
       }
     },
-    "post_wait_freezes": {"time": 100, "roi": [369, 287, 546, 238]},
+    "post_wait_freezes": {"time": 100, "target": [369, 287, 546, 238]},
     "next": ["U_ConfirmReturnHome","U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1195,7 +1195,7 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100, "roi": [0, 0, 1280, 720]},
+    "post_wait_freezes": {"time": 100, "target": [0, 0, 1280, 720]},
     "next": ["U_PostClickMenuHub"],
     "on_error": ["U_DetectWhereAmI"]
   },

@@ -62,7 +62,7 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200, "roi": [0,629,136,91]},
+    "post_wait_freezes": {"time": 200, "target": [0,629,136,91]},
     "next": ["E_IsTeamStatusPanel", "Expedition"]
   },
   "E_CheckTeam1": {
@@ -701,7 +701,7 @@
     "on_error": ["Expedition"]
   },
   "E_ExpSubHub5": {
-    "next": ["E_CheckTeam5", "E_WorkshopHub"],
+    "next": ["E_CheckTeam5", "E_WorkshopHub", "E_NaibanHub", "E_AllTeamsBusy"],
     "on_error": ["Expedition"]
   },
   "E_IsInternalReport": {
@@ -2011,6 +2011,7 @@
     "next": ["Expedition"]
   },
   "E_WorkshopHub": {
+    "enabled": false,
     "next": ["E_CheckWorkshop1", "E_WorkshopHub2"],
     "on_error": ["E_AllTeamsBusy"]
   },
@@ -2175,7 +2176,7 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["E_GoHome", "E_VerifyRepairSelect"],
+    "next": ["E_GoHome"],
     "on_error": ["E_GoHome"]
   },
   "E_FindRepairableSword": {
