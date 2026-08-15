@@ -3358,6 +3358,10 @@ public class MaaProcessor
                     var repairOptionNames = new List<string> { "修刀" };
                     ProcessOptions(ref taskModels, expTask.Option, repairOptionNames);
 
+                    // 同步内番开关：其他任务同步后勤跳转远征流水线时内番检查同样生效
+                    var naibanOptionNames = new List<string> { "内番" };
+                    ProcessOptions(ref taskModels, expTask.Option, naibanOptionNames);
+
                     // 注入远征刷新间隔到计时器节点
                     var refreshOpt = expTask.Option.FirstOrDefault(o => o.Name == "RefreshInterval");
                     if (refreshOpt?.Data != null &&
