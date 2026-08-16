@@ -2262,7 +2262,26 @@
     },
     "action": {"type": "Click", "param": {"target": [725, 588, 125, 40]}},
     "post_wait_freezes": {"time": 200},
-    "next": ["E_GoHome", "E_NaibanVerifyConfirm"],
+    "next": ["E_NaibanDialogue", "E_NaibanVerifyConfirm"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_NaibanDialogue": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [598, 543, 66, 1],
+        "upper": [96, 56, 10],
+        "lower": [88, 48, 2]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1067, 558, 120, 79]
+      }
+    },
+    "post_wait_freezes": {"time": 200},
+    "next": ["E_NaibanDialogue", "E_GoHome"],
     "on_error": ["E_GoHome"]
   }
 }
