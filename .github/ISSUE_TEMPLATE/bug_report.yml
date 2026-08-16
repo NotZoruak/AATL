@@ -1,44 +1,98 @@
 name: Bug 报告
-description: 任务运行异常 / 崩溃 / 识别错误
+description: 报告任务异常、程序崩溃、连接失败或识别错误
+title: "[Bug]: "
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        ## 提交前请确认
+        感谢你帮助改进 MATR。信息越完整，问题通常越容易定位。
 
-        - 已查阅 [README 常见问题](https://github.com/NotZoruak/MATR/blob/main/README.md#常见问题)
-        - 已更新到最新版本并确认问题仍存在
-        - 已搜索已有 Issue，确认无重复
+        提交前请先查阅 [README 常见问题](https://github.com/NotZoruak/MATR/blob/main/README.md#常见问题)，并搜索已有 Issue，避免重复提交。
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: 问题类型
+      description: 请选择最符合当前情况的类型。
+      options:
+        - 任务流程异常
+        - 画面识别或点击错误
+        - 程序启动或运行异常
+        - 模拟器或设备连接失败
+        - 更新或资源下载异常
+        - 程序崩溃或无响应
+        - 其他
+    validations:
+      required: true
 
   - type: dropdown
     id: task_type
     attributes:
       label: 涉及任务
-      description: 哪个任务出现了问题？
+      description: 如果问题发生在任务运行期间，请选择对应任务。
       options:
-        - 远征
         - 合战场
-        - 陆联
         - 刷花
         - 刀解
         - 习合
-        - 不涉及具体任务（启动/连接/更新等）
+        - 地下城
+        - 陆联
+        - 战术强化
+        - 后勤
+        - 不涉及具体任务
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: 发生频率
+      description: 在相同条件下重复操作时，问题出现的频率如何？
+      options:
+        - 每次都会发生
+        - 经常发生
+        - 偶尔发生
+        - 仅发生过一次
+        - 无法再次复现
     validations:
       required: true
 
   - type: textarea
-    id: description
+    id: summary
     attributes:
-      label: 问题描述与复现步骤
-      description: 请描述预期行为和实际行为，并提供复现步骤
+      label: 问题概述
+      description: 请简要说明问题发生在什么场景，以及最主要的异常表现。
+      placeholder: 例如：运行地下城任务并进入部队选择画面后，程序未继续操作。
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 请从启动 MATR 或任务前的状态开始，按顺序列出操作和配置。
       placeholder: |
-        预期行为：
-        实际行为：
-        复现步骤：
-        1.
-        2.
-        3.
+        1. 启动 MATR 并连接模拟器
+        2. 勾选……任务，设置……选项
+        3. 点击“开始任务”
+        4. 进入……画面后出现问题
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期结果
+      description: 正常情况下，你认为程序应该如何运行？
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果
+      description: 实际发生了什么？请包含画面状态、程序提示和异常操作等信息。
     validations:
       required: true
 
@@ -46,44 +100,108 @@ body:
     id: version
     attributes:
       label: MATR 版本
-      description: 请提供准确的版本号
-      placeholder: 如 v0.5.3
+      description: 请填写程序窗口标题或发布包中显示的完整版本号。
+      placeholder: 例如：v0.9.0-beta.2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: release_channel
+    attributes:
+      label: 版本渠道
+      options:
+        - 正式版
+        - 测试版（beta）
+        - 自行构建或开发版本
+    validations:
+      required: true
+
+  - type: input
+    id: system
+    attributes:
+      label: 操作系统
+      description: 请填写系统名称、版本和架构。
+      placeholder: 例如：Windows 11 24H2，x64
     validations:
       required: true
 
   - type: input
     id: emulator
     attributes:
-      label: 模拟器及分辨率
-      description: 请提供模拟器名称、版本和分辨率
-      placeholder: 如 MuMu 模拟器 12，1280×720
+      label: 模拟器或设备
+      description: 请填写模拟器名称及版本；使用实体设备时请填写设备型号。
+      placeholder: 例如：MuMu 模拟器 12，版本 4.x.x
+    validations:
+      required: true
+
+  - type: input
+    id: resolution
+    attributes:
+      label: 分辨率与 DPI
+      description: 请填写模拟器或设备当前使用的分辨率和 DPI。
+      placeholder: 例如：1280×720，240 DPI
+    validations:
+      required: true
+
+  - type: dropdown
+    id: connection
+    attributes:
+      label: 连接方式
+      options:
+        - 自动检测
+        - ADB 地址
+        - 已运行的模拟器实例
+        - 实体 Android 设备
+        - 不清楚或不适用
     validations:
       required: true
 
   - type: textarea
+    id: configuration
+    attributes:
+      label: 相关任务配置
+      description: 请列出与问题相关的任务选项和非默认设置。可直接粘贴配置截图；请勿上传账号、密钥等敏感信息。
+      placeholder: |
+        任务选项：
+        全局设置：
+        其他非默认设置：
+    validations:
+      required: false
+
+  - type: textarea
     id: logs
     attributes:
-      label: 日志文件
-      description: 请上传 `debug/maafw.log` 文件内容（如日志较短请一并上传 `maafw.bak.log`）
-      render: text
+      label: 日志
+      description: 请直接拖入或粘贴 `debug/maafw.log`；如问题发生在上一次运行，也请提供 `debug/maafw.bak.log`。提交前请检查并隐藏用户名、本地路径、设备地址等隐私信息。
     validations:
       required: true
 
   - type: textarea
     id: screenshots
     attributes:
-      label: 截图
-      description: 如有截图请直接粘贴，识别问题请尽量提供
+      label: 截图或录屏
+      description: 识别、点击或画面流程问题请尽量提供问题发生前后的完整画面。可直接拖入文件；提交前请遮盖个人信息。
     validations:
       required: false
 
-  - type: markdown
+  - type: textarea
+    id: additional
     attributes:
-      value: |
-        ## 提交清单
+      label: 其他补充信息
+      description: 可填写临时解决方法、相关 Issue、异常出现前后的操作或其他线索。
+    validations:
+      required: false
 
-        - 完整的 `debug/maafw.log` 日志
-        - 问题描述（预期 vs 实际）
-        - MATR 版本号
-        - 模拟器及分辨率
-        - 截图（如有）
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已阅读 README 常见问题，并确认其中没有可用的解决方法。
+          required: true
+        - label: 我已搜索现有 Issue，并确认没有内容相同的报告。
+          required: true
+        - label: 我已使用当前渠道的最新版本复现或确认此问题。
+          required: true
+        - label: 我已检查日志、截图和配置，不包含账号、密钥等敏感信息。
+          required: true
