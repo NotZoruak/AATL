@@ -468,14 +468,21 @@
   },
   "U_GoHomeAfterRound": {
     "enabled": false,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1164, 407, 88, 40],
+        "expected": "返回"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
-        "target": [1208, 449, 1, 1]
+        "target": [1173, 416, 70, 68]
       }
     },
     "post_wait_freezes": {"time": 100, "target": [369, 287, 546, 238]},
-    "next": ["U_ConfirmReturnHome"],
+    "next": ["U_ConfirmReturnHome","U_ReturnHomeAfterMarch", "U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsInternalReport": {
@@ -1045,14 +1052,21 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ReturnHomeAfterMarch": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1164, 407, 88, 40],
+        "expected": "返回"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
-        "target": [1208, 449, 1, 1]
+        "target": [1173, 416, 70, 68]
       }
     },
-    "post_wait_freezes": {"time": 100, "target": [369, 287, 546, 238]},
-    "next": ["U_ConfirmReturnHome","U_ReturnHomeAfterMarch"],
+    "post_wait_freezes": {"time": 200, "target": [369, 287, 546, 238]},
+    "next": ["U_ConfirmReturnHome","U_ReturnHomeAfterMarch", "U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_SelectDamagedSword": {
@@ -1195,7 +1209,7 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100, "target": [0, 0, 1280, 720]},
+    "post_wait_freezes": {"time": 100, "target": [1183, 18, 87, 40]},
     "next": ["U_PostClickMenuHub"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1274,6 +1288,7 @@
         "target": [490, 469, 1, 1]
       }
     },
+    "post_wait_freezes": {"time": 200},
     "next": ["U_DetectWhereAmI"]
   },
   "U_UseSpeedup": {

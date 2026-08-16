@@ -96,9 +96,10 @@ public class RestartGameAction : IMaaCustomAction
     private static string GetPackageName()
     {
         var globalOpts = MaaProcessor.Interface?.GlobalSelectOptions;
-        var targetOpt = globalOpts?.FirstOrDefault(o => o.Name == "目标应用");
+        var restartOpt = globalOpts?.FirstOrDefault(o => o.Name == "卡死重启");
+        var targetOpt = restartOpt?.SubOptions?.FirstOrDefault(o => o.Name == "目标应用");
         if (targetOpt?.Data != null && targetOpt.Data.TryGetValue("package_name", out var pkg) && !string.IsNullOrWhiteSpace(pkg))
-            return pkg;
+            return pkg.Trim();
         return "com.youzu.djlw";
     }
 
@@ -337,26 +338,53 @@ public class RestartGameAction : IMaaCustomAction
     }
 
     /// <summary>
-    /// 执行一条 adb 命令，异常不会上抛，确保不中断后续流程
+    /// 执行一条 adb 命令，并返回命令是否成功
     /// </summary>
-    private static void RunAdbCommand(string adbPath, string adbSerial, string args)
+    private static bool RunAdbCommand(string adbPath, string adbSerial, string args)
     {
         var psi = new ProcessStartInfo(adbPath, args)
         {
             CreateNoWindow = true,
             UseShellExecute = false,
             RedirectStandardOutput = true,
+            RedirectStandardError = true,
         };
         if (!string.IsNullOrWhiteSpace(adbSerial))
             psi.Arguments = $"-s {adbSerial} {args}";
         try
         {
             using var proc = Process.Start(psi);
-            proc?.WaitForExit(5000);
+            if (proc == null)
+            {
+                LoggerHelper.Error("[RestartGameAction] 无法启动 ADB 进程");
+                return false;
+            }
+
+            var outputTask = proc.StandardOutput.ReadToEndAsync();
+            var errorTask = proc.StandardError.ReadToEndAsync();
+            if (!proc.WaitForExit(10000))
+            {
+                LoggerHelper.Error($"[RestartGameAction] ADB 命令执行超时: {args}");
+                try { proc.Kill(true); } catch { }
+                return false;
+            }
+
+            var output = outputTask.GetAwaiter().GetResult().Trim();
+            var error = errorTask.GetAwaiter().GetResult().Trim();
+            if (proc.ExitCode != 0)
+            {
+                LoggerHelper.Error($"[RestartGameAction] ADB 命令执行失败: code={proc.ExitCode} out={output} err={error}");
+                return false;
+            }
+
+            if (!string.IsNullOrWhiteSpace(error))
+                LoggerHelper.Warning($"[RestartGameAction] ADB 命令返回警告: {error}");
+            return true;
         }
         catch (Exception e)
         {
-            LoggerHelper.Info($"[RestartGameAction] 命令执行异常: {e.Message}");
+            LoggerHelper.Error($"[RestartGameAction] ADB 命令执行异常: {e.Message}");
+            return false;
         }
     }
 
@@ -376,12 +404,14 @@ public class RestartGameAction : IMaaCustomAction
 
         // 1. 强制停止游戏进程，确保从卡死状态恢复
         LoggerHelper.Info($"[RestartGameAction] 强制停止游戏进程: {package}");
-        RunAdbCommand(action._adbPath!, action._adbSerial ?? "", $"shell am force-stop {package}");
+        if (!RunAdbCommand(action._adbPath!, action._adbSerial ?? "", $"shell am force-stop {package}"))
+            LoggerHelper.Warning("[RestartGameAction] 强制停止游戏失败，继续尝试启动游戏");
         Thread.Sleep(2000);
 
         // 2. 重新启动游戏
         LoggerHelper.Info($"[RestartGameAction] 重新启动游戏: {package}");
-        RunAdbCommand(action._adbPath!, action._adbSerial ?? "", $"shell monkey -p {package} -c android.intent.category.LAUNCHER 1");
+        if (!RunAdbCommand(action._adbPath!, action._adbSerial ?? "", $"shell monkey -p {package} -c android.intent.category.LAUNCHER 1"))
+            throw new InvalidOperationException($"游戏启动失败，请检查应用包名和 ADB 连接。包名={package}");
 
         LoggerHelper.Info("[RestartGameAction] 游戏重启完成");
     }

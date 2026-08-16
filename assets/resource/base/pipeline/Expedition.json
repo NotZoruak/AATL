@@ -518,6 +518,7 @@
       }
     },
     "pre_delay": 100,
+    "post_wait_freezes": {"time": 200, "target": [0,610,148,110]},
     "next": ["E_GoHome"],
     "on_error": ["Expedition"]
   },
@@ -1257,7 +1258,10 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "post_delay": 1000,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [786, 124, 310, 183]
+    },
     "next": ["E_CheckFatigue1", "E_UseTeamRecord_Step4_Rec1"],
     "on_error": ["Expedition"]
   },
@@ -1275,7 +1279,10 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "post_delay": 1000,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [786, 124, 310, 183]
+    },
     "next": ["E_CheckFatigue2", "E_UseTeamRecord_Step4_Rec2"],
     "on_error": ["Expedition"]
   },
@@ -1293,7 +1300,10 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "post_delay": 1000,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [786, 124, 310, 183]
+    },
     "next": ["E_CheckFatigue3", "E_UseTeamRecord_Step4_Rec3"],
     "on_error": ["Expedition"]
   },
@@ -1311,7 +1321,10 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "post_delay": 1000,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [786, 124, 310, 183]
+    },
     "next": ["E_CheckFatigue4", "E_UseTeamRecord_Step4_Rec4"],
     "on_error": ["Expedition"]
   },
@@ -1329,7 +1342,10 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "post_delay": 1000,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [786, 124, 310, 183]
+    },
     "next": ["E_CheckFatigue5", "E_UseTeamRecord_Step4_Rec5"],
     "on_error": ["Expedition"]
   },
@@ -1552,7 +1568,7 @@
       }
     },
     "pre_delay": 100,
-    "post_delay": 1000,
+    "post_wait_freezes": {"time": 200},
     "next": ["E_FlowerIsSwordSelect"],
     "on_error": ["E_GoHome"]
   },
@@ -1685,6 +1701,7 @@
     },
     "action": {"type": "Click"},
     "pre_delay": 100,
+    "post_wait_freezes": {"time": 200},
     "next": ["E_FlowerCheckCaptain"],
     "on_error": ["E_FlowerBattleHub"]
   },
@@ -2111,6 +2128,7 @@
       }
     },
     "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 200, "target": [114,123,316,240]},
     "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot1"],
     "on_error": ["E_GoHome"]
   },
@@ -2125,6 +2143,7 @@
       }
     },
     "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 200, "target": [114,123,316,240]},
     "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot2"],
     "on_error": ["E_GoHome"]
   },
@@ -2139,6 +2158,7 @@
       }
     },
     "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 200, "target": [114,123,316,240]},
     "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot3"],
     "on_error": ["E_GoHome"]
   },
@@ -2153,6 +2173,7 @@
       }
     },
     "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 200, "target": [114,123,316,240]},
     "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot4"],
     "on_error": ["E_GoHome"]
   },
@@ -2164,6 +2185,7 @@
         "expected": "修复刀剑男士"
       }
     },
+    "post_wait_freezes": {"time": 200, "target": [459,127,16,554]},
     "next": ["E_FindRepairableSword", "E_SelectRepairSlot1"],
     "on_error": ["E_GoHome"]
   },

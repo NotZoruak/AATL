@@ -371,16 +371,13 @@ public class MaaProcessor
     public void AddLogByKey(string key, IBrush? brush = null, bool changeColor = true, bool transformKey = true, params string[] formatArgsKeys)
     {
         brush ??= Brushes.Black;
-        Task.Run(() =>
+        DispatcherHelper.PostOnMainThread(() =>
         {
-            DispatcherHelper.PostOnMainThread(() =>
-            {
-                var log = new LogItemViewModel(key, brush, "Regular", true, "HH':'mm':'ss", changeColor: changeColor, showTime: true, transformKey: transformKey, formatArgsKeys);
-                LogItemViewModels.Add(log);
-                using var logScope = BeginInstanceLogScope("MonitorLog", "Monitor");
-                LoggerHelper.Info(log.Content);
-                TrimExcessLogs();
-            });
+            var log = new LogItemViewModel(key, brush, "Regular", true, "HH':'mm':'ss", changeColor: changeColor, showTime: true, transformKey: transformKey, formatArgsKeys);
+            LogItemViewModels.Add(log);
+            using var logScope = BeginInstanceLogScope("MonitorLog", "Monitor");
+            LoggerHelper.Info(log.Content);
+            TrimExcessLogs();
         });
     }
 

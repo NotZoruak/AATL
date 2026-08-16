@@ -1180,17 +1180,24 @@
   },
   "S_ClickRetreat": {
     "enabled": false,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1164, 407, 88, 40],
+        "expected": "返回"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
-        "target": [1208, 449, 1, 1]
+        "target": [1173, 416, 70, 68]
       }
     },
     "post_wait_freezes": {
       "time": 200,
       "target": [548, 295, 182, 56]
     },
-    "next": ["S_ConfirmRetreat", "S_DetectWhereAmI"]
+    "next": ["S_ConfirmRetreat","S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_ConfirmRetreat": {
     "enabled": false,
