@@ -161,5 +161,5 @@ MATR/
 如果觉得软件对你有帮助，帮忙点个 Star 吧！（网页最上方右上角的小星星），这就是对我们最大的支持了！
 
 <a href="https://star-history.com/#NotZoruak/MATR&Date">
-  <img alt="Star History Chart" src="docs/static/star-history.png" />
+  <img alt="Star History Chart" src="star-history.png" />
 </a>

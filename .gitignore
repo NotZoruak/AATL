@@ -49,15 +49,12 @@ __pycache__/
 Thumbs.db
 desktop.ini
 
-# Obsidian 配置
-docs/.obsidian/
+# 本地项目文档
+/docs/
 
 # 打包产物
 /MATR-*.zip
 /_temp_zip/
-
-# 私人数据（合战场效率实测记录，不随仓库分发）
-/docs/合战场资源效率.md
 
 # Codex 工作文件(不随仓库分发)
 .agents/
@@ -65,6 +62,10 @@ AGENTS.md
 findings.md
 progress.md
 task_plan.md
+
+# Claude Code 本地配置与指令(不随仓库分发)
+/.claude/
+/CLAUDE.md
 
 # 误生成空文件
 entry()
