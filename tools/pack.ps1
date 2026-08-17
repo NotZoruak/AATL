@@ -43,6 +43,7 @@ Copy-Item "$Root\assets\resource" -Recurse -Destination "$TempDir\assets\resourc
 if (Test-Path "$TempDir\assets\resource\config") { Remove-Item -Recurse -Force "$TempDir\assets\resource\config" }
 if (Test-Path "$TempDir\assets\resource\temp") { Remove-Item -Recurse -Force "$TempDir\assets\resource\temp" }
 if (Test-Path "$TempDir\assets\resource\backup") { Remove-Item -Recurse -Force "$TempDir\assets\resource\backup" }
+if (Test-Path "$TempDir\assets\resource\base\image\unused") { Remove-Item -Recurse -Force "$TempDir\assets\resource\base\image\unused" }
 
 # Package (compress temp dir contents directly, no wrapper folder)
 Compress-Archive -Path "$TempDir\*" -DestinationPath $ZipFile -Force

@@ -15,6 +15,7 @@ __pycache__/
 
 # 本地运行配置（含本机模拟器路径，不随仓库分发）
 /assets/config/
+/assets/resource/base/image/unused/
 
 # NuGet 输出（publish 时自动生成）
 /libs/
@@ -67,7 +68,10 @@ task_plan.md
 /.claude/
 /CLAUDE.md
 
-# 误生成空文件
+# 误生成空文件（构建时 XamlCompiler 偶发把表达式写成空文件名）
 entry()
 o.Name
 start
+()
+,+
+0
