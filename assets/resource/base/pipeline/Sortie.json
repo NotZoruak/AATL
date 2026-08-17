@@ -33,6 +33,7 @@
       "S_IsGameUpdatePopup",
       "S_IsInGameUpdatePopup",
       "S_IsInternalReport",
+      "S_IsConnectionInterrupted",
       "S_FallbackWait"
     ],
     "on_error": ["S_RestartGame"]
@@ -340,10 +341,21 @@
     },
     "post_wait_freezes": {
       "time": 200,
-      "target": [38, 123, 1059, 561]
+      "target": [82, 61, 629, 56]
     },
-    "next": ["S_CaptainHub"],
+    "next": ["S_TeamVerifyColor", "S_ClickTeam"],
     "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_TeamVerifyColor": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [172, 81, 17, 9],
+        "upper": [192, 192, 192],
+        "lower": [186, 186, 186]
+      }
+    },
+    "next": ["S_CaptainHub"]
   },
   "S_PreCheckTroopRecord": {
     "enabled": false,
@@ -2243,7 +2255,6 @@
     "action": {"type": "Click"},
     "post_wait_freezes": {
       "time": 200    },
-    "timeout": 3000,
     "next": ["S_IsAnnouncementPopup", "S_DetectWhereAmI"]
   },
   "S_IsLoginReward": {
@@ -2543,7 +2554,7 @@
       "target": [1056, 463, 63, 193]
     },
     "timeout": 3000,
-    "next": ["SF_IsAnnouncementPopup"],
+    "next": ["SF_IsAnnouncementPopup", "SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },
   "SF_IsTrainingLetter": {
@@ -2909,10 +2920,21 @@
     },
     "post_wait_freezes": {
       "time": 200,
-      "target": [38, 123, 1059, 561]
+      "target": [82, 61, 629, 56]
     },
-    "next": ["SF_DissolveHub"],
+    "next": ["SF_TeamVerifyColorN", "SF_ClickTeamN"],
     "on_error": ["SF_DetectWhereAmI"]
+  },
+  "SF_TeamVerifyColorN": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [284, 77, 18, 9],
+        "upper": [192, 192, 192],
+        "lower": [186, 186, 186]
+      }
+    },
+    "next": ["SF_DissolveHub"]
   },
   "SF_DissolveHub": {
     "next": ["SF_DissolveCheck", "SF_CheckFatigue"],
@@ -3405,5 +3427,21 @@
       "custom_action": "RestartGameAction"
     },
     "next": ["SF_DetectWhereAmI"]
+  },
+  "S_IsConnectionInterrupted": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [588, 274, 96, 25],
+        "expected": "连接中断"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [738, 449, 100, 39]
+      }
+    },
+    "next": ["S_DetectWhereAmI"]
   }
 }

@@ -475,13 +475,15 @@ public partial class TaskQueueViewModel : ViewModelBase
         {
             // 重置最后回调时间,防止恢复流程自身耗时(CLI 超时等)被无响应检测误判为再次触发
             Processor.ResetLastCallbackTime();
-            LoggerHelper.Warning("自动恢复开始:停止任务 → 重启模拟器 → 重启游戏 → 重连 → 恢复挂机。");
+            LoggerHelper.Warning("自动恢复开始:停止任务 → 重启模拟器 → 重启游戏 → 重连 → 从断点继续任务队列。");
             StopTask();
             await Task.Delay(1500);
             await Task.Run(() => RestartGameAction.RestartAndReloadGame());
             LoggerHelper.Info("自动恢复:模拟器与游戏重启完成,重新连接模拟器...");
             await Processor.ReconnectAsync();
-            LoggerHelper.Info("自动恢复:重连完成,重新启动任务队列。");
+            // 断点继续：从上次中断的任务继续执行，已完成任务不重跑
+            Processor.SetResumeStartIndex(Processor.NextTaskIndex);
+            LoggerHelper.Info($"自动恢复:重连完成,从任务队列第 {Processor.NextTaskIndex + 1} 个任务继续。");
             StartTask();
             Processor.ResetLoopDetector();
             LoggerHelper.Info("自动恢复:循环检测已复位,恢复流程完成。");

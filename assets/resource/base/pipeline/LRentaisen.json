@@ -50,8 +50,6 @@
     "post_wait_freezes": {
       "time": 200
     },
-    "pre_delay": 100,
-    "timeout": 3000,
     "next": ["LR_IsAnnouncementPopup", "LR_DetectWhereAmI"]
   },
   "LR_IsSupplyPopup": {
@@ -559,10 +557,23 @@
         "target": [154, 93, 1, 1]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 500,
-    "next": ["LR_CaptainHub"],
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [82, 61, 629, 56]
+    },
+    "next": ["LR_TeamVerifyColor", "LR_ClickTeam"],
     "on_error": ["LR_DetectWhereAmI"]
+  },
+  "LR_TeamVerifyColor": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [172, 81, 17, 9],
+        "upper": [192, 192, 192],
+        "lower": [186, 186, 186]
+      }
+    },
+    "next": ["LR_CaptainHub"]
   },
   "LR_TryClickHome": {
     "next": ["LR_ClickHomeInMenu", "LR_DetectWhereAmI"]

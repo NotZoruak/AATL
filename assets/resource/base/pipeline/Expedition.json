@@ -19,6 +19,7 @@
       "E_IsInGameUpdatePopup",
       "E_IsInternalReport",
       "E_LeaveTroopRecord",
+      "E_IsConnectionInterrupted",
       "E_FallbackWait"
     ],
     "on_error": ["E_RestartGame"]
@@ -2283,5 +2284,21 @@
     "post_wait_freezes": {"time": 200},
     "next": ["E_NaibanDialogue", "E_GoHome"],
     "on_error": ["E_GoHome"]
+  },
+  "E_IsConnectionInterrupted": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [588, 274, 96, 25],
+        "expected": "连接中断"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [738, 449, 100, 39]
+      }
+    },
+    "next": ["Expedition"]
   }
 }

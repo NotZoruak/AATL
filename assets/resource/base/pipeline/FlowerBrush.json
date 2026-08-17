@@ -27,6 +27,7 @@
       "FB_IsGameUpdatePopup",
       "FB_IsInGameUpdatePopup",
       "FB_IsInternalReport",
+      "FB_IsConnectionInterrupted",
       "FB_FallbackWait"
     ],
     "on_error": ["FB_RestartGame"]
@@ -314,9 +315,23 @@
         "target": [154, 93, 1, 1]
       }
     },
-    "pre_delay": 100,
-    "next": ["FB_Dissolve"],
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [82, 61, 629, 56]
+    },
+    "next": ["FB_TeamVerifyColor", "FB_ClickTeam"],
     "on_error": ["FB_DetectWhereAmI"]
+  },
+  "FB_TeamVerifyColor": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [172, 81, 17, 9],
+        "upper": [192, 192, 192],
+        "lower": [186, 186, 186]
+      }
+    },
+    "next": ["FB_Dissolve"]
   },
   "FB_Dissolve": {
     "next": ["FB_DissolveCheck", "FB_ClickCaptainSlot"],
@@ -788,8 +803,6 @@
     "post_wait_freezes": {
       "time": 200
     },
-    "pre_delay": 100,
-    "timeout": 3000,
     "next": ["FB_IsAnnouncementPopup", "FB_DetectWhereAmI"]
   },
   "FB_IsLoginReward": {
@@ -894,6 +907,22 @@
     },
     "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["FB_DetectWhereAmI"]
+  },
+  "FB_IsConnectionInterrupted": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [588, 274, 96, 25],
+        "expected": "连接中断"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [738, 449, 100, 39]
+      }
+    },
     "next": ["FB_DetectWhereAmI"]
   }
 }

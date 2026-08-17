@@ -44,8 +44,6 @@
     "post_wait_freezes": {
       "time": 200
     },
-    "pre_delay": 100,
-    "timeout": 3000,
     "next": ["TT_IsAnnouncementPopup", "TT_DetectWhereAmI"]
   },
   "TT_IsLoginReward": {
@@ -597,10 +595,23 @@
         "target": [154, 93, 1, 1]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 800,
-    "next": ["TT_CheckCaptainColor"],
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [82, 61, 629, 56]
+    },
+    "next": ["TT_TeamVerifyColor", "TT_ClickTargetTeam"],
     "on_error": ["TT_DetectWhereAmI"]
+  },
+  "TT_TeamVerifyColor": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [172, 81, 17, 9],
+        "upper": [192, 192, 192],
+        "lower": [186, 186, 186]
+      }
+    },
+    "next": ["TT_CheckCaptainColor"]
   },
   "TT_CaptainHub": {
     "recognition": {

@@ -24,6 +24,7 @@
       "D_IsLoginButton",
       "D_IsGameUpdatePopup",
       "D_IsInGameUpdatePopup",
+      "D_IsConnectionInterrupted",
       "D_FallbackWait"
     ],
     "on_error": ["D_RestartGame"]
@@ -576,8 +577,6 @@
     "post_wait_freezes": {
       "time": 200
     },
-    "pre_delay": 100,
-    "timeout": 3000,
     "next": ["D_IsAnnouncementPopup", "D_DetectWhereAmI"]
   },
   "D_IsLoginReward": {
@@ -722,6 +721,22 @@
     },
     "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["D_DetectWhereAmI"]
+  },
+  "D_IsConnectionInterrupted": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [588, 274, 96, 25],
+        "expected": "连接中断"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [738, 449, 100, 39]
+      }
+    },
     "next": ["D_DetectWhereAmI"]
   }
 }

@@ -46,7 +46,6 @@
       }
     },
     "action": {"type": "Click"},
-    "timeout": 3000,
     "post_wait_freezes": {
       "time": 200    },
     "next": ["U_IsAnnouncementPopup", "U_DetectWhereAmI"]
@@ -273,10 +272,22 @@
     },
     "post_wait_freezes": {
       "time": 200,
-      "target": [38, 123, 1059, 561]
+      "target": [82, 61, 629, 56]
+    },
+    "next": ["U_TeamVerifyColor", "U_ClickTeam"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_TeamVerifyColor": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [172, 81, 17, 9],
+        "upper": [192, 192, 192],
+        "lower": [186, 186, 186]
+      }
     },
     "next": ["U_CaptainHub"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_ClickTeam"]
   },
   "U_IsSortie": {
     "recognition": {
@@ -1972,10 +1983,22 @@
     },
     "post_wait_freezes": {
       "time": 200,
-      "target": [38, 123, 1059, 561]
+      "target": [82, 61, 629, 56]
+    },
+    "next": ["UF_TeamVerifyColorN", "UF_ClickTeamN"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_TeamVerifyColorN": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [172, 81, 17, 9],
+        "upper": [192, 192, 192],
+        "lower": [186, 186, 186]
+      }
     },
     "next": ["UF_DissolveHub"],
-    "on_error": ["UF_DetectWhereAmI"]
+    "on_error": ["UF_ClickTeamN"]
   },
   "UF_DissolveHub": {
     "next": ["UF_DissolveCheck", "UF_CheckFatigue"],
@@ -2485,7 +2508,7 @@
       "target": [1056, 463, 63, 193]
     },
     "timeout": 3000,
-    "next": ["UF_IsAnnouncementPopup"],
+    "next": ["UF_IsAnnouncementPopup", "UF_DetectWhereAmI"],
     "on_error": ["UF_DetectWhereAmI"]
   },
   "UF_IsTrainingLetter": {

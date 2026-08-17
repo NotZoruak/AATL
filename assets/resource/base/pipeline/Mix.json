@@ -25,6 +25,7 @@
       "M_IsLoginButton",
       "M_IsGameUpdatePopup",
       "M_IsInGameUpdatePopup",
+      "M_IsConnectionInterrupted",
       "M_FallbackWait"
     ],
     "on_error": ["M_RestartGame"]
@@ -1029,8 +1030,6 @@
     "post_wait_freezes": {
       "time": 200
     },
-    "pre_delay": 100,
-    "timeout": 3000,
     "next": ["M_IsAnnouncementPopup", "M_DetectWhereAmI"]
   },
   "M_IsLoginReward": {
@@ -1175,6 +1174,22 @@
     },
     "action": {"type": "Click"},
     "pre_delay": 100,
+    "next": ["M_DetectWhereAmI"]
+  },
+  "M_IsConnectionInterrupted": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [588, 274, 96, 25],
+        "expected": "连接中断"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [738, 449, 100, 39]
+      }
+    },
     "next": ["M_DetectWhereAmI"]
   }
 }

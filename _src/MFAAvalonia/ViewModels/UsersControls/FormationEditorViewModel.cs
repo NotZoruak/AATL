@@ -2,11 +2,12 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MFAAvalonia.Helper;
 using MFAAvalonia.Models;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace MFAAvalonia.ViewModels.UsersControls;
 
@@ -99,22 +100,16 @@ public partial class FormationSlotEdit : ObservableObject
 /// <summary>编队编辑器使用的候选列表</summary>
 public static class FormationOptions
 {
-    public static readonly string[] HorseOptions = ["无", "三河栗毛", "小云雀", "松风", "彦星"];
+    public static readonly string[] HorseOptions = ["无", "王庭", "三国黑", "松风", "小云雀", "高楯黑", "花柑子", "青海波", "望月", "白毛", "鹿毛", "青毛"];
 
-    /// <summary>从已有剪影模板中提取并排序全部刀剑名称</summary>
+    /// <summary>从刀种映射表读取并排序全部刀剑名称</summary>
     public static string[] LoadSwordOptions()
     {
-        var directory = Path.Combine(AppPaths.ResourceDirectory, "silhouette");
-        if (!Directory.Exists(directory))
+        var path = Path.Combine(AppPaths.ResourceDirectory, "base", "SwordTypeMap.json");
+        if (!File.Exists(path))
             return [];
 
-        return Directory.EnumerateFiles(directory, "*_head.png")
-            .Select(Path.GetFileNameWithoutExtension)
-            .Select(name => Regex.Match(name ?? string.Empty, @"^\d+_(.+)_head$"))
-            .Where(match => match.Success)
-            .Select(match => match.Groups[1].Value)
-            .Distinct(StringComparer.Ordinal)
-            .OrderBy(name => name, StringComparer.CurrentCulture)
-            .ToArray();
+        var map = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(path));
+        return map?.Keys.OrderBy(name => name, StringComparer.CurrentCulture).ToArray() ?? [];
     }
 }

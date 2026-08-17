@@ -2951,6 +2951,38 @@ public class MaaProcessor
     private DateTime? _startTime;
     private List<DragItemViewModel> _tempTasks = [];
 
+    /// <summary>恢复请求的起始任务下标（0 = 从头执行全部任务）；StartTask 读取后立即重置</summary>
+    private int _resumeStartIndex;
+
+    /// <summary>下一个待执行任务下标（卡死自动恢复断点用，任务完成时推进）</summary>
+    private int _nextTaskIndex;
+
+    /// <summary>设置恢复起始下标，卡死自动恢复后从该任务继续执行队列</summary>
+    public void SetResumeStartIndex(int index) => _resumeStartIndex = Math.Max(0, index);
+
+    /// <summary>下一个待执行任务下标（卡死自动恢复断点）</summary>
+    public int NextTaskIndex => _nextTaskIndex;
+
+    /// <summary>自定编队：部队选择点击位置（部队一~五，1280×720 基准）</summary>
+    private static readonly int[][] FormationTeamClickCoords =
+    [
+        [154, 93],
+        [282, 94],
+        [398, 91],
+        [519, 89],
+        [635, 91],
+    ];
+
+    /// <summary>自定编队：部队选中验证识别区域（部队一~五）</summary>
+    private static readonly int[][] FormationTeamVerifyRois =
+    [
+        [172, 81, 17, 9],
+        [284, 77, 18, 9],
+        [431, 80, 16, 8],
+        [555, 78, 16, 8],
+        [675, 79, 16, 8],
+    ];
+
     public async Task StartTask(List<DragItemViewModel>? tasks, bool onlyStart = false, bool checkUpdate = false)
     {
         using var logScope = BeginInstanceLogScope("ExecuteTaskQueue", "Worker");
@@ -2969,8 +3001,16 @@ public class MaaProcessor
             _tempTasks = tasks;
             LoggerHelper.Info($"准备执行任务队列：任务数量={tasks.Count}");
             var taskAndParams = tasks.Select((task, index) => CreateNodeAndParam(task, index + 1)).ToList();
+            // 卡死自动恢复断点：从上次中断位置继续（正常启动为 0）
+            var startIndex = _resumeStartIndex;
+            _resumeStartIndex = 0;
+            _nextTaskIndex = startIndex;
+            if (startIndex > 0)
+            {
+                LoggerHelper.Warning($"自动恢复：从任务队列第 {startIndex + 1}/{taskAndParams.Count} 个任务继续执行");
+            }
             InitializeConnectionTasksAsync(token);
-            AddCoreTasksAsync(taskAndParams, token);
+            AddCoreTasksAsync(taskAndParams, token, startIndex);
         }
 
         AddPostTasksAsync(onlyStart, checkUpdate, token);
@@ -3443,6 +3483,116 @@ public class MaaProcessor
             }
         }
 
+        // 自定编队：根据预设生成运行时 override（选队坐标、开关路由、空槽位跳过）
+        if (task.InterfaceItem?.Entry == "FormationConfig")
+        {
+            LoggerHelper.Info("[FormationConfig] CreateNodeAndParam 特判进入，PipelineOverride=" +
+                JsonConvert.SerializeObject(task.InterfaceItem?.PipelineOverride));
+            // 从 PipelineOverride 读取 preset_id（MaaToken 仅支持合并，不支持读取）
+            int presetId = 0;
+            if (task.InterfaceItem?.PipelineOverride != null
+                && task.InterfaceItem.PipelineOverride.TryGetValue("FormationConfig", out var fcToken)
+                && fcToken is JObject fcObj)
+            {
+                presetId = fcObj["custom_action_param"]?["preset_id"]?.Value<int>() ?? 0;
+            }
+
+            var formationPresets = InstanceConfiguration.GetValue<List<MFAAvalonia.Models.FormationPreset>>(ConfigurationKeys.FormationPresets, []);
+            var formationPreset = formationPresets?.FirstOrDefault(p => p.Id == presetId);
+            LoggerHelper.Info($"[FormationConfig] 特判 presetId={presetId}, presetsCount={formationPresets?.Count ?? -1}, preset={formationPreset?.Id ?? -1}");
+            if (formationPreset != null)
+            {
+                formationPreset.EnsureSlots();
+                int team = Math.Clamp(formationPreset.Team, 1, 5);
+
+                var overrideDict = new Dictionary<string, JToken>
+                {
+                    // 入口参数：preset_id 注入 custom_action_param
+                    ["FormationConfig"] = new JObject
+                    {
+                        ["action"] = new JObject
+                        {
+                            ["type"] = "Custom",
+                            ["custom_action"] = "FormationConfigAction",
+                            ["custom_action_param"] = new JObject { ["preset_id"] = presetId }
+                        }
+                    },
+                    // 选队坐标（按预设目标部队）
+                    ["FC_ClickTeam"] = new JObject
+                    {
+                        ["action"] = new JObject
+                        {
+                            ["param"] = new JObject { ["target"] = new JArray(FormationTeamClickCoords[team - 1]) }
+                        }
+                    },
+                    ["FC_VerifySelectedTeam"] = new JObject
+                    {
+                        ["recognition"] = new JObject
+                        {
+                            ["param"] = new JObject { ["roi"] = new JArray(FormationTeamVerifyRois[team - 1]) }
+                        }
+                    },
+                    // 部队编号注入（装备解除面板选队、部队记录槽）
+                    ["FC_ClickEquipCond3"] = new JObject
+                    {
+                        ["action"] = new JObject
+                        {
+                            ["custom_action_param"] = new JObject { ["team"] = team }
+                        }
+                    },
+                    ["FC_ClickRecordSlot"] = new JObject
+                    {
+                        ["action"] = new JObject
+                        {
+                            ["custom_action_param"] = new JObject { ["team"] = team }
+                        }
+                    },
+                };
+
+                // 卸装备开关：开启时选队验证后先检查空队（空队直接编入），否则进入卸装备流程
+                if (formationPreset.ClearEquipmentBeforeFormation)
+                {
+                    overrideDict["FC_VerifySelectedTeam"] = new JObject
+                    {
+                        ["next"] = new JArray("FC_IsTeamEmpty", "FC_RemoveEquip"),
+                        ["recognition"] = new JObject
+                        {
+                            ["param"] = new JObject { ["roi"] = new JArray(FormationTeamVerifyRois[team - 1]) }
+                        }
+                    };
+                }
+
+                // 保存记录开关：关闭时确认回编成页后直接回本丸结束
+                if (!formationPreset.SaveGameFormationRecordAfterFormation)
+                {
+                    overrideDict["FC_IsBackToFormation"] = new JObject
+                    {
+                        ["next"] = new JArray("FC_BackToHome")
+                    };
+                }
+
+                // 空刀名槽位跳过：空槽位入口节点 disabled，编入链重接至下一个非空槽位
+                var memberSlots = Enumerable.Range(1, 6)
+                    .Where(i => !string.IsNullOrWhiteSpace(formationPreset.Slots[i - 1].Sword))
+                    .ToList();
+                for (int idx = 0; idx < memberSlots.Count; idx++)
+                {
+                    int m = memberSlots[idx];
+                    string nextNode = idx + 1 < memberSlots.Count
+                        ? $"FC_ConfigureSwordSlot{memberSlots[idx + 1]}"
+                        : "FC_OpenEquip";
+                    overrideDict[$"FC_FindSword{m}"] = new JObject { ["next"] = new JArray(nextNode) };
+                }
+                for (int n = 1; n <= 6; n++)
+                {
+                    if (!memberSlots.Contains(n))
+                        overrideDict[$"FC_ConfigureSwordSlot{n}"] = new JObject { ["enabled"] = false };
+                }
+
+                taskModels.Merge(overrideDict);
+            }
+        }
+
         // 王点匹配效率优化：根据选择时代禁用非本时代 boss 节点，减少模板匹配数量
         if (task.InterfaceItem?.Entry == "Sortie")
         {
@@ -3900,11 +4050,11 @@ public class MaaProcessor
     }
 
 
-    private void AddCoreTasksAsync(List<NodeAndParam> taskAndParams, CancellationToken token)
+    private void AddCoreTasksAsync(List<NodeAndParam> taskAndParams, CancellationToken token, int startIndex = 0)
     {
         _taskSuccessCount = 0;
         _taskFailureCount = 0;
-        for (int i = 0; i < taskAndParams.Count; i++)
+        for (int i = startIndex; i < taskAndParams.Count; i++)
         {
             var task = taskAndParams[i];
             TaskQueue.Enqueue(CreateMaaFWTask(task.Name,
@@ -3912,6 +4062,8 @@ public class MaaProcessor
                 {
                     token.ThrowIfCancellationRequested();
                     await TryRunTasksAsync(MaaTasker, task.Entry, task.Param, task.Name, token, isCoreTask: true);
+                    // 推进断点：本任务执行完（成功或失败），下一个待执行任务为 i+1
+                    _nextTaskIndex = i + 1;
                 }, task.Count ?? 1
             ));
             // 不同任务之间插入回本丸（最后一个任务不插）
@@ -4674,6 +4826,14 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.PageScrollAndHoldAction());
             tasker.Resource.Register(new Custom.SelectFlowerTeamAction());
             tasker.Resource.Register(new Custom.ClickTopRepairableSwordAction());
+            tasker.Resource.Register(new Custom.FormationConfigAction());
+            tasker.Resource.Register(new Custom.FormationFindSwordAction());
+            tasker.Resource.Register(new Custom.FormationFilterClickAction());
+            tasker.Resource.Register(new Custom.FormationEquipTeamClickAction());
+            tasker.Resource.Register(new Custom.FormationRecordSlotClickAction());
+            tasker.Resource.Register(new Custom.FormationEquipSelectAction());
+            tasker.Resource.Register(new Custom.FormationHorseSelectAction());
+            tasker.Resource.Register(new Custom.FormationEquipStateMachine());
             LoggerHelper.Info("已注册内置特殊任务动作。");
 
             // 获取当前资源的自定义目录

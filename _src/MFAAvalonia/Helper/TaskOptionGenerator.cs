@@ -1200,38 +1200,16 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
 
     private void AddResponsiveBehavior(Grid grid, Control label, Control input)
     {
-        grid.SizeChanged += (sender, e) =>
-        {
-            if (sender is not Grid currentGrid) return;
-            double totalMinWidth = currentGrid.Children.Sum(c => c is Control ctrl ? ctrl.MinWidth : 0);
-            double availableWidth = currentGrid.Bounds.Width - currentGrid.Margin.Left - currentGrid.Margin.Right;
+        // 文字与输入框始终同一行（两列布局），不做窄屏换行
+        grid.RowDefinitions.Clear();
+        grid.ColumnDefinitions.Clear();
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(5, GridUnitType.Star) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(6, GridUnitType.Star) });
 
-             // Responsive Switch
-            if (availableWidth < totalMinWidth * 0.8)
-            {
-                currentGrid.ColumnDefinitions.Clear();
-                currentGrid.RowDefinitions.Clear();
-                currentGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-                currentGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-
-                Grid.SetRow(label, 0);
-                Grid.SetRow(input, 1);
-                Grid.SetColumn(label, 0);
-                Grid.SetColumn(input, 0);
-            }
-            else
-            {
-                currentGrid.RowDefinitions.Clear();
-                currentGrid.ColumnDefinitions.Clear();
-                currentGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(5, GridUnitType.Star) });
-                currentGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(6, GridUnitType.Star) });
-
-                Grid.SetRow(label, 0);
-                Grid.SetRow(input, 0);
-                Grid.SetColumn(label, 0);
-                Grid.SetColumn(input, 1);
-            }
-        };
+        Grid.SetRow(label, 0);
+        Grid.SetRow(input, 0);
+        Grid.SetColumn(label, 0);
+        Grid.SetColumn(input, 1);
     }
 
     // Logic Helpers

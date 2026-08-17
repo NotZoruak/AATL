@@ -74,7 +74,6 @@ public partial class AddTaskDialogViewModel : ViewModelBase, IDisposable
             new() { Name = LangKeys.SpecialTask_KillProcess.ToLocalization(), IsSpecialTask = true, SpecialActionName = "KillProcessAction", SpecialIcon = "⛔" },
             new() { Name = LangKeys.SpecialTask_ComputerOperation.ToLocalization(), IsSpecialTask = true, SpecialActionName = "ComputerOperationAction", SpecialIcon = "⚡" },
             new() { Name = LangKeys.SpecialTask_Webhook.ToLocalization(), IsSpecialTask = true, SpecialActionName = "WebhookAction", SpecialIcon = "🔔" },
-            new() { Name = "自定编队", IsSpecialTask = true, SpecialActionName = "FormationConfig", SpecialIcon = "🛡️" },
         };
 
         LanguageHelper.LanguageChanged += OnLanguageChanged;
