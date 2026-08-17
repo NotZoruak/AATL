@@ -611,7 +611,8 @@
         "lower": [186, 186, 186]
       }
     },
-    "next": ["TT_CheckCaptainColor"]
+    "next": ["TT_CheckCaptainColor"],
+    "on_error": ["TT_ClickTargetTeam"]
   },
   "TT_CaptainHub": {
     "recognition": {

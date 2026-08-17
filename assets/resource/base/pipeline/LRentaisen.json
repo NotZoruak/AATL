@@ -573,7 +573,8 @@
         "lower": [186, 186, 186]
       }
     },
-    "next": ["LR_CaptainHub"]
+    "next": ["LR_CaptainHub"],
+    "on_error": ["LR_ClickTeam"]
   },
   "LR_TryClickHome": {
     "next": ["LR_ClickHomeInMenu", "LR_DetectWhereAmI"]

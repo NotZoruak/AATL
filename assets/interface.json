@@ -2032,6 +2032,8 @@
         {
           "name": "部队一",
           "pipeline_override": {
+      "LR_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [172, 81, 17, 9], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "LR_ClickTeam": {
               "target": [154, 93, 1, 1]
             }
@@ -2040,6 +2042,8 @@
         {
           "name": "部队二",
           "pipeline_override": {
+      "LR_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [284, 77, 18, 9], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "LR_ClickTeam": {
               "target": [282, 94, 1, 1]
             }
@@ -2048,6 +2052,8 @@
         {
           "name": "部队三",
           "pipeline_override": {
+      "LR_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [431, 80, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "LR_ClickTeam": {
               "target": [398, 91, 1, 1]
             }
@@ -2056,8 +2062,20 @@
         {
           "name": "部队四",
           "pipeline_override": {
+            "LR_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [555, 78, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "LR_ClickTeam": {
               "target": [519, 89, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "部队五",
+          "pipeline_override": {
+            "LR_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [675, 79, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
+            "LR_ClickTeam": {
+              "target": [635, 91, 1, 1]
             }
           }
         }
@@ -2177,6 +2195,8 @@
         {
           "name": "部队一",
           "pipeline_override": {
+      "TT_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [172, 81, 17, 9], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "TT_ClickTargetTeam": {
               "target": [154, 93, 1, 1]
             }
@@ -2185,6 +2205,8 @@
         {
           "name": "部队二",
           "pipeline_override": {
+      "TT_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [284, 77, 18, 9], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "TT_ClickTargetTeam": {
               "target": [282, 94, 1, 1]
             }
@@ -2193,6 +2215,8 @@
         {
           "name": "部队三",
           "pipeline_override": {
+      "TT_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [431, 80, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "TT_ClickTargetTeam": {
               "target": [398, 91, 1, 1]
             }
@@ -2201,6 +2225,8 @@
         {
           "name": "部队四",
           "pipeline_override": {
+      "TT_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [555, 78, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "TT_ClickTargetTeam": {
               "target": [519, 89, 1, 1]
             }
@@ -2209,6 +2235,10 @@
         {
           "name": "部队五",
           "pipeline_override": {
+      "TT_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [675, 79, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
+      "LR_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [675, 79, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "TT_ClickTargetTeam": {
               "target": [635, 91, 1, 1]
             }
@@ -2627,6 +2657,9 @@
           "name": "部队一",
           "DisplayName": "部队一",
           "pipeline_override": {
+      "U_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [172, 81, 17, 9], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+      "UF_TeamVerifyColorN": {"recognition": {"type": "ColorMatch", "param": {"roi": [172, 81, 17, 9], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "U_ClickTeam": {
               "target": [154, 93, 1, 1]
             },
@@ -2645,6 +2678,9 @@
           "name": "部队二",
           "DisplayName": "部队二",
           "pipeline_override": {
+      "U_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [284, 77, 18, 9], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+      "UF_TeamVerifyColorN": {"recognition": {"type": "ColorMatch", "param": {"roi": [284, 77, 18, 9], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "U_ClickTeam": {
               "target": [282, 94, 1, 1]
             },
@@ -2663,6 +2699,9 @@
           "name": "部队三",
           "DisplayName": "部队三",
           "pipeline_override": {
+      "U_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [431, 80, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+      "UF_TeamVerifyColorN": {"recognition": {"type": "ColorMatch", "param": {"roi": [431, 80, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "U_ClickTeam": {
               "target": [398, 91, 1, 1]
             },
@@ -2681,6 +2720,9 @@
           "name": "部队四",
           "DisplayName": "部队四",
           "pipeline_override": {
+      "U_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [555, 78, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+      "UF_TeamVerifyColorN": {"recognition": {"type": "ColorMatch", "param": {"roi": [555, 78, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "U_ClickTeam": {
               "target": [519, 89, 1, 1]
             },
@@ -2699,6 +2741,9 @@
           "name": "部队五",
           "DisplayName": "部队五",
           "pipeline_override": {
+      "U_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [675, 79, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+      "UF_TeamVerifyColorN": {"recognition": {"type": "ColorMatch", "param": {"roi": [675, 79, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "U_ClickTeam": {
               "target": [635, 91, 1, 1]
             },
@@ -5483,6 +5528,8 @@
           "name": "部队一",
           "DisplayName": "部队一",
           "pipeline_override": {
+      "FB_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [172, 81, 17, 9], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "FB_ClickTeam": {
               "target": [154, 93, 1, 1]
             }
@@ -5492,6 +5539,8 @@
           "name": "部队二",
           "DisplayName": "部队二",
           "pipeline_override": {
+      "FB_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [284, 77, 18, 9], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "FB_ClickTeam": {
               "target": [282, 94, 1, 1]
             }
@@ -5501,6 +5550,8 @@
           "name": "部队三",
           "DisplayName": "部队三",
           "pipeline_override": {
+      "FB_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [431, 80, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "FB_ClickTeam": {
               "target": [398, 91, 1, 1]
             }
@@ -5510,6 +5561,8 @@
           "name": "部队四",
           "DisplayName": "部队四",
           "pipeline_override": {
+      "FB_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [555, 78, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "FB_ClickTeam": {
               "target": [519, 89, 1, 1]
             }
@@ -5519,6 +5572,8 @@
           "name": "部队五",
           "DisplayName": "部队五",
           "pipeline_override": {
+      "FB_TeamVerifyColor": {"recognition": {"type": "ColorMatch", "param": {"roi": [675, 79, 16, 8], "upper": [192, 192, 192], "lower": [186, 186, 186]}}},
+
             "FB_ClickTeam": {
               "target": [636, 85, 1, 1]
             }

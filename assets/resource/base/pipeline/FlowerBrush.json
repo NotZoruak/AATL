@@ -331,7 +331,8 @@
         "lower": [186, 186, 186]
       }
     },
-    "next": ["FB_Dissolve"]
+    "next": ["FB_Dissolve"],
+    "on_error": ["FB_ClickTeam"]
   },
   "FB_Dissolve": {
     "next": ["FB_DissolveCheck", "FB_ClickCaptainSlot"],
