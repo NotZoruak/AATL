@@ -23,7 +23,6 @@
       "S_IsMenuDirectory",
       "S_IsTeamStatusPanel",
       "S_CheckHomeBrightness",
-      "S_IsRepair",
       "S_IsKebiishi",
       "S_LeaveTroopRecord",
       "S_IsAnnouncementPopup",
@@ -690,74 +689,6 @@
   },
   "S_TryClickSortie": {
     "next": ["S_ClickSortieInMenu", "S_DetectWhereAmI"]
-  },
-  "S_IsRepair": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [555, -1, 167, 53],
-        "expected": "修复"
-      }
-    },
-    "next": ["S_UseSpeedup"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_UseSpeedup": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1050, 580, 1, 1]
-      }
-    },
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [1050, 580, 1, 1]
-    },
-    "next": ["S_ConfirmRepair"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_ConfirmRepair": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1050, 580, 1, 1]
-      }
-    },
-    "post_wait_freezes": {"time": 100},
-    "next": ["S_ReturnHome"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_ReturnHome": {
-    "next": ["S_ClickMenuFromRepair"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_ClickMenuFromRepair": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [1183, 18, 87, 40],
-        "expected": "目"
-      }
-    },
-    "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
-    "next": ["S_ClickHomeInMenu"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_ClickHomeInMenu": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1037, 169, 110, 44]
-      }
-    },
-    "post_wait_freezes": {"time": 100},
-    "next": ["S_VerifyHomeMenuClosed", "S_DetectWhereAmI"]
   },
   "S_CheckBoss": {
     "pre_delay": 0,
@@ -1662,7 +1593,7 @@
     },
     "action": {"type": "Click"},
     "post_wait_freezes": {"time": 100},
-    "next": ["S_VerifyMenuOpened"],
+    "next": ["S_ClickRepairInMenu", "S_ClickMenuForRepair"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_ClickRepairInMenu": {
@@ -1678,7 +1609,7 @@
     "next": ["S_VerifyRepairMenuClosed", "S_SelectDamagedSword", "S_DetectWhereAmI"]
   },
   "S_SelectDamagedSword": {
-    "next": ["S_FindSlot1", "S_FindSlot2", "S_FindSlot3"],
+    "next": ["S_SelectRepairSlot1", "S_SelectRepairSlot2", "S_SelectRepairSlot3", "S_SelectRepairSlot4"],
     "on_error": ["S_CheckRepairScreen"]
   },
   "S_CheckRepairScreen": {
@@ -1692,12 +1623,13 @@
     "next": ["S_SelectDamagedSword"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_FindSlot1": {
+  "S_SelectRepairSlot1": {
     "recognition": {
-      "type": "OCR",
+      "type": "TemplateMatch",
       "param": {
-        "roi": [380, 185, 113, 46],
-        "expected": "未使用"
+        "roi": [307, 163, 255, 89],
+        "template": "Common/未使用修刀槽.png",
+        "threshold": [0.9]
       }
     },
     "action": {"type": "Click"},
@@ -1705,12 +1637,13 @@
     "next": ["S_ConfirmSelectSlot"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_FindSlot2": {
+  "S_SelectRepairSlot2": {
     "recognition": {
-      "type": "OCR",
+      "type": "TemplateMatch",
       "param": {
-        "roi": [383, 323, 110, 42],
-        "expected": "未使用"
+        "roi": [303, 300, 255, 90],
+        "template": "Common/未使用修刀槽.png",
+        "threshold": [0.9]
       }
     },
     "action": {"type": "Click"},
@@ -1718,12 +1651,27 @@
     "next": ["S_ConfirmSelectSlot"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_FindSlot3": {
+  "S_SelectRepairSlot3": {
     "recognition": {
-      "type": "OCR",
+      "type": "TemplateMatch",
       "param": {
-        "roi": [381, 462, 110, 38],
-        "expected": "未使用"
+        "roi": [304, 432, 255, 90],
+        "template": "Common/未使用修刀槽.png",
+        "threshold": [0.9]
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 100},
+    "next": ["S_ConfirmSelectSlot"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_SelectRepairSlot4": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [304, 565, 255, 90],
+        "template": "Common/未使用修刀槽.png",
+        "threshold": [0.9]
       }
     },
     "action": {"type": "Click"},
@@ -1762,7 +1710,7 @@
       "time": 200,
       "target": [262, 307, 147, 46]
     },
-    "next": ["S_CheckAccel"],
+    "next": ["S_CheckAccel", "S_ClickAccel"],
     "on_error": ["S_LogNoDamagedSword"]
   },
   "S_LogNoDamagedSword": {
@@ -1774,7 +1722,15 @@
     "next": ["S_DetectWhereAmI"]
   },
   "S_CheckAccel": {
-    "next": ["S_ClickAccel"],
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [1162, 258, 6, 4],
+        "upper": [178, 27, 27],
+        "lower": [172, 21, 21]
+      }
+    },
+    "next": ["S_ClickRepairDone"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_ClickAccel": {
@@ -1788,7 +1744,7 @@
       "time": 100,
       "target": [1156, 241, 27, 25]
     },
-    "next": ["S_ClickRepairDone"],
+    "next": ["S_CheckAccel", "S_ClickAccel"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_ClickRepairDone": {
@@ -1844,18 +1800,6 @@
       }
     },
     "next": ["S_DetectWhereAmI"]
-  },
-  "S_VerifyMenuOpened": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "template": "Common/菜单目录.png",
-        "green_mask": true,
-        "threshold": [0.9]
-      }
-    },
-    "next": ["S_ClickRepairInMenu"],
-    "on_error": ["S_ClickMenuForRepair"]
   },
   "S_PostClickMenuHub": {
     "next": ["S_VerifyMenuSortie", "S_CheckNavDirForRetry", "S_DetectWhereAmI"]
@@ -2087,21 +2031,6 @@
   "S_TryClickRepair": {
     "next": ["S_ClickRepairInMenu", "S_SelectDamagedSword"],
     "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_VerifyHomeMenuClosed": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [581, 28, 112, 57],
-        "template": "Common/菜单目录.png",
-        "green_mask": true,
-        "threshold": [0.98]
-      }
-    },
-    "next": ["S_TryClickHome", "S_DetectWhereAmI"]
-  },
-  "S_TryClickHome": {
-    "next": ["S_ClickHomeInMenu", "S_DetectWhereAmI"]
   },
   "S_IsGameIcon": {
     "recognition": {

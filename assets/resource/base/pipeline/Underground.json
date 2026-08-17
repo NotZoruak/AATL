@@ -20,7 +20,6 @@
       "U_IsEventPage",
       "U_CheckHomeBrightness",
       "U_IsMenuDirectory",
-      "U_IsRepair",
       "U_LeaveTroopRecord",
       "U_IsAnnouncementPopup",
       "U_IsTrainingLetter",
@@ -363,18 +362,6 @@
     },
     "next": ["U_IsHome", "U_DetectWhereAmI"]
   },
-  "U_IsRepair": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [555, -1, 167, 53],
-        "expected": "修复"
-      }
-    },
-    "next": ["U_UseSpeedup"],
-    "on_error": ["U_DetectWhereAmI"]
-  },
   "U_IsGameIcon": {
     "recognition": {
       "type": "TemplateMatch",
@@ -558,6 +545,18 @@
     "next": ["U_PreCheckTroopRecord"],
     "on_error": ["U_ClickTeam"]
   },
+  "U_CheckAccel": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [1162, 258, 6, 4],
+        "upper": [178, 27, 27],
+        "lower": [172, 21, 21]
+      }
+    },
+    "next": ["U_ClickRepairDone"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
   "U_ClickAccel": {
     "action": {
       "type": "Click",
@@ -569,7 +568,7 @@
       "time": 100,
       "target": [1156, 241, 27, 25]
     },
-    "next": ["U_ClickRepairDone"],
+    "next": ["U_CheckAccel", "U_ClickAccel"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickCaptain1": {
@@ -666,18 +665,6 @@
     "next": ["U_DetectSortOrder"],
     "on_error": ["U_DetectWhereAmI"]
   },
-  "U_ClickHomeInMenu": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1037, 169, 110, 44]
-      }
-    },
-    "post_wait_freezes": {"time": 100},
-    "next": ["U_VerifyHomeMenuClosed"],
-    "on_error": ["U_DetectWhereAmI"]
-  },
   "U_ClickMenuForRepair": {
     "recognition": {
       "type": "OCR",
@@ -689,20 +676,6 @@
     "action": {"type": "Click"},
     "post_wait_freezes": {"time": 200},
     "next": ["U_ClickRepairInMenu", "U_ClickMenuForRepair"],
-    "on_error": ["U_DetectWhereAmI"]
-  },
-  "U_ClickMenuFromRepair": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [1183, 18, 87, 40],
-        "expected": "目"
-      }
-    },
-    "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
-    "next": ["U_ClickHomeInMenu"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickRepairInMenu": {
@@ -775,7 +748,7 @@
       "time": 200,
       "target": [262, 307, 147, 46]
     },
-    "next": ["U_ClickAccel"],
+    "next": ["U_CheckAccel", "U_ClickAccel"],
     "on_error": ["U_LogNoDamagedSword"]
   },
   "U_LogNoDamagedSword": {
@@ -1047,10 +1020,6 @@
     "next": ["U_IsPreSortieConfirm"],
     "on_error": ["U_DetectWhereAmI"]
   },
-  "U_ReturnHome": {
-    "next": ["U_ClickMenuFromRepair"],
-    "on_error": ["U_DetectWhereAmI"]
-  },
   "U_ReturnHomeAfterMarch": {
     "recognition": {
       "type": "OCR",
@@ -1262,18 +1231,6 @@
     "next": ["U_DirAfterRepair"],
     "on_error": ["U_DetectWhereAmI"]
   },
-  "U_ConfirmRepair": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1050, 580, 1, 1]
-      }
-    },
-    "post_wait_freezes": {"time": 100},
-    "next": ["U_ReturnHome"],
-    "on_error": ["U_DetectWhereAmI"]
-  },
   "U_ConfirmReturnHome": {
     "recognition": {
       "type": "OCR",
@@ -1291,21 +1248,6 @@
     "post_wait_freezes": {"time": 200},
     "next": ["U_DetectWhereAmI"]
   },
-  "U_UseSpeedup": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1050, 580, 1, 1]
-      }
-    },
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [1050, 580, 1, 1]
-    },
-    "next": ["U_ConfirmRepair"],
-    "on_error": ["U_DetectWhereAmI"]
-  },
   "U_VerifyAfterRepairMenuClosed": {
     "recognition": {
       "type": "TemplateMatch",
@@ -1317,18 +1259,6 @@
       }
     },
     "next": ["U_TryClickAfterRepair", "U_DetectWhereAmI"]
-  },
-  "U_VerifyHomeMenuClosed": {
-    "recognition": {
-      "type": "TemplateMatch",
-      "param": {
-        "roi": [581, 28, 112, 57],
-        "template": "Common/菜单目录.png",
-        "green_mask": true,
-        "threshold": [0.98]
-      }
-    },
-    "next": ["U_TryClickHome", "U_DetectWhereAmI"]
   },
   "U_VerifyMenuSortie": {
     "recognition": {
@@ -1345,9 +1275,6 @@
   },
   "U_TryClickAfterRepair": {
     "next": ["U_SortieAfterRepair", "U_DetectWhereAmI"]
-  },
-  "U_TryClickHome": {
-    "next": ["U_ClickHomeInMenu", "U_DetectWhereAmI"]
   },
   "U_StopOnEquipmentPopup": {
     "recognition": {
