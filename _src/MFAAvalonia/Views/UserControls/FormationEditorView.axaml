@@ -1,0 +1,91 @@
+<UserControl
+    d:DesignHeight="440"
+    d:DesignWidth="520"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.UserControls.FormationEditorView"
+    x:DataType="usersControls:FormationEditorViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:usersControls="clr-namespace:MFAAvalonia.ViewModels.UsersControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Styles>
+        <!-- 高度与字号保持主题默认，仅自定义标签视觉与输入框圆角 -->
+        <Style Selector="TextBlock.fe-label">
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource SukiLowText}" />
+        </Style>
+
+        <Style Selector="TextBox.fe-input, ComboBox.fe-input">
+            <Setter Property="CornerRadius" Value="{DynamicResource SmallCornerRadius}" />
+        </Style>
+    </UserControl.Styles>
+
+    <StackPanel Margin="4,2,4,2" Spacing="10">
+        <!-- 目标部队（标签与下拉同一行） -->
+        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+            <TextBlock
+                Classes="fe-label"
+                Text="目标部队"
+                VerticalAlignment="Center" />
+            <ComboBox
+                Grid.Column="1"
+                Classes="fe-input"
+                HorizontalAlignment="Stretch"
+                ItemsSource="{Binding TeamOptions}"
+                SelectedIndex="{Binding TeamIndex, Mode=TwoWay}" />
+        </Grid>
+
+        <!-- 1-6 号位 -->
+        <ItemsControl ItemsSource="{Binding Slots}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        Margin="0,4,0,0"
+                        ColumnDefinitions="22,*,*,*"
+                        ColumnSpacing="8">
+                        <TextBlock
+                            FontWeight="Bold"
+                            Foreground="{DynamicResource SukiLowText}"
+                            Text="{Binding Position}"
+                            VerticalAlignment="Center" />
+                        <TextBox
+                            Grid.Column="1"
+                            Classes="fe-input"
+                            Text="{Binding Sword, Mode=TwoWay}"
+                            Watermark="刀剑名" />
+                        <ComboBox
+                            Grid.Column="2"
+                            Classes="fe-input"
+                            ItemsSource="{Binding EquipOptions}"
+                            SelectedItem="{Binding Equip, Mode=TwoWay}" />
+                        <ComboBox
+                            Grid.Column="3"
+                            Classes="fe-input"
+                            ItemsSource="{Binding HorseOptions}"
+                            SelectedItem="{Binding Horse, Mode=TwoWay}" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- 操作按钮 -->
+        <StackPanel
+            HorizontalAlignment="Right"
+            Margin="0,10,0,0"
+            Orientation="Horizontal"
+            Spacing="10">
+            <Button
+                Classes="Outlined fe-action"
+                Command="{Binding CancelCommand}"
+                Content="取消"
+                IsCancel="True" />
+            <Button
+                Classes="Flat fe-action"
+                BorderThickness="0"
+                Command="{Binding SaveCommand}"
+                Content="保存"
+                IsDefault="True" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

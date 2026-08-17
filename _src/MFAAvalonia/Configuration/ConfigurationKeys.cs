@@ -28,6 +28,13 @@ public static class ConfigurationKeys
 
     #endregion
 
+    #region 自定编队
+
+    /// <summary>编队预设列表（List&lt;FormationPreset&gt;，所有任务共享）</summary>
+    public const string FormationPresets = "FormationPresets";
+
+    #endregion
+
     #region 启动设置
 
     public const string BeforeTask = "BeforeTask";

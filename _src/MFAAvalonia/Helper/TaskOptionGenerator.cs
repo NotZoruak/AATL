@@ -14,7 +14,9 @@ using MFAAvalonia.Configuration;
 using MFAAvalonia.Extensions;
 using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.Helper.ValueType;
+using MFAAvalonia.Models;
 using MFAAvalonia.ViewModels.Pages;
+using MFAAvalonia.ViewModels.UsersControls;
 using MFAAvalonia.ViewModels.UsersControls.Settings;
 using MFAAvalonia.Views.UserControls;
 using Newtonsoft.Json;
@@ -31,7 +33,9 @@ namespace MFAAvalonia.Helper;
 
 public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfigurationAction)
 {
-    
+    /// <summary>复制暂存的编队预设，供「粘贴」使用</summary>
+    private FormationPreset? _formationClipboard;
+
     public void GeneratePanelContent(StackPanel panel, DragItemViewModel dragItem)
     {
         // 检测是否为特殊任务，如果是则生成特殊任务选项面板
@@ -1483,7 +1487,240 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
             case "WebhookAction":
                 AddWebhookOptions(panel, dragItem);
                 break;
+            case "FormationConfig":
+                AddFormationOptions(panel, dragItem);
+                break;
         }
+    }
+
+    /// <summary>
+    /// 自定编队 - 开关与预设管理面板
+    /// </summary>
+    private void AddFormationOptions(StackPanel panel, DragItemViewModel dragItem)
+    {
+        var param = GetActionParam(dragItem);
+
+        // 预设区（任务勾选即为启用，无需单独开关）
+        var presetArea = new StackPanel { Margin = new Thickness(10, 2, 10, 4) };
+        panel.Children.Add(presetArea);
+
+        presetArea.Children.Add(new TextBlock
+        {
+            Text = "预设（勾选互斥，选择本次要编成的预设）",
+            FontSize = 13,
+            Foreground = Brushes.Gray,
+            Margin = new Thickness(0, 2, 0, 2),
+        });
+
+        var presetList = new StackPanel { Spacing = 4, Margin = new Thickness(0, 2, 0, 0) };
+        presetArea.Children.Add(presetList);
+
+        RenderFormationPresets(presetList, param, dragItem);
+    }
+
+    /// <summary>
+    /// 渲染预设行列表：互斥勾选 + 名称输入 + 齿轮（编辑）+ 下拉（删除/复制/粘贴）+ 底部加号
+    /// </summary>
+    private void RenderFormationPresets(StackPanel presetList, JObject param, DragItemViewModel dragItem)
+    {
+        presetList.Children.Clear();
+
+        var presets = LoadFormationPresets();
+        var selectedId = param["preset_id"]?.Value<int>() ?? 0;
+
+        void Refresh() => RenderFormationPresets(presetList, param, dragItem);
+
+        foreach (var preset in presets)
+        {
+            var row = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                Spacing = 8,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+
+            // 互斥勾选（纯勾选框，不显示文字）
+            var checkBox = new CheckBox
+            {
+                IsChecked = preset.Id == selectedId,
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left,
+            };
+            var capturedPreset = preset;
+            checkBox.IsCheckedChanged += (_, _) =>
+            {
+                if (checkBox.IsChecked != true) return;
+                param["preset_id"] = capturedPreset.Id;
+                UpdateActionParam(dragItem, param);
+                Refresh();
+            };
+            row.Children.Add(checkBox);
+
+            // 固定编号「预设N」，改名不影响
+            row.Children.Add(new TextBlock
+            {
+                Text = $"预设{capturedPreset.Id}",
+                FontSize = 13,
+                Foreground = Brushes.Gray,
+                VerticalAlignment = VerticalAlignment.Center,
+                MinWidth = 48,
+            });
+
+            // 名称输入（失焦时保存）
+            var nameBox = new TextBox
+            {
+                Text = preset.Name,
+                Watermark = $"预设{capturedPreset.Id}",
+                MinWidth = 160,
+                VerticalAlignment = VerticalAlignment.Center,
+                FontSize = 13,
+            };
+            nameBox.LostFocus += (_, _) =>
+            {
+                if (nameBox.Text?.Trim() == capturedPreset.Name) return;
+                capturedPreset.Name = nameBox.Text?.Trim() ?? "";
+                SaveFormationPresets(presets);
+            };
+            row.Children.Add(nameBox);
+
+            // 齿轮：进入编辑界面
+            var gearIcon = new FluentIcons.Avalonia.Fluent.FluentIcon
+            {
+                Icon = FluentIcons.Common.Icon.Settings,
+                IconSize = FluentIcons.Common.IconSize.Size16,
+                Width = 16,
+                Height = 16,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+            gearIcon.PointerPressed += (_, e) =>
+            {
+                e.Handled = true;
+                OpenFormationEditor(capturedPreset, saved =>
+                {
+                    if (saved != null) SaveFormationPresets(presets);
+                    viewModel.IsSubPageOpen = false;
+                    Refresh();
+                });
+            };
+            row.Children.Add(gearIcon);
+
+            // 下拉菜单：删除 / 复制 / 粘贴
+            var moreButton = new Button
+            {
+                Content = "▾",
+                Padding = new Thickness(6, 2),
+                VerticalAlignment = VerticalAlignment.Center,
+                FontSize = 12,
+            };
+            var menu = new ContextMenu();
+            var deleteItem = new MenuItem { Header = "删除" };
+            deleteItem.Click += (_, _) =>
+            {
+                presets.Remove(capturedPreset);
+                if (param["preset_id"]?.Value<int>() == capturedPreset.Id)
+                {
+                    param["preset_id"] = 0;
+                    UpdateActionParam(dragItem, param);
+                }
+                SaveFormationPresets(presets);
+                Refresh();
+            };
+            var copyItem = new MenuItem { Header = "复制" };
+            copyItem.Click += (_, _) => _formationClipboard = ClonePreset(capturedPreset);
+            var pasteItem = new MenuItem { Header = "粘贴", IsEnabled = _formationClipboard != null };
+            pasteItem.Click += (_, _) =>
+            {
+                if (_formationClipboard == null) return;
+                capturedPreset.Team = _formationClipboard.Team;
+                capturedPreset.Slots = CloneSlots(_formationClipboard);
+                SaveFormationPresets(presets);
+                Refresh();
+            };
+            menu.Items.Add(deleteItem);
+            menu.Items.Add(copyItem);
+            menu.Items.Add(pasteItem);
+            moreButton.Click += (_, _) => menu.Open(moreButton);
+            row.Children.Add(moreButton);
+
+            presetList.Children.Add(row);
+        }
+
+        // 加号：新增预设（新增后直接进入编辑）
+        var addButton = new Button
+        {
+            Content = "＋ 新增预设",
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            Margin = new Thickness(0, 6, 0, 0),
+        };
+        addButton.Click += (_, _) =>
+        {
+            var presetsNow = LoadFormationPresets();
+            var newId = presetsNow.Count == 0 ? 1 : presetsNow.Max(p => p.Id) + 1;
+            var preset = new FormationPreset { Id = newId, Name = $"预设{newId}", Team = 1 };
+            preset.EnsureSlots();
+            presetsNow.Add(preset);
+            SaveFormationPresets(presetsNow);
+            Refresh();
+            OpenFormationEditor(preset, saved =>
+            {
+                if (saved != null) SaveFormationPresets(presetsNow);
+                viewModel.IsSubPageOpen = false;
+                Refresh();
+            });
+        };
+        presetList.Children.Add(addButton);
+    }
+
+    /// <summary>读取全部编队预设（含缺位补齐）</summary>
+    private static List<FormationPreset> LoadFormationPresets()
+    {
+        var presets = ConfigurationManager.CurrentInstance.GetValue<List<FormationPreset>>(ConfigurationKeys.FormationPresets, []);
+        presets ??= [];
+        foreach (var preset in presets)
+            preset.EnsureSlots();
+        return presets;
+    }
+
+    /// <summary>保存编队预设列表</summary>
+    private static void SaveFormationPresets(List<FormationPreset> presets)
+    {
+        ConfigurationManager.CurrentInstance.SetValue(ConfigurationKeys.FormationPresets, presets);
+    }
+
+    /// <summary>预设显示名：空名称时回退为「预设N」</summary>
+    private static string DisplayNameOf(FormationPreset preset)
+        => string.IsNullOrWhiteSpace(preset.Name) ? $"预设{preset.Id}" : preset.Name;
+
+    /// <summary>深拷贝预设（复制用）</summary>
+    private static FormationPreset ClonePreset(FormationPreset source)
+    {
+        return new FormationPreset
+        {
+            Id = source.Id,
+            Name = source.Name,
+            Team = source.Team,
+            Slots = CloneSlots(source),
+        };
+    }
+
+    /// <summary>深拷贝预设槽位列表（粘贴用）</summary>
+    private static List<FormationSlot> CloneSlots(FormationPreset source)
+    {
+        return source.Slots.Select(s => new FormationSlot
+        {
+            Sword = s.Sword,
+            Equip = s.Equip,
+            Horse = s.Horse,
+        }).ToList();
+    }
+
+    /// <summary>打开预设编辑覆盖层（SubPage），saved 非 null 表示已保存</summary>
+    private void OpenFormationEditor(FormationPreset preset, Action<FormationPreset?>? onDone)
+    {
+        var editorVm = new FormationEditorViewModel(preset, onDone);
+        viewModel.SubPageTitle = "编辑预设";
+        viewModel.SubPageContent = new FormationEditorView { DataContext = editorVm };
+        viewModel.IsSubPageOpen = true;
     }
 
     /// <summary>
