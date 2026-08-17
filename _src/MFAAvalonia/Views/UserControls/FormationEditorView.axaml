@@ -16,7 +16,7 @@
             <Setter Property="Foreground" Value="{DynamicResource SukiLowText}" />
         </Style>
 
-        <Style Selector="TextBox.fe-input, ComboBox.fe-input">
+        <Style Selector="TextBox.fe-input, ComboBox.fe-input, AutoCompleteBox.fe-input">
             <Setter Property="CornerRadius" Value="{DynamicResource SmallCornerRadius}" />
         </Style>
     </UserControl.Styles>
@@ -36,6 +36,33 @@
                 SelectedIndex="{Binding TeamIndex, Mode=TwoWay}" />
         </Grid>
 
+        <StackPanel Spacing="6">
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBlock
+                    Text="编成前卸下现有装备"
+                    VerticalAlignment="Center" />
+                <ToggleSwitch
+                    Grid.Column="1"
+                    Classes="Switch"
+                    IsChecked="{Binding ClearEquipmentBeforeFormation, Mode=TwoWay}"
+                    MaxHeight="60"
+                    MaxWidth="100"
+                    VerticalAlignment="Center" />
+            </Grid>
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBlock
+                    Text="编成后保存游戏部队记录"
+                    VerticalAlignment="Center" />
+                <ToggleSwitch
+                    Grid.Column="1"
+                    Classes="Switch"
+                    IsChecked="{Binding SaveGameFormationRecordAfterFormation, Mode=TwoWay}"
+                    MaxHeight="60"
+                    MaxWidth="100"
+                    VerticalAlignment="Center" />
+            </Grid>
+        </StackPanel>
+
         <!-- 1-6 号位 -->
         <ItemsControl ItemsSource="{Binding Slots}">
             <ItemsControl.ItemTemplate>
@@ -49,16 +76,20 @@
                             Foreground="{DynamicResource SukiLowText}"
                             Text="{Binding Position}"
                             VerticalAlignment="Center" />
-                        <TextBox
+                        <AutoCompleteBox
                             Grid.Column="1"
                             Classes="fe-input"
+                            FilterMode="Contains"
+                            IsTextCompletionEnabled="True"
+                            ItemsSource="{Binding $parent[UserControl].((usersControls:FormationEditorViewModel)DataContext).SwordOptions}"
                             Text="{Binding Sword, Mode=TwoWay}"
                             Watermark="刀剑名" />
-                        <ComboBox
+                        <TextBox
                             Grid.Column="2"
                             Classes="fe-input"
-                            ItemsSource="{Binding EquipOptions}"
-                            SelectedItem="{Binding Equip, Mode=TwoWay}" />
+                            Text="{Binding Equip, Mode=TwoWay}"
+                            TextChanged="OnEquipTextChanged"
+                            Watermark="刀装配置" />
                         <ComboBox
                             Grid.Column="3"
                             Classes="fe-input"

@@ -14,6 +14,12 @@ public class FormationPreset
     /// <summary>目标部队编号，1-5</summary>
     public int Team { get; set; } = 1;
 
+    /// <summary>编成前是否卸下目标部队现有的刀装与马匹</summary>
+    public bool ClearEquipmentBeforeFormation { get; set; }
+
+    /// <summary>编成后是否保存到与目标部队同编号的游戏部队记录槽</summary>
+    public bool SaveGameFormationRecordAfterFormation { get; set; }
+
     /// <summary>1-6 号位配置（第 1 位为队长），长度固定为 6</summary>
     public List<FormationSlot> Slots { get; set; } = [];
 
