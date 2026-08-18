@@ -1,10 +1,10 @@
 {
   "name": "MATR",
-  "version": "v0.10.2-beta.1",
+  "version": "v0.10.2-beta.2",
   "mirrorchyan_rid": "MATR",
   "mirrorchyan_multiplatform": true,
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.10.2-beta.1 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.10.2-beta.2 | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -2587,7 +2587,7 @@
           "label": "重复次数",
           "default": "-1",
           "pipeline_type": "int",
-          "description": "异去模式下的循环轮数，-1 表示无限循环。仅在玩法选择「异去」时生效。目前无法识别使用五倍提灯完成的轮数，如仅想消耗免费门票，请勾选「不买门票」。"
+          "description": "异去模式下的循环轮数，-1 表示无限循环。仅在玩法选择「异去」时生效。"
         }
       ]
     },

@@ -212,7 +212,7 @@ public partial class AddTaskDialogViewModel : ViewModelBase, IDisposable
             "KillProcessAction" => LangKeys.SpecialTask_KillProcessDesc,
             "ComputerOperationAction" => LangKeys.SpecialTask_ComputerOperationDesc,
             "WebhookAction" => LangKeys.SpecialTask_WebhookDesc,
-            "FormationConfig" => "按预设配置指定部队的刀剑、刀装与马匹，完成后任务结束。",
+            "FormationConfig" => "按预设配置指定部队的刀剑、刀装与马匹，完成后任务结束。\n\n刀装输入要求：刀装名称直接连写、无需分隔符，如「轻步重步」。支持的名称：轻步、重步、精锐、轻骑、重骑、投石、铳、弓、枪、盾。按输入个数装备：输入几个就装备几个，刀装槽不足的槽位自动跳过。",
             _ => LangKeys.SpecialTask
         };
     }

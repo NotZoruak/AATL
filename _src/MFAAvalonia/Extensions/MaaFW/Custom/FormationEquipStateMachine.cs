@@ -77,13 +77,13 @@ public class FormationEquipStateMachine : IMaaCustomAction
                     continue;
                 }
 
-                // 到位：配置该位装备，并确认刀装/马匹已装上（空则重装，最多 3 轮）
-                if (!ConfigureCurrent(context, cur))
+                // 到位：配置该位装备，并确认刀装/马匹已装上（空则重装，最多 3 轮；因刀本身无此槽位而未装上的不重装）
+                if (!ConfigureCurrent(context, cur, out bool slotMissing))
                     return false;
-                for (int retry = 0; retry < 3 && IsEquipEmpty(context, cur); retry++)
+                for (int retry = 0; !slotMissing && retry < 3 && IsEquipEmpty(context, cur); retry++)
                 {
                     LoggerHelper.Warning($"[FormationEquipStateMachine] 槽位{cur} 装备确认失败（槽位为空），重新装备（第 {retry + 1} 轮）");
-                    if (!ConfigureCurrent(context, cur))
+                    if (!ConfigureCurrent(context, cur, out slotMissing))
                         return false;
                 }
 
@@ -193,9 +193,10 @@ public class FormationEquipStateMachine : IMaaCustomAction
         return detail?.IsHit() == true;
     }
 
-    /// <summary>配置当前位的刀装（0-3 槽）与马匹（非「无」）</summary>
-    private bool ConfigureCurrent<T>(T context, int pos) where T : IMaaContext
+    /// <summary>配置当前位的刀装（0-3 槽）与马匹（非「无」）；slotMissing=true 表示存在打不开的刀装槽（刀本身无此槽），调用方据此跳过重装</summary>
+    private bool ConfigureCurrent<T>(T context, int pos, out bool slotMissing) where T : IMaaContext
     {
+        slotMissing = false;
         FormationContext.CurrentSlot = pos;
         LoggerHelper.Info($"[FormationEquipStateMachine] 配置槽位{pos} 装备");
 
@@ -204,7 +205,12 @@ public class FormationEquipStateMachine : IMaaCustomAction
         for (int slot = 0; slot < equipList.Count && slot < 3; slot++)
         {
             if (!ClickEquipSlot(context, slot))
-                return false;
+            {
+                // 该刀无此刀装槽（如短刀 1 槽、胁差 2 槽）：停止配置后续槽位，继续马匹流程
+                slotMissing = true;
+                LoggerHelper.Warning($"[FormationEquipStateMachine] 槽位{pos} 刀装槽{slot + 1} 无法打开刀装列表，视为无此槽位，停止后续刀装配置");
+                break;
+            }
             if (!FormationEquipSelectAction.SelectEquip(context, pos, slot + 1))
                 return false;
         }
@@ -234,7 +240,7 @@ public class FormationEquipStateMachine : IMaaCustomAction
             if (IsTextAt(context, EquipListConfirmRoi, "刀装"))
                 return true;
         }
-        LoggerHelper.Error($"[FormationEquipStateMachine] 刀装列表未确认（槽 {index + 1}）");
+        LoggerHelper.Warning($"[FormationEquipStateMachine] 刀装列表未确认（槽 {index + 1}），视为无此刀装槽");
         return false;
     }
 
