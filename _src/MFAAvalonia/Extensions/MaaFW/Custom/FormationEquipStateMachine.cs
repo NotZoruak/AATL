@@ -184,7 +184,7 @@ public class FormationEquipStateMachine : IMaaCustomAction
         {
             Name = "FormationEquipEmptyCheck",
             Recognition = "TemplateMatch",
-            Template = ["装备为空.png"],
+            Template = ["Common/装备为空.png"],
             Roi = new List<int>(roi),
             Threshold = new List<double> { 0.9 },
             GreenMask = true,
@@ -193,7 +193,7 @@ public class FormationEquipStateMachine : IMaaCustomAction
         return detail?.IsHit() == true;
     }
 
-    /// <summary>配置当前位的刀装（0-3 槽）与马匹（非「无」）；slotMissing=true 表示存在打不开的刀装槽（刀本身无此槽），调用方据此跳过重装</summary>
+    /// <summary>配置当前位的刀装（0-3 槽）与马匹（非「无」）；slotMissing=true 表示存在无法完成的项（槽位不存在或目标不存在），调用方据此跳过重装</summary>
     private bool ConfigureCurrent<T>(T context, int pos, out bool slotMissing) where T : IMaaContext
     {
         slotMissing = false;
@@ -212,26 +212,39 @@ public class FormationEquipStateMachine : IMaaCustomAction
                 break;
             }
             if (!FormationEquipSelectAction.SelectEquip(context, pos, slot + 1))
-                return false;
+            {
+                // 目标刀装不存在（列表已到底）：停止配置后续槽位，继续马匹流程
+                slotMissing = true;
+                LoggerHelper.Error($"[FormationEquipStateMachine] 槽位{pos} 刀装槽{slot + 1} 未找到目标刀装，停止后续刀装配置");
+                break;
+            }
         }
 
         // 马匹：非「无」时配置
         if (!string.IsNullOrEmpty(FormationContext.Horses[pos - 1]) && FormationContext.Horses[pos - 1] != "无")
         {
             if (!ClickHorseSlot(context))
-                return false;
-            if (!FormationHorseSelectAction.SelectHorse(context, pos))
-                return false;
+            {
+                // 马匹列表打不开：跳过马匹配置，继续下一成员，避免流程卡死
+                slotMissing = true;
+                LoggerHelper.Error($"[FormationEquipStateMachine] 槽位{pos} 马匹列表未确认，跳过马匹配置");
+            }
+            else if (!FormationHorseSelectAction.SelectHorse(context, pos))
+            {
+                // 目标马匹不存在（列表已到底）：跳过马匹配置，继续下一成员，避免流程卡死
+                slotMissing = true;
+                LoggerHelper.Error($"[FormationEquipStateMachine] 槽位{pos} 未找到目标马匹「{FormationContext.Horses[pos - 1]}」，跳过马匹配置");
+            }
         }
 
         return true;
     }
 
-    /// <summary>点击指定刀装槽位并确认刀装列表打开（未确认则重试）</summary>
+    /// <summary>点击指定刀装槽位并确认刀装列表打开（未确认则重试 3 次，避免对不存在的槽位反复点击）</summary>
     private bool ClickEquipSlot<T>(T context, int index) where T : IMaaContext
     {
         var coords = EquipSlotCoords[index];
-        for (int attempt = 0; attempt < 8; attempt++)
+        for (int attempt = 0; attempt < 3; attempt++)
         {
             ActionParamHelper.ThrowIfStopping(context);
             ClickRect(context, coords);

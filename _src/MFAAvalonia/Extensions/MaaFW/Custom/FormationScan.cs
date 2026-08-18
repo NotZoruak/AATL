@@ -61,7 +61,7 @@ public static class FormationScan
             var all = query?.All ?? [];
             // 命中多个时取最上方（y 最小）的匹配
             var hit = all
-                .Where(r => r.Score >= MinScore && r.Text != null && r.Text.Contains(target, StringComparison.Ordinal))
+                .Where(r => r.Score >= MinScore && r.Text != null && MatchText(r.Text, target))
                 .Where(r => r.Box is { Count: >= 4 })
                 .OrderBy(r => r.Box![1])
                 .FirstOrDefault();
@@ -86,6 +86,35 @@ public static class FormationScan
             ScrollUp(context, scroll);
             ActionParamHelper.SleepWithStopCheck(context, 300);
         }
+    }
+
+    /// <summary>目标文本匹配：OCR 文本包含目标；或目标 ≥ 2 字时，去除 OCR 文本中的数字/字母后与目标编辑距离 ≤ 1（容忍 OCR 丢字，如「高楯黑」识别为「高黑」）</summary>
+    private static bool MatchText(string ocrText, string target)
+    {
+        if (ocrText.Contains(target, StringComparison.Ordinal))
+            return true;
+        if (target.Length < 2)
+            return false;
+        // 清洗 OCR 文本中的数字前缀（如「05」）与数量后缀（如「x1」）
+        var cleaned = new string(ocrText.Where(c => !char.IsDigit(c) && !char.IsLetter(c)).ToArray());
+        return cleaned.Length > 0 && LevenshteinDistance(cleaned, target) <= 1;
+    }
+
+    /// <summary>计算两个短字符串的编辑距离（Levenshtein）</summary>
+    private static int LevenshteinDistance(string a, string b)
+    {
+        int m = a.Length, n = b.Length;
+        if (m == 0) return n;
+        if (n == 0) return m;
+        var dp = new int[m + 1, n + 1];
+        for (int i = 0; i <= m; i++) dp[i, 0] = i;
+        for (int j = 0; j <= n; j++) dp[0, j] = j;
+        for (int i = 1; i <= m; i++)
+            for (int j = 1; j <= n; j++)
+                dp[i, j] = Math.Min(
+                    Math.Min(dp[i - 1, j] + 1, dp[i, j - 1] + 1),
+                    dp[i - 1, j - 1] + (a[i - 1] == b[j - 1] ? 0 : 1));
+        return dp[m, n];
     }
 
     /// <summary>刀装/马匹确定按钮 OCR 区域（右侧按钮列）</summary>
