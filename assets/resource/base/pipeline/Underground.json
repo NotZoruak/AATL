@@ -380,7 +380,7 @@
         "roi": [0, 0, 1600, 900],
         "template": "Common/游戏图标.png",
         "green_mask": true,
-        "threshold": [0.85]
+        "threshold": [0.8]
       }
     },
     "action": {"type": "Click"},
@@ -1027,8 +1027,8 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "post_wait_freezes": {"time": 100},
-    "next": ["U_IsPreSortieConfirm"],
+    "post_wait_freezes": {"time": 200},
+    "next": ["U_IsPreSortieConfirm","U_PreConfirmSupply"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ReturnHomeAfterMarch": {
@@ -2579,7 +2579,7 @@
         "roi": [0, 0, 1600, 900],
         "template": "Common/游戏图标.png",
         "green_mask": true,
-        "threshold": [0.85]
+        "threshold": [0.8]
       }
     },
     "action": {"type": "Click"},

@@ -18,7 +18,8 @@
       "S_IsIsekaiEraSelect",
       "S_IsPastRegionSelect",
       "S_IsIsekaiRegionSelect",
-      "S_IsIsekaiBattleEnd",
+      "S_IsIsekaiBattleEnd_1",
+      "S_IsIsekaiBattleEnd_5",
       "S_IsSortieActivity",
       "S_IsMenuDirectory",
       "S_IsTeamStatusPanel",
@@ -568,12 +569,25 @@
     "next": ["S_ClickBackToEra"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_IsIsekaiBattleEnd": {
+  "S_IsIsekaiBattleEnd_1": {
     "recognition": {
       "type": "TemplateMatch",
       "param": {
         "roi": [610, 331, 52, 26],
-        "template": "Common/异去结算.png",
+        "template": "Common/异去结算_1.png",
+        "green_mask": true,
+        "threshold": [0.8]
+      }
+    },
+    "next": ["S_IsIsekaiRegionEnd"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_IsIsekaiBattleEnd_5": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [610, 331, 52, 26],
+        "template": "Common/异去结算_5.png",
         "green_mask": true,
         "threshold": [0.8]
       }
@@ -1968,7 +1982,7 @@
       }
     },
     "post_wait_freezes": {"time": 100},
-    "next": ["S_IsPreSortieConfirm"],
+    "next": ["S_IsPreSortieConfirm","S_PreConfirmSupply"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_WaitRefresh": {
@@ -2051,7 +2065,7 @@
         "roi": [0, 0, 1600, 900],
         "template": "Common/游戏图标.png",
         "green_mask": true,
-        "threshold": [0.85]
+        "threshold": [0.8]
       }
     },
     "action": {"type": "Click"},
@@ -2659,7 +2673,7 @@
         "roi": [0, 0, 1600, 900],
         "template": "Common/游戏图标.png",
         "green_mask": true,
-        "threshold": [0.85]
+        "threshold": [0.8]
       }
     },
     "action": {"type": "Click"},
