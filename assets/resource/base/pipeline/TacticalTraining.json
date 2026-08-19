@@ -596,7 +596,7 @@
       }
     },
     "post_wait_freezes": {
-      "time": 200,
+      "time": 100,
       "target": [82, 61, 629, 56]
     },
     "next": ["TT_TeamVerifyColor1", "TT_TeamVerifyColor2", "TT_ClickTargetTeam"],

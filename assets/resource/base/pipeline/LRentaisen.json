@@ -558,7 +558,7 @@
       }
     },
     "post_wait_freezes": {
-      "time": 200,
+      "time": 100,
       "target": [82, 61, 629, 56]
     },
     "next": ["LR_TeamVerifyColor1", "LR_TeamVerifyColor2", "LR_ClickTeam"],

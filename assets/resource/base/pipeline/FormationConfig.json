@@ -366,8 +366,11 @@
           "target": [154, 93, 1, 1]
         }
       },
-      "next": ["FC_VerifySelectedTeam1", "FC_VerifySelectedTeam2", "FC_ClickTeam"],
-      "post_delay": 500
+      "post_wait_freezes": {
+        "time": 100,
+        "target": [82, 61, 629, 56]
+      },
+      "next": ["FC_VerifySelectedTeam1", "FC_VerifySelectedTeam2", "FC_ClickTeam"]
     },
     "FC_VerifySelectedTeam1": {
       "recognition": {
