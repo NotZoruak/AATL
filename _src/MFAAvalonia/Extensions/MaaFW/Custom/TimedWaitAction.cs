@@ -32,14 +32,23 @@ public class TimedWaitAction : IMaaCustomAction
             var waitTime = target - now;
             LoggerHelper.Info($"定时等待开始：target={target:yyyy-MM-dd HH:mm}, remainingMinutes={waitTime.TotalMinutes:F1}");
 
-            // 分段等待，每30秒检查一次，避免长时间阻塞
-            while (DateTime.Now < target)
+            // 标记合法等待窗口，避免无响应监测器将定时等待误判为截图断开。
+            SmartWaitTracker.BeginWait(target);
+            try
             {
-                ActionParamHelper.ThrowIfStopping(context);
-                var remaining = target - DateTime.Now;
-                var sleepMs = Math.Min((int)remaining.TotalMilliseconds, 30000);
-                if (sleepMs <= 0) break;
-                ActionParamHelper.SleepWithStopCheck(context, sleepMs);
+                // 分段等待，每30秒检查一次，避免长时间阻塞。
+                while (DateTime.Now < target)
+                {
+                    ActionParamHelper.ThrowIfStopping(context);
+                    var remaining = target - DateTime.Now;
+                    var sleepMs = Math.Min((int)remaining.TotalMilliseconds, 30000);
+                    if (sleepMs <= 0) break;
+                    ActionParamHelper.SleepWithStopCheck(context, sleepMs);
+                }
+            }
+            finally
+            {
+                SmartWaitTracker.Clear();
             }
 
             LoggerHelper.Info($"定时等待结束：已到达目标时间 {target:yyyy-MM-dd HH:mm}，继续执行");

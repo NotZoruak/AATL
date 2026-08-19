@@ -65,6 +65,8 @@
 
 ## 功能介绍
 
+<img alt="MATR 主界面" src="./screenshots/MATR 主界面（v0.10.1）.png" width="960" />
+
 **远征** — 自动检测空闲部队并派往指定地图，到期后收取奖励，循环执行。支持远征智能调度（按刷新间隔动态检查）、长期远征计划、多部队同步。
 
 **合战场** — 通用出阵自动化，无限循环。支持自选时代、地域、部队和阵形，可选换队长、补充刀装、王点前撤退、道中撤退、重伤修刀/停止、同步远征。
@@ -132,6 +134,7 @@ MATR/
 ├── _src/                                 ← C# 源代码
 ├── docs/                                 ← 项目文档
 ├── tools/                                ← 构建/发布脚本
+├── screenshots/                           ← README 展示图片
 ├── runtimes/                             ← .NET 运行时库
 ├── .github/                              ← CI/CD workflows
 │   └── workflows/
@@ -162,5 +165,5 @@ MATR/
 如果觉得软件对你有帮助，帮忙点个 Star 吧！（网页最上方右上角的小星星），这就是对我们最大的支持了！
 
 <a href="https://star-history.com/#NotZoruak/MATR&Date">
-  <img alt="Star History Chart" src="star-history.png" />
+  <img alt="Star History Chart" src="screenshots/star-history.png" />
 </a>

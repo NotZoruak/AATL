@@ -22,9 +22,15 @@ public class CountdownAction : IMaaCustomAction
             }
 
             LoggerHelper.Info($"[CountdownAction] 倒计时 {seconds} 秒");
-            for (int i = seconds; i > 0; i--)
+            SmartWaitTracker.BeginWait(DateTime.Now.AddSeconds(seconds));
+            try
             {
-                ActionParamHelper.SleepWithStopCheck(context, 1000);
+                for (int i = seconds; i > 0; i--)
+                    ActionParamHelper.SleepWithStopCheck(context, 1000);
+            }
+            finally
+            {
+                SmartWaitTracker.Clear();
             }
 
             LoggerHelper.Info("[CountdownAction] 倒计时结束");
