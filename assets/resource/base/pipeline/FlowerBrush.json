@@ -319,16 +319,29 @@
       "time": 200,
       "target": [82, 61, 629, 56]
     },
-    "next": ["FB_TeamVerifyColor", "FB_ClickTeam"],
+    "next": ["FB_TeamVerifyColor1", "FB_TeamVerifyColor2", "FB_ClickTeam"],
     "on_error": ["FB_DetectWhereAmI"]
   },
-  "FB_TeamVerifyColor": {
+  "FB_TeamVerifyColor1": {
     "recognition": {
       "type": "ColorMatch",
       "param": {
         "roi": [172, 81, 17, 9],
         "upper": [192, 192, 192],
         "lower": [186, 186, 186]
+      }
+    },
+    "next": ["FB_Dissolve"],
+    "on_error": ["FB_ClickTeam"]
+  },
+  "FB_TeamVerifyColor2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [172, 81, 17, 9],
+        "upper": [97, 97, 97],
+        "lower": [91, 91, 91],
+        "count": 1
       }
     },
     "next": ["FB_Dissolve"],

@@ -344,16 +344,28 @@
       "time": 200,
       "target": [82, 61, 629, 56]
     },
-    "next": ["S_TeamVerifyColor", "S_ClickTeam"],
+    "next": ["S_TeamVerifyColor1", "S_TeamVerifyColor2", "S_ClickTeam"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_TeamVerifyColor": {
+  "S_TeamVerifyColor1": {
     "recognition": {
       "type": "ColorMatch",
       "param": {
         "roi": [172, 81, 17, 9],
         "upper": [192, 192, 192],
         "lower": [186, 186, 186]
+      }
+    },
+    "next": ["S_CaptainHub"]
+  },
+  "S_TeamVerifyColor2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [172, 81, 17, 9],
+        "upper": [97, 97, 97],
+        "lower": [91, 91, 91],
+        "count": 1
       }
     },
     "next": ["S_CaptainHub"]
@@ -2936,16 +2948,28 @@
       "time": 200,
       "target": [82, 61, 629, 56]
     },
-    "next": ["SF_TeamVerifyColorN", "SF_ClickTeamN"],
+    "next": ["SF_TeamVerifyColorN1", "SF_TeamVerifyColorN2", "SF_ClickTeamN"],
     "on_error": ["SF_DetectWhereAmI"]
   },
-  "SF_TeamVerifyColorN": {
+  "SF_TeamVerifyColorN1": {
     "recognition": {
       "type": "ColorMatch",
       "param": {
         "roi": [284, 77, 18, 9],
         "upper": [192, 192, 192],
         "lower": [186, 186, 186]
+      }
+    },
+    "next": ["SF_DissolveHub"]
+  },
+  "SF_TeamVerifyColorN2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [284, 77, 18, 9],
+        "upper": [97, 97, 97],
+        "lower": [91, 91, 91],
+        "count": 1
       }
     },
     "next": ["SF_DissolveHub"]

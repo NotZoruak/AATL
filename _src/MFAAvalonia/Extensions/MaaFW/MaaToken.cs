@@ -15,6 +15,18 @@ public class MaaToken
         Tokens.Add(CloneTokenDictionary(token));
     }
 
+    public void CopyAliases(string source, params string[] targets)
+    {
+        foreach (var token in Tokens)
+        {
+            if (!token.TryGetValue(source, out var value))
+                continue;
+
+            foreach (var target in targets)
+                token[target] = value.DeepClone();
+        }
+    }
+
     public static MaaToken FromDictionary(Dictionary<string, JToken> token)
     {
         MaaToken result = new MaaToken();

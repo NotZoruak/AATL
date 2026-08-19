@@ -33,6 +33,8 @@ public partial class MFATask : ObservableObject
     [ObservableProperty] private MFATaskType _type = MFATaskType.MFA;
     [ObservableProperty] private int _count = 1;
     [ObservableProperty] private Func<Task> _action;
+    /// <summary>每轮执行成功后的回调，参数为当前任务已完成的轮次。</summary>
+    public Action<int>? IterationCompleted { get; set; }
     // [ObservableProperty] private Dictionary<string, MaaNode> _tasks = new();
     [ObservableProperty] private bool _isUpdateRelated;
 
@@ -54,6 +56,7 @@ public partial class MFATask : ObservableObject
                     OwnerViewModel?.SetCurrentTaskName(LanguageHelper.GetLocalizedString(Name));
                 }
                 await Action();
+                IterationCompleted?.Invoke(i + 1);
                 // 有限重复的 MAAFW 任务每轮结束后报告进度；无限重复与单次任务不报
                 if (!infinite && Count > 1 && Type == MFATaskType.MAAFW)
                 {

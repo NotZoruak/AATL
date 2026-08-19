@@ -274,16 +274,29 @@
       "time": 200,
       "target": [82, 61, 629, 56]
     },
-    "next": ["U_TeamVerifyColor", "U_ClickTeam"],
+    "next": ["U_TeamVerifyColor1", "U_TeamVerifyColor2", "U_ClickTeam"],
     "on_error": ["U_DetectWhereAmI"]
   },
-  "U_TeamVerifyColor": {
+  "U_TeamVerifyColor1": {
     "recognition": {
       "type": "ColorMatch",
       "param": {
         "roi": [172, 81, 17, 9],
         "upper": [192, 192, 192],
         "lower": [186, 186, 186]
+      }
+    },
+    "next": ["U_CaptainHub"],
+    "on_error": ["U_ClickTeam"]
+  },
+  "U_TeamVerifyColor2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [172, 81, 17, 9],
+        "upper": [97, 97, 97],
+        "lower": [91, 91, 91],
+        "count": 1
       }
     },
     "next": ["U_CaptainHub"],
@@ -1985,16 +1998,29 @@
       "time": 200,
       "target": [82, 61, 629, 56]
     },
-    "next": ["UF_TeamVerifyColorN", "UF_ClickTeamN"],
+    "next": ["UF_TeamVerifyColorN1", "UF_TeamVerifyColorN2", "UF_ClickTeamN"],
     "on_error": ["UF_DetectWhereAmI"]
   },
-  "UF_TeamVerifyColorN": {
+  "UF_TeamVerifyColorN1": {
     "recognition": {
       "type": "ColorMatch",
       "param": {
         "roi": [172, 81, 17, 9],
         "upper": [192, 192, 192],
         "lower": [186, 186, 186]
+      }
+    },
+    "next": ["UF_DissolveHub"],
+    "on_error": ["UF_ClickTeamN"]
+  },
+  "UF_TeamVerifyColorN2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [172, 81, 17, 9],
+        "upper": [97, 97, 97],
+        "lower": [91, 91, 91],
+        "count": 1
       }
     },
     "next": ["UF_DissolveHub"],

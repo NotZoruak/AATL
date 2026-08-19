@@ -95,8 +95,8 @@ public static class FormationScan
             return true;
         if (target.Length < 2)
             return false;
-        // 清洗 OCR 文本中的数字前缀（如「05」）与数量后缀（如「x1」）
-        var cleaned = new string(ocrText.Where(c => !char.IsDigit(c) && !char.IsLetter(c)).ToArray());
+        // 清洗 OCR 文本中的 ASCII 数字前缀（如「05」）与数量后缀（如「x1」）；注意不能用 char.IsLetter，它对中文字符也返回 true
+        var cleaned = new string(ocrText.Where(c => !char.IsAsciiLetterOrDigit(c)).ToArray());
         return cleaned.Length > 0 && LevenshteinDistance(cleaned, target) <= 1;
     }
 

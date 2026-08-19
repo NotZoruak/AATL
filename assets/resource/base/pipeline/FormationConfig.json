@@ -366,10 +366,10 @@
           "target": [154, 93, 1, 1]
         }
       },
-      "next": ["FC_VerifySelectedTeam", "FC_ClickTeam"],
+      "next": ["FC_VerifySelectedTeam1", "FC_VerifySelectedTeam2", "FC_ClickTeam"],
       "post_delay": 500
     },
-    "FC_VerifySelectedTeam": {
+    "FC_VerifySelectedTeam1": {
       "recognition": {
         "type": "ColorMatch",
         "param": {
@@ -380,6 +380,19 @@
       },
       "next": ["FC_IsTeamEmpty", "FC_DissolveTeam"],
       "on_error": ["FC_DetectWhereAmI"]
+    },
+    "FC_VerifySelectedTeam2": {
+      "recognition": {
+        "type": "ColorMatch",
+        "param": {
+          "roi": [172, 81, 17, 9],
+          "upper": [97, 97, 97],
+          "lower": [91, 91, 91],
+          "count": 1
+        }
+      },
+      "next": ["FC_IsTeamEmpty", "FC_DissolveTeam"],
+      "on_error": ["FC_ClickTeam"]
     },
     "FC_IsTeamEmpty": {
       "recognition": {

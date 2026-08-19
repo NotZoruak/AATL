@@ -2953,12 +2953,20 @@ public class MaaProcessor
 
     /// <summary>恢复请求的起始任务下标（0 = 从头执行全部任务）；StartTask 读取后立即重置</summary>
     private int _resumeStartIndex;
+    private bool _resumePending;
+
+    /// <summary>记录各任务在自动恢复前已经成功完成的轮次。</summary>
+    private readonly Dictionary<int, int> _completedTaskRounds = new();
 
     /// <summary>下一个待执行任务下标（卡死自动恢复断点用，任务完成时推进）</summary>
     private int _nextTaskIndex;
 
     /// <summary>设置恢复起始下标，卡死自动恢复后从该任务继续执行队列</summary>
-    public void SetResumeStartIndex(int index) => _resumeStartIndex = Math.Max(0, index);
+    public void SetResumeStartIndex(int index)
+    {
+        _resumeStartIndex = Math.Max(0, index);
+        _resumePending = true;
+    }
 
     /// <summary>下一个待执行任务下标（卡死自动恢复断点）</summary>
     public int NextTaskIndex => _nextTaskIndex;
@@ -3002,10 +3010,16 @@ public class MaaProcessor
             LoggerHelper.Info($"准备执行任务队列：任务数量={tasks.Count}");
             var taskAndParams = tasks.Select((task, index) => CreateNodeAndParam(task, index + 1)).ToList();
             // 卡死自动恢复断点：从上次中断位置继续（正常启动为 0）
+            var isRecovery = _resumePending;
             var startIndex = _resumeStartIndex;
+            if (isRecovery && taskAndParams.Count > 0)
+                startIndex = Math.Min(startIndex, taskAndParams.Count - 1);
             _resumeStartIndex = 0;
+            _resumePending = false;
+            if (!isRecovery)
+                _completedTaskRounds.Clear();
             _nextTaskIndex = startIndex;
-            if (startIndex > 0)
+            if (isRecovery)
             {
                 LoggerHelper.Warning($"自动恢复：从任务队列第 {startIndex + 1}/{taskAndParams.Count} 个任务继续执行");
             }
@@ -3525,7 +3539,14 @@ public class MaaProcessor
                             ["param"] = new JObject { ["target"] = new JArray(FormationTeamClickCoords[team - 1]) }
                         }
                     },
-                    ["FC_VerifySelectedTeam"] = new JObject
+                    ["FC_VerifySelectedTeam1"] = new JObject
+                    {
+                        ["recognition"] = new JObject
+                        {
+                            ["param"] = new JObject { ["roi"] = new JArray(FormationTeamVerifyRois[team - 1]) }
+                        }
+                    },
+                    ["FC_VerifySelectedTeam2"] = new JObject
                     {
                         ["recognition"] = new JObject
                         {
@@ -3552,9 +3573,16 @@ public class MaaProcessor
                 // 卸装备开关：开启时选队验证后先检查空队（空队直接编入），否则进入卸装备流程
                 if (formationPreset.ClearEquipmentBeforeFormation)
                 {
-                    overrideDict["FC_VerifySelectedTeam"] = new JObject
+                    overrideDict["FC_VerifySelectedTeam1"] = new JObject
                     {
                         ["next"] = new JArray("FC_IsTeamEmpty", "FC_RemoveEquip"),
+                        ["recognition"] = new JObject
+                        {
+                            ["param"] = new JObject { ["roi"] = new JArray(FormationTeamVerifyRois[team - 1]) }
+                        }
+                    };
+                    overrideDict["FC_VerifySelectedTeam2"] = new JObject
+                    {
                         ["recognition"] = new JObject
                         {
                             ["param"] = new JObject { ["roi"] = new JArray(FormationTeamVerifyRois[team - 1]) }
@@ -3682,6 +3710,24 @@ public class MaaProcessor
                 // 过去：强制 3 轮，不使用 UI 设置的重复次数
                 repeatCount = 3;
             }
+        }
+
+        // 部队颜色验证兼容旧配置：旧版任务选项仍使用未编号的 node 名称，
+        // 将最终合并后的 ROI 同步到浅色和深色两种验证 node。
+        var teamVerifyAliases = new Dictionary<string, (string Light, string Dark)>
+        {
+            ["S_TeamVerifyColor"] = ("S_TeamVerifyColor1", "S_TeamVerifyColor2"),
+            ["SF_TeamVerifyColorN"] = ("SF_TeamVerifyColorN1", "SF_TeamVerifyColorN2"),
+            ["FB_TeamVerifyColor"] = ("FB_TeamVerifyColor1", "FB_TeamVerifyColor2"),
+            ["LR_TeamVerifyColor"] = ("LR_TeamVerifyColor1", "LR_TeamVerifyColor2"),
+            ["TT_TeamVerifyColor"] = ("TT_TeamVerifyColor1", "TT_TeamVerifyColor2"),
+            ["U_TeamVerifyColor"] = ("U_TeamVerifyColor1", "U_TeamVerifyColor2"),
+            ["UF_TeamVerifyColorN"] = ("UF_TeamVerifyColorN1", "UF_TeamVerifyColorN2")
+        };
+        foreach (var (legacyName, names) in teamVerifyAliases)
+        {
+            taskModels.CopyAliases(legacyName, names.Light, names.Dark);
+            taskModels.CopyAliases(names.Light, names.Dark);
         }
 
         return new NodeAndParam
@@ -4057,15 +4103,25 @@ public class MaaProcessor
         for (int i = startIndex; i < taskAndParams.Count; i++)
         {
             var task = taskAndParams[i];
-            TaskQueue.Enqueue(CreateMaaFWTask(task.Name,
+            var requestedCount = task.Count ?? 1;
+            var completedRounds = _completedTaskRounds.GetValueOrDefault(i);
+            var remainingCount = requestedCount > 0 && requestedCount != int.MaxValue
+                ? Math.Max(1, requestedCount - completedRounds)
+                : requestedCount;
+            var maaTask = CreateMaaFWTask(task.Name,
                 async () =>
                 {
                     token.ThrowIfCancellationRequested();
-                    await TryRunTasksAsync(MaaTasker, task.Entry, task.Param, task.Name, token, isCoreTask: true);
-                    // 推进断点：本任务执行完（成功或失败），下一个待执行任务为 i+1
-                    _nextTaskIndex = i + 1;
-                }, task.Count ?? 1
-            ));
+                    var status = await TryRunTasksAsync(MaaTasker, task.Entry, task.Param, task.Name, token, isCoreTask: true);
+                    if (status == MaaJobStatus.Succeeded)
+                        _nextTaskIndex = i + 1;
+                }, remainingCount);
+            maaTask.IterationCompleted = round =>
+            {
+                _completedTaskRounds[i] = completedRounds + round;
+                LoggerHelper.Info($"任务轮次进度：任务={task.Name}，已完成={_completedTaskRounds[i]}，目标={requestedCount}");
+            };
+            TaskQueue.Enqueue(maaTask);
             // 不同任务之间插入回本丸（最后一个任务不插）
             if (i < taskAndParams.Count - 1)
             {
@@ -4098,9 +4154,9 @@ public class MaaProcessor
         return SerializeTaskParams(taskModels);
     }
 
-    async private Task TryRunTasksAsync(MaaTasker? maa, string? task, string? param, string? taskName, CancellationToken token, bool isCoreTask = false)
+    async private Task<MaaJobStatus> TryRunTasksAsync(MaaTasker? maa, string? task, string? param, string? taskName, CancellationToken token, bool isCoreTask = false)
     {
-        if (maa == null || task == null) return;
+        if (maa == null || task == null) return MaaJobStatus.Invalid;
 
         MaaJobStatus jobStatus = MaaJobStatus.Failed;
         var job = maa.AppendTask(task, param ?? "{}");
@@ -4127,6 +4183,7 @@ public class MaaProcessor
 
         // 等待 PostStop 清理完成，防止下一轮 AppendTask 被中断
         await Task.Delay(500, token);
+        return jobStatus;
     }
 
     async private Task RunScript(string str = "Prescript")
