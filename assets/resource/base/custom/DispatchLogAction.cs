@@ -35,24 +35,26 @@ public class DispatchLogAction : IMaaCustomAction
             if (team == 0)
             {
                 message = "[远征派遣] 派出远征队伍";
+                Log(message, "[后勤] 派遣远征 派出远征队伍");
             }
             else
             {
                 string teamLabel = TeamToLabel(team);
                 string mapLabel = ReadMapFromConfig(team);
                 message = $"[远征派遣] {teamLabel}已派遣至 {mapLabel}";
+                // 文件日志用词表格式(供运行结果页解析),GUI 保持 [远征派遣] 原文案
+                Log(message, $"[后勤] 派遣远征 {teamLabel}已派遣至 {mapLabel}");
             }
 
-            Log(message);
             return true;
         }
 
         return true;
     }
 
-    private static void Log(string message)
+    private static void Log(string message, string fileMessage)
     {
-        LoggerHelper.Info(message);
+        LoggerHelper.Info(fileMessage);
         try
         {
             MaaProcessorManager.Instance.Current?.AddLog(message);

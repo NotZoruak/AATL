@@ -878,8 +878,17 @@
         "threshold": [0.98]
       }
     },
-    "next": ["E_ExpSubHub1"],
+    "next": ["E_IsTeamStatusPanelLog"],
     "on_error": ["Expedition"]
+  },
+  "E_IsTeamStatusPanelLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"message": "[后勤] 检查队伍状况"}
+    },
+    "next": ["E_ExpSubHub1"],
+    "on_error": ["E_ExpSubHub1"]
   },
   "E_IsMenuDirectory": {
     "recognition": {
@@ -1426,6 +1435,15 @@
     "action": {"type": "Click"},
     "pre_delay": 100,
     "post_delay": 1000,
+    "next": ["E_FlowerNavigateLog"],
+    "on_error": ["E_FlowerBattleHub"]
+  },
+  "E_FlowerNavigateLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"message": "[后勤] 刷花"}
+    },
     "next": ["E_FlowerBattleHub"],
     "on_error": ["E_FlowerBattleHub"]
   },
@@ -2199,6 +2217,15 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["E_ConfirmRepairLog"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_ConfirmRepairLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"message": "[后勤] 修刀"}
+    },
     "next": ["E_GoHome"],
     "on_error": ["E_GoHome"]
   },
@@ -2263,6 +2290,15 @@
     },
     "action": {"type": "Click", "param": {"target": [725, 588, 125, 40]}},
     "post_wait_freezes": {"time": 200},
+    "next": ["E_NaibanVerifyConfirmLog"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_NaibanVerifyConfirmLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"message": "[后勤] 安排内番"}
+    },
     "next": ["E_NaibanDialogue", "E_NaibanVerifyConfirm"],
     "on_error": ["E_GoHome"]
   },
