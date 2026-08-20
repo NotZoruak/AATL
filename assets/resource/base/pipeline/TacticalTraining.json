@@ -41,9 +41,7 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {
-      "time": 200
-    },
+    "post_wait_freezes": {"time": 200},
     "next": ["TT_IsAnnouncementPopup", "TT_DetectWhereAmI"]
   },
   "TT_IsLoginReward": {
@@ -295,7 +293,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "SwordDropLogAction",
-      "custom_action_param": {"task": "战术强化", "roi": [52, 509, 282, 34], "click": [1067, 558, 120, 79]}
+      "custom_action_param": {
+        "task": "战术强化",
+        "roi": [52, 509, 282, 34],
+        "click": [1067, 558, 120, 79]
+      }
     },
     "pre_delay": 100,
     "post_delay": 1000,
@@ -314,7 +316,10 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Info", "message": "[战术强化] 完成一圈"}
+      "custom_action_param": {
+        "level": "Info",
+        "message": "[战术强化] 完成一圈"
+      }
     },
     "next": [],
     "on_error": ["TT_DetectWhereAmI"]
@@ -485,7 +490,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Info", "message": "[战术强化] 补充门票", "click": [754, 592, 66, 22]}
+      "custom_action_param": {
+        "level": "Info",
+        "message": "[战术强化] 补充门票",
+        "click": [754, 592, 66, 22]
+      }
     },
     "post_delay": 300,
     "next": ["TT_CloseTicketDialog", "TT_ConfirmTicketReplenish"],
@@ -661,7 +670,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Info", "message": "[战术强化] 出阵", "click": [1204, 629, 1, 1]}
+      "custom_action_param": {
+        "level": "Info",
+        "message": "[战术强化] 出阵",
+        "click": [1204, 629, 1, 1]
+      }
     },
     "pre_delay": 100,
     "next": ["TT_DetectWhereAmI"],
@@ -750,7 +763,10 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[战术强化] 全部队伍不符合要求终止"}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[战术强化] 全部队伍不符合要求终止"
+      }
     },
     "next": [],
     "on_error": ["TT_DetectWhereAmI"]
@@ -774,7 +790,10 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[战术强化] 无票终止"}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[战术强化] 无票终止"
+      }
     },
     "next": [],
     "on_error": ["TT_DetectWhereAmI"]

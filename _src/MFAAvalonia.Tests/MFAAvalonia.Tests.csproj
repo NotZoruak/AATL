@@ -7,5 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\MFAAvalonia\Models\FormationPreset.cs" Link="FormationPreset.cs" />
+    <Compile Include="..\MFAAvalonia\Models\SwordBookEntry.cs" Link="SwordBookEntry.cs" />
+    <Compile Include="..\MFAAvalonia\Services\SwordBookEditor.cs" Link="SwordBookEditor.cs" />
   </ItemGroup>
 </Project>

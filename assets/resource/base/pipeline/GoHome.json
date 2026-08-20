@@ -6,6 +6,9 @@
     "pre_delay": 0,
     "timeout": 120000,
     "next": [
+      "G_IsSwordDropColor",
+      "G_IsBattleResult_Exp",
+      "G_GoHomeAfterBattle",
       "G_IsCloseablePage",
       "G_IsHome",
       "G_VerifyMenuDir",
@@ -23,6 +26,41 @@
       "G_FallbackWait"
     ],
     "on_error": ["G_RestartGame"]
+  },
+  "G_IsSwordDropColor": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [598, 543, 66, 1],
+        "upper": [96, 56, 10],
+        "lower": [88, 48, 2]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1067, 558, 120, 79]
+      }
+    },
+    "next": ["G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
+  },
+  "G_IsBattleResult_Exp": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [388, 59, 54, 25],
+        "expected": "经验"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [947, 533, 67, 75]
+      }
+    },
+    "next": ["G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsMenuDirectory": {
     "recognition": {
@@ -143,6 +181,48 @@
       }
     },
     "next": ["G_DetectWhereAmI"]
+  },
+  "G_GoHomeAfterBattle": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1164, 407, 88, 40],
+        "expected": "返回"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1173, 416, 70, 68]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [369, 287, 546, 238]
+    },
+    "next": ["G_ConfirmReturnHome", "G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
+  },
+  "G_ConfirmReturnHome": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [548, 295, 182, 56],
+        "expected": "确认返回本丸"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [490, 469, 10, 10]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [490, 469, 10, 10]
+    },
+    "next": ["G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsHome": {
     "recognition": {

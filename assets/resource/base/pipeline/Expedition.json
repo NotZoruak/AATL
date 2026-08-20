@@ -52,7 +52,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["E_CheckTeamStatus", "E_DetectHome","Expedition"]
+    "next": ["E_CheckTeamStatus", "E_DetectHome", "Expedition"]
   },
   "E_CheckTeamStatus": {
     "recognition": {
@@ -63,7 +63,10 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200, "target": [0,629,136,91]},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [0, 629, 136, 91]
+    },
     "next": ["E_IsTeamStatusPanel", "Expedition"]
   },
   "E_CheckTeam1": {
@@ -519,7 +522,10 @@
       }
     },
     "pre_delay": 100,
-    "post_wait_freezes": {"time": 200, "target": [0,610,148,110]},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [0, 610, 148, 110]
+    },
     "next": ["E_GoHome"],
     "on_error": ["Expedition"]
   },
@@ -1435,15 +1441,6 @@
     "action": {"type": "Click"},
     "pre_delay": 100,
     "post_delay": 1000,
-    "next": ["E_FlowerNavigateLog"],
-    "on_error": ["E_FlowerBattleHub"]
-  },
-  "E_FlowerNavigateLog": {
-    "action": {
-      "type": "Custom",
-      "custom_action": "LogAction",
-      "custom_action_param": {"message": "[后勤] 刷花"}
-    },
     "next": ["E_FlowerBattleHub"],
     "on_error": ["E_FlowerBattleHub"]
   },
@@ -1458,6 +1455,15 @@
     "action": {"type": "Click"},
     "pre_delay": 100,
     "post_delay": 1000,
+    "next": ["E_FlowerBattleHub"],
+    "on_error": ["E_FlowerBattleHub"]
+  },
+  "E_FlowerSortieLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"message": "[后勤] 刷花"}
+    },
     "next": ["E_FlowerBattleHub"],
     "on_error": ["E_FlowerBattleHub"]
   },
@@ -1747,7 +1753,7 @@
         "target": [1204, 629, 1, 1]
       }
     },
-    "next": ["E_FlowerBattleHub"],
+    "next": ["E_FlowerSortieLog"],
     "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerHomeBrightness": {
@@ -2147,7 +2153,10 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200, "target": [114,123,316,240]},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [114, 123, 316, 240]
+    },
     "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot1"],
     "on_error": ["E_GoHome"]
   },
@@ -2162,7 +2171,10 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200, "target": [114,123,316,240]},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [114, 123, 316, 240]
+    },
     "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot2"],
     "on_error": ["E_GoHome"]
   },
@@ -2177,7 +2189,10 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200, "target": [114,123,316,240]},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [114, 123, 316, 240]
+    },
     "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot3"],
     "on_error": ["E_GoHome"]
   },
@@ -2192,7 +2207,10 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200, "target": [114,123,316,240]},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [114, 123, 316, 240]
+    },
     "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot4"],
     "on_error": ["E_GoHome"]
   },
@@ -2204,7 +2222,10 @@
         "expected": "修复刀剑男士"
       }
     },
-    "post_wait_freezes": {"time": 200, "target": [459,127,16,554]},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [459, 127, 16, 554]
+    },
     "next": ["E_FindRepairableSword", "E_SelectRepairSlot1"],
     "on_error": ["E_GoHome"]
   },
@@ -2275,7 +2296,12 @@
         "expected": "今日内番表"
       }
     },
-    "action": {"type": "Click", "param": {"target": [1149, 585, 98, 89]}},
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1149, 585, 98, 89]
+      }
+    },
     "post_wait_freezes": {"time": 200},
     "next": ["E_NaibanVerifyConfirm", "E_NaibanVerifyTable"],
     "on_error": ["E_NaibanClickEntry"]
@@ -2288,7 +2314,12 @@
         "expected": "内番设置确认"
       }
     },
-    "action": {"type": "Click", "param": {"target": [725, 588, 125, 40]}},
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [725, 588, 125, 40]
+      }
+    },
     "post_wait_freezes": {"time": 200},
     "next": ["E_NaibanVerifyConfirmLog"],
     "on_error": ["E_GoHome"]

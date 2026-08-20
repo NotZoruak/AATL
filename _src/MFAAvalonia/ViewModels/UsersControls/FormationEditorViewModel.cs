@@ -102,14 +102,20 @@ public static class FormationOptions
 {
     public static readonly string[] HorseOptions = ["无", "王庭", "三国黑", "松风", "小云雀", "高楯黑", "花柑子", "青海波", "望月", "白毛", "鹿毛", "青毛"];
 
-    /// <summary>从刀种映射表读取并排序全部刀剑名称</summary>
+    /// <summary>从刀帐目录读取并排序全部刀剑名称</summary>
     public static string[] LoadSwordOptions()
     {
-        var path = Path.Combine(AppPaths.ResourceDirectory, "base", "SwordTypeMap.json");
+        var path = Path.Combine(AppPaths.ResourceDirectory, "base", "SwordBookCatalog.json");
         if (!File.Exists(path))
             return [];
 
-        var map = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(path));
-        return map?.Keys.OrderBy(name => name, StringComparer.CurrentCulture).ToArray() ?? [];
+        var catalog = JsonConvert.DeserializeObject<List<SwordBookCatalogItem>>(File.ReadAllText(path));
+        return catalog?.Select(item => item.Name)
+            .Where(name => !string.IsNullOrEmpty(name))
+            .Distinct(StringComparer.Ordinal)
+            .OrderBy(name => name, StringComparer.CurrentCulture)
+            .ToArray() ?? [];
     }
+
+    private sealed record SwordBookCatalogItem(string Number, string Type, string Name, bool TypeOnly = false);
 }

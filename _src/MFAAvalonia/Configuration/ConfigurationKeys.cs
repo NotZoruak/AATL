@@ -33,6 +33,9 @@ public static class ConfigurationKeys
     /// <summary>编队预设列表（List&lt;FormationPreset&gt;，所有任务共享）</summary>
     public const string FormationPresets = "FormationPresets";
 
+    /// <summary>刀帐立绘拥有状态。</summary>
+    public const string SwordBookEntries = "SwordBookEntries";
+
     #endregion
 
     #region 启动设置

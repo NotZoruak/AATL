@@ -814,9 +814,7 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {
-      "time": 200
-    },
+    "post_wait_freezes": {"time": 200},
     "next": ["FB_IsAnnouncementPopup", "FB_DetectWhereAmI"]
   },
   "FB_IsLoginReward": {

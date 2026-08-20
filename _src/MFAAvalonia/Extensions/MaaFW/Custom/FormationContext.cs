@@ -99,22 +99,26 @@ public static class FormationContext
         return result;
     }
 
-    /// <summary>加载刀名 → 刀种映射表</summary>
+    /// <summary>从刀帐目录加载刀名 → 刀种映射表</summary>
     public static Dictionary<string, string> LoadSwordTypeMap()
     {
-        var path = Path.Combine(AppPaths.ResourceDirectory, "base", "SwordTypeMap.json");
+        var path = Path.Combine(AppPaths.ResourceDirectory, "base", "SwordBookCatalog.json");
         if (!File.Exists(path))
         {
-            LoggerHelper.Warning("[Formation] SwordTypeMap.json 不存在: " + path);
+            LoggerHelper.Warning("[Formation] SwordBookCatalog.json 不存在: " + path);
             return [];
         }
         try
         {
-            return JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(path)) ?? [];
+            var catalog = JsonConvert.DeserializeObject<List<SwordBookCatalogItem>>(File.ReadAllText(path)) ?? [];
+            return catalog
+                .Where(item => !string.IsNullOrEmpty(item.Name) && !string.IsNullOrEmpty(item.Type))
+                .GroupBy(item => item.Name, StringComparer.Ordinal)
+                .ToDictionary(group => group.Key, group => group.First().Type, StringComparer.Ordinal);
         }
         catch (Exception e)
         {
-            LoggerHelper.Warning($"[Formation] SwordTypeMap.json 解析失败: {e.Message}");
+            LoggerHelper.Warning($"[Formation] SwordBookCatalog.json 解析失败: {e.Message}");
             return [];
         }
     }
@@ -125,4 +129,6 @@ public static class FormationContext
         SwordTypeMap ??= LoadSwordTypeMap();
         return SwordTypeMap.TryGetValue(swordName, out var type) ? type : null;
     }
+
+    private sealed record SwordBookCatalogItem(string Number, string Type, string Name, bool TypeOnly = false);
 }

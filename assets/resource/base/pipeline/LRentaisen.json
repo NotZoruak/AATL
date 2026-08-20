@@ -47,9 +47,7 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {
-      "time": 200
-    },
+    "post_wait_freezes": {"time": 200},
     "next": ["LR_IsAnnouncementPopup", "LR_DetectWhereAmI"]
   },
   "LR_IsSupplyPopup": {
@@ -327,7 +325,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "SwordDropLogAction",
-      "custom_action_param": {"task": "联队战", "roi": [52, 509, 282, 34], "click": [1067, 558, 120, 79]}
+      "custom_action_param": {
+        "task": "联队战",
+        "roi": [52, 509, 282, 34],
+        "click": [1067, 558, 120, 79]
+      }
     },
     "pre_delay": 100,
     "next": ["LR_DetectWhereAmI"]
@@ -768,7 +770,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Info", "message": "[联队战] 补充门票", "click": [603, 449, 78, 38]}
+      "custom_action_param": {
+        "level": "Info",
+        "message": "[联队战] 补充门票",
+        "click": [603, 449, 78, 38]
+      }
     },
     "pre_delay": 500,
     "next": ["LR_AfterCaptain"],
@@ -778,7 +784,10 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[联队战] 无票终止"}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[联队战] 无票终止"
+      }
     },
     "next": [],
     "on_error": ["LR_DetectWhereAmI"]
@@ -901,7 +910,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Info", "message": "[联队战] 出阵", "click": [590, 593, 84, 17]}
+      "custom_action_param": {
+        "level": "Info",
+        "message": "[联队战] 出阵",
+        "click": [590, 593, 84, 17]
+      }
     },
     "pre_delay": 100,
     "next": ["LR_DetectWhereAmI"]
@@ -952,7 +965,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[联队战] 队长重伤撤退", "click": [1171, 447, 1, 1]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[联队战] 队长重伤撤退",
+        "click": [1171, 447, 1, 1]
+      }
     },
     "pre_delay": 100,
     "post_delay": 100,

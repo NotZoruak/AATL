@@ -22,8 +22,9 @@ public static class WorkRecordBuilder
 
     // 词表行：[地下城] 出阵 / [后勤] 派遣远征 部队3已派遣至 4-3
     // 内容行开头可能有 [cfg=Default][src=Monitor] 等上下文块,先跳过(key=value 带等号),再捕获 [前缀] 行为词
+    // 前缀排除 = 与空白,避免 [cfg=Default] 等上下文块被误捕获为前缀(如系统 Warning 日志会显示进特殊情况)
     private static readonly Regex WordRegex = new(
-        @"^(?:\[[a-zA-Z]+\s*=[^\]]*\]\s*)*\[([^\]]+)\]\s+(\S+)(?:\s+(.*))?$", RegexOptions.Compiled);
+        @"^(?:\[[a-zA-Z]+\s*=[^\]]*\]\s*)*\[([^\]\s=]+)\]\s+(\S+)(?:\s+(.*))?$", RegexOptions.Compiled);
 
     /// <summary>状态码 → 中文（NOT_STARTED 语义见 Build 中按是否执行过区分）</summary>
     public static readonly Dictionary<string, string> StatusMap = new()
@@ -130,16 +131,14 @@ public static class WorkRecordBuilder
         if (current != null && current.EndTime == default)
             current.EndTime = lastTime;
 
-        // 从未开始执行的任务（定义行存在但无「开始任务」行，或状态为「未开始」）不显示，避免噪音
-        records.RemoveAll(r => !r.HasStarted || r.Status == "未开始");
+        // 从未开始、未产生业务数据的任务不显示，避免快速启动/回本丸等空记录污染列表
+        records.RemoveAll(r => !r.HasStarted || r.Status == "未开始" || !r.HasRun);
 
         foreach (var record in records)
         {
             // 闪退场景无停止前状态行时中断状态兜底：有中断词条但未走到收尾逻辑的记录统一标记为中断
             if (record.HasInterrupt)
                 record.Status = "中断";
-            if (record.RoundCount == 0)
-                record.RoundCount = record.SortieCount;
         }
         return records;
     }

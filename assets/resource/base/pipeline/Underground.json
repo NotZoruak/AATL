@@ -48,8 +48,7 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {
-      "time": 200    },
+    "post_wait_freezes": {"time": 200},
     "next": ["U_IsAnnouncementPopup", "U_DetectWhereAmI"]
   },
   "U_IsLoginReward": {
@@ -64,7 +63,9 @@
     },
     "action": {"type": "Click"},
     "post_wait_freezes": {
-      "time": 200,      "target": [240, 104, 803, 561]    },
+      "time": 200,
+      "target": [240, 104, 803, 561]
+    },
     "next": ["U_LoginRewardClick2"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -76,7 +77,9 @@
       }
     },
     "post_wait_freezes": {
-      "time": 200,      "target": [240, 104, 803, 561]    },
+      "time": 200,
+      "target": [240, 104, 803, 561]
+    },
     "next": ["U_LoginRewardClick3"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -163,7 +166,7 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "next": ["U_IsMarching","U_DetectWhereAmI"]
+    "next": ["U_IsMarching", "U_DetectWhereAmI"]
   },
   "U_IsBattleResult_Title": {
     "recognition": {
@@ -179,7 +182,7 @@
         "target": [947, 533, 67, 75]
       }
     },
-    "next": ["U_IsMarching","U_DetectWhereAmI"]
+    "next": ["U_IsMarching", "U_DetectWhereAmI"]
   },
   "U_IsSwordDropColor": {
     "recognition": {
@@ -193,7 +196,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "SwordDropLogAction",
-      "custom_action_param": {"task": "地下城", "roi": [52, 509, 282, 34], "click": [1067, 558, 120, 79]}
+      "custom_action_param": {
+        "task": "地下城",
+        "roi": [52, 509, 282, 34],
+        "click": [1067, 558, 120, 79]
+      }
     },
     "next": ["U_DetectWhereAmI"]
   },
@@ -209,10 +216,9 @@
     },
     "action": {
       "type": "Custom",
-      "custom_action": "LogAction",
-      "custom_action_param": {"level": "Info", "message": "[地下城] 小判箱掉落", "click": [403, 335, 68, 26]}
+      "custom_action": "KobanChestLogAction",
+      "custom_action_param": "{\"roi\":[414,285,38,37],\"template\":\"Activity/小判箱掉落.png\",\"threshold\":0.8,\"green_mask\":true,\"timeout\":15000,\"poll_interval\":200,\"settle_ms\":4000,\"task\":\"地下城\"}"
     },
-    "wait_freezes": {"time": 200},
     "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -391,13 +397,23 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EnterUnderground": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1146, 619, 116, 40],
+        "expected": "部队选择"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
         "target": [1141, 614, 120, 49]
       }
     },
-    "post_wait_freezes": {"time": 200, "target": [0, 0, 1280, 720]},
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [1146, 619, 116, 40]
+    },
     "next": ["U_IsTeamSelect", "U_DetectWhereAmI"]
   },
   "U_IsMenuDirectory": {
@@ -494,7 +510,10 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"message": "[地下城] 点击行军", "click": [1067, 558, 120, 79]}
+      "custom_action_param": {
+        "message": "[地下城] 点击行军",
+        "click": [1067, 558, 120, 79]
+      }
     },
     "next": ["U_DetectWhereAmI"]
   },
@@ -545,8 +564,11 @@
         "target": [1173, 416, 70, 68]
       }
     },
-    "post_wait_freezes": {"time": 100, "target": [369, 287, 546, 238]},
-    "next": ["U_ConfirmReturnHome","U_ReturnHomeAfterMarch", "U_DetectWhereAmI"],
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [369, 287, 546, 238]
+    },
+    "next": ["U_ConfirmReturnHome", "U_ReturnHomeAfterMarch", "U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsInternalReport": {
@@ -789,7 +811,7 @@
     },
     "post_wait_freezes": {
       "time": 100,
-      "target": [392,249,487,307]
+      "target": [392, 249, 487, 307]
     },
     "next": ["U_PostSortieHub"],
     "on_error": ["U_DetectWhereAmI"]
@@ -807,7 +829,10 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"message": "[地下城] 出阵", "click": [706, 582, 154, 42]}
+      "custom_action_param": {
+        "message": "[地下城] 出阵",
+        "click": [706, 582, 154, 42]
+      }
     },
     "next": ["U_PostSortieHub"]
   },
@@ -949,13 +974,7 @@
   },
   "U_PostSortieHub": {
     "pre_delay": 0,
-    "next": [
-      "U_ConfirmEnterUnderground",
-      "U_IsPreDamage",
-      "U_StopOnDamagePopup",
-      "U_CheckEquipmentPopup",
-      "U_DetectWhereAmI"
-    ]
+    "next": ["U_ConfirmEnterUnderground", "U_IsPreDamage", "U_StopOnDamagePopup", "U_CheckEquipmentPopup", "U_DetectWhereAmI"]
   },
   "U_PreCheckTroopRecord": {
     "enabled": false,
@@ -1089,10 +1108,13 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"message": "[地下城] 补充刀装", "click": [789, 512, 1, 4]}
+      "custom_action_param": {
+        "message": "[地下城] 补充刀装",
+        "click": [789, 512, 1, 4]
+      }
     },
     "post_wait_freezes": {"time": 200},
-    "next": ["U_IsPreSortieConfirm","U_PreConfirmSupply"],
+    "next": ["U_IsPreSortieConfirm", "U_PreConfirmSupply"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ReturnHomeAfterMarch": {
@@ -1109,8 +1131,11 @@
         "target": [1173, 416, 70, 68]
       }
     },
-    "post_wait_freezes": {"time": 200, "target": [369, 287, 546, 238]},
-    "next": ["U_ConfirmReturnHome","U_ReturnHomeAfterMarch", "U_DetectWhereAmI"],
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [369, 287, 546, 238]
+    },
+    "next": ["U_ConfirmReturnHome", "U_ReturnHomeAfterMarch", "U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_SelectDamagedSword": {
@@ -1253,7 +1278,10 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100, "target": [1183, 18, 87, 40]},
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [1183, 18, 87, 40]
+    },
     "next": ["U_PostClickMenuHub"],
     "on_error": ["U_DetectWhereAmI"]
   },
@@ -1310,7 +1338,10 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 修刀"}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 修刀"
+      }
     },
     "next": ["U_DirAfterRepair"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1326,10 +1357,13 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [490, 469, 1, 1]
+        "target": [490, 469, 10, 10]
       }
     },
-    "post_wait_freezes": {"time": 200},
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [490, 469, 10, 10]
+    },
     "next": ["U_DetectWhereAmI"]
   },
   "U_VerifyAfterRepairMenuClosed": {
@@ -1423,7 +1457,10 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 重伤撤退"}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 重伤撤退"
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1499,7 +1536,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 疲劳撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 疲劳撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1544,7 +1585,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1561,7 +1606,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1578,7 +1627,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1595,7 +1648,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1612,7 +1669,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1629,7 +1690,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1646,7 +1711,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1663,7 +1732,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1680,7 +1753,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1697,7 +1774,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1714,7 +1795,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1731,7 +1816,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1748,7 +1837,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1765,7 +1858,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1782,7 +1879,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1799,7 +1900,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1816,7 +1921,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1833,7 +1942,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
@@ -1850,7 +1963,11 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {"level": "Warning", "message": "[地下城] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
+      "custom_action_param": {
+        "level": "Warning",
+        "message": "[地下城] 刀装近破坏撤退",
+        "click": [763, 446, 48, 44]
+      }
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]

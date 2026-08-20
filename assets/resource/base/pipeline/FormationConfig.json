@@ -1,1610 +1,1514 @@
 {
-    "FormationConfig": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationConfigAction"
-      },
-      "next": ["FC_DetectWhereAmI"]
+  "FormationConfig": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationConfigAction"
     },
-    "FC_DetectWhereAmI": {
-      "pre_delay": 0,
-      "timeout": 120000,
-      "next": [
-        "FC_IsMenuDirectory",
-        "FC_IsFormationOverview",
-        "FC_CheckHomeBrightness",
-        "FC_OpenFormation",
-        "FC_LeaveTroopRecord",
-        "FC_IsAnnouncementPopup",
-        "FC_IsTrainingLetter",
-        "FC_IsLoginReward",
-        "FC_IsGameIcon",
-        "FC_IsLoginButton",
-        "FC_IsGameUpdatePopup",
-        "FC_IsInGameUpdatePopup",
-        "FC_IsInternalReport",
-        "FC_IsConnectionInterrupted",
-        "FC_HasExpeditionReturn_Exp",
-        "FC_HasExpeditionReturn_Title",
-        "FC_IsSwordDropColor",
-        "FC_FallbackWait"
-      ],
-      "on_error": ["FC_RestartGame"]
-    },
-    "FC_LeaveTroopRecord": {
-      "recognition": {
-        "type": "TemplateMatch",
-        "param": {
-          "roi": [577, 8, 130, 35],
-          "template": "Common/部队记录页面.png",
-          "green_mask": true,
-          "threshold": [0.95]
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [63, 28, 17, 17]
-        }
-      },
-      "next": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_IsAnnouncementPopup": {
-      "recognition": {
-        "type": "TemplateMatch",
-        "param": {
-          "roi": [1056, 463, 63, 193],
-          "template": "Common/公告弹窗.png",
-          "green_mask": true,
-          "threshold": [0.95]
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "next": ["FC_IsAnnouncementPopup", "FC_DetectWhereAmI"],
-      "post_wait_freezes": {
-        "time": 200
+    "next": ["FC_DetectWhereAmI"]
+  },
+  "FC_DetectWhereAmI": {
+    "pre_delay": 0,
+    "timeout": 120000,
+    "next": [
+      "FC_IsMenuDirectory",
+      "FC_IsFormationOverview",
+      "FC_CheckHomeBrightness",
+      "FC_OpenFormation",
+      "FC_LeaveTroopRecord",
+      "FC_IsAnnouncementPopup",
+      "FC_IsTrainingLetter",
+      "FC_IsLoginReward",
+      "FC_IsGameIcon",
+      "FC_IsLoginButton",
+      "FC_IsGameUpdatePopup",
+      "FC_IsInGameUpdatePopup",
+      "FC_IsInternalReport",
+      "FC_IsConnectionInterrupted",
+      "FC_HasExpeditionReturn_Exp",
+      "FC_HasExpeditionReturn_Title",
+      "FC_IsSwordDropColor",
+      "FC_FallbackWait"
+    ],
+    "on_error": ["FC_RestartGame"]
+  },
+  "FC_LeaveTroopRecord": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [577, 8, 130, 35],
+        "template": "Common/部队记录页面.png",
+        "green_mask": true,
+        "threshold": [0.95]
       }
     },
-    "FC_IsTrainingLetter": {
-      "recognition": {
-        "type": "TemplateMatch",
-        "param": {
-          "roi": [1037, 438, 206, 76],
-          "template": "Common/修行书信.png",
-          "green_mask": true,
-          "threshold": [0.95]
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "next": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_IsLoginReward": {
-      "recognition": {
-        "type": "TemplateMatch",
-        "param": {
-          "roi": [816, 577, 182, 59],
-          "template": "Common/登录奖励.png",
-          "green_mask": true,
-          "threshold": [0.98]
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [240, 104, 803, 561]
-      },
-      "next": ["FC_LoginRewardClick2"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_LoginRewardClick2": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [1092, 318, 1, 1]
-        }
-      },
-      "next": ["FC_LoginRewardClick3"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_LoginRewardClick3": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [1092, 318, 1, 1]
-        }
-      },
-      "timeout": 3000,
-      "next": ["FC_IsLoginReward"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_IsGameIcon": {
-      "recognition": {
-        "type": "TemplateMatch",
-        "param": {
-          "roi": [0, 0, 1600, 900],
-          "template": "Common/游戏图标.png",
-          "green_mask": true,
-          "threshold": [0.8]
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "next": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_IsLoginButton": {
-      "recognition": {
-        "type": "TemplateMatch",
-        "param": {
-          "roi": [665, 529, 124, 78],
-          "template": "Common/登录.png",
-          "green_mask": true,
-          "threshold": [0.98]
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "next": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_IsGameUpdatePopup": {
-      "recognition": {
-        "type": "TemplateMatch",
-        "param": {
-          "roi": [443, 431, 120, 46],
-          "template": "Common/游戏更新.png",
-          "green_mask": true,
-          "threshold": [0.98]
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "next": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_IsInGameUpdatePopup": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [498, 291, 77, 50],
-          "expected": "更新"
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [578, 440, 130, 55]
-        }
-      },
-      "next": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_IsInternalReport": {
-      "recognition": {
-        "type": "TemplateMatch",
-        "param": {
-          "roi": [569, 322, 138, 31],
-          "template": "Common/内番报告.png",
-          "green_mask": true,
-          "threshold": [0.98]
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "next": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_IsConnectionInterrupted": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [588, 274, 96, 25],
-          "expected": "连接中断"
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [738, 449, 100, 39]
-        }
-      },
-      "next": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_HasExpeditionReturn_Exp": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [388, 59, 54, 25],
-          "expected": "经验"
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [947, 533, 67, 75]
-        }
-      },
-      "next": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_HasExpeditionReturn_Title": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [558, 1, 162, 52],
-          "expected": "远征结果"
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [947, 533, 67, 75]
-        }
-      },
-      "next": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_IsSwordDropColor": {
-      "recognition": {
-        "type": "ColorMatch",
-        "param": {
-          "roi": [598, 543, 66, 1],
-          "upper": [96, 56, 10],
-          "lower": [88, 48, 2]
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [1067, 558, 120, 79]
-        }
-      },
-      "next": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_FallbackWait": {
-      "next": ["FC_DetectWhereAmI"]
-    },
-    "FC_RestartGame": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "RestartGameAction"
-      },
-      "next": ["FC_DetectWhereAmI"]
-    },
-    "FC_CheckHomeBrightness": {
-      "recognition": {
-        "type": "ColorMatch",
-        "param": {
-          "roi": [66, 58, 11, 13],
-          "upper": [40, 155, 30],
-          "lower": [23, 95, 15]
-        }
-      },
-      "next": ["FC_IsHome", "FC_DetectWhereAmI"]
-    },
-    "FC_IsHome": {
-      "recognition": {
-        "type": "TemplateMatch",
-        "param": {
-          "roi": [8, 1, 71, 107],
-          "template": "Common/本丸.png",
-          "green_mask": true,
-          "threshold": [0.98]
-        }
-      },
-      "next": ["FC_OpenFormation"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_OpenFormation": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [1192, 497, 63, 29],
-          "expected": "编队"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "next": ["FC_DetectWhereAmI"],
-      "post_wait_freezes": {
-        "time": 200
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [63, 28, 17, 17]
       }
     },
-    "FC_IsMenuDirectory": {
-      "recognition": {
-        "type": "TemplateMatch",
-        "param": {
-          "roi": [581, 28, 112, 57],
-          "template": "Common/菜单目录.png",
-          "green_mask": true,
-          "threshold": [0.98]
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [1108, 467, 68, 81]
-        }
-      },
-      "next": ["FC_IsFormationOverview", "FC_DetectWhereAmI"],
-      "post_wait_freezes": {
-        "time": 200
+    "next": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_IsAnnouncementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1056, 463, 63, 193],
+        "template": "Common/公告弹窗.png",
+        "green_mask": true,
+        "threshold": [0.95]
       }
     },
-    "FC_IsFormationOverview": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [567, 7, 146, 41],
-          "expected": "部队编成"
-        }
-      },
-      "next": ["FC_ClickTeam"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ClickTeam": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [154, 93, 1, 1]
-        }
-      },
-      "post_wait_freezes": {
-        "time": 100,
-        "target": [82, 61, 629, 56]
-      },
-      "next": ["FC_VerifySelectedTeam1", "FC_VerifySelectedTeam2", "FC_ClickTeam"]
-    },
-    "FC_VerifySelectedTeam1": {
-      "recognition": {
-        "type": "ColorMatch",
-        "param": {
-          "roi": [172, 81, 17, 9],
-          "upper": [192, 192, 192],
-          "lower": [186, 186, 186]
-        }
-      },
-      "next": ["FC_IsTeamEmpty", "FC_DissolveTeam"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_VerifySelectedTeam2": {
-      "recognition": {
-        "type": "ColorMatch",
-        "param": {
-          "roi": [172, 81, 17, 9],
-          "upper": [97, 97, 97],
-          "lower": [91, 91, 91],
-          "count": 1
-        }
-      },
-      "next": ["FC_IsTeamEmpty", "FC_DissolveTeam"],
-      "on_error": ["FC_ClickTeam"]
-    },
-    "FC_IsTeamEmpty": {
-      "recognition": {
-        "type": "ColorMatch",
-        "param": {
-          "roi": [44, 126, 19, 9],
-          "lower": [218, 217, 211],
-          "upper": [224, 223, 217],
-          "count": 1
-        }
-      },
-      "next": ["FC_ConfigureSwordSlot1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_RemoveEquip": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [1145, 297, 117, 36],
-          "expected": "装备解除"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [1145, 297, 117, 36]
-      },
-      "next": ["FC_IsEquipRemovePanel", "FC_RemoveEquip"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsEquipRemovePanel": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [579, 72, 118, 35],
-          "expected": "装备解除"
-        }
-      },
-      "next": ["FC_ClickEquipCond1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ClickEquipCond1": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [348, 264, 56, 31]
-        }
-      },
-      "next": ["FC_ClickEquipCond2"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickEquipCond2": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [525, 268, 56, 31]
-        }
-      },
-      "next": ["FC_ClickEquipCond3"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickEquipCond3": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationEquipTeamClickAction",
-        "custom_action_param": {
-          "team": 1
-        }
-      },
-      "next": ["FC_ConfirmEquipRemove"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ConfirmEquipRemove": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [602, 582, 77, 43],
-          "expected": "确定"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [602, 582, 77, 43]
-      },
-      "next": ["FC_DissolveTeam"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_DissolveTeam": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [1137, 214, 126, 40],
-          "expected": "部队解散"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [331, 147, 616, 426]
-      },
-      "next": ["FC_ConfirmDissolveTeam", "FC_DissolveTeam"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ConfirmDissolveTeam": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [486, 312, 146, 45],
-          "expected": "确认解散"
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [728, 450, 109, 36]
-        }
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [331, 147, 616, 426]
-      },
-      "next": ["FC_ConfigureSwordSlot1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ConfigureSwordSlot1": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [567, 7, 146, 41],
-          "expected": "部队编成"
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [1021, 135, 32, 65]
-        }
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [496, 8, 288, 108]
-      },
-      "next": ["FC_IsSwordSelect1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsSwordSelect1": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [538, 9, 203, 38],
-          "expected": "刀剑男士选择"
-        }
-      },
-      "next": ["FC_IsAscending1", "FC_IsDescending1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsAscending1": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [939, 82, 51, 27],
-          "expected": "升"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [939, 82, 51, 27]
-      },
-      "next": ["FC_IsSwordSelect1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsDescending1": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [939, 82, 51, 27],
-          "expected": "降"
-        }
-      },
-      "next": ["FC_IsFilter1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsFilter1": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [808, 82, 106, 27],
-          "expected": "筛选"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [808, 82, 106, 27]
-      },
-      "next": ["FC_ConfirmFilter1", "FC_IsFilter1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ConfirmFilter1": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [496, 66, 77, 37],
-          "expected": "筛选"
-        }
-      },
-      "next": ["FC_ClickFilterCond1_1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ClickFilterCond1_1": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [748, 136, 102, 31]
-        }
-      },
-      "next": ["FC_ClickFilterCond1_2"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickFilterCond1_2": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [959, 137, 106, 30]
-        }
-      },
-      "next": ["FC_ClickFilterCond1_3"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickFilterCond1_3": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationFilterClickAction",
-        "custom_action_param": {
-          "slot": 1
-        }
-      },
-      "next": ["FC_ConfirmFilterApply1"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ConfirmFilterApply1": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [583, 604, 119, 42],
-          "expected": "确"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [593, 133, 500, 557]
-      },
-      "next": ["FC_FindSword1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ConfigureSwordSlot2": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [567, 7, 146, 41],
-          "expected": "部队编成"
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [1021, 230, 32, 65]
-        }
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [496, 8, 288, 108]
-      },
-      "next": ["FC_IsSwordSelect2"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsSwordSelect2": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [538, 9, 203, 38],
-          "expected": "刀剑男士选择"
-        }
-      },
-      "next": ["FC_IsAscending2", "FC_IsDescending2"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsAscending2": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [939, 82, 51, 27],
-          "expected": "升"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [939, 82, 51, 27]
-      },
-      "next": ["FC_IsSwordSelect2"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsDescending2": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [939, 82, 51, 27],
-          "expected": "降"
-        }
-      },
-      "next": ["FC_IsFilter2"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsFilter2": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [808, 82, 106, 27],
-          "expected": "筛选"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [808, 82, 106, 27]
-      },
-      "next": ["FC_ConfirmFilter2", "FC_IsFilter2"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ConfirmFilter2": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [496, 66, 77, 37],
-          "expected": "筛选"
-        }
-      },
-      "next": ["FC_ClickFilterCond2_1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ClickFilterCond2_1": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [748, 136, 102, 31]
-        }
-      },
-      "next": ["FC_ClickFilterCond2_2"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickFilterCond2_2": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [959, 137, 106, 30]
-        }
-      },
-      "next": ["FC_ClickFilterCond2_3"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickFilterCond2_3": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationFilterClickAction",
-        "custom_action_param": {
-          "slot": 2
-        }
-      },
-      "next": ["FC_ConfirmFilterApply2"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ConfirmFilterApply2": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [583, 604, 119, 42],
-          "expected": "确"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [593, 133, 500, 557]
-      },
-      "next": ["FC_FindSword2"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ConfigureSwordSlot3": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [567, 7, 146, 41],
-          "expected": "部队编成"
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [1021, 323, 31, 65]
-        }
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [496, 8, 288, 108]
-      },
-      "next": ["FC_IsSwordSelect3"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsSwordSelect3": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [538, 9, 203, 38],
-          "expected": "刀剑男士选择"
-        }
-      },
-      "next": ["FC_IsAscending3", "FC_IsDescending3"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsAscending3": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [939, 82, 51, 27],
-          "expected": "升"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [939, 82, 51, 27]
-      },
-      "next": ["FC_IsSwordSelect3"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsDescending3": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [939, 82, 51, 27],
-          "expected": "降"
-        }
-      },
-      "next": ["FC_IsFilter3"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsFilter3": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [808, 82, 106, 27],
-          "expected": "筛选"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [808, 82, 106, 27]
-      },
-      "next": ["FC_ConfirmFilter3", "FC_IsFilter3"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ConfirmFilter3": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [496, 66, 77, 37],
-          "expected": "筛选"
-        }
-      },
-      "next": ["FC_ClickFilterCond3_1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ClickFilterCond3_1": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [748, 136, 102, 31]
-        }
-      },
-      "next": ["FC_ClickFilterCond3_2"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickFilterCond3_2": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [959, 137, 106, 30]
-        }
-      },
-      "next": ["FC_ClickFilterCond3_3"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickFilterCond3_3": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationFilterClickAction",
-        "custom_action_param": {
-          "slot": 3
-        }
-      },
-      "next": ["FC_ConfirmFilterApply3"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ConfirmFilterApply3": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [583, 604, 119, 42],
-          "expected": "确"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [593, 133, 500, 557]
-      },
-      "next": ["FC_FindSword3"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ConfigureSwordSlot4": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [567, 7, 146, 41],
-          "expected": "部队编成"
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [1021, 417, 31, 66]
-        }
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [496, 8, 288, 108]
-      },
-      "next": ["FC_IsSwordSelect4"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsSwordSelect4": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [538, 9, 203, 38],
-          "expected": "刀剑男士选择"
-        }
-      },
-      "next": ["FC_IsAscending4", "FC_IsDescending4"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsAscending4": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [939, 82, 51, 27],
-          "expected": "升"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [939, 82, 51, 27]
-      },
-      "next": ["FC_IsSwordSelect4"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsDescending4": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [939, 82, 51, 27],
-          "expected": "降"
-        }
-      },
-      "next": ["FC_IsFilter4"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsFilter4": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [808, 82, 106, 27],
-          "expected": "筛选"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [808, 82, 106, 27]
-      },
-      "next": ["FC_ConfirmFilter4", "FC_IsFilter4"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ConfirmFilter4": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [496, 66, 77, 37],
-          "expected": "筛选"
-        }
-      },
-      "next": ["FC_ClickFilterCond4_1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ClickFilterCond4_1": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [748, 136, 102, 31]
-        }
-      },
-      "next": ["FC_ClickFilterCond4_2"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickFilterCond4_2": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [959, 137, 106, 30]
-        }
-      },
-      "next": ["FC_ClickFilterCond4_3"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickFilterCond4_3": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationFilterClickAction",
-        "custom_action_param": {
-          "slot": 4
-        }
-      },
-      "next": ["FC_ConfirmFilterApply4"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ConfirmFilterApply4": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [583, 604, 119, 42],
-          "expected": "确"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [593, 133, 500, 557]
-      },
-      "next": ["FC_FindSword4"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ConfigureSwordSlot5": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [567, 7, 146, 41],
-          "expected": "部队编成"
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [1020, 514, 32, 65]
-        }
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [496, 8, 288, 108]
-      },
-      "next": ["FC_IsSwordSelect5"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsSwordSelect5": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [538, 9, 203, 38],
-          "expected": "刀剑男士选择"
-        }
-      },
-      "next": ["FC_IsAscending5", "FC_IsDescending5"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsAscending5": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [939, 82, 51, 27],
-          "expected": "升"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [939, 82, 51, 27]
-      },
-      "next": ["FC_IsSwordSelect5"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsDescending5": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [939, 82, 51, 27],
-          "expected": "降"
-        }
-      },
-      "next": ["FC_IsFilter5"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsFilter5": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [808, 82, 106, 27],
-          "expected": "筛选"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [808, 82, 106, 27]
-      },
-      "next": ["FC_ConfirmFilter5", "FC_IsFilter5"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ConfirmFilter5": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [496, 66, 77, 37],
-          "expected": "筛选"
-        }
-      },
-      "next": ["FC_ClickFilterCond5_1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ClickFilterCond5_1": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [748, 136, 102, 31]
-        }
-      },
-      "next": ["FC_ClickFilterCond5_2"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickFilterCond5_2": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [959, 137, 106, 30]
-        }
-      },
-      "next": ["FC_ClickFilterCond5_3"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickFilterCond5_3": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationFilterClickAction",
-        "custom_action_param": {
-          "slot": 5
-        }
-      },
-      "next": ["FC_ConfirmFilterApply5"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ConfirmFilterApply5": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [583, 604, 119, 42],
-          "expected": "确"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [593, 133, 500, 557]
-      },
-      "next": ["FC_FindSword5"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ConfigureSwordSlot6": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [567, 7, 146, 41],
-          "expected": "部队编成"
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [1022, 608, 32, 66]
-        }
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [496, 8, 288, 108]
-      },
-      "next": ["FC_IsSwordSelect6"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsSwordSelect6": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [538, 9, 203, 38],
-          "expected": "刀剑男士选择"
-        }
-      },
-      "next": ["FC_IsAscending6", "FC_IsDescending6"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsAscending6": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [939, 82, 51, 27],
-          "expected": "升"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [939, 82, 51, 27]
-      },
-      "next": ["FC_IsSwordSelect6"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsDescending6": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [939, 82, 51, 27],
-          "expected": "降"
-        }
-      },
-      "next": ["FC_IsFilter6"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_IsFilter6": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [808, 82, 106, 27],
-          "expected": "筛选"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [808, 82, 106, 27]
-      },
-      "next": ["FC_ConfirmFilter6", "FC_IsFilter6"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ConfirmFilter6": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [496, 66, 77, 37],
-          "expected": "筛选"
-        }
-      },
-      "next": ["FC_ClickFilterCond6_1"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_ClickFilterCond6_1": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [748, 136, 102, 31]
-        }
-      },
-      "next": ["FC_ClickFilterCond6_2"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickFilterCond6_2": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [959, 137, 106, 30]
-        }
-      },
-      "next": ["FC_ClickFilterCond6_3"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ClickFilterCond6_3": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationFilterClickAction",
-        "custom_action_param": {
-          "slot": 6
-        }
-      },
-      "next": ["FC_ConfirmFilterApply6"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
-    },
-    "FC_ConfirmFilterApply6": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [583, 604, 119, 42],
-          "expected": "确"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [593, 133, 500, 557]
-      },
-      "next": ["FC_FindSword6"],
-      "on_error": ["FC_DetectWhereAmI"]
-    },
-    "FC_FindSword1": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationFindSwordAction",
-        "custom_action_param": {
-          "slot": 1
-        }
-      },
-      "next": ["FC_ConfigureSwordSlot2"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 800
-    },
-    "FC_FindSword2": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationFindSwordAction",
-        "custom_action_param": {
-          "slot": 2
-        }
-      },
-      "next": ["FC_ConfigureSwordSlot3"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 800
-    },
-    "FC_FindSword3": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationFindSwordAction",
-        "custom_action_param": {
-          "slot": 3
-        }
-      },
-      "next": ["FC_ConfigureSwordSlot4"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 800
-    },
-    "FC_FindSword4": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationFindSwordAction",
-        "custom_action_param": {
-          "slot": 4
-        }
-      },
-      "next": ["FC_ConfigureSwordSlot5"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 800
-    },
-    "FC_FindSword5": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationFindSwordAction",
-        "custom_action_param": {
-          "slot": 5
-        }
-      },
-      "next": ["FC_ConfigureSwordSlot6"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 800
-    },
-    "FC_FindSword6": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationFindSwordAction",
-        "custom_action_param": {
-          "slot": 6
-        }
-      },
-      "next": ["FC_OpenEquip"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 800
-    },
-    "FC_OpenEquip": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [567, 7, 146, 41],
-          "expected": "部队编成"
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [946, 132, 34, 65]
-        }
-      },
-      "post_wait_freezes": {
-        "time": 200,
+    "action": {"type": "Click"},
+    "next": ["FC_IsAnnouncementPopup", "FC_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 200}
+  },
+  "FC_IsTrainingLetter": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1037, 438, 206, 76],
+        "template": "Common/修行书信.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_IsLoginReward": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [816, 577, 182, 59],
+        "template": "Common/登录奖励.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [240, 104, 803, 561]
+    },
+    "next": ["FC_LoginRewardClick2"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_LoginRewardClick2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
+    "next": ["FC_LoginRewardClick3"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_LoginRewardClick3": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
+    "timeout": 3000,
+    "next": ["FC_IsLoginReward"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_IsGameIcon": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [0, 0, 1600, 900],
+        "template": "Common/游戏图标.png",
+        "green_mask": true,
+        "threshold": [0.8]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_IsLoginButton": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [665, 529, 124, 78],
+        "template": "Common/登录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_IsGameUpdatePopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [443, 431, 120, 46],
+        "template": "Common/游戏更新.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_IsInGameUpdatePopup": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [498, 291, 77, 50],
+        "expected": "更新"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [578, 440, 130, 55]
+      }
+    },
+    "next": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_IsInternalReport": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [569, 322, 138, 31],
+        "template": "Common/内番报告.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_IsConnectionInterrupted": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [588, 274, 96, 25],
+        "expected": "连接中断"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [738, 449, 100, 39]
+      }
+    },
+    "next": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_HasExpeditionReturn_Exp": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [388, 59, 54, 25],
+        "expected": "经验"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [947, 533, 67, 75]
+      }
+    },
+    "next": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_HasExpeditionReturn_Title": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [558, 1, 162, 52],
+        "expected": "远征结果"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [947, 533, 67, 75]
+      }
+    },
+    "next": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_IsSwordDropColor": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [598, 543, 66, 1],
+        "upper": [96, 56, 10],
+        "lower": [88, 48, 2]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1067, 558, 120, 79]
+      }
+    },
+    "next": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_FallbackWait": {
+    "next": ["FC_DetectWhereAmI"]
+  },
+  "FC_RestartGame": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["FC_DetectWhereAmI"]
+  },
+  "FC_CheckHomeBrightness": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [66, 58, 11, 13],
+        "upper": [40, 155, 30],
+        "lower": [23, 95, 15]
+      }
+    },
+    "next": ["FC_IsHome", "FC_DetectWhereAmI"]
+  },
+  "FC_IsHome": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [8, 1, 71, 107],
+        "template": "Common/本丸.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["FC_OpenFormation"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_OpenFormation": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1192, 497, 63, 29],
+        "expected": "编队"
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["FC_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 200}
+  },
+  "FC_IsMenuDirectory": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [581, 28, 112, 57],
+        "template": "Common/菜单目录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1108, 467, 68, 81]
+      }
+    },
+    "next": ["FC_IsFormationOverview", "FC_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 200}
+  },
+  "FC_IsFormationOverview": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [567, 7, 146, 41],
+        "expected": "部队编成"
+      }
+    },
+    "next": ["FC_ClickTeam"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ClickTeam": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [154, 93, 1, 1]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [82, 61, 629, 56]
+    },
+    "next": ["FC_VerifySelectedTeam1", "FC_VerifySelectedTeam2", "FC_ClickTeam"]
+  },
+  "FC_VerifySelectedTeam1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [172, 81, 17, 9],
+        "upper": [192, 192, 192],
+        "lower": [186, 186, 186]
+      }
+    },
+    "next": ["FC_IsTeamEmpty", "FC_DissolveTeam"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_VerifySelectedTeam2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [172, 81, 17, 9],
+        "upper": [97, 97, 97],
+        "lower": [91, 91, 91],
+        "count": 1
+      }
+    },
+    "next": ["FC_IsTeamEmpty", "FC_DissolveTeam"],
+    "on_error": ["FC_ClickTeam"]
+  },
+  "FC_IsTeamEmpty": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [44, 126, 19, 9],
+        "lower": [218, 217, 211],
+        "upper": [224, 223, 217],
+        "count": 1
+      }
+    },
+    "next": ["FC_ConfigureSwordSlot1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_RemoveEquip": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1145, 297, 117, 36],
+        "expected": "装备解除"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [1145, 297, 117, 36]
+    },
+    "next": ["FC_IsEquipRemovePanel", "FC_RemoveEquip"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsEquipRemovePanel": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [579, 72, 118, 35],
+        "expected": "装备解除"
+      }
+    },
+    "next": ["FC_ClickEquipCond1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ClickEquipCond1": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [348, 264, 56, 31]
+      }
+    },
+    "next": ["FC_ClickEquipCond2"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickEquipCond2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [525, 268, 56, 31]
+      }
+    },
+    "next": ["FC_ClickEquipCond3"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickEquipCond3": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationEquipTeamClickAction",
+      "custom_action_param": {"team": 1}
+    },
+    "next": ["FC_ConfirmEquipRemove"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ConfirmEquipRemove": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [602, 582, 77, 43],
+        "expected": "确定"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [602, 582, 77, 43]
+    },
+    "next": ["FC_DissolveTeam"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_DissolveTeam": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1137, 214, 126, 40],
+        "expected": "部队解散"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [331, 147, 616, 426]
+    },
+    "next": ["FC_ConfirmDissolveTeam", "FC_DissolveTeam"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ConfirmDissolveTeam": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [486, 312, 146, 45],
+        "expected": "确认解散"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [728, 450, 109, 36]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [331, 147, 616, 426]
+    },
+    "next": ["FC_ConfigureSwordSlot1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ConfigureSwordSlot1": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [567, 7, 146, 41],
+        "expected": "部队编成"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1021, 135, 32, 65]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [496, 8, 288, 108]
+    },
+    "next": ["FC_IsSwordSelect1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsSwordSelect1": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [538, 9, 203, 38],
+        "expected": "刀剑男士选择"
+      }
+    },
+    "next": ["FC_IsAscending1", "FC_IsDescending1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsAscending1": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [939, 82, 51, 27],
+        "expected": "升"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [939, 82, 51, 27]
+    },
+    "next": ["FC_IsSwordSelect1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsDescending1": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [939, 82, 51, 27],
+        "expected": "降"
+      }
+    },
+    "next": ["FC_IsFilter1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsFilter1": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [808, 82, 106, 27],
+        "expected": "筛选"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [808, 82, 106, 27]
+    },
+    "next": ["FC_ConfirmFilter1", "FC_IsFilter1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ConfirmFilter1": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [496, 66, 77, 37],
+        "expected": "筛选"
+      }
+    },
+    "next": ["FC_ClickFilterCond1_1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ClickFilterCond1_1": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [748, 136, 102, 31]
+      }
+    },
+    "next": ["FC_ClickFilterCond1_2"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickFilterCond1_2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [959, 137, 106, 30]
+      }
+    },
+    "next": ["FC_ClickFilterCond1_3"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickFilterCond1_3": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationFilterClickAction",
+      "custom_action_param": {"slot": 1}
+    },
+    "next": ["FC_ConfirmFilterApply1"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ConfirmFilterApply1": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [583, 604, 119, 42],
+        "expected": "确"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [593, 133, 500, 557]
+    },
+    "next": ["FC_FindSword1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ConfigureSwordSlot2": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [567, 7, 146, 41],
+        "expected": "部队编成"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1021, 230, 32, 65]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [496, 8, 288, 108]
+    },
+    "next": ["FC_IsSwordSelect2"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsSwordSelect2": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [538, 9, 203, 38],
+        "expected": "刀剑男士选择"
+      }
+    },
+    "next": ["FC_IsAscending2", "FC_IsDescending2"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsAscending2": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [939, 82, 51, 27],
+        "expected": "升"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [939, 82, 51, 27]
+    },
+    "next": ["FC_IsSwordSelect2"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsDescending2": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [939, 82, 51, 27],
+        "expected": "降"
+      }
+    },
+    "next": ["FC_IsFilter2"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsFilter2": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [808, 82, 106, 27],
+        "expected": "筛选"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [808, 82, 106, 27]
+    },
+    "next": ["FC_ConfirmFilter2", "FC_IsFilter2"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ConfirmFilter2": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [496, 66, 77, 37],
+        "expected": "筛选"
+      }
+    },
+    "next": ["FC_ClickFilterCond2_1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ClickFilterCond2_1": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [748, 136, 102, 31]
+      }
+    },
+    "next": ["FC_ClickFilterCond2_2"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickFilterCond2_2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [959, 137, 106, 30]
+      }
+    },
+    "next": ["FC_ClickFilterCond2_3"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickFilterCond2_3": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationFilterClickAction",
+      "custom_action_param": {"slot": 2}
+    },
+    "next": ["FC_ConfirmFilterApply2"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ConfirmFilterApply2": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [583, 604, 119, 42],
+        "expected": "确"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [593, 133, 500, 557]
+    },
+    "next": ["FC_FindSword2"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ConfigureSwordSlot3": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [567, 7, 146, 41],
+        "expected": "部队编成"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1021, 323, 31, 65]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [496, 8, 288, 108]
+    },
+    "next": ["FC_IsSwordSelect3"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsSwordSelect3": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [538, 9, 203, 38],
+        "expected": "刀剑男士选择"
+      }
+    },
+    "next": ["FC_IsAscending3", "FC_IsDescending3"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsAscending3": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [939, 82, 51, 27],
+        "expected": "升"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [939, 82, 51, 27]
+    },
+    "next": ["FC_IsSwordSelect3"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsDescending3": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [939, 82, 51, 27],
+        "expected": "降"
+      }
+    },
+    "next": ["FC_IsFilter3"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsFilter3": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [808, 82, 106, 27],
+        "expected": "筛选"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [808, 82, 106, 27]
+    },
+    "next": ["FC_ConfirmFilter3", "FC_IsFilter3"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ConfirmFilter3": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [496, 66, 77, 37],
+        "expected": "筛选"
+      }
+    },
+    "next": ["FC_ClickFilterCond3_1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ClickFilterCond3_1": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [748, 136, 102, 31]
+      }
+    },
+    "next": ["FC_ClickFilterCond3_2"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickFilterCond3_2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [959, 137, 106, 30]
+      }
+    },
+    "next": ["FC_ClickFilterCond3_3"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickFilterCond3_3": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationFilterClickAction",
+      "custom_action_param": {"slot": 3}
+    },
+    "next": ["FC_ConfirmFilterApply3"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ConfirmFilterApply3": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [583, 604, 119, 42],
+        "expected": "确"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [593, 133, 500, 557]
+    },
+    "next": ["FC_FindSword3"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ConfigureSwordSlot4": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [567, 7, 146, 41],
+        "expected": "部队编成"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1021, 417, 31, 66]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [496, 8, 288, 108]
+    },
+    "next": ["FC_IsSwordSelect4"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsSwordSelect4": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [538, 9, 203, 38],
+        "expected": "刀剑男士选择"
+      }
+    },
+    "next": ["FC_IsAscending4", "FC_IsDescending4"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsAscending4": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [939, 82, 51, 27],
+        "expected": "升"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [939, 82, 51, 27]
+    },
+    "next": ["FC_IsSwordSelect4"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsDescending4": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [939, 82, 51, 27],
+        "expected": "降"
+      }
+    },
+    "next": ["FC_IsFilter4"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsFilter4": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [808, 82, 106, 27],
+        "expected": "筛选"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [808, 82, 106, 27]
+    },
+    "next": ["FC_ConfirmFilter4", "FC_IsFilter4"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ConfirmFilter4": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [496, 66, 77, 37],
+        "expected": "筛选"
+      }
+    },
+    "next": ["FC_ClickFilterCond4_1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ClickFilterCond4_1": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [748, 136, 102, 31]
+      }
+    },
+    "next": ["FC_ClickFilterCond4_2"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickFilterCond4_2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [959, 137, 106, 30]
+      }
+    },
+    "next": ["FC_ClickFilterCond4_3"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickFilterCond4_3": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationFilterClickAction",
+      "custom_action_param": {"slot": 4}
+    },
+    "next": ["FC_ConfirmFilterApply4"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ConfirmFilterApply4": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [583, 604, 119, 42],
+        "expected": "确"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [593, 133, 500, 557]
+    },
+    "next": ["FC_FindSword4"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ConfigureSwordSlot5": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [567, 7, 146, 41],
+        "expected": "部队编成"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1020, 514, 32, 65]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [496, 8, 288, 108]
+    },
+    "next": ["FC_IsSwordSelect5"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsSwordSelect5": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [538, 9, 203, 38],
+        "expected": "刀剑男士选择"
+      }
+    },
+    "next": ["FC_IsAscending5", "FC_IsDescending5"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsAscending5": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [939, 82, 51, 27],
+        "expected": "升"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [939, 82, 51, 27]
+    },
+    "next": ["FC_IsSwordSelect5"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsDescending5": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [939, 82, 51, 27],
+        "expected": "降"
+      }
+    },
+    "next": ["FC_IsFilter5"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsFilter5": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [808, 82, 106, 27],
+        "expected": "筛选"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [808, 82, 106, 27]
+    },
+    "next": ["FC_ConfirmFilter5", "FC_IsFilter5"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ConfirmFilter5": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [496, 66, 77, 37],
+        "expected": "筛选"
+      }
+    },
+    "next": ["FC_ClickFilterCond5_1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ClickFilterCond5_1": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [748, 136, 102, 31]
+      }
+    },
+    "next": ["FC_ClickFilterCond5_2"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickFilterCond5_2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [959, 137, 106, 30]
+      }
+    },
+    "next": ["FC_ClickFilterCond5_3"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickFilterCond5_3": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationFilterClickAction",
+      "custom_action_param": {"slot": 5}
+    },
+    "next": ["FC_ConfirmFilterApply5"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ConfirmFilterApply5": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [583, 604, 119, 42],
+        "expected": "确"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [593, 133, 500, 557]
+    },
+    "next": ["FC_FindSword5"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ConfigureSwordSlot6": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [567, 7, 146, 41],
+        "expected": "部队编成"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1022, 608, 32, 66]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [496, 8, 288, 108]
+    },
+    "next": ["FC_IsSwordSelect6"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsSwordSelect6": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [538, 9, 203, 38],
+        "expected": "刀剑男士选择"
+      }
+    },
+    "next": ["FC_IsAscending6", "FC_IsDescending6"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsAscending6": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [939, 82, 51, 27],
+        "expected": "升"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [939, 82, 51, 27]
+    },
+    "next": ["FC_IsSwordSelect6"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsDescending6": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [939, 82, 51, 27],
+        "expected": "降"
+      }
+    },
+    "next": ["FC_IsFilter6"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsFilter6": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [808, 82, 106, 27],
+        "expected": "筛选"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [808, 82, 106, 27]
+    },
+    "next": ["FC_ConfirmFilter6", "FC_IsFilter6"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ConfirmFilter6": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [496, 66, 77, 37],
+        "expected": "筛选"
+      }
+    },
+    "next": ["FC_ClickFilterCond6_1"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ClickFilterCond6_1": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [748, 136, 102, 31]
+      }
+    },
+    "next": ["FC_ClickFilterCond6_2"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickFilterCond6_2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [959, 137, 106, 30]
+      }
+    },
+    "next": ["FC_ClickFilterCond6_3"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickFilterCond6_3": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationFilterClickAction",
+      "custom_action_param": {"slot": 6}
+    },
+    "next": ["FC_ConfirmFilterApply6"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ConfirmFilterApply6": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [583, 604, 119, 42],
+        "expected": "确"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [593, 133, 500, 557]
+    },
+    "next": ["FC_FindSword6"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_FindSword1": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationFindSwordAction",
+      "custom_action_param": {"slot": 1}
+    },
+    "next": ["FC_ConfigureSwordSlot2"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 800
+  },
+  "FC_FindSword2": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationFindSwordAction",
+      "custom_action_param": {"slot": 2}
+    },
+    "next": ["FC_ConfigureSwordSlot3"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 800
+  },
+  "FC_FindSword3": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationFindSwordAction",
+      "custom_action_param": {"slot": 3}
+    },
+    "next": ["FC_ConfigureSwordSlot4"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 800
+  },
+  "FC_FindSword4": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationFindSwordAction",
+      "custom_action_param": {"slot": 4}
+    },
+    "next": ["FC_ConfigureSwordSlot5"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 800
+  },
+  "FC_FindSword5": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationFindSwordAction",
+      "custom_action_param": {"slot": 5}
+    },
+    "next": ["FC_ConfigureSwordSlot6"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 800
+  },
+  "FC_FindSword6": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationFindSwordAction",
+      "custom_action_param": {"slot": 6}
+    },
+    "next": ["FC_OpenEquip"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 800
+  },
+  "FC_OpenEquip": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [567, 7, 146, 41],
+        "expected": "部队编成"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [946, 132, 34, 65]
-      },
-      "next": ["FC_IsEquipEditPage"],
-      "on_error": ["FC_DetectWhereAmI"]
+      }
     },
-    "FC_IsEquipEditPage": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [568, 10, 143, 35],
-          "expected": "更换装备"
-        }
-      },
-      "next": ["FC_DetectCurrentSlot"],
-      "on_error": ["FC_DetectWhereAmI"]
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [946, 132, 34, 65]
     },
-    "FC_DetectCurrentSlot": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationEquipStateMachine"
-      },
-      "next": ["FC_BackFromEquip"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
+    "next": ["FC_IsEquipEditPage"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsEquipEditPage": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [568, 10, 143, 35],
+        "expected": "更换装备"
+      }
     },
-    "FC_BackFromEquip": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [137, 11, 31, 30]
-        }
-      },
-      "next": ["FC_IsBackToFormation", "FC_BackFromEquip"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
+    "next": ["FC_DetectCurrentSlot"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_DetectCurrentSlot": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationEquipStateMachine"
     },
-    "FC_IsBackToFormation": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [567, 7, 146, 41],
-          "expected": "部队编成"
-        }
-      },
-      "next": ["FC_ClickTroopRecord"],
-      "on_error": ["FC_DetectWhereAmI"]
+    "next": ["FC_BackFromEquip"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_BackFromEquip": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [137, 11, 31, 30]
+      }
     },
-    "FC_BackToHome": {
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [137, 11, 31, 30]
-        }
-      },
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
+    "next": ["FC_IsBackToFormation", "FC_BackFromEquip"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_IsBackToFormation": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [567, 7, 146, 41],
+        "expected": "部队编成"
+      }
     },
-    "FC_ClickTroopRecord": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [1143, 138, 114, 32],
-          "expected": "部队记录"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [1143, 138, 114, 32]
-      },
-      "next": ["FC_IsTroopRecordPage", "FC_ClickTroopRecord"],
-      "on_error": ["FC_DetectWhereAmI"]
+    "next": ["FC_ClickTroopRecord"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_BackToHome": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [137, 11, 31, 30]
+      }
     },
-    "FC_IsTroopRecordPage": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [565, 6, 155, 42],
-          "expected": "部队记录"
-        }
-      },
-      "next": ["FC_ClickRecordSlot"],
-      "on_error": ["FC_DetectWhereAmI"]
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickTroopRecord": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1143, 138, 114, 32],
+        "expected": "部队记录"
+      }
     },
-    "FC_ClickRecordSlot": {
-      "action": {
-        "type": "Custom",
-        "custom_action": "FormationRecordSlotClickAction",
-        "custom_action_param": {
-          "team": 1
-        }
-      },
-      "next": ["FC_ClickProceed"],
-      "on_error": ["FC_DetectWhereAmI"],
-      "post_delay": 500
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [1143, 138, 114, 32]
     },
-    "FC_ClickProceed": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [452, 56, 63, 29],
-          "expected": "进行"
-        }
-      },
-      "action": {
-        "type": "Click"
-      },
-      "post_wait_freezes": {
-        "time": 200,
-        "target": [452, 56, 63, 29]
-      },
-      "next": ["FC_IsRecordSaveConfirm", "FC_ClickProceed"],
-      "on_error": ["FC_DetectWhereAmI"]
+    "next": ["FC_IsTroopRecordPage", "FC_ClickTroopRecord"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsTroopRecordPage": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [565, 6, 155, 42],
+        "expected": "部队记录"
+      }
     },
-    "FC_IsRecordSaveConfirm": {
-      "recognition": {
-        "type": "OCR",
-        "param": {
-          "roi": [570, 142, 140, 44],
-          "expected": "部队记录"
-        }
-      },
-      "action": {
-        "type": "Click",
-        "param": {
-          "target": [739, 486, 93, 50]
-        }
-      },
-      "post_wait_freezes": {
-        "time": 200,
+    "next": ["FC_ClickRecordSlot"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_ClickRecordSlot": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "FormationRecordSlotClickAction",
+      "custom_action_param": {"team": 1}
+    },
+    "next": ["FC_ClickProceed"],
+    "on_error": ["FC_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "FC_ClickProceed": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [452, 56, 63, 29],
+        "expected": "进行"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [452, 56, 63, 29]
+    },
+    "next": ["FC_IsRecordSaveConfirm", "FC_ClickProceed"],
+    "on_error": ["FC_DetectWhereAmI"]
+  },
+  "FC_IsRecordSaveConfirm": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [570, 142, 140, 44],
+        "expected": "部队记录"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
         "target": [739, 486, 93, 50]
-      },
-      "next": ["FC_BackToHome"],
-      "on_error": ["FC_DetectWhereAmI"]
-    }
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [739, 486, 93, 50]
+    },
+    "next": ["FC_BackToHome"],
+    "on_error": ["FC_DetectWhereAmI"]
   }
+}

@@ -3,28 +3,59 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pages="clr-namespace:MFAAvalonia.ViewModels.Pages"
-             mc:Ignorable="d"
-             d:DesignWidth="1000"
-             d:DesignHeight="600"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
              x:DataType="pages:SwordBookViewModel"
              x:Class="MFAAvalonia.Views.Pages.SwordBookView">
-    <Design.DataContext>
-        <pages:SwordBookViewModel />
-    </Design.DataContext>
-
-    <Border Background="{DynamicResource SukiCardBackground}"
-            CornerRadius="10"
-            Padding="28"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top">
-        <StackPanel Spacing="8">
-            <TextBlock Text="{Binding EmptyTitle}"
-                       FontSize="18"
-                       FontWeight="SemiBold"
-                       Foreground="{DynamicResource SukiText}" />
-            <TextBlock Text="{Binding EmptyDescription}"
-                       FontSize="14"
-                       Foreground="{DynamicResource SukiText}" />
-        </StackPanel>
-    </Border>
+    <Design.DataContext><pages:SwordBookViewModel /></Design.DataContext>
+    <Grid RowDefinitions="Auto,Auto,*" RowSpacing="14">
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*" ColumnSpacing="16">
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="10">
+                <Button Command="{Binding AutoRecognizeCommand}" IsEnabled="{Binding IsIdle}"
+                        Background="{DynamicResource SukiPrimaryColor20}"
+                        Foreground="{DynamicResource SukiPrimaryColor}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="自动识别" />
+                        <ProgressBar Width="22" Height="4" IsIndeterminate="True" IsVisible="{Binding IsRecognizing}" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button Content="保存" Command="{Binding SaveCommand}" IsEnabled="{Binding IsIdle}" Background="#4C9F70" Foreground="White" />
+                <Button Content="撤销" Command="{Binding RevertCommand}" IsEnabled="{Binding IsIdle}" Background="#8A94A6" Foreground="White" />
+                <Button Content="清空" Command="{Binding ClearCommand}" IsEnabled="{Binding IsIdle}" Background="#C96B6B" Foreground="White" />
+            </StackPanel>
+            <TextBlock Grid.Column="1" Text="{Binding Instruction}" FontSize="12" VerticalAlignment="Center" TextWrapping="Wrap" Foreground="{DynamicResource SukiLowText}" />
+        </Grid>
+        <Border Grid.Row="1" Background="{DynamicResource SukiCardBackground}" CornerRadius="10" Padding="18,12" Margin="0,0,18,0">
+            <Grid ColumnDefinitions="70,100,200,80,*,*,*,*" RowDefinitions="Auto,Auto" ColumnSpacing="4">
+                <TextBlock Grid.RowSpan="2" Text="序号" VerticalAlignment="Center" FontWeight="SemiBold" />
+                <TextBlock Grid.Column="1" Grid.RowSpan="2" Text="刀种" VerticalAlignment="Center" FontWeight="SemiBold" />
+                <TextBlock Grid.Column="2" Grid.RowSpan="2" Text="刀名" VerticalAlignment="Center" FontWeight="SemiBold" />
+                <TextBlock Grid.Column="3" Grid.RowSpan="2" Text="已拥有" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" />
+                <TextBlock Grid.Column="4" Grid.ColumnSpan="4" Text="立绘" HorizontalAlignment="Center" FontWeight="SemiBold" />
+                <TextBlock Grid.Column="4" Grid.Row="1" Text="中伤" HorizontalAlignment="Center" />
+                <TextBlock Grid.Column="5" Grid.Row="1" Text="真剑" HorizontalAlignment="Center" />
+                <TextBlock Grid.Column="6" Grid.Row="1" Text="内番" HorizontalAlignment="Center" />
+                <TextBlock Grid.Column="7" Grid.Row="1" Text="轻装" HorizontalAlignment="Center" />
+            </Grid>
+        </Border>
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Entries}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="pages:SwordBookRowViewModel">
+                        <Border Background="{DynamicResource SukiCardBackground}" CornerRadius="8" Padding="18,10" Margin="0,0,0,6" HorizontalAlignment="Stretch">
+                            <Grid ColumnDefinitions="70,100,200,80,*,*,*,*" ColumnSpacing="4">
+                                <TextBlock Text="{Binding Number}" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="1" Text="{Binding Type}" VerticalAlignment="Center" FontWeight="Bold" />
+                                <TextBlock Grid.Column="2" Text="{Binding Name}" VerticalAlignment="Center" />
+                                <CheckBox Grid.Column="3" IsChecked="{Binding Owned}" HorizontalAlignment="Center" />
+                                <CheckBox Grid.Column="4" IsChecked="{Binding Wounded}" HorizontalAlignment="Center" />
+                                <CheckBox Grid.Column="5" IsChecked="{Binding TrueSword}" HorizontalAlignment="Center" />
+                                <CheckBox Grid.Column="6" IsChecked="{Binding InnerCare}" HorizontalAlignment="Center" />
+                                <CheckBox Grid.Column="7" IsChecked="{Binding Casual}" HorizontalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

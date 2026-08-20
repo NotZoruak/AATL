@@ -1,0 +1,9 @@
+{
+    "SwordBookScan": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "SwordBookScanAction"
+        },
+        "on_error": []
+    }
+}
