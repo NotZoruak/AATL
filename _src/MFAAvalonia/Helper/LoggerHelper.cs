@@ -50,7 +50,8 @@ public static class LoggerHelper
             .WriteTo.File(
                 Path.Combine(AppPaths.LogsDirectory, "log-.log"),
                 rollingInterval: RollingInterval.Day,
-                retainedFileCountLimit: 14,
+                retainedFileCountLimit: null,
+                retainedFileTimeLimit: TimeSpan.FromDays(30),
                 fileSizeLimitBytes: 10 * 1024 * 1024,
                 rollOnFileSizeLimit: true,
                 shared: true,
