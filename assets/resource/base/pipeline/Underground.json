@@ -12,6 +12,7 @@
       "U_HasExpeditionReturn_Exp",
       "U_HasExpeditionReturn_Title",
       "U_IsSwordDropColor",
+      "U_IsKobanChest",
       "U_IsResourcePoint",
       "U_IsSpecialDrop",
       "U_IsFormationSelect",
@@ -195,6 +196,25 @@
       "custom_action_param": {"task": "地下城", "roi": [52, 509, 282, 34], "click": [1067, 558, 120, 79]}
     },
     "next": ["U_DetectWhereAmI"]
+  },
+  "U_IsKobanChest": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [414, 285, 38, 37],
+        "template": "Activity/小判箱掉落.png",
+        "green_mask": true,
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[地下城] 小判箱掉落", "click": [403, 335, 68, 26]}
+    },
+    "wait_freezes": {"time": 200},
+    "next": ["U_DetectWhereAmI"],
+    "on_error": ["U_DetectWhereAmI"]
   },
   "U_IsSpecialDrop": {
     "recognition": {

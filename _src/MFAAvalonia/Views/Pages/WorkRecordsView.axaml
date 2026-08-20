@@ -1,0 +1,96 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:avaConverters="clr-namespace:Avalonia.Data.Converters;assembly=Avalonia.Base"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="clr-namespace:MFAAvalonia.Models"
+             xmlns:pages="clr-namespace:MFAAvalonia.ViewModels.Pages"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="pages:WorkRecordsViewModel"
+             x:Class="MFAAvalonia.Views.Pages.WorkRecordsView">
+    <Grid Margin="15" RowDefinitions="Auto,*" ColumnDefinitions="2*,3*">
+        <!-- 顶部：标题 + 刷新按钮 -->
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="12" Margin="0,0,0,10">
+            <TextBlock FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" Text="工作记录" />
+            <Button Classes="Basic" Command="{Binding RefreshCommand}" Content="刷新记录" />
+        </StackPanel>
+
+        <!-- 左：记录列表 -->
+        <ListBox Grid.Row="1" Grid.Column="0"
+                 ItemsSource="{Binding Records}"
+                 SelectedItem="{Binding SelectedRecord}"
+                 Background="Transparent">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="models:WorkRecord">
+                    <TextBlock Text="{Binding ListLine}"
+                               TextTrimming="CharacterEllipsis"
+                               Margin="4" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- 右：统计卡片 -->
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Margin="15,0,0,0">
+            <StackPanel Spacing="10"
+                        IsVisible="{Binding SelectedRecord, Converter={x:Static avaConverters:ObjectConverters.IsNotNull}}">
+                <StackPanel.Styles>
+                    <Style Selector="TextBlock.CardTitle">
+                        <Setter Property="FontSize" Value="16" />
+                        <Setter Property="FontWeight" Value="SemiBold" />
+                        <Setter Property="Margin" Value="0,0,0,4" />
+                    </Style>
+                    <Style Selector="TextBlock.CardBody">
+                        <Setter Property="Margin" Value="0,1" />
+                    </Style>
+                </StackPanel.Styles>
+
+                <!-- 任务概况 -->
+                <Border Classes="Card" Padding="12">
+                    <StackPanel Spacing="2">
+                        <TextBlock Classes="CardTitle" Text="任务概况" />
+                        <TextBlock Classes="CardBody" Text="{Binding SelectedRecord.TaskName, StringFormat='任务：{0}'}" />
+                        <TextBlock Classes="CardBody" Text="{Binding SelectedRecord.ListLine, StringFormat='时间：{0}'}" />
+                        <TextBlock Classes="CardBody" Text="{Binding SelectedDurationText, StringFormat='耗时：{0}'}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- 出阵统计 -->
+                <Border Classes="Card" Padding="12">
+                    <StackPanel Spacing="2">
+                        <TextBlock Classes="CardTitle" Text="出阵统计" />
+                        <TextBlock Classes="CardBody" Text="{Binding SelectedResourcesText, StringFormat='资源收获：{0}'}" />
+                        <TextBlock Classes="CardBody" Text="{Binding SelectedRecord.SortieCount, StringFormat='出阵 {0} 次'}" />
+                        <TextBlock Classes="CardBody" Text="{Binding SelectedRecord.RoundCount, StringFormat='完成 {0} 圈'}" />
+                        <TextBlock Classes="CardBody"
+                                   Text="{Binding SelectedRecord.EarlyEndCount, StringFormat='提前结束 {0} 次'}"
+                                   IsVisible="{Binding SelectedHasEarlyEnd}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- 刀剑掉落统计 -->
+                <Border Classes="Card" Padding="12">
+                    <StackPanel Spacing="2">
+                        <TextBlock Classes="CardTitle" Text="刀剑掉落统计" />
+                        <TextBlock Classes="CardBody" Text="{Binding SelectedSwordDropsText}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- 后勤记录 -->
+                <Border Classes="Card" Padding="12">
+                    <StackPanel Spacing="2">
+                        <TextBlock Classes="CardTitle" Text="后勤记录" />
+                        <TextBlock Classes="CardBody" Text="{Binding SelectedLogisticsText}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- 特殊情况 -->
+                <Border Classes="Card" Padding="12">
+                    <StackPanel Spacing="2">
+                        <TextBlock Classes="CardTitle" Text="特殊情况" />
+                        <TextBlock Classes="CardBody" Text="{Binding SelectedSpecialEventsText}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
