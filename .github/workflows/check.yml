@@ -31,9 +31,7 @@ jobs:
           node-version: 22
 
       - name: Run maa-checker
-        run: |
-          npm ci
-          npx @nekosu/maa-tools check
+        run: npx --yes @nekosu/maa-tools check
 
       - name: Install maafw
         run: |
