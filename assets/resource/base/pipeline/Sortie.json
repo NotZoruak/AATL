@@ -158,10 +158,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [1067, 558, 120, 79]
-      }
+      "type": "Custom",
+      "custom_action": "SwordDropLogAction",
+      "custom_action_param": {"task": "合战场", "roi": [52, 509, 282, 34], "click": [1067, 558, 120, 79]}
     },
     "next": ["S_IsMarching", "S_DetectWhereAmI"]
   },
