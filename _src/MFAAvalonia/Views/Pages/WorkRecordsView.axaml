@@ -194,17 +194,21 @@
                         <TextBlock Text="{Binding SelectedRecord.ListTimeText}"
                                    FontSize="14"
                                    Foreground="#7B8798" />
-                        <Grid ColumnDefinitions="Auto,Auto,Auto"
-                              ColumnSpacing="28"
+                        <Grid ColumnDefinitions="Auto,Auto,Auto,Auto"
+                              ColumnSpacing="24"
                               Margin="0,3,0,0">
                             <TextBlock Text="{Binding SelectedRecord.SortieCount, StringFormat=出阵次数：{0}}"
                                        FontSize="14"
                                        Foreground="#344054" />
                             <TextBlock Grid.Column="1"
-                                       Text="{Binding SelectedRecord.RoundCount, StringFormat=完成圈数：{0}}"
+                                       Text="{Binding SelectedRecord.MarchCount, StringFormat=行军次数：{0}}"
                                        FontSize="14"
                                        Foreground="#344054" />
                             <TextBlock Grid.Column="2"
+                                       Text="{Binding SelectedRecord.RoundCount, StringFormat=完成圈数：{0}}"
+                                       FontSize="14"
+                                       Foreground="#344054" />
+                            <TextBlock Grid.Column="3"
                                        Text="{Binding SelectedRecord.EarlyEndCount, StringFormat=提前结束：{0}}"
                                        FontSize="14"
                                        Foreground="#344054"

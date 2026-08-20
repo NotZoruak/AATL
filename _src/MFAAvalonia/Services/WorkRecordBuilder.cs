@@ -182,6 +182,9 @@ public static class WorkRecordBuilder
             case "出阵":
                 record.SortieCount++;
                 break;
+            case "点击行军":
+                record.MarchCount++;
+                break;
             case "完成一圈":
                 record.RoundCount++;
                 break;
