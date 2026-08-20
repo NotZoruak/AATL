@@ -312,6 +312,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[战术强化] 完成一圈"}
+    },
     "next": [],
     "on_error": ["TT_DetectWhereAmI"]
   },
@@ -479,10 +484,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [754, 592, 66, 22]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[战术强化] 补充门票", "click": [754, 592, 66, 22]}
     },
     "post_delay": 300,
     "next": ["TT_CloseTicketDialog", "TT_ConfirmTicketReplenish"],
@@ -655,18 +659,14 @@
         "expected": "即刻"
       }
     },
-    "next": ["TT_ClickSortieNow"],
-    "on_error": ["TT_DetectWhereAmI"]
-  },
-  "TT_ClickSortieNow": {
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [1204, 629, 1, 1]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[战术强化] 出阵", "click": [1204, 629, 1, 1]}
     },
     "pre_delay": 100,
-    "next": ["TT_DetectWhereAmI"]
+    "next": ["TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_CheckCaptainColor": {
     "next": ["TT_CaptainHub", "TT_TryTeam1"],
@@ -748,6 +748,11 @@
     "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_AllTeamsExhausted": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[战术强化] 全部队伍不符合要求终止"}
+    },
     "next": [],
     "on_error": ["TT_DetectWhereAmI"]
   },
@@ -767,6 +772,11 @@
     "next": ["TT_DetectWhereAmI"]
   },
   "TT_TerminateNoTicket": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[战术强化] 无票终止"}
+    },
     "next": [],
     "on_error": ["TT_DetectWhereAmI"]
   }
