@@ -13,6 +13,11 @@ __pycache__/
 /temp/
 /appsettings.json
 
+# 刀帐个人数据（由运行时写入 config/，不提交到 Git）
+/config/config.json
+/config/mfa_*.json
+/config/swordbook_scan.json
+
 # 本地运行配置（含本机模拟器路径，不随仓库分发）
 /assets/config/
 /assets/resource/base/image/unused/

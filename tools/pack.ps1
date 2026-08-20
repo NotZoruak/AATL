@@ -1,5 +1,5 @@
 ﻿param(
-    [string]$Version = "v0.10.3"
+    [string]$Version = "v0.11.0-beta.2"
 )
 
 $Root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
@@ -40,6 +40,9 @@ Get-ChildItem "$TempDir\runtimes\libs" -File | ForEach-Object {
 
 Copy-Item "$Root\assets\resource" -Recurse -Destination "$TempDir\assets\resource"
 
+# 发布包不包含运行时配置和刀帐个人数据；这些文件只存在于开发区的 config/ 中。
+if (Test-Path "$TempDir\config") { Remove-Item -Recurse -Force "$TempDir\config" }
+if (Test-Path "$TempDir\assets\config") { Remove-Item -Recurse -Force "$TempDir\assets\config" }
 if (Test-Path "$TempDir\assets\resource\config") { Remove-Item -Recurse -Force "$TempDir\assets\resource\config" }
 if (Test-Path "$TempDir\assets\resource\temp") { Remove-Item -Recurse -Force "$TempDir\assets\resource\temp" }
 if (Test-Path "$TempDir\assets\resource\backup") { Remove-Item -Recurse -Force "$TempDir\assets\resource\backup" }
