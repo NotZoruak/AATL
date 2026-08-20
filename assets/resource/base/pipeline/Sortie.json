@@ -64,7 +64,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "ResourcePointLogAction",
-      "custom_action_param": "{\"roi\":[112,594,196,30],\"expected\":\"获得\",\"timeout\":10000,\"poll_interval\":200}"
+      "custom_action_param": "{\"roi\":[112,594,196,30],\"expected\":\"获得\",\"timeout\":10000,\"poll_interval\":200,\"task\":\"合战场\"}"
     },
     "next": ["S_DetectWhereAmI"],
     "on_error": ["S_DetectWhereAmI"]
@@ -255,15 +255,10 @@
         "expected": "即刻"
       }
     },
-    "next": ["S_ClickSortieNow"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_ClickSortieNow": {
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [1204, 629, 1, 1]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 出阵", "click": [1204, 629, 1, 1]}
     },
     "post_wait_freezes": {
       "time": 100,
@@ -326,10 +321,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [729, 581, 101, 43]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 补充门票", "click": [729, 581, 101, 43]}
     },
     "next": ["S_DetectWhereAmI"]
   },
@@ -621,6 +615,11 @@
         "threshold": [0.8]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 完成一圈"}
+    },
     "next": ["S_IsIsekaiRegionEnd"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -633,6 +632,11 @@
         "green_mask": true,
         "threshold": [0.8]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 完成一圈"}
     },
     "next": ["S_IsIsekaiRegionEnd"],
     "on_error": ["S_DetectWhereAmI"]
@@ -786,6 +790,7 @@
       "S_Boss_E5_R4_2",
       "S_MidRetreat_E6_R1",
       "S_Boss_E6_R1",
+      "S_Boss_E6_R1_2",
       "S_Boss_E6_R2",
       "S_Boss_E6_R3",
       "S_Boss_E6_R4",
@@ -809,10 +814,9 @@
   },
   "S_PostClickMarching": {
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [1072, 563, 110, 69]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 点击行军", "click": [1072, 563, 110, 69]}
     },
     "next": ["S_DetectWhereAmI"]
   },
@@ -825,6 +829,11 @@
         "template": "Sortie_boss/王点_4_1.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -839,6 +848,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -851,6 +865,11 @@
         "template": "Sortie_boss/王点_4_3.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -865,6 +884,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -877,6 +901,11 @@
         "template": "Sortie_boss/王点_5_1.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -891,6 +920,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -903,6 +937,11 @@
         "template": "Sortie_boss/王点_5_3_1.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -917,6 +956,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -929,6 +973,11 @@
         "template": "Sortie_boss/王点_5_4_2.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -943,6 +992,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 道中撤退"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -955,6 +1009,11 @@
         "template": "Sortie_boss/道中_4_1_2.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 道中撤退"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -969,6 +1028,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 道中撤退"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -981,6 +1045,11 @@
         "template": "Sortie_boss/王点_6_1_1.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -995,6 +1064,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1007,6 +1081,11 @@
         "template": "Sortie_boss/王点_6_2.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1021,6 +1100,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1033,6 +1117,11 @@
         "template": "Sortie_boss/王点_6_4.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1048,6 +1137,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1061,6 +1155,11 @@
         "green_mask": true,
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1076,6 +1175,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1089,6 +1193,11 @@
         "green_mask": true,
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1104,6 +1213,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1117,6 +1231,11 @@
         "green_mask": true,
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1132,6 +1251,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1145,6 +1269,11 @@
         "green_mask": true,
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1160,6 +1289,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -1173,6 +1307,11 @@
         "green_mask": true,
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1270,10 +1409,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 疲劳撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1316,10 +1454,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1334,10 +1471,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1352,10 +1488,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1370,10 +1505,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1388,10 +1522,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1406,10 +1539,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1424,10 +1556,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1442,10 +1573,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1460,10 +1590,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1478,10 +1607,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1496,10 +1624,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1514,10 +1641,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1532,10 +1658,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1550,10 +1675,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1568,10 +1692,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1586,10 +1709,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1604,10 +1726,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1622,10 +1743,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1640,10 +1760,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [763, 446, 48, 44]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 刀装近破坏撤退", "click": [763, 446, 48, 44]}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -1848,7 +1967,7 @@
       "custom_action": "DamageLogAction",
       "custom_action_param": {"message": "[重伤检测] 修复完成"}
     },
-    "next": ["S_NavigateToSortie"],
+    "next": ["S_LogRepairDoneWord"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_ConfirmReturnHome": {
@@ -2018,10 +2137,9 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [789, 512, 1, 4]
-      }
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 补充刀装", "click": [789, 512, 1, 4]}
     },
     "post_wait_freezes": {"time": 100},
     "next": ["S_IsPreSortieConfirm","S_PreConfirmSupply"],
@@ -2079,6 +2197,11 @@
         "template": "Sortie_boss/王点_5_3_2.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -2165,6 +2288,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2177,6 +2305,11 @@
         "template": "Sortie_boss/王点_2_2_1.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -2191,6 +2324,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2203,6 +2341,11 @@
         "template": "Sortie_boss/王点_2_3_1.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -2217,6 +2360,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2229,6 +2377,11 @@
         "template": "Sortie_boss/王点_2_3_3.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -2243,6 +2396,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2255,6 +2413,11 @@
         "template": "Sortie_boss/王点_3_1.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -2269,6 +2432,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2282,6 +2450,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2294,6 +2467,11 @@
         "template": "Sortie_boss/王点_3_4.png",
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 命中王点"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -2363,6 +2541,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 道中撤退"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2376,6 +2559,11 @@
         "green_mask": true,
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 道中撤退"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -2391,6 +2579,11 @@
         "threshold": [0.98]
       }
     },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 道中撤退"}
+    },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
@@ -2404,6 +2597,11 @@
         "green_mask": true,
         "threshold": [0.98]
       }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 道中撤退"}
     },
     "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
@@ -2501,7 +2699,7 @@
       "custom_action": "DamageLogAction",
       "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，撤退撤退"}
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_LogMarchingDamageWord"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_LogStopOnDamage": {
@@ -2563,6 +2761,11 @@
   },
   "SF_Hub": {
     "enabled": false,
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Info", "message": "[合战场] 刷花"}
+    },
     "next": ["SF_ClickMenu"],
     "on_error": ["SF_DetectWhereAmI"]
   },
@@ -3511,5 +3714,23 @@
       }
     },
     "next": ["S_DetectWhereAmI"]
+  },
+  "S_LogMarchingDamageWord": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 重伤撤退"}
+    },
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_LogRepairDoneWord": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {"level": "Warning", "message": "[合战场] 修刀"}
+    },
+    "next": ["S_NavigateToSortie"],
+    "on_error": ["S_DetectWhereAmI"]
   }
 }
