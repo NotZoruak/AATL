@@ -22,9 +22,15 @@ public partial class WorkRecordsViewModel : ViewModelBase
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SelectedDurationText))]
     [NotifyPropertyChangedFor(nameof(SelectedResourcesText))]
+    [NotifyPropertyChangedFor(nameof(SelectedHasResources))]
     [NotifyPropertyChangedFor(nameof(SelectedSwordDropsText))]
+    [NotifyPropertyChangedFor(nameof(SelectedHasSwordDrops))]
+    [NotifyPropertyChangedFor(nameof(SelectedSwordDropGroups))]
+    [NotifyPropertyChangedFor(nameof(SelectedHasOutcomes))]
     [NotifyPropertyChangedFor(nameof(SelectedLogisticsText))]
+    [NotifyPropertyChangedFor(nameof(SelectedHasLogistics))]
     [NotifyPropertyChangedFor(nameof(SelectedSpecialEventsText))]
+    [NotifyPropertyChangedFor(nameof(SelectedHasSpecialEvents))]
     [NotifyPropertyChangedFor(nameof(SelectedHasEarlyEnd))]
     private WorkRecord? _selectedRecord;
 
@@ -74,6 +80,9 @@ public partial class WorkRecordsViewModel : ViewModelBase
                 .OrderBy(kv => kv.Key == "小判箱" ? 1 : 0) // 小判箱放最后
                 .Select(kv => $"{kv.Key}x{kv.Value}"));
 
+    /// <summary>是否有资源收获</summary>
+    public bool SelectedHasResources => SelectedRecord?.ResourceGains.Count > 0;
+
     /// <summary>刀剑掉落分组文本（短胁打太大太枪薙剑序，每组一行）</summary>
     public string SelectedSwordDropsText
     {
@@ -94,6 +103,31 @@ public partial class WorkRecordsViewModel : ViewModelBase
         }
     }
 
+    /// <summary>刀剑掉落分组展示数据</summary>
+    public IReadOnlyList<SwordDropGroupDisplay> SelectedSwordDropGroups
+    {
+        get
+        {
+            if (SelectedRecord is null)
+                return [];
+
+            return SelectedRecord.SwordDrops
+                .GroupBy(d => d.SwordType)
+                .OrderBy(g => Array.IndexOf(TypeOrder, g.Key) is var i && i < 0 ? int.MaxValue : i)
+                .Select(g => new SwordDropGroupDisplay(
+                    g.Key,
+                    string.Join("，", g.GroupBy(d => d.SwordName)
+                        .Select(nameGroup => $"{nameGroup.Key}（x{nameGroup.Count()}）"))))
+                .ToList();
+        }
+    }
+
+    /// <summary>是否有刀剑掉落</summary>
+    public bool SelectedHasSwordDrops => SelectedRecord?.SwordDrops.Count > 0;
+
+    /// <summary>是否有出阵收获</summary>
+    public bool SelectedHasOutcomes => SelectedHasResources || SelectedHasSwordDrops;
+
     /// <summary>后勤记录文本</summary>
     public string SelectedLogisticsText
     {
@@ -113,9 +147,18 @@ public partial class WorkRecordsViewModel : ViewModelBase
         }
     }
 
+    /// <summary>是否有后勤记录</summary>
+    public bool SelectedHasLogistics => SelectedRecord?.LogisticsCounts.Count > 0;
+
     /// <summary>特殊情况文本</summary>
     public string SelectedSpecialEventsText =>
         SelectedRecord is null
             ? ""
             : string.Join("\n", SelectedRecord.SpecialEvents.Select(e => $"{e.Time:MM-dd HH:mm} {e.Description}"));
+
+    /// <summary>是否有特殊情况</summary>
+    public bool SelectedHasSpecialEvents => SelectedRecord?.SpecialEvents.Count > 0;
 }
+
+/// <summary>刀剑掉落按刀种分组后的展示数据</summary>
+public sealed record SwordDropGroupDisplay(string SwordType, string DropsText);

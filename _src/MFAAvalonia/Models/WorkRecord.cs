@@ -43,6 +43,9 @@ public sealed class WorkRecord
         $"{StartTime:MM-dd HH:mm}—{EndTime:HH:mm}  {TaskName}" +
         (Status == "成功" ? "" : $" ({Status})");
 
+    /// <summary>记录列表中的时间文本</summary>
+    public string ListTimeText => $"{StartTime:MM-dd HH:mm}–{EndTime:HH:mm} · {DurationText}";
+
     /// <summary>耗时文本：1 小时 27 分 / 35 分钟</summary>
     public string DurationText =>
         Duration.TotalMinutes < 60
