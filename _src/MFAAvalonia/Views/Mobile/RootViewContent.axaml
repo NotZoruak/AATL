@@ -51,15 +51,15 @@
                                                                 IconVariant=Regular}"
                                                PageContent="{extensions:ServiceProvider ServiceType={x:Type pages:InstanceContainerView}}" />
                         <suki:SukiSideMenuItem IsContentMovable="False"
+                                               Header="本丸"
+                                               Icon="{fluent:FluentIcon Icon=Home,
+                                                                   IconVariant=Regular}"
+                                               PageContent="{extensions:ServiceProvider ServiceType={x:Type pages:HonmaruView}}" />
+                        <suki:SukiSideMenuItem IsContentMovable="False"
                                                Header="限锻计算"
                                                Icon="{fluent:FluentIcon Icon=Calculator,
                                                                 IconVariant=Regular}"
                                                PageContent="{extensions:ServiceProvider ServiceType={x:Type pages:ForgeCalculatorView}}" />
-                        <suki:SukiSideMenuItem IsContentMovable="False"
-                                               Header="本丸仓库"
-                                               Icon="{fluent:FluentIcon Icon=Home,
-                                                                   IconVariant=Regular}"
-                                               PageContent="{extensions:ServiceProvider ServiceType={x:Type pages:WorkRecordsView}}" />
                         <suki:SukiSideMenuItem IsContentMovable="False"
                                                Header="数据库"
                                                Icon="{fluent:FluentIcon Icon=Library,

@@ -10,11 +10,11 @@
              d:DesignHeight="720"
              x:DataType="pages:WorkRecordsViewModel"
              x:Class="MFAAvalonia.Views.Pages.WorkRecordsView">
-    <Grid Margin="24,18"
+    <Grid Margin="0,0,0,8"
           RowDefinitions="Auto,*"
           ColumnDefinitions="360,*"
           ColumnSpacing="18"
-          RowSpacing="16">
+          RowSpacing="4">
         <Grid.Styles>
             <Style Selector="TextBlock.RecordCardTitle">
                 <Setter Property="FontSize" Value="18" />
@@ -39,20 +39,21 @@
                 <Setter Property="Foreground" Value="#586B85" />
             </Style>
         </Grid.Styles>
-        <StackPanel Grid.ColumnSpan="2"
-                    Orientation="Horizontal"
-                    Spacing="14">
-            <TextBlock Text="工作记录"
-                       FontSize="24"
-                       FontWeight="Bold"
-                       Foreground="{DynamicResource SukiText}"
+        <Grid Grid.Row="0"
+              Grid.ColumnSpan="2"
+              ColumnDefinitions="*,Auto"
+              ColumnSpacing="18">
+            <TextBlock Text="{Binding DataStorageLocation, StringFormat=数据存放位置：{0}}"
+                       FontSize="12"
+                       Foreground="#7B8798"
+                       TextTrimming="CharacterEllipsis"
+                       ToolTip.Tip="{Binding DataStorageLocation}" />
+            <TextBlock Grid.Column="1"
+                       Text="{Binding DataRetentionDescription}"
+                       FontSize="12"
+                       Foreground="#7B8798"
                        VerticalAlignment="Center" />
-            <Button Classes="Basic"
-                    Command="{Binding RefreshCommand}"
-                    Content="刷新记录"
-                    Padding="12,5"
-                    VerticalAlignment="Center" />
-        </StackPanel>
+        </Grid>
 
         <!-- 左侧记录列表卡片 -->
         <Border Grid.Row="1"
@@ -60,12 +61,21 @@
                 BorderBrush="{DynamicResource SukiControlBorderBrush}"
                 BorderThickness="1"
                 CornerRadius="12"
-                Padding="14,16">
-            <Grid RowDefinitions="Auto,*" RowSpacing="10">
-                <TextBlock Text="记录列表"
-                           FontSize="15"
-                           FontWeight="SemiBold"
-                           Foreground="{DynamicResource SukiText}" />
+                Padding="10,12">
+            <Grid RowDefinitions="Auto,*" RowSpacing="8">
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBlock Text="记录列表"
+                               FontSize="15"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource SukiText}"
+                               VerticalAlignment="Center" />
+                    <Button Grid.Column="1"
+                            Classes="Basic"
+                            Command="{Binding RefreshCommand}"
+                            Content="刷新记录"
+                            Padding="10,4"
+                            VerticalAlignment="Center" />
+                </Grid>
 
                 <ScrollViewer Grid.Row="1"
                               HorizontalScrollBarVisibility="Disabled"
@@ -73,7 +83,8 @@
                     <ListBox ItemsSource="{Binding Records}"
                              SelectedItem="{Binding SelectedRecord}"
                              Background="Transparent"
-                             BorderThickness="0">
+                             BorderThickness="0"
+                             Padding="0">
                         <ListBox.Styles>
                             <Style Selector="ListBoxItem Border.SelectionBackground">
                                 <Setter Property="Opacity" Value="0" />
@@ -115,7 +126,7 @@
                                 <Grid ColumnDefinitions="3,*"
                                       RowDefinitions="Auto,Auto"
                                       ColumnSpacing="10"
-                                      Margin="0,3">
+                                      Margin="0,2">
                                     <Border Classes="SelectionBackground"
                                             Grid.ColumnSpan="2"
                                             Grid.RowSpan="2"
@@ -137,13 +148,13 @@
                                                    FontSize="14"
                                                    FontWeight="SemiBold"
                                                    Foreground="#344054"
-                                                   Margin="10,7,0,0"
+                                                   Margin="6,6,0,0"
                                                    TextTrimming="CharacterEllipsis" />
                                         <TextBlock Grid.Column="1"
                                                    Text="{Binding Status}"
                                                    FontSize="12"
                                                    Foreground="#7B8798"
-                                                   Margin="0,7,10,0"
+                                                   Margin="0,6,6,0"
                                                    VerticalAlignment="Center" />
                                     </Grid>
                                     <TextBlock Grid.Row="1"
@@ -151,7 +162,7 @@
                                                Text="{Binding ListTimeText}"
                                                FontSize="12"
                                                Foreground="#7B8798"
-                                               Margin="10,3,10,7"
+                                               Margin="6,2,6,6"
                                                TextTrimming="CharacterEllipsis" />
                                 </Grid>
                             </DataTemplate>
@@ -194,7 +205,7 @@
                         <TextBlock Text="{Binding SelectedRecord.ListTimeText}"
                                    FontSize="14"
                                    Foreground="#7B8798" />
-                        <Grid ColumnDefinitions="Auto,Auto,Auto,Auto"
+                        <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto"
                               ColumnSpacing="24"
                               Margin="0,3,0,0">
                             <TextBlock Text="{Binding SelectedRecord.SortieCount, StringFormat=出阵次数：{0}}"
@@ -209,6 +220,11 @@
                                        FontSize="14"
                                        Foreground="#344054" />
                             <TextBlock Grid.Column="3"
+                                       Text="{Binding SelectedRecord.FlowerBrushCount, StringFormat=刷花次数：{0}}"
+                                       FontSize="14"
+                                       Foreground="#344054"
+                                       IsVisible="{Binding SelectedHasFlowerBrush}" />
+                            <TextBlock Grid.Column="4"
                                        Text="{Binding SelectedRecord.EarlyEndCount, StringFormat=提前结束：{0}}"
                                        FontSize="14"
                                        Foreground="#344054"

@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="clr-namespace:MFAAvalonia.ViewModels.Pages"
+             mc:Ignorable="d"
+             d:DesignWidth="1000"
+             d:DesignHeight="600"
+             x:DataType="pages:WarehouseViewModel"
+             x:Class="MFAAvalonia.Views.Pages.WarehouseView">
+    <Design.DataContext>
+        <pages:WarehouseViewModel />
+    </Design.DataContext>
+
+    <Border Background="{DynamicResource SukiCardBackground}"
+            CornerRadius="10"
+            Padding="28"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top">
+        <StackPanel Spacing="8">
+            <TextBlock Text="{Binding EmptyTitle}"
+                       FontSize="18"
+                       FontWeight="SemiBold"
+                       Foreground="{DynamicResource SukiText}" />
+            <TextBlock Text="{Binding EmptyDescription}"
+                       FontSize="14"
+                       Foreground="{DynamicResource SukiText}" />
+        </StackPanel>
+    </Border>
+</UserControl>

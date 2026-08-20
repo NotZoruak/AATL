@@ -367,6 +367,9 @@ public partial class App : Application
             .AddView<ForgeCalculatorView, ForgeCalculatorViewModel>(services)
             .AddView<SilhouetteView, SilhouetteViewModel>(services)
             .AddView<DataLookupView, DataLookupViewModel>(services)
+            .AddView<HonmaruView, HonmaruViewModel>(services)
+            .AddView<WarehouseView, WarehouseViewModel>(services)
+            .AddView<SwordBookView, SwordBookViewModel>(services)
             .AddView<WorkRecordsView, WorkRecordsViewModel>(services)
 
             // Add additional views

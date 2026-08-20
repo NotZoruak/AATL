@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="clr-namespace:MFAAvalonia.ViewModels.Pages"
+             xmlns:views="clr-namespace:MFAAvalonia.Views.Pages"
+             mc:Ignorable="d"
+             d:DesignWidth="1280"
+             d:DesignHeight="720"
+             x:DataType="pages:HonmaruViewModel"
+             x:Class="MFAAvalonia.Views.Pages.HonmaruView">
+    <Design.DataContext>
+        <pages:HonmaruViewModel />
+    </Design.DataContext>
+
+    <Grid Margin="16,12">
+        <TabControl SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                <TabItem Header="仓库">
+                    <views:WarehouseView />
+                </TabItem>
+                <TabItem Header="工作记录">
+                    <views:WorkRecordsView />
+                </TabItem>
+                <TabItem Header="刀帐">
+                    <views:SwordBookView />
+                </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

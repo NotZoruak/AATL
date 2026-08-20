@@ -188,6 +188,12 @@ public static class WorkRecordBuilder
             case "完成一圈":
                 record.RoundCount++;
                 break;
+            case "刷花":
+                if (prefix == "后勤")
+                    record.LogisticsCounts[action] = record.LogisticsCounts.GetValueOrDefault(action) + 1;
+                else
+                    record.FlowerBrushCount++;
+                break;
             case "资源点获取":
                 foreach (var part in detail.Split(' ', StringSplitOptions.RemoveEmptyEntries))
                 {

@@ -15,6 +15,12 @@ namespace MFAAvalonia.ViewModels.Pages;
 /// <summary>工作记录页：解析日志并展示运行记录</summary>
 public partial class WorkRecordsViewModel : ViewModelBase
 {
+    /// <summary>工作记录原始日志的存放目录。</summary>
+    public string DataStorageLocation => "debug/logs";
+
+    /// <summary>工作记录日志的自动清理规则。</summary>
+    public string DataRetentionDescription => "自动清理：保留最近 30 天";
+
     /// <summary>运行记录列表（时间倒序）</summary>
     [ObservableProperty] private ObservableCollection<WorkRecord> _records = [];
 
@@ -32,6 +38,7 @@ public partial class WorkRecordsViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(SelectedSpecialEventsText))]
     [NotifyPropertyChangedFor(nameof(SelectedHasSpecialEvents))]
     [NotifyPropertyChangedFor(nameof(SelectedHasEarlyEnd))]
+    [NotifyPropertyChangedFor(nameof(SelectedHasFlowerBrush))]
     private WorkRecord? _selectedRecord;
 
     /// <summary>刀种展示顺序</summary>
@@ -68,6 +75,9 @@ public partial class WorkRecordsViewModel : ViewModelBase
 
     /// <summary>是否有提前结束（0 次不显示该行）</summary>
     public bool SelectedHasEarlyEnd => SelectedRecord?.EarlyEndCount > 0;
+
+    /// <summary>是否有出阵刷花（0 次不显示该行）</summary>
+    public bool SelectedHasFlowerBrush => SelectedRecord?.FlowerBrushCount > 0;
 
     /// <summary>耗时文本：1 小时 27 分 / 35 分钟</summary>
     public string SelectedDurationText => SelectedRecord?.DurationText ?? "";
@@ -135,8 +145,21 @@ public partial class WorkRecordsViewModel : ViewModelBase
         {
             if (SelectedRecord is null)
                 return "";
+
             var sb = new StringBuilder();
-            foreach (var kv in SelectedRecord.LogisticsCounts.OrderByDescending(kv => kv.Value))
+
+            // 检查队伍状况和刷花属于同一组后勤摘要，优先并排显示。
+            var inlineKeys = new[] { "检查队伍状况", "刷花" };
+            var inlineItems = inlineKeys
+                .Where(key => SelectedRecord.LogisticsCounts.ContainsKey(key))
+                .Select(key => $"{key} ×{SelectedRecord.LogisticsCounts[key]}")
+                .ToList();
+            if (inlineItems.Count > 0)
+                sb.AppendLine(string.Join("    ", inlineItems));
+
+            foreach (var kv in SelectedRecord.LogisticsCounts
+                         .Where(kv => !inlineKeys.Contains(kv.Key))
+                         .OrderByDescending(kv => kv.Value))
             {
                 sb.AppendLine($"{kv.Key} ×{kv.Value}");
                 if (kv.Key == "派遣远征")

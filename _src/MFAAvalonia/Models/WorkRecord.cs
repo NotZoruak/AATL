@@ -34,6 +34,7 @@ public sealed class WorkRecord
     public bool HasRun =>
         SortieCount > 0
         || MarchCount > 0
+        || FlowerBrushCount > 0
         || ResourceGains.Count > 0
         || SwordDrops.Count > 0
         || LogisticsCounts.Count > 0
@@ -61,6 +62,9 @@ public sealed class WorkRecord
 
     /// <summary>完成圈数（「完成一圈」计数；无该词条的任务用出阵次数）</summary>
     public int RoundCount { get; set; }
+
+    /// <summary>出阵刷花次数（非「后勤」前缀的「刷花」词条计数）</summary>
+    public int FlowerBrushCount { get; set; }
 
     /// <summary>提前结束次数（无票终止/全部队伍不符合要求终止/队长重伤撤退）</summary>
     public int EarlyEndCount { get; set; }
