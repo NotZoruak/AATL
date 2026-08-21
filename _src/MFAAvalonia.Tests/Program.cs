@@ -169,6 +169,37 @@ AssertFalse(warehouseEditor.HasChanges, "保存仓库数据后不应继续标记
 warehouseEditor.Clear();
 AssertTrue(warehouseEditor.Data.CoreResources.Count == 0, "清空应移除仓库资源数据");
 
+AssertTrue(WarehouseScanDraftService.TryParseCount("1,234", out var commaValue) && commaValue == 1234,
+    "OCR 数值应清除英文逗号");
+AssertTrue(WarehouseScanDraftService.TryParseCount("1，234", out var chineseCommaValue) && chineseCommaValue == 1234,
+    "OCR 数值应清除中文逗号");
+AssertTrue(WarehouseScanDraftService.TryParseCount("1.234", out var dotValue) && dotValue == 1234,
+    "OCR 数值应清除分隔点");
+AssertTrue(WarehouseScanDraftService.TryParseCount("所持小判 3,750,570 枚", out var kobanValue) && kobanValue == 3750570,
+    "OCR 数值应能从资源名称和单位中提取数字");
+AssertFalse(WarehouseScanDraftService.TryParseCount("无法识别", out _),
+    "非法 OCR 文本不应被解析为资源数量");
+
+var draftPath = Path.Combine(Path.GetTempPath(), $"matr-warehouse-{Guid.NewGuid():N}.json");
+WarehouseScanDraftService.UpdateCoreResource(draftPath, "木炭", 1234);
+WarehouseScanDraftService.UpdateCoreResource(draftPath, "玉钢", 5678);
+var warehouseDraft = WarehouseScanDraftService.Load(draftPath);
+File.Delete(draftPath);
+AssertTrue(warehouseDraft.CoreResources["木炭"] == 1234 && warehouseDraft.CoreResources["玉钢"] == 5678,
+    "仓库识别草稿应保留已识别的核心资源");
+
+var historyPath = Path.Combine(Path.GetTempPath(), $"matr-warehouse-history-{Guid.NewGuid():N}.json");
+WarehouseScanDraftService.AppendSnapshot(historyPath, new Dictionary<string, int>
+{
+    ["木炭"] = 1234,
+    ["玉钢"] = 5678,
+});
+var historyDraft = WarehouseScanDraftService.Load(historyPath);
+File.Delete(historyPath);
+AssertTrue(historyDraft.ResourceHistory.Count == 1
+    && historyDraft.ResourceHistory[0].Values["木炭"] == 1234,
+    "完整仓库识别结束后应追加核心资源历史快照");
+
 Console.WriteLine("FormationPreset 测试通过。");
 
 static void AssertFalse(bool value, string message)

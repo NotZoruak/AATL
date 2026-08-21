@@ -18,6 +18,8 @@ public sealed class WarehouseDataEditor
     public WarehouseData Data { get; private set; }
     public bool HasChanges => !AreEqual(Data, _savedData);
 
+    public void LoadData(WarehouseData data) => Data = (data ?? new WarehouseData()).Clone();
+
     public void Save() => _savedData = Data.Clone();
     public void Revert() => Data = _savedData.Clone();
     public void Clear() => Data = new WarehouseData();

@@ -1,0 +1,227 @@
+{
+    "Warehouse_Start": {
+        "next": ["Warehouse_ClickMenu"],
+        "on_error": []
+    },
+    "Warehouse_ClickMenu": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [1190, 11, 73, 53],
+                "expected": "目"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "post_wait_freezes": {
+            "time": 200,
+            "target": [1190, 11, 73, 53]
+        },
+        "next": ["Warehouse_ClickForge","Warehouse_ClickMenu"],
+        "on_error": ["Warehouse_Start"]
+    },
+    "Warehouse_ReadCharcoal": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [395, 14, 90, 27]
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "custom_action": "WarehouseReadResourceAction",
+            "custom_action_param": {
+                "resource": "木炭",
+                "roi": [395, 14, 90, 27]
+            }
+        },
+        "next": ["Warehouse_ReadSteel"],
+        "on_error": []
+    },
+    "Warehouse_ReadSteel": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [532, 13, 91, 28]
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "custom_action": "WarehouseReadResourceAction",
+            "custom_action_param": {
+                "resource": "玉钢",
+                "roi": [532, 13, 91, 28]
+            }
+        },
+        "next": ["Warehouse_ReadCoolingMaterial"],
+        "on_error": []
+    },
+    "Warehouse_ReadCoolingMaterial": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [672, 13, 92, 28]
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "custom_action": "WarehouseReadResourceAction",
+            "custom_action_param": {
+                "resource": "冷却材",
+                "roi": [672, 13, 92, 28]
+            }
+        },
+        "next": ["Warehouse_ReadStone"],
+        "on_error": []
+    },
+    "Warehouse_ReadStone": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [811, 13, 93, 28]
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "custom_action": "WarehouseReadResourceAction",
+            "custom_action_param": {
+                "resource": "砥石",
+                "roi": [811, 13, 93, 28]
+            }
+        },
+        "next": ["Warehouse_ReadExpeditionPermit"],
+        "on_error": []
+    },
+    "Warehouse_ReadExpeditionPermit": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [1145, 354, 106, 29]
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "custom_action": "WarehouseReadResourceAction",
+            "custom_action_param": {
+                "resource": "委托符",
+                "roi": [1145, 354, 106, 29]
+            }
+        },
+        "next": ["Warehouse_ReadSpeedup"],
+        "on_error": []
+    },
+    "Warehouse_ReadSpeedup": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [1142, 517, 107, 30]
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "custom_action": "WarehouseReadResourceAction",
+            "custom_action_param": {
+                "resource": "加速符",
+                "roi": [1142, 517, 107, 30]
+            }
+        },
+        "next": ["Warehouse_ClickMenuAfterForge"],
+        "on_error": []
+    },
+    "Warehouse_ClickMenuAfterForge": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [1190, 11, 73, 53],
+                "expected": "目"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "post_wait_freezes": {
+            "time": 200,
+            "target": [1190, 11, 73, 53]
+        },
+        "next": ["Warehouse_ClickPossessions"],
+        "on_error": ["Warehouse_Start"]
+    },
+    "Warehouse_ClickPossessions": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [976, 632, 90, 28],
+                "expected": "所持"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "post_wait_freezes": {
+            "time": 200,
+            "target": [976, 632, 90, 28]
+        },
+        "next": ["Warehouse_IsItemList","Warehouse_ClickPossessions"],
+        "on_error": ["Warehouse_Start"]
+    },
+    "Warehouse_IsItemList": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [544, 37, 196, 42],
+                "expected": "所持道具一览"
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "custom_action": "WarehouseScanItemsAction",
+            "custom_action_param": {
+                "koban_roi": [977, 32, 189, 48]
+            }
+        },
+        "next": [],
+        "on_error": ["Warehouse_ClickPossessions"]
+    },
+    "Warehouse_ClickForge": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [743, 274, 83, 36],
+                "expected": "锻刀"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "post_wait_freezes": {
+            "time": 200,
+            "target": [743, 274, 83, 36]
+        },
+        "next": ["Warehouse_IsForgeStatus"],
+        "on_error": ["Warehouse_Start"]
+    },
+    "Warehouse_IsForgeStatus": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [570, 58, 141, 42],
+                "expected": "锻刀状况"
+            }
+        },
+        "next": ["Warehouse_ReadCharcoal"],
+        "on_error": ["Warehouse_Start"]
+    }
+}
