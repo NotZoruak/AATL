@@ -1,0 +1,90 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json.Serialization;
+
+namespace MFAAvalonia.Models;
+
+/// <summary>保存到本地的结构化工作记录，不依赖原始日志文件。</summary>
+public sealed class SavedWorkRecord
+{
+    public string DisplayName { get; set; } = "";
+    public string TaskName { get; set; } = "";
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
+    public TimeSpan Duration { get; set; }
+    public string Status { get; set; } = "成功";
+    public int SortieCount { get; set; }
+    public int MarchCount { get; set; }
+    public int RoundCount { get; set; }
+    public int FlowerBrushCount { get; set; }
+    public int ReturnHomeCount { get; set; }
+    public bool HasInterrupt { get; set; }
+    public Dictionary<string, int> ResourceGains { get; set; } = [];
+    public List<SwordDrop> SwordDrops { get; set; } = [];
+    public Dictionary<string, int> LogisticsCounts { get; set; } = [];
+    public List<LogisticsDispatch> LogisticsDispatches { get; set; } = [];
+    public List<SpecialEvent> SpecialEvents { get; set; } = [];
+
+    [JsonIgnore]
+    public string DateRangeText => StartDate == EndDate
+        ? StartDate.ToString("yyyy-MM-dd")
+        : $"{StartDate:yyyy-MM-dd}—{EndDate:yyyy-MM-dd}";
+
+    [JsonIgnore]
+    public string DurationText => Duration.TotalMinutes < 60
+        ? $"{Math.Max(1, (int)Math.Ceiling(Duration.TotalMinutes))} 分钟"
+        : $"{(int)Duration.TotalHours} 小时 {Duration.Minutes} 分";
+
+    /// <summary>从运行记录创建本地保存记录。</summary>
+    public static SavedWorkRecord FromWorkRecord(WorkRecord source, string displayName)
+    {
+        return new SavedWorkRecord
+        {
+            DisplayName = displayName,
+            TaskName = source.TaskName,
+            StartDate = source.StartTime.Date,
+            EndDate = source.EndTime.Date,
+            Duration = source.Duration,
+            Status = source.Status,
+            SortieCount = source.SortieCount,
+            MarchCount = source.MarchCount,
+            RoundCount = source.RoundCount,
+            FlowerBrushCount = source.FlowerBrushCount,
+            ReturnHomeCount = source.ReturnHomeCount,
+            HasInterrupt = source.HasInterrupt,
+            ResourceGains = new Dictionary<string, int>(source.ResourceGains),
+            SwordDrops = source.SwordDrops.ToList(),
+            LogisticsCounts = new Dictionary<string, int>(source.LogisticsCounts),
+            LogisticsDispatches = source.LogisticsDispatches.ToList(),
+            SpecialEvents = source.SpecialEvents.ToList(),
+        };
+    }
+
+    /// <summary>转换回工作记录，供右侧详情和继续合并使用。</summary>
+    public WorkRecord ToWorkRecord()
+    {
+        var result = new WorkRecord
+        {
+            TaskName = TaskName,
+            StartTime = StartDate,
+            EndTime = EndDate,
+            DurationOverride = Duration,
+            Status = Status,
+            HasInterrupt = HasInterrupt,
+            SortieCount = SortieCount,
+            MarchCount = MarchCount,
+            RoundCount = RoundCount,
+            FlowerBrushCount = FlowerBrushCount,
+            ReturnHomeCount = ReturnHomeCount,
+        };
+        foreach (var item in ResourceGains)
+            result.ResourceGains[item.Key] = item.Value;
+        result.SwordDrops.AddRange(SwordDrops);
+        foreach (var item in LogisticsCounts)
+            result.LogisticsCounts[item.Key] = item.Value;
+        result.LogisticsDispatches.AddRange(LogisticsDispatches);
+        result.SpecialEvents.AddRange(SpecialEvents);
+        return result;
+    }
+}

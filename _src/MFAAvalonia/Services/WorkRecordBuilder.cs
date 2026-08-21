@@ -69,6 +69,8 @@ public static class WorkRecordBuilder
                     // 任务切换：上一条收尾
                     if (current.EndTime == default)
                         current.EndTime = entry.Timestamp.Value;
+                    // 新任务开始说明上一任务已正常完成；队列整体停止状态只会在最后统一输出。
+                    current.Status = current.HasInterrupt ? "中断" : "成功";
                     current = null;
                 }
 
@@ -149,20 +151,26 @@ public static class WorkRecordBuilder
     // 短时间重复过滤窗口（秒）：识别循环连续命中同一 node 会重复输出同一词表行，窗口内只计一次
     private const double RepeatFilterSeconds = 3;
 
-    // 提前结束类行为词
-    private static readonly HashSet<string> EarlyEndActions = ["无票终止", "全部队伍不符合要求终止", "队长重伤撤退"];
-
     private static void Accumulate(WorkRecord record, DateTime time, string content, string level,
         Dictionary<WorkRecord, (DateTime Time, string Content)> lastSeen)
     {
-        // 短时间重复过滤：同一内容在 3 秒窗口内重复出现只计一次
+        var match = WordRegex.Match(content);
+
+        // 小判箱弹窗会持续显示数秒，识别循环会连续产生多条相同日志。
+        // 只要小判箱日志在事件流中连续出现，就视为同一次掉落，不受通用 3 秒窗口限制。
+        if (match.Success
+            && match.Groups[2].Value == "小判箱掉落"
+            && lastSeen.TryGetValue(record, out var lastKoban)
+            && lastKoban.Content == content)
+            return;
+
+        // 通用短时间重复过滤：同一内容在 3 秒窗口内重复出现只计一次
         if (lastSeen.TryGetValue(record, out var last)
             && last.Content == content
             && (time - last.Time).TotalSeconds <= RepeatFilterSeconds)
             return;
         lastSeen[record] = (time, content);
 
-        var match = WordRegex.Match(content);
         if (!match.Success)
             return;
         var prefix = match.Groups[1].Value;
@@ -183,6 +191,9 @@ public static class WorkRecordBuilder
                 break;
             case "点击行军":
                 record.MarchCount++;
+                break;
+            case "返回本丸":
+                record.ReturnHomeCount++;
                 break;
             case "完成一圈":
                 record.RoundCount++;
@@ -220,17 +231,13 @@ public static class WorkRecordBuilder
                     record.LogisticsDispatches.Add(new LogisticsDispatch(time, unit, map));
                 break;
             default:
-                if (prefix == "后勤")
+                if (prefix == "远征计时" && action == "倒计时结束")
                 {
                     record.LogisticsCounts[action] = record.LogisticsCounts.GetValueOrDefault(action) + 1;
-                    if (EarlyEndActions.Contains(action))
-                        record.EarlyEndCount++;
                 }
-                else if (EarlyEndActions.Contains(action))
+                else if (prefix == "后勤")
                 {
-                    record.EarlyEndCount++;
-                    if (level == "WRN")
-                        record.SpecialEvents.Add(new SpecialEvent(time, action));
+                    record.LogisticsCounts[action] = record.LogisticsCounts.GetValueOrDefault(action) + 1;
                 }
                 else if (level == "WRN")
                 {

@@ -1,0 +1,81 @@
+using MFAAvalonia.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace MFAAvalonia.Services;
+
+/// <summary>保存记录的命名和合并业务规则。</summary>
+public static class SavedWorkRecordService
+{
+    /// <summary>合并同一任务的运行记录。</summary>
+    public static SavedWorkRecord Merge(IEnumerable<WorkRecord> sources, string displayName)
+    {
+        var records = sources.ToList();
+        if (records.Count == 0)
+            throw new ArgumentException("至少需要一条记录才能合并。", nameof(sources));
+
+        var taskName = records[0].TaskName;
+        if (records.Any(record => record.TaskName != taskName))
+            throw new InvalidOperationException("只能合并同名任务。");
+
+        var result = new SavedWorkRecord
+        {
+            DisplayName = displayName,
+            TaskName = taskName,
+            StartDate = records.Min(record => record.StartTime.Date),
+            EndDate = records.Max(record => record.EndTime.Date),
+            Duration = TimeSpan.FromTicks(records.Sum(record => record.Duration.Ticks)),
+            Status = MergeStatus(records),
+            SortieCount = records.Sum(record => record.SortieCount),
+            MarchCount = records.Sum(record => record.MarchCount),
+            RoundCount = records.Sum(record => record.RoundCount),
+            FlowerBrushCount = records.Sum(record => record.FlowerBrushCount),
+            ReturnHomeCount = records.Sum(record => record.ReturnHomeCount),
+            HasInterrupt = records.Any(record => record.HasInterrupt),
+        };
+
+        foreach (var record in records)
+        {
+            foreach (var item in record.ResourceGains)
+                result.ResourceGains[item.Key] = result.ResourceGains.GetValueOrDefault(item.Key) + item.Value;
+            result.SwordDrops.AddRange(record.SwordDrops);
+            foreach (var item in record.LogisticsCounts)
+                result.LogisticsCounts[item.Key] = result.LogisticsCounts.GetValueOrDefault(item.Key) + item.Value;
+            result.LogisticsDispatches.AddRange(record.LogisticsDispatches);
+            result.SpecialEvents.AddRange(record.SpecialEvents);
+        }
+
+        result.LogisticsDispatches = result.LogisticsDispatches.OrderBy(item => item.Time).ToList();
+        result.SpecialEvents = result.SpecialEvents.OrderBy(item => item.Time).ToList();
+        return result;
+    }
+
+    /// <summary>保存一条运行记录。</summary>
+    public static SavedWorkRecord Save(WorkRecord source, string displayName) =>
+        SavedWorkRecord.FromWorkRecord(source, displayName);
+
+    /// <summary>从已有名称中生成不重复的显示名称。</summary>
+    public static string CreateUniqueName(string requestedName, IEnumerable<string> existingNames)
+    {
+        var baseName = requestedName.Trim();
+        var names = existingNames.ToHashSet(StringComparer.Ordinal);
+        if (!names.Contains(baseName))
+            return baseName;
+
+        var number = 1;
+        while (names.Contains($"{baseName}（{number}）"))
+            number++;
+        return $"{baseName}（{number}）";
+    }
+
+    private static string MergeStatus(IEnumerable<WorkRecord> records)
+    {
+        var statuses = records.Select(record => record.Status).ToHashSet(StringComparer.Ordinal);
+        if (statuses.Contains("中断")) return "中断";
+        if (statuses.Contains("失败")) return "失败";
+        if (statuses.Contains("进行中")) return "进行中";
+        if (statuses.Contains("手动停止")) return "手动停止";
+        return "成功";
+    }
+}

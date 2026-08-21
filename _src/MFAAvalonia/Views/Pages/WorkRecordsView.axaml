@@ -11,7 +11,7 @@
              x:DataType="pages:WorkRecordsViewModel"
              x:Class="MFAAvalonia.Views.Pages.WorkRecordsView">
     <Grid Margin="0,0,0,8"
-          RowDefinitions="Auto,*"
+          RowDefinitions="*"
           ColumnDefinitions="360,*"
           ColumnSpacing="18"
           RowSpacing="4">
@@ -39,52 +39,44 @@
                 <Setter Property="Foreground" Value="#586B85" />
             </Style>
         </Grid.Styles>
-        <Grid Grid.Row="0"
-              Grid.ColumnSpan="2"
-              ColumnDefinitions="*,Auto"
-              ColumnSpacing="18">
-            <TextBlock Text="{Binding DataStorageLocation, StringFormat=数据存放位置：{0}}"
-                       FontSize="12"
-                       Foreground="#7B8798"
-                       TextTrimming="CharacterEllipsis"
-                       ToolTip.Tip="{Binding DataStorageLocation}" />
-            <TextBlock Grid.Column="1"
-                       Text="{Binding DataRetentionDescription}"
-                       FontSize="12"
-                       Foreground="#7B8798"
-                       VerticalAlignment="Center" />
-        </Grid>
+        <!-- 左侧记录卡片 -->
+        <Grid RowDefinitions="*,Auto"
+              RowSpacing="10">
+            <Border Background="{DynamicResource SukiCardBackground}"
+                    BorderBrush="{DynamicResource SukiControlBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="12"
+                    Padding="10,12">
+                <Grid RowDefinitions="Auto,*" RowSpacing="8">
+                    <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="6">
+                        <TextBlock Text="记录列表"
+                                   FontSize="15"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource SukiText}"
+                                   VerticalAlignment="Center" />
+                        <Button Grid.Column="1"
+                                Classes="Basic"
+                                Command="{Binding SaveCommand}"
+                                Content="保存"
+                                Padding="10,4"
+                                IsEnabled="{Binding CanSaveSelectedRecords}" />
+                        <Button Grid.Column="2"
+                                Classes="Basic"
+                                Command="{Binding RefreshCommand}"
+                                Content="刷新数据"
+                                Padding="10,4" />
+                    </Grid>
 
-        <!-- 左侧记录列表卡片 -->
-        <Border Grid.Row="1"
-                Background="{DynamicResource SukiCardBackground}"
-                BorderBrush="{DynamicResource SukiControlBorderBrush}"
-                BorderThickness="1"
-                CornerRadius="12"
-                Padding="10,12">
-            <Grid RowDefinitions="Auto,*" RowSpacing="8">
-                <Grid ColumnDefinitions="*,Auto">
-                    <TextBlock Text="记录列表"
-                               FontSize="15"
-                               FontWeight="SemiBold"
-                               Foreground="{DynamicResource SukiText}"
-                               VerticalAlignment="Center" />
-                    <Button Grid.Column="1"
-                            Classes="Basic"
-                            Command="{Binding RefreshCommand}"
-                            Content="刷新记录"
-                            Padding="10,4"
-                            VerticalAlignment="Center" />
-                </Grid>
-
-                <ScrollViewer Grid.Row="1"
-                              HorizontalScrollBarVisibility="Disabled"
-                              VerticalScrollBarVisibility="Auto">
-                    <ListBox ItemsSource="{Binding Records}"
-                             SelectedItem="{Binding SelectedRecord}"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Padding="0">
+                    <ScrollViewer Grid.Row="1"
+                                  HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                        <ListBox x:Name="LogRecordsList"
+                                 ItemsSource="{Binding Records}"
+                                 SelectionMode="Multiple"
+                                 SelectionChanged="LogRecordsSelectionChanged"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Padding="0">
                         <ListBox.Styles>
                             <Style Selector="ListBoxItem Border.SelectionBackground">
                                 <Setter Property="Opacity" Value="0" />
@@ -108,7 +100,7 @@
                         <ListBox.ItemContainerTheme>
                             <ControlTheme TargetType="ListBoxItem">
                                 <Setter Property="Padding" Value="0" />
-                                <Setter Property="Margin" Value="0,2" />
+                                <Setter Property="Margin" Value="0,1" />
                                 <Setter Property="Background" Value="Transparent" />
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                 <Setter Property="Template">
@@ -126,7 +118,7 @@
                                 <Grid ColumnDefinitions="3,*"
                                       RowDefinitions="Auto,Auto"
                                       ColumnSpacing="10"
-                                      Margin="0,2">
+                                      Margin="0,1">
                                     <Border Classes="SelectionBackground"
                                             Grid.ColumnSpan="2"
                                             Grid.RowSpan="2"
@@ -148,13 +140,13 @@
                                                    FontSize="14"
                                                    FontWeight="SemiBold"
                                                    Foreground="#344054"
-                                                   Margin="6,6,0,0"
+                                                   Margin="4,2,0,0"
                                                    TextTrimming="CharacterEllipsis" />
                                         <TextBlock Grid.Column="1"
                                                    Text="{Binding Status}"
                                                    FontSize="12"
                                                    Foreground="#7B8798"
-                                                   Margin="0,6,6,0"
+                                                   Margin="0,2,4,0"
                                                    VerticalAlignment="Center" />
                                     </Grid>
                                     <TextBlock Grid.Row="1"
@@ -162,28 +154,108 @@
                                                Text="{Binding ListTimeText}"
                                                FontSize="12"
                                                Foreground="#7B8798"
-                                               Margin="6,2,6,6"
+                                               Margin="4,0,4,3"
                                                TextTrimming="CharacterEllipsis" />
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
-                    </ListBox>
-                </ScrollViewer>
-            </Grid>
-        </Border>
+                        </ListBox>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1"
+                    IsVisible="{Binding HasSavedRecords}"
+                    MaxHeight="300"
+                    Background="{DynamicResource SukiCardBackground}"
+                    BorderBrush="{DynamicResource SukiControlBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="12"
+                    Padding="10,12">
+                <Grid RowDefinitions="Auto,*" RowSpacing="8">
+                    <Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="4">
+                        <TextBlock Text="已保存记录"
+                                   FontSize="15"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource SukiText}"
+                                   VerticalAlignment="Center" />
+                        <Button Grid.Column="1"
+                                Classes="Basic"
+                                Command="{Binding MergeSavedCommand}"
+                                Content="合并"
+                                Padding="8,4"
+                                IsEnabled="{Binding CanMergeSavedRecords}" />
+                        <Button Grid.Column="2"
+                                Classes="Basic"
+                                Command="{Binding DeleteSavedCommand}"
+                                Content="删除"
+                                Padding="8,4"
+                                IsEnabled="{Binding CanDeleteSavedRecords}" />
+                        <Button Grid.Column="3"
+                                Classes="Basic"
+                                Command="{Binding ClearSavedCommand}"
+                                Content="清空"
+                                Padding="8,4" />
+                    </Grid>
+                    <ScrollViewer Grid.Row="1"
+                                  HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                        <ListBox x:Name="SavedRecordsList"
+                                 ItemsSource="{Binding SavedRecords}"
+                                 SelectionMode="Multiple"
+                                 SelectionChanged="SavedRecordsSelectionChanged"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Padding="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:SavedWorkRecord">
+                                    <Border Background="#F3F6FB"
+                                            CornerRadius="8"
+                                            Padding="8,5"
+                                            Margin="0,2">
+                                        <Grid RowDefinitions="Auto"
+                                              ColumnDefinitions="*,Auto"
+                                              ColumnSpacing="8">
+                                            <TextBlock Text="{Binding DisplayName}"
+                                                       FontSize="13"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="#344054"
+                                                       TextTrimming="CharacterEllipsis" />
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding DurationText}"
+                                                       FontSize="11"
+                                                       Foreground="#7B8798" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
 
         <!-- 右侧详情卡片 -->
-        <ScrollViewer Grid.Row="1"
-                      Grid.Column="1"
+        <ScrollViewer Grid.Column="1"
                       HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Auto">
-            <StackPanel Spacing="14"
-                        IsVisible="{Binding SelectedRecord, Converter={x:Static avaConverters:ObjectConverters.IsNotNull}}">
+            <StackPanel Spacing="14">
+                <Border IsVisible="{Binding HasSelectionSummary}"
+                        Background="{DynamicResource SukiCardBackground}"
+                        BorderBrush="{DynamicResource SukiControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="18,16">
+                    <TextBlock Text="{Binding SelectionSummary}"
+                               Classes="RecordBody"
+                               FontSize="16" />
+                </Border>
                 <!-- 任务概况 -->
                 <Border Background="{DynamicResource SukiCardBackground}"
                         BorderBrush="{DynamicResource SukiControlBorderBrush}"
                         BorderThickness="1"
                         CornerRadius="12"
+                        IsVisible="{Binding SelectedRecord, Converter={x:Static avaConverters:ObjectConverters.IsNotNull}}"
                         Padding="18,16">
                     <StackPanel Spacing="16">
                         <TextBlock Classes="RecordCardTitle" Text="任务概况" />
@@ -202,34 +274,34 @@
                                            Foreground="#A15C00" />
                             </Border>
                         </Grid>
-                        <TextBlock Text="{Binding SelectedRecord.ListTimeText}"
+                        <TextBlock Text="{Binding SelectedTimeText}"
                                    FontSize="14"
                                    Foreground="#7B8798" />
-                        <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto"
-                              ColumnSpacing="24"
-                              Margin="0,3,0,0">
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="24"
+                                    Margin="0,3,0,0">
                             <TextBlock Text="{Binding SelectedRecord.SortieCount, StringFormat=出阵次数：{0}}"
                                        FontSize="14"
                                        Foreground="#344054" />
-                            <TextBlock Grid.Column="1"
+                            <TextBlock
                                        Text="{Binding SelectedRecord.MarchCount, StringFormat=行军次数：{0}}"
                                        FontSize="14"
                                        Foreground="#344054" />
-                            <TextBlock Grid.Column="2"
+                            <TextBlock
                                        Text="{Binding SelectedRecord.RoundCount, StringFormat=完成圈数：{0}}"
                                        FontSize="14"
                                        Foreground="#344054" />
-                            <TextBlock Grid.Column="3"
+                            <TextBlock
                                        Text="{Binding SelectedRecord.FlowerBrushCount, StringFormat=刷花次数：{0}}"
                                        FontSize="14"
                                        Foreground="#344054"
                                        IsVisible="{Binding SelectedHasFlowerBrush}" />
-                            <TextBlock Grid.Column="4"
-                                       Text="{Binding SelectedRecord.EarlyEndCount, StringFormat=提前结束：{0}}"
+                            <TextBlock
+                                       Text="{Binding SelectedRecord.ReturnHomeCount, StringFormat=返回本丸：{0}}"
                                        FontSize="14"
                                        Foreground="#344054"
-                                       IsVisible="{Binding SelectedHasEarlyEnd}" />
-                        </Grid>
+                                       IsVisible="{Binding SelectedHasReturnHome}" />
+                        </StackPanel>
                     </StackPanel>
                 </Border>
 
@@ -278,12 +350,34 @@
                         CornerRadius="12"
                         Padding="18,16"
                         IsVisible="{Binding SelectedHasLogistics}">
-                    <StackPanel Spacing="8">
+                    <StackPanel Spacing="9">
                         <TextBlock Classes="RecordCardTitle" Text="后勤记录" />
                         <TextBlock Classes="RecordBody"
-                                   Text="{Binding SelectedLogisticsText}"
-                                   LineHeight="23"
+                                   Text="{Binding SelectedLogisticsSummaryText}"
+                                   IsVisible="{Binding SelectedHasLogisticsSummary}"
                                    TextWrapping="Wrap" />
+                        <StackPanel Spacing="4"
+                                    IsVisible="{Binding SelectedHasLogisticsDispatch}"
+                                    Margin="0,8,0,0">
+                            <TextBlock Classes="RecordBody"
+                                       Text="{Binding SelectedLogisticsDispatchCountText}"
+                                       IsVisible="{Binding SelectedHasLogisticsDispatch}" />
+                            <ItemsControl ItemsSource="{Binding SelectedLogisticsDispatchTexts}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"
+                                                   ItemSpacing="18"
+                                                   LineSpacing="8" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Classes="RecordBody"
+                                                   Text="{Binding}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
                     </StackPanel>
                 </Border>
 

@@ -371,7 +371,7 @@
     },
     "post_wait_freezes": {
       "time": 100,
-      "target": [82, 61, 629, 56]
+      "target": [108, 76, 106, 6]
     },
     "next": ["S_TeamVerifyColor1", "S_TeamVerifyColor2", "S_ClickTeam"],
     "on_error": ["S_DetectWhereAmI"]
@@ -380,9 +380,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [172, 81, 17, 9],
+        "roi": [108, 76, 106, 6],
         "upper": [192, 192, 192],
-        "lower": [186, 186, 186]
+        "lower": [186, 186, 186],
+        "count": 20
       }
     },
     "next": ["S_CaptainHub"]
@@ -391,10 +392,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [172, 81, 17, 9],
+        "roi": [108, 76, 106, 6],
         "upper": [97, 97, 97],
         "lower": [91, 91, 91],
-        "count": 1
+        "count": 20
       }
     },
     "next": ["S_CaptainHub"]
@@ -3417,7 +3418,7 @@
     },
     "post_wait_freezes": {
       "time": 100,
-      "target": [82, 61, 629, 56]
+      "target": [108, 76, 106, 6]
     },
     "next": ["SF_TeamVerifyColorN1", "SF_TeamVerifyColorN2", "SF_ClickTeamN"],
     "on_error": ["SF_DetectWhereAmI"]
@@ -3426,9 +3427,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [284, 77, 18, 9],
+        "roi": [108, 76, 106, 6],
         "upper": [192, 192, 192],
-        "lower": [186, 186, 186]
+        "lower": [186, 186, 186],
+        "count": 20
       }
     },
     "next": ["SF_DissolveHub"]
@@ -3437,10 +3439,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [284, 77, 18, 9],
+        "roi": [108, 76, 106, 6],
         "upper": [97, 97, 97],
         "lower": [91, 91, 91],
-        "count": 1
+        "count": 20
       }
     },
     "next": ["SF_DissolveHub"]

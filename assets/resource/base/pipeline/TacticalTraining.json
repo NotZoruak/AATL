@@ -609,7 +609,7 @@
     },
     "post_wait_freezes": {
       "time": 100,
-      "target": [82, 61, 629, 56]
+      "target": [108, 76, 106, 6]
     },
     "next": ["TT_TeamVerifyColor1", "TT_TeamVerifyColor2", "TT_ClickTargetTeam"],
     "on_error": ["TT_DetectWhereAmI"]
@@ -618,9 +618,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [172, 81, 17, 9],
+        "roi": [108, 76, 106, 6],
         "upper": [192, 192, 192],
-        "lower": [186, 186, 186]
+        "lower": [186, 186, 186],
+        "count": 20
       }
     },
     "next": ["TT_CheckCaptainColor"],
@@ -630,10 +631,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [172, 81, 17, 9],
+        "roi": [108, 76, 106, 6],
         "upper": [97, 97, 97],
         "lower": [91, 91, 91],
-        "count": 1
+        "count": 20
       }
     },
     "next": ["TT_CheckCaptainColor"],

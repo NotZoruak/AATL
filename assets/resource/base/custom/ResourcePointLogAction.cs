@@ -51,7 +51,8 @@ public class ResourcePointLogAction : IMaaCustomAction
     // 把 OCR 文本（如「获得木炭×20」）转成打点格式「木炭x20」，多个资源以空格分隔
     private static void LogGained(string prefix, string text)
     {
-        var matches = Regex.Matches(text, @"获得\s*(?<name>[^×\s]+)×(?<count>\d+)");
+        // OCR 可能把乘号识别为全角乘号或半角字母 x/X。
+        var matches = Regex.Matches(text, @"获得\s*(?<name>[^×xX\s]+)[×xX](?<count>\d+)");
         if (matches.Count == 0)
             return;
 

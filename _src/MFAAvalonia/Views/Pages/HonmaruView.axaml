@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pages="clr-namespace:MFAAvalonia.ViewModels.Pages"
              xmlns:views="clr-namespace:MFAAvalonia.Views.Pages"
+             xmlns:suki="using:SukiUI.Extensions"
              mc:Ignorable="d"
              d:DesignWidth="1280"
              d:DesignHeight="720"
@@ -14,14 +15,29 @@
     </Design.DataContext>
 
     <Grid Margin="16,12">
-        <TabControl SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-                <TabItem Header="仓库">
+        <TabControl SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}"
+                    suki:TabControlExtensions.HeaderHorizontalAlignment="Center">
+            <TabControl.Styles>
+                <Style Selector="TabItem.honmaru-tab /template/ ContentPresenter#PART_HeaderPresenter">
+                    <Setter Property="TextBlock.FontSize" Value="20" />
+                </Style>
+            </TabControl.Styles>
+                <TabItem Classes="honmaru-tab">
+                    <TabItem.Header>
+                        <TextBlock Text="仓库" FontSize="20" />
+                    </TabItem.Header>
                     <views:WarehouseView />
                 </TabItem>
-                <TabItem Header="工作记录">
+                <TabItem Classes="honmaru-tab">
+                    <TabItem.Header>
+                        <TextBlock Text="工作记录" FontSize="20" />
+                    </TabItem.Header>
                     <views:WorkRecordsView />
                 </TabItem>
-                <TabItem Header="刀帐">
+                <TabItem Classes="honmaru-tab">
+                    <TabItem.Header>
+                        <TextBlock Text="刀帐" FontSize="20" />
+                    </TabItem.Header>
                     <views:SwordBookView />
                 </TabItem>
         </TabControl>

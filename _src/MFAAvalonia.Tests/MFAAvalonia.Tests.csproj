@@ -7,7 +7,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\MFAAvalonia\Models\FormationPreset.cs" Link="FormationPreset.cs" />
+    <Compile Include="..\MFAAvalonia\Models\WorkRecord.cs" Link="WorkRecord.cs" />
     <Compile Include="..\MFAAvalonia\Models\SwordBookEntry.cs" Link="SwordBookEntry.cs" />
+    <Compile Include="..\MFAAvalonia\Services\LogParser.cs" Link="LogParser.cs" />
     <Compile Include="..\MFAAvalonia\Services\SwordBookEditor.cs" Link="SwordBookEditor.cs" />
+    <Compile Include="..\MFAAvalonia\Services\WorkRecordBuilder.cs" Link="WorkRecordBuilder.cs" />
+    <Compile Include="..\MFAAvalonia\Models\SavedWorkRecord.cs" Link="SavedWorkRecord.cs" />
+    <Compile Include="..\MFAAvalonia\Services\SavedWorkRecordService.cs" Link="SavedWorkRecordService.cs" />
+    <Compile Include="..\MFAAvalonia\Services\SavedWorkRecordStore.cs" Link="SavedWorkRecordStore.cs" />
   </ItemGroup>
 </Project>

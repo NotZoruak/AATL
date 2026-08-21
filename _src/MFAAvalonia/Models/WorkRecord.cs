@@ -19,10 +19,13 @@ public sealed class WorkRecord
     public DateTime EndTime { get; set; }
 
     /// <summary>总耗时</summary>
-    public TimeSpan Duration => EndTime - StartTime;
+    public TimeSpan Duration => DurationOverride ?? (EndTime - StartTime);
 
-    /// <summary>运行结果：成功/中断/手动停止/失败/未开始</summary>
-    public string Status { get; set; } = "成功";
+    /// <summary>保存记录或合并记录的累计时长覆盖值，普通日志记录为空。</summary>
+    public TimeSpan? DurationOverride { get; set; }
+
+    /// <summary>运行结果：进行中/成功/中断/手动停止/失败/未开始</summary>
+    public string Status { get; set; } = "进行中";
 
     /// <summary>记录期间是否出现中断事件（覆盖最终状态）</summary>
     public bool HasInterrupt { get; set; }
@@ -36,7 +39,7 @@ public sealed class WorkRecord
         || MarchCount > 0
         || RoundCount > 0
         || FlowerBrushCount > 0
-        || EarlyEndCount > 0
+        || ReturnHomeCount > 0
         || ResourceGains.Count > 0
         || SwordDrops.Count > 0
         || LogisticsCounts.Count > 0
@@ -68,8 +71,8 @@ public sealed class WorkRecord
     /// <summary>出阵刷花次数（非「后勤」前缀的「刷花」词条计数）</summary>
     public int FlowerBrushCount { get; set; }
 
-    /// <summary>提前结束次数（无票终止/全部队伍不符合要求终止/队长重伤撤退）</summary>
-    public int EarlyEndCount { get; set; }
+    /// <summary>返回本丸次数（由确认返回本丸的日志统计）</summary>
+    public int ReturnHomeCount { get; set; }
 
     /// <summary>资源收获：资源名 → 累计数量（小判箱掉落按次数计入）</summary>
     public Dictionary<string, int> ResourceGains { get; } = [];

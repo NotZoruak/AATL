@@ -1,0 +1,33 @@
+<UserControl
+    MinWidth="380"
+    MinHeight="210"
+    x:Class="MFAAvalonia.Views.UserControls.WorkRecordNameDialogView"
+    x:DataType="usersControls:WorkRecordNameDialogViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:usersControls="clr-namespace:MFAAvalonia.ViewModels.UsersControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="14,8" RowDefinitions="Auto,Auto,Auto" RowSpacing="12">
+        <TextBlock Text="请输入保存记录名称"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Foreground="{DynamicResource SukiText}" />
+        <TextBox Grid.Row="1"
+                 Text="{Binding Name, Mode=TwoWay}"
+                 Watermark="记录名称"
+                 MinHeight="38"
+                 Padding="10,6" />
+        <StackPanel Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Spacing="10">
+            <Button Classes="Outlined"
+                    Content="取消"
+                    Command="{Binding CancelCommand}"
+                    IsCancel="True" />
+            <Button Classes="Flat"
+                    Content="确定"
+                    Command="{Binding ConfirmCommand}"
+                    IsDefault="True" />
+        </StackPanel>
+    </Grid>
+</UserControl>

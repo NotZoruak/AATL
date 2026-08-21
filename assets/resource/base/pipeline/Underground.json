@@ -327,7 +327,7 @@
     },
     "post_wait_freezes": {
       "time": 200,
-      "target": [82, 61, 629, 56]
+      "target": [108, 76, 106, 6]
     },
     "next": ["U_TeamVerifyColor1", "U_TeamVerifyColor2", "U_ClickTeam"],
     "on_error": ["U_DetectWhereAmI"]
@@ -336,9 +336,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [172, 81, 17, 9],
+        "roi": [108, 76, 106, 6],
         "upper": [192, 192, 192],
-        "lower": [186, 186, 186]
+        "lower": [186, 186, 186],
+        "count": 20
       }
     },
     "next": ["U_CaptainHub"],
@@ -348,10 +349,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [172, 81, 17, 9],
+        "roi": [108, 76, 106, 6],
         "upper": [97, 97, 97],
         "lower": [91, 91, 91],
-        "count": 1
+        "count": 20
       }
     },
     "next": ["U_CaptainHub"],
@@ -1355,9 +1356,11 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [490, 469, 10, 10]
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {
+        "message": "[地下城] 返回本丸",
+        "click": [490, 469, 10, 10]
       }
     },
     "post_wait_freezes": {
@@ -2167,7 +2170,7 @@
     },
     "post_wait_freezes": {
       "time": 200,
-      "target": [82, 61, 629, 56]
+      "target": [108, 76, 106, 6]
     },
     "next": ["UF_TeamVerifyColorN1", "UF_TeamVerifyColorN2", "UF_ClickTeamN"],
     "on_error": ["UF_DetectWhereAmI"]
@@ -2176,9 +2179,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [172, 81, 17, 9],
+        "roi": [108, 76, 106, 6],
         "upper": [192, 192, 192],
-        "lower": [186, 186, 186]
+        "lower": [186, 186, 186],
+        "count": 20
       }
     },
     "next": ["UF_DissolveHub"],
@@ -2188,10 +2192,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [172, 81, 17, 9],
+        "roi": [108, 76, 106, 6],
         "upper": [97, 97, 97],
         "lower": [91, 91, 91],
-        "count": 1
+        "count": 20
       }
     },
     "next": ["UF_DissolveHub"],
