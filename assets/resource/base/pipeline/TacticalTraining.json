@@ -611,34 +611,8 @@
       "time": 100,
       "target": [108, 76, 106, 6]
     },
-    "next": ["TT_TeamVerifyColor1", "TT_TeamVerifyColor2", "TT_ClickTargetTeam"],
+    "next": ["TT_CheckCaptainColor"],
     "on_error": ["TT_DetectWhereAmI"]
-  },
-  "TT_TeamVerifyColor1": {
-    "recognition": {
-      "type": "ColorMatch",
-      "param": {
-        "roi": [108, 76, 106, 6],
-        "upper": [192, 192, 192],
-        "lower": [186, 186, 186],
-        "count": 20
-      }
-    },
-    "next": ["TT_CheckCaptainColor"],
-    "on_error": ["TT_ClickTargetTeam"]
-  },
-  "TT_TeamVerifyColor2": {
-    "recognition": {
-      "type": "ColorMatch",
-      "param": {
-        "roi": [108, 76, 106, 6],
-        "upper": [97, 97, 97],
-        "lower": [91, 91, 91],
-        "count": 20
-      }
-    },
-    "next": ["TT_CheckCaptainColor"],
-    "on_error": ["TT_ClickTargetTeam"]
   },
   "TT_CaptainHub": {
     "recognition": {

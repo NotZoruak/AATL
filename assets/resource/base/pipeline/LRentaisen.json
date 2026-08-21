@@ -562,34 +562,8 @@
       "time": 100,
       "target": [108, 76, 106, 6]
     },
-    "next": ["LR_TeamVerifyColor1", "LR_TeamVerifyColor2", "LR_ClickTeam"],
+    "next": ["LR_CaptainHub"],
     "on_error": ["LR_DetectWhereAmI"]
-  },
-  "LR_TeamVerifyColor1": {
-    "recognition": {
-      "type": "ColorMatch",
-      "param": {
-        "roi": [108, 76, 106, 6],
-        "upper": [192, 192, 192],
-        "lower": [186, 186, 186],
-        "count": 20
-      }
-    },
-    "next": ["LR_CaptainHub"],
-    "on_error": ["LR_ClickTeam"]
-  },
-  "LR_TeamVerifyColor2": {
-    "recognition": {
-      "type": "ColorMatch",
-      "param": {
-        "roi": [108, 76, 106, 6],
-        "upper": [97, 97, 97],
-        "lower": [91, 91, 91],
-        "count": 20
-      }
-    },
-    "next": ["LR_CaptainHub"],
-    "on_error": ["LR_ClickTeam"]
   },
   "LR_TryClickHome": {
     "next": ["LR_ClickHomeInMenu", "LR_DetectWhereAmI"]

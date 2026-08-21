@@ -1483,18 +1483,6 @@
               "target": [154, 93, 1, 1],
               "post_wait_freezes": {"target": [108, 76, 106, 6]}
             },
-            "S_TeamVerifyColor1": {
-              "recognition": {
-                "type": "ColorMatch",
-                "param": {
-                  "roi": [108, 76, 106, 6],
-                  "upper": [192, 192, 192],
-                  "lower": [186, 186, 186],
-                  "count": 20
-                }
-              }
-            },
-            "S_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [108, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
             "S_PreCheckUseRecord": {
               "next": ["S_PreCheckClickRecord1"]
             },
@@ -1503,18 +1491,6 @@
               "target": [154, 93, 1, 1],
               "post_wait_freezes": {"target": [108, 76, 106, 6]}
             },
-            "SF_TeamVerifyColorN1": {
-              "recognition": {
-                "type": "ColorMatch",
-                "param": {
-                  "roi": [108, 76, 106, 6],
-                  "upper": [192, 192, 192],
-                  "lower": [186, 186, 186],
-                  "count": 20
-                }
-              }
-            },
-            "SF_TeamVerifyColorN2": {"recognition": {"type": "ColorMatch", "param": {"roi": [108, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
             "SF_UseRecord_Step2_Rec1": {"enabled": true},
             "SF_EqRefill_Step2_Rec1": {"enabled": true}
           }
@@ -1527,18 +1503,6 @@
               "target": [282, 94, 1, 1],
               "post_wait_freezes": {"target": [229, 76, 105, 6]}
             },
-            "S_TeamVerifyColor1": {
-              "recognition": {
-                "type": "ColorMatch",
-                "param": {
-                  "roi": [229, 76, 105, 6],
-                  "upper": [192, 192, 192],
-                  "lower": [186, 186, 186],
-                  "count": 20
-                }
-              }
-            },
-            "S_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [229, 76, 105, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
             "S_PreCheckUseRecord": {
               "next": ["S_PreCheckClickRecord2"]
             },
@@ -1547,18 +1511,6 @@
               "target": [282, 94, 1, 1],
               "post_wait_freezes": {"target": [229, 76, 105, 6]}
             },
-            "SF_TeamVerifyColorN1": {
-              "recognition": {
-                "type": "ColorMatch",
-                "param": {
-                  "roi": [229, 76, 105, 6],
-                  "upper": [192, 192, 192],
-                  "lower": [186, 186, 186],
-                  "count": 20
-                }
-              }
-            },
-            "SF_TeamVerifyColorN2": {"recognition": {"type": "ColorMatch", "param": {"roi": [229, 76, 105, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
             "SF_UseRecord_Step2_Rec2": {"enabled": true},
             "SF_EqRefill_Step2_Rec2": {"enabled": true}
           }
@@ -1571,18 +1523,6 @@
               "target": [398, 91, 1, 1],
               "post_wait_freezes": {"target": [351, 76, 106, 6]}
             },
-            "S_TeamVerifyColor1": {
-              "recognition": {
-                "type": "ColorMatch",
-                "param": {
-                  "roi": [351, 76, 106, 6],
-                  "upper": [192, 192, 192],
-                  "lower": [186, 186, 186],
-                  "count": 20
-                }
-              }
-            },
-            "S_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [351, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
             "S_PreCheckUseRecord": {
               "next": ["S_PreCheckClickRecord3"]
             },
@@ -1591,18 +1531,6 @@
               "target": [398, 91, 1, 1],
               "post_wait_freezes": {"target": [351, 76, 106, 6]}
             },
-            "SF_TeamVerifyColorN1": {
-              "recognition": {
-                "type": "ColorMatch",
-                "param": {
-                  "roi": [351, 76, 106, 6],
-                  "upper": [192, 192, 192],
-                  "lower": [186, 186, 186],
-                  "count": 20
-                }
-              }
-            },
-            "SF_TeamVerifyColorN2": {"recognition": {"type": "ColorMatch", "param": {"roi": [351, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
             "SF_UseRecord_Step2_Rec3": {"enabled": true},
             "SF_EqRefill_Step2_Rec3": {"enabled": true}
           }
@@ -1615,18 +1543,6 @@
               "target": [519, 89, 1, 1],
               "post_wait_freezes": {"target": [471, 76, 106, 6]}
             },
-            "S_TeamVerifyColor1": {
-              "recognition": {
-                "type": "ColorMatch",
-                "param": {
-                  "roi": [471, 76, 106, 6],
-                  "upper": [192, 192, 192],
-                  "lower": [186, 186, 186],
-                  "count": 20
-                }
-              }
-            },
-            "S_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [471, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
             "S_PreCheckUseRecord": {
               "next": ["S_PreCheckClickRecord4"]
             },
@@ -1635,18 +1551,6 @@
               "target": [519, 89, 1, 1],
               "post_wait_freezes": {"target": [471, 76, 106, 6]}
             },
-            "SF_TeamVerifyColorN1": {
-              "recognition": {
-                "type": "ColorMatch",
-                "param": {
-                  "roi": [471, 76, 106, 6],
-                  "upper": [192, 192, 192],
-                  "lower": [186, 186, 186],
-                  "count": 20
-                }
-              }
-            },
-            "SF_TeamVerifyColorN2": {"recognition": {"type": "ColorMatch", "param": {"roi": [471, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
             "SF_UseRecord_Step2_Rec4": {"enabled": true},
             "SF_EqRefill_Step2_Rec4": {"enabled": true}
           }
@@ -1659,18 +1563,6 @@
               "target": [635, 91, 1, 1],
               "post_wait_freezes": {"target": [594, 75, 106, 7]}
             },
-            "S_TeamVerifyColor1": {
-              "recognition": {
-                "type": "ColorMatch",
-                "param": {
-                  "roi": [594, 75, 106, 7],
-                  "upper": [192, 192, 192],
-                  "lower": [186, 186, 186],
-                  "count": 20
-                }
-              }
-            },
-            "S_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
             "S_PreCheckUseRecord": {
               "next": ["S_PreCheckClickRecord5"]
             },
@@ -1679,18 +1571,6 @@
               "target": [635, 91, 1, 1],
               "post_wait_freezes": {"target": [594, 75, 106, 7]}
             },
-            "SF_TeamVerifyColorN1": {
-              "recognition": {
-                "type": "ColorMatch",
-                "param": {
-                  "roi": [594, 75, 106, 7],
-                  "upper": [192, 192, 192],
-                  "lower": [186, 186, 186],
-                  "count": 20
-                }
-              }
-            },
-            "SF_TeamVerifyColorN2": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
             "SF_UseRecord_Step2_Rec5": {"enabled": true},
             "SF_EqRefill_Step2_Rec5": {"enabled": true}
           }
@@ -2062,8 +1942,6 @@
         {
           "name": "部队一",
           "pipeline_override": {
-      "LR_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [108, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "LR_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [108, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "LR_ClickTeam": {
               "target": [154, 93, 1, 1],
@@ -2074,8 +1952,6 @@
         {
           "name": "部队二",
           "pipeline_override": {
-      "LR_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [229, 76, 105, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "LR_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [229, 76, 105, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "LR_ClickTeam": {
               "target": [282, 94, 1, 1],
@@ -2086,8 +1962,6 @@
         {
           "name": "部队三",
           "pipeline_override": {
-      "LR_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [351, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "LR_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [351, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "LR_ClickTeam": {
               "target": [398, 91, 1, 1],
@@ -2098,8 +1972,6 @@
         {
           "name": "部队四",
           "pipeline_override": {
-      "LR_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [471, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "LR_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [471, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "LR_ClickTeam": {
               "target": [519, 89, 1, 1],
@@ -2110,8 +1982,6 @@
         {
           "name": "部队五",
           "pipeline_override": {
-      "LR_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "LR_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "LR_ClickTeam": {
               "target": [635, 91, 1, 1],
@@ -2235,8 +2105,6 @@
         {
           "name": "部队一",
           "pipeline_override": {
-      "TT_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [108, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "TT_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [108, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "TT_ClickTargetTeam": {
               "target": [154, 93, 1, 1],
@@ -2247,8 +2115,6 @@
         {
           "name": "部队二",
           "pipeline_override": {
-      "TT_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [229, 76, 105, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "TT_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [229, 76, 105, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "TT_ClickTargetTeam": {
               "target": [282, 94, 1, 1],
@@ -2259,8 +2125,6 @@
         {
           "name": "部队三",
           "pipeline_override": {
-      "TT_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [351, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "TT_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [351, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "TT_ClickTargetTeam": {
               "target": [398, 91, 1, 1],
@@ -2271,8 +2135,6 @@
         {
           "name": "部队四",
           "pipeline_override": {
-      "TT_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [471, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "TT_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [471, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "TT_ClickTargetTeam": {
               "target": [519, 89, 1, 1],
@@ -2283,12 +2145,6 @@
         {
           "name": "部队五",
           "pipeline_override": {
-      "TT_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "TT_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
-
-      "LR_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "LR_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
-
             "TT_ClickTargetTeam": {
               "target": [635, 91, 1, 1],
               "post_wait_freezes": {"target": [594, 75, 106, 7]}
@@ -2708,10 +2564,6 @@
           "name": "部队一",
           "DisplayName": "部队一",
           "pipeline_override": {
-      "U_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [108, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "U_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [108, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
-      "UF_TeamVerifyColorN1": {"recognition": {"type": "ColorMatch", "param": {"roi": [108, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "UF_TeamVerifyColorN2": {"recognition": {"type": "ColorMatch", "param": {"roi": [108, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "U_ClickTeam": {
               "target": [154, 93, 1, 1],
@@ -2733,10 +2585,6 @@
           "name": "部队二",
           "DisplayName": "部队二",
           "pipeline_override": {
-      "U_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [229, 76, 105, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "U_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [229, 76, 105, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
-      "UF_TeamVerifyColorN1": {"recognition": {"type": "ColorMatch", "param": {"roi": [229, 76, 105, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "UF_TeamVerifyColorN2": {"recognition": {"type": "ColorMatch", "param": {"roi": [229, 76, 105, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "U_ClickTeam": {
               "target": [282, 94, 1, 1],
@@ -2758,10 +2606,6 @@
           "name": "部队三",
           "DisplayName": "部队三",
           "pipeline_override": {
-      "U_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [351, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "U_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [351, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
-      "UF_TeamVerifyColorN1": {"recognition": {"type": "ColorMatch", "param": {"roi": [351, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "UF_TeamVerifyColorN2": {"recognition": {"type": "ColorMatch", "param": {"roi": [351, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "U_ClickTeam": {
               "target": [398, 91, 1, 1],
@@ -2783,10 +2627,6 @@
           "name": "部队四",
           "DisplayName": "部队四",
           "pipeline_override": {
-      "U_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [471, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "U_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [471, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
-      "UF_TeamVerifyColorN1": {"recognition": {"type": "ColorMatch", "param": {"roi": [471, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "UF_TeamVerifyColorN2": {"recognition": {"type": "ColorMatch", "param": {"roi": [471, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "U_ClickTeam": {
               "target": [519, 89, 1, 1],
@@ -2808,10 +2648,6 @@
           "name": "部队五",
           "DisplayName": "部队五",
           "pipeline_override": {
-      "U_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "U_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
-      "UF_TeamVerifyColorN1": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "UF_TeamVerifyColorN2": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "U_ClickTeam": {
               "target": [635, 91, 1, 1],
@@ -5599,8 +5435,6 @@
           "name": "部队一",
           "DisplayName": "部队一",
           "pipeline_override": {
-      "FB_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [108, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "FB_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [108, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "FB_ClickTeam": {
               "target": [154, 93, 1, 1],
@@ -5612,8 +5446,6 @@
           "name": "部队二",
           "DisplayName": "部队二",
           "pipeline_override": {
-      "FB_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [229, 76, 105, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "FB_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [229, 76, 105, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "FB_ClickTeam": {
               "target": [282, 94, 1, 1],
@@ -5625,8 +5457,6 @@
           "name": "部队三",
           "DisplayName": "部队三",
           "pipeline_override": {
-      "FB_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [351, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "FB_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [351, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "FB_ClickTeam": {
               "target": [398, 91, 1, 1],
@@ -5638,8 +5468,6 @@
           "name": "部队四",
           "DisplayName": "部队四",
           "pipeline_override": {
-      "FB_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [471, 76, 106, 6], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "FB_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [471, 76, 106, 6], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "FB_ClickTeam": {
               "target": [519, 89, 1, 1],
@@ -5651,8 +5479,6 @@
           "name": "部队五",
           "DisplayName": "部队五",
           "pipeline_override": {
-      "FB_TeamVerifyColor1": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [192, 192, 192], "lower": [186, 186, 186], "count": 20}}},
-      "FB_TeamVerifyColor2": {"recognition": {"type": "ColorMatch", "param": {"roi": [594, 75, 106, 7], "upper": [97, 97, 97], "lower": [91, 91, 91], "count": 20}}},
 
             "FB_ClickTeam": {
               "target": [636, 85, 1, 1],
