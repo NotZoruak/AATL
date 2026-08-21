@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using MFAAvalonia.Models;
 
@@ -126,7 +127,14 @@ public static class WorkRecordBuilder
 
             // 4. 词表行：归入当前记录（含短时间重复过滤）
             if (current != null)
-                Accumulate(current, entry.Timestamp.Value, entry.Content, entry.Level, lastSeen);
+            {
+                var word = WordRegex.Match(entry.Content);
+                var target = word.Success
+                    ? FindRecordForPrefix(word.Groups[1].Value, records, current)
+                    : current;
+                if (target != null)
+                    Accumulate(target, entry.Timestamp.Value, entry.Content, entry.Level, lastSeen);
+            }
         }
 
         // 日志未出现停止状态（进程被杀/断电）时，最后记录以最后一条事件时间收尾
@@ -134,7 +142,11 @@ public static class WorkRecordBuilder
             current.EndTime = lastTime;
 
         // 从未开始、未产生业务数据的任务不显示，避免快速启动/回本丸等空记录污染列表
-        records.RemoveAll(r => !r.HasStarted || r.Status == "未开始" || !r.HasRun);
+        // 回本丸是流程任务，不是需要统计的业务任务；其中的返回本丸日志应归属于上一条出阵记录。
+        records.RemoveAll(r => r.TaskName == "回本丸"
+            || !r.HasStarted
+            || r.Status == "未开始"
+            || !r.HasRun);
 
         foreach (var record in records)
         {
@@ -143,6 +155,30 @@ public static class WorkRecordBuilder
                 record.Status = "中断";
         }
         return records;
+    }
+
+    /// <summary>按词条前缀寻找对应任务，支持地下城与后勤并行运行。</summary>
+    private static WorkRecord? FindRecordForPrefix(string prefix, List<WorkRecord> records, WorkRecord current)
+    {
+        var taskName = prefix switch
+        {
+            "远征计时" => "后勤",
+            _ => prefix,
+        };
+
+        if (taskName is "地下城" or "合战场" or "联队战" or "战术强化" or "后勤")
+        {
+            var matching = records.LastOrDefault(record =>
+                record.HasStarted && record.TaskName == taskName && record.EndTime == default);
+            if (matching != null)
+                return matching;
+
+            matching = records.LastOrDefault(record => record.HasStarted && record.TaskName == taskName);
+            if (matching != null)
+                return matching;
+        }
+
+        return current;
     }
 
     // 刀种展示顺序（用户指定）：短刀→胁差→打刀→太刀→大太刀→枪→薙刀→剑

@@ -17,14 +17,43 @@
             Padding="28"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Top">
-        <StackPanel Spacing="8">
-            <TextBlock Text="{Binding EmptyTitle}"
-                       FontSize="18"
-                       FontWeight="SemiBold"
-                       Foreground="{DynamicResource SukiText}" />
-            <TextBlock Text="{Binding EmptyDescription}"
-                       FontSize="14"
-                       Foreground="{DynamicResource SukiText}" />
-        </StackPanel>
+        <Grid Height="64">
+            <UniformGrid Rows="1" Columns="24">
+                <Rectangle Fill="#F4C542" />
+                <Rectangle Fill="#252525" />
+                <Rectangle Fill="#F4C542" />
+                <Rectangle Fill="#252525" />
+                <Rectangle Fill="#F4C542" />
+                <Rectangle Fill="#252525" />
+                <Rectangle Fill="#F4C542" />
+                <Rectangle Fill="#252525" />
+                <Rectangle Fill="#F4C542" />
+                <Rectangle Fill="#252525" />
+                <Rectangle Fill="#F4C542" />
+                <Rectangle Fill="#252525" />
+                <Rectangle Fill="#F4C542" />
+                <Rectangle Fill="#252525" />
+                <Rectangle Fill="#F4C542" />
+                <Rectangle Fill="#252525" />
+                <Rectangle Fill="#F4C542" />
+                <Rectangle Fill="#252525" />
+                <Rectangle Fill="#F4C542" />
+                <Rectangle Fill="#252525" />
+                <Rectangle Fill="#F4C542" />
+                <Rectangle Fill="#252525" />
+                <Rectangle Fill="#F4C542" />
+                <Rectangle Fill="#252525" />
+            </UniformGrid>
+            <Border Background="#E6FFFFFF"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Padding="24,8"
+                    CornerRadius="4">
+                <TextBlock Text="施工中"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           Foreground="#252525" />
+            </Border>
+        </Grid>
     </Border>
 </UserControl>

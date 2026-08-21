@@ -150,7 +150,7 @@ public partial class WorkRecordsViewModel : ViewModelBase
         else if (SelectedSavedRecords.Count > 1 && CanMergeSavedRecords)
         {
             SelectedRecord = SavedWorkRecordService.Merge(
-                SelectedSavedRecords.Select(record => record.ToWorkRecord()), "").ToWorkRecord();
+                SelectedSavedRecords, "").ToWorkRecord();
             SelectionSummary = $"已选择 {SelectedSavedRecords.Count} 条已保存记录，可合并";
         }
         else
@@ -195,7 +195,7 @@ public partial class WorkRecordsViewModel : ViewModelBase
         {
             var uniqueName = SavedWorkRecordService.CreateUniqueName(name, SavedRecords.Select(record => record.DisplayName));
             var merged = SavedWorkRecordService.Merge(
-                SelectedSavedRecords.Select(record => record.ToWorkRecord()), uniqueName);
+                SelectedSavedRecords, uniqueName);
             foreach (var record in SelectedSavedRecords.ToList())
                 SavedRecords.Remove(record);
             SavedRecords.Add(merged);

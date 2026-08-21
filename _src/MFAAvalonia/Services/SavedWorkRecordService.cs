@@ -11,11 +11,50 @@ public static class SavedWorkRecordService
     /// <summary>合并同一任务的运行记录。</summary>
     public static SavedWorkRecord Merge(IEnumerable<WorkRecord> sources, string displayName)
     {
-        var records = sources.ToList();
+        var records = sources
+            .GroupBy(record => (record.StartTime, record.EndTime))
+            .Select(group => group.First())
+            .ToList();
         if (records.Count == 0)
             throw new ArgumentException("至少需要一条记录才能合并。", nameof(sources));
 
         var taskName = records[0].TaskName;
+        if (records.Any(record => record.TaskName != taskName))
+            throw new InvalidOperationException("只能合并同名任务。");
+
+        var result = MergeRecords(records, displayName);
+        result.Segments = records
+            .Select(SavedWorkRecordSegment.FromWorkRecord)
+            .ToList();
+        return result;
+    }
+
+    /// <summary>合并已有保存记录，并按保存段的精确时间去重。</summary>
+    public static SavedWorkRecord Merge(IEnumerable<SavedWorkRecord> sources, string displayName)
+    {
+        var savedRecords = sources.ToList();
+        if (savedRecords.Count == 0)
+            throw new ArgumentException("至少需要一条记录才能合并。", nameof(sources));
+
+        var taskName = savedRecords[0].TaskName;
+        if (savedRecords.Any(record => record.TaskName != taskName))
+            throw new InvalidOperationException("只能合并同名任务。");
+
+        var segments = savedRecords
+            .SelectMany(record => record.Segments.Count > 0
+                ? record.Segments
+                : [SavedWorkRecordSegment.FromLegacyRecord(record)])
+            .GroupBy(segment => (segment.StartTime, segment.EndTime))
+            .Select(group => group.First())
+            .ToList();
+        var result = MergeRecords(segments.Select(segment => segment.ToWorkRecord()).ToList(), displayName);
+        result.Segments = segments;
+        return result;
+    }
+
+    private static SavedWorkRecord MergeRecords(IReadOnlyCollection<WorkRecord> records, string displayName)
+    {
+        var taskName = records.First().TaskName;
         if (records.Any(record => record.TaskName != taskName))
             throw new InvalidOperationException("只能合并同名任务。");
 

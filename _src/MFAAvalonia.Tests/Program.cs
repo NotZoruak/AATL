@@ -83,6 +83,26 @@ AssertTrue(switchedTaskRecords.Count == 1 && switchedTaskRecords[0].TaskName == 
     "任务切换时应保留上一条有业务数据的记录");
 AssertTrue(switchedTaskRecords[0].Status == "成功", "正常切换到下一个任务时上一条记录应显示成功");
 
+var returnHomeTaskRecords = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：回本丸"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[地下城] 返回本丸"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "停止前状态：SUCCEEDED"),
+]);
+AssertTrue(returnHomeTaskRecords.All(record => record.TaskName != "回本丸"),
+    "回本丸流程不应作为独立工作记录显示");
+
+var parallelTaskRecords = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：地下城"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "开始任务：后勤"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "[地下城] 刀剑掉落 短刀 秋田藤四郎"),
+    new LogEntry(logStart.AddSeconds(3), "INF", "[后勤] 派遣远征 部队1已派遣至 2-4"),
+    new LogEntry(logStart.AddSeconds(4), "INF", "停止前状态：SUCCEEDED"),
+]);
+var parallelDungeon = parallelTaskRecords.Single(record => record.TaskName == "地下城");
+var parallelLogistics = parallelTaskRecords.Single(record => record.TaskName == "后勤");
+AssertTrue(parallelDungeon.SwordDrops.Count == 1, "并行任务中地下城掉落应归入地下城记录");
+AssertTrue(parallelLogistics.SwordDrops.Count == 0, "并行任务中后勤记录不应包含地下城掉落");
+
 var firstSavedSource = new WorkRecord
 {
     TaskName = "地下城",
@@ -112,6 +132,19 @@ AssertTrue(merged.Duration == TimeSpan.FromMinutes(50), "合并记录应累加�
 AssertTrue(merged.SortieCount == 3 && merged.RoundCount == 5, "合并记录应累加出阵统计");
 AssertTrue(merged.ResourceGains["木炭"] == 200, "合并记录应累加资源收获");
 
+var duplicateMerged = SavedWorkRecordService.Merge(
+    [firstSavedSource, firstSavedSource],
+    "地下城重复合并");
+AssertTrue(duplicateMerged.Duration == TimeSpan.FromMinutes(20), "相同时间段合并时不应重复累加时长");
+AssertTrue(duplicateMerged.SortieCount == 1, "相同时间段合并时不应重复累加出阵次数");
+AssertTrue(duplicateMerged.ResourceGains["木炭"] == 120, "相同时间段合并时不应重复累加资源收获");
+var savedDuplicateMerged = SavedWorkRecordService.Merge(
+    [SavedWorkRecordService.Save(firstSavedSource, "地下城"),
+     SavedWorkRecordService.Save(firstSavedSource, "地下城")],
+    "地下城保存记录重复合并");
+AssertTrue(savedDuplicateMerged.Duration == TimeSpan.FromMinutes(20), "已保存记录按相同时间段合并时不应重复累加时长");
+AssertTrue(savedDuplicateMerged.ResourceGains["木炭"] == 120, "已保存记录按相同时间段合并时不应重复累加资源收获");
+
 var name = SavedWorkRecordService.CreateUniqueName("地下城", ["地下城", "地下城（1）"]);
 AssertTrue(name == "地下城（2）", "重名保存记录应自动追加递增编号");
 
@@ -120,6 +153,7 @@ SavedWorkRecordStore.Save(savedPath, [merged]);
 var loaded = SavedWorkRecordStore.Load(savedPath);
 File.Delete(savedPath);
 AssertTrue(loaded.Count == 1 && loaded[0].DisplayName == "地下城周回", "保存记录应能从本地文件恢复");
+AssertTrue(loaded[0].Segments.Count == 2, "保存记录应保留每一段记录的精确时间");
 
 Console.WriteLine("FormationPreset 测试通过。");
 

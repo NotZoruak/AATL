@@ -1,17 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
 
 namespace MFAAvalonia.Models;
 
-/// <summary>保存到本地的结构化工作记录，不依赖原始日志文件。</summary>
-public sealed class SavedWorkRecord
+/// <summary>保存记录中的一段原始工作记录及其精确时间范围。</summary>
+public sealed class SavedWorkRecordSegment
 {
-    public string DisplayName { get; set; } = "";
     public string TaskName { get; set; } = "";
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
+    public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
     public TimeSpan Duration { get; set; }
     public string Status { get; set; } = "成功";
     public int SortieCount { get; set; }
@@ -25,27 +23,15 @@ public sealed class SavedWorkRecord
     public Dictionary<string, int> LogisticsCounts { get; set; } = [];
     public List<LogisticsDispatch> LogisticsDispatches { get; set; } = [];
     public List<SpecialEvent> SpecialEvents { get; set; } = [];
-    public List<SavedWorkRecordSegment> Segments { get; set; } = [];
 
-    [JsonIgnore]
-    public string DateRangeText => StartDate == EndDate
-        ? StartDate.ToString("yyyy-MM-dd")
-        : $"{StartDate:yyyy-MM-dd}—{EndDate:yyyy-MM-dd}";
-
-    [JsonIgnore]
-    public string DurationText => Duration.TotalMinutes < 60
-        ? $"{Math.Max(1, (int)Math.Ceiling(Duration.TotalMinutes))} 分钟"
-        : $"{(int)Duration.TotalHours} 小时 {Duration.Minutes} 分";
-
-    /// <summary>从运行记录创建本地保存记录。</summary>
-    public static SavedWorkRecord FromWorkRecord(WorkRecord source, string displayName)
+    /// <summary>从运行记录创建保存段。</summary>
+    public static SavedWorkRecordSegment FromWorkRecord(WorkRecord source)
     {
-        return new SavedWorkRecord
+        return new SavedWorkRecordSegment
         {
-            DisplayName = displayName,
             TaskName = source.TaskName,
-            StartDate = source.StartTime.Date,
-            EndDate = source.EndTime.Date,
+            StartTime = source.StartTime,
+            EndTime = source.EndTime,
             Duration = source.Duration,
             Status = source.Status,
             SortieCount = source.SortieCount,
@@ -59,18 +45,17 @@ public sealed class SavedWorkRecord
             LogisticsCounts = new Dictionary<string, int>(source.LogisticsCounts),
             LogisticsDispatches = source.LogisticsDispatches.ToList(),
             SpecialEvents = source.SpecialEvents.ToList(),
-            Segments = [SavedWorkRecordSegment.FromWorkRecord(source)],
         };
     }
 
-    /// <summary>转换回工作记录，供右侧详情和继续合并使用。</summary>
+    /// <summary>转换回运行记录，供合并统计使用。</summary>
     public WorkRecord ToWorkRecord()
     {
         var result = new WorkRecord
         {
             TaskName = TaskName,
-            StartTime = Segments.Count > 0 ? Segments.Min(segment => segment.StartTime) : StartDate,
-            EndTime = Segments.Count > 0 ? Segments.Max(segment => segment.EndTime) : EndDate,
+            StartTime = StartTime,
+            EndTime = EndTime,
             DurationOverride = Duration,
             Status = Status,
             HasInterrupt = HasInterrupt,
@@ -88,5 +73,12 @@ public sealed class SavedWorkRecord
         result.LogisticsDispatches.AddRange(LogisticsDispatches);
         result.SpecialEvents.AddRange(SpecialEvents);
         return result;
+    }
+
+    /// <summary>从旧版保存记录生成没有精确时间的兼容保存段。</summary>
+    public static SavedWorkRecordSegment FromLegacyRecord(SavedWorkRecord source)
+    {
+        var record = source.ToWorkRecord();
+        return FromWorkRecord(record);
     }
 }
