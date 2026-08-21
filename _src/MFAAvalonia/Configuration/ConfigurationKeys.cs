@@ -36,6 +36,9 @@ public static class ConfigurationKeys
     /// <summary>刀帐立绘拥有状态。</summary>
     public const string SwordBookEntries = "SwordBookEntries";
 
+    /// <summary>仓库数据与核心资源历史。</summary>
+    public const string WarehouseData = "WarehouseData";
+
     #endregion
 
     #region 启动设置

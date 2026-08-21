@@ -155,6 +155,20 @@ File.Delete(savedPath);
 AssertTrue(loaded.Count == 1 && loaded[0].DisplayName == "地下城周回", "保存记录应能从本地文件恢复");
 AssertTrue(loaded[0].Segments.Count == 2, "保存记录应保留每一段记录的精确时间");
 
+var warehouseEditor = new WarehouseDataEditor(new WarehouseData
+{
+    CoreResources = new Dictionary<string, int> { ["木炭"] = 100 },
+});
+warehouseEditor.Data.CoreResources["木炭"] = 120;
+AssertTrue(warehouseEditor.HasChanges, "修改仓库资源后应标记为未保存");
+warehouseEditor.Revert();
+AssertTrue(warehouseEditor.Data.CoreResources["木炭"] == 100, "撤销应恢复已保存的仓库资源");
+warehouseEditor.Data.CoreResources["木炭"] = 150;
+warehouseEditor.Save();
+AssertFalse(warehouseEditor.HasChanges, "保存仓库数据后不应继续标记为未保存");
+warehouseEditor.Clear();
+AssertTrue(warehouseEditor.Data.CoreResources.Count == 0, "清空应移除仓库资源数据");
+
 Console.WriteLine("FormationPreset 测试通过。");
 
 static void AssertFalse(bool value, string message)

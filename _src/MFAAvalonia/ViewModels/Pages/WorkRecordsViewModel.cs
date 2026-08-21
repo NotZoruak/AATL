@@ -38,6 +38,7 @@ public partial class WorkRecordsViewModel : ViewModelBase
     /// <summary>当前从已保存记录中选中的项目。</summary>
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(CanMergeSavedRecords))]
+    [NotifyPropertyChangedFor(nameof(CanRenameSavedRecord))]
     [NotifyPropertyChangedFor(nameof(CanDeleteSavedRecords))]
     [NotifyPropertyChangedFor(nameof(SelectedTimeText))]
     private ObservableCollection<SavedWorkRecord> _selectedSavedRecords = [];
@@ -71,9 +72,11 @@ public partial class WorkRecordsViewModel : ViewModelBase
 
     public bool HasSavedRecords => SavedRecords.Count > 0;
     public bool CanSaveSelectedRecords => SelectedLogRecords.Count > 0
-        && SelectedLogRecords.Select(record => record.TaskName).Distinct(StringComparer.Ordinal).Count() == 1;
+        && SelectedLogRecords.Select(record => record.TaskName).Distinct(StringComparer.Ordinal).Count() == 1
+        && SelectedLogRecords.All(record => record.Status != "进行中");
     public bool CanMergeSavedRecords => SelectedSavedRecords.Count > 1
         && SelectedSavedRecords.Select(record => record.TaskName).Distinct(StringComparer.Ordinal).Count() == 1;
+    public bool CanRenameSavedRecord => SelectedSavedRecords.Count == 1;
     public bool CanDeleteSavedRecords => SelectedSavedRecords.Count > 0;
     public bool HasSelectionSummary => !string.IsNullOrWhiteSpace(SelectionSummary);
 
@@ -167,9 +170,11 @@ public partial class WorkRecordsViewModel : ViewModelBase
     {
         OnPropertyChanged(nameof(CanSaveSelectedRecords));
         OnPropertyChanged(nameof(CanMergeSavedRecords));
+        OnPropertyChanged(nameof(CanRenameSavedRecord));
         OnPropertyChanged(nameof(CanDeleteSavedRecords));
         SaveCommand.NotifyCanExecuteChanged();
         MergeSavedCommand.NotifyCanExecuteChanged();
+        RenameSavedCommand.NotifyCanExecuteChanged();
         DeleteSavedCommand.NotifyCanExecuteChanged();
     }
 
@@ -203,6 +208,24 @@ public partial class WorkRecordsViewModel : ViewModelBase
             NotifySavedStateChanged();
             SetSelectedSavedRecords([merged]);
         });
+    }
+
+    [RelayCommand(CanExecute = nameof(CanRenameSavedRecord))]
+    private void RenameSaved()
+    {
+        var record = SelectedSavedRecords[0];
+        ShowNameDialog("重命名工作记录", name =>
+        {
+            var existingNames = SavedRecords
+                .Where(item => !ReferenceEquals(item, record))
+                .Select(item => item.DisplayName);
+            record.DisplayName = SavedWorkRecordService.CreateUniqueName(name, existingNames);
+
+            var index = SavedRecords.IndexOf(record);
+            if (index >= 0)
+                SavedRecords[index] = record;
+            PersistSavedRecords();
+        }, record.DisplayName, "请输入新的记录名称");
     }
 
     [RelayCommand(CanExecute = nameof(CanDeleteSavedRecords))]
@@ -250,11 +273,16 @@ public partial class WorkRecordsViewModel : ViewModelBase
         ClearSavedCommand.NotifyCanExecuteChanged();
     }
 
-    private void ShowNameDialog(string title, Action<string> onConfirmed)
+    private void ShowNameDialog(
+        string title,
+        Action<string> onConfirmed,
+        string initialName = "",
+        string prompt = "请输入保存记录名称")
     {
         Instances.DialogManager.CreateDialog()
             .WithTitle(title)
-            .WithViewModel(dialog => new WorkRecordNameDialogViewModel(dialog, onConfirmed))
+            .WithViewModel(dialog => new WorkRecordNameDialogViewModel(
+                dialog, onConfirmed, initialName, prompt))
             .TryShow();
     }
 

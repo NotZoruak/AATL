@@ -16,5 +16,7 @@
     <Compile Include="..\MFAAvalonia\Models\SavedWorkRecordSegment.cs" Link="SavedWorkRecordSegment.cs" />
     <Compile Include="..\MFAAvalonia\Services\SavedWorkRecordService.cs" Link="SavedWorkRecordService.cs" />
     <Compile Include="..\MFAAvalonia\Services\SavedWorkRecordStore.cs" Link="SavedWorkRecordStore.cs" />
+    <Compile Include="..\MFAAvalonia\Models\WarehouseData.cs" Link="WarehouseData.cs" />
+    <Compile Include="..\MFAAvalonia\Services\WarehouseDataEditor.cs" Link="WarehouseDataEditor.cs" />
   </ItemGroup>
 </Project>

@@ -4,56 +4,112 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pages="clr-namespace:MFAAvalonia.ViewModels.Pages"
              mc:Ignorable="d"
-             d:DesignWidth="1000"
-             d:DesignHeight="600"
+             d:DesignWidth="1280"
+             d:DesignHeight="720"
              x:DataType="pages:WarehouseViewModel"
              x:Class="MFAAvalonia.Views.Pages.WarehouseView">
     <Design.DataContext>
         <pages:WarehouseViewModel />
     </Design.DataContext>
 
-    <Border Background="{DynamicResource SukiCardBackground}"
-            CornerRadius="10"
-            Padding="28"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top">
-        <Grid Height="64">
-            <UniformGrid Rows="1" Columns="24">
-                <Rectangle Fill="#F4C542" />
-                <Rectangle Fill="#252525" />
-                <Rectangle Fill="#F4C542" />
-                <Rectangle Fill="#252525" />
-                <Rectangle Fill="#F4C542" />
-                <Rectangle Fill="#252525" />
-                <Rectangle Fill="#F4C542" />
-                <Rectangle Fill="#252525" />
-                <Rectangle Fill="#F4C542" />
-                <Rectangle Fill="#252525" />
-                <Rectangle Fill="#F4C542" />
-                <Rectangle Fill="#252525" />
-                <Rectangle Fill="#F4C542" />
-                <Rectangle Fill="#252525" />
-                <Rectangle Fill="#F4C542" />
-                <Rectangle Fill="#252525" />
-                <Rectangle Fill="#F4C542" />
-                <Rectangle Fill="#252525" />
-                <Rectangle Fill="#F4C542" />
-                <Rectangle Fill="#252525" />
-                <Rectangle Fill="#F4C542" />
-                <Rectangle Fill="#252525" />
-                <Rectangle Fill="#F4C542" />
-                <Rectangle Fill="#252525" />
-            </UniformGrid>
-            <Border Background="#E6FFFFFF"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Padding="24,8"
-                    CornerRadius="4">
-                <TextBlock Text="施工中"
-                           FontSize="22"
-                           FontWeight="Bold"
-                           Foreground="#252525" />
+    <Grid RowDefinitions="Auto,Auto,*" RowSpacing="12">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10">
+            <Button Content="自动识别" Command="{Binding AutoRecognizeCommand}" IsEnabled="{Binding IsIdle}"
+                    Background="#D9E6FF" Foreground="#165DFF" />
+            <Button Content="保存" Command="{Binding SaveCommand}" IsEnabled="{Binding HasUnsavedChanges}" Background="#5BAE7D" Foreground="White" />
+            <Button Content="撤销" Command="{Binding RevertCommand}" IsEnabled="{Binding HasUnsavedChanges}" Background="#8A94A6" Foreground="White" />
+            <Button Content="清空" Command="{Binding ClearCommand}" IsEnabled="{Binding IsIdle}" Background="#C96B6B" Foreground="White" />
+        </StackPanel>
+
+        <Border Grid.Row="1" Background="{DynamicResource SukiCardBackground}" CornerRadius="10" Padding="12,8">
+            <StackPanel Spacing="6">
+                <ItemsControl ItemsSource="{Binding CoreIconResources}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="4" HorizontalAlignment="Stretch" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="pages:WarehouseCoreResourceViewModel">
+                            <Border Background="#F4F5F7" BorderBrush="#D8DCE2" BorderThickness="1" CornerRadius="5" Padding="4,3" Margin="0,0,6,0">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="4" VerticalAlignment="Center">
+                                    <Image Source="{Binding Icon}" Width="24" Height="24" Stretch="Uniform" VerticalAlignment="Center" />
+                                    <NumericUpDown Value="{Binding Count, Mode=TwoWay}" Minimum="0" Maximum="{Binding Maximum}"
+                                                   Grid.Column="1" Height="28" FormatString="#,##0" ShowButtonSpinner="False"
+                                                   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl ItemsSource="{Binding CoreTextResources}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="3" HorizontalAlignment="Stretch" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="pages:WarehouseCoreResourceViewModel">
+                            <Border Background="#F4F5F7" BorderBrush="#D8DCE2" BorderThickness="1" CornerRadius="5" Padding="4,3" Margin="0,0,6,0">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="4" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding DisplayName}" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                    <NumericUpDown Value="{Binding Count, Mode=TwoWay}" Minimum="0" Maximum="{Binding Maximum}"
+                                                   Grid.Column="1" Height="28" FormatString="#,##0" ShowButtonSpinner="False"
+                                                   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="2" ColumnDefinitions="0.75*,1.5*" ColumnSpacing="12">
+            <Border Grid.Column="0" Background="{DynamicResource SukiCardBackground}" CornerRadius="10" Padding="14,12">
+                <Grid RowDefinitions="Auto,*" RowSpacing="8">
+                    <TextBlock Text="其他资源" FontSize="15" FontWeight="SemiBold" Foreground="#7B8798" />
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <Grid>
+                            <TextBlock Text="暂无已记录物品" Foreground="{DynamicResource SukiLowText}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       IsVisible="{Binding NoOtherItems}" />
+                            <ItemsControl ItemsSource="{Binding OtherItems}" IsVisible="{Binding HasOtherItems}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="pages:WarehouseOtherItemViewModel">
+                                    <Grid ColumnDefinitions="*,100" Margin="0,0,0,8" ColumnSpacing="10">
+                                        <TextBox Text="{Binding Name, Mode=TwoWay}" />
+                                        <TextBox Grid.Column="1" Text="{Binding Count, Mode=TwoWay}" HorizontalContentAlignment="Center" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1" Background="{DynamicResource SukiCardBackground}" CornerRadius="10" Padding="14,12">
+                <Grid RowDefinitions="Auto,*" RowSpacing="8">
+                    <TextBlock Text="核心资源变化" FontSize="15" FontWeight="SemiBold" Foreground="#7B8798" />
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <Grid>
+                            <TextBlock Text="暂无识别记录" Foreground="{DynamicResource SukiLowText}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       IsVisible="{Binding NoChartHistory}" />
+                            <ItemsControl ItemsSource="{Binding Charts}" IsVisible="{Binding HasChartHistory}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="pages:WarehouseChartViewModel">
+                                    <Border Background="{DynamicResource SukiBackgroundColor}" CornerRadius="8" Padding="10" Margin="0,0,0,8">
+                                        <Grid ColumnDefinitions="110,*" ColumnSpacing="12">
+                                            <TextBlock Text="{Binding Name}" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                            <TextBlock Grid.Column="1" Text="{Binding EmptyText}" Foreground="{DynamicResource SukiLowText}" VerticalAlignment="Center" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
             </Border>
         </Grid>
-    </Border>
+    </Grid>
 </UserControl>

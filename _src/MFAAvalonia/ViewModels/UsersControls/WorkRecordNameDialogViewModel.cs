@@ -15,12 +15,21 @@ public partial class WorkRecordNameDialogViewModel : ViewModelBase
     [NotifyCanExecuteChangedFor(nameof(ConfirmCommand))]
     private string _name = "";
 
+    [ObservableProperty]
+    private string _prompt = "请输入保存记录名称";
+
     public bool CanConfirm => !string.IsNullOrWhiteSpace(Name);
 
-    public WorkRecordNameDialogViewModel(ISukiDialog dialog, Action<string> onConfirm)
+    public WorkRecordNameDialogViewModel(
+        ISukiDialog dialog,
+        Action<string> onConfirm,
+        string initialName = "",
+        string prompt = "请输入保存记录名称")
     {
         Dialog = dialog;
         _onConfirm = onConfirm;
+        Name = initialName;
+        Prompt = prompt;
     }
 
     [RelayCommand(CanExecute = nameof(CanConfirm))]

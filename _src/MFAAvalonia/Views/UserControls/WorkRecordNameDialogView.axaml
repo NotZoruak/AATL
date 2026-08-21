@@ -7,7 +7,7 @@
     xmlns:usersControls="clr-namespace:MFAAvalonia.ViewModels.UsersControls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid Margin="14,8" RowDefinitions="Auto,Auto,Auto" RowSpacing="12">
-        <TextBlock Text="请输入保存记录名称"
+        <TextBlock Text="{Binding Prompt}"
                    FontSize="18"
                    FontWeight="Bold"
                    Foreground="{DynamicResource SukiText}" />

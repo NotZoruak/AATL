@@ -41,7 +41,7 @@
         </Grid.Styles>
         <!-- 左侧记录卡片 -->
         <Grid RowDefinitions="*,Auto"
-              RowSpacing="10">
+              RowSpacing="0">
             <Border Background="{DynamicResource SukiCardBackground}"
                     BorderBrush="{DynamicResource SukiControlBorderBrush}"
                     BorderThickness="1"
@@ -166,6 +166,7 @@
 
             <Border Grid.Row="1"
                     IsVisible="{Binding HasSavedRecords}"
+                    Margin="0,10,0,0"
                     MaxHeight="300"
                     Background="{DynamicResource SukiCardBackground}"
                     BorderBrush="{DynamicResource SukiControlBorderBrush}"
@@ -173,7 +174,7 @@
                     CornerRadius="12"
                     Padding="10,12">
                 <Grid RowDefinitions="Auto,*" RowSpacing="8">
-                    <Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="4">
+                    <Grid ColumnDefinitions="*,Auto,Auto,Auto,Auto" ColumnSpacing="4">
                         <TextBlock Text="已保存记录"
                                    FontSize="15"
                                    FontWeight="SemiBold"
@@ -181,17 +182,23 @@
                                    VerticalAlignment="Center" />
                         <Button Grid.Column="1"
                                 Classes="Basic"
+                                Command="{Binding RenameSavedCommand}"
+                                Content="重命名"
+                                Padding="8,4"
+                                IsEnabled="{Binding CanRenameSavedRecord}" />
+                        <Button Grid.Column="2"
+                                Classes="Basic"
                                 Command="{Binding MergeSavedCommand}"
                                 Content="合并"
                                 Padding="8,4"
                                 IsEnabled="{Binding CanMergeSavedRecords}" />
-                        <Button Grid.Column="2"
+                        <Button Grid.Column="3"
                                 Classes="Basic"
                                 Command="{Binding DeleteSavedCommand}"
                                 Content="删除"
                                 Padding="8,4"
                                 IsEnabled="{Binding CanDeleteSavedRecords}" />
-                        <Button Grid.Column="3"
+                        <Button Grid.Column="4"
                                 Classes="Basic"
                                 Command="{Binding ClearSavedCommand}"
                                 Content="清空"
