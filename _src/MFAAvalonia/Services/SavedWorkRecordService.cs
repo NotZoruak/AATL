@@ -8,11 +8,11 @@ namespace MFAAvalonia.Services;
 /// <summary>保存记录的命名和合并业务规则。</summary>
 public static class SavedWorkRecordService
 {
-    /// <summary>合并同一任务的运行记录。</summary>
+    /// <summary>合并同一任务的运行记录；去重以配置与时间为维度。</summary>
     public static SavedWorkRecord Merge(IEnumerable<WorkRecord> sources, string displayName)
     {
         var records = sources
-            .GroupBy(record => (record.StartTime, record.EndTime))
+            .GroupBy(record => (record.ConfigName, record.StartTime, record.EndTime))
             .Select(group => group.First())
             .ToList();
         if (records.Count == 0)
@@ -29,7 +29,7 @@ public static class SavedWorkRecordService
         return result;
     }
 
-    /// <summary>合并已有保存记录，并按保存段的精确时间去重。</summary>
+    /// <summary>合并已有保存记录，并按配置与精确时间去重。</summary>
     public static SavedWorkRecord Merge(IEnumerable<SavedWorkRecord> sources, string displayName)
     {
         var savedRecords = sources.ToList();
@@ -44,7 +44,7 @@ public static class SavedWorkRecordService
             .SelectMany(record => record.Segments.Count > 0
                 ? record.Segments
                 : [SavedWorkRecordSegment.FromLegacyRecord(record)])
-            .GroupBy(segment => (segment.StartTime, segment.EndTime))
+            .GroupBy(segment => (segment.ConfigName, segment.StartTime, segment.EndTime))
             .Select(group => group.First())
             .ToList();
         var result = MergeRecords(segments.Select(segment => segment.ToWorkRecord()).ToList(), displayName);
@@ -58,10 +58,17 @@ public static class SavedWorkRecordService
         if (records.Any(record => record.TaskName != taskName))
             throw new InvalidOperationException("只能合并同名任务。");
 
+        var configNames = records
+            .Select(record => record.ConfigName)
+            .Where(name => !string.IsNullOrWhiteSpace(name))
+            .Distinct(StringComparer.Ordinal)
+            .ToList();
+
         var result = new SavedWorkRecord
         {
             DisplayName = displayName,
             TaskName = taskName,
+            ConfigName = configNames.Count == 1 ? configNames[0] : "",
             StartDate = records.Min(record => record.StartTime.Date),
             EndDate = records.Max(record => record.EndTime.Date),
             Duration = TimeSpan.FromTicks(records.Sum(record => record.Duration.Ticks)),

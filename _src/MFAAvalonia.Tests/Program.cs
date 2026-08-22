@@ -20,6 +20,27 @@ editor.Revert();
 AssertTrue(editor.Entries[0].Wounded, "撤销应恢复已保存的立绘状态");
 
 var logStart = new DateTime(2026, 8, 21, 3, 44, 55);
+var missingInstanceRecord = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "[cfg=Default][inst=配置 1/default] 开始任务：地下城", "Default", "default"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[cfg=Default] [地下城] 出阵", "Default"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "[cfg=Default][inst=配置 1/default] 停止前状态：SUCCEEDED", "Default", "default"),
+]);
+AssertTrue(missingInstanceRecord.Count == 1 && missingInstanceRecord[0].SortieCount == 1,
+    "缺少实例标识的业务日志应继承相邻实例归属");
+var parsedInstanceEntry = LogParser.ParseLines([
+    "[2026-08-21 03:44:55.000][INF] [cfg=Default][inst=配置 1/default] [地下城] 出阵",
+]).Single();
+AssertTrue(parsedInstanceEntry.InstanceId == "default", "日志解析应提取实例 ID");
+AssertTrue(parsedInstanceEntry.Content.Contains("[地下城] 出阵"), "日志解析应保留业务内容");
+
+var instanceRecord = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "[cfg=Default][inst=配置 1/default] 开始任务：地下城", "Default", "default"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[cfg=Default][inst=配置 1/default] [地下城] 出阵", "Default", "default"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "[cfg=Default][inst=配置 1/default] 停止前状态：SUCCEEDED", "Default", "default"),
+]);
+AssertTrue(instanceRecord.Count == 1 && instanceRecord[0].ConfigName == "default",
+    "工作记录应使用实例 ID 作为配置归属");
+
 var workRecord = WorkRecordBuilder.Build([
     new LogEntry(logStart, "INF", "开始任务：地下城"),
     new LogEntry(logStart.AddSeconds(0), "INF", "[地下城] 小判箱掉落"),

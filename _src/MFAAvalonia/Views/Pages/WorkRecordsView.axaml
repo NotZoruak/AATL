@@ -134,7 +134,7 @@
                                             Background="{DynamicResource SukiPrimaryColor}"
                                             CornerRadius="2" />
                                     <Grid Grid.Column="1"
-                                          ColumnDefinitions="*,Auto"
+                                          ColumnDefinitions="*,Auto,Auto"
                                           ColumnSpacing="8">
                                         <TextBlock Text="{Binding TaskName}"
                                                    FontSize="14"
@@ -143,11 +143,23 @@
                                                    Margin="4,2,0,0"
                                                    TextTrimming="CharacterEllipsis" />
                                         <TextBlock Grid.Column="1"
-                                                   Text="{Binding Status}"
-                                                   FontSize="12"
+                                                   Text="{Binding DisplayConfigName}"
+                                                   FontSize="11"
                                                    Foreground="#7B8798"
-                                                   Margin="0,2,4,0"
-                                                   VerticalAlignment="Center" />
+                                                   Margin="0,3,0,0"
+                                                   VerticalAlignment="Center"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   IsVisible="{Binding DisplayConfigName, Converter={x:Static avaConverters:StringConverters.IsNotNullOrEmpty}}" />
+                                        <Border Grid.Column="2"
+                                                Background="{Binding StatusBackground}"
+                                                CornerRadius="5"
+                                                Padding="7,2"
+                                                Margin="0,1,4,0"
+                                                VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding DisplayStatus}"
+                                                       FontSize="11"
+                                                       Foreground="{Binding StatusForeground}" />
+                                        </Border>
                                     </Grid>
                                     <TextBlock Grid.Row="1"
                                                Grid.Column="1"
@@ -221,7 +233,7 @@
                                             Padding="8,5"
                                             Margin="0,2">
                                         <Grid RowDefinitions="Auto"
-                                              ColumnDefinitions="*,Auto"
+                                              ColumnDefinitions="*,Auto,Auto"
                                               ColumnSpacing="8">
                                             <TextBlock Text="{Binding DisplayName}"
                                                        FontSize="13"
@@ -229,6 +241,13 @@
                                                        Foreground="#344054"
                                                        TextTrimming="CharacterEllipsis" />
                                             <TextBlock Grid.Column="1"
+                                                       Text="{Binding DisplayConfigName}"
+                                                       FontSize="11"
+                                                       Foreground="#7B8798"
+                                                       VerticalAlignment="Center"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       IsVisible="{Binding DisplayConfigName, Converter={x:Static avaConverters:StringConverters.IsNotNullOrEmpty}}" />
+                                            <TextBlock Grid.Column="2"
                                                        Text="{Binding DurationText}"
                                                        FontSize="11"
                                                        Foreground="#7B8798" />
@@ -266,19 +285,30 @@
                         Padding="18,16">
                     <StackPanel Spacing="16">
                         <TextBlock Classes="RecordCardTitle" Text="任务概况" />
-                        <Grid ColumnDefinitions="*,Auto"
+                        <Grid ColumnDefinitions="*,Auto,Auto"
                               ColumnSpacing="12">
                             <TextBlock Text="{Binding SelectedRecord.TaskName}"
                                        FontSize="15"
                                        FontWeight="SemiBold"
-                                       Foreground="#344054" />
-                            <Border Grid.Column="1"
-                                    Background="#FFF2DF"
+                                       Foreground="#344054"
+                                       TextTrimming="CharacterEllipsis" />
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding SelectedConfigSourceText}"
+                                       FontSize="12"
+                                       Foreground="#7B8798"
+                                       VerticalAlignment="Center"
+                                       TextTrimming="CharacterEllipsis"
+                                       IsVisible="{Binding SelectedConfigSourceText, Converter={x:Static avaConverters:StringConverters.IsNotNullOrEmpty}}" />
+                            <Border Grid.Column="2"
+                                    Background="{Binding SelectedRecord.StatusBackground}"
                                     CornerRadius="5"
                                     Padding="8,3">
-                                <TextBlock Text="{Binding SelectedRecord.Status}"
+                                <Border.IsVisible>
+                                    <Binding Path="ShowSelectedStatus" />
+                                </Border.IsVisible>
+                                <TextBlock Text="{Binding SelectedRecord.DisplayStatus}"
                                            FontSize="12"
-                                           Foreground="#A15C00" />
+                                           Foreground="{Binding SelectedRecord.StatusForeground}" />
                             </Border>
                         </Grid>
                         <TextBlock Text="{Binding SelectedTimeText}"

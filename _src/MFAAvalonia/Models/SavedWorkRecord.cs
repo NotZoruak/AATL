@@ -10,6 +10,11 @@ public sealed class SavedWorkRecord
 {
     public string DisplayName { get; set; } = "";
     public string TaskName { get; set; } = "";
+    public string ConfigName { get; set; } = "";
+
+    /// <summary>当前页签显示名称，仅用于界面显示，不写入保存文件。</summary>
+    [JsonIgnore]
+    public string DisplayConfigName { get; set; } = "";
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public TimeSpan Duration { get; set; }
@@ -44,6 +49,8 @@ public sealed class SavedWorkRecord
         {
             DisplayName = displayName,
             TaskName = source.TaskName,
+            ConfigName = source.ConfigName,
+            DisplayConfigName = source.DisplayConfigName,
             StartDate = source.StartTime.Date,
             EndDate = source.EndTime.Date,
             Duration = source.Duration,
@@ -69,6 +76,8 @@ public sealed class SavedWorkRecord
         var result = new WorkRecord
         {
             TaskName = TaskName,
+            ConfigName = ConfigName,
+            DisplayConfigName = DisplayConfigName,
             StartTime = Segments.Count > 0 ? Segments.Min(segment => segment.StartTime) : StartDate,
             EndTime = Segments.Count > 0 ? Segments.Max(segment => segment.EndTime) : EndDate,
             DurationOverride = Duration,

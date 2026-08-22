@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using MFAAvalonia.Helper;
 using MFAAvalonia.Models;
 using MFAAvalonia.Services;
+using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.ViewModels.UsersControls;
 using SukiUI.Controls;
 using SukiUI.Dialogs;
@@ -33,6 +34,7 @@ public partial class WorkRecordsViewModel : ViewModelBase
     /// <summary>当前从日志记录中选中的项目。</summary>
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(CanSaveSelectedRecords))]
+    [NotifyPropertyChangedFor(nameof(ShowSelectedStatus))]
     private ObservableCollection<WorkRecord> _selectedLogRecords = [];
 
     /// <summary>当前从已保存记录中选中的项目。</summary>
@@ -41,6 +43,7 @@ public partial class WorkRecordsViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(CanRenameSavedRecord))]
     [NotifyPropertyChangedFor(nameof(CanDeleteSavedRecords))]
     [NotifyPropertyChangedFor(nameof(SelectedTimeText))]
+    [NotifyPropertyChangedFor(nameof(ShowSelectedStatus))]
     private ObservableCollection<SavedWorkRecord> _selectedSavedRecords = [];
 
     /// <summary>当前选中记录</summary>
@@ -63,6 +66,7 @@ public partial class WorkRecordsViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(SelectedHasReturnHome))]
     [NotifyPropertyChangedFor(nameof(SelectedHasFlowerBrush))]
     [NotifyPropertyChangedFor(nameof(SelectedTimeText))]
+    [NotifyPropertyChangedFor(nameof(SelectedConfigSourceText))]
     private WorkRecord? _selectedRecord;
 
     /// <summary>多选时显示的提示或合并预览。</summary>
@@ -78,6 +82,7 @@ public partial class WorkRecordsViewModel : ViewModelBase
         && SelectedSavedRecords.Select(record => record.TaskName).Distinct(StringComparer.Ordinal).Count() == 1;
     public bool CanRenameSavedRecord => SelectedSavedRecords.Count == 1;
     public bool CanDeleteSavedRecords => SelectedSavedRecords.Count > 0;
+    public bool ShowSelectedStatus => SelectedSavedRecords.Count == 0;
     public bool HasSelectionSummary => !string.IsNullOrWhiteSpace(SelectionSummary);
 
     /// <summary>刀种展示顺序</summary>
@@ -103,9 +108,12 @@ public partial class WorkRecordsViewModel : ViewModelBase
 
             var records = WorkRecordBuilder.Build(entries);
             // 时间倒序
-            Records = new ObservableCollection<WorkRecord>(
-                records.OrderByDescending(r => r.StartTime).ToList());
-            SavedRecords = new ObservableCollection<SavedWorkRecord>(SavedWorkRecordStore.Load(SavedRecordsPath));
+            var orderedRecords = records.OrderByDescending(r => r.StartTime).ToList();
+            ApplyConfigDisplayNames(orderedRecords);
+            Records = new ObservableCollection<WorkRecord>(orderedRecords);
+            var savedRecords = SavedWorkRecordStore.Load(SavedRecordsPath);
+            ApplyConfigDisplayNames(savedRecords);
+            SavedRecords = new ObservableCollection<SavedWorkRecord>(savedRecords);
             SetSelectedLogRecords(Records.Take(1));
         }
         catch (Exception ex)
@@ -113,6 +121,30 @@ public partial class WorkRecordsViewModel : ViewModelBase
             // 解析失败不影响页面可用性：记录错误并保留现有列表
             LoggerHelper.Error($"工作记录刷新失败：{ex.Message}");
         }
+    }
+
+    /// <summary>根据实例 ID 动态取得当前页签名称。</summary>
+    private static void ApplyConfigDisplayNames(IEnumerable<WorkRecord> records)
+    {
+        foreach (var record in records)
+            record.DisplayConfigName = ResolveConfigDisplayName(record.ConfigName);
+    }
+
+    /// <summary>根据实例 ID 动态取得当前页签名称。</summary>
+    private static void ApplyConfigDisplayNames(IEnumerable<SavedWorkRecord> records)
+    {
+        foreach (var record in records)
+            record.DisplayConfigName = ResolveConfigDisplayName(record.ConfigName);
+    }
+
+    private static string ResolveConfigDisplayName(string configId)
+    {
+        if (string.IsNullOrWhiteSpace(configId))
+            return "";
+
+        var instance = MaaProcessorManager.Instance.GetAllInstanceIdsAndNames()
+            .FirstOrDefault(item => string.Equals(item.Id, configId, StringComparison.Ordinal));
+        return string.IsNullOrWhiteSpace(instance.Name) ? configId : instance.Name;
     }
 
     /// <summary>由页面同步日志记录的多选状态。</summary>
@@ -296,6 +328,17 @@ public partial class WorkRecordsViewModel : ViewModelBase
 
     /// <summary>耗时文本：1 小时 27 分 / 35 分钟</summary>
     public string SelectedDurationText => SelectedRecord?.DurationText ?? "";
+
+    /// <summary>选中记录的配置来源文本；多选时（合并预览无单一来源）不显示。</summary>
+    public string SelectedConfigSourceText
+    {
+        get
+        {
+            if (SelectedLogRecords.Count > 1 || SelectedSavedRecords.Count > 1)
+                return "";
+            return ResolveConfigDisplayName(SelectedRecord?.ConfigName ?? "");
+        }
+    }
 
     /// <summary>详情中的时间文本，已保存记录只显示日期范围。</summary>
     public string SelectedTimeText

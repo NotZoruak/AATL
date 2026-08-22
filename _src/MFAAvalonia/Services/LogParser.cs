@@ -7,14 +7,30 @@ using System.Text.RegularExpressions;
 namespace MFAAvalonia.Services;
 
 /// <summary>日志行事件</summary>
-public sealed record LogEntry(DateTime? Timestamp, string Level, string Content);
+/// <param name="ConfigSource">配置来源（[cfg=xxx] 块的原值，无则 null）</param>
+/// <param name="InstanceId">实例 ID（[inst=显示名/实例ID] 中斜杠后的部分，无则 null）</param>
+public sealed record LogEntry(
+    DateTime? Timestamp,
+    string Level,
+    string Content,
+    string? ConfigSource = null,
+    string? InstanceId = null);
 
 /// <summary>读取日志文件，解析为行事件流</summary>
 public static class LogParser
 {
-    // 例：[2026-08-20 00:20:44.568][INF] [cfg=Default] [地下城] 出阵
+    // 例：[2026-08-20 00:20:44.568][INF] [cfg=Default][inst=一号机/default] [地下城] 出阵
     private static readonly Regex LineRegex = new(
         @"^\[(?<ts>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3})\]\[(?<level>[A-Z]+)\]\s*(?<content>.*)$",
+        RegexOptions.Compiled);
+
+    // 上下文块中的配置来源：[cfg=配置名]
+    private static readonly Regex ConfigRegex = new(
+        @"\[cfg=([^\]]*)\]",
+        RegexOptions.Compiled);
+
+    private static readonly Regex InstanceRegex = new(
+        @"\[inst=[^\]/]+/(?<id>[^\]]+)\]",
         RegexOptions.Compiled);
 
     /// <summary>解析多行日志文本</summary>
@@ -33,7 +49,12 @@ public static class LogParser
             if (DateTime.TryParseExact(match.Groups["ts"].Value, "yyyy-MM-dd HH:mm:ss.fff",
                     CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsed))
                 ts = parsed;
-            result.Add(new LogEntry(ts, match.Groups["level"].Value, match.Groups["content"].Value));
+            var content = match.Groups["content"].Value;
+            var config = ConfigRegex.Match(content).Groups[1].Value;
+            var instance = InstanceRegex.Match(content).Groups["id"].Value;
+            result.Add(new LogEntry(ts, match.Groups["level"].Value, content,
+                string.IsNullOrWhiteSpace(config) ? null : config,
+                string.IsNullOrWhiteSpace(instance) ? null : instance));
         }
         return result;
     }

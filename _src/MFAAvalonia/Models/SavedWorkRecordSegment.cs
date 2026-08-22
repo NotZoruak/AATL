@@ -8,6 +8,7 @@ namespace MFAAvalonia.Models;
 public sealed class SavedWorkRecordSegment
 {
     public string TaskName { get; set; } = "";
+    public string ConfigName { get; set; } = "";
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
     public TimeSpan Duration { get; set; }
@@ -30,6 +31,7 @@ public sealed class SavedWorkRecordSegment
         return new SavedWorkRecordSegment
         {
             TaskName = source.TaskName,
+            ConfigName = source.ConfigName,
             StartTime = source.StartTime,
             EndTime = source.EndTime,
             Duration = source.Duration,
@@ -54,6 +56,7 @@ public sealed class SavedWorkRecordSegment
         var result = new WorkRecord
         {
             TaskName = TaskName,
+            ConfigName = ConfigName,
             StartTime = StartTime,
             EndTime = EndTime,
             DurationOverride = Duration,

@@ -39,6 +39,74 @@ public static class WorkRecordBuilder
     /// <summary>把事件流聚合为运行记录列表</summary>
     public static List<WorkRecord> Build(IEnumerable<LogEntry> entries)
     {
+        var entryList = FillMissingInstanceIds(entries.ToList());
+        var records = new List<WorkRecord>();
+        // 按配置来源分组后各自流式解析。业务词条只要带有同一 cfg=，即可归入对应任务。
+        // 无 cfg= 的行归入空组，保持旧日志的单配置行为。
+        var configKeys = entryList
+            .Select(GetGroupKey)
+            .Where(source => !string.IsNullOrWhiteSpace(source))
+            .Distinct(StringComparer.Ordinal)
+            .ToList();
+
+        // 部分旧版日志没有配置上下文。只有一个配置来源时，可以安全地把无来源行并入该配置。
+        if (configKeys.Count == 1)
+        {
+            var configKey = configKeys[0]!;
+            var singleConfigEntries = entryList
+                .Where(entry => string.IsNullOrWhiteSpace(GetGroupKey(entry))
+                    || string.Equals(GetGroupKey(entry), configKey, StringComparison.Ordinal))
+                .OrderBy(entry => entry.Timestamp)
+                .ToList();
+            records.AddRange(BuildGroup(singleConfigEntries, configKey));
+            return records;
+        }
+
+        foreach (var group in entryList.GroupBy(GetGroupKey))
+            records.AddRange(BuildGroup(group, group.Key));
+        return records;
+    }
+
+    /// <summary>优先使用实例 ID；旧日志没有实例 ID 时回退到资源配置名。</summary>
+    private static string GetGroupKey(LogEntry entry) =>
+        !string.IsNullOrWhiteSpace(entry.InstanceId)
+            ? entry.InstanceId!
+            : entry.ConfigSource ?? "";
+
+    /// <summary>
+    /// 为没有 inst 上下文的业务日志补全实例 ID。
+    /// 部分自定义动作只输出 cfg，沿用日志中最近一次出现的 cfg-inst 映射。
+    /// </summary>
+    private static List<LogEntry> FillMissingInstanceIds(IReadOnlyList<LogEntry> entries)
+    {
+        var currentInstances = new Dictionary<string, string>(StringComparer.Ordinal);
+        var result = new List<LogEntry>(entries.Count);
+        foreach (var entry in entries.OrderBy(entry => entry.Timestamp))
+        {
+            if (string.IsNullOrWhiteSpace(entry.ConfigSource))
+            {
+                result.Add(entry);
+                continue;
+            }
+
+            if (!string.IsNullOrWhiteSpace(entry.InstanceId))
+            {
+                currentInstances[entry.ConfigSource] = entry.InstanceId!;
+                result.Add(entry);
+                continue;
+            }
+
+            result.Add(currentInstances.TryGetValue(entry.ConfigSource, out var instanceId)
+                ? entry with { InstanceId = instanceId }
+                : entry);
+        }
+
+        return result;
+    }
+
+    /// <summary>单配置事件流的聚合主体。</summary>
+    private static List<WorkRecord> BuildGroup(IEnumerable<LogEntry> entries, string configName)
+    {
         var records = new List<WorkRecord>();
         var pending = new Queue<(string Name, string Entry)>(); // 已定义待执行的任务
         WorkRecord? current = null;
@@ -94,6 +162,7 @@ public static class WorkRecordBuilder
                     current = new WorkRecord
                     {
                         TaskName = name,
+                        ConfigName = configName,
                         Entry = entryName,
                         StartTime = entry.Timestamp.Value,
                         HasStarted = true,

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace MFAAvalonia.Models;
 
@@ -8,6 +9,13 @@ public sealed class WorkRecord
 {
     /// <summary>任务名（词表前缀，如「地下城」）</summary>
     public string TaskName { get; set; } = "";
+
+    /// <summary>配置来源（来自日志 cfg= 块）</summary>
+    public string ConfigName { get; set; } = "";
+
+    /// <summary>当前页签显示名称，仅用于界面显示，不参与保存和合并。</summary>
+    [JsonIgnore]
+    public string DisplayConfigName { get; set; } = "";
 
     /// <summary>入口 pipeline（如 Underground）</summary>
     public string Entry { get; set; } = "";
@@ -24,8 +32,36 @@ public sealed class WorkRecord
     /// <summary>保存记录或合并记录的累计时长覆盖值，普通日志记录为空。</summary>
     public TimeSpan? DurationOverride { get; set; }
 
-    /// <summary>运行结果：进行中/成功/中断/手动停止/失败/未开始</summary>
+    /// <summary>运行结果：进行中/成功/中断/手动停止/失败/未开始；界面将成功显示为完成。</summary>
     public string Status { get; set; } = "进行中";
+
+    /// <summary>界面显示的状态名称。</summary>
+    [JsonIgnore]
+    public string DisplayStatus => Status == "成功" ? "完成" : Status;
+
+    /// <summary>界面显示的状态文字颜色。</summary>
+    [JsonIgnore]
+    public string StatusForeground => Status switch
+    {
+        "成功" => "#15803D",
+        "进行中" => "#2563EB",
+        "手动停止" => "#B45309",
+        "失败" => "#B42318",
+        "中断" => "#9F1239",
+        _ => "#667085",
+    };
+
+    /// <summary>界面显示的状态标签背景颜色。</summary>
+    [JsonIgnore]
+    public string StatusBackground => Status switch
+    {
+        "成功" => "#F0FDF4",
+        "进行中" => "#EFF6FF",
+        "手动停止" => "#FFF7ED",
+        "失败" => "#FEF3F2",
+        "中断" => "#FFF1F2",
+        _ => "#F2F4F7",
+    };
 
     /// <summary>记录期间是否出现中断事件（覆盖最终状态）</summary>
     public bool HasInterrupt { get; set; }
