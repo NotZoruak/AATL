@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pages="clr-namespace:MFAAvalonia.ViewModels.Pages"
+             xmlns:extensions="clr-namespace:MFAAvalonia.Extensions"
              mc:Ignorable="d"
              d:DesignWidth="1280"
              d:DesignHeight="720"
@@ -19,6 +20,8 @@
             <Button Content="保存" Command="{Binding SaveCommand}" IsEnabled="{Binding HasUnsavedChanges}" Background="#5BAE7D" Foreground="White" />
             <Button Content="撤销" Command="{Binding RevertCommand}" IsEnabled="{Binding HasUnsavedChanges}" Background="#8A94A6" Foreground="White" />
             <Button Content="清空" Command="{Binding ClearCommand}" IsEnabled="{Binding IsIdle}" Background="#C96B6B" Foreground="White" />
+            <TextBlock Text="使用自动识别时，请保证游戏页面右上角能识别到目录按钮"
+                       Foreground="#7B8798" VerticalAlignment="Center" Margin="8,0,0,0" />
         </StackPanel>
 
         <Border Grid.Row="1" Background="{DynamicResource SukiCardBackground}" CornerRadius="10" Padding="12,8">
@@ -68,21 +71,30 @@
             <Border Grid.Column="0" Background="{DynamicResource SukiCardBackground}" CornerRadius="10" Padding="14,12">
                 <Grid RowDefinitions="Auto,*" RowSpacing="8">
                     <TextBlock Text="其他资源" FontSize="15" FontWeight="SemiBold" Foreground="#7B8798" />
-                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                        <Grid>
-                            <TextBlock Text="暂无已记录物品" Foreground="{DynamicResource SukiLowText}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    <ScrollViewer x:Name="OtherItemsScrollViewer" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <TextBlock Text="暂无已记录物品" Foreground="{DynamicResource SukiLowText}" HorizontalAlignment="Center" Margin="0,18,0,12"
                                        IsVisible="{Binding NoOtherItems}" />
-                            <ItemsControl ItemsSource="{Binding OtherItems}" IsVisible="{Binding HasOtherItems}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate x:DataType="pages:WarehouseOtherItemViewModel">
-                                    <Grid ColumnDefinitions="*,100" Margin="0,0,0,8" ColumnSpacing="10">
-                                        <TextBox Text="{Binding Name, Mode=TwoWay}" />
-                                        <TextBox Grid.Column="1" Text="{Binding Count, Mode=TwoWay}" HorizontalContentAlignment="Center" />
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
+                            <ItemsControl x:Name="OtherItemsList" ItemsSource="{Binding OtherItems}" IsVisible="{Binding HasOtherItems}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="pages:WarehouseOtherItemViewModel">
+                                        <Grid ColumnDefinitions="24,*,80" Margin="0,0,0,8" ColumnSpacing="6"
+                                              IsVisible="{Binding IsVisible}">
+                                            <TextBlock Text="⋮⋮" FontSize="16" Foreground="#9AA4B2"
+                                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                       Cursor="Hand"
+                                                       PointerPressed="OtherItemDragHandle_OnPointerPressed"
+                                                       PointerMoved="OtherItemDragHandle_OnPointerMoved"
+                                                       PointerReleased="OtherItemDragHandle_OnPointerReleased" />
+                                            <TextBox Grid.Column="1" Text="{Binding Name, Mode=TwoWay}" />
+                                            <TextBox Grid.Column="2" Text="{Binding Count, Mode=TwoWay}" HorizontalContentAlignment="Center" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
                             </ItemsControl>
-                        </Grid>
+                            <Button Content="＋ 添加物品" Command="{Binding AddOtherItemCommand}" HorizontalAlignment="Center"
+                                    Margin="0,4,0,12" Padding="14,5" Background="Transparent" Foreground="#7B8798" />
+                        </StackPanel>
                     </ScrollViewer>
                 </Grid>
             </Border>

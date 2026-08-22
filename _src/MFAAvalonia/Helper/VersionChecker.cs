@@ -851,20 +851,6 @@ public static class VersionChecker
 
         }
 
-        // 所有数据和安装文件成功写入后再提交版本元数据。
-        var newInterfacePath = Path.Combine(wpfDir, "interface.json");
-        if (File.Exists(interfacePath))
-        {
-            var jsonContent = await File.ReadAllTextAsync(interfacePath);
-            var @interface = JObject.Parse(jsonContent);
-            if (@interface != null)
-            {
-                @interface["github"] = MaaProcessor.Interface?.Github ?? MaaProcessor.Interface?.Url;
-                @interface["version"] = latestVersion;
-            }
-            updateTransaction.WriteAllText(newInterfacePath, @interface.ToString(Formatting.Indented));
-        }
-
         updateTransaction.Commit();
 
         if (containsCoreApplicationFiles && HasExecutableFileNameChanged(exeName, restartExecutablePath))

@@ -25,7 +25,9 @@ public sealed class WarehouseScanItemsAction : IMaaCustomAction
     private const int PressBeforeMoveMilliseconds = 500;
     private const int MoveMilliseconds = 500;
     private const int PressAfterMoveMilliseconds = 500;
+    private const int PostReleaseWaitMilliseconds = 1000;
     private const int MoveSteps = 10;
+    private static readonly int[] ScrollbarEndRoi = [1239, 672, 3, 2];
 
     private static readonly int[][] DefaultNameRois =
     [
@@ -40,6 +42,19 @@ public sealed class WarehouseScanItemsAction : IMaaCustomAction
         [170, 468, 100, 43], [760, 468, 100, 43],
         [170, 661, 100, 43], [760, 661, 100, 43],
     ];
+
+    // 滚动到底后，卡片会整体上移，最后两行使用独立的 OCR 区域。
+    private static readonly int[][] FinalPageNameRois =
+    [
+        [64, 280, 540, 36], [655, 280, 540, 36],
+        [64, 475, 540, 36], [655, 475, 540, 36],
+    ];
+
+    private static readonly int[][] FinalPageCountRois =
+    [
+        [170, 425, 100, 38], [760, 425, 100, 38],
+        [170, 620, 100, 38], [760, 620, 100, 38],
+    ];
     private static readonly int[] DefaultKobanRoi = [977, 32, 189, 48];
 
     public string Name { get; set; } = nameof(WarehouseScanItemsAction);
@@ -53,22 +68,47 @@ public sealed class WarehouseScanItemsAction : IMaaCustomAction
             var countRois = ParseRois(json["count_rois"] as JArray, DefaultCountRois);
             var kobanRoi = ParseRoi(json["koban_roi"] as JArray, DefaultKobanRoi);
             var draftPath = Path.Combine(AppPaths.ConfigDirectory, "warehouse_scan.json");
+            var savedItemNames = WarehouseScanDraftService.LoadSavedOtherItemNames();
+            WarehouseScanDraftService.ClearOtherItems(draftPath);
             ReadKoban(context, kobanRoi, draftPath);
             var previousSignature = string.Empty;
             var unchangedPages = 0;
+            var recognizedOrder = new List<string>();
+            var recognizedNames = new HashSet<string>(StringComparer.Ordinal);
+            var reachedBottom = false;
 
             for (var page = 0; page < MaxPages; page++)
             {
                 ActionParamHelper.ThrowIfStopping(context);
-                var visibleItems = ReadVisibleItems(context, nameRois, countRois);
+                var visibleItems = ReadVisibleItems(context, nameRois, countRois, savedItemNames);
                 foreach (var item in visibleItems)
                 {
                     WarehouseScanDraftService.UpdateOtherItem(draftPath, item.Name, item.Count);
+                    if (recognizedNames.Add(item.Name))
+                        recognizedOrder.Add(item.Name);
                     LoggerHelper.Info($"[仓库识别] 其他物品 {item.Name}：{item.Count}");
                 }
 
+                if (reachedBottom)
+                {
+                    // 到底后的首帧可能仍处于滚动动画的最后阶段，再等待一次并复读，确保最后一页完整进入识别区域。
+                    ActionParamHelper.SleepWithStopCheck(context, PostReleaseWaitMilliseconds);
+                    var finalItems = ReadVisibleItems(context, FinalPageNameRois, FinalPageCountRois, savedItemNames);
+                    foreach (var item in finalItems)
+                    {
+                        WarehouseScanDraftService.UpdateOtherItem(draftPath, item.Name, item.Count);
+                        if (recognizedNames.Add(item.Name))
+                            recognizedOrder.Add(item.Name);
+                        LoggerHelper.Info($"[仓库识别] 所持道具最后一页 {item.Name}：{item.Count}");
+                    }
+                    CompleteScan(draftPath, recognizedOrder);
+                    return true;
+                }
+
                 var signature = string.Join("|", visibleItems.Select(item => $"{item.Name}={item.Count}"));
-                if (string.Equals(signature, previousSignature, StringComparison.Ordinal))
+                if (visibleItems.Count == 0)
+                    unchangedPages = 0;
+                else if (string.Equals(signature, previousSignature, StringComparison.Ordinal))
                     unchangedPages++;
                 else
                     unchangedPages = 0;
@@ -76,17 +116,18 @@ public sealed class WarehouseScanItemsAction : IMaaCustomAction
                 LoggerHelper.Info($"[仓库识别] 所持道具页面扫描：第 {page + 1} 页，识别 {visibleItems.Count} 项，连续未变化 {unchangedPages} 次");
                 if (unchangedPages >= SamePageLimit)
                 {
-                    var completedDraft = WarehouseScanDraftService.Load(draftPath);
-                    WarehouseScanDraftService.AppendSnapshot(draftPath, completedDraft.CoreResources);
-                    LoggerHelper.Info("[仓库识别] 所持道具扫描完成，已追加核心资源历史快照");
+                    CompleteScan(draftPath, recognizedOrder);
                     return true;
                 }
 
                 previousSignature = signature;
                 ScrollUp(context);
-                ActionParamHelper.SleepWithStopCheck(context, 300);
+                ActionParamHelper.SleepWithStopCheck(context, PostReleaseWaitMilliseconds);
+                if (IsAtBottom(context))
+                    reachedBottom = true;
             }
 
+            CompleteScan(draftPath, recognizedOrder);
             LoggerHelper.Warning($"[仓库识别] 所持道具页面扫描超过 {MaxPages} 页，已停止");
             return true;
         }
@@ -102,7 +143,7 @@ public sealed class WarehouseScanItemsAction : IMaaCustomAction
         }
     }
 
-    private static List<VisibleItem> ReadVisibleItems<T>(T context, int[][] nameRois, int[][] countRois)
+    private static List<VisibleItem> ReadVisibleItems<T>(T context, int[][] nameRois, int[][] countRois, IReadOnlyCollection<string> savedItemNames)
         where T : IMaaContext
     {
         using var image = context.GetImage();
@@ -110,7 +151,7 @@ public sealed class WarehouseScanItemsAction : IMaaCustomAction
             throw new InvalidOperationException("无法获取所持道具页面截图");
 
         var items = new List<VisibleItem>();
-        for (var i = 0; i < nameRois.Length; i++)
+        for (var i = 0; i < Math.Min(4, nameRois.Length); i++)
         {
             var rawName = context.GetText(nameRois[i][0], nameRois[i][1], nameRois[i][2], nameRois[i][3], image)
                 .Replace(" ", string.Empty, StringComparison.Ordinal)
@@ -118,7 +159,7 @@ public sealed class WarehouseScanItemsAction : IMaaCustomAction
             if (string.IsNullOrWhiteSpace(rawName))
                 continue;
 
-            var name = WarehouseScanDraftService.NormalizeOtherItemName(rawName);
+            var name = WarehouseScanDraftService.ResolveOtherItemName(rawName, savedItemNames);
             if (!string.Equals(rawName, name, StringComparison.Ordinal))
                 LoggerHelper.Info($"[仓库识别] 物品名称纠正：{rawName} → {name}");
 
@@ -166,6 +207,48 @@ public sealed class WarehouseScanItemsAction : IMaaCustomAction
 
         ActionParamHelper.SleepWithStopCheck(context, PressAfterMoveMilliseconds);
         tasker.TouchUp(Contact);
+    }
+
+    private static bool IsAtBottom<T>(T context) where T : IMaaContext
+    {
+        using var image = context.GetImage();
+        if (image == null)
+            return false;
+
+        var roi = ScrollbarEndRoi;
+        var matched = context.ColorMatch(
+            121, 120, 119,
+            114, 113, 113,
+            image,
+            out _,
+            threshold: 1.0,
+            x: roi[0], y: roi[1], w: roi[2], h: roi[3], count: roi[2] * roi[3]);
+        LoggerHelper.Info($"[仓库识别] 所持道具滚动条底部判断：{(matched ? "已到底" : "未到底")}");
+        return matched;
+    }
+
+    private static void CompleteScan(string draftPath, IReadOnlyList<string> recognizedOrder)
+    {
+        var completedDraft = WarehouseScanDraftService.Load(draftPath);
+        var normalizedItems = WarehouseScanDraftService.NormalizeOtherItems(completedDraft.OtherItems);
+        var orderedItems = new Dictionary<string, int>(StringComparer.Ordinal);
+        foreach (var name in recognizedOrder)
+        {
+            var normalizedName = WarehouseScanDraftService.NormalizeOtherItemName(name);
+            if (normalizedItems.TryGetValue(normalizedName, out var count))
+                orderedItems[normalizedName] = count;
+        }
+
+        foreach (var pair in normalizedItems)
+        {
+            if (!orderedItems.ContainsKey(pair.Key))
+                orderedItems[pair.Key] = pair.Value;
+        }
+
+        completedDraft.OtherItems = orderedItems;
+        WarehouseScanDraftService.Save(draftPath, completedDraft);
+        WarehouseScanDraftService.AppendSnapshot(draftPath, completedDraft.CoreResources);
+        LoggerHelper.Info($"[仓库识别] 所持道具扫描完成，共识别 {orderedItems.Count} 种物品，已追加核心资源历史快照");
     }
 
     private static int[][] ParseRois(JArray? value, int[][] fallback)

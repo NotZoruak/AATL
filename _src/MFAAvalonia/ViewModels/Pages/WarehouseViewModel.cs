@@ -76,11 +76,21 @@ public partial class WarehouseViewModel : ViewModelBase
             _savedCore[definition.Key] = value;
         }
 
-        foreach (var pair in _editor.Data.OtherItems)
+        var normalizedOtherItems = WarehouseScanDraftService.NormalizeOtherItems(_editor.Data.OtherItems);
+        _editor.Data.OtherItems = normalizedOtherItems;
+        foreach (var pair in normalizedOtherItems)
         {
+            if (pair.Value <= 0)
+                continue;
             OtherItems.Add(new WarehouseOtherItemViewModel(pair.Key, pair.Value, OnDataChanged));
             _savedOther[pair.Key] = pair.Value;
         }
+        OtherItems.CollectionChanged += (_, _) =>
+        {
+            OnPropertyChanged(nameof(HasOtherItems));
+            OnPropertyChanged(nameof(NoOtherItems));
+            OnPropertyChanged(nameof(HasUnsavedChanges));
+        };
         RebuildCharts();
     }
 
@@ -93,11 +103,14 @@ public partial class WarehouseViewModel : ViewModelBase
             data.CoreResources[item.Name] = item.Count;
             _savedCore[item.Name] = item.Count;
         }
+        _savedOther.Clear();
         foreach (var item in OtherItems)
         {
-            if (!string.IsNullOrWhiteSpace(item.Name))
+            if (!string.IsNullOrWhiteSpace(item.Name) && item.Count > 0)
+            {
                 data.OtherItems[item.Name] = item.Count;
-            _savedOther[item.Name] = item.Count;
+                _savedOther[item.Name] = item.Count;
+            }
         }
         data.ResourceHistory = [.. _editor.Data.ResourceHistory, .. _pendingResourceHistory.Select(CloneSnapshot)];
         ConfigurationManager.Current.SetValue(ConfigurationKeys.WarehouseData, data);
@@ -207,18 +220,12 @@ public partial class WarehouseViewModel : ViewModelBase
                 item.Count = Math.Clamp(value, 0, item.Maximum);
         }
 
-        foreach (var pair in draft.OtherItems)
+        OtherItems.Clear();
+        foreach (var pair in WarehouseScanDraftService.NormalizeOtherItems(draft.OtherItems))
         {
-            var item = OtherItems.FirstOrDefault(existing => existing.Name == pair.Key);
-            if (item == null)
-            {
-                item = new WarehouseOtherItemViewModel(pair.Key, pair.Value, OnDataChanged);
-                OtherItems.Add(item);
-            }
-            else
-            {
-                item.Count = pair.Value;
-            }
+            if (pair.Value <= 0)
+                continue;
+            OtherItems.Add(new WarehouseOtherItemViewModel(pair.Key, pair.Value, OnDataChanged));
         }
 
         _pendingResourceHistory = [.. draft.ResourceHistory.Select(CloneSnapshot)];
@@ -236,6 +243,25 @@ public partial class WarehouseViewModel : ViewModelBase
     private void RefreshCharts()
     {
         RebuildCharts();
+    }
+
+    [RelayCommand]
+    private void AddOtherItem()
+    {
+        OtherItems.Add(new WarehouseOtherItemViewModel(string.Empty, 0, OnDataChanged));
+        OnPropertyChanged(nameof(HasOtherItems));
+        OnPropertyChanged(nameof(NoOtherItems));
+        OnPropertyChanged(nameof(HasUnsavedChanges));
+    }
+
+    /// <summary>移动其他物品的显示顺序。</summary>
+    public void MoveOtherItem(int sourceIndex, int targetIndex)
+    {
+        if (sourceIndex < 0 || targetIndex < 0 || sourceIndex >= OtherItems.Count || targetIndex >= OtherItems.Count || sourceIndex == targetIndex)
+            return;
+
+        OtherItems.Move(sourceIndex, targetIndex);
+        OnPropertyChanged(nameof(HasUnsavedChanges));
     }
 
     [RelayCommand]
@@ -329,8 +355,13 @@ public sealed partial class WarehouseOtherItemViewModel : ObservableObject
     }
     [ObservableProperty] private string _name;
     [ObservableProperty] private int _count;
+    public bool IsVisible => Count > 0 || string.IsNullOrWhiteSpace(Name);
     partial void OnNameChanged(string value) => _changed();
-    partial void OnCountChanged(int value) => _changed();
+    partial void OnCountChanged(int value)
+    {
+        OnPropertyChanged(nameof(IsVisible));
+        _changed();
+    }
 }
 
 public sealed class WarehouseChartViewModel

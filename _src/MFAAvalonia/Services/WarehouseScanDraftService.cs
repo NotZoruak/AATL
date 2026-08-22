@@ -1,4 +1,5 @@
 using MFAAvalonia.Models;
+using MFAAvalonia.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,6 +35,13 @@ public static class WarehouseScanDraftService
             .Replace("，", string.Empty, StringComparison.Ordinal)
             .Replace(".", string.Empty, StringComparison.Ordinal);
 
+        // 数量为 1 时，OCR 偶尔会把数字识别成汉字“一”。
+        if (string.Equals(normalized, "一", StringComparison.Ordinal))
+        {
+            value = 1;
+            return true;
+        }
+
         var digits = new string(normalized.Where(char.IsDigit).ToArray());
         return int.TryParse(digits, out value) && value >= 0;
     }
@@ -63,6 +71,14 @@ public static class WarehouseScanDraftService
         Save(path, data);
     }
 
+    /// <summary>清空本次自动识别使用的其他物品草稿，避免沿用上一次的旧数量。</summary>
+    public static void ClearOtherItems(string path)
+    {
+        var data = Load(path);
+        data.OtherItems.Clear();
+        Save(path, data);
+    }
+
     /// <summary>更新一个其他物品，并保留草稿中的其他识别结果。</summary>
     public static void UpdateOtherItem(string path, string item, int value)
     {
@@ -74,17 +90,96 @@ public static class WarehouseScanDraftService
                      .ToList())
             data.OtherItems.Remove(alias);
         data.OtherItems.Remove(item);
-        data.OtherItems[normalizedItem] = Math.Max(0, value);
+        if (value > 0)
+            data.OtherItems[normalizedItem] = value;
         Save(path, data);
     }
 
     /// <summary>修正已知的其他物品 OCR 误识别名称。</summary>
     public static string NormalizeOtherItemName(string item)
     {
+        item = item
+            .Replace("御守桃", "御守·桃", StringComparison.Ordinal)
+            .Replace("御守极", "御守·极", StringComparison.Ordinal)
+            .Replace("御守・桃", "御守·桃", StringComparison.Ordinal)
+            .Replace("御守・极", "御守·极", StringComparison.Ordinal);
+
         if (item.Contains("月下梅树", StringComparison.Ordinal))
             return "锷·月下梅树透图碎片";
 
         return OtherItemNameCorrections.TryGetValue(item, out var corrected) ? corrected : item;
+    }
+
+    /// <summary>读取当前配置中最近保存的其他物品名称。</summary>
+    public static IReadOnlyCollection<string> LoadSavedOtherItemNames()
+    {
+        var data = ConfigurationManager.Current.GetValue(ConfigurationKeys.WarehouseData, new WarehouseData());
+        return NormalizeOtherItems(data.OtherItems).Keys.ToArray();
+    }
+
+    /// <summary>按名称归一化并合并其他物品，避免历史 OCR 别名重复显示。</summary>
+    public static Dictionary<string, int> NormalizeOtherItems(IEnumerable<KeyValuePair<string, int>> items)
+    {
+        var result = new Dictionary<string, int>(StringComparer.Ordinal);
+        foreach (var item in items)
+        {
+            if (item.Value <= 0 || string.IsNullOrWhiteSpace(item.Key))
+                continue;
+
+            var normalizedName = NormalizeOtherItemName(item.Key);
+            if (result.TryGetValue(normalizedName, out var currentValue))
+                result[normalizedName] = Math.Max(currentValue, item.Value);
+            else
+                result[normalizedName] = item.Value;
+        }
+        return result;
+    }
+
+    /// <summary>优先使用已保存名称匹配 OCR 结果，避免手动校对后的名称再次被 OCR 名称覆盖。</summary>
+    public static string ResolveOtherItemName(string item, IEnumerable<string> savedNames)
+    {
+        var normalizedItem = NormalizeOtherItemName(item);
+
+        // 这两个名称只差一个字，禁止进入模糊匹配，避免御守·桃被错误合并到御守·极。
+        if (normalizedItem is "御守·桃" or "御守·极")
+            return normalizedItem;
+
+        var candidates = savedNames
+            .Where(name => !string.IsNullOrWhiteSpace(name))
+            .Select(name => (Name: name, Normalized: NormalizeOtherItemName(name)))
+            .ToList();
+
+        var exact = candidates.FirstOrDefault(candidate =>
+            string.Equals(candidate.Name, normalizedItem, StringComparison.Ordinal)
+            || string.Equals(candidate.Normalized, normalizedItem, StringComparison.Ordinal));
+        if (!string.IsNullOrWhiteSpace(exact.Name))
+            return exact.Name;
+
+        var closest = candidates
+            .Select(candidate => (candidate.Name, Distance: CalculateEditDistance(normalizedItem, candidate.Normalized)))
+            .Where(candidate => candidate.Distance <= Math.Max(1, normalizedItem.Length / 4))
+            .OrderBy(candidate => candidate.Distance)
+            .FirstOrDefault();
+        return string.IsNullOrWhiteSpace(closest.Name) ? normalizedItem : closest.Name;
+    }
+
+    private static int CalculateEditDistance(string left, string right)
+    {
+        var previous = Enumerable.Range(0, right.Length + 1).ToArray();
+        var current = new int[right.Length + 1];
+        for (var i = 1; i <= left.Length; i++)
+        {
+            current[0] = i;
+            for (var j = 1; j <= right.Length; j++)
+            {
+                var replacementCost = left[i - 1] == right[j - 1] ? 0 : 1;
+                current[j] = Math.Min(
+                    Math.Min(current[j - 1] + 1, previous[j] + 1),
+                    previous[j - 1] + replacementCost);
+            }
+            (previous, current) = (current, previous);
+        }
+        return previous[right.Length];
     }
 
     /// <summary>在完整识别结束时追加一次核心资源历史快照。</summary>
