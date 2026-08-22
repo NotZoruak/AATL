@@ -1,10 +1,10 @@
 {
   "name": "MATR",
-  "version": "v0.11.1-beta.3",
+  "version": "v0.11.1-beta.4",
   "mirrorchyan_rid": "MATR",
   "mirrorchyan_multiplatform": true,
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.11.1-beta.3 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.11.1-beta.4 | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -5503,63 +5503,61 @@
         }
       ]
     },
-    "修复工坊一": {
-      "name": "修复工坊一",
-      "label": "修复工坊一",
+    "选择工坊": {
+      "name": "选择工坊",
+      "label": "选择工坊",
       "type": "checkbox",
       "cases": [
         {
-          "name": "",
+          "name": "修复工坊一",
+          "label": "修复工坊一",
           "pipeline_override": {
             "E_CheckWorkshop1": {"enabled": true},
             "E_SelectRepairSlot1": {"enabled": true}
           }
-        }
-      ],
-      "default_case": []
-    },
-    "修复工坊二": {
-      "name": "修复工坊二",
-      "label": "修复工坊二",
-      "type": "checkbox",
-      "cases": [
+        },
         {
-          "name": "",
+          "name": "修复工坊二",
+          "label": "修复工坊二",
           "pipeline_override": {
             "E_CheckWorkshop2": {"enabled": true},
             "E_SelectRepairSlot2": {"enabled": true}
           }
-        }
-      ],
-      "default_case": []
-    },
-    "修复工坊三": {
-      "name": "修复工坊三",
-      "label": "修复工坊三",
-      "type": "checkbox",
-      "cases": [
+        },
         {
-          "name": "",
+          "name": "修复工坊三",
+          "label": "修复工坊三",
           "pipeline_override": {
             "E_CheckWorkshop3": {"enabled": true},
             "E_SelectRepairSlot3": {"enabled": true}
           }
-        }
-      ],
-      "default_case": []
-    },
-    "修复工坊四": {
-      "name": "修复工坊四",
-      "label": "修复工坊四",
-      "type": "checkbox",
-      "cases": [
+        },
         {
-          "name": "",
+          "name": "修复工坊四",
+          "label": "修复工坊四",
           "pipeline_override": {
             "E_CheckWorkshop4": {"enabled": true},
             "E_SelectRepairSlot4": {"enabled": true}
           }
         }
+      ],
+      "default_case": []
+    },
+    "筛选条件": {
+      "name": "筛选条件",
+      "label": "筛选条件",
+      "type": "checkbox",
+      "cases": [
+        {"name": "短", "label": "短", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_短": true}}}}},
+        {"name": "胁", "label": "胁", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_胁": true}}}}},
+        {"name": "打", "label": "打", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_打": true}}}}},
+        {"name": "太", "label": "太", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_太": true}}}}},
+        {"name": "大太", "label": "大太", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_大太": true}}}}},
+        {"name": "枪", "label": "枪", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_枪": true}}}}},
+        {"name": "薙", "label": "薙", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_薙": true}}}}},
+        {"name": "轻伤", "label": "轻伤", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"damage_轻伤": true}}}}},
+        {"name": "中伤", "label": "中伤", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"damage_中伤": true}}}}},
+        {"name": "重伤", "label": "重伤", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"damage_重伤": true}}}}}
       ],
       "default_case": []
     },
@@ -5576,7 +5574,7 @@
         {
           "name": "Yes",
           "label": "开启",
-          "option": ["修复工坊一", "修复工坊二", "修复工坊三", "修复工坊四"],
+          "option": ["选择工坊", "筛选条件"],
           "pipeline_override": {
             "E_WorkshopHub": {"enabled": true}
           }

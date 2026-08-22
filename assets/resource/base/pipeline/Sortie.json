@@ -259,12 +259,9 @@
       }
     },
     "action": {
-      "type": "Custom",
-      "custom_action": "LogAction",
-      "custom_action_param": {
-        "level": "Info",
-        "message": "[合战场] 出阵",
-        "click": [1204, 629, 1, 1]
+      "type": "Click",
+      "param": {
+        "target": [1204, 629, 1, 1]
       }
     },
     "post_wait_freezes": {
@@ -276,7 +273,27 @@
   },
   "S_PostSortieHub": {
     "timeout": 30000,
-    "next": ["S_IsPreDamage", "S_StopOnDamagePopup", "S_CheckEquipmentPopup", "S_IsIsekaiTicketConfirm", "S_DetectWhereAmI"]
+    "next": ["S_IsPreDamage", "S_StopOnDamagePopup", "S_CheckEquipmentPopup", "S_IsIsekaiTicketConfirm", "S_SortieSuccess"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_SortieSuccess": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [539, 3, 87, 6],
+        "upper": [178, 27, 27],
+        "lower": [172, 21, 21]
+      }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {
+        "level": "Info",
+        "message": "[合战场] 出阵"
+      }
+    },
+    "next": ["S_DetectWhereAmI"]
   },
   "S_IsIsekaiTicketConfirm": {
     "enabled": false,
@@ -1490,7 +1507,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiFatigueLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheck": {
@@ -1539,7 +1556,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R0C0": {
@@ -1560,7 +1577,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R0C1": {
@@ -1581,7 +1598,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R0C2": {
@@ -1602,7 +1619,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R1C0": {
@@ -1623,7 +1640,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R1C1": {
@@ -1644,7 +1661,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R1C2": {
@@ -1665,7 +1682,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R2C0": {
@@ -1686,7 +1703,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R2C1": {
@@ -1707,7 +1724,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R2C2": {
@@ -1728,7 +1745,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R3C0": {
@@ -1749,7 +1766,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R3C1": {
@@ -1770,7 +1787,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R3C2": {
@@ -1791,7 +1808,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R4C0": {
@@ -1812,7 +1829,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R4C1": {
@@ -1833,7 +1850,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R4C2": {
@@ -1854,7 +1871,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R5C0": {
@@ -1875,7 +1892,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R5C1": {
@@ -1896,7 +1913,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_GuiEqNearDamageLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_EqCheckC_R5C2": {
@@ -1916,6 +1933,42 @@
         "message": "[合战场] 刀装近破坏撤退",
         "click": [763, 446, 48, 44]
       }
+    },
+    "next": ["S_GuiEqNearDamageLog"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_GuiSupplyLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "[刀装补充] 补充刀装"}
+    },
+    "next": ["S_IsPreSortieConfirm", "S_PreConfirmSupply"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_GuiFatigueLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "[疲劳检测] 检测到刀剑疲劳，撤退"}
+    },
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_GuiEqDamageLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "[刀装检测] 检测到刀装破坏，撤退"}
+    },
+    "next": ["S_ReturnHomeFromMarching"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_GuiEqNearDamageLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "[刀装检测] 检测到刀装近破坏，撤退"}
     },
     "next": ["S_ReturnHomeFromMarching"],
     "on_error": ["S_DetectWhereAmI"]
@@ -2056,7 +2109,7 @@
   "S_LogNoDamagedSword": {
     "action": {
       "type": "Custom",
-      "custom_action": "DamageLogAction",
+      "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "未检测到可修复刀剑"}
     },
     "next": ["S_DetectWhereAmI"]
@@ -2117,7 +2170,7 @@
   "S_LogRepairDone": {
     "action": {
       "type": "Custom",
-      "custom_action": "DamageLogAction",
+      "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[重伤检测] 修复完成"}
     },
     "next": ["S_LogRepairDoneWord"],
@@ -2303,7 +2356,7 @@
       }
     },
     "post_wait_freezes": {"time": 100},
-    "next": ["S_IsPreSortieConfirm", "S_PreConfirmSupply"],
+    "next": ["S_GuiSupplyLog"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_WaitRefresh": {
@@ -2899,7 +2952,7 @@
   "S_LogPreDamage": {
     "action": {
       "type": "Custom",
-      "custom_action": "DamageLogAction",
+      "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"}
     },
     "next": ["S_DecideDamage_Pre"],
@@ -2908,7 +2961,7 @@
   "S_LogMarchingDamage": {
     "action": {
       "type": "Custom",
-      "custom_action": "DamageLogAction",
+      "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，撤退撤退"}
     },
     "next": ["S_LogMarchingDamageWord"],
@@ -2924,7 +2977,7 @@
   "S_LogStopOnDamageRepair": {
     "action": {
       "type": "Custom",
-      "custom_action": "DamageLogAction",
+      "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，任务终止"}
     },
     "on_error": ["S_DetectWhereAmI"]

@@ -335,6 +335,12 @@ public static class WorkRecordBuilder
                 if (TryParseDispatch(detail, out var unit, out var map))
                     record.LogisticsDispatches.Add(new LogisticsDispatch(time, unit, map));
                 break;
+            case "补充刀装":
+                if (prefix == "后勤")
+                    record.LogisticsCounts[action] = record.LogisticsCounts.GetValueOrDefault(action) + 1;
+                else
+                    record.SpecialEvents.Add(new SpecialEvent(time, action));
+                break;
             default:
                 if (prefix == "远征计时" && action == "倒计时结束")
                 {

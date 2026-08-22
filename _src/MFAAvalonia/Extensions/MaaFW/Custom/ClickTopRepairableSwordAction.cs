@@ -4,7 +4,9 @@ using MaaFramework.Binding;
 using MaaFramework.Binding.Custom;
 using MFAAvalonia.Extensions;
 using MFAAvalonia.Helper;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 
@@ -12,6 +14,7 @@ namespace MFAAvalonia.Extensions.MaaFW.Custom;
 
 /// <summary>
 /// 点击修复界面最上方的可修复刀剑:
+/// 先打开筛选界面并按用户配置选择刀种和伤势,确认后:
 /// 在指定 ROI 内扫描白色标记像素(可修复刀剑的标记),取最上方白色区域的中心点击。
 /// 当前视野内未找到时按滑动参数上滑列表继续查找,最多滑动 max_swipes 次。
 /// 用于修复工坊选刀时避开出阵任务中使用的刀剑(出阵中的刀剑无白色标记)。
@@ -42,10 +45,37 @@ public class ClickTopRepairableSwordAction : IMaaCustomAction
     public const int DefaultReleaseHoldMs = 1000;
     public const int DefaultSwipeSteps = 20;
 
+    private static readonly (string Key, int X, int Y)[] SwordFilterPoints =
+    [
+        ("短", 272, 227), ("胁", 449, 230), ("打", 622, 229), ("太", 794, 230),
+        ("大太", 283, 303), ("枪", 443, 303), ("薙", 625, 305), ("剑", 796, 302),
+    ];
+
+    private static readonly (string Key, int X, int Y)[] DamageFilterPoints =
+    [
+        ("轻伤", 274, 528), ("中伤", 445, 527), ("重伤", 622, 525),
+    ];
+
+    private static readonly int[] FilterButtonRoi = [944, 81, 105, 30];
+    private static readonly int[] FilterPanelRoi = [494, 65, 79, 38];
+    private static readonly int[] FilterEntryRoi = [765, 139, 66, 34];
+    private static readonly int[] FilterConfirmRoi = [591, 602, 101, 44];
+    private const int FilterOpenAttempts = 10;
+    private const int FilterRecognizeIntervalMs = 200;
     public bool Run<T>(T context, in RunArgs args, in RunResults results) where T : IMaaContext
     {
         ActionParamHelper.ThrowIfStopping(context);
         var json = ActionParamHelper.Parse(args.ActionParam);
+        try
+        {
+            if (!ApplyRepairFilter(context, json))
+                return false;
+        }
+        catch (Exception e)
+        {
+            LoggerHelper.Error($"[修刀选刀] 筛选流程异常：{e.Message}");
+            return false;
+        }
         var roi = json?["roi"]?.ToObject<int[]>() ?? DefaultRoi;
         var lower = json?["lower"]?.ToObject<byte[]>() ?? DefaultLower;
         var upper = json?["upper"]?.ToObject<byte[]>() ?? DefaultUpper;
@@ -101,6 +131,106 @@ public class ClickTopRepairableSwordAction : IMaaCustomAction
 
         LoggerHelper.Warning("[修刀选刀] 滑动后仍未找到可修复刀剑");
         return false;
+    }
+
+    /// <summary>打开筛选界面、点击已选条件并确认；没有已选条件时只打开后确认。</summary>
+    private static bool ApplyRepairFilter<T>(T context, JObject? json) where T : IMaaContext
+    {
+        ActionParamHelper.ThrowIfStopping(context);
+
+        var filterButtonX = FilterButtonRoi[0] + FilterButtonRoi[2] / 2;
+        var filterButtonY = FilterButtonRoi[1] + FilterButtonRoi[3] / 2;
+        var filterEntryX = FilterEntryRoi[0] + FilterEntryRoi[2] / 2;
+        var filterEntryY = FilterEntryRoi[1] + FilterEntryRoi[3] / 2;
+
+        var filterOpened = false;
+        for (var attempt = 0; attempt < FilterOpenAttempts && !filterOpened; attempt++)
+        {
+            if (RecognizeText(context, FilterPanelRoi, "筛选"))
+            {
+                filterOpened = true;
+                break;
+            }
+
+            if (RecognizeText(context, FilterButtonRoi, "筛选"))
+            {
+                context.Click(filterButtonX, filterButtonY);
+                Thread.Sleep(FilterRecognizeIntervalMs);
+            }
+            else
+            {
+                LoggerHelper.Info(
+                    $"[修刀选刀] 筛选面板尚未识别到，顶部不是筛选按钮，继续等待 ({attempt + 1}/{FilterOpenAttempts})");
+                Thread.Sleep(FilterRecognizeIntervalMs);
+            }
+        }
+
+        if (!filterOpened)
+        {
+            LoggerHelper.Warning("[修刀选刀] 未找到筛选面板，结束当前 action");
+            return false;
+        }
+
+        context.Click(filterEntryX, filterEntryY);
+        Thread.Sleep(200);
+
+        var flags = new Dictionary<string, bool>();
+        foreach (var point in SwordFilterPoints)
+            flags[$"sword_type_{point.Key}"] = json?["sword_type_" + point.Key]?.Value<bool>() == true;
+        foreach (var point in DamageFilterPoints)
+            flags[$"damage_{point.Key}"] = json?["damage_" + point.Key]?.Value<bool>() == true;
+
+        var selection = RepairFilterSelection.FromFlags(flags);
+        foreach (var point in SwordFilterPoints)
+        {
+            if (!selection.SwordTypes.Contains(point.Key)) continue;
+            ClickFilterOption(context, point.X, point.Y, point.Key);
+        }
+        foreach (var point in DamageFilterPoints)
+        {
+            if (!selection.DamageStates.Contains(point.Key)) continue;
+            ClickFilterOption(context, point.X, point.Y, point.Key);
+        }
+
+        if (!RecognizeText(context, FilterConfirmRoi, "定"))
+        {
+            LoggerHelper.Warning("[修刀选刀] 未找到筛选确认按钮，结束当前 action");
+            return false;
+        }
+
+        context.Click(
+            FilterConfirmRoi[0] + FilterConfirmRoi[2] / 2,
+            FilterConfirmRoi[1] + FilterConfirmRoi[3] / 2);
+        FreezeRepairList(context);
+        LoggerHelper.Info($"[修刀选刀] 筛选确认完成：刀种={string.Join(',', selection.SwordTypes)},伤势={string.Join(',', selection.DamageStates)}");
+        return true;
+    }
+
+    /// <summary>等待筛选结果列表 1s，等待筛选后的列表稳定。</summary>
+    private static void FreezeRepairList<T>(T context) where T : IMaaContext
+    {
+        ActionParamHelper.ThrowIfStopping(context);
+        Thread.Sleep(1000);
+    }
+
+    /// <summary>识别指定区域内的文字。</summary>
+    private static bool RecognizeText<T>(T context, int[] roi, string expected) where T : IMaaContext
+    {
+        using var image = context.GetImage();
+        if (image == null) return false;
+        var text = context.GetText(roi[0], roi[1], roi[2], roi[3], image);
+        return expected == "筛选"
+            ? RepairFilterSelection.IsFilterTitle(text)
+            : text?.Contains(expected, StringComparison.Ordinal) == true;
+    }
+
+    /// <summary>点击筛选项并等待界面更新。</summary>
+    private static void ClickFilterOption<T>(T context, int x, int y, string name) where T : IMaaContext
+    {
+        ActionParamHelper.ThrowIfStopping(context);
+        context.Click(x, y);
+        Thread.Sleep(500);
+        LoggerHelper.Info($"[修刀选刀] 已选择筛选条件：{name}");
     }
 
     /// <summary>

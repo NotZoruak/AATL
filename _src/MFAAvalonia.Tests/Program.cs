@@ -1,6 +1,22 @@
 using MFAAvalonia.Models;
 using MFAAvalonia.Services;
+using MFAAvalonia.Extensions.MaaFW.Custom;
 using System.Collections.Generic;
+
+var emptyFilter = RepairFilterSelection.FromFlags(new Dictionary<string, bool>());
+AssertFalse(emptyFilter.HasAnyFilter, "未选择任何筛选条件时不应启用筛选");
+
+var selectedFilter = RepairFilterSelection.FromFlags(new Dictionary<string, bool>
+{
+    ["sword_type_短"] = true,
+    ["sword_type_太"] = true,
+    ["damage_重伤"] = true,
+});
+AssertTrue(selectedFilter.HasAnyFilter, "选择刀种或伤势后应启用筛选");
+AssertTrue(selectedFilter.SwordTypes.SetEquals(["短", "太"]), "刀种筛选应保留全部已选项");
+AssertTrue(selectedFilter.DamageStates.SetEquals(["重伤"]), "伤势筛选应保留已选项");
+AssertTrue(RepairFilterSelection.IsFilterTitle("师选"), "筛选标题 OCR 误识别为师选时仍应视为筛选标题");
+AssertFalse(RepairFilterSelection.IsFilterTitle("刀剑男士"), "无关 OCR 文本不应视为筛选标题");
 
 var preset = new FormationPreset();
 
@@ -123,6 +139,22 @@ var parallelDungeon = parallelTaskRecords.Single(record => record.TaskName == "�
 var parallelLogistics = parallelTaskRecords.Single(record => record.TaskName == "后勤");
 AssertTrue(parallelDungeon.SwordDrops.Count == 1, "并行任务中地下城掉落应归入地下城记录");
 AssertTrue(parallelLogistics.SwordDrops.Count == 0, "并行任务中后勤记录不应包含地下城掉落");
+
+var supplementRecord = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：地下城"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[地下城] 补充刀装"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "停止前状态：SUCCEEDED"),
+]).Single();
+AssertTrue(supplementRecord.SpecialEvents.Any(item => item.Description == "补充刀装"),
+    "出阵任务产生的补充刀装应显示在特殊情况中");
+
+var logisticsSupplementRecord = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：后勤"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[后勤] 补充刀装"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "停止前状态：SUCCEEDED"),
+]).Single();
+AssertTrue(logisticsSupplementRecord.LogisticsCounts["补充刀装"] == 1,
+    "后勤任务产生的补充刀装应显示在后勤记录中");
 
 var firstSavedSource = new WorkRecord
 {

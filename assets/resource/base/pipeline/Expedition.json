@@ -2237,14 +2237,21 @@
         "expected": "修复"
       }
     },
-    "action": {"type": "Click"},
-    "next": ["E_ConfirmRepairLog"],
-    "on_error": ["E_GoHome"]
-  },
-  "E_ConfirmRepairLog": {
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
+      "custom_action_param": {
+        "message": "[后勤] 修刀",
+        "click": [1156, 587, 85, 44]
+      }
+    },
+    "next": ["E_RepairGuiLog"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_RepairGuiLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[后勤] 修刀"}
     },
     "next": ["E_GoHome"],
@@ -2328,6 +2335,15 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
+      "custom_action_param": {"message": "[后勤] 安排内番"}
+    },
+    "next": ["E_NaibanGuiLog"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_NaibanGuiLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[后勤] 安排内番"}
     },
     "next": ["E_NaibanDialogue", "E_NaibanVerifyConfirm"],

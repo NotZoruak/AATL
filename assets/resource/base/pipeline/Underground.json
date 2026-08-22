@@ -830,7 +830,7 @@
   "U_LogNoDamagedSword": {
     "action": {
       "type": "Custom",
-      "custom_action": "DamageLogAction",
+      "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "未检测到可修复刀剑"}
     },
     "next": ["U_DetectWhereAmI"]
@@ -1089,7 +1089,7 @@
       }
     },
     "post_wait_freezes": {"time": 200},
-    "next": ["U_IsPreSortieConfirm", "U_PreConfirmSupply"],
+    "next": ["U_GuiSupplyLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ReturnHomeAfterMarch": {
@@ -1303,7 +1303,7 @@
   "U_LogRepairDone": {
     "action": {
       "type": "Custom",
-      "custom_action": "DamageLogAction",
+      "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[重伤检测] 修复完成"}
     },
     "next": ["U_LogRepairDoneLog"],
@@ -1415,7 +1415,7 @@
   "U_LogPreDamage": {
     "action": {
       "type": "Custom",
-      "custom_action": "DamageLogAction",
+      "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"}
     },
     "next": ["U_DecideDamage_Pre"],
@@ -1424,7 +1424,7 @@
   "U_LogMarchingDamage": {
     "action": {
       "type": "Custom",
-      "custom_action": "DamageLogAction",
+      "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，撤退撤退"}
     },
     "next": ["U_LogMarchingDamageLog"],
@@ -1439,7 +1439,7 @@
         "message": "[地下城] 重伤撤退"
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_DetectWhereAmI"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_LogStopOnDamage": {
@@ -1452,7 +1452,7 @@
   "U_LogStopOnDamageRepair": {
     "action": {
       "type": "Custom",
-      "custom_action": "DamageLogAction",
+      "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，任务终止"}
     },
     "on_error": ["U_DetectWhereAmI"]
@@ -1519,7 +1519,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiFatigueLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheck": {
@@ -1568,7 +1568,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R0C0": {
@@ -1589,7 +1589,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R0C1": {
@@ -1610,7 +1610,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R0C2": {
@@ -1631,7 +1631,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R1C0": {
@@ -1652,7 +1652,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R1C1": {
@@ -1673,7 +1673,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R1C2": {
@@ -1694,7 +1694,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R2C0": {
@@ -1715,7 +1715,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R2C1": {
@@ -1736,7 +1736,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R2C2": {
@@ -1757,7 +1757,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R3C0": {
@@ -1778,7 +1778,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R3C1": {
@@ -1799,7 +1799,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R3C2": {
@@ -1820,7 +1820,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R4C0": {
@@ -1841,7 +1841,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R4C1": {
@@ -1862,7 +1862,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R4C2": {
@@ -1883,7 +1883,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R5C0": {
@@ -1904,7 +1904,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R5C1": {
@@ -1925,7 +1925,7 @@
         "click": [763, 446, 48, 44]
       }
     },
-    "next": ["U_ReturnHomeAfterMarch"],
+    "next": ["U_GuiEqNearDamageLog"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_EqCheckC_R5C2": {
@@ -1945,6 +1945,42 @@
         "message": "[地下城] 刀装近破坏撤退",
         "click": [763, 446, 48, 44]
       }
+    },
+    "next": ["U_GuiEqNearDamageLog"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_GuiSupplyLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "[刀装补充] 补充刀装"}
+    },
+    "next": ["U_IsPreSortieConfirm", "U_PreConfirmSupply"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_GuiFatigueLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "[疲劳检测] 检测到刀剑疲劳，撤退"}
+    },
+    "next": ["U_ReturnHomeAfterMarch"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_GuiEqDamageLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "[刀装检测] 检测到刀装破坏，撤退"}
+    },
+    "next": ["U_ReturnHomeAfterMarch"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_GuiEqNearDamageLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "[刀装检测] 检测到刀装近破坏，撤退"}
     },
     "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]

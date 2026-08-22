@@ -165,11 +165,28 @@ public partial class WorkRecordsViewModel : ViewModelBase
         else
         {
             SelectedRecord = null;
-            SelectionSummary = SelectedLogRecords.Count > 1
-                ? $"已选择 {SelectedLogRecords.Count} 条不同任务，无法合并"
-                : "";
+            SelectionSummary = BuildLogMergeFailureSummary();
         }
         NotifySelectionCommands();
+    }
+
+    /// <summary>生成日志记录无法合并时的具体原因。</summary>
+    private string BuildLogMergeFailureSummary()
+    {
+        if (SelectedLogRecords.Count <= 1)
+            return "";
+
+        var reasons = new List<string>();
+        if (SelectedLogRecords.Any(record => record.Status == "进行中"))
+            reasons.Add("进行中的任务无法合并");
+        if (SelectedLogRecords.Select(record => record.TaskName)
+            .Distinct(StringComparer.Ordinal).Count() > 1)
+            reasons.Add("不同任务无法合并");
+
+        if (reasons.Count == 0)
+            reasons.Add("当前记录无法合并");
+
+        return $"已选择 {SelectedLogRecords.Count} 条记录，{string.Join("或", reasons)}";
     }
 
     /// <summary>由页面同步已保存记录的多选状态。</summary>
