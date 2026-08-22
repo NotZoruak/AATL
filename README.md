@@ -26,8 +26,7 @@ MATR 是一个基于 MaaFramework 的《刀剑乱舞》PC 端长期自动化系�
 
 > [!TIP]
 >
-> 本项目目前处于快速迭代更新阶段，欢迎提交 PR 和 Issue。无论是使用中遇到的问题、功能建议，还是其他想法，都欢迎提出。
-> 遇到问题请先前往 [Issues 页面](https://github.com/NotZoruak/MATR/issues) 搜索已有解答，或通过下方反馈渠道提交。
+> 本项目目前处于快速迭代更新阶段，欢迎提交 PR 和 Issue。无论是使用中遇到的问题、功能建议，还是其他想法，都欢迎提出。也感谢每一位愿意使用、测试 MATR 并提出问题和建议的用户，项目的持续完善和发展离不开你们的支持与反馈。
 
 ## ⚠️ 免责声明与风险提示
 
@@ -180,6 +179,10 @@ MATR/
 感谢以下开发者对 MATR 的贡献：
 
 [![贡献者](https://contrib.rocks/image?repo=NotZoruak/MATR&max=1000)](https://github.com/NotZoruak/MATR/graphs/contributors)
+
+
+感谢 MaaFramework 提供自动化框架和低代码开发流程，以及 MFAAvalonia 提供的图形化界面方案，让非专业人员也能轻松实现自己的 MAA 项目。也感谢 Claude、DeepSeek 和 Codex，帮助我完成自定义动作编写、UI 个性化设置、流程校验和 Bug 排查。最后，感谢每一位提出建议、反馈问题和支持 MATR 的用户，刃工智能的成长离不开大家的陪伴与支持。
+
 
 ## Star History
 
