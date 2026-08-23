@@ -1437,9 +1437,11 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [490, 469, 1, 1]
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {
+        "message": "[合战场] 返回本丸",
+        "click": [490, 469, 1, 1]
       }
     },
     "next": ["S_DetectWhereAmI"]
@@ -1484,7 +1486,7 @@
         "target": [763, 446, 48, 44]
       }
     },
-    "next": ["S_LogMarchingDamage"],
+    "next": ["S_LogMarchingDamageWord"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_FatigueDetect": {
@@ -1952,7 +1954,7 @@
       "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[疲劳检测] 检测到刀剑疲劳，撤退"}
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_GuiEqDamageLog": {
@@ -1961,7 +1963,7 @@
       "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[刀装检测] 检测到刀装破坏，撤退"}
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_GuiEqNearDamageLog": {
@@ -1970,7 +1972,7 @@
       "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[刀装检测] 检测到刀装近破坏，撤退"}
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_NavigateToRepair": {
@@ -2074,20 +2076,6 @@
   },
   "S_DecideDamage_Pre": {
     "next": ["S_NavigateToRepair", "S_LogStopOnDamageRepair"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_ReturnHomeFromMarching": {
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1208, 449, 10, 10]
-      }
-    },
-    "post_wait_freezes": {
-      "time": 200,
-      "target": [548, 295, 182, 56]
-    },
-    "next": ["S_ConfirmReturnHome"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_ConfirmSelectSlot": {
@@ -2964,7 +2952,7 @@
       "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，撤退撤退"}
     },
-    "next": ["S_LogMarchingDamageWord"],
+    "next": ["S_ClickRetreat"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_LogStopOnDamage": {
@@ -3969,7 +3957,7 @@
         "message": "[合战场] 重伤撤退"
       }
     },
-    "next": ["S_ReturnHomeFromMarching"],
+    "next": ["S_LogMarchingDamage"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_LogRepairDoneWord": {

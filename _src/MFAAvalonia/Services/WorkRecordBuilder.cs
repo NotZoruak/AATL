@@ -350,11 +350,18 @@ public static class WorkRecordBuilder
                 {
                     record.LogisticsCounts[action] = record.LogisticsCounts.GetValueOrDefault(action) + 1;
                 }
-                else if (level == "WRN")
-                {
-                    // 特殊情况只收 Warning 档词条（词表约定），Info 词条如命中王点/刷花不展示
-                    record.SpecialEvents.Add(new SpecialEvent(time, action));
-                }
+        else if (level == "WRN")
+        {
+            if (prefix == "RestartGameAction" && action == "ADB")
+            {
+                var warning = string.IsNullOrWhiteSpace(detail) ? "ADB 连接恢复流程" : detail;
+                record.SpecialEvents.Add(new SpecialEvent(time, $"卡死重启：ADB 连接警告：{warning}"));
+                return;
+            }
+
+            // 特殊情况只收 Warning 档词条（词表约定），Info 词条如命中王点/刷花不展示
+            record.SpecialEvents.Add(new SpecialEvent(time, action));
+        }
                 break;
         }
     }

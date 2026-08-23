@@ -233,7 +233,7 @@
                                             Padding="8,5"
                                             Margin="0,2">
                                         <Grid RowDefinitions="Auto"
-                                              ColumnDefinitions="*,Auto,Auto"
+                                              ColumnDefinitions="*,Auto"
                                               ColumnSpacing="8">
                                             <TextBlock Text="{Binding DisplayName}"
                                                        FontSize="13"
@@ -241,13 +241,6 @@
                                                        Foreground="#344054"
                                                        TextTrimming="CharacterEllipsis" />
                                             <TextBlock Grid.Column="1"
-                                                       Text="{Binding DisplayConfigName}"
-                                                       FontSize="11"
-                                                       Foreground="#7B8798"
-                                                       VerticalAlignment="Center"
-                                                       TextTrimming="CharacterEllipsis"
-                                                       IsVisible="{Binding DisplayConfigName, Converter={x:Static avaConverters:StringConverters.IsNotNullOrEmpty}}" />
-                                            <TextBlock Grid.Column="2"
                                                        Text="{Binding DurationText}"
                                                        FontSize="11"
                                                        Foreground="#7B8798" />

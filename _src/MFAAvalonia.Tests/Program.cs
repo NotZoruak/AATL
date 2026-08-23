@@ -18,6 +18,30 @@ AssertTrue(selectedFilter.DamageStates.SetEquals(["重伤"]), "伤势筛选应�
 AssertTrue(RepairFilterSelection.IsFilterTitle("师选"), "筛选标题 OCR 误识别为师选时仍应视为筛选标题");
 AssertFalse(RepairFilterSelection.IsFilterTitle("刀剑男士"), "无关 OCR 文本不应视为筛选标题");
 
+var swordTypeMap = new Dictionary<string, string>
+{
+    ["堀川国广"] = "胁差",
+    ["山姥切国广"] = "打刀",
+};
+AssertTrue(
+    SwordNameMatcher.TryMatch("堀川国广", "胁差", swordTypeMap, out var exactSword)
+        && exactSword == "堀川国广",
+    "刀名精确匹配应保留原名");
+AssertTrue(
+    SwordNameMatcher.TryMatch("掘川国广", "胁差", swordTypeMap, out var similarSword)
+        && similarSword == "堀川国广",
+    "相近字形 OCR 应归一化为堀川国广");
+AssertTrue(
+    SwordNameMatcher.TryMatch("堀川国広", "胁差", swordTypeMap, out var variantSword)
+        && variantSword == "堀川国广",
+    "字体差异 OCR 应归一化为堀川国广");
+AssertFalse(
+    SwordNameMatcher.TryMatch("掘川国广", "打刀", swordTypeMap, out _),
+    "相近字形匹配不得跨刀种");
+AssertFalse(
+    SwordNameMatcher.TryMatch("堀山国广", "胁差", swordTypeMap, out _),
+    "非受控字形差异不得匹配");
+
 var preset = new FormationPreset();
 
 AssertFalse(preset.ClearEquipmentBeforeFormation, "新预设默认不应卸下现有装备");
@@ -78,6 +102,16 @@ var runningRecord = WorkRecordBuilder.Build([
 ]);
 AssertTrue(runningRecord.Count == 1, "运行中的任务应保留为一条工作记录");
 AssertTrue(runningRecord[0].Status == "进行中", "没有停止状态的运行记录应显示进行中");
+
+var adbWarningRecord = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：地下城"),
+    new LogEntry(logStart.AddSeconds(1), "WRN", "[RestartGameAction] ADB 命令返回警告: device offline"),
+]);
+AssertTrue(
+    adbWarningRecord[0].SpecialEvents.Count == 1
+        && adbWarningRecord[0].SpecialEvents[0].Description.Contains("卡死重启")
+        && adbWarningRecord[0].SpecialEvents[0].Description.Contains("device offline"),
+    "卡死重启期间的 ADB 警告应以可读文本显示在特殊情况中");
 
 var earlyEndRecord = WorkRecordBuilder.Build([
     new LogEntry(logStart, "INF", "开始任务：合战场"),

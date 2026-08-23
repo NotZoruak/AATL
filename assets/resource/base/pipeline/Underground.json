@@ -1439,7 +1439,7 @@
         "message": "[地下城] 重伤撤退"
       }
     },
-    "next": ["U_DetectWhereAmI"],
+    "next": ["U_ReturnHomeAfterMarch"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_LogStopOnDamage": {

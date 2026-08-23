@@ -351,7 +351,9 @@ public partial class WorkRecordsViewModel : ViewModelBase
     {
         get
         {
-            if (SelectedLogRecords.Count > 1 || SelectedSavedRecords.Count > 1)
+            if (SelectedSavedRecords.Count > 0
+                || SelectedLogRecords.Count > 1
+                || SelectedSavedRecords.Count > 1)
                 return "";
             return ResolveConfigDisplayName(SelectedRecord?.ConfigName ?? "");
         }

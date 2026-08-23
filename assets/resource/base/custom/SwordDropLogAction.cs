@@ -127,23 +127,17 @@ public class SwordDropLogAction : IMaaCustomAction
             return false;
 
         var name = normalized[type.Length..];
-        if (name.Length < 2 || !name.All(IsChineseCharacter))
+        if (name.Length < 2)
             return false;
 
         var map = FormationContext.LoadSwordTypeMap();
-        if (!map.TryGetValue(name, out var mappedType))
-            return false;
-
-        if (!string.Equals(type, mappedType, StringComparison.Ordinal))
+        if (!SwordNameMatcher.TryMatch(name, type, map, out var canonicalName))
             return false;
 
         swordType = type;
-        swordName = name;
+        swordName = canonicalName;
         return true;
     }
-
-    private static bool IsChineseCharacter(char value) =>
-        value is >= '\u3400' and <= '\u4dbf' or >= '\u4e00' and <= '\u9fff';
 
     private static string ReadText<T>(T context, int[] roi) where T : IMaaContext
     {
