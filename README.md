@@ -116,8 +116,6 @@ MATR 是一个基于 MaaFramework 的《刀剑乱舞》PC 端长期自动化系�
 
 MATR 自带日志打包功能：在任务页面的“日志”卡片右上角点击文件夹图标，选择需要的日志和截图后点击“导出日志”。打包完成后，请将压缩包通过 [问题反馈与日志收集问卷](https://ycnviwngeokc.feishu.cn/share/base/form/shrcnEJvA6mbBOSU2RO7DnRm8Qh) 或 [GitHub Issues](https://github.com/NotZoruak/MATR/issues) 提交。
 
-遇到 bug 或有功能建议？欢迎通过以下方式反馈：
-
 提交反馈时请尽量包含以下信息：
 
 - **Bug 报告**：描述操作步骤、预期结果和实际结果，附上截图或日志（`debug/` 目录下）
