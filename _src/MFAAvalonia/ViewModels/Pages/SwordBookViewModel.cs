@@ -99,8 +99,16 @@ public partial class SwordBookViewModel : ViewModelBase
                             throw new InvalidOperationException("刀帐识别前连接失败，请检查模拟器和游戏窗口。");
                         var job = tasker.AppendTask(new MaaNode { Name = "SwordBookScan" });
                         if (job.WaitFor(MaaJobStatus.Succeeded) == null)
-                            throw new InvalidOperationException("刀帐自动识别任务执行失败。");
+                        {
+                            await ShowRecognitionFailureAsync();
+                            return;
+                        }
                         await DispatcherHelper.RunOnMainThreadAsync(LoadDraft);
+                    }
+                    catch (Exception exception)
+                    {
+                        LoggerHelper.Warning($"[刀帐] 自动识别任务失败：{exception.Message}");
+                        await ShowRecognitionFailureAsync();
                     }
                     finally
                     {
@@ -139,6 +147,22 @@ public partial class SwordBookViewModel : ViewModelBase
     }
 
     partial void OnIsRecognizingChanged(bool value) => OnPropertyChanged(nameof(IsIdle));
+
+    private static Task ShowRecognitionFailureAsync()
+    {
+        return DispatcherHelper.RunOnMainThreadAsync(() =>
+        {
+            _ = SukiMessageBox.ShowDialog(new SukiMessageBoxHost
+            {
+                Content = "请先将游戏页面切换至具体刀剑男士的刀帐页面，并确保顶部序号可见，然后重新点击“自动识别”。",
+                ActionButtonsPreset = SukiMessageBoxButtons.OK,
+                IconPreset = SukiMessageBoxIcons.Warning,
+            }, new SukiMessageBoxOptions
+            {
+                Title = "刀帐自动识别失败",
+            });
+        });
+    }
 
     private void LoadCatalog()
     {

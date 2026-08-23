@@ -34,7 +34,10 @@ public sealed class SwordBookScanAction : IMaaCustomAction
         var draft = LoadDraft();
         var startNumber = ReadNumber(context);
         if (startNumber == null)
-            throw new Exception("刀帐自动识别失败：无法识别开始页面序号");
+        {
+            LoggerHelper.Warning("[刀帐] 自动识别失败：当前页面未识别到刀剑序号，请先切换到具体刀剑男士的刀帐页面");
+            return false;
+        }
 
         LoggerHelper.Info($"[刀帐] 自动识别开始：起始序号={startNumber}");
         var currentNumber = startNumber.Value;
