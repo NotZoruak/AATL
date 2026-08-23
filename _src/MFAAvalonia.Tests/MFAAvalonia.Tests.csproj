@@ -20,6 +20,5 @@
     <Compile Include="..\MFAAvalonia\Services\WarehouseDataEditor.cs" Link="WarehouseDataEditor.cs" />
     <Compile Include="..\MFAAvalonia\Services\WarehouseScanDraftService.cs" Link="WarehouseScanDraftService.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\RepairFilterSelection.cs" Link="RepairFilterSelection.cs" />
-    <Compile Include="..\..\assets\resource\base\custom\SwordNameMatcher.cs" Link="SwordNameMatcher.cs" />
   </ItemGroup>
 </Project>

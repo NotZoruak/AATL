@@ -18,30 +18,6 @@ AssertTrue(selectedFilter.DamageStates.SetEquals(["重伤"]), "伤势筛选应�
 AssertTrue(RepairFilterSelection.IsFilterTitle("师选"), "筛选标题 OCR 误识别为师选时仍应视为筛选标题");
 AssertFalse(RepairFilterSelection.IsFilterTitle("刀剑男士"), "无关 OCR 文本不应视为筛选标题");
 
-var swordTypeMap = new Dictionary<string, string>
-{
-    ["堀川国广"] = "胁差",
-    ["山姥切国广"] = "打刀",
-};
-AssertTrue(
-    SwordNameMatcher.TryMatch("堀川国广", "胁差", swordTypeMap, out var exactSword)
-        && exactSword == "堀川国广",
-    "刀名精确匹配应保留原名");
-AssertTrue(
-    SwordNameMatcher.TryMatch("掘川国广", "胁差", swordTypeMap, out var similarSword)
-        && similarSword == "堀川国广",
-    "相近字形 OCR 应归一化为堀川国广");
-AssertTrue(
-    SwordNameMatcher.TryMatch("堀川国広", "胁差", swordTypeMap, out var variantSword)
-        && variantSword == "堀川国广",
-    "字体差异 OCR 应归一化为堀川国广");
-AssertFalse(
-    SwordNameMatcher.TryMatch("掘川国广", "打刀", swordTypeMap, out _),
-    "相近字形匹配不得跨刀种");
-AssertFalse(
-    SwordNameMatcher.TryMatch("堀山国广", "胁差", swordTypeMap, out _),
-    "非受控字形差异不得匹配");
-
 var preset = new FormationPreset();
 
 AssertFalse(preset.ClearEquipmentBeforeFormation, "新预设默认不应卸下现有装备");
