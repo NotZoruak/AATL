@@ -193,12 +193,6 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         };
         titleBlock.Bind(TextBlock.ForegroundProperty, new DynamicResourceExtension("SukiLowText"));
         labelPanel.Children.Add(titleBlock);
-
-        var docBlock = new TooltipBlock
-        {
-            TooltipText = "供日课合成、锻刀前刀解等消耗刀剑功能共同使用的全局名单。上锁刀剑始终排除，普通与极化形态按名称共享许可状态。",
-        };
-        labelPanel.Children.Add(docBlock);
         Grid.SetColumn(labelPanel, 0);
         grid.Children.Add(labelPanel);
 
@@ -353,11 +347,12 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         {
             e.Handled = true;
             var subPanel = new StackPanel { Spacing = 4, Margin = new Thickness(0, 0, 0, 0) };
+            // 仅多个带子选项的 case 时渲染 case 标题；单选项场景标题与返回键旁重复，不渲染
+            var caseCount = interfaceOption.Cases?.Count(c => c.Option is { Count: > 0 }) ?? 0;
             foreach (var caseOption in interfaceOption.Cases ?? [])
             {
                 if (caseOption.Option == null || caseOption.Option.Count == 0) continue;
-                // case 无 DisplayName 时（单选项场景）不渲染标题，避免产生多余空隙
-                if (!string.IsNullOrWhiteSpace(caseOption.DisplayName))
+                if (caseCount > 1 && !string.IsNullOrWhiteSpace(caseOption.DisplayName))
                 {
                     subPanel.Children.Add(new TextBlock
                     {
@@ -367,7 +362,8 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
                         Margin = new Thickness(0, 2, 0, 2),
                     });
                 }
-                var subWrap = new WrapPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0, 0, 0) };
+                // 子选项垂直排列，每项独占一行并横向拉伸，与任务选项面板的下拉框尺寸一致
+                var subWrap = new StackPanel { Margin = new Thickness(0, 0, 0, 0) };
                 foreach (var subName in caseOption.Option)
                 {
                     if (MaaProcessor.Interface?.Option?.TryGetValue(subName, out var subDef) != true) continue;
@@ -378,7 +374,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
                         option.SubOptions.Add(subSelect);
                     var savedDesc = subDef.Description;
                     subDef.Description = null;
-                    var itemBox = new StackPanel { Margin = new Thickness(0, 0, 12, 4) };
+                    var itemBox = new StackPanel { Margin = new Thickness(0, 0, 0, 4) };
                     AddSubOption(itemBox, subSelect, source);
                     subDef.Description = savedDesc;
                     var subDesc = GetTooltipText(savedDesc, subDef.Document);

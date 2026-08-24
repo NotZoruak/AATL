@@ -46,9 +46,6 @@
                         Content="{extensions:ServiceProvider ServiceType={x:Type settings:GameSettingsUserControl}}"
                         Header="{markup:I18n {x:Static helper:LangKeys.RunningSettings}}" />
                     <suki:SettingsLayoutItem
-                        Content="{extensions:ServiceProvider ServiceType={x:Type settings:AllowListUserControl}}"
-                        Header="刀解/合成许可名单" />
-                    <suki:SettingsLayoutItem
                         Content="{extensions:ServiceProvider ServiceType={x:Type settings:ConnectSettingsUserControl}}"
                         Header="{markup:I18n {x:Static helper:LangKeys.ConnectionSettings}}" />
                     <suki:SettingsLayoutItem

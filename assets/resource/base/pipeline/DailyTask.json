@@ -1,0 +1,20 @@
+{
+  "DailyTask": {
+    "next": ["DT_DetectWhereAmI"]
+  },
+  "DT_DetectWhereAmI": {
+    "timeout": 120000,
+    "next": ["DT_FallbackWait"],
+    "on_error": ["DT_RestartGame"]
+  },
+  "DT_FallbackWait": {
+    "next": ["DT_DetectWhereAmI"]
+  },
+  "DT_RestartGame": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_DetectWhereAmI"]
+  }
+}
