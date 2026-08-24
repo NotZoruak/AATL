@@ -3497,14 +3497,27 @@ public class MaaProcessor
             }
         }
 
-        // 自定编队：根据预设生成运行时 override（选队坐标、开关路由、空槽位跳过）
-        if (task.InterfaceItem?.Entry == "FormationConfig")
+        // 自定编队：根据预设生成运行时 override（选队坐标、开关路由、空槽位跳过）。
+        // 日课通过同一入口复用这套流程，但完成后回到日课自己的下级枢纽。
+        if (task.InterfaceItem?.Entry == "FormationConfig" || task.InterfaceItem?.Entry == "DailyTask")
         {
-            LoggerHelper.Info("[FormationConfig] CreateNodeAndParam 特判进入，PipelineOverride=" +
+            bool isDailyTask = task.InterfaceItem?.Entry == "DailyTask";
+            LoggerHelper.Info($"[FormationConfig] CreateNodeAndParam 特判进入，DailyTask={isDailyTask}，PipelineOverride=" +
                 JsonConvert.SerializeObject(task.InterfaceItem?.PipelineOverride));
             // 从 PipelineOverride 读取 preset_id（MaaToken 仅支持合并，不支持读取）
             int presetId = 0;
-            if (task.InterfaceItem?.PipelineOverride != null
+            if (isDailyTask)
+            {
+                var dailyPresetOption = task.InterfaceItem?.Option
+                    ?.FirstOrDefault(o => o.Name == "D_启用预设部队");
+                if (dailyPresetOption?.Data != null
+                    && dailyPresetOption.Data.TryGetValue("preset_id", out var presetIdText)
+                    && int.TryParse(presetIdText, out var dailyPresetId))
+                {
+                    presetId = dailyPresetId;
+                }
+            }
+            else if (task.InterfaceItem?.PipelineOverride != null
                 && task.InterfaceItem.PipelineOverride.TryGetValue("FormationConfig", out var fcToken)
                 && fcToken is JObject fcObj)
             {
@@ -3615,6 +3628,14 @@ public class MaaProcessor
                 {
                     if (!memberSlots.Contains(n))
                         overrideDict[$"FC_ConfigureSwordSlot{n}"] = new JObject { ["enabled"] = false };
+                }
+
+                if (isDailyTask)
+                {
+                    overrideDict["FC_BackToHome"] = new JObject
+                    {
+                        ["next"] = new JArray("DT_LoginRewardGate")
+                    };
                 }
 
                 taskModels.Merge(overrideDict);
@@ -4883,6 +4904,7 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.PageScrollAndHoldAction());
             tasker.Resource.Register(new Custom.SelectFlowerTeamAction());
             tasker.Resource.Register(new Custom.ClickTopRepairableSwordAction());
+            tasker.Resource.Register(new Custom.MixFindAllowedMaterialAction());
             tasker.Resource.Register(new Custom.FormationConfigAction());
             tasker.Resource.Register(new Custom.FormationFindSwordAction());
             tasker.Resource.Register(new Custom.FormationFilterClickAction());

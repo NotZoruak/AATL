@@ -5532,7 +5532,12 @@
         },
         {
           "name": "Yes",
-          "label": "开启"
+          "label": "开启",
+          "pipeline_override": {
+            "DT_PresetHub": {
+              "enabled": true
+            }
+          }
         }
       ]
     },
@@ -5544,7 +5549,12 @@
       "cases": [
         {
           "name": "登录奖励",
-          "label": "登录奖励"
+          "label": "登录奖励",
+          "pipeline_override": {
+            "DT_LoginRewardHub": {
+              "enabled": true
+            }
+          }
         }
       ]
     },
@@ -5556,7 +5566,12 @@
       "cases": [
         {
           "name": "暖心礼包",
-          "label": "暖心礼包"
+          "label": "暖心礼包",
+          "pipeline_override": {
+            "DT_WarmGiftHub": {
+              "enabled": true
+            }
+          }
         }
       ]
     },
@@ -5568,7 +5583,12 @@
       "cases": [
         {
           "name": "合成",
-          "label": "合成"
+          "label": "合成",
+          "pipeline_override": {
+            "DT_MixHub": {
+              "enabled": true
+            }
+          }
         }
       ]
     },
@@ -5581,7 +5601,12 @@
         {
           "name": "锻刀",
           "label": "锻刀",
-          "option": ["D_锻刀公式", "D_锻刀刀解"]
+          "option": ["D_锻刀公式", "D_锻刀刀解"],
+          "pipeline_override": {
+            "DT_ForgeHub": {
+              "enabled": true
+            }
+          }
         }
       ]
     },
@@ -5628,7 +5653,12 @@
         {
           "name": "演练",
           "label": "演练",
-          "option": ["D_演练部队", "D_演练阵形", "D_演练避战强敌"]
+          "option": ["D_演练部队", "D_演练阵形", "D_演练避战强敌"],
+          "pipeline_override": {
+            "DT_DrillHub": {
+              "enabled": true
+            }
+          }
         }
       ]
     },
@@ -5682,7 +5712,12 @@
         {
           "name": "检非违使",
           "label": "检非违使",
-          "option": ["D_检非违使部队", "D_检非违使时代", "D_检非违使地域", "D_检非违使阵形"]
+          "option": ["D_检非违使部队", "D_检非违使时代", "D_检非违使地域", "D_检非违使阵形"],
+          "pipeline_override": {
+            "DT_KebiHub": {
+              "enabled": true
+            }
+          }
         }
       ]
     },
@@ -5751,7 +5786,12 @@
       "cases": [
         {
           "name": "收取奖励",
-          "label": "收取奖励"
+          "label": "收取奖励",
+          "pipeline_override": {
+            "DT_RewardHub": {
+              "enabled": true
+            }
+          }
         }
       ]
     }
