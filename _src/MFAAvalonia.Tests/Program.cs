@@ -150,6 +150,18 @@ var parallelLogistics = parallelTaskRecords.Single(record => record.TaskName == 
 AssertTrue(parallelDungeon.SwordDrops.Count == 1, "并行任务中地下城掉落应归入地下城记录");
 AssertTrue(parallelLogistics.SwordDrops.Count == 0, "并行任务中后勤记录不应包含地下城掉落");
 
+var finishedLogisticsThenDungeonRecords = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：后勤"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[后勤] 检查队伍状况"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "停止前状态：SUCCEEDED"),
+    new LogEntry(logStart.AddSeconds(3), "INF", "开始任务：地下城"),
+    new LogEntry(logStart.AddSeconds(4), "INF", "[后勤] 派遣远征 部队1已派遣至 2-4"),
+    new LogEntry(logStart.AddSeconds(5), "INF", "[地下城] 点击行军"),
+]);
+var laterDungeon = finishedLogisticsThenDungeonRecords.Single(record => record.TaskName == "地下城");
+AssertTrue(laterDungeon.LogisticsCounts["派遣远征"] == 1,
+    "已结束的后勤记录不应接收后续地下城运行期间的后勤词条");
+
 var supplementRecord = WorkRecordBuilder.Build([
     new LogEntry(logStart, "INF", "开始任务：地下城"),
     new LogEntry(logStart.AddSeconds(1), "INF", "[地下城] 补充刀装"),

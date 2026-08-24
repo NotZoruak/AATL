@@ -178,16 +178,12 @@ public class SwordDropLogAction : IMaaCustomAction
     /// </summary>
     private static class SwordNameMatcher
     {
-        private static readonly IReadOnlyDictionary<char, char> SimilarCharacters =
-            new Dictionary<char, char>
-            {
-                ['掘'] = '堀',
-                ['堀'] = '掘',
-                ['広'] = '广',
-                ['广'] = '広',
-                ['國'] = '国',
-                ['国'] = '國',
-            };
+        private static readonly string[] SimilarCharacterGroups =
+        [
+            "掘堀",
+            "広广厂",
+            "國国",
+        ];
 
         public static bool TryMatch(
             string recognizedName,
@@ -243,6 +239,6 @@ public class SwordDropLogAction : IMaaCustomAction
         }
 
         private static bool IsSimilarCharacter(char left, char right) =>
-            SimilarCharacters.TryGetValue(left, out var normalized) && normalized == right;
+            SimilarCharacterGroups.Any(group => group.Contains(left) && group.Contains(right));
     }
 }

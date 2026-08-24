@@ -189,6 +189,7 @@ public static class WorkRecordBuilder
                     if (!current.HasRun && mapped is "未开始" or "手动停止")
                         mapped = "未开始";
                     current.Status = current.HasInterrupt ? "中断" : mapped;
+                    current.IsClosedByStopStatus = true;
                 }
                 current = null;
                 continue;
@@ -238,11 +239,7 @@ public static class WorkRecordBuilder
         if (taskName is "地下城" or "合战场" or "联队战" or "战术强化" or "后勤")
         {
             var matching = records.LastOrDefault(record =>
-                record.HasStarted && record.TaskName == taskName && record.EndTime == default);
-            if (matching != null)
-                return matching;
-
-            matching = records.LastOrDefault(record => record.HasStarted && record.TaskName == taskName);
+                record.HasStarted && record.TaskName == taskName && !record.IsClosedByStopStatus);
             if (matching != null)
                 return matching;
         }

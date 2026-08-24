@@ -69,6 +69,10 @@ public sealed class WorkRecord
     /// <summary>任务是否实际开始执行过（存在「开始任务」行）</summary>
     public bool HasStarted { get; set; }
 
+    /// <summary>是否已由队列停止状态明确结束，不再接收后续关联词条。</summary>
+    [JsonIgnore]
+    public bool IsClosedByStopStatus { get; set; }
+
     /// <summary>任务是否产生过任何词条（有实际运行痕迹）</summary>
     public bool HasRun =>
         SortieCount > 0
