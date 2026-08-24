@@ -1,10 +1,10 @@
 {
   "name": "MATR",
-  "version": "v0.11.2",
+  "version": "v0.12.0-alpha",
   "mirrorchyan_rid": "MATR",
   "mirrorchyan_multiplatform": true,
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.11.2 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.12.0-alpha | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
