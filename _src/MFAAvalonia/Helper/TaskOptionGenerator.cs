@@ -19,6 +19,7 @@ using MFAAvalonia.ViewModels.Pages;
 using MFAAvalonia.ViewModels.UsersControls;
 using MFAAvalonia.ViewModels.UsersControls.Settings;
 using MFAAvalonia.Views.UserControls;
+using MFAAvalonia.Views.UserControls.Settings;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -153,12 +154,74 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
 
     public void GenerateGlobalPanelContent(StackPanel panel)
     {
+        // 刀解/合成许可名单：全局强制配置入口行，齿轮进入子页面编辑
+        panel.Children.Add(CreateAllowListEntryRow());
+
         var globalOptions = MaaProcessor.Interface?.GlobalSelectOptions;
         if (globalOptions == null || globalOptions.Count == 0) return;
         foreach (var option in globalOptions)
         {
             AddOption(panel, option, null!);
         }
+    }
+
+    /// <summary>全局设置 - 刀解/合成许可名单入口行（标签 + 齿轮，齿轮进入子页面）</summary>
+    private Control CreateAllowListEntryRow()
+    {
+        var grid = new Grid
+        {
+            ColumnDefinitions =
+            {
+                new ColumnDefinition { Width = GridLength.Auto },
+                new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                new ColumnDefinition { Width = GridLength.Auto },
+            },
+            Margin = new Thickness(10, 6, 10, 6),
+        };
+
+        var labelPanel = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            Spacing = 6,
+            VerticalAlignment = VerticalAlignment.Center,
+        };
+        var titleBlock = new TextBlock
+        {
+            Text = "刀解/合成许可名单",
+            FontSize = 14,
+            VerticalAlignment = VerticalAlignment.Center,
+        };
+        titleBlock.Bind(TextBlock.ForegroundProperty, new DynamicResourceExtension("SukiLowText"));
+        labelPanel.Children.Add(titleBlock);
+
+        var docBlock = new TooltipBlock
+        {
+            TooltipText = "供日课合成、锻刀前刀解等消耗刀剑功能共同使用的全局名单。上锁刀剑始终排除，普通与极化形态按名称共享许可状态。",
+        };
+        labelPanel.Children.Add(docBlock);
+        Grid.SetColumn(labelPanel, 0);
+        grid.Children.Add(labelPanel);
+
+        var gearIcon = new FluentIcons.Avalonia.Fluent.FluentIcon
+        {
+            Icon = FluentIcons.Common.Icon.Settings,
+            IconSize = FluentIcons.Common.IconSize.Size16,
+            Width = 16,
+            Height = 16,
+            Margin = new Thickness(6, 0, 0, 0),
+            VerticalAlignment = VerticalAlignment.Center,
+        };
+        ToolTip.SetTip(gearIcon, "设置许可名单");
+        gearIcon.PointerPressed += (_, e) =>
+        {
+            e.Handled = true;
+            viewModel.SubPageTitle = "刀解/合成许可名单";
+            viewModel.SubPageContent = new AllowListUserControl();
+            viewModel.IsSubPageOpen = true;
+        };
+        labelPanel.Children.Add(gearIcon);
+
+        return grid;
     }
 
     public void GenerateResourceOptionPanelContent(StackPanel panel, DragItemViewModel dragItem)
@@ -340,6 +403,57 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         };
 
         labelPanel.Children.Add(gearIcon);
+    }
+
+    /// <summary>
+    /// 一键日课 - 预设部队开关的齿轮：打开自定编队预设选择页（互斥勾选 + 编辑 + 新增），
+    /// preset_id 写入该任务选项的 Data 字典，与其他自定编队任务互不影响
+    /// </summary>
+    private void AppendDailyPresetGearIcon(StackPanel labelPanel, MaaInterface.MaaInterfaceSelectOption option, DragItemViewModel source)
+    {
+        var gearIcon = new FluentIcons.Avalonia.Fluent.FluentIcon
+        {
+            Icon = FluentIcons.Common.Icon.Settings,
+            IconSize = FluentIcons.Common.IconSize.Size16,
+            Width = 16,
+            Height = 16,
+            Margin = new Thickness(6, 0, 0, 0),
+            VerticalAlignment = VerticalAlignment.Center,
+        };
+        ToolTip.SetTip(gearIcon, "选择预设");
+
+        gearIcon.PointerPressed += (_, e) =>
+        {
+            e.Handled = true;
+            var subPanel = new StackPanel { Spacing = 4, Margin = new Thickness(0, 0, 0, 0) };
+            RenderFormationPresets(subPanel,
+                () => GetDailyPresetId(option),
+                id =>
+                {
+                    option.Data ??= new Dictionary<string, string?>();
+                    option.Data["preset_id"] = id.ToString();
+                    saveConfigurationAction();
+                },
+                source);
+            viewModel.SubPageTitle = "选择预设部队";
+            viewModel.SubPageContent = subPanel;
+            viewModel.IsSubPageOpen = true;
+        };
+
+        labelPanel.Children.Add(gearIcon);
+    }
+
+    /// <summary>一键日课 - 预设部队选项名（interface.json 中定义，齿轮进入自定编队预设选择页）</summary>
+    private static bool IsDailyPresetOption(string? optionName)
+        => optionName == "D_启用预设部队";
+
+    /// <summary>一键日课 - 读取预设部队选项保存的 preset_id</summary>
+    private static int GetDailyPresetId(MaaInterface.MaaInterfaceSelectOption option)
+    {
+        if (option.Data != null && option.Data.TryGetValue("preset_id", out var raw)
+            && int.TryParse(raw, out var id))
+            return id;
+        return 0;
     }
 
     private bool IsOptionApplicable(MaaInterface.MaaInterfaceOption interfaceOption)
@@ -828,7 +942,9 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         var icon = CreateIcon(interfaceOption);
         icon.Margin = new Thickness(10, 0, 6, 0);
         labelPanel.Children.Insert(0, icon);
-        if (HasSubOptions(interfaceOption))
+        if (IsDailyPresetOption(option.Name))
+            AppendDailyPresetGearIcon(labelPanel, option, source);
+        else if (HasSubOptions(interfaceOption))
             AppendGearIcon(labelPanel, option, interfaceOption, source);
 
         Grid.SetColumn(labelPanel, 0);
@@ -1493,20 +1609,29 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         var presetList = new StackPanel { Spacing = 4, Margin = new Thickness(0, 2, 0, 0) };
         presetArea.Children.Add(presetList);
 
-        RenderFormationPresets(presetList, param, dragItem);
+        RenderFormationPresets(presetList,
+            () => param["preset_id"]?.Value<int>() ?? 0,
+            id =>
+            {
+                param["preset_id"] = id;
+                UpdateActionParam(dragItem, param);
+            },
+            dragItem);
     }
 
     /// <summary>
     /// 渲染预设行列表：互斥勾选 + 名称输入 + 齿轮（编辑）+ 下拉（删除/复制/粘贴）+ 底部加号
+    /// getSelectedId/selectPreset 抽象 preset_id 的读写源：自定编队任务写入 custom_action_param，
+    /// 一键日课写入任务选项的 Data 字典
     /// </summary>
-    private void RenderFormationPresets(StackPanel presetList, JObject param, DragItemViewModel dragItem)
+    private void RenderFormationPresets(StackPanel presetList, Func<int> getSelectedId, Action<int> selectPreset, DragItemViewModel dragItem)
     {
         presetList.Children.Clear();
 
         var presets = LoadFormationPresets();
-        var selectedId = param["preset_id"]?.Value<int>() ?? 0;
+        var selectedId = getSelectedId();
 
-        void Refresh() => RenderFormationPresets(presetList, param, dragItem);
+        void Refresh() => RenderFormationPresets(presetList, getSelectedId, selectPreset, dragItem);
 
         foreach (var preset in presets)
         {
@@ -1528,8 +1653,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
             checkBox.IsCheckedChanged += (_, _) =>
             {
                 if (checkBox.IsChecked != true) return;
-                param["preset_id"] = capturedPreset.Id;
-                UpdateActionParam(dragItem, param);
+                selectPreset(capturedPreset.Id);
                 Refresh();
             };
             row.Children.Add(checkBox);
@@ -1595,12 +1719,13 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
             deleteItem.Click += (_, _) =>
             {
                 presets.Remove(capturedPreset);
-                if (param["preset_id"]?.Value<int>() == capturedPreset.Id)
+                if (getSelectedId() == capturedPreset.Id)
                 {
-                    param["preset_id"] = 0;
-                    UpdateActionParam(dragItem, param);
+                    selectPreset(0);
                 }
+                RemapPresetIdsAfterDelete(capturedPreset.Id, presets);
                 SaveFormationPresets(presets);
+                RemapPresetReferences(capturedPreset.Id);
                 Refresh();
             };
             var copyItem = new MenuItem { Header = "复制" };
@@ -1663,6 +1788,55 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
     private static void SaveFormationPresets(List<FormationPreset> presets)
     {
         ConfigurationManager.CurrentInstance.SetValue(ConfigurationKeys.FormationPresets, presets);
+    }
+
+    /// <summary>
+    /// 删除预设后重编号：Id 大于被删 Id 的预设顺移 -1，保持编号连续；
+    /// 默认名（预设N）跟随顺移，自定义名保持不变
+    /// </summary>
+    private static void RemapPresetIdsAfterDelete(int removedId, List<FormationPreset> presets)
+    {
+        foreach (var preset in presets)
+        {
+            if (preset.Id <= removedId) continue;
+            if (preset.Name == $"预设{preset.Id}")
+                preset.Name = $"预设{preset.Id - 1}";
+            preset.Id -= 1;
+        }
+    }
+
+    /// <summary>
+    /// 同步删除预设后的 preset_id 引用：被删 Id 置 0，大于被删 Id 的减 1。
+    /// 覆盖自定编队任务的 custom_action_param 与一键日课的选项 Data，改内存后由保存回调落盘
+    /// </summary>
+    private void RemapPresetReferences(int removedId)
+    {
+        foreach (var item in viewModel.TaskItemViewModels)
+        {
+            var interfaceItem = item.InterfaceItem;
+            if (interfaceItem == null) continue;
+
+            // 自定编队任务：PipelineOverride[FormationConfig].custom_action_param.preset_id
+            if (interfaceItem.Entry == "FormationConfig"
+                && interfaceItem.PipelineOverride?.TryGetValue("FormationConfig", out var fcToken) == true
+                && fcToken is JObject fcObj
+                && fcObj["custom_action_param"] is JObject fcParam
+                && fcParam["preset_id"] is JValue fcPreset)
+            {
+                var id = fcPreset.Value<int>();
+                fcParam["preset_id"] = id == removedId ? 0 : (id > removedId ? id - 1 : id);
+            }
+
+            // 一键日课任务：选项 data.preset_id
+            var presetOption = interfaceItem.Option?.FirstOrDefault(o => o.Name == "D_启用预设部队");
+            if (presetOption?.Data != null
+                && presetOption.Data.TryGetValue("preset_id", out var raw)
+                && int.TryParse(raw, out var optionId))
+            {
+                presetOption.Data["preset_id"] = (optionId == removedId ? 0 : (optionId > removedId ? optionId - 1 : optionId)).ToString();
+            }
+        }
+        saveConfigurationAction();
     }
 
     /// <summary>预设显示名：空名称时回退为「预设N」</summary>

@@ -384,6 +384,7 @@ public partial class App : Application
             .AddView<CustomThemeDialogView, CustomThemeDialogViewModel>(services)
             .AddView<ConnectSettingsUserControl, ConnectSettingsUserControlModel>(services)
             .AddView<GameSettingsUserControl, GameSettingsUserControlModel>(services)
+            .AddView<AllowListUserControl, AllowListUserControlModel>(services)
             .AddView<GuiSettingsUserControl, GuiSettingsUserControlModel>(services)
             .AddView<StartSettingsUserControl, StartSettingsUserControlModel>(services)
             .AddView<ExternalNotificationSettingsUserControl, ExternalNotificationSettingsUserControlModel>(services)

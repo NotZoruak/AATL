@@ -39,6 +39,9 @@ public static class ConfigurationKeys
     /// <summary>仓库数据与核心资源历史。</summary>
     public const string WarehouseData = "WarehouseData";
 
+    /// <summary>刀解/合成许可名单（全局配置，刀剑基础名称列表）。</summary>
+    public const string AllowListSwords = "AllowListSwords";
+
     #endregion
 
     #region 启动设置

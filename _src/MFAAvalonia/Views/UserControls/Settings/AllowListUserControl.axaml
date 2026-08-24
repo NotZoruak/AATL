@@ -1,0 +1,100 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="MFAAvalonia.Views.UserControls.Settings.AllowListUserControl"
+    x:DataType="settings:AllowListUserControlModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBindingAva"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:settings="clr-namespace:MFAAvalonia.ViewModels.UsersControls.Settings"
+    xmlns:suki="https://github.com/kikipoulet/SukiUI"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.DataContext>
+        <settings:AllowListUserControlModel />
+    </Design.DataContext>
+    <StackPanel Spacing="12">
+                <TextBlock
+                    FontSize="12"
+                    Foreground="Gray"
+                    Text="供日课合成、锻刀前刀解等消耗刀剑功能共同使用的全局名单。名称只允许来自刀剑名册，上锁刀剑始终排除，普通与极化形态按名称共享许可状态。"
+                    TextWrapping="Wrap" />
+                <TextBox
+                    Text="{Binding SearchText}"
+                    Watermark="输入刀剑名称搜索…" />
+                <ListBox
+                    MaxHeight="220"
+                    IsVisible="{calcBinding:Binding 'SearchText.Length > 0'}"
+                    ItemsSource="{Binding Candidates}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Button
+                                Padding="10,5"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Stretch"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Command="{Binding AddCommand}"
+                                IsEnabled="{calcBinding:Binding '!IsSelected'}">
+                                <Grid ColumnDefinitions="*,Auto,Auto">
+                                    <TextBlock
+                                        Text="{Binding DisplayName}"
+                                        VerticalAlignment="Center" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Margin="12,0,0,0"
+                                        FontSize="12"
+                                        Foreground="Gray"
+                                        Text="{Binding Type}"
+                                        VerticalAlignment="Center" />
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        Margin="12,0,0,0"
+                                        FontSize="12"
+                                        Foreground="Gray"
+                                        IsVisible="{calcBinding:Binding 'IsSelected'}"
+                                        Text="已添加"
+                                        VerticalAlignment="Center" />
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <TextBlock
+                    FontSize="13"
+                    FontWeight="SemiBold"
+                    Text="{calcBinding:Binding '&quot;已选（&quot; + Tags.Count + &quot;）&quot;'}" />
+                <ItemsControl ItemsSource="{Binding Tags}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Margin="0,3,8,3"
+                                Padding="10,3"
+                                BorderBrush="{DynamicResource SukiPrimaryColor}"
+                                BorderThickness="1"
+                                CornerRadius="12">
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <TextBlock
+                                        Text="{Binding DisplayName}"
+                                        VerticalAlignment="Center" />
+                                    <Button
+                                        Padding="4,0"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Command="{Binding RemoveCommand}"
+                                        Content="×"
+                                        FontSize="12"
+                                        VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+    </StackPanel>
+</UserControl>

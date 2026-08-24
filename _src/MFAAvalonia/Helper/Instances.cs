@@ -428,6 +428,8 @@ public static partial class Instances
     private static PerformanceUserControlModel _performanceUserControlModel;
     private static GameSettingsUserControl _gameSettingsUserControl;
     private static GameSettingsUserControlModel _gameSettingsUserControlModel;
+    private static AllowListUserControl _allowListUserControl;
+    private static AllowListUserControlModel _allowListUserControlModel;
     private static VersionUpdateSettingsUserControl _versionUpdateSettingsUserControl;
     private static VersionUpdateSettingsUserControlModel _versionUpdateSettingsUserControlModel;
     private static StartSettingsUserControl _startSettingsUserControl;
