@@ -227,7 +227,8 @@ public partial class RootView : SukiWindow
                 }
             }
 
-            var vm = Instances.InstanceTabBarViewModel.ActiveTab?.TaskQueueViewModel;
+            var vm = Instances.InstanceTabBarViewModel.ActiveTab?.TaskQueueViewModel
+                ?? MaaProcessorManager.Instance.Current?.ViewModel;
             if (vm == null) return;
 
             if (!vm.Processor.IsV3)

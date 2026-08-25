@@ -449,7 +449,7 @@ public class MaaProcessor
     {
         InstanceId = instanceId;
         InstanceConfiguration = new InstanceConfiguration(instanceId);
-        DispatcherHelper.RunOnMainThread(() => Processors.Add(this));
+        DispatcherHelper.PostOnMainThread(() => Processors.Add(this));
 
         TaskQueue.CountChanged += (_, args) =>
         {

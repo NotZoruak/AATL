@@ -1282,22 +1282,9 @@ public partial class TaskQueueViewModel : ViewModelBase
             _suppressDeviceSelectionToast = true;
             try
             {
-                Dispatcher.UIThread.Post(() =>
-                {
-                    _suppressAutoConnect = true;
-                    _suppressDeviceSelectionToast = true;
-                    try
-                    {
-                        CurrentDevice = matchedDevice;
-                        OnPropertyChanged(nameof(CurrentDevice));
-                        OnPropertyChanged(nameof(CurrentDeviceTooltipText));
-                    }
-                    finally
-                    {
-                        _suppressDeviceSelectionToast = false;
-                        _suppressAutoConnect = false;
-                    }
-                }, DispatcherPriority.Background);
+                CurrentDevice = matchedDevice;
+                OnPropertyChanged(nameof(CurrentDevice));
+                OnPropertyChanged(nameof(CurrentDeviceTooltipText));
             }
             finally
             {
