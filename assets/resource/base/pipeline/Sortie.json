@@ -2091,8 +2091,21 @@
       "time": 200,
       "target": [262, 307, 147, 46]
     },
-    "next": ["S_CheckAccel", "S_ClickAccel"],
+    "next": ["S_CaptureRepairInfo"],
     "on_error": ["S_LogNoDamagedSword"]
+  },
+  "S_CaptureRepairInfo": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RepairStartLogAction",
+      "custom_action_param": {
+        "mode": "capture",
+        "name_roi": [195, 242, 150, 32],
+        "cost_rois": [[301, 409, 66, 22], [300, 480, 67, 23], [300, 550, 67, 23], [300, 622, 67, 23]]
+      }
+    },
+    "next": ["S_CheckAccel", "S_ClickAccel"],
+    "on_error": ["S_DetectWhereAmI"]
   },
   "S_LogNoDamagedSword": {
     "action": {
@@ -3963,10 +3976,11 @@
   "S_LogRepairDoneWord": {
     "action": {
       "type": "Custom",
-      "custom_action": "LogAction",
+      "custom_action": "RepairStartLogAction",
       "custom_action_param": {
-        "level": "Warning",
-        "message": "[合战场] 修刀"
+        "mode": "emit",
+        "prefix": "合战场",
+        "action": "修复"
       }
     },
     "next": ["S_NavigateToSortie"],

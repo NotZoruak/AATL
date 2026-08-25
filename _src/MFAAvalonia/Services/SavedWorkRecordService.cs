@@ -89,10 +89,14 @@ public static class SavedWorkRecordService
             foreach (var item in record.LogisticsCounts)
                 result.LogisticsCounts[item.Key] = result.LogisticsCounts.GetValueOrDefault(item.Key) + item.Value;
             result.LogisticsDispatches.AddRange(record.LogisticsDispatches);
+            result.LogisticsRepairs.AddRange(record.LogisticsRepairs);
+            result.LogisticsNaibanOutfits.AddRange(record.LogisticsNaibanOutfits);
             result.SpecialEvents.AddRange(record.SpecialEvents);
         }
 
         result.LogisticsDispatches = result.LogisticsDispatches.OrderBy(item => item.Time).ToList();
+        result.LogisticsRepairs = result.LogisticsRepairs.OrderBy(item => item.Time).ToList();
+        result.LogisticsNaibanOutfits = result.LogisticsNaibanOutfits.OrderBy(item => item.Time).ToList();
         result.SpecialEvents = result.SpecialEvents.OrderBy(item => item.Time).ToList();
         return result;
     }

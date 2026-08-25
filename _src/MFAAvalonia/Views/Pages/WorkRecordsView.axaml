@@ -335,7 +335,7 @@
                     </StackPanel>
                 </Border>
 
-                <!-- 出阵收获：资源与刀剑掉落 -->
+                <!-- 任务收获：资源与刀剑掉落 -->
                 <Border Background="{DynamicResource SukiCardBackground}"
                         BorderBrush="{DynamicResource SukiControlBorderBrush}"
                         BorderThickness="1"
@@ -343,7 +343,7 @@
                         Padding="18,16"
                         IsVisible="{Binding SelectedHasOutcomes}">
                     <StackPanel Spacing="9">
-                        <TextBlock Classes="RecordCardTitle" Text="出阵收获" />
+                        <TextBlock Classes="RecordCardTitle" Text="任务收获" />
                         <StackPanel Spacing="6"
                                     IsVisible="{Binding SelectedHasResources}">
                             <TextBlock Classes="RecordSectionTitle" Text="资源收获" />
@@ -408,6 +408,40 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </StackPanel>
+                        <ItemsControl ItemsSource="{Binding SelectedLogisticsRepairTexts}"
+                                      IsVisible="{Binding SelectedHasLogisticsRepairs}"
+                                      Margin="0,8,0,0">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"
+                                               ItemSpacing="18"
+                                               LineSpacing="8" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Classes="RecordBody"
+                                               Text="{Binding}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl ItemsSource="{Binding SelectedLogisticsNaibanOutfitTexts}"
+                                      IsVisible="{Binding SelectedHasLogisticsNaibanOutfits}"
+                                      Margin="0,8,0,0">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"
+                                               ItemSpacing="18"
+                                               LineSpacing="8" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Classes="RecordBody"
+                                               Text="{Binding}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                 </Border>
 

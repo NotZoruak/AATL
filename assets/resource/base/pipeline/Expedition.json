@@ -2239,9 +2239,11 @@
     },
     "action": {
       "type": "Custom",
-      "custom_action": "LogAction",
+      "custom_action": "RepairStartLogAction",
       "custom_action_param": {
-        "message": "[后勤] 修刀",
+        "mode": "record",
+        "name_roi": [195, 242, 150, 32],
+        "cost_rois": [[301, 409, 66, 22], [300, 480, 67, 23], [300, 550, 67, 23], [300, 622, 67, 23]],
         "click": [1156, 587, 85, 44]
       }
     },
@@ -2251,8 +2253,8 @@
   "E_RepairGuiLog": {
     "action": {
       "type": "Custom",
-      "custom_action": "GuiLogAction",
-      "custom_action_param": {"message": "[后勤] 修刀"}
+      "custom_action": "RepairStartLogAction",
+      "custom_action_param": {"mode": "gui"}
     },
     "next": ["E_GoHome"],
     "on_error": ["E_GoHome"]
@@ -2346,7 +2348,16 @@
       "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[后勤] 安排内番"}
     },
-    "next": ["E_NaibanDialogue", "E_NaibanVerifyConfirm"],
+    "next": ["E_NaibanOutfitBegin", "E_NaibanVerifyConfirm"],
+    "on_error": ["E_GoHome"]
+  },
+  "E_NaibanOutfitBegin": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "NaibanOutfitLogAction",
+      "custom_action_param": {"mode": "begin"}
+    },
+    "next": ["E_NaibanDialogue"],
     "on_error": ["E_GoHome"]
   },
   "E_NaibanDialogue": {
@@ -2359,13 +2370,26 @@
       }
     },
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [1067, 558, 120, 79]
+      "type": "Custom",
+      "custom_action": "NaibanOutfitLogAction",
+      "custom_action_param": {
+        "mode": "recognize",
+        "indicator_roi": [47, 127, 58, 53],
+        "name_roi": [52, 509, 282, 34],
+        "click": [1067, 558, 120, 79]
       }
     },
     "post_wait_freezes": {"time": 200},
-    "next": ["E_NaibanDialogue", "E_GoHome"],
+    "next": ["E_NaibanDialogue", "E_NaibanOutfitFinish"],
+    "on_error": ["E_NaibanOutfitFinish"]
+  },
+  "E_NaibanOutfitFinish": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "NaibanOutfitLogAction",
+      "custom_action_param": {"mode": "finish"}
+    },
+    "next": ["E_GoHome"],
     "on_error": ["E_GoHome"]
   },
   "E_IsConnectionInterrupted": {

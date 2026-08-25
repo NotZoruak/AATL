@@ -332,11 +332,32 @@ public static class WorkRecordBuilder
                 if (TryParseDispatch(detail, out var unit, out var map))
                     record.LogisticsDispatches.Add(new LogisticsDispatch(time, unit, map));
                 break;
+            case "内番服":
+                if (prefix == "后勤" && !string.IsNullOrWhiteSpace(detail))
+                {
+                    record.LogisticsCounts[action] = record.LogisticsCounts.GetValueOrDefault(action) + 1;
+                    record.LogisticsNaibanOutfits.Add(new LogisticsNaibanOutfit(time, detail.Trim()));
+                }
+                break;
+            case "开始修复":
+                if (prefix == "后勤" && TryParseRepair(detail, out var repair))
+                {
+                    record.LogisticsCounts[action] = record.LogisticsCounts.GetValueOrDefault(action) + 1;
+                    record.LogisticsRepairs.Add(repair with { Time = time });
+                }
+                break;
             case "补充刀装":
                 if (prefix == "后勤")
                     record.LogisticsCounts[action] = record.LogisticsCounts.GetValueOrDefault(action) + 1;
                 else
                     record.SpecialEvents.Add(new SpecialEvent(time, action));
+                break;
+            case "修复":
+                if (level == "WRN")
+                {
+                    var repairDetail = string.IsNullOrWhiteSpace(detail) ? action : $"{action} {detail}";
+                    record.SpecialEvents.Add(new SpecialEvent(time, repairDetail));
+                }
                 break;
             default:
                 if (prefix == "远征计时" && action == "倒计时结束")
@@ -373,6 +394,23 @@ public static class WorkRecordBuilder
             return false;
         unit = m.Groups[1].Value;
         map = m.Groups[2].Value;
+        return true;
+    }
+
+    private static bool TryParseRepair(string detail, out LogisticsRepair repair)
+    {
+        repair = default!;
+        var match = Regex.Match(detail, @"^(\S+)\s+(\d+)/(\d+)/(\d+)/(\d+)$");
+        if (!match.Success)
+            return false;
+
+        repair = new LogisticsRepair(
+            DateTime.MinValue,
+            match.Groups[1].Value,
+            int.Parse(match.Groups[2].Value),
+            int.Parse(match.Groups[3].Value),
+            int.Parse(match.Groups[4].Value),
+            int.Parse(match.Groups[5].Value));
         return true;
     }
 }

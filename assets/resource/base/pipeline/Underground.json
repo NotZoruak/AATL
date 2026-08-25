@@ -824,8 +824,21 @@
       "time": 200,
       "target": [262, 307, 147, 46]
     },
-    "next": ["U_CheckAccel", "U_ClickAccel"],
+    "next": ["U_CaptureRepairInfo"],
     "on_error": ["U_LogNoDamagedSword"]
+  },
+  "U_CaptureRepairInfo": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RepairStartLogAction",
+      "custom_action_param": {
+        "mode": "capture",
+        "name_roi": [195, 242, 150, 32],
+        "cost_rois": [[301, 409, 66, 22], [300, 480, 67, 23], [300, 550, 67, 23], [300, 622, 67, 23]]
+      }
+    },
+    "next": ["U_CheckAccel", "U_ClickAccel"],
+    "on_error": ["U_DetectWhereAmI"]
   },
   "U_LogNoDamagedSword": {
     "action": {
@@ -1312,10 +1325,11 @@
   "U_LogRepairDoneLog": {
     "action": {
       "type": "Custom",
-      "custom_action": "LogAction",
+      "custom_action": "RepairStartLogAction",
       "custom_action_param": {
-        "level": "Warning",
-        "message": "[地下城] 修刀"
+        "mode": "emit",
+        "prefix": "地下城",
+        "action": "修复"
       }
     },
     "next": ["U_DirAfterRepair"],

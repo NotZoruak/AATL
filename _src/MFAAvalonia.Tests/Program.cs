@@ -275,6 +275,19 @@ AssertTrue(historyDraft.ResourceHistory.Count == 1
     && historyDraft.ResourceHistory[0].Values["木炭"] == 1234,
     "完整仓库识别结束后应追加核心资源历史快照");
 
+var naibanOutfitState = new NaibanOutfitRecognitionState();
+naibanOutfitState.Begin();
+AssertTrue(naibanOutfitState.TryRecord("今剑"), "首次识别到的内番服应被记录");
+AssertFalse(naibanOutfitState.TryRecord("今剑"), "同一把刀剑的动画重复命中不应重复记录");
+AssertTrue(naibanOutfitState.TryRecord("秋田藤四郎"), "同一次内番安排应允许记录第二把刀剑");
+AssertFalse(naibanOutfitState.TryRecord("厚藤四郎"), "同一次内番安排最多记录两把刀剑");
+AssertFalse(naibanOutfitState.ShouldLogMissingOutfit, "已识别到内番服时不应输出未显示记录");
+
+naibanOutfitState.Begin();
+AssertTrue(naibanOutfitState.ShouldLogMissingOutfit, "对话颜色结束前未识别到内番服时应输出未显示记录");
+AssertTrue(naibanOutfitState.TryFinishMissingOutfit(), "未识别到内番服时结束结算应输出一次未显示记录");
+AssertFalse(naibanOutfitState.TryFinishMissingOutfit(), "同一轮内番服结束结算不应重复输出未显示记录");
+
 Console.WriteLine("FormationPreset 测试通过。");
 
 static void AssertFalse(bool value, string message)

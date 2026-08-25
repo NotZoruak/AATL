@@ -29,6 +29,8 @@ public sealed class SavedWorkRecord
     public List<SwordDrop> SwordDrops { get; set; } = [];
     public Dictionary<string, int> LogisticsCounts { get; set; } = [];
     public List<LogisticsDispatch> LogisticsDispatches { get; set; } = [];
+    public List<LogisticsRepair> LogisticsRepairs { get; set; } = [];
+    public List<LogisticsNaibanOutfit> LogisticsNaibanOutfits { get; set; } = [];
     public List<SpecialEvent> SpecialEvents { get; set; } = [];
     public List<SavedWorkRecordSegment> Segments { get; set; } = [];
 
@@ -65,6 +67,8 @@ public sealed class SavedWorkRecord
             SwordDrops = source.SwordDrops.ToList(),
             LogisticsCounts = new Dictionary<string, int>(source.LogisticsCounts),
             LogisticsDispatches = source.LogisticsDispatches.ToList(),
+            LogisticsRepairs = source.LogisticsRepairs.ToList(),
+            LogisticsNaibanOutfits = source.LogisticsNaibanOutfits.ToList(),
             SpecialEvents = source.SpecialEvents.ToList(),
             Segments = [SavedWorkRecordSegment.FromWorkRecord(source)],
         };
@@ -95,6 +99,8 @@ public sealed class SavedWorkRecord
         foreach (var item in LogisticsCounts)
             result.LogisticsCounts[item.Key] = item.Value;
         result.LogisticsDispatches.AddRange(LogisticsDispatches);
+        result.LogisticsRepairs.AddRange(LogisticsRepairs);
+        result.LogisticsNaibanOutfits.AddRange(LogisticsNaibanOutfits);
         result.SpecialEvents.AddRange(SpecialEvents);
         return result;
     }

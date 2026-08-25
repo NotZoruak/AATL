@@ -126,6 +126,12 @@ public sealed class WorkRecord
     /// <summary>派遣远征明细（时间/部队/地图）</summary>
     public List<LogisticsDispatch> LogisticsDispatches { get; } = [];
 
+    /// <summary>开始修复明细（时间/刀剑名/资源消耗）</summary>
+    public List<LogisticsRepair> LogisticsRepairs { get; } = [];
+
+    /// <summary>内番服识别明细（时间/刀剑名）</summary>
+    public List<LogisticsNaibanOutfit> LogisticsNaibanOutfits { get; } = [];
+
     /// <summary>特殊情况：Warning 词条与中断事件（时间/描述）</summary>
     public List<SpecialEvent> SpecialEvents { get; } = [];
 }
@@ -135,6 +141,12 @@ public sealed record SwordDrop(string SwordType, string SwordName);
 
 /// <summary>派遣远征明细：部队 → 地图</summary>
 public sealed record LogisticsDispatch(DateTime Time, string Unit, string Map);
+
+/// <summary>开始修复明细</summary>
+public sealed record LogisticsRepair(DateTime Time, string SwordName, int Wood, int Steel, int Coolant, int Whetstone);
+
+/// <summary>内番服识别明细</summary>
+public sealed record LogisticsNaibanOutfit(DateTime Time, string SwordName);
 
 /// <summary>特殊事件（Warning 词条或中断事件）</summary>
 public sealed record SpecialEvent(DateTime Time, string Description);

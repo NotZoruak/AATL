@@ -60,6 +60,10 @@ public partial class WorkRecordsViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(SelectedHasLogisticsSummary))]
     [NotifyPropertyChangedFor(nameof(SelectedHasLogisticsDispatch))]
     [NotifyPropertyChangedFor(nameof(SelectedLogisticsDispatchTexts))]
+    [NotifyPropertyChangedFor(nameof(SelectedHasLogisticsRepairs))]
+    [NotifyPropertyChangedFor(nameof(SelectedLogisticsRepairTexts))]
+    [NotifyPropertyChangedFor(nameof(SelectedHasLogisticsNaibanOutfits))]
+    [NotifyPropertyChangedFor(nameof(SelectedLogisticsNaibanOutfitTexts))]
     [NotifyPropertyChangedFor(nameof(SelectedHasLogistics))]
     [NotifyPropertyChangedFor(nameof(SelectedSpecialEventsText))]
     [NotifyPropertyChangedFor(nameof(SelectedHasSpecialEvents))]
@@ -470,6 +474,24 @@ public partial class WorkRecordsViewModel : ViewModelBase
     public bool SelectedHasLogisticsDispatch =>
         !string.IsNullOrWhiteSpace(SelectedLogisticsDispatchCountText)
         || SelectedLogisticsDispatchTexts.Count > 0;
+
+    /// <summary>修刀明细，位于派遣远征组与内番服组之间。</summary>
+    public IReadOnlyList<string> SelectedLogisticsRepairTexts =>
+        SelectedRecord?.LogisticsRepairs
+            .Select(item => $"{item.Time:HH:mm}  开始修复 {item.SwordName} {item.Wood}/{item.Steel}/{item.Coolant}/{item.Whetstone}")
+            .ToList() ?? [];
+
+    /// <summary>是否有修刀记录。</summary>
+    public bool SelectedHasLogisticsRepairs => SelectedLogisticsRepairTexts.Count > 0;
+
+    /// <summary>内番服明细，紧跟派遣远征组之后显示。</summary>
+    public IReadOnlyList<string> SelectedLogisticsNaibanOutfitTexts =>
+        SelectedRecord?.LogisticsNaibanOutfits
+            .Select(item => $"{item.Time:HH:mm}  内番服 {item.SwordName}")
+            .ToList() ?? [];
+
+    /// <summary>是否有内番服识别记录。</summary>
+    public bool SelectedHasLogisticsNaibanOutfits => SelectedLogisticsNaibanOutfitTexts.Count > 0;
 
     /// <summary>是否有后勤记录</summary>
     public bool SelectedHasLogistics => SelectedRecord?.LogisticsCounts.Count > 0;
