@@ -161,7 +161,7 @@
       "entry": "DailyTask",
       "default_check": false,
       "repeatable": false,
-      "repeat_count": -1,
+      "repeat_count": 0,
       "option": [
         "D_启用预设部队",
         "D_登录奖励",
@@ -173,7 +173,7 @@
         "D_收取奖励"
       ],
       "label": "日课",
-      "description": "按固定顺序执行启用的日课项目：预设部队 → 登录奖励 → 暖心礼包 → 合成 → 锻刀 → 演练 → 检非违使 → 收取奖励。项目间自动返回本丸，未启用的项目直接跳过。\n\n- **预设部队**：开启后，在进行日课前先按所选预设编成指定部队。\n- **登录奖励**：领取每日登录签到奖励。\n- **暖心礼包**：进入万屋领取免费的暖心礼包。\n- **合成**：固定选择页面中第一把可合成刀剑作为强化对象，再从刀剑列表顶部向下寻找第一把满足刀解/合成许可名单、且未上锁的刀剑作为材料。找不到强化对象或合规材料时，记录失败并继续日课。\n- **锻刀**：收取已锻造完成、尚未收取的刀剑，并使用空闲锻刀位锻制新刀，目标最多 3 把。\n- **演练**：最多处理 5 个对手位置，累计胜利 3 次或处理完 5 个位置即结束。\n- **检非违使**：进入指定地图后无限出阵，直到成功遭遇检非违使。\n- **收取奖励**：一键领取日课奖励。"
+      "description": "按固定顺序执行启用的日课项目：预设部队 → 登录奖励 → 暖心礼包 → 合成 → 锻刀 → 演练 → 检非违使 → 领取奖励。每个已执行项目完成后会先返回本丸；未启用的项目直接跳过。\n\n- **预设部队**：开始前调用已配置的自定编队预设。\n- **登录奖励**：领取每日登录签到奖励。\n- **暖心礼包**：进入万屋领取免费礼包。\n- **合成**：固定选择第一把可合成刀剑作为强化对象，并按刀解/合成许可名单选择一把未上锁刀剑作为材料。\n- **锻刀**：先收取已完成锻刀，再以 ALL 50 公式最多锻造 3 把；不使用加速符。\n- **演练**：最多处理 5 个对手位置，累计胜利 3 次或处理完 5 个位置即结束。\n- **检非违使**：在指定合战场无限出阵，直到成功遭遇检非违使。\n- **领取奖励**：仅一键领取日课奖励。"
     }
   ],
   "global_option": ["换队长方式", "远征智能调度", "长期远征计划", "卡死重启"],
@@ -1500,7 +1500,9 @@
           "pipeline_override": {
             "S_ClickTeam": {
               "target": [154, 93, 1, 1],
-              "post_wait_freezes": {"target": [108, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
             },
             "S_PreCheckUseRecord": {
               "next": ["S_PreCheckClickRecord1"]
@@ -1508,7 +1510,9 @@
             "S_PreCheckClickRecord1": {"enabled": true},
             "SF_ClickTeamN": {
               "target": [154, 93, 1, 1],
-              "post_wait_freezes": {"target": [108, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
             },
             "SF_UseRecord_Step2_Rec1": {"enabled": true},
             "SF_EqRefill_Step2_Rec1": {"enabled": true}
@@ -1520,7 +1524,9 @@
           "pipeline_override": {
             "S_ClickTeam": {
               "target": [282, 94, 1, 1],
-              "post_wait_freezes": {"target": [229, 76, 105, 6]}
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
             },
             "S_PreCheckUseRecord": {
               "next": ["S_PreCheckClickRecord2"]
@@ -1528,7 +1534,9 @@
             "S_PreCheckClickRecord2": {"enabled": true},
             "SF_ClickTeamN": {
               "target": [282, 94, 1, 1],
-              "post_wait_freezes": {"target": [229, 76, 105, 6]}
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
             },
             "SF_UseRecord_Step2_Rec2": {"enabled": true},
             "SF_EqRefill_Step2_Rec2": {"enabled": true}
@@ -1540,7 +1548,9 @@
           "pipeline_override": {
             "S_ClickTeam": {
               "target": [398, 91, 1, 1],
-              "post_wait_freezes": {"target": [351, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
             },
             "S_PreCheckUseRecord": {
               "next": ["S_PreCheckClickRecord3"]
@@ -1548,7 +1558,9 @@
             "S_PreCheckClickRecord3": {"enabled": true},
             "SF_ClickTeamN": {
               "target": [398, 91, 1, 1],
-              "post_wait_freezes": {"target": [351, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
             },
             "SF_UseRecord_Step2_Rec3": {"enabled": true},
             "SF_EqRefill_Step2_Rec3": {"enabled": true}
@@ -1560,7 +1572,9 @@
           "pipeline_override": {
             "S_ClickTeam": {
               "target": [519, 89, 1, 1],
-              "post_wait_freezes": {"target": [471, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
             },
             "S_PreCheckUseRecord": {
               "next": ["S_PreCheckClickRecord4"]
@@ -1568,7 +1582,9 @@
             "S_PreCheckClickRecord4": {"enabled": true},
             "SF_ClickTeamN": {
               "target": [519, 89, 1, 1],
-              "post_wait_freezes": {"target": [471, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
             },
             "SF_UseRecord_Step2_Rec4": {"enabled": true},
             "SF_EqRefill_Step2_Rec4": {"enabled": true}
@@ -1580,7 +1596,9 @@
           "pipeline_override": {
             "S_ClickTeam": {
               "target": [635, 91, 1, 1],
-              "post_wait_freezes": {"target": [594, 75, 106, 7]}
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
             },
             "S_PreCheckUseRecord": {
               "next": ["S_PreCheckClickRecord5"]
@@ -1588,7 +1606,9 @@
             "S_PreCheckClickRecord5": {"enabled": true},
             "SF_ClickTeamN": {
               "target": [635, 91, 1, 1],
-              "post_wait_freezes": {"target": [594, 75, 106, 7]}
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
             },
             "SF_UseRecord_Step2_Rec5": {"enabled": true},
             "SF_EqRefill_Step2_Rec5": {"enabled": true}
@@ -1961,50 +1981,55 @@
         {
           "name": "部队一",
           "pipeline_override": {
-
             "LR_ClickTeam": {
               "target": [154, 93, 1, 1],
-              "post_wait_freezes": {"target": [108, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
             }
           }
         },
         {
           "name": "部队二",
           "pipeline_override": {
-
             "LR_ClickTeam": {
               "target": [282, 94, 1, 1],
-              "post_wait_freezes": {"target": [229, 76, 105, 6]}
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
             }
           }
         },
         {
           "name": "部队三",
           "pipeline_override": {
-
             "LR_ClickTeam": {
               "target": [398, 91, 1, 1],
-              "post_wait_freezes": {"target": [351, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
             }
           }
         },
         {
           "name": "部队四",
           "pipeline_override": {
-
             "LR_ClickTeam": {
               "target": [519, 89, 1, 1],
-              "post_wait_freezes": {"target": [471, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
             }
           }
         },
         {
           "name": "部队五",
           "pipeline_override": {
-
             "LR_ClickTeam": {
               "target": [635, 91, 1, 1],
-              "post_wait_freezes": {"target": [594, 75, 106, 7]}
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
             }
           }
         }
@@ -2124,40 +2149,44 @@
         {
           "name": "部队一",
           "pipeline_override": {
-
             "TT_ClickTargetTeam": {
               "target": [154, 93, 1, 1],
-              "post_wait_freezes": {"target": [108, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
             }
           }
         },
         {
           "name": "部队二",
           "pipeline_override": {
-
             "TT_ClickTargetTeam": {
               "target": [282, 94, 1, 1],
-              "post_wait_freezes": {"target": [229, 76, 105, 6]}
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
             }
           }
         },
         {
           "name": "部队三",
           "pipeline_override": {
-
             "TT_ClickTargetTeam": {
               "target": [398, 91, 1, 1],
-              "post_wait_freezes": {"target": [351, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
             }
           }
         },
         {
           "name": "部队四",
           "pipeline_override": {
-
             "TT_ClickTargetTeam": {
               "target": [519, 89, 1, 1],
-              "post_wait_freezes": {"target": [471, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
             }
           }
         },
@@ -2166,7 +2195,9 @@
           "pipeline_override": {
             "TT_ClickTargetTeam": {
               "target": [635, 91, 1, 1],
-              "post_wait_freezes": {"target": [594, 75, 106, 7]}
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
             }
           }
         }
@@ -2583,10 +2614,11 @@
           "name": "部队一",
           "DisplayName": "部队一",
           "pipeline_override": {
-
             "U_ClickTeam": {
               "target": [154, 93, 1, 1],
-              "post_wait_freezes": {"target": [108, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
             },
             "U_PreCheckUseRecord": {
               "next": ["U_PreCheckClickRecord1"]
@@ -2594,7 +2626,9 @@
             "U_PreCheckClickRecord1": {"enabled": true},
             "UF_ClickTeamN": {
               "target": [154, 93, 1, 1],
-              "post_wait_freezes": {"target": [108, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
             },
             "UF_UseRecord_Step2_Rec1": {"enabled": true},
             "UF_EqRefill_Step2_Rec1": {"enabled": true}
@@ -2604,10 +2638,11 @@
           "name": "部队二",
           "DisplayName": "部队二",
           "pipeline_override": {
-
             "U_ClickTeam": {
               "target": [282, 94, 1, 1],
-              "post_wait_freezes": {"target": [229, 76, 105, 6]}
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
             },
             "U_PreCheckUseRecord": {
               "next": ["U_PreCheckClickRecord2"]
@@ -2615,7 +2650,9 @@
             "U_PreCheckClickRecord2": {"enabled": true},
             "UF_ClickTeamN": {
               "target": [282, 94, 1, 1],
-              "post_wait_freezes": {"target": [229, 76, 105, 6]}
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
             },
             "UF_UseRecord_Step2_Rec2": {"enabled": true},
             "UF_EqRefill_Step2_Rec2": {"enabled": true}
@@ -2625,10 +2662,11 @@
           "name": "部队三",
           "DisplayName": "部队三",
           "pipeline_override": {
-
             "U_ClickTeam": {
               "target": [398, 91, 1, 1],
-              "post_wait_freezes": {"target": [351, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
             },
             "U_PreCheckUseRecord": {
               "next": ["U_PreCheckClickRecord3"]
@@ -2636,7 +2674,9 @@
             "U_PreCheckClickRecord3": {"enabled": true},
             "UF_ClickTeamN": {
               "target": [398, 91, 1, 1],
-              "post_wait_freezes": {"target": [351, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
             },
             "UF_UseRecord_Step2_Rec3": {"enabled": true},
             "UF_EqRefill_Step2_Rec3": {"enabled": true}
@@ -2646,10 +2686,11 @@
           "name": "部队四",
           "DisplayName": "部队四",
           "pipeline_override": {
-
             "U_ClickTeam": {
               "target": [519, 89, 1, 1],
-              "post_wait_freezes": {"target": [471, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
             },
             "U_PreCheckUseRecord": {
               "next": ["U_PreCheckClickRecord4"]
@@ -2657,7 +2698,9 @@
             "U_PreCheckClickRecord4": {"enabled": true},
             "UF_ClickTeamN": {
               "target": [519, 89, 1, 1],
-              "post_wait_freezes": {"target": [471, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
             },
             "UF_UseRecord_Step2_Rec4": {"enabled": true},
             "UF_EqRefill_Step2_Rec4": {"enabled": true}
@@ -2667,10 +2710,11 @@
           "name": "部队五",
           "DisplayName": "部队五",
           "pipeline_override": {
-
             "U_ClickTeam": {
               "target": [635, 91, 1, 1],
-              "post_wait_freezes": {"target": [594, 75, 106, 7]}
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
             },
             "U_PreCheckUseRecord": {
               "next": ["U_PreCheckClickRecord5"]
@@ -2678,7 +2722,9 @@
             "U_PreCheckClickRecord5": {"enabled": true},
             "UF_ClickTeamN": {
               "target": [635, 91, 1, 1],
-              "post_wait_freezes": {"target": [594, 75, 106, 7]}
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
             },
             "UF_UseRecord_Step2_Rec5": {"enabled": true},
             "UF_EqRefill_Step2_Rec5": {"enabled": true}
@@ -5355,10 +5401,11 @@
           "name": "部队一",
           "DisplayName": "部队一",
           "pipeline_override": {
-
             "FB_ClickTeam": {
               "target": [154, 93, 1, 1],
-              "post_wait_freezes": {"target": [108, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
             }
           }
         },
@@ -5366,10 +5413,11 @@
           "name": "部队二",
           "DisplayName": "部队二",
           "pipeline_override": {
-
             "FB_ClickTeam": {
               "target": [282, 94, 1, 1],
-              "post_wait_freezes": {"target": [229, 76, 105, 6]}
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
             }
           }
         },
@@ -5377,10 +5425,11 @@
           "name": "部队三",
           "DisplayName": "部队三",
           "pipeline_override": {
-
             "FB_ClickTeam": {
               "target": [398, 91, 1, 1],
-              "post_wait_freezes": {"target": [351, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
             }
           }
         },
@@ -5388,10 +5437,11 @@
           "name": "部队四",
           "DisplayName": "部队四",
           "pipeline_override": {
-
             "FB_ClickTeam": {
               "target": [519, 89, 1, 1],
-              "post_wait_freezes": {"target": [471, 76, 106, 6]}
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
             }
           }
         },
@@ -5399,10 +5449,11 @@
           "name": "部队五",
           "DisplayName": "部队五",
           "pipeline_override": {
-
             "FB_ClickTeam": {
               "target": [636, 85, 1, 1],
-              "post_wait_freezes": {"target": [594, 75, 106, 7]}
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
             }
           }
         }
@@ -5468,16 +5519,116 @@
       "label": "筛选条件",
       "type": "checkbox",
       "cases": [
-        {"name": "短", "label": "短", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_短": true}}}}},
-        {"name": "胁", "label": "胁", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_胁": true}}}}},
-        {"name": "打", "label": "打", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_打": true}}}}},
-        {"name": "太", "label": "太", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_太": true}}}}},
-        {"name": "大太", "label": "大太", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_大太": true}}}}},
-        {"name": "枪", "label": "枪", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_枪": true}}}}},
-        {"name": "薙", "label": "薙", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"sword_type_薙": true}}}}},
-        {"name": "轻伤", "label": "轻伤", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"damage_轻伤": true}}}}},
-        {"name": "中伤", "label": "中伤", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"damage_中伤": true}}}}},
-        {"name": "重伤", "label": "重伤", "pipeline_override": {"E_FindRepairableSword": {"action": {"custom_action_param": {"damage_重伤": true}}}}}
+        {
+          "name": "短",
+          "label": "短",
+          "pipeline_override": {
+            "E_FindRepairableSword": {
+              "action": {
+                "custom_action_param": {"sword_type_短": true}
+              }
+            }
+          }
+        },
+        {
+          "name": "胁",
+          "label": "胁",
+          "pipeline_override": {
+            "E_FindRepairableSword": {
+              "action": {
+                "custom_action_param": {"sword_type_胁": true}
+              }
+            }
+          }
+        },
+        {
+          "name": "打",
+          "label": "打",
+          "pipeline_override": {
+            "E_FindRepairableSword": {
+              "action": {
+                "custom_action_param": {"sword_type_打": true}
+              }
+            }
+          }
+        },
+        {
+          "name": "太",
+          "label": "太",
+          "pipeline_override": {
+            "E_FindRepairableSword": {
+              "action": {
+                "custom_action_param": {"sword_type_太": true}
+              }
+            }
+          }
+        },
+        {
+          "name": "大太",
+          "label": "大太",
+          "pipeline_override": {
+            "E_FindRepairableSword": {
+              "action": {
+                "custom_action_param": {"sword_type_大太": true}
+              }
+            }
+          }
+        },
+        {
+          "name": "枪",
+          "label": "枪",
+          "pipeline_override": {
+            "E_FindRepairableSword": {
+              "action": {
+                "custom_action_param": {"sword_type_枪": true}
+              }
+            }
+          }
+        },
+        {
+          "name": "薙",
+          "label": "薙",
+          "pipeline_override": {
+            "E_FindRepairableSword": {
+              "action": {
+                "custom_action_param": {"sword_type_薙": true}
+              }
+            }
+          }
+        },
+        {
+          "name": "轻伤",
+          "label": "轻伤",
+          "pipeline_override": {
+            "E_FindRepairableSword": {
+              "action": {
+                "custom_action_param": {"damage_轻伤": true}
+              }
+            }
+          }
+        },
+        {
+          "name": "中伤",
+          "label": "中伤",
+          "pipeline_override": {
+            "E_FindRepairableSword": {
+              "action": {
+                "custom_action_param": {"damage_中伤": true}
+              }
+            }
+          }
+        },
+        {
+          "name": "重伤",
+          "label": "重伤",
+          "pipeline_override": {
+            "E_FindRepairableSword": {
+              "action": {
+                "custom_action_param": {"damage_重伤": true}
+              }
+            }
+          }
+        }
       ],
       "default_case": []
     },
@@ -5534,9 +5685,7 @@
           "name": "Yes",
           "label": "开启",
           "pipeline_override": {
-            "DT_PresetHub": {
-              "enabled": true
-            }
+            "DT_PresetHub": {"enabled": true}
           }
         }
       ]
@@ -5551,9 +5700,7 @@
           "name": "登录奖励",
           "label": "登录奖励",
           "pipeline_override": {
-            "DT_LoginRewardHub": {
-              "enabled": true
-            }
+            "DT_LoginRewardHub": {"enabled": true}
           }
         }
       ]
@@ -5568,9 +5715,7 @@
           "name": "暖心礼包",
           "label": "暖心礼包",
           "pipeline_override": {
-            "DT_WarmGiftHub": {
-              "enabled": true
-            }
+            "DT_WarmGiftHub": {"enabled": true}
           }
         }
       ]
@@ -5585,9 +5730,7 @@
           "name": "合成",
           "label": "合成",
           "pipeline_override": {
-            "DT_MixHub": {
-              "enabled": true
-            }
+            "DT_MixHub": {"enabled": true}
           }
         }
       ]
@@ -5603,9 +5746,7 @@
           "label": "锻刀",
           "option": ["D_锻刀公式", "D_锻刀刀解"],
           "pipeline_override": {
-            "DT_ForgeHub": {
-              "enabled": true
-            }
+            "DT_ForgeHub": {"enabled": true}
           }
         }
       ]
@@ -5613,31 +5754,26 @@
     "D_锻刀刀解": {
       "name": "D_锻刀刀解",
       "label": "刀解",
-      "description": "锻刀刀位不足时，按差额从刀解/合成许可名单中寻找未上锁刀剑进行刀解，单次最多 30 把，差额超过 30 把时拆分为多次。",
       "type": "checkbox",
       "default_case": [],
       "cases": [
         {
           "name": "锻刀刀解",
-          "label": "刀解"
+          "label": "刀解",
+          "pipeline_override": {
+            "DT_ForgeCheckCapacity": {
+              "on_error": ["DT_ForgeDisassembleHub"]
+            }
+          }
         }
       ]
     },
     "D_锻刀公式": {
       "name": "D_锻刀公式",
       "label": "锻刀公式",
-      "description": "限锻公式：页面存在限锻公式复选框时使用，不存在时跳过锻刀。限锻优先：存在时使用，不存在时改用 ALL 50。ALL 50：确保限锻公式未选中，并使用四项资源均为 50 的公式。无论选择哪种公式，均不使用加速符。",
       "type": "select",
       "default_case": "all50",
       "cases": [
-        {
-          "name": "limited",
-          "label": "限锻公式"
-        },
-        {
-          "name": "limited_else_all50",
-          "label": "限锻优先，无限锻则 ALL 50"
-        },
         {
           "name": "all50",
           "label": "ALL 50"
@@ -5655,9 +5791,7 @@
           "label": "演练",
           "option": ["D_演练部队", "D_演练阵形", "D_演练避战强敌"],
           "pipeline_override": {
-            "DT_DrillHub": {
-              "enabled": true
-            }
+            "DT_DrillHub": {"enabled": true}
           }
         }
       ]
@@ -5668,11 +5802,186 @@
       "type": "select",
       "default_case": "部队一",
       "cases": [
-        {"name": "部队一", "label": "部队一"},
-        {"name": "部队二", "label": "部队二"},
-        {"name": "部队三", "label": "部队三"},
-        {"name": "部队四", "label": "部队四"},
-        {"name": "部队五", "label": "部队五"}
+        {
+          "name": "部队一",
+          "label": "部队一",
+          "pipeline_override": {
+            "DT_DrillClickTeam1": {
+              "target": [154, 93, 1, 1],
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
+            },
+            "DT_DrillClickTeam2": {
+              "target": [154, 93, 1, 1],
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
+            },
+            "DT_DrillClickTeam3": {
+              "target": [154, 93, 1, 1],
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
+            },
+            "DT_DrillClickTeam4": {
+              "target": [154, 93, 1, 1],
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
+            },
+            "DT_DrillClickTeam5": {
+              "target": [154, 93, 1, 1],
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
+            }
+          }
+        },
+        {
+          "name": "部队二",
+          "label": "部队二",
+          "pipeline_override": {
+            "DT_DrillClickTeam1": {
+              "target": [282, 94, 1, 1],
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
+            },
+            "DT_DrillClickTeam2": {
+              "target": [282, 94, 1, 1],
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
+            },
+            "DT_DrillClickTeam3": {
+              "target": [282, 94, 1, 1],
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
+            },
+            "DT_DrillClickTeam4": {
+              "target": [282, 94, 1, 1],
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
+            },
+            "DT_DrillClickTeam5": {
+              "target": [282, 94, 1, 1],
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
+            }
+          }
+        },
+        {
+          "name": "部队三",
+          "label": "部队三",
+          "pipeline_override": {
+            "DT_DrillClickTeam1": {
+              "target": [398, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
+            },
+            "DT_DrillClickTeam2": {
+              "target": [398, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
+            },
+            "DT_DrillClickTeam3": {
+              "target": [398, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
+            },
+            "DT_DrillClickTeam4": {
+              "target": [398, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
+            },
+            "DT_DrillClickTeam5": {
+              "target": [398, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
+            }
+          }
+        },
+        {
+          "name": "部队四",
+          "label": "部队四",
+          "pipeline_override": {
+            "DT_DrillClickTeam1": {
+              "target": [519, 89, 1, 1],
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
+            },
+            "DT_DrillClickTeam2": {
+              "target": [519, 89, 1, 1],
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
+            },
+            "DT_DrillClickTeam3": {
+              "target": [519, 89, 1, 1],
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
+            },
+            "DT_DrillClickTeam4": {
+              "target": [519, 89, 1, 1],
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
+            },
+            "DT_DrillClickTeam5": {
+              "target": [519, 89, 1, 1],
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
+            }
+          }
+        },
+        {
+          "name": "部队五",
+          "label": "部队五",
+          "pipeline_override": {
+            "DT_DrillClickTeam1": {
+              "target": [635, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
+            },
+            "DT_DrillClickTeam2": {
+              "target": [635, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
+            },
+            "DT_DrillClickTeam3": {
+              "target": [635, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
+            },
+            "DT_DrillClickTeam4": {
+              "target": [635, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
+            },
+            "DT_DrillClickTeam5": {
+              "target": [635, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
+            }
+          }
+        }
       ]
     },
     "D_演练阵形": {
@@ -5681,25 +5990,251 @@
       "type": "select",
       "default_case": "不启用",
       "cases": [
-        {"name": "不启用", "label": "不启用"},
-        {"name": "鱼鳞阵", "label": "鱼鳞阵"},
-        {"name": "横队阵", "label": "横队阵"},
-        {"name": "雁行阵", "label": "雁行阵"},
-        {"name": "鹤翼阵", "label": "鹤翼阵"},
-        {"name": "方阵", "label": "方阵"},
-        {"name": "逆行阵", "label": "逆行阵"}
+        {
+          "name": "不启用",
+          "label": "不启用",
+          "pipeline_override": {
+            "DT_DrillIsFormationSelect1": {"enabled": false},
+            "DT_DrillIsFormationSelect2": {"enabled": false},
+            "DT_DrillIsFormationSelect3": {"enabled": false},
+            "DT_DrillIsFormationSelect4": {"enabled": false},
+            "DT_DrillIsFormationSelect5": {"enabled": false}
+          }
+        },
+        {
+          "name": "鱼鳞阵",
+          "label": "鱼鳞阵",
+          "pipeline_override": {
+            "DT_DrillClickFormation1A": {
+              "target": [212, 234, 1, 1]
+            },
+            "DT_DrillClickFormation1B": {
+              "target": [212, 234, 1, 1]
+            },
+            "DT_DrillClickFormation2A": {
+              "target": [212, 234, 1, 1]
+            },
+            "DT_DrillClickFormation2B": {
+              "target": [212, 234, 1, 1]
+            },
+            "DT_DrillClickFormation3A": {
+              "target": [212, 234, 1, 1]
+            },
+            "DT_DrillClickFormation3B": {
+              "target": [212, 234, 1, 1]
+            },
+            "DT_DrillClickFormation4A": {
+              "target": [212, 234, 1, 1]
+            },
+            "DT_DrillClickFormation4B": {
+              "target": [212, 234, 1, 1]
+            },
+            "DT_DrillClickFormation5A": {
+              "target": [212, 234, 1, 1]
+            },
+            "DT_DrillClickFormation5B": {
+              "target": [212, 234, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "横队阵",
+          "label": "横队阵",
+          "pipeline_override": {
+            "DT_DrillClickFormation1A": {
+              "target": [591, 234, 1, 1]
+            },
+            "DT_DrillClickFormation1B": {
+              "target": [591, 234, 1, 1]
+            },
+            "DT_DrillClickFormation2A": {
+              "target": [591, 234, 1, 1]
+            },
+            "DT_DrillClickFormation2B": {
+              "target": [591, 234, 1, 1]
+            },
+            "DT_DrillClickFormation3A": {
+              "target": [591, 234, 1, 1]
+            },
+            "DT_DrillClickFormation3B": {
+              "target": [591, 234, 1, 1]
+            },
+            "DT_DrillClickFormation4A": {
+              "target": [591, 234, 1, 1]
+            },
+            "DT_DrillClickFormation4B": {
+              "target": [591, 234, 1, 1]
+            },
+            "DT_DrillClickFormation5A": {
+              "target": [591, 234, 1, 1]
+            },
+            "DT_DrillClickFormation5B": {
+              "target": [591, 234, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "雁行阵",
+          "label": "雁行阵",
+          "pipeline_override": {
+            "DT_DrillClickFormation1A": {
+              "target": [1037, 222, 1, 1]
+            },
+            "DT_DrillClickFormation1B": {
+              "target": [1037, 222, 1, 1]
+            },
+            "DT_DrillClickFormation2A": {
+              "target": [1037, 222, 1, 1]
+            },
+            "DT_DrillClickFormation2B": {
+              "target": [1037, 222, 1, 1]
+            },
+            "DT_DrillClickFormation3A": {
+              "target": [1037, 222, 1, 1]
+            },
+            "DT_DrillClickFormation3B": {
+              "target": [1037, 222, 1, 1]
+            },
+            "DT_DrillClickFormation4A": {
+              "target": [1037, 222, 1, 1]
+            },
+            "DT_DrillClickFormation4B": {
+              "target": [1037, 222, 1, 1]
+            },
+            "DT_DrillClickFormation5A": {
+              "target": [1037, 222, 1, 1]
+            },
+            "DT_DrillClickFormation5B": {
+              "target": [1037, 222, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "鹤翼阵",
+          "label": "鹤翼阵",
+          "pipeline_override": {
+            "DT_DrillClickFormation1A": {
+              "target": [195, 431, 1, 1]
+            },
+            "DT_DrillClickFormation1B": {
+              "target": [195, 431, 1, 1]
+            },
+            "DT_DrillClickFormation2A": {
+              "target": [195, 431, 1, 1]
+            },
+            "DT_DrillClickFormation2B": {
+              "target": [195, 431, 1, 1]
+            },
+            "DT_DrillClickFormation3A": {
+              "target": [195, 431, 1, 1]
+            },
+            "DT_DrillClickFormation3B": {
+              "target": [195, 431, 1, 1]
+            },
+            "DT_DrillClickFormation4A": {
+              "target": [195, 431, 1, 1]
+            },
+            "DT_DrillClickFormation4B": {
+              "target": [195, 431, 1, 1]
+            },
+            "DT_DrillClickFormation5A": {
+              "target": [195, 431, 1, 1]
+            },
+            "DT_DrillClickFormation5B": {
+              "target": [195, 431, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "方阵",
+          "label": "方阵",
+          "pipeline_override": {
+            "DT_DrillClickFormation1A": {
+              "target": [625, 407, 1, 1]
+            },
+            "DT_DrillClickFormation1B": {
+              "target": [625, 407, 1, 1]
+            },
+            "DT_DrillClickFormation2A": {
+              "target": [625, 407, 1, 1]
+            },
+            "DT_DrillClickFormation2B": {
+              "target": [625, 407, 1, 1]
+            },
+            "DT_DrillClickFormation3A": {
+              "target": [625, 407, 1, 1]
+            },
+            "DT_DrillClickFormation3B": {
+              "target": [625, 407, 1, 1]
+            },
+            "DT_DrillClickFormation4A": {
+              "target": [625, 407, 1, 1]
+            },
+            "DT_DrillClickFormation4B": {
+              "target": [625, 407, 1, 1]
+            },
+            "DT_DrillClickFormation5A": {
+              "target": [625, 407, 1, 1]
+            },
+            "DT_DrillClickFormation5B": {
+              "target": [625, 407, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "逆行阵",
+          "label": "逆行阵",
+          "pipeline_override": {
+            "DT_DrillClickFormation1A": {
+              "target": [1017, 421, 1, 1]
+            },
+            "DT_DrillClickFormation1B": {
+              "target": [1017, 421, 1, 1]
+            },
+            "DT_DrillClickFormation2A": {
+              "target": [1017, 421, 1, 1]
+            },
+            "DT_DrillClickFormation2B": {
+              "target": [1017, 421, 1, 1]
+            },
+            "DT_DrillClickFormation3A": {
+              "target": [1017, 421, 1, 1]
+            },
+            "DT_DrillClickFormation3B": {
+              "target": [1017, 421, 1, 1]
+            },
+            "DT_DrillClickFormation4A": {
+              "target": [1017, 421, 1, 1]
+            },
+            "DT_DrillClickFormation4B": {
+              "target": [1017, 421, 1, 1]
+            },
+            "DT_DrillClickFormation5A": {
+              "target": [1017, 421, 1, 1]
+            },
+            "DT_DrillClickFormation5B": {
+              "target": [1017, 421, 1, 1]
+            }
+          }
+        }
       ]
     },
     "D_演练避战强敌": {
       "name": "D_演练避战强敌",
       "label": "避战强敌",
-      "description": "丙子椒林剑，或极化且等级不低于 90 的刀剑判定为高危险刀剑；敌方六把全部属于高危险刀剑时判定为强敌并返回，不计入胜利。队伍识别不完整时按强敌处理，继续处理下一个位置。",
       "type": "checkbox",
       "default_case": [],
       "cases": [
         {
           "name": "演练避战强敌",
-          "label": "避战强敌"
+          "label": "避战强敌",
+          "pipeline_override": {
+            "DT_DrillDangerCheck1": {"enabled": true},
+            "DT_DrillDangerCheck2": {"enabled": true},
+            "DT_DrillDangerCheck3": {"enabled": true},
+            "DT_DrillDangerCheck4": {"enabled": true},
+            "DT_DrillDangerCheck5": {"enabled": true}
+          }
         }
       ]
     },
@@ -5714,9 +6249,7 @@
           "label": "检非违使",
           "option": ["D_检非违使部队", "D_检非违使时代", "D_检非违使地域", "D_检非违使阵形"],
           "pipeline_override": {
-            "DT_KebiHub": {
-              "enabled": true
-            }
+            "DT_KebiHub": {"enabled": true}
           }
         }
       ]
@@ -5727,11 +6260,66 @@
       "type": "select",
       "default_case": "部队一",
       "cases": [
-        {"name": "部队一", "label": "部队一"},
-        {"name": "部队二", "label": "部队二"},
-        {"name": "部队三", "label": "部队三"},
-        {"name": "部队四", "label": "部队四"},
-        {"name": "部队五", "label": "部队五"}
+        {
+          "name": "部队一",
+          "label": "部队一",
+          "pipeline_override": {
+            "DT_KebiClickTeam": {
+              "target": [154, 93, 1, 1],
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
+            }
+          }
+        },
+        {
+          "name": "部队二",
+          "label": "部队二",
+          "pipeline_override": {
+            "DT_KebiClickTeam": {
+              "target": [282, 94, 1, 1],
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
+            }
+          }
+        },
+        {
+          "name": "部队三",
+          "label": "部队三",
+          "pipeline_override": {
+            "DT_KebiClickTeam": {
+              "target": [398, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
+            }
+          }
+        },
+        {
+          "name": "部队四",
+          "label": "部队四",
+          "pipeline_override": {
+            "DT_KebiClickTeam": {
+              "target": [519, 89, 1, 1],
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
+            }
+          }
+        },
+        {
+          "name": "部队五",
+          "label": "部队五",
+          "pipeline_override": {
+            "DT_KebiClickTeam": {
+              "target": [635, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
+            }
+          }
+        }
       ]
     },
     "D_检非违使时代": {
@@ -5740,14 +6328,150 @@
       "type": "select",
       "default_case": "时代一",
       "cases": [
-        {"name": "时代一", "label": "时代一"},
-        {"name": "时代二", "label": "时代二"},
-        {"name": "时代三", "label": "时代三"},
-        {"name": "时代四", "label": "时代四"},
-        {"name": "时代五", "label": "时代五"},
-        {"name": "时代六", "label": "时代六"},
-        {"name": "时代七", "label": "时代七"},
-        {"name": "时代八", "label": "时代八"}
+        {
+          "name": "时代一",
+          "label": "时代一",
+          "pipeline_override": {
+            "DT_KebiClickEra": {
+              "target": [246, 389, 1, 1]
+            },
+            "DT_KebiVerifyEra": {
+              "recognition": {
+                "type": "OCR",
+                "param": {
+                  "roi": [831, 80, 26, 26],
+                  "expected": ["一", "l", "1"]
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "时代二",
+          "label": "时代二",
+          "pipeline_override": {
+            "DT_KebiClickEra": {
+              "target": [345, 516, 1, 1]
+            },
+            "DT_KebiVerifyEra": {
+              "recognition": {
+                "type": "OCR",
+                "param": {
+                  "roi": [831, 80, 26, 26],
+                  "expected": ["二"]
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "时代三",
+          "label": "时代三",
+          "pipeline_override": {
+            "DT_KebiClickEra": {
+              "target": [447, 379, 1, 1]
+            },
+            "DT_KebiVerifyEra": {
+              "recognition": {
+                "type": "OCR",
+                "param": {
+                  "roi": [831, 80, 26, 26],
+                  "expected": ["三"]
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "时代四",
+          "label": "时代四",
+          "pipeline_override": {
+            "DT_KebiClickEra": {
+              "target": [546, 511, 3, 1]
+            },
+            "DT_KebiVerifyEra": {
+              "recognition": {
+                "type": "OCR",
+                "param": {
+                  "roi": [831, 80, 26, 26],
+                  "expected": ["四"]
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "时代五",
+          "label": "时代五",
+          "pipeline_override": {
+            "DT_KebiClickEra": {
+              "target": [644, 375, 1, 1]
+            },
+            "DT_KebiVerifyEra": {
+              "recognition": {
+                "type": "OCR",
+                "param": {
+                  "roi": [831, 80, 26, 26],
+                  "expected": ["五", "h"]
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "时代六",
+          "label": "时代六",
+          "pipeline_override": {
+            "DT_KebiClickEra": {
+              "target": [750, 508, 1, 1]
+            },
+            "DT_KebiVerifyEra": {
+              "recognition": {
+                "type": "OCR",
+                "param": {
+                  "roi": [831, 80, 26, 26],
+                  "expected": ["六"]
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "时代七",
+          "label": "时代七",
+          "pipeline_override": {
+            "DT_KebiClickEra": {
+              "target": [849, 378, 1, 1]
+            },
+            "DT_KebiVerifyEra": {
+              "recognition": {
+                "type": "OCR",
+                "param": {
+                  "roi": [831, 80, 26, 26],
+                  "expected": ["七"]
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "时代八",
+          "label": "时代八",
+          "pipeline_override": {
+            "DT_KebiClickEra": {
+              "target": [956, 519, 1, 1]
+            },
+            "DT_KebiVerifyEra": {
+              "recognition": {
+                "type": "OCR",
+                "param": {
+                  "roi": [831, 80, 26, 26],
+                  "expected": ["八"]
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "D_检非违使地域": {
@@ -5756,41 +6480,148 @@
       "type": "select",
       "default_case": "地域一",
       "cases": [
-        {"name": "地域一", "label": "地域一"},
-        {"name": "地域二", "label": "地域二"},
-        {"name": "地域三", "label": "地域三"},
-        {"name": "地域四", "label": "地域四"}
+        {
+          "name": "地域一",
+          "label": "地域一",
+          "pipeline_override": {
+            "DT_KebiClickRegion": {
+              "target": [191, 308, 62, 3]
+            }
+          }
+        },
+        {
+          "name": "地域二",
+          "label": "地域二",
+          "pipeline_override": {
+            "DT_KebiClickRegion": {
+              "target": [495, 307, 42, 3]
+            }
+          }
+        },
+        {
+          "name": "地域三",
+          "label": "地域三",
+          "pipeline_override": {
+            "DT_KebiClickRegion": {
+              "target": [804, 307, 53, 3]
+            }
+          }
+        },
+        {
+          "name": "地域四",
+          "label": "地域四",
+          "pipeline_override": {
+            "DT_KebiClickRegion": {
+              "target": [984, 307, 48, 3]
+            }
+          }
+        }
       ]
     },
     "D_检非违使阵形": {
       "name": "D_检非违使阵形",
       "label": "选择阵形",
-      "description": "循环期间强制启用自动修刀（使用加速符）与自动补充刀装。",
       "type": "select",
       "default_case": "不启用",
       "cases": [
-        {"name": "不启用", "label": "不启用"},
-        {"name": "鱼鳞阵", "label": "鱼鳞阵"},
-        {"name": "横队阵", "label": "横队阵"},
-        {"name": "雁行阵", "label": "雁行阵"},
-        {"name": "鹤翼阵", "label": "鹤翼阵"},
-        {"name": "方阵", "label": "方阵"},
-        {"name": "逆行阵", "label": "逆行阵"}
+        {
+          "name": "不启用",
+          "label": "不启用",
+          "pipeline_override": {
+            "DT_KebiIsFormationSelect": {"enabled": false}
+          }
+        },
+        {
+          "name": "鱼鳞阵",
+          "label": "鱼鳞阵",
+          "pipeline_override": {
+            "DT_KebiIsFormationSelect": {"enabled": true},
+            "DT_KebiClickFormation1": {
+              "target": [212, 234, 1, 1]
+            },
+            "DT_KebiClickFormation2": {
+              "target": [212, 234, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "横队阵",
+          "label": "横队阵",
+          "pipeline_override": {
+            "DT_KebiIsFormationSelect": {"enabled": true},
+            "DT_KebiClickFormation1": {
+              "target": [591, 234, 1, 1]
+            },
+            "DT_KebiClickFormation2": {
+              "target": [591, 234, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "雁行阵",
+          "label": "雁行阵",
+          "pipeline_override": {
+            "DT_KebiIsFormationSelect": {"enabled": true},
+            "DT_KebiClickFormation1": {
+              "target": [1037, 222, 1, 1]
+            },
+            "DT_KebiClickFormation2": {
+              "target": [1037, 222, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "鹤翼阵",
+          "label": "鹤翼阵",
+          "pipeline_override": {
+            "DT_KebiIsFormationSelect": {"enabled": true},
+            "DT_KebiClickFormation1": {
+              "target": [195, 431, 1, 1]
+            },
+            "DT_KebiClickFormation2": {
+              "target": [195, 431, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "方阵",
+          "label": "方阵",
+          "pipeline_override": {
+            "DT_KebiIsFormationSelect": {"enabled": true},
+            "DT_KebiClickFormation1": {
+              "target": [625, 407, 1, 1]
+            },
+            "DT_KebiClickFormation2": {
+              "target": [625, 407, 1, 1]
+            }
+          }
+        },
+        {
+          "name": "逆行阵",
+          "label": "逆行阵",
+          "pipeline_override": {
+            "DT_KebiIsFormationSelect": {"enabled": true},
+            "DT_KebiClickFormation1": {
+              "target": [1017, 421, 1, 1]
+            },
+            "DT_KebiClickFormation2": {
+              "target": [1017, 421, 1, 1]
+            }
+          }
+        }
       ]
     },
     "D_收取奖励": {
       "name": "D_收取奖励",
-      "label": "收取奖励",
+      "label": "领取奖励",
       "type": "checkbox",
       "default_case": [],
       "cases": [
         {
-          "name": "收取奖励",
-          "label": "收取奖励",
+          "name": "领取奖励",
+          "label": "领取奖励",
           "pipeline_override": {
-            "DT_RewardHub": {
-              "enabled": true
-            }
+            "DT_RewardHub": {"enabled": true}
           }
         }
       ]

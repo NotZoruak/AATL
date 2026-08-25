@@ -3586,21 +3586,7 @@ public class MaaProcessor
                 // 卸装备开关：开启时选队验证后先检查空队（空队直接编入），否则进入卸装备流程
                 if (formationPreset.ClearEquipmentBeforeFormation)
                 {
-                    overrideDict["FC_VerifySelectedTeam1"] = new JObject
-                    {
-                        ["next"] = new JArray("FC_IsTeamEmpty", "FC_RemoveEquip"),
-                        ["recognition"] = new JObject
-                        {
-                            ["param"] = new JObject { ["roi"] = new JArray(FormationTeamVerifyRois[team - 1]) }
-                        }
-                    };
-                    overrideDict["FC_VerifySelectedTeam2"] = new JObject
-                    {
-                        ["recognition"] = new JObject
-                        {
-                            ["param"] = new JObject { ["roi"] = new JArray(FormationTeamVerifyRois[team - 1]) }
-                        }
-                    };
+                    ((JObject)overrideDict["FC_ClickTeam"])["next"] = new JArray("FC_IsTeamEmpty", "FC_RemoveEquip");
                 }
 
                 // 保存记录开关：关闭时确认回编成页后直接回本丸结束
@@ -4906,6 +4892,9 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.ClickTopRepairableSwordAction());
             tasker.Resource.Register(new Custom.ForgeCapacityCheckAction());
             tasker.Resource.Register(new Custom.ForgeDisassembleSelectAction());
+            tasker.Resource.Register(new Custom.DrillDangerCheckAction());
+            tasker.Resource.Register(new Custom.DrillResetVictoryAction());
+            tasker.Resource.Register(new Custom.DrillVictoryAction());
             tasker.Resource.Register(new Custom.MixFindAllowedMaterialAction());
             tasker.Resource.Register(new Custom.FormationConfigAction());
             tasker.Resource.Register(new Custom.FormationFindSwordAction());

@@ -2,6 +2,7 @@ using MaaFramework.Binding;
 using MaaFramework.Binding.Custom;
 using MFAAvalonia.Helper;
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace MFAAvalonia.Extensions.MaaFW.Custom;
@@ -47,8 +48,11 @@ public class ForgeCapacityCheckAction : IMaaCustomAction
                 return false;
             }
 
-            var capacityText = context.GetText(
-                SwordCapacityRoi[0], SwordCapacityRoi[1], SwordCapacityRoi[2], SwordCapacityRoi[3], image);
+            var capacityText = string.Join(
+                " ",
+                FormationScan.OcrAll(context, image, SwordCapacityRoi)?.All
+                    .Where(item => item.Score >= FormationScan.MinScore && !string.IsNullOrWhiteSpace(item.Text))
+                    .Select(item => item.Text!) ?? []);
             var capacityMatch = Regex.Match(capacityText ?? string.Empty, @"(?<current>\d+)\s*/\s*(?<maximum>\d+)");
             if (!capacityMatch.Success
                 || !int.TryParse(capacityMatch.Groups["current"].Value, out var current)
@@ -75,7 +79,7 @@ public class ForgeCapacityCheckAction : IMaaCustomAction
                 $"[日课 锻刀] 待收取={DailyTaskForgeContext.PendingSwordCount}，" +
                 $"空余刀位={DailyTaskForgeContext.AvailableSwordSlots}，" +
                 $"需刀解={DailyTaskForgeContext.RequiredDisassemblyCount}");
-            return availableSlots >= 3;
+            return availableSlots >= pending;
         }
         catch (MaaStopException)
         {

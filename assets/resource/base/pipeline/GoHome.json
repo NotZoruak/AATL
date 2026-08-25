@@ -85,9 +85,7 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {
-      "time": 200
-    },
+    "post_wait_freezes": {"time": 200},
     "next": ["G_IsAnnouncementPopup", "G_DetectWhereAmI"]
   },
   "G_IsLoginReward": {
@@ -141,7 +139,7 @@
       "type": "OCR",
       "param": {
         "roi": [1230, 11, 41, 38],
-        "expected": "×"
+        "expected": ["×", "x", "X"]
       }
     },
     "action": {"type": "Click"},

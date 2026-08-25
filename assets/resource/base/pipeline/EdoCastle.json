@@ -1,245 +1,227 @@
 {
-    "EdoCastle": {
-        "next": ["EC_DetectWhereAmI"],
-        "on_error": ["EC_RestartGame"]
+  "EdoCastle": {
+    "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_RestartGame"]
+  },
+  "EC_DetectWhereAmI": {
+    "pre_delay": 0,
+    "timeout": 120000,
+    "next": [
+      "EC_LeaveTroopRecord",
+      "EC_IsAnnouncementPopup",
+      "EC_IsTrainingLetter",
+      "EC_IsLoginReward",
+      "EC_IsGameIcon",
+      "EC_IsLoginButton",
+      "EC_IsGameUpdatePopup",
+      "EC_IsInGameUpdatePopup",
+      "EC_IsInternalReport",
+      "EC_IsConnectionInterrupted",
+      "EC_FallbackWait"
+    ],
+    "on_error": ["EC_RestartGame"]
+  },
+  "EC_LeaveTroopRecord": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [577, 8, 130, 35],
+        "template": "Common/部队记录页面.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
     },
-    "EC_DetectWhereAmI": {
-        "pre_delay": 0,
-        "timeout": 120000,
-        "next": [
-            "EC_LeaveTroopRecord",
-            "EC_IsAnnouncementPopup",
-            "EC_IsTrainingLetter",
-            "EC_IsLoginReward",
-            "EC_IsGameIcon",
-            "EC_IsLoginButton",
-            "EC_IsGameUpdatePopup",
-            "EC_IsInGameUpdatePopup",
-            "EC_IsInternalReport",
-            "EC_IsConnectionInterrupted",
-            "EC_FallbackWait"
-        ],
-        "on_error": ["EC_RestartGame"]
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [63, 28, 17, 17]
+      }
     },
-    "EC_LeaveTroopRecord": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [577, 8, 130, 35],
-                "template": "Common/部队记录页面.png",
-                "green_mask": true,
-                "threshold": [0.95]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [63, 28, 17, 17]
-            }
-        },
-        "next": ["EC_DetectWhereAmI"],
-        "on_error": ["EC_DetectWhereAmI"]
+    "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsAnnouncementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1056, 463, 63, 193],
+        "template": "Common/公告弹窗.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
     },
-    "EC_IsAnnouncementPopup": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [1056, 463, 63, 193],
-                "template": "Common/公告弹窗.png",
-                "green_mask": true,
-                "threshold": [0.95]
-            }
-        },
-        "action": {
-            "type": "Click"
-        },
-        "post_wait_freezes": {
-            "time": 200
-        },
-        "next": ["EC_IsAnnouncementPopup", "EC_DetectWhereAmI"],
-        "on_error": ["EC_DetectWhereAmI"]
+    "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 200},
+    "next": ["EC_IsAnnouncementPopup", "EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsTrainingLetter": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1037, 438, 206, 76],
+        "template": "Common/修行书信.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
     },
-    "EC_IsTrainingLetter": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [1037, 438, 206, 76],
-                "template": "Common/修行书信.png",
-                "green_mask": true,
-                "threshold": [0.95]
-            }
-        },
-        "action": {
-            "type": "Click"
-        },
-        "next": ["EC_DetectWhereAmI"],
-        "on_error": ["EC_DetectWhereAmI"]
+    "action": {"type": "Click"},
+    "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsLoginReward": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [816, 577, 182, 59],
+        "template": "Common/登录奖励.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
     },
-    "EC_IsLoginReward": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [816, 577, 182, 59],
-                "template": "Common/登录奖励.png",
-                "green_mask": true,
-                "threshold": [0.98]
-            }
-        },
-        "action": {
-            "type": "Click"
-        },
-        "post_wait_freezes": {
-            "time": 200,
-            "target": [240, 104, 803, 561]
-        },
-        "pre_delay": 100,
-        "next": ["EC_LoginRewardClick2"],
-        "on_error": ["EC_DetectWhereAmI"]
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [240, 104, 803, 561]
     },
-    "EC_LoginRewardClick2": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [1092, 318, 1, 1]
-            }
-        },
-        "post_wait_freezes": {
-            "time": 200,
-            "target": [240, 104, 803, 561]
-        },
-        "pre_delay": 1000,
-        "next": ["EC_LoginRewardClick3"],
-        "on_error": ["EC_DetectWhereAmI"]
+    "pre_delay": 100,
+    "next": ["EC_LoginRewardClick2"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_LoginRewardClick2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
     },
-    "EC_LoginRewardClick3": {
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [1092, 318, 1, 1]
-            }
-        },
-        "pre_delay": 1000,
-        "timeout": 3000,
-        "next": ["EC_IsLoginReward", "EC_DetectWhereAmI"],
-        "on_error": ["EC_DetectWhereAmI"]
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [240, 104, 803, 561]
     },
-    "EC_IsGameIcon": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [0, 0, 1280, 720],
-                "template": "Common/游戏图标.png",
-                "green_mask": true,
-                "threshold": [0.8]
-            }
-        },
-        "action": {
-            "type": "Click"
-        },
-        "post_delay": 3000,
-        "next": ["EC_DetectWhereAmI"],
-        "on_error": ["EC_DetectWhereAmI"]
+    "pre_delay": 1000,
+    "next": ["EC_LoginRewardClick3"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_LoginRewardClick3": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
     },
-    "EC_IsLoginButton": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [665, 529, 124, 78],
-                "template": "Common/登录.png",
-                "green_mask": true,
-                "threshold": [0.98]
-            }
-        },
-        "action": {
-            "type": "Click"
-        },
-        "post_delay": 3000,
-        "next": ["EC_DetectWhereAmI"],
-        "on_error": ["EC_DetectWhereAmI"]
+    "pre_delay": 1000,
+    "timeout": 3000,
+    "next": ["EC_IsLoginReward", "EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsGameIcon": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [0, 0, 1280, 720],
+        "template": "Common/游戏图标.png",
+        "green_mask": true,
+        "threshold": [0.8]
+      }
     },
-    "EC_IsGameUpdatePopup": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [443, 431, 120, 46],
-                "template": "Common/游戏更新.png",
-                "green_mask": true,
-                "threshold": [0.98]
-            }
-        },
-        "action": {
-            "type": "Click"
-        },
-        "post_delay": 2000,
-        "next": ["EC_DetectWhereAmI"],
-        "on_error": ["EC_DetectWhereAmI"]
+    "action": {"type": "Click"},
+    "post_delay": 3000,
+    "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsLoginButton": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [665, 529, 124, 78],
+        "template": "Common/登录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
     },
-    "EC_IsInGameUpdatePopup": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [498, 291, 77, 50],
-                "expected": "更新"
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [578, 440, 130, 55]
-            }
-        },
-        "pre_delay": 100,
-        "post_delay": 2000,
-        "next": ["EC_DetectWhereAmI"],
-        "on_error": ["EC_DetectWhereAmI"]
+    "action": {"type": "Click"},
+    "post_delay": 3000,
+    "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsGameUpdatePopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [443, 431, 120, 46],
+        "template": "Common/游戏更新.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
     },
-    "EC_IsInternalReport": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [569, 322, 138, 31],
-                "template": "Common/内番报告.png",
-                "green_mask": true,
-                "threshold": [0.98]
-            }
-        },
-        "action": {
-            "type": "Click"
-        },
-        "pre_delay": 100,
-        "next": ["EC_DetectWhereAmI"],
-        "on_error": ["EC_DetectWhereAmI"]
+    "action": {"type": "Click"},
+    "post_delay": 2000,
+    "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsInGameUpdatePopup": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [498, 291, 77, 50],
+        "expected": "更新"
+      }
     },
-    "EC_IsConnectionInterrupted": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [588, 274, 96, 25],
-                "expected": "连接中断"
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [738, 449, 100, 39]
-            }
-        },
-        "next": ["EC_DetectWhereAmI"],
-        "on_error": ["EC_DetectWhereAmI"]
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [578, 440, 130, 55]
+      }
     },
-    "EC_FallbackWait": {
-        "action": {
-            "type": "DoNothing"
-        },
-        "next": ["EC_DetectWhereAmI"],
-        "on_error": ["EC_DetectWhereAmI"]
+    "pre_delay": 100,
+    "post_delay": 2000,
+    "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsInternalReport": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [569, 322, 138, 31],
+        "template": "Common/内番报告.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
     },
-    "EC_RestartGame": {
-        "action": {
-            "type": "Custom",
-            "custom_action": "RestartGameAction"
-        },
-        "next": ["EC_DetectWhereAmI"],
-        "on_error": ["EC_DetectWhereAmI"]
-    }
+    "action": {"type": "Click"},
+    "pre_delay": 100,
+    "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsConnectionInterrupted": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [588, 274, 96, 25],
+        "expected": "连接中断"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [738, 449, 100, 39]
+      }
+    },
+    "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_FallbackWait": {
+    "action": {"type": "DoNothing"},
+    "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_RestartGame": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  }
 }
