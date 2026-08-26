@@ -64,6 +64,8 @@
 - Create: `assets/resource/base/custom/UpdateDataSaveAction.cs`
 - Create: `assets/resource/base/custom/UpdateDataMarkSuccessAction.cs`
 - Modify: `_src/MFAAvalonia/Services/UpdateDataPersistenceService.cs`
+- Test: `_src/MFAAvalonia.Tests/Program.cs`
+- Modify: `_src/MFAAvalonia.Tests/MFAAvalonia.Tests.csproj` and `_src/MFAAvalonia.Tests/ConfigurationTestStubs.cs` when required by the action parameter seam
 
 **Interfaces:** Each action implements `IMaaCustomAction.Run<T>(T context, in RunArgs args, in RunResults results) -> bool`; action parameter `stage` accepts only `warehouse` or `swordbook`.
 
