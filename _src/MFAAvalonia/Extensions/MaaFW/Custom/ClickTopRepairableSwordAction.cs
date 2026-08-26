@@ -26,6 +26,9 @@ public class ClickTopRepairableSwordAction : IMaaCustomAction
     /// <summary>扫描 ROI(可经 action_param 覆盖):修复界面刀剑列表左侧标记列</summary>
     public static readonly int[] DefaultRoi = [459, 127, 16, 554];
 
+    /// <summary>列表 OCR ROI(可经 action_param 覆盖):刀剑名称列表区域</summary>
+    public static readonly int[] DefaultListOcrRoi = [52, 127, 282, 554];
+
     /// <summary>白色标记像素下限/上限(可经 action_param 覆盖),默认 [252,252,252]~[255,255,255]</summary>
     public static readonly byte[] DefaultLower = [252, 252, 252];
     public static readonly byte[] DefaultUpper = [255, 255, 255];
@@ -60,6 +63,7 @@ public class ClickTopRepairableSwordAction : IMaaCustomAction
     private static readonly int[] FilterPanelRoi = [494, 65, 79, 38];
     private static readonly int[] FilterEntryRoi = [765, 139, 66, 34];
     private static readonly int[] FilterConfirmRoi = [591, 602, 101, 44];
+    private static readonly int[] NoRepairableSwordRoi = [676, 382, 53, 31];
     private const int FilterOpenAttempts = 10;
     private const int FilterRecognizeIntervalMs = 200;
     public bool Run<T>(T context, in RunArgs args, in RunResults results) where T : IMaaContext
@@ -70,6 +74,14 @@ public class ClickTopRepairableSwordAction : IMaaCustomAction
         {
             if (!ApplyRepairFilter(context, json))
                 return false;
+
+            if (RecognizeText(context, NoRepairableSwordRoi, "没有"))
+            {
+                LoggerHelper.Info("[修刀选刀] OCR 命中“没有”，无符合条件刀剑，跳过扫描与上滑");
+                RepairCooldownState.Start(DateTime.UtcNow);
+                LoggerHelper.Info("[后勤修刀] 无符合条件刀剑，开始 30 分钟冷却");
+                return false;
+            }
         }
         catch (Exception e)
         {
@@ -77,6 +89,7 @@ public class ClickTopRepairableSwordAction : IMaaCustomAction
             return false;
         }
         var roi = json?["roi"]?.ToObject<int[]>() ?? DefaultRoi;
+        var listOcrRoi = json?["list_ocr_roi"]?.ToObject<int[]>() ?? DefaultListOcrRoi;
         var lower = json?["lower"]?.ToObject<byte[]>() ?? DefaultLower;
         var upper = json?["upper"]?.ToObject<byte[]>() ?? DefaultUpper;
         var maxSwipes = json?["max_swipes"]?.ToObject<int>() ?? DefaultMaxSwipes;
@@ -86,9 +99,19 @@ public class ClickTopRepairableSwordAction : IMaaCustomAction
         var swipeDuration = json?["swipe_duration"]?.ToObject<int>() ?? DefaultSwipeDuration;
         var releaseHoldMs = json?["release_hold_ms"]?.ToObject<int>() ?? DefaultReleaseHoldMs;
 
+        string? previousListOcr = null;
         for (int attempt = 0; attempt <= maxSwipes; attempt++)
         {
             ActionParamHelper.ThrowIfStopping(context);
+
+            var currentListOcr = ReadRepairListOcr(context, listOcrRoi);
+            if (RepairListOcrDecision.IsSameValidResult(previousListOcr, currentListOcr))
+            {
+                LoggerHelper.Info("[修刀选刀] 上滑后列表 OCR 未变化，判定已到列表底部");
+                break;
+            }
+            if (RepairListOcrDecision.Normalize(currentListOcr) != null)
+                previousListOcr = currentListOcr;
 
             var hit = ScanAndClick(context, roi, lower, upper);
             if (hit != null)
@@ -130,6 +153,8 @@ public class ClickTopRepairableSwordAction : IMaaCustomAction
         }
 
         LoggerHelper.Warning("[修刀选刀] 滑动后仍未找到可修复刀剑");
+        RepairCooldownState.Start(DateTime.UtcNow);
+        LoggerHelper.Info("[后勤修刀] 未找到可修复刀剑，开始 30 分钟冷却");
         return false;
     }
 
@@ -222,6 +247,14 @@ public class ClickTopRepairableSwordAction : IMaaCustomAction
         return expected == "筛选"
             ? RepairFilterSelection.IsFilterTitle(text)
             : text?.Contains(expected, StringComparison.Ordinal) == true;
+    }
+
+    /// <summary>读取修刀列表 OCR 文本；识别不到时返回空值。</summary>
+    private static string? ReadRepairListOcr<T>(T context, int[] roi) where T : IMaaContext
+    {
+        using var image = context.GetImage();
+        if (image == null) return null;
+        return context.GetText(roi[0], roi[1], roi[2], roi[3], image);
     }
 
     /// <summary>点击筛选项并等待界面更新。</summary>

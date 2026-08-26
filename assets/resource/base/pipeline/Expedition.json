@@ -2054,8 +2054,17 @@
   },
   "E_WorkshopHub": {
     "enabled": false,
+    "action": {
+      "type": "Custom",
+      "custom_action": "RepairCooldownCheckAction"
+    },
     "next": ["E_CheckWorkshop1", "E_WorkshopHub2"],
-    "on_error": ["E_AllTeamsBusy"]
+    "on_error": ["E_RepairCooldownSkip"]
+  },
+  "E_RepairCooldownSkip": {
+    "action": {"type": "DoNothing"},
+    "next": ["E_NaibanHub", "E_AllTeamsBusy"],
+    "on_error": ["Expedition"]
   },
   "E_WorkshopHub2": {
     "next": ["E_CheckWorkshop2", "E_WorkshopHub3"],

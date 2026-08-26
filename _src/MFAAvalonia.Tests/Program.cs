@@ -18,6 +18,25 @@ AssertTrue(selectedFilter.DamageStates.SetEquals(["重伤"]), "伤势筛选应�
 AssertTrue(RepairFilterSelection.IsFilterTitle("师选"), "筛选标题 OCR 误识别为师选时仍应视为筛选标题");
 AssertFalse(RepairFilterSelection.IsFilterTitle("刀剑男士"), "无关 OCR 文本不应视为筛选标题");
 
+var cooldownStart = new DateTime(2026, 8, 26, 12, 0, 0, DateTimeKind.Utc);
+RepairCooldownState.Start(cooldownStart);
+AssertTrue(RepairCooldownState.IsActive(cooldownStart.AddMinutes(29).AddSeconds(59)),
+    "无可修刀后 30 分钟内应保持修刀冷却");
+AssertFalse(RepairCooldownState.IsActive(cooldownStart.AddMinutes(30)),
+    "修刀冷却达到 30 分钟后应自动恢复");
+
+AssertTrue(FatigueCheckDecision.ShouldContinueWhenFirstValueUnreadable(null),
+    "首位疲劳值无法识别时应继续出阵，不应进入刷花");
+AssertFalse(FatigueCheckDecision.ShouldContinueWhenFirstValueUnreadable(29),
+    "首位疲劳值低于阈值时应保留刷花分支");
+
+AssertTrue(RepairListOcrDecision.IsSameValidResult("甲\n乙", "甲乙"),
+    "滑动前后有效 OCR 文本相同应判定列表未变化");
+AssertFalse(RepairListOcrDecision.IsSameValidResult("甲", "乙"),
+    "滑动前后 OCR 文本变化时应继续扫描");
+AssertFalse(RepairListOcrDecision.IsSameValidResult(null, null),
+    "OCR 无结果时不应误判为列表到底");
+
 var preset = new FormationPreset();
 
 AssertFalse(preset.ClearEquipmentBeforeFormation, "新预设默认不应卸下现有装备");

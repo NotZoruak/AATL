@@ -4890,6 +4890,7 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.PageScrollAndHoldAction());
             tasker.Resource.Register(new Custom.SelectFlowerTeamAction());
             tasker.Resource.Register(new Custom.ClickTopRepairableSwordAction());
+            tasker.Resource.Register(new Custom.RepairCooldownCheckAction());
             tasker.Resource.Register(new Custom.ForgeCapacityCheckAction());
             tasker.Resource.Register(new Custom.ForgeDisassembleSelectAction());
             tasker.Resource.Register(new Custom.DrillDangerCheckAction());

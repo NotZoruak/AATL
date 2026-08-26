@@ -304,7 +304,7 @@ public static class VersionChecker
                 sha256 = result.sha256;
             }
             else
-                GetDownloadUrlFromMirror(resourceVersion, GetResourceID(), CDK(), out _, out latestVersion, out sha256, out _, onlyCheck: true, currentVersion: resourceVersion);
+                GetDownloadUrlFromMirror(resourceVersion, GetResourceID(), CDK(), out _, out latestVersion, out sha256, out _, onlyCheck: true, currentVersion: resourceVersion, userAgent: "MATR_APP");
 
             if (string.IsNullOrWhiteSpace(latestVersion))
             {
@@ -527,7 +527,7 @@ public static class VersionChecker
                     sha256 = result.sha256;
                 }
                 else
-                    GetDownloadUrlFromMirror(localVersion, GetResourceID(), CDK(), out downloadUrl, out latestVersion, out sha256, out isFull, currentVersion: localVersion);
+                    GetDownloadUrlFromMirror(localVersion, GetResourceID(), CDK(), out downloadUrl, out latestVersion, out sha256, out isFull, currentVersion: localVersion, userAgent: "MATR_APP");
             }
             catch (Exception ex)
             {

@@ -129,7 +129,11 @@ public class FatigueCheckAction : IMaaCustomAction
                             firstValue = val;
                     }
                 }
-                if (!firstValue.HasValue) { LoggerHelper.Warning("[疲劳检测-合战场] 首位 OCR 失败"); return false; }
+                if (!firstValue.HasValue)
+                {
+                    LoggerHelper.Warning("[疲劳检测-合战场] 首位 OCR 失败，跳过刷花并继续出阵");
+                    return FatigueCheckDecision.ShouldContinueWhenFirstValueUnreadable(firstValue);
+                }
                 var reversed = (bool?)json["reversed"] ?? false;
                 var ok = reversed ? firstValue.Value < threshold : firstValue.Value >= threshold;
                 LoggerHelper.Info($"[疲劳检测-合战场] 首位={firstValue}, 阈值={threshold}, reversed={reversed}, 结果={ok}");
