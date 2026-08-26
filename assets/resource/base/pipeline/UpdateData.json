@@ -1,0 +1,711 @@
+{
+  "UpdateData": {
+    "next": ["UD_DetectWhereAmI"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_DetectWhereAmI": {
+    "timeout": 120000,
+    "next": ["UD_CheckHomeBrightness1", "UD_IsAnnouncementPopup", "UD_IsAdvertisementPopup", "UD_IsConnectionInterrupted", "UD_FallbackWait"],
+    "on_error": ["UD_RestartGame"]
+  },
+  "UD_CheckHomeBrightness1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [66, 58, 11, 13],
+        "upper": [40, 155, 30],
+        "lower": [23, 95, 15]
+      }
+    },
+    "next": ["UD_IsHome1", "UD_DetectWhereAmI"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_IsHome1": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [8, 1, 71, 107],
+        "template": "Common/本丸.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "UpdateDataWaitAction",
+      "custom_action_param": {"milliseconds": 1000}
+    },
+    "next": ["UD_CheckHomeBrightness2"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_CheckHomeBrightness2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [66, 58, 11, 13],
+        "upper": [40, 155, 30],
+        "lower": [23, 95, 15]
+      }
+    },
+    "next": ["UD_IsHome2", "UD_DetectWhereAmI"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_IsHome2": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [8, 1, 71, 107],
+        "template": "Common/本丸.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "UpdateDataWaitAction",
+      "custom_action_param": {"milliseconds": 1000}
+    },
+    "next": ["UD_RunWarehouse", "UD_RunSwordBook"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_CheckHomeBrightness3": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [66, 58, 11, 13],
+        "upper": [40, 155, 30],
+        "lower": [23, 95, 15]
+      }
+    },
+    "next": ["UD_IsHome3", "UD_DetectWhereAmI"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_IsHome3": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [8, 1, 71, 107],
+        "template": "Common/本丸.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "UpdateDataWaitAction",
+      "custom_action_param": {"milliseconds": 1000}
+    },
+    "next": ["UD_RunWarehouse", "UD_RunSwordBook"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_RunWarehouse": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "UpdateDataPrepareAction",
+      "custom_action_param": {"stage": "warehouse"}
+    },
+    "next": ["Warehouse_Start"],
+    "on_error": []
+  },
+  "UD_SaveWarehouse": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "UpdateDataSaveAction",
+      "custom_action_param": {"stage": "warehouse"}
+    },
+    "next": ["UD_ReturnHome"],
+    "on_error": []
+  },
+  "UD_ReturnHome": {
+    "next": ["UD_ReturnHomeX", "UD_ReturnHomeLowerX", "UD_ReturnHomeUpperX", "UD_ReturnHomeDone"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_ReturnHomeX": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1234, 9, 37, 38],
+        "expected": "×"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {"target": true}
+    },
+    "post_wait_freezes": {
+      "time": 300,
+      "target": [1234, 9, 37, 38]
+    },
+    "next": ["UD_ReturnHome"],
+    "on_error": ["UD_ReturnHomeLowerX"]
+  },
+  "UD_ReturnHomeLowerX": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1234, 9, 37, 38],
+        "expected": "x"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {"target": true}
+    },
+    "post_wait_freezes": {
+      "time": 300,
+      "target": [1234, 9, 37, 38]
+    },
+    "next": ["UD_ReturnHome"],
+    "on_error": ["UD_ReturnHomeUpperX"]
+  },
+  "UD_ReturnHomeUpperX": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1234, 9, 37, 38],
+        "expected": "X"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {"target": true}
+    },
+    "post_wait_freezes": {
+      "time": 300,
+      "target": [1234, 9, 37, 38]
+    },
+    "next": ["UD_ReturnHome"],
+    "on_error": ["UD_ReturnHomeDone"]
+  },
+  "UD_ReturnHomeDone": {
+    "next": ["UD_IsHomeAfterDirectory", "UD_ClickDirectoryTop", "UD_VerifyMenuDirectory"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_ClickDirectoryTop": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1183, 18, 87, 40],
+        "expected": "目"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {"target": true}
+    },
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [1183, 18, 87, 40]
+    },
+    "next": ["UD_VerifyMenuDirectory", "UD_ReturnHomeDone"]
+  },
+  "UD_VerifyMenuDirectory": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [581, 28, 112, 57],
+        "template": "Common/菜单目录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1037, 169, 110, 44]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [1037, 169, 110, 44]
+    },
+    "next": ["UD_IsHomeAfterDirectory", "UD_ReturnHomeDone"]
+  },
+  "UD_IsHomeAfterDirectory": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [8, 1, 71, 107],
+        "template": "Common/本丸.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["UD_RunSwordBook"],
+    "on_error": ["UD_ReturnHomeDone"]
+  },
+  "UD_RunSwordBook": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "UpdateDataPrepareAction",
+      "custom_action_param": {"stage": "swordbook"}
+    },
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": []
+  },
+  "UD_SwordBookDetectWhereAmI": {
+    "timeout": 120000,
+    "next": [
+      "UD_SB_CheckHomeBrightness",
+      "UD_SB_IsSwordBookList",
+      "UD_SB_IsSwordBook",
+      "UD_SB_IsSerial",
+      "UD_SB_LeaveTroopRecord",
+      "UD_SB_IsAnnouncementPopup",
+      "UD_SB_IsAdvertisementPopup",
+      "UD_SB_IsTrainingLetter",
+      "UD_SB_IsLoginReward",
+      "UD_SB_IsGameIcon",
+      "UD_SB_IsLoginButton",
+      "UD_SB_IsGameUpdatePopup",
+      "UD_SB_IsInGameUpdatePopup",
+      "UD_SB_IsInternalReport",
+      "UD_SB_IsConnectionInterrupted",
+      "UD_SB_FallbackWait"
+    ],
+    "on_error": ["UD_SB_RestartGame"]
+  },
+  "UD_SB_CheckHomeBrightness": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [66, 58, 11, 13],
+        "upper": [40, 155, 30],
+        "lower": [23, 95, 15]
+      }
+    },
+    "next": ["UD_SB_IsHome", "UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsHome": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [8, 1, 71, 107],
+        "template": "Common/本丸.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["UD_SB_ClickSwordPeople"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_ClickSwordPeople": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [2, 163, 104, 28],
+        "expected": "刀剑男士"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {"target": true}
+    },
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsSwordBookList": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [534, 2, 220, 46],
+        "expected": "刀剑男士一览"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [10, 571, 26, 80]
+      }
+    },
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsSwordBook": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [600, 7, 91, 42],
+        "expected": "刀帐"
+      }
+    },
+    "next": ["UD_SB_SwordBookColor", "UD_SB_ClickBookArrow"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_SwordBookColor": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [140, 98, 4, 5],
+        "upper": [178, 33, 32],
+        "lower": [178, 33, 32]
+      }
+    },
+    "next": ["UD_SB_ClickSwordBook"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_ClickSwordBook": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [154, 161, 106, 206]
+      }
+    },
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_ClickBookArrow": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [140, 98, 4, 5]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 300,
+      "target": [140, 98, 4, 5]
+    },
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsSerial": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [527, 3, 229, 43],
+        "expected": "序号"
+      }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "SwordBookScanAction"
+    },
+    "next": ["UD_SaveSwordBook"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SaveSwordBook": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "UpdateDataSaveAction",
+      "custom_action_param": {"stage": "swordbook"}
+    },
+    "next": ["UD_CloseSwordBook"],
+    "on_error": []
+  },
+  "UD_CloseSwordBook": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [134, 5, 36, 38]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 300,
+      "target": [134, 5, 36, 38]
+    },
+    "next": ["UD_CloseSwordBook2"]
+  },
+  "UD_CloseSwordBook2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [134, 5, 36, 38]
+      }
+    },
+    "next": ["UD_MarkSuccess"]
+  },
+  "UD_MarkSuccess": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "UpdateDataMarkSuccessAction",
+      "custom_action_param": {"interval": "每天"}
+    },
+    "next": [],
+    "on_error": []
+  },
+  "UD_SB_LeaveTroopRecord": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [577, 8, 130, 35],
+        "template": "Common/部队记录页面.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [63, 28, 17, 17]
+      }
+    },
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsAnnouncementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1056, 463, 63, 193],
+        "template": "Common/公告弹窗.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 200},
+    "next": ["UD_SB_IsAnnouncementPopup", "UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsAdvertisementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "template": "Common/广告.png",
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsTrainingLetter": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1037, 438, 206, 76],
+        "template": "Common/修行书信.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsLoginReward": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "target": [816, 577, 182, 59],
+        "template": "Common/登录奖励.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [240, 104, 803, 561]
+    },
+    "next": ["UD_SB_LoginRewardClick2"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_LoginRewardClick2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [240, 104, 803, 561]
+    },
+    "next": ["UD_SB_LoginRewardClick3"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_LoginRewardClick3": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
+    "timeout": 3000,
+    "next": ["UD_SB_IsLoginReward"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsGameIcon": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [0, 0, 1280, 720],
+        "template": "Common/游戏图标.png",
+        "green_mask": true,
+        "threshold": [0.8]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsLoginButton": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [665, 529, 124, 78],
+        "template": "Common/登录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsGameUpdatePopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [443, 431, 120, 46],
+        "template": "Common/游戏更新.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsInGameUpdatePopup": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [498, 291, 77, 50],
+        "expected": "更新"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [578, 440, 130, 55]
+      }
+    },
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsInternalReport": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [569, 322, 138, 31],
+        "template": "Common/内番报告.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_IsConnectionInterrupted": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [588, 274, 96, 25],
+        "expected": "连接中断"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [738, 449, 100, 39]
+      }
+    },
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_SB_FallbackWait": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "UpdateDataWaitAction",
+      "custom_action_param": {"milliseconds": 1000}
+    },
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
+  "UD_IsAnnouncementPopup": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [500, 100, 280, 80],
+        "expected": "公告"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1100, 100, 60, 60]
+      }
+    },
+    "next": ["UD_DetectWhereAmI"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_IsAdvertisementPopup": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "expected": "广告"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
+    "next": ["UD_DetectWhereAmI"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_IsConnectionInterrupted": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [400, 250, 480, 120],
+        "expected": "通信"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [590, 440, 100, 60]
+      }
+    },
+    "next": ["UD_DetectWhereAmI"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_FallbackWait": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "UpdateDataWaitAction",
+      "custom_action_param": {"milliseconds": 1000}
+    },
+    "next": ["UD_DetectWhereAmI"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_RestartGame": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["UD_DetectWhereAmI"],
+    "on_error": []
+  },
+  "UD_SB_RestartGame": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": []
+  }
+}

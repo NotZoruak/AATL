@@ -661,7 +661,7 @@
       "time": 100,
       "target": [1156, 241, 27, 25]
     },
-    "next": ["U_CheckAccel", "U_ClickAccel"],
+    "next": ["U_CaptureRepairInfo"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_ClickCaptain1": {
@@ -843,7 +843,7 @@
       "time": 200,
       "target": [262, 307, 147, 46]
     },
-    "next": ["U_CaptureRepairInfo"],
+    "next": ["U_CheckAccel", "U_ClickAccel"],
     "on_error": ["U_LogNoDamagedSword"]
   },
   "U_CaptureRepairInfo": {
@@ -861,7 +861,7 @@
         ]
       }
     },
-    "next": ["U_CheckAccel", "U_ClickAccel"],
+    "next": ["U_CheckAccel"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_LogNoDamagedSword": {

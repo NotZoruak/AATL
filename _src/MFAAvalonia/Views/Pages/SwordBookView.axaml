@@ -18,8 +18,8 @@
                         <ProgressBar Width="22" Height="4" IsIndeterminate="True" IsVisible="{Binding IsRecognizing}" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
-                <Button Content="保存" Command="{Binding SaveCommand}" IsEnabled="{Binding IsIdle}" Background="#4C9F70" Foreground="White" />
-                <Button Content="撤销" Command="{Binding RevertCommand}" IsEnabled="{Binding IsIdle}" Background="#8A94A6" Foreground="White" />
+                <Button Content="保存" Command="{Binding SaveCommand}" IsEnabled="{Binding HasUnsavedChanges}" Background="#4C9F70" Foreground="White" />
+                <Button Content="撤销" Command="{Binding RevertCommand}" IsEnabled="{Binding HasUnsavedChanges}" Background="#8A94A6" Foreground="White" />
                 <Button Content="清空" Command="{Binding ClearCommand}" IsEnabled="{Binding IsIdle}" Background="#C96B6B" Foreground="White" />
             </StackPanel>
             <TextBlock Grid.Column="1" Text="{Binding Instruction}" FontSize="12" VerticalAlignment="Center" TextWrapping="Wrap" Foreground="{DynamicResource SukiLowText}" />

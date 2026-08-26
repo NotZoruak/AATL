@@ -9,6 +9,7 @@ using MFAAvalonia.Configuration;
 using MFAAvalonia.Helper;
 using MFAAvalonia.Helper.ValueType;
 using MFAAvalonia.Helper.Converters;
+using MFAAvalonia.Services;
 using MFAAvalonia.ViewModels.Other;
 using MFAAvalonia.ViewModels.Pages;
 using MFAAvalonia.Views.Windows;
@@ -3008,7 +3009,8 @@ public class MaaProcessor
             tasks ??= new List<DragItemViewModel>();
             _tempTasks = tasks;
             LoggerHelper.Info($"准备执行任务队列：任务数量={tasks.Count}");
-            var taskAndParams = tasks.Select((task, index) => CreateNodeAndParam(task, index + 1)).ToList();
+            var runnableTasks = tasks.Where(ShouldRunTask).ToList();
+            var taskAndParams = runnableTasks.Select((task, index) => CreateNodeAndParam(task, index + 1)).ToList();
             // 卡死自动恢复断点：从上次中断位置继续（正常启动为 0）
             var isRecovery = _resumePending;
             var startIndex = _resumeStartIndex;
@@ -3044,6 +3046,30 @@ public class MaaProcessor
             Stop(Status, true, onlyStart);
         }, token: token, name: "启动任务");
 
+    }
+
+    /// <summary>过滤当前不满足触发间隔的更新数据任务。</summary>
+    private bool ShouldRunTask(DragItemViewModel task)
+    {
+        if (!string.Equals(task.InterfaceItem?.Entry, "UpdateData", StringComparison.Ordinal))
+            return true;
+
+        var intervalOption = task.InterfaceItem.Option?.FirstOrDefault(option => option.Name == "触发间隔");
+        var interval = "每天";
+        if (intervalOption?.Index is int index
+            && MaaProcessor.Interface?.Option?.TryGetValue("触发间隔", out var definition) == true
+            && definition.Cases != null
+            && index >= 0
+            && index < definition.Cases.Count)
+        {
+            interval = definition.Cases[index].Name ?? interval;
+        }
+
+        if (UpdateDataScheduleService.ShouldRun(InstanceConfiguration, interval, DateTime.Now))
+            return true;
+
+        LoggerHelper.Info($"跳过更新数据任务：触发间隔={interval}，本周期已成功执行");
+        return false;
     }
 
     async private Task ExecuteTasks(CancellationToken token)

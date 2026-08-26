@@ -3,6 +3,7 @@ using MaaFramework.Binding.Custom;
 using MFAAvalonia.Configuration;
 using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.Helper;
+using MFAAvalonia.Services;
 using System;
 
 namespace MFAAvalonia.Extensions.MaaFW.Custom;
@@ -17,7 +18,7 @@ public sealed class UpdateDataMarkSuccessAction : IMaaCustomAction
         try
         {
             ActionParamHelper.ThrowIfStopping(context);
-            var interval = ActionParamHelper.Parse(args.ActionParam)["interval"]?.Value<string>() ?? "每次";
+            var interval = ActionParamHelper.Parse(args.ActionParam)["interval"]?.ToObject<string>() ?? "每次";
             var configuration = ConfigurationManager.CurrentInstance;
             UpdateDataScheduleService.MarkSucceeded(configuration, DateTime.Now);
             LoggerHelper.Info($"[更新数据] 任务完成，已记录触发间隔：{interval}");

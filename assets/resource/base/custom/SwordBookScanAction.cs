@@ -32,10 +32,10 @@ public sealed class SwordBookScanAction : IMaaCustomAction
     public bool Run<T>(T context, in RunArgs args, in RunResults results) where T : IMaaContext
     {
         var draft = LoadDraft();
-        var startNumber = ReadNumber(context);
+        var startNumber = ReadStartNumber(context);
         if (startNumber == null)
         {
-            LoggerHelper.Warning("[刀帐] 自动识别失败：当前页面未识别到刀剑序号，请先切换到具体刀剑男士的刀帐页面");
+            LoggerHelper.Warning("[刀帐] 自动识别失败：顶部未同时识别到“序号”和刀剑数字，请先切换到具体刀剑男士的刀帐页面");
             return false;
         }
 
@@ -75,12 +75,28 @@ public sealed class SwordBookScanAction : IMaaCustomAction
         throw new Exception($"刀帐自动识别失败：扫描超过 {MaxPages} 页仍未回到起始序号");
     }
 
+    private static int? ReadStartNumber<T>(T context) where T : IMaaContext
+    {
+        using var image = context.GetImage();
+        if (image == null)
+            return null;
+        var text = context.GetText(NumberRoi[0], NumberRoi[1], NumberRoi[2], NumberRoi[3], image);
+        if (!text.Contains("序号", StringComparison.Ordinal))
+            return null;
+        return ParseNumber(text);
+    }
+
     private static int? ReadNumber<T>(T context) where T : IMaaContext
     {
         using var image = context.GetImage();
         if (image == null)
             return null;
         var text = context.GetText(NumberRoi[0], NumberRoi[1], NumberRoi[2], NumberRoi[3], image);
+        return ParseNumber(text);
+    }
+
+    private static int? ParseNumber(string text)
+    {
         var number = text.ToInt();
         return number > 0 || text.Contains("0", StringComparison.Ordinal) || text.Contains("〇", StringComparison.Ordinal)
             ? number

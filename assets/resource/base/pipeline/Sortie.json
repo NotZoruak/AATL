@@ -2092,7 +2092,7 @@
       "time": 200,
       "target": [262, 307, 147, 46]
     },
-    "next": ["S_CaptureRepairInfo"],
+    "next": ["S_CheckAccel", "S_ClickAccel"],
     "on_error": ["S_LogNoDamagedSword"]
   },
   "S_CaptureRepairInfo": {
@@ -2110,7 +2110,7 @@
         ]
       }
     },
-    "next": ["S_CheckAccel", "S_ClickAccel"],
+    "next": ["S_CheckAccel"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_LogNoDamagedSword": {
@@ -2144,7 +2144,7 @@
       "time": 100,
       "target": [1156, 241, 27, 25]
     },
-    "next": ["S_CheckAccel", "S_ClickAccel"],
+    "next": ["S_CaptureRepairInfo"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_ClickRepairDone": {

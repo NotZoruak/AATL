@@ -18,7 +18,7 @@ public sealed class UpdateDataSaveAction : IMaaCustomAction
         try
         {
             ActionParamHelper.ThrowIfStopping(context);
-            var stage = ActionParamHelper.Parse(args.ActionParam)["stage"]?.Value<string>();
+            var stage = ActionParamHelper.Parse(args.ActionParam)["stage"]?.ToObject<string>();
             var saved = stage switch
             {
                 "warehouse" => UpdateDataPersistenceService.TrySaveWarehouseDraft(

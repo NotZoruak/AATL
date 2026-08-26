@@ -2,6 +2,7 @@ using MFAAvalonia.Configuration;
 using MFAAvalonia.Models;
 using MFAAvalonia.ViewModels.Pages;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +15,9 @@ namespace MFAAvalonia.Services;
 /// <summary>负责把更新数据任务的识别草稿写入正式配置。</summary>
 public static class UpdateDataPersistenceService
 {
+    /// <summary>刀帐正式数据保存完成时触发。</summary>
+    public static event Action? SwordBookDataSaved;
+
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
         PropertyNameCaseInsensitive = true,
@@ -35,7 +39,15 @@ public static class UpdateDataPersistenceService
         if (!TryLoadSwordBookStates(draftPath, out var states))
             return false;
 
-        ConfigurationManager.Current.SetValue(ConfigurationKeys.SwordBookEntries, states);
+        var serializerSettings = new JsonSerializerSettings
+        {
+            DefaultValueHandling = DefaultValueHandling.Include,
+        };
+        var serializedStates = JArray.FromObject(
+            states,
+            Newtonsoft.Json.JsonSerializer.Create(serializerSettings));
+        ConfigurationManager.Current.SetValue(ConfigurationKeys.SwordBookEntries, serializedStates);
+        SwordBookDataSaved?.Invoke();
         return true;
     }
 

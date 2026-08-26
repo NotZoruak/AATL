@@ -17,7 +17,7 @@ public sealed class UpdateDataPrepareAction : IMaaCustomAction
         try
         {
             ActionParamHelper.ThrowIfStopping(context);
-            var stage = ActionParamHelper.Parse(args.ActionParam)["stage"]?.Value<string>();
+            var stage = ActionParamHelper.Parse(args.ActionParam)["stage"]?.ToObject<string>();
             var fileName = stage switch
             {
                 "warehouse" => "warehouse_scan.json",

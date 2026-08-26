@@ -15,8 +15,13 @@
 
     <Grid RowDefinitions="Auto,Auto,*" RowSpacing="12">
         <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10">
-            <Button Content="自动识别" Command="{Binding AutoRecognizeCommand}" IsEnabled="{Binding IsIdle}"
-                    Background="#D9E6FF" Foreground="#165DFF" />
+            <Button Command="{Binding AutoRecognizeCommand}" IsEnabled="{Binding IsIdle}"
+                    Background="#D9E6FF" Foreground="#165DFF">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="自动识别" />
+                    <ProgressBar Width="22" Height="4" IsIndeterminate="True" IsVisible="{Binding IsRecognizing}" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
             <Button Content="保存" Command="{Binding SaveCommand}" IsEnabled="{Binding HasUnsavedChanges}" Background="#5BAE7D" Foreground="White" />
             <Button Content="撤销" Command="{Binding RevertCommand}" IsEnabled="{Binding HasUnsavedChanges}" Background="#8A94A6" Foreground="White" />
             <Button Content="清空" Command="{Binding ClearCommand}" IsEnabled="{Binding IsIdle}" Background="#C96B6B" Foreground="White" />

@@ -6,6 +6,7 @@ using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.Helper;
 using MFAAvalonia.Helper.ValueType;
 using MFAAvalonia.Models;
+using MFAAvalonia.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -36,9 +37,10 @@ public partial class SwordBookViewModel : ViewModelBase
     {
         LoadCatalog();
         LoadSavedState();
+        UpdateDataPersistenceService.SwordBookDataSaved += OnSwordBookDataSaved;
     }
 
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(HasUnsavedChanges))]
     private void Save()
     {
         var values = Entries.ToDictionary(row => row.Number, ToEntry, StringComparer.Ordinal);
@@ -48,16 +50,16 @@ public partial class SwordBookViewModel : ViewModelBase
         ConfigurationManager.Current.SetValue(ConfigurationKeys.SwordBookEntries, values.Values.Select(ToState).ToList());
         foreach (var row in Entries)
             row.MarkSaved();
-        OnPropertyChanged(nameof(HasUnsavedChanges));
+        NotifySavedStateChanged();
     }
 
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(HasUnsavedChanges))]
     private void Revert()
     {
         foreach (var row in Entries)
             if (_savedEntries.TryGetValue(row.Number, out var entry))
                 row.Apply(entry);
-        OnPropertyChanged(nameof(HasUnsavedChanges));
+        NotifySavedStateChanged();
     }
 
     [RelayCommand]
@@ -143,7 +145,7 @@ public partial class SwordBookViewModel : ViewModelBase
 
         foreach (var row in Entries)
             row.ClearChecks();
-        OnPropertyChanged(nameof(HasUnsavedChanges));
+        NotifySavedStateChanged();
     }
 
     partial void OnIsRecognizingChanged(bool value) => OnPropertyChanged(nameof(IsIdle));
@@ -154,7 +156,7 @@ public partial class SwordBookViewModel : ViewModelBase
         {
             _ = SukiMessageBox.ShowDialog(new SukiMessageBoxHost
             {
-                Content = "请先将游戏页面切换至具体刀剑男士的刀帐页面，并确保顶部序号可见，然后重新点击“自动识别”。",
+                Content = "请先将游戏页面切换至具体刀剑男士的刀帐页面，并确保顶部同时可识别到“序号”和数字，然后重新点击“自动识别”。",
                 ActionButtonsPreset = SukiMessageBoxButtons.OK,
                 IconPreset = SukiMessageBoxIcons.Warning,
             }, new SukiMessageBoxOptions
@@ -188,14 +190,27 @@ public partial class SwordBookViewModel : ViewModelBase
     {
         var saved = ConfigurationManager.Current.GetValue<List<SwordBookPortraitState>>(ConfigurationKeys.SwordBookEntries, []);
         var savedByNumber = saved.ToDictionary(item => item.Number, StringComparer.Ordinal);
+        _savedEntries.Clear();
         foreach (var row in Entries)
         {
             if (savedByNumber.TryGetValue(row.Number, out var state))
+            {
                 row.Apply(state);
-            else
                 row.MarkSaved();
+            }
+            else
+            {
+                row.ClearChecks();
+                row.MarkSaved();
+            }
             _savedEntries[row.Number] = ToEntry(row).Clone();
         }
+        NotifySavedStateChanged();
+    }
+
+    private void OnSwordBookDataSaved()
+    {
+        _ = DispatcherHelper.RunOnMainThreadAsync(LoadSavedState);
     }
 
     private void LoadDraft()
@@ -207,10 +222,16 @@ public partial class SwordBookViewModel : ViewModelBase
         foreach (var row in Entries)
             if (draftByNumber.TryGetValue(row.Number, out var state))
                 row.Apply(state);
-        OnPropertyChanged(nameof(HasUnsavedChanges));
+        NotifySavedStateChanged();
     }
 
-    private void OnRowChanged() => OnPropertyChanged(nameof(HasUnsavedChanges));
+    private void OnRowChanged() => NotifySavedStateChanged();
+    private void NotifySavedStateChanged()
+    {
+        OnPropertyChanged(nameof(HasUnsavedChanges));
+        SaveCommand.NotifyCanExecuteChanged();
+        RevertCommand.NotifyCanExecuteChanged();
+    }
     private static bool HasChanged(SwordBookRowViewModel row) =>
         row.Owned != row.SavedOwned || row.Wounded != row.SavedWounded || row.TrueSword != row.SavedTrueSword ||
         row.InnerCare != row.SavedInnerCare || row.Casual != row.SavedCasual;

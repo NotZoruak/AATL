@@ -18,8 +18,7 @@
       "DT_IsInternalReport",
       "DT_LeaveTroopRecord",
       "DT_CheckHomeBrightness",
-      "DT_IsConnectionInterrupted",
-      "DT_PrepareHub"
+      "DT_IsConnectionInterrupted"
     ],
     "on_error": ["DT_PrepareHub"]
   },
@@ -36,6 +35,31 @@
     "on_error": ["DT_DetectWhereAmI"]
   },
   "DT_IsHome": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [8, 1, 71, 107],
+        "template": "Common/本丸.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["DT_CheckHomeBrightness2"],
+    "on_error": ["DT_DetectWhereAmI"]
+  },
+  "DT_CheckHomeBrightness2": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [66, 58, 11, 13],
+        "upper": [40, 155, 30],
+        "lower": [23, 95, 15]
+      }
+    },
+    "next": ["DT_IsHome2", "DT_DetectWhereAmI"],
+    "on_error": ["DT_DetectWhereAmI"]
+  },
+  "DT_IsHome2": {
     "recognition": {
       "type": "TemplateMatch",
       "param": {
