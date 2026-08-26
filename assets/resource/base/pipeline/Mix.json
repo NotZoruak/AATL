@@ -21,6 +21,7 @@
       "M_IsTrainingLetter",
       "M_IsLoginReward",
       "M_IsInternalReport",
+      "M_IsAdvertisementPopup",
       "M_IsGameIcon",
       "M_IsLoginButton",
       "M_IsGameUpdatePopup",
@@ -1104,6 +1105,24 @@
     "pre_delay": 100,
     "post_delay": 3000,
     "next": ["M_DetectWhereAmI"]
+  },
+  "M_IsAdvertisementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "template": "Common/广告.png",
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
+    "next": ["M_DetectWhereAmI"],
+    "on_error": ["M_DetectWhereAmI"]
   },
   "M_IsLoginButton": {
     "recognition": {

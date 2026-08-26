@@ -18,6 +18,7 @@
       "FC_IsAnnouncementPopup",
       "FC_IsTrainingLetter",
       "FC_IsLoginReward",
+      "FC_IsAdvertisementPopup",
       "FC_IsGameIcon",
       "FC_IsLoginButton",
       "FC_IsGameUpdatePopup",
@@ -132,6 +133,24 @@
     "action": {"type": "Click"},
     "next": ["FC_DetectWhereAmI"],
     "post_delay": 500
+  },
+  "FC_IsAdvertisementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "template": "Common/广告.png",
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
+    "next": ["FC_DetectWhereAmI"],
+    "on_error": ["FC_DetectWhereAmI"]
   },
   "FC_IsLoginButton": {
     "recognition": {

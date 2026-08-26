@@ -158,16 +158,51 @@ AssertTrue(returnHomeTaskRecords.All(record => record.TaskName != "回本丸"),
     "回本丸流程不应作为独立工作记录显示");
 
 var parallelTaskRecords = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "[任务管线合并] 任务#1 名称=[地下城] 入口=[Underground]"),
+    new LogEntry(logStart, "INF", "[任务管线合并] 任务#2 名称=[后勤] 入口=[Expedition]"),
     new LogEntry(logStart, "INF", "开始任务：地下城"),
     new LogEntry(logStart.AddSeconds(1), "INF", "开始任务：后勤"),
-    new LogEntry(logStart.AddSeconds(2), "INF", "[地下城] 刀剑掉落 短刀 秋田藤四郎"),
-    new LogEntry(logStart.AddSeconds(3), "INF", "[后勤] 派遣远征 部队1已派遣至 2-4"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "[entry=Underground] [地下城] 刀剑掉落 短刀 秋田藤四郎"),
+    new LogEntry(logStart.AddSeconds(3), "INF", "[entry=Expedition] [后勤] 派遣远征 部队1已派遣至 2-4"),
     new LogEntry(logStart.AddSeconds(4), "INF", "停止前状态：SUCCEEDED"),
 ]);
 var parallelDungeon = parallelTaskRecords.Single(record => record.TaskName == "地下城");
 var parallelLogistics = parallelTaskRecords.Single(record => record.TaskName == "后勤");
 AssertTrue(parallelDungeon.SwordDrops.Count == 1, "并行任务中地下城掉落应归入地下城记录");
 AssertTrue(parallelLogistics.SwordDrops.Count == 0, "并行任务中后勤记录不应包含地下城掉落");
+
+var renamedParallelTaskRecords = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "[任务管线合并] 任务#1 名称=[大阪挖地] 入口=[Underground]"),
+    new LogEntry(logStart, "INF", "[任务管线合并] 任务#2 名称=[本丸后勤] 入口=[Expedition]"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "开始任务：大阪挖地"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "开始任务：本丸后勤"),
+    new LogEntry(logStart.AddSeconds(3), "INF", "[地下城] 刀剑掉落 短刀 秋田藤四郎"),
+    new LogEntry(logStart.AddSeconds(4), "INF", "[后勤] 派遣远征 部队1已派遣至 2-4"),
+    new LogEntry(logStart.AddSeconds(5), "INF", "停止前状态：SUCCEEDED"),
+]);
+var renamedDungeon = renamedParallelTaskRecords.Single(record => record.TaskName == "大阪挖地");
+var renamedLogistics = renamedParallelTaskRecords.Single(record => record.TaskName == "本丸后勤");
+AssertTrue(renamedDungeon.SwordDrops.Count == 1, "大阪挖地的地下城掉落应按 Entry 归属");
+AssertTrue(renamedLogistics.LogisticsCounts["派遣远征"] == 1, "改名后的后勤日志应归入本丸后勤记录");
+
+var remarkedParallelTaskRecords = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "[任务管线合并] 任务#1 名称=[我的地下城备注] 入口=[Underground]"),
+    new LogEntry(logStart, "INF", "[任务管线合并] 任务#2 名称=[我的后勤备注] 入口=[Expedition]"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "开始任务：我的地下城备注"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "开始任务：我的后勤备注"),
+    new LogEntry(logStart.AddSeconds(3), "INF", "[地下城] 刀剑掉落 短刀 秋田藤四郎"),
+    new LogEntry(logStart.AddSeconds(4), "INF", "[后勤] 派遣远征 部队1已派遣至 2-4"),
+    new LogEntry(logStart.AddSeconds(5), "INF", "停止前状态：SUCCEEDED"),
+]);
+var remarkedDungeon = remarkedParallelTaskRecords.FirstOrDefault(record => record.TaskName == "我的地下城备注");
+var remarkedLogistics = remarkedParallelTaskRecords.FirstOrDefault(record => record.TaskName == "我的后勤备注");
+AssertTrue(remarkedDungeon != null, "自定义备注的地下城任务应保留为工作记录");
+AssertTrue(remarkedLogistics != null, "自定义备注的后勤任务应保留为工作记录");
+if (remarkedDungeon != null && remarkedLogistics != null)
+{
+    AssertTrue(remarkedDungeon.SwordDrops.Count == 1, "自定义备注不应影响地下城业务日志归属");
+    AssertTrue(remarkedLogistics.LogisticsCounts["派遣远征"] == 1, "自定义备注不应影响后勤业务日志归属");
+}
 
 var finishedLogisticsThenDungeonRecords = WorkRecordBuilder.Build([
     new LogEntry(logStart, "INF", "开始任务：后勤"),
@@ -225,6 +260,59 @@ AssertTrue(merged.EndDate == secondSavedSource.EndTime.Date, "合并记录应取
 AssertTrue(merged.Duration == TimeSpan.FromMinutes(50), "合并记录应累加持续时间");
 AssertTrue(merged.SortieCount == 3 && merged.RoundCount == 5, "合并记录应累加出阵统计");
 AssertTrue(merged.ResourceGains["木炭"] == 200, "合并记录应累加资源收获");
+
+var renamedMergeSource = new WorkRecord
+{
+    TaskName = "大阪挖地",
+    Entry = "Underground",
+    StartTime = new DateTime(2026, 8, 22, 10, 0, 0),
+    EndTime = new DateTime(2026, 8, 22, 10, 20, 0),
+    Status = "成功",
+    SortieCount = 1,
+};
+var legacyMergeSource = new WorkRecord
+{
+    TaskName = "地下城",
+    Entry = "Underground",
+    StartTime = new DateTime(2026, 8, 21, 10, 0, 0),
+    EndTime = new DateTime(2026, 8, 21, 10, 20, 0),
+    Status = "成功",
+    SortieCount = 2,
+};
+var renamedMerged = SavedWorkRecordService.Merge([legacyMergeSource, renamedMergeSource], "大阪挖地合并");
+AssertTrue(renamedMerged.SortieCount == 3, "新旧任务名称应允许合并实时工作记录");
+var renamedSavedMerged = SavedWorkRecordService.Merge(
+    [SavedWorkRecordService.Save(legacyMergeSource, "旧地下城"),
+     SavedWorkRecordService.Save(renamedMergeSource, "新大阪挖地")],
+    "大阪挖地保存记录合并");
+AssertTrue(renamedSavedMerged.Segments.Count == 2, "新旧任务名称应允许合并已保存工作记录");
+
+var customRemarkOldSource = new WorkRecord
+{
+    TaskName = "地下城旧备注",
+    Entry = "Underground",
+    StartTime = new DateTime(2026, 8, 23, 10, 0, 0),
+    EndTime = new DateTime(2026, 8, 23, 10, 20, 0),
+    Status = "成功",
+};
+var customRemarkNewSource = new WorkRecord
+{
+    TaskName = "大阪挖地新备注",
+    Entry = "Underground",
+    StartTime = new DateTime(2026, 8, 24, 10, 0, 0),
+    EndTime = new DateTime(2026, 8, 24, 10, 20, 0),
+    Status = "成功",
+};
+var customRemarkMerged = SavedWorkRecordService.Merge(
+    [customRemarkOldSource, customRemarkNewSource], "备注任务合并");
+AssertTrue(customRemarkMerged.Duration == TimeSpan.FromMinutes(40),
+    "相同 pipeline 入口的不同任务备注应允许合并");
+var customRemarkSavedMerged = SavedWorkRecordService.Merge(
+    [SavedWorkRecordService.Save(customRemarkOldSource, "旧备注记录"),
+     SavedWorkRecordService.Save(customRemarkNewSource, "新备注记录")],
+    "备注保存记录合并");
+AssertTrue(customRemarkSavedMerged.Entry == "Underground" && customRemarkSavedMerged.Segments.Count == 2,
+    "相同 pipeline 入口的不同任务备注应允许合并已保存记录并保留入口");
 
 var duplicateMerged = SavedWorkRecordService.Merge(
     [firstSavedSource, firstSavedSource],

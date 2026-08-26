@@ -8,6 +8,8 @@ namespace MFAAvalonia.Models;
 public sealed class SavedWorkRecordSegment
 {
     public string TaskName { get; set; } = "";
+    /// <summary>任务 pipeline 入口，用于兼容不同任务备注。</summary>
+    public string Entry { get; set; } = "";
     public string ConfigName { get; set; } = "";
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
@@ -33,6 +35,7 @@ public sealed class SavedWorkRecordSegment
         return new SavedWorkRecordSegment
         {
             TaskName = source.TaskName,
+            Entry = source.Entry,
             ConfigName = source.ConfigName,
             StartTime = source.StartTime,
             EndTime = source.EndTime,
@@ -60,6 +63,7 @@ public sealed class SavedWorkRecordSegment
         var result = new WorkRecord
         {
             TaskName = TaskName,
+            Entry = Entry,
             ConfigName = ConfigName,
             StartTime = StartTime,
             EndTime = EndTime,

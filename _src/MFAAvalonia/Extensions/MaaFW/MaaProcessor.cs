@@ -4165,6 +4165,7 @@ public class MaaProcessor
     {
         if (maa == null || task == null) return MaaJobStatus.Invalid;
 
+        using var entryScope = LoggerHelper.PushContext(entry: task);
         MaaJobStatus jobStatus = MaaJobStatus.Failed;
         var job = maa.AppendTask(task, param ?? "{}");
         await TaskManager.RunTaskAsync((Action)(() =>

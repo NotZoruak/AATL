@@ -17,6 +17,7 @@
       "G_IsAnnouncementPopup",
       "G_IsTrainingLetter",
       "G_IsLoginReward",
+      "G_IsAdvertisementPopup",
       "G_IsGameIcon",
       "G_IsLoginButton",
       "G_IsGameUpdatePopup",
@@ -247,6 +248,24 @@
     "action": {"type": "Click"},
     "post_delay": 3000,
     "next": ["G_DetectWhereAmI"]
+  },
+  "G_IsAdvertisementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "template": "Common/广告.png",
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
+    "next": ["G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
   },
   "G_IsLoginButton": {
     "recognition": {

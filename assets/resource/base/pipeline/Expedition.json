@@ -13,6 +13,7 @@
       "E_IsAnnouncementPopup",
       "E_IsTrainingLetter",
       "E_IsLoginReward",
+      "E_IsAdvertisementPopup",
       "E_IsGameIcon",
       "E_IsLoginButton",
       "E_IsGameUpdatePopup",
@@ -768,6 +769,24 @@
     },
     "action": {"type": "Click"},
     "next": ["Expedition"]
+  },
+  "E_IsAdvertisementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "template": "Common/广告.png",
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
+    "next": ["Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_IsLoginButton": {
     "recognition": {
@@ -1802,6 +1821,7 @@
       "E_IsAnnouncementPopup",
       "E_FlowerIsTrainingLetter",
       "E_IsLoginReward",
+      "E_FlowerIsAdvertisementPopup",
       "E_FlowerIsGameIcon",
       "E_FlowerIsLoginButton",
       "E_FlowerIsGameUpdatePopup",
@@ -1894,6 +1914,24 @@
     },
     "action": {"type": "Click"},
     "post_wait_freezes": {"time": 200},
+    "next": ["E_FlowerBattleHub"],
+    "on_error": ["E_FlowerBattleHub"]
+  },
+  "E_FlowerIsAdvertisementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "template": "Common/广告.png",
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
     "next": ["E_FlowerBattleHub"],
     "on_error": ["E_FlowerBattleHub"]
   },

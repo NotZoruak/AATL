@@ -10,6 +10,7 @@
       "DT_IsSwordDropColor",
       "DT_IsAnnouncementPopup",
       "DT_IsTrainingLetter",
+      "DT_IsAdvertisementPopup",
       "DT_IsGameIcon",
       "DT_IsLoginButton",
       "DT_IsGameUpdatePopup",
@@ -159,6 +160,24 @@
     "next": [],
     "on_error": []
   },
+  "DT_HandleAdvertisementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "template": "Common/广告.png",
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
+    "next": [],
+    "on_error": []
+  },
   "DT_HandleLoginButton": {
     "recognition": {
       "type": "TemplateMatch",
@@ -264,6 +283,24 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_DetectWhereAmI"],
+    "on_error": ["DT_DetectWhereAmI"]
+  },
+  "DT_IsAdvertisementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "template": "Common/广告.png",
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
     "next": ["DT_DetectWhereAmI"],
     "on_error": ["DT_DetectWhereAmI"]
   },
@@ -398,6 +435,7 @@
       "[JumpBack]DT_HandleSwordDrop",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",
@@ -559,6 +597,7 @@
       "[JumpBack]DT_HandleSwordDrop",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",
@@ -759,6 +798,7 @@
       "[JumpBack]DT_HandleSwordDrop",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",
@@ -909,6 +949,7 @@
       "[JumpBack]DT_HandleSwordDrop",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",
@@ -1795,6 +1836,7 @@
       "[JumpBack]DT_HandleSwordDrop",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",
@@ -3232,6 +3274,7 @@
       "[JumpBack]DT_HandleSwordDrop",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",
@@ -3594,6 +3637,7 @@
       "[JumpBack]DT_HandleSwordDrop",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",

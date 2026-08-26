@@ -230,18 +230,24 @@ public static class WorkRecordBuilder
     /// <summary>按词条前缀寻找对应任务，支持地下城与后勤并行运行。</summary>
     private static WorkRecord? FindRecordForPrefix(string prefix, List<WorkRecord> records, WorkRecord current)
     {
-        var taskName = prefix switch
+        string[] taskEntries = prefix switch
         {
-            "远征计时" => "后勤",
-            _ => prefix,
+            "远征计时" or "后勤" or "本丸后勤" => ["Expedition"],
+            "地下城" => ["Underground"],
+            "合战场" or "常驻作战" => ["Sortie"],
+            "联队战" or "海陆联队" => ["LRentaisen"],
+            "战术强化" => ["TacticalTraining"],
+            _ => [],
         };
 
-        if (taskName is "地下城" or "合战场" or "联队战" or "战术强化" or "后勤")
+        if (taskEntries.Length > 0)
         {
-            var matching = records.LastOrDefault(record =>
-                record.HasStarted && record.TaskName == taskName && !record.IsClosedByStopStatus);
-            if (matching != null)
-                return matching;
+            var matchingByEntry = records.LastOrDefault(record =>
+                record.HasStarted
+                && taskEntries.Contains(record.Entry, StringComparer.Ordinal)
+                && !record.IsClosedByStopStatus);
+            if (matchingByEntry != null)
+                return matchingByEntry;
         }
 
         return current;

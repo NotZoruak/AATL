@@ -20,6 +20,7 @@
       "D_IsTrainingLetter",
       "D_IsLoginReward",
       "D_IsInternalReport",
+      "D_IsAdvertisementPopup",
       "D_IsGameIcon",
       "D_IsLoginButton",
       "D_IsGameUpdatePopup",
@@ -651,6 +652,24 @@
     "pre_delay": 100,
     "post_delay": 3000,
     "next": ["D_DetectWhereAmI"]
+  },
+  "D_IsAdvertisementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "template": "Common/广告.png",
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
+    "next": ["D_DetectWhereAmI"],
+    "on_error": ["D_DetectWhereAmI"]
   },
   "D_IsLoginButton": {
     "recognition": {

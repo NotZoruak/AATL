@@ -30,6 +30,7 @@
       "S_IsAnnouncementPopup",
       "S_IsTrainingLetter",
       "S_IsLoginReward",
+      "S_IsAdvertisementPopup",
       "S_IsGameIcon",
       "S_IsLoginButton",
       "S_IsGameUpdatePopup",
@@ -2459,6 +2460,24 @@
     "action": {"type": "Click"},
     "next": ["S_DetectWhereAmI"]
   },
+  "S_IsAdvertisementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "template": "Common/广告.png",
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
+    "next": ["S_DetectWhereAmI"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
   "S_IsLoginButton": {
     "recognition": {
       "type": "TemplateMatch",
@@ -3062,6 +3081,7 @@
       "SF_IsAnnouncementPopup",
       "SF_IsTrainingLetter",
       "SF_IsLoginReward",
+      "SF_IsAdvertisementPopup",
       "SF_IsGameIcon",
       "SF_IsLoginButton",
       "SF_IsGameUpdatePopup",
@@ -3196,6 +3216,24 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["SF_DetectWhereAmI"],
+    "on_error": ["SF_DetectWhereAmI"]
+  },
+  "SF_IsAdvertisementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "template": "Common/广告.png",
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
     "next": ["SF_DetectWhereAmI"],
     "on_error": ["SF_DetectWhereAmI"]
   },

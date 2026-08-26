@@ -10,6 +10,8 @@ public sealed class SavedWorkRecord
 {
     public string DisplayName { get; set; } = "";
     public string TaskName { get; set; } = "";
+    /// <summary>任务 pipeline 入口，用于在用户修改备注后仍能识别同一任务。</summary>
+    public string Entry { get; set; } = "";
     public string ConfigName { get; set; } = "";
 
     /// <summary>当前页签显示名称，仅用于界面显示，不写入保存文件。</summary>
@@ -51,6 +53,7 @@ public sealed class SavedWorkRecord
         {
             DisplayName = displayName,
             TaskName = source.TaskName,
+            Entry = source.Entry,
             ConfigName = source.ConfigName,
             DisplayConfigName = source.DisplayConfigName,
             StartDate = source.StartTime.Date,
@@ -80,6 +83,7 @@ public sealed class SavedWorkRecord
         var result = new WorkRecord
         {
             TaskName = TaskName,
+            Entry = Entry,
             ConfigName = ConfigName,
             DisplayConfigName = DisplayConfigName,
             StartTime = Segments.Count > 0 ? Segments.Min(segment => segment.StartTime) : StartDate,

@@ -7,7 +7,7 @@ namespace MFAAvalonia.Models;
 /// <summary>一条运行记录：队列中一个任务从开始到结束</summary>
 public sealed class WorkRecord
 {
-    /// <summary>任务名（词表前缀，如「地下城」）</summary>
+    /// <summary>任务显示名称（可能来自任务备注或资源 label）。</summary>
     public string TaskName { get; set; } = "";
 
     /// <summary>配置来源（来自日志 cfg= 块）</summary>

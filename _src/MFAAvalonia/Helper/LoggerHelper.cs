@@ -20,7 +20,8 @@ public static class LoggerHelper
         string? Operation,
         string? InstanceId,
         string? InstanceName,
-        string? ConfigName);
+        string? ConfigName,
+        string? Entry);
 
     private sealed class LogContextScope(LogContextFrame? previous) : IDisposable
     {
@@ -73,7 +74,8 @@ public static class LoggerHelper
         string? operation = null,
         string? instanceId = null,
         string? instanceName = null,
-        string? configName = null)
+        string? configName = null,
+        string? entry = null)
     {
         var previous = CurrentContext.Value;
         var merged = new LogContextFrame(
@@ -81,7 +83,8 @@ public static class LoggerHelper
             string.IsNullOrWhiteSpace(operation) ? previous?.Operation : operation,
             string.IsNullOrWhiteSpace(instanceId) ? previous?.InstanceId : instanceId,
             string.IsNullOrWhiteSpace(instanceName) ? previous?.InstanceName : instanceName,
-            string.IsNullOrWhiteSpace(configName) ? previous?.ConfigName : configName);
+            string.IsNullOrWhiteSpace(configName) ? previous?.ConfigName : configName,
+            string.IsNullOrWhiteSpace(entry) ? previous?.Entry : entry);
 
         CurrentContext.Value = merged;
         return new LogContextScope(previous);
@@ -234,6 +237,9 @@ public static class LoggerHelper
 
         if (!string.IsNullOrWhiteSpace(context?.Operation))
             parts.Add($"op={context.Value.Operation}");
+
+        if (!string.IsNullOrWhiteSpace(context?.Entry))
+            parts.Add($"entry={context.Value.Entry}");
 
         if (parts.Count == 0)
             return message;

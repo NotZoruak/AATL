@@ -18,8 +18,7 @@ public static class SavedWorkRecordService
         if (records.Count == 0)
             throw new ArgumentException("至少需要一条记录才能合并。", nameof(sources));
 
-        var taskName = records[0].TaskName;
-        if (records.Any(record => record.TaskName != taskName))
+        if (records.Any(record => !IsSameTask(record, records[0])))
             throw new InvalidOperationException("只能合并同名任务。");
 
         var result = MergeRecords(records, displayName);
@@ -36,8 +35,7 @@ public static class SavedWorkRecordService
         if (savedRecords.Count == 0)
             throw new ArgumentException("至少需要一条记录才能合并。", nameof(sources));
 
-        var taskName = savedRecords[0].TaskName;
-        if (savedRecords.Any(record => record.TaskName != taskName))
+        if (savedRecords.Any(record => !IsSameTask(record, savedRecords[0])))
             throw new InvalidOperationException("只能合并同名任务。");
 
         var segments = savedRecords
@@ -55,7 +53,7 @@ public static class SavedWorkRecordService
     private static SavedWorkRecord MergeRecords(IReadOnlyCollection<WorkRecord> records, string displayName)
     {
         var taskName = records.First().TaskName;
-        if (records.Any(record => record.TaskName != taskName))
+        if (records.Any(record => !IsSameTask(record, records.First())))
             throw new InvalidOperationException("只能合并同名任务。");
 
         var configNames = records
@@ -68,6 +66,7 @@ public static class SavedWorkRecordService
         {
             DisplayName = displayName,
             TaskName = taskName,
+            Entry = records.First().Entry,
             ConfigName = configNames.Count == 1 ? configNames[0] : "",
             StartDate = records.Min(record => record.StartTime.Date),
             EndDate = records.Max(record => record.EndTime.Date),
@@ -99,6 +98,23 @@ public static class SavedWorkRecordService
         result.LogisticsNaibanOutfits = result.LogisticsNaibanOutfits.OrderBy(item => item.Time).ToList();
         result.SpecialEvents = result.SpecialEvents.OrderBy(item => item.Time).ToList();
         return result;
+    }
+
+    /// <summary>判断任务名称是否属于同一个任务，兼容显示名称调整前后的历史记录。</summary>
+    private static bool IsSameTask(WorkRecord left, WorkRecord right)
+    {
+        if (!string.IsNullOrWhiteSpace(left.Entry) && !string.IsNullOrWhiteSpace(right.Entry))
+            return string.Equals(left.Entry, right.Entry, StringComparison.Ordinal);
+
+        return string.Equals(left.TaskName, right.TaskName, StringComparison.Ordinal);
+    }
+
+    private static bool IsSameTask(SavedWorkRecord left, SavedWorkRecord right)
+    {
+        if (!string.IsNullOrWhiteSpace(left.Entry) && !string.IsNullOrWhiteSpace(right.Entry))
+            return string.Equals(left.Entry, right.Entry, StringComparison.Ordinal);
+
+        return string.Equals(left.TaskName, right.TaskName, StringComparison.Ordinal);
     }
 
     /// <summary>保存一条运行记录。</summary>

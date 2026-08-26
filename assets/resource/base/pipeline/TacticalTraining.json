@@ -21,6 +21,7 @@
       "TT_IsAnnouncementPopup",
       "TT_IsLoginReward",
       "TT_IsConnectionInterrupted",
+      "TT_IsAdvertisementPopup",
       "TT_IsGameIcon",
       "TT_IsLoginButton",
       "TT_IsGameUpdatePopup",
@@ -118,6 +119,24 @@
     "pre_delay": 100,
     "post_delay": 3000,
     "next": ["TT_DetectWhereAmI"]
+  },
+  "TT_IsAdvertisementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "template": "Common/广告.png",
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
+    "next": ["TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsLoginButton": {
     "recognition": {

@@ -11,6 +11,7 @@
       "EC_IsAnnouncementPopup",
       "EC_IsTrainingLetter",
       "EC_IsLoginReward",
+      "EC_IsAdvertisementPopup",
       "EC_IsGameIcon",
       "EC_IsLoginButton",
       "EC_IsGameUpdatePopup",
@@ -127,6 +128,24 @@
     },
     "action": {"type": "Click"},
     "post_delay": 3000,
+    "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsAdvertisementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1017, 101, 62, 21],
+        "template": "Common/广告.png",
+        "threshold": [0.8]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1095, 103, 14, 15]
+      }
+    },
     "next": ["EC_DetectWhereAmI"],
     "on_error": ["EC_DetectWhereAmI"]
   },
