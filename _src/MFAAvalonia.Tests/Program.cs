@@ -4,6 +4,7 @@ using MFAAvalonia.Extensions.MaaFW.Custom;
 using MFAAvalonia.Configuration;
 using MFAAvalonia.Helper;
 using MFAAvalonia.ViewModels.Pages;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -78,6 +79,20 @@ editor.Revert();
 AssertTrue(editor.Entries[0].Wounded, "撤销应恢复已保存的立绘状态");
 
 var logStart = new DateTime(2026, 8, 21, 3, 44, 55);
+var dailyPipeline = JObject.Parse(File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "assets", "resource", "base", "pipeline", "DailyTask.json")));
+for (var index = 1; index <= 5; index++)
+{
+    var enterTrainingAction = dailyPipeline[$"DT_DrillEnterTraining{index}"]?["action"];
+    AssertTrue((string?)enterTrainingAction?["custom_action"] == "LogAction"
+        && (string?)enterTrainingAction?["custom_action_param"]?["message"] == "[日课] 出阵",
+        $"日课演练位置 {index} 进入战斗后应记录出阵");
+}
+var drillVictoryActionSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Extensions", "MaaFW", "Custom", "DrillVictoryAction.cs"));
+AssertTrue(drillVictoryActionSource.Contains("LoggerHelper.Info(\"[日课] 完成一圈\");", StringComparison.Ordinal),
+    "日课演练胜利后应记录完成一圈");
+
 var missingInstanceRecord = WorkRecordBuilder.Build([
     new LogEntry(logStart, "INF", "[cfg=Default][inst=配置 1/default] 开始任务：地下城", "Default", "default"),
     new LogEntry(logStart.AddSeconds(1), "INF", "[cfg=Default] [地下城] 出阵", "Default"),
@@ -120,6 +135,18 @@ var runningRecord = WorkRecordBuilder.Build([
 ]);
 AssertTrue(runningRecord.Count == 1, "运行中的任务应保留为一条工作记录");
 AssertTrue(runningRecord[0].Status == "进行中", "没有停止状态的运行记录应显示进行中");
+
+var swordBookScanRecords = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：地下城"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[地下城] 点击行军"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "开始任务：刀帐自动识别"),
+    new LogEntry(logStart.AddSeconds(3), "WRN", "[刀帐] 自动识别失败"),
+    new LogEntry(logStart.AddSeconds(4), "INF", "停止前状态：SUCCEEDED"),
+]);
+AssertTrue(swordBookScanRecords.Count == 1 && swordBookScanRecords[0].TaskName == "地下城",
+    "刀帐自动识别不应单独显示，也不应作为上一任务的业务记录");
+AssertTrue(swordBookScanRecords[0].SpecialEvents.Count == 0,
+    "刀帐自动识别期间的日志不应附加到上一条业务记录");
 
 var adbWarningRecord = WorkRecordBuilder.Build([
     new LogEntry(logStart, "INF", "开始任务：地下城"),

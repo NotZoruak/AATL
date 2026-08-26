@@ -9,6 +9,9 @@ namespace MFAAvalonia.Services;
 /// <summary>把日志事件流聚合为运行记录列表</summary>
 public static class WorkRecordBuilder
 {
+    // 仅用于数据采集的辅助任务不属于玩家的实际工作内容，不生成工作记录。
+    private static readonly HashSet<string> IgnoredTaskNames = ["刀帐自动识别"];
+
     // 任务定义行：名称=[地下城] 入口=[Underground]（队列启动时批量打印，不代表任务开始）
     private static readonly Regex TaskDefRegex = new(
         @"名称=\[([^\]]+)\]\s+入口=\[([^\]]+)\]", RegexOptions.Compiled);
@@ -141,6 +144,13 @@ public static class WorkRecordBuilder
                     // 新任务开始说明上一任务已正常完成；队列整体停止状态只会在最后统一输出。
                     current.Status = current.HasInterrupt ? "中断" : "成功";
                     current = null;
+                }
+
+                // 刀帐自动识别属于页面数据采集；忽略其后续日志，避免生成独立记录或污染上一项业务记录。
+                if (IgnoredTaskNames.Contains(name))
+                {
+                    current = null;
+                    continue;
                 }
 
                 if (current == null)

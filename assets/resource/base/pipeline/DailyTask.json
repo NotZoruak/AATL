@@ -1990,9 +1990,12 @@
   },
   "DT_DrillEnterTraining1": {
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [1146, 581, 109, 92]
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {
+        "level": "Info",
+        "message": "[日课] 出阵",
+        "click": [1146, 581, 109, 92]
       }
     },
     "post_wait_freezes": {
@@ -2090,9 +2093,12 @@
   },
   "DT_DrillEnterTraining2": {
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [1146, 581, 109, 92]
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {
+        "level": "Info",
+        "message": "[日课] 出阵",
+        "click": [1146, 581, 109, 92]
       }
     },
     "post_wait_freezes": {
@@ -2190,9 +2196,12 @@
   },
   "DT_DrillEnterTraining3": {
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [1146, 581, 109, 92]
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {
+        "level": "Info",
+        "message": "[日课] 出阵",
+        "click": [1146, 581, 109, 92]
       }
     },
     "post_wait_freezes": {
@@ -2290,9 +2299,12 @@
   },
   "DT_DrillEnterTraining4": {
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [1146, 581, 109, 92]
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {
+        "level": "Info",
+        "message": "[日课] 出阵",
+        "click": [1146, 581, 109, 92]
       }
     },
     "post_wait_freezes": {
@@ -2390,9 +2402,12 @@
   },
   "DT_DrillEnterTraining5": {
     "action": {
-      "type": "Click",
-      "param": {
-        "target": [1146, 581, 109, 92]
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {
+        "level": "Info",
+        "message": "[日课] 出阵",
+        "click": [1146, 581, 109, 92]
       }
     },
     "post_wait_freezes": {

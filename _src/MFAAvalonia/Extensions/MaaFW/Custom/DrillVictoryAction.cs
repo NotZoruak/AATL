@@ -39,6 +39,7 @@ public class DrillVictoryAction : IMaaCustomAction
         var position = (int?)json["position"] ?? 0;
         var count = DailyTaskDrillContext.AddVictory();
         LoggerHelper.Info($"日课 演练 位置{position} 胜利（累计 {count} 胜）");
+        LoggerHelper.Info("[日课] 完成一圈");
         return count < 3;
     }
 }
