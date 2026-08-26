@@ -12,6 +12,23 @@ using System.Reflection;
 var emptyFilter = RepairFilterSelection.FromFlags(new Dictionary<string, bool>());
 AssertFalse(emptyFilter.HasAnyFilter, "未选择任何筛选条件时不应启用筛选");
 
+AssertTrue(SwordDropNotificationMatcher.ShouldNotify(true, ["今剑"], "今剑"),
+    "开启播报且刀名在名单中时应触发通知");
+AssertFalse(SwordDropNotificationMatcher.ShouldNotify(false, ["今剑"], "今剑"),
+    "关闭播报开关时不应触发通知");
+AssertFalse(SwordDropNotificationMatcher.ShouldNotify(true, ["厚藤四郎"], "今剑"),
+    "识别到的刀名不在名单中时不应触发通知");
+AssertTrue(SwordDropNotificationMatcher.FormatMessage("太刀", "狮子王") == "获得 太刀「狮子王」",
+    "刀剑掉落通知文本应只包含获得信息");
+AssertTrue(SwordDropNotificationMatcher.GetAnimationKind("特") == SwordDropAnimationKind.Specialization,
+    "识别到特时应判定为特化动画");
+AssertTrue(SwordDropNotificationMatcher.GetAnimationKind("极") == SwordDropAnimationKind.Kiwame,
+    "识别到极时应判定为极化归来");
+AssertTrue(SwordDropNotificationMatcher.GetAnimationKind("初") == SwordDropAnimationKind.InitialDrop,
+    "识别到初时应判定为初始掉落");
+AssertTrue(SwordDropNotificationMatcher.GetAnimationKind(" 初 ") == SwordDropAnimationKind.InitialDrop,
+    "动画 OCR 结果应忽略空白字符");
+
 var selectedFilter = RepairFilterSelection.FromFlags(new Dictionary<string, bool>
 {
     ["sword_type_短"] = true,

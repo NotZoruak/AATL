@@ -31,5 +31,6 @@
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\FatigueCheckDecision.cs" Link="FatigueCheckDecision.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\RepairListOcrDecision.cs" Link="RepairListOcrDecision.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\NaibanOutfitRecognitionState.cs" Link="NaibanOutfitRecognitionState.cs" />
+    <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\SwordDropNotificationMatcher.cs" Link="SwordDropNotificationMatcher.cs" />
   </ItemGroup>
 </Project>

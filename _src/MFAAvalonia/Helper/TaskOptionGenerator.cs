@@ -158,11 +158,80 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         panel.Children.Add(CreateAllowListEntryRow());
 
         var globalOptions = MaaProcessor.Interface?.GlobalSelectOptions;
-        if (globalOptions == null || globalOptions.Count == 0) return;
-        foreach (var option in globalOptions)
+        if (globalOptions != null)
         {
-            AddOption(panel, option, null!);
+            foreach (var option in globalOptions)
+            {
+                AddOption(panel, option, null!);
+            }
         }
+
+        // 刀剑掉落播报放在全局设置末尾，开关控制总启用状态，齿轮进入名单编辑页
+        panel.Children.Add(CreateSwordDropNotificationRow());
+    }
+
+    /// <summary>全局设置 - 刀剑掉落播报入口行。</summary>
+    private Control CreateSwordDropNotificationRow()
+    {
+        var grid = new Grid
+        {
+            ColumnDefinitions =
+            {
+                new ColumnDefinition { Width = GridLength.Auto },
+                new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                new ColumnDefinition { Width = GridLength.Auto },
+            },
+            Margin = new Thickness(10, 6, 10, 6),
+        };
+
+        var labelPanel = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            Spacing = 6,
+            VerticalAlignment = VerticalAlignment.Center,
+        };
+        var titleBlock = new TextBlock
+        {
+            Text = "刀剑掉落播报",
+            FontSize = 14,
+            VerticalAlignment = VerticalAlignment.Center,
+        };
+        titleBlock.Bind(TextBlock.ForegroundProperty, new DynamicResourceExtension("SukiLowText"));
+        labelPanel.Children.Add(titleBlock);
+
+        var gearIcon = new FluentIcons.Avalonia.Fluent.FluentIcon
+        {
+            Icon = FluentIcons.Common.Icon.Settings,
+            IconSize = FluentIcons.Common.IconSize.Size16,
+            Width = 16,
+            Height = 16,
+            Margin = new Thickness(6, 0, 0, 0),
+            VerticalAlignment = VerticalAlignment.Center,
+        };
+        ToolTip.SetTip(gearIcon, "设置刀剑掉落播报名单");
+        gearIcon.PointerPressed += (_, e) =>
+        {
+            e.Handled = true;
+            viewModel.SubPageTitle = "刀剑掉落播报";
+            viewModel.SubPageContent = new SwordDropNotificationUserControl();
+            viewModel.IsSubPageOpen = true;
+        };
+        labelPanel.Children.Add(gearIcon);
+        Grid.SetColumn(labelPanel, 0);
+        grid.Children.Add(labelPanel);
+
+        var toggle = new ToggleSwitch
+        {
+            Classes = { "Switch" },
+            IsChecked = ConfigurationManager.Current.GetValue(ConfigurationKeys.SwordDropNotificationEnabled, false),
+            VerticalAlignment = VerticalAlignment.Top,
+        };
+        toggle.IsCheckedChanged += (_, _) => ConfigurationManager.Current.SetValue(
+            ConfigurationKeys.SwordDropNotificationEnabled, toggle.IsChecked == true);
+        Grid.SetColumn(toggle, 2);
+        grid.Children.Add(toggle);
+
+        return grid;
     }
 
     /// <summary>全局设置 - 刀解/合成许可名单入口行（标签 + 齿轮，齿轮进入子页面）</summary>

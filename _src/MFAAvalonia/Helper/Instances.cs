@@ -430,6 +430,8 @@ public static partial class Instances
     private static GameSettingsUserControlModel _gameSettingsUserControlModel;
     private static AllowListUserControl _allowListUserControl;
     private static AllowListUserControlModel _allowListUserControlModel;
+    private static SwordDropNotificationUserControl _swordDropNotificationUserControl;
+    private static SwordDropNotificationUserControlModel _swordDropNotificationUserControlModel;
     private static VersionUpdateSettingsUserControl _versionUpdateSettingsUserControl;
     private static VersionUpdateSettingsUserControlModel _versionUpdateSettingsUserControlModel;
     private static StartSettingsUserControl _startSettingsUserControl;

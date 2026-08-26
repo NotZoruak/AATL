@@ -44,6 +44,8 @@ public static class ConfigurationKeys
 
     /// <summary>刀解/合成许可名单（全局配置，刀剑基础名称列表）。</summary>
     public const string AllowListSwords = "AllowListSwords";
+    public const string SwordDropNotificationEnabled = "SwordDropNotificationEnabled";
+    public const string SwordDropNotificationSwords = "SwordDropNotificationSwords";
 
     #endregion
 

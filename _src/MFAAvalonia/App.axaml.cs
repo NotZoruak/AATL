@@ -385,6 +385,7 @@ public partial class App : Application
             .AddView<ConnectSettingsUserControl, ConnectSettingsUserControlModel>(services)
             .AddView<GameSettingsUserControl, GameSettingsUserControlModel>(services)
             .AddView<AllowListUserControl, AllowListUserControlModel>(services)
+            .AddView<SwordDropNotificationUserControl, SwordDropNotificationUserControlModel>(services)
             .AddView<GuiSettingsUserControl, GuiSettingsUserControlModel>(services)
             .AddView<StartSettingsUserControl, StartSettingsUserControlModel>(services)
             .AddView<ExternalNotificationSettingsUserControl, ExternalNotificationSettingsUserControlModel>(services)

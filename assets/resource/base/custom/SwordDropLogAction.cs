@@ -1,12 +1,14 @@
 using Avalonia;
 using MaaFramework.Binding;
 using MaaFramework.Binding.Custom;
+using MFAAvalonia.Configuration;
 using MFAAvalonia.Extensions;
 using MFAAvalonia.Helper;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -23,6 +25,7 @@ public class SwordDropLogAction : IMaaCustomAction
     // 跳过 OCR 与打点,但保留原点击行为
     private static readonly int[] DefaultCheckRoi = [53, 257, 54, 32];
     private static readonly int[] DefaultCheckColor = [248, 244, 230];
+    private static readonly int[] AnimationRoi = [131, 354, 136, 126];
     private const int DefaultCheckTolerance = 3;
 
     public string Name { get; set; } = nameof(SwordDropLogAction);
@@ -42,15 +45,87 @@ public class SwordDropLogAction : IMaaCustomAction
         }
         else
         {
-            var text = ReadText(context, roi);
-            if (TryValidateSword(text, out var swordType, out var swordName))
+            var animationKind = SwordDropNotificationMatcher.GetAnimationKind(ReadText(context, AnimationRoi));
+            if (animationKind is SwordDropAnimationKind.Specialization or SwordDropAnimationKind.Kiwame)
             {
-                LoggerHelper.Info($"{prefix} 刀剑掉落 {swordType} {swordName}");
+                LoggerHelper.Info($"{prefix} 特化或极化动画，跳过刀剑掉落识别");
+            }
+            else if (animationKind == SwordDropAnimationKind.InitialDrop)
+            {
+                var text = ReadText(context, roi);
+                if (TryValidateSword(text, out var swordType, out var swordName))
+                {
+                    SaveScreenshot(context, swordName, "初始掉落");
+                    LoggerHelper.Info($"{prefix} 刀剑掉落 {swordType} {swordName}");
+                    TryNotify(swordName, swordType);
+                }
+                else
+                {
+                    SaveScreenshot(context, "未识别刀剑", "初始掉落");
+                    LoggerHelper.Warning($"{prefix} 初始掉落刀名 OCR 校验失败: {text}");
+                }
+            }
+            else
+            {
+                ProcessOrdinaryDrop(context, roi, prefix);
             }
         }
 
         ClickRectangle(context, click);
         return true;
+    }
+
+    /// <summary>处理未识别到结果动画标记时的原有掉落识别流程。</summary>
+    private static void ProcessOrdinaryDrop<T>(T context, int[] roi, string prefix) where T : IMaaContext
+    {
+        var text = ReadText(context, roi);
+        if (TryValidateSword(text, out var swordType, out var swordName))
+        {
+            LoggerHelper.Info($"{prefix} 刀剑掉落 {swordType} {swordName}");
+            TryNotify(swordName, swordType);
+        }
+    }
+
+    /// <summary>按全局开关和播报名单发送刀剑掉落桌面通知。</summary>
+    private static void TryNotify(string swordName, string swordType)
+    {
+        if (!ConfigurationManager.Current.GetValue(ConfigurationKeys.SwordDropNotificationEnabled, false))
+            return;
+
+        if (!ConfigurationManager.Current.TryGetValue(
+                ConfigurationKeys.SwordDropNotificationSwords, out List<string>? swords)
+            || !SwordDropNotificationMatcher.ShouldNotify(true, swords, swordName))
+        {
+            return;
+        }
+
+        ToastNotification.Show(SwordDropNotificationMatcher.FormatMessage(swordType, swordName));
+    }
+
+    /// <summary>保存当前完整画面，截图失败不影响后续点击。</summary>
+    private static void SaveScreenshot<T>(T context, string swordName, string suffix) where T : IMaaContext
+    {
+        try
+        {
+            using var image = context.GetImage();
+            if (image == null)
+                return;
+
+            using var bitmap = image.ToBitmap();
+            if (bitmap == null)
+                return;
+
+            var directory = Path.Combine(AppPaths.InstallRoot, "debug", "sword_drop");
+            Directory.CreateDirectory(directory);
+            var safeName = string.Concat(swordName.Select(character => Path.GetInvalidFileNameChars().Contains(character) ? '_' : character));
+            var path = Path.Combine(directory, $"{DateTime.Now:yyyyMMdd_HHmmss_fff}_{safeName}_{suffix}.png");
+            bitmap.Save(path);
+            LoggerHelper.Info($"保存刀剑掉落截图: {path}");
+        }
+        catch (Exception e)
+        {
+            LoggerHelper.Warning($"保存刀剑掉落截图失败: {e.Message}");
+        }
     }
 
     /// <summary>
