@@ -6,6 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.5-beta1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\MFAAvalonia\Configuration\ConfigurationKeys.cs" Link="ConfigurationKeys.cs" />
+    <Compile Include="..\MFAAvalonia\Configuration\InstanceConfiguration.cs" Link="InstanceConfiguration.cs" />
     <Compile Include="..\MFAAvalonia\Models\FormationPreset.cs" Link="FormationPreset.cs" />
     <Compile Include="..\MFAAvalonia\Models\WorkRecord.cs" Link="WorkRecord.cs" />
     <Compile Include="..\MFAAvalonia\Models\SwordBookEntry.cs" Link="SwordBookEntry.cs" />
@@ -19,6 +24,8 @@
     <Compile Include="..\MFAAvalonia\Models\WarehouseData.cs" Link="WarehouseData.cs" />
     <Compile Include="..\MFAAvalonia\Services\WarehouseDataEditor.cs" Link="WarehouseDataEditor.cs" />
     <Compile Include="..\MFAAvalonia\Services\WarehouseScanDraftService.cs" Link="WarehouseScanDraftService.cs" />
+    <Compile Include="..\MFAAvalonia\Services\UpdateDataScheduleService.cs" Link="UpdateDataScheduleService.cs" />
+    <Compile Include="..\MFAAvalonia\Services\UpdateDataPersistenceService.cs" Link="UpdateDataPersistenceService.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\RepairFilterSelection.cs" Link="RepairFilterSelection.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\RepairCooldownState.cs" Link="RepairCooldownState.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\FatigueCheckDecision.cs" Link="FatigueCheckDecision.cs" />

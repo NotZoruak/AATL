@@ -1,7 +1,13 @@
 using MFAAvalonia.Models;
 using MFAAvalonia.Services;
 using MFAAvalonia.Extensions.MaaFW.Custom;
+using MFAAvalonia.Configuration;
+using MFAAvalonia.Helper;
+using MFAAvalonia.ViewModels.Pages;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 
 var emptyFilter = RepairFilterSelection.FromFlags(new Dictionary<string, bool>());
 AssertFalse(emptyFilter.HasAnyFilter, "未选择任何筛选条件时不应启用筛选");
@@ -382,6 +388,186 @@ AssertTrue(historyDraft.ResourceHistory.Count == 1
     && historyDraft.ResourceHistory[0].Values["木炭"] == 1234,
     "完整仓库识别结束后应追加核心资源历史快照");
 
+var updateDataConfigRoot = Path.Combine(Path.GetTempPath(), $"matr-update-data-config-{Guid.NewGuid():N}");
+Directory.CreateDirectory(updateDataConfigRoot);
+AppPaths.InstancesDirectory = updateDataConfigRoot;
+try
+{
+    var sameDay = new DateTime(2026, 8, 26, 9, 30, 0, DateTimeKind.Local);
+    var updateDataConfig = new InstanceConfiguration("update-data-first-run");
+    AssertTrue(InvokeUpdateDataShouldRun(updateDataConfig, "每天", sameDay),
+        "更新数据在没有成功时间时应允许运行");
+    AssertTrue(InvokeUpdateDataGetLastSucceeded(updateDataConfig) == null,
+        "缺少成功时间时应返回空值");
+
+    InvokeUpdateDataMarkSucceeded(updateDataConfig, sameDay);
+    AssertTrue(InvokeUpdateDataShouldRun(updateDataConfig, "每次", sameDay),
+        "触发间隔为每次时不应受上次成功时间影响");
+    AssertTrue(InvokeUpdateDataGetLastSucceeded(updateDataConfig) == sameDay,
+        "记录成功时间后应按原值读回");
+
+    var reloadedConfig = new InstanceConfiguration("update-data-first-run");
+    AssertTrue(File.Exists(reloadedConfig.GetConfigFilePath()),
+        "记录成功时间后应生成实例配置文件");
+    var reloadedSucceededAt = InvokeUpdateDataGetLastSucceeded(reloadedConfig);
+    AssertTrue(reloadedSucceededAt == sameDay,
+        "重新加载实例配置后应能从真实配置文件读回成功时间");
+
+    var isolatedConfig = new InstanceConfiguration("update-data-second-instance");
+    AssertTrue(InvokeUpdateDataGetLastSucceeded(isolatedConfig) == null,
+        "不同实例的成功时间记录不应互相影响");
+    AssertTrue(InvokeUpdateDataShouldRun(isolatedConfig, "每天", sameDay),
+        "其他实例没有成功时间时仍应允许运行");
+
+    var dailyConfig = new InstanceConfiguration("update-data-daily");
+    InvokeUpdateDataMarkSucceeded(dailyConfig, sameDay);
+    AssertFalse(InvokeUpdateDataShouldRun(dailyConfig, "每天", sameDay.AddHours(2)),
+        "每天触发间隔在同一本地日期内应跳过");
+    AssertTrue(InvokeUpdateDataShouldRun(dailyConfig, "每天", sameDay.AddDays(1)),
+        "每天触发间隔跨天后应重新运行");
+
+    var weeklyConfig = new InstanceConfiguration("update-data-weekly");
+    InvokeUpdateDataMarkSucceeded(weeklyConfig, new DateTime(2026, 8, 26, 9, 30, 0, DateTimeKind.Local));
+    AssertFalse(InvokeUpdateDataShouldRun(weeklyConfig, "每周", new DateTime(2026, 8, 28, 9, 30, 0, DateTimeKind.Local)),
+        "每周触发间隔在同一 ISO 周内应跳过");
+    AssertTrue(InvokeUpdateDataShouldRun(weeklyConfig, "每周", new DateTime(2026, 8, 31, 9, 30, 0, DateTimeKind.Local)),
+        "每周触发间隔跨 ISO 周后应重新运行");
+
+    var invalidTimeConfig = new InstanceConfiguration("update-data-invalid");
+    invalidTimeConfig.SetValue(ConfigurationKeys.UpdateDataLastSucceededAt, "not-a-time");
+    AssertTrue(InvokeUpdateDataShouldRun(invalidTimeConfig, "每天", sameDay),
+        "损坏的成功时间记录不应阻止更新数据运行");
+    AssertTrue(InvokeUpdateDataGetLastSucceeded(invalidTimeConfig) == null,
+        "损坏的成功时间记录应按空值处理");
+}
+finally
+{
+    DeleteDirectoryIfExists(updateDataConfigRoot);
+}
+
+ConfigurationManager.Current.Reset();
+var oldWarehouse = new WarehouseData
+{
+    CoreResources = new Dictionary<string, int> { ["木炭"] = 10, ["玉钢"] = 20 },
+    OtherItems = new Dictionary<string, int> { ["御守·桃"] = 1 },
+};
+var oldSwordBook = new List<SwordBookPortraitState>
+{
+    new("1", true, false, false, false, false),
+};
+ConfigurationManager.Current.SetValue(ConfigurationKeys.WarehouseData, oldWarehouse.Clone());
+ConfigurationManager.Current.SetValue(ConfigurationKeys.SwordBookEntries, CloneSwordBookStates(oldSwordBook));
+
+var warehouseDraftSavePath = Path.Combine(Path.GetTempPath(), $"matr-update-data-warehouse-{Guid.NewGuid():N}.json");
+File.WriteAllText(warehouseDraftSavePath,
+    """
+    {
+      "core_resources": {
+        "木炭": 123,
+        "小判": 456
+      },
+      "other_items": {
+        "御守桃": 2
+      },
+      "resource_history": [
+        {
+          "recorded_at": "2026-08-25T12:00:00+08:00",
+          "values": {
+            "木炭": 120
+          }
+        }
+      ]
+    }
+    """);
+AssertTrue(InvokeTrySaveWarehouseDraft(warehouseDraftSavePath),
+    "有效的仓库识别草稿应能写入正式仓库数据");
+DeleteIfExists(warehouseDraftSavePath);
+
+var savedWarehouse = ConfigurationManager.Current.GetValue(ConfigurationKeys.WarehouseData, new WarehouseData());
+var untouchedSwordBook = ConfigurationManager.Current.GetValue(ConfigurationKeys.SwordBookEntries, new List<SwordBookPortraitState>());
+AssertTrue(savedWarehouse.CoreResources["木炭"] == 123 && savedWarehouse.CoreResources["小判"] == 456,
+    "保存仓库草稿后应使用草稿中的核心资源覆盖正式数据");
+AssertTrue(savedWarehouse.OtherItems.ContainsKey("御守·桃") && savedWarehouse.OtherItems["御守·桃"] == 2,
+    "保存仓库草稿时应复用现有名称归一化逻辑");
+AssertTrue(savedWarehouse.ResourceHistory.Count == 1 && savedWarehouse.ResourceHistory[0].Values["木炭"] == 120,
+    "保存仓库草稿后应保留草稿中的历史快照");
+AssertTrue(AreSameSwordBookStates(untouchedSwordBook, oldSwordBook),
+    "保存仓库草稿时不应改写刀帐正式数据");
+
+ConfigurationManager.Current.Reset();
+ConfigurationManager.Current.SetValue(ConfigurationKeys.WarehouseData, oldWarehouse.Clone());
+ConfigurationManager.Current.SetValue(ConfigurationKeys.SwordBookEntries, CloneSwordBookStates(oldSwordBook));
+var invalidWarehouseDraftPath = Path.Combine(Path.GetTempPath(), $"matr-update-data-warehouse-invalid-{Guid.NewGuid():N}.json");
+File.WriteAllText(invalidWarehouseDraftPath, "{ invalid json");
+AssertFalse(InvokeTrySaveWarehouseDraft(invalidWarehouseDraftPath),
+    "损坏的仓库识别草稿不应写入正式数据");
+DeleteIfExists(invalidWarehouseDraftPath);
+var unchangedWarehouse = ConfigurationManager.Current.GetValue(ConfigurationKeys.WarehouseData, new WarehouseData());
+var unchangedSwordBook = ConfigurationManager.Current.GetValue(ConfigurationKeys.SwordBookEntries, new List<SwordBookPortraitState>());
+AssertTrue(unchangedWarehouse.CoreResources["木炭"] == 10 && unchangedWarehouse.CoreResources["玉钢"] == 20,
+    "仓库草稿损坏时应保留原有仓库数据");
+AssertTrue(AreSameSwordBookStates(unchangedSwordBook, oldSwordBook),
+    "仓库草稿损坏时不应影响刀帐数据");
+
+ConfigurationManager.Current.Reset();
+ConfigurationManager.Current.SetValue(ConfigurationKeys.WarehouseData, oldWarehouse.Clone());
+ConfigurationManager.Current.SetValue(ConfigurationKeys.SwordBookEntries, CloneSwordBookStates(oldSwordBook));
+var swordBookDraftPath = Path.Combine(Path.GetTempPath(), $"matr-update-data-swordbook-{Guid.NewGuid():N}.json");
+File.WriteAllText(swordBookDraftPath,
+    """
+    [
+      {
+        "Number": "3",
+        "Owned": true,
+        "Wounded": true,
+        "TrueSword": false,
+        "InnerCare": false,
+        "Casual": true
+      }
+    ]
+    """);
+AssertTrue(InvokeTrySaveSwordBookDraft(swordBookDraftPath),
+    "有效的刀帐识别草稿应能写入正式刀帐数据");
+DeleteIfExists(swordBookDraftPath);
+var savedSwordBook = ConfigurationManager.Current.GetValue(ConfigurationKeys.SwordBookEntries, new List<SwordBookPortraitState>());
+var untouchedWarehouse = ConfigurationManager.Current.GetValue(ConfigurationKeys.WarehouseData, new WarehouseData());
+AssertTrue(savedSwordBook.Count == 1
+    && savedSwordBook[0].Number == "3"
+    && savedSwordBook[0].Owned
+    && savedSwordBook[0].Wounded
+    && savedSwordBook[0].Casual,
+    "保存刀帐草稿后应使用草稿中的拥有状态覆盖正式数据");
+AssertTrue(untouchedWarehouse.CoreResources["木炭"] == 10 && untouchedWarehouse.CoreResources["玉钢"] == 20,
+    "保存刀帐草稿时不应改写仓库正式数据");
+
+ConfigurationManager.Current.Reset();
+ConfigurationManager.Current.SetValue(ConfigurationKeys.WarehouseData, oldWarehouse.Clone());
+ConfigurationManager.Current.SetValue(ConfigurationKeys.SwordBookEntries, CloneSwordBookStates(oldSwordBook));
+var invalidSwordBookDraftPath = Path.Combine(Path.GetTempPath(), $"matr-update-data-swordbook-invalid-{Guid.NewGuid():N}.json");
+File.WriteAllText(invalidSwordBookDraftPath,
+    """
+    [
+      {
+        "Number": "",
+        "Owned": true,
+        "Wounded": false,
+        "TrueSword": false,
+        "InnerCare": false,
+        "Casual": false
+      }
+    ]
+    """);
+AssertFalse(InvokeTrySaveSwordBookDraft(invalidSwordBookDraftPath),
+    "损坏的刀帐识别草稿不应写入正式数据");
+DeleteIfExists(invalidSwordBookDraftPath);
+var unchangedSwordBookAfterInvalid = ConfigurationManager.Current.GetValue(ConfigurationKeys.SwordBookEntries, new List<SwordBookPortraitState>());
+var unchangedWarehouseAfterSwordBookInvalid = ConfigurationManager.Current.GetValue(ConfigurationKeys.WarehouseData, new WarehouseData());
+AssertTrue(AreSameSwordBookStates(unchangedSwordBookAfterInvalid, oldSwordBook),
+    "刀帐草稿损坏时应保留原有刀帐数据");
+AssertTrue(unchangedWarehouseAfterSwordBookInvalid.CoreResources["木炭"] == 10
+    && unchangedWarehouseAfterSwordBookInvalid.CoreResources["玉钢"] == 20,
+    "刀帐草稿损坏时不应影响仓库数据");
+
 var naibanOutfitState = new NaibanOutfitRecognitionState();
 naibanOutfitState.Begin();
 AssertTrue(naibanOutfitState.TryRecord("今剑"), "首次识别到的内番服应被记录");
@@ -407,4 +593,80 @@ static void AssertTrue(bool value, string message)
 {
     if (!value)
         throw new InvalidOperationException(message);
+}
+
+static bool InvokeUpdateDataShouldRun(InstanceConfiguration configuration, string interval, DateTime now) =>
+    (bool)InvokeStaticMethod("MFAAvalonia.Services.UpdateDataScheduleService", "ShouldRun", configuration, interval, now)!;
+
+static DateTime? InvokeUpdateDataGetLastSucceeded(InstanceConfiguration configuration) =>
+    (DateTime?)InvokeStaticMethod("MFAAvalonia.Services.UpdateDataScheduleService", "GetLastSucceeded", configuration);
+
+static void InvokeUpdateDataMarkSucceeded(InstanceConfiguration configuration, DateTime now) =>
+    InvokeStaticMethod("MFAAvalonia.Services.UpdateDataScheduleService", "MarkSucceeded", configuration, now);
+
+static bool InvokeTrySaveWarehouseDraft(string draftPath) =>
+    (bool)InvokeStaticMethod("MFAAvalonia.Services.UpdateDataPersistenceService", "TrySaveWarehouseDraft", draftPath)!;
+
+static bool InvokeTrySaveSwordBookDraft(string draftPath) =>
+    (bool)InvokeStaticMethod("MFAAvalonia.Services.UpdateDataPersistenceService", "TrySaveSwordBookDraft", draftPath)!;
+
+static object? InvokeStaticMethod(string typeName, string methodName, params object?[] arguments)
+{
+    var assembly = Assembly.GetExecutingAssembly();
+    var targetType = assembly.GetType(typeName);
+    if (targetType == null)
+        throw new InvalidOperationException($"未找到类型 {typeName}");
+
+    var method = targetType.GetMethod(methodName, BindingFlags.Public | BindingFlags.Static);
+    if (method == null)
+        throw new InvalidOperationException($"未找到方法 {typeName}.{methodName}");
+
+    try
+    {
+        return method.Invoke(null, arguments);
+    }
+    catch (TargetInvocationException exception) when (exception.InnerException != null)
+    {
+        throw exception.InnerException;
+    }
+}
+
+static List<SwordBookPortraitState> CloneSwordBookStates(IEnumerable<SwordBookPortraitState> states) =>
+    [.. states.Select(state => new SwordBookPortraitState(
+        state.Number,
+        state.Owned,
+        state.Wounded,
+        state.TrueSword,
+        state.InnerCare,
+        state.Casual))];
+
+static bool AreSameSwordBookStates(IReadOnlyList<SwordBookPortraitState> left, IReadOnlyList<SwordBookPortraitState> right)
+{
+    if (left.Count != right.Count)
+        return false;
+
+    for (var i = 0; i < left.Count; i++)
+    {
+        if (left[i].Number != right[i].Number
+            || left[i].Owned != right[i].Owned
+            || left[i].Wounded != right[i].Wounded
+            || left[i].TrueSword != right[i].TrueSword
+            || left[i].InnerCare != right[i].InnerCare
+            || left[i].Casual != right[i].Casual)
+            return false;
+    }
+
+    return true;
+}
+
+static void DeleteIfExists(string path)
+{
+    if (File.Exists(path))
+        File.Delete(path);
+}
+
+static void DeleteDirectoryIfExists(string path)
+{
+    if (Directory.Exists(path))
+        Directory.Delete(path, true);
 }

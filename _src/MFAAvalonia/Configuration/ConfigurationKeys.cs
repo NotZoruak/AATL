@@ -39,6 +39,9 @@ public static class ConfigurationKeys
     /// <summary>仓库数据与核心资源历史。</summary>
     public const string WarehouseData = "WarehouseData";
 
+    /// <summary>更新数据任务最近一次成功完成时间。</summary>
+    public const string UpdateDataLastSucceededAt = "UpdateData.LastSucceededAt";
+
     /// <summary>刀解/合成许可名单（全局配置，刀剑基础名称列表）。</summary>
     public const string AllowListSwords = "AllowListSwords";
 
@@ -264,6 +267,7 @@ public static class ConfigurationKeys
         CurrentController,
         CurrentControllerName,
         Resource,
+        UpdateDataLastSucceededAt,
         EnableLiveView,
         LiveViewRefreshRate,
         Prescript,
