@@ -3610,8 +3610,33 @@ public class MaaProcessor
                     },
                 };
 
-                // 卸装备开关：开启时选队验证后先检查空队（空队直接编入），否则进入卸装备流程
-                if (formationPreset.ClearEquipmentBeforeFormation)
+                // 仅使用记录：选定部队后直接进入记录页面，调用目标部队记录，不执行预设编成。
+                if (formationPreset.UseGameFormationRecordOnly)
+                {
+                    ((JObject)overrideDict["FC_ClickTeam"])["next"] = new JArray("FC_UseRecord_Step1");
+                }
+                // 仅记录编队：选定部队后直接保存当前编成，不执行预设编成。
+                else if (formationPreset.SaveGameFormationRecordOnly)
+                {
+                    ((JObject)overrideDict["FC_ClickTeam"])["next"] = new JArray("FC_ClickTroopRecord");
+                }
+
+                // 仅使用记录且开启卸装备：只解除目标部队装备，不解散队伍，完成后调用部队记录。
+                if (formationPreset.UseGameFormationRecordOnly && formationPreset.ClearEquipmentBeforeFormation)
+                {
+                    ((JObject)overrideDict["FC_ClickTeam"])["next"] = new JArray("FC_IsTeamEmpty", "FC_RemoveEquip");
+                    overrideDict["FC_IsTeamEmpty"] = new JObject
+                    {
+                        ["next"] = new JArray("FC_UseRecord_Step1")
+                    };
+                    overrideDict["FC_ConfirmEquipRemove"] = new JObject
+                    {
+                        ["next"] = new JArray("FC_UseRecord_Step1")
+                    };
+                }
+                // 普通编成模式的卸装备：解除装备后继续解散并重新编成。
+                else if (!formationPreset.UseGameFormationRecordOnly && !formationPreset.SaveGameFormationRecordOnly
+                    && formationPreset.ClearEquipmentBeforeFormation)
                 {
                     ((JObject)overrideDict["FC_ClickTeam"])["next"] = new JArray("FC_IsTeamEmpty", "FC_RemoveEquip");
                 }
@@ -4147,8 +4172,10 @@ public class MaaProcessor
                 {
                     token.ThrowIfCancellationRequested();
                     var status = await TryRunTasksAsync(MaaTasker, task.Entry, task.Param, task.Name, token, isCoreTask: true);
-                    if (status == MaaJobStatus.Succeeded)
-                        _nextTaskIndex = i + 1;
+                    if (status != MaaJobStatus.Succeeded)
+                        throw new InvalidOperationException($"MAAFW 任务失败：{task.Name}");
+
+                    _nextTaskIndex = i + 1;
                 }, remainingCount);
             maaTask.IterationCompleted = round =>
             {

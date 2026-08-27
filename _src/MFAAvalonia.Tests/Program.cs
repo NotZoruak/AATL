@@ -68,6 +68,13 @@ var preset = new FormationPreset();
 AssertFalse(preset.ClearEquipmentBeforeFormation, "新预设默认不应卸下现有装备");
 AssertFalse(preset.SaveGameFormationRecordAfterFormation, "新预设默认不应保存游戏部队记录");
 
+FormationPreset.SetRecordMode(preset, useRecordOnly: true);
+AssertTrue(preset.UseGameFormationRecordOnly && !preset.SaveGameFormationRecordOnly,
+    "仅使用编队记录与仅记录编队不能同时启用");
+FormationPreset.SetRecordMode(preset, saveRecordOnly: true);
+AssertTrue(!preset.UseGameFormationRecordOnly && preset.SaveGameFormationRecordOnly,
+    "启用仅记录编队时应自动关闭仅使用编队记录");
+
 var entry = new SwordBookEntry("3", "短刀", "今剑");
 var editor = new SwordBookEditor(new[] { entry });
 editor.SetOwned("3", SwordPortraitType.Wounded, true);

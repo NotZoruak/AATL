@@ -20,6 +20,12 @@ public class FormationPreset
     /// <summary>编成后是否保存到与目标部队同编号的游戏部队记录槽</summary>
     public bool SaveGameFormationRecordAfterFormation { get; set; }
 
+    /// <summary>是否仅使用目标部队的游戏部队记录，不按预设重新编成</summary>
+    public bool UseGameFormationRecordOnly { get; set; }
+
+    /// <summary>是否仅将目标部队当前编成保存到游戏部队记录，不按预设重新编成</summary>
+    public bool SaveGameFormationRecordOnly { get; set; }
+
     /// <summary>1-6 号位配置（第 1 位为队长），长度固定为 6</summary>
     public List<FormationSlot> Slots { get; set; } = [];
 
@@ -31,6 +37,26 @@ public class FormationPreset
             Slots.Add(new FormationSlot());
         if (Slots.Count > 6)
             Slots = Slots.GetRange(0, 6);
+    }
+
+    /// <summary>设置部队记录模式，两个模式最多启用一个</summary>
+    public static void SetRecordMode(FormationPreset preset, bool useRecordOnly = false, bool saveRecordOnly = false)
+    {
+        if (useRecordOnly)
+        {
+            preset.UseGameFormationRecordOnly = true;
+            preset.SaveGameFormationRecordOnly = false;
+        }
+        else if (saveRecordOnly)
+        {
+            preset.UseGameFormationRecordOnly = false;
+            preset.SaveGameFormationRecordOnly = true;
+        }
+        else
+        {
+            preset.UseGameFormationRecordOnly = false;
+            preset.SaveGameFormationRecordOnly = false;
+        }
     }
 }
 

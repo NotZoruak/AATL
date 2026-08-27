@@ -37,8 +37,9 @@ public class FormationConfigAction : IMaaCustomAction
 
             preset.EnsureSlots();
 
-            // 1 号位（队长位）必填，不填直接失败
-            if (string.IsNullOrWhiteSpace(preset.Slots[0].Sword))
+            // 普通编成模式要求填写 1 号位；部队记录模式只操作已有部队记录，不读取预设成员。
+            if (!preset.UseGameFormationRecordOnly && !preset.SaveGameFormationRecordOnly
+                && string.IsNullOrWhiteSpace(preset.Slots[0].Sword))
             {
                 LoggerHelper.Error("[FormationConfig] 预设 1 号位未配置刀剑，任务失败");
                 return false;

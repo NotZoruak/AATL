@@ -1800,6 +1800,12 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
             {
                 if (_formationClipboard == null) return;
                 capturedPreset.Team = _formationClipboard.Team;
+                capturedPreset.ClearEquipmentBeforeFormation = _formationClipboard.ClearEquipmentBeforeFormation;
+                capturedPreset.SaveGameFormationRecordAfterFormation = _formationClipboard.SaveGameFormationRecordAfterFormation;
+                FormationPreset.SetRecordMode(
+                    capturedPreset,
+                    _formationClipboard.UseGameFormationRecordOnly,
+                    _formationClipboard.SaveGameFormationRecordOnly);
                 capturedPreset.Slots = CloneSlots(_formationClipboard);
                 SaveFormationPresets(presets);
                 Refresh();
@@ -1916,6 +1922,10 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
             Id = source.Id,
             Name = source.Name,
             Team = source.Team,
+            ClearEquipmentBeforeFormation = source.ClearEquipmentBeforeFormation,
+            SaveGameFormationRecordAfterFormation = source.SaveGameFormationRecordAfterFormation,
+            UseGameFormationRecordOnly = source.UseGameFormationRecordOnly,
+            SaveGameFormationRecordOnly = source.SaveGameFormationRecordOnly,
             Slots = CloneSlots(source),
         };
     }

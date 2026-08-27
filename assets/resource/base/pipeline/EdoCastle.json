@@ -956,7 +956,7 @@
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_PostSortieHub": {
-    "next": ["EC_IsTicketPopup", "EC_ClickEnterBattle"],
+    "next": ["EC_IsTicketPopup", "EC_IsPreDamage", "EC_ClickEnterBattle"],
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_ClickEnterBattle": {
@@ -1072,6 +1072,313 @@
     },
     "pre_delay": 100,
     "next": ["EC_TerminateNoTicket"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsPreDamage": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [233, 128, 71, 549],
+        "template": "Common/重伤.png",
+        "green_mask": true,
+        "threshold": [0.9]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [772, 448, 32, 40]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [368, 464, 539, 90]
+    },
+    "next": ["EC_LogPreDamage"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_LogPreDamage": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {
+        "message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"
+      }
+    },
+    "next": ["EC_NavigateToRepair"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_NavigateToRepair": {
+    "next": ["EC_ClickMenuForRepair", "EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_ClickMenuForRepair": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1183, 18, 87, 40],
+        "expected": "目"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 200},
+    "next": ["EC_ClickRepairInMenu", "EC_ClickMenuForRepair"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_ClickRepairInMenu": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [451, 379, 84, 40],
+        "expected": "修复"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 100},
+    "next": ["EC_SelectDamagedSword", "EC_ClickRepairInMenu"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_SelectDamagedSword": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [553, 62, 172, 38],
+        "expected": "修复状况"
+      }
+    },
+    "next": ["EC_SelectRepairSlot1", "EC_SelectRepairSlot2", "EC_SelectRepairSlot3", "EC_SelectRepairSlot4"],
+    "on_error": ["EC_CheckRepairScreen"]
+  },
+  "EC_SelectRepairSlot1": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [307, 163, 255, 89],
+        "template": "Common/未使用修刀槽.png",
+        "threshold": [0.9]
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 100},
+    "next": ["EC_ConfirmSelectSlot"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_SelectRepairSlot2": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [303, 300, 255, 90],
+        "template": "Common/未使用修刀槽.png",
+        "threshold": [0.9]
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 100},
+    "next": ["EC_ConfirmSelectSlot"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_SelectRepairSlot3": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [304, 432, 255, 90],
+        "template": "Common/未使用修刀槽.png",
+        "threshold": [0.9]
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 100},
+    "next": ["EC_ConfirmSelectSlot"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_SelectRepairSlot4": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [304, 565, 255, 90],
+        "template": "Common/未使用修刀槽.png",
+        "threshold": [0.9]
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {"time": 100},
+    "next": ["EC_ConfirmSelectSlot"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_CheckRepairScreen": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [554, 56, 175, 49],
+        "expected": "修复"
+      }
+    },
+    "next": ["EC_SelectDamagedSword"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_ConfirmSelectSlot": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1052, 138, 32, 31],
+        "expected": "选"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [262, 307, 147, 46]
+    },
+    "next": ["EC_CheckAccel", "EC_ClickAccel"],
+    "on_error": ["EC_LogNoDamagedSword"]
+  },
+  "EC_CheckAccel": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [1162, 258, 6, 4],
+        "upper": [178, 27, 27],
+        "lower": [172, 21, 21]
+      }
+    },
+    "next": ["EC_ClickRepairDone"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_ClickAccel": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1156, 241, 27, 25]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [1156, 241, 27, 25]
+    },
+    "next": ["EC_CaptureRepairInfo"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_CaptureRepairInfo": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RepairStartLogAction",
+      "custom_action_param": {
+        "mode": "capture",
+        "name_roi": [195, 242, 150, 32],
+        "cost_rois": [
+          [301, 409, 66, 22],
+          [300, 480, 67, 23],
+          [300, 550, 67, 23],
+          [300, 622, 67, 23]
+        ]
+      }
+    },
+    "next": ["EC_CheckAccel"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_ClickRepairDone": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1159, 588, 83, 44],
+        "expected": "修复"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [1159, 588, 83, 44]
+    },
+    "next": ["EC_LogRepairDone"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_LogRepairDone": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {
+        "message": "[重伤检测] 修复完成"
+      }
+    },
+    "next": ["EC_LogRepairDoneLog"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_LogRepairDoneLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RepairStartLogAction",
+      "custom_action_param": {
+        "mode": "emit",
+        "prefix": "江户潜入",
+        "action": "修复"
+      }
+    },
+    "next": ["EC_DirAfterRepair"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_DirAfterRepair": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1183, 18, 87, 40],
+        "expected": "目"
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["EC_VerifyMenuAfterRepair"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_VerifyMenuAfterRepair": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [581, 28, 112, 57],
+        "template": "Common/菜单目录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["EC_SortieAfterRepair"],
+    "on_error": ["EC_DirAfterRepair"]
+  },
+  "EC_SortieAfterRepair": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [160, 158, 97, 62],
+        "expected": "出阵"
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["EC_VerifyAfterRepairMenuClosed"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_VerifyAfterRepairMenuClosed": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [581, 28, 112, 57],
+        "template": "Common/菜单目录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["EC_TryClickAfterRepair", "EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_TryClickAfterRepair": {
+    "next": ["EC_SortieAfterRepair", "EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_LogNoDamagedSword": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {
+        "message": "未检测到可修复刀剑"
+      }
+    },
+    "next": ["EC_DetectWhereAmI"],
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_IsTrainingLetter": {

@@ -23,6 +23,12 @@ public partial class FormationEditorViewModel : ViewModelBase
     /// <summary>编成后保存游戏部队记录开关</summary>
     [ObservableProperty] private bool _saveGameFormationRecordAfterFormation;
 
+    /// <summary>是否仅使用部队记录</summary>
+    [ObservableProperty] private bool _useGameFormationRecordOnly;
+
+    /// <summary>是否仅记录编队</summary>
+    [ObservableProperty] private bool _saveGameFormationRecordOnly;
+
     /// <summary>部队下拉选项（1-5）</summary>
     public string[] TeamOptions { get; } = ["部队一", "部队二", "部队三", "部队四", "部队五"];
 
@@ -44,6 +50,8 @@ public partial class FormationEditorViewModel : ViewModelBase
         _teamIndex = Math.Clamp(preset.Team - 1, 0, 4);
         _clearEquipmentBeforeFormation = preset.ClearEquipmentBeforeFormation;
         _saveGameFormationRecordAfterFormation = preset.SaveGameFormationRecordAfterFormation;
+        _useGameFormationRecordOnly = preset.UseGameFormationRecordOnly;
+        _saveGameFormationRecordOnly = preset.SaveGameFormationRecordOnly && !_useGameFormationRecordOnly;
         preset.EnsureSlots();
         for (var i = 0; i < 6; i++)
         {
@@ -58,6 +66,7 @@ public partial class FormationEditorViewModel : ViewModelBase
         _preset.Team = TeamIndex + 1;
         _preset.ClearEquipmentBeforeFormation = ClearEquipmentBeforeFormation;
         _preset.SaveGameFormationRecordAfterFormation = SaveGameFormationRecordAfterFormation;
+        FormationPreset.SetRecordMode(_preset, UseGameFormationRecordOnly, SaveGameFormationRecordOnly);
         _preset.EnsureSlots();
         for (var i = 0; i < Slots.Count && i < 6; i++)
         {
@@ -72,6 +81,18 @@ public partial class FormationEditorViewModel : ViewModelBase
     private void Cancel()
     {
         _onDone?.Invoke(null);
+    }
+
+    partial void OnUseGameFormationRecordOnlyChanged(bool value)
+    {
+        if (value)
+            SaveGameFormationRecordOnly = false;
+    }
+
+    partial void OnSaveGameFormationRecordOnlyChanged(bool value)
+    {
+        if (value)
+            UseGameFormationRecordOnly = false;
     }
 }
 

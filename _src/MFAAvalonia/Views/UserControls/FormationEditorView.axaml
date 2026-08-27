@@ -61,6 +61,17 @@
                     MaxWidth="100"
                     VerticalAlignment="Center" />
             </Grid>
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <CheckBox
+                    Content="仅使用编队记录"
+                    HorizontalAlignment="Stretch"
+                    IsChecked="{Binding UseGameFormationRecordOnly, Mode=TwoWay}" />
+                <CheckBox
+                    Grid.Column="1"
+                    Content="仅记录编队"
+                    HorizontalAlignment="Stretch"
+                    IsChecked="{Binding SaveGameFormationRecordOnly, Mode=TwoWay}" />
+            </Grid>
         </StackPanel>
 
         <!-- 1-6 号位 -->
