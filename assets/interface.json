@@ -1,10 +1,10 @@
 {
   "name": "MATR",
-  "version": "v0.12.0-beta.3",
+  "version": "v0.12.0-beta.4",
   "mirrorchyan_rid": "MATR",
   "mirrorchyan_multiplatform": true,
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.12.0-beta.3 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.12.0-beta.4 | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -100,6 +100,22 @@
       "description": "联队战/海联/陆联 活动自动化出阵。\n\n- **更换队长**：换队长的方式可在全局设置中修改\n- **部队交替**：在行动选择界面自动切换部队，勾选后点击齿轮设置队伍序列。\n- **选择部队**：选择出阵部队（第1轮使用）。\n- **选择难度**：易/普/难/超难。\n- **不买门票**：勾选后令牌不足时自动结束任务，不再购买（注意：仅停止当前单次执行，若设置了重复次数，后续轮次仍会启动然后终止，可能造成日志刷屏）。\n- **同步后勤**：回本丸后自动检查队伍状态并派遣远征。请确保陆联使用的队伍在远征任务中设置为休息。\n\n> ⚠️ **注意**：游戏本身会在通行令牌不足时自动使用多倍道具。"
     },
     {
+      "name": "江户潜入",
+      "entry": "EdoCastle",
+      "default_check": false,
+      "repeatable": true,
+      "repeat_count": 1,
+      "option": [
+        "EC_行动策略",
+        "EC_选择部队",
+        "EC_同步后勤",
+        "EC_换队长",
+        "EC_不购买门票"
+      ],
+      "label": "江户潜入",
+      "description": "江户城潜入调查 活动自动化出阵。\n\n- **难度**：固定使用 E4（超难）。\n- **行动策略**：直奔王点：字面意思；保守：优先保证能进王点；均衡：比保守激进一点；激进：战至最后一刻，自刎归天！\n- **同步后勤**：回本丸后自动检查队伍状态并派遣远征。请确保江户潜入使用的队伍在远征任务中设置为休息。"
+    },
+    {
       "name": "战术强化",
       "entry": "TacticalTraining",
       "default_check": false,
@@ -153,7 +169,7 @@
         "薙"
       ],
       "label": "刀解清仓",
-      "description": "⚠该功能测试数据较少，请在有人值守时使用。\n\n 自动刀解 + 收邮箱循环，邮箱清空后任务终止。游戏运行速度对稳定性影响较大，邮箱刀剑较多时建议分刀种多次运行，避免单次处理量过大。"
+      "description": "⚠该功能测试数据较少，请在有人值守时使用（感觉不如手动刀解）。\n\n 自动刀解 + 收邮箱循环，邮箱清空后任务终止。游戏运行速度对稳定性影响较大，邮箱刀剑较多时建议分刀种多次运行，避免单次处理量过大。"
     },
     {
       "name": "习合",
@@ -2158,6 +2174,256 @@
             "LR_HandleTicketPopup": {
               "next": ["LR_CloseTicketPopup"]
             }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "EC_行动策略": {
+      "name": "EC_行动策略",
+      "label": "行动策略",
+      "default_case": "均衡",
+      "cases": [
+        {
+          "name": "直奔王点",
+          "pipeline_override": {
+            "EC_ShouldRetreatOnLastAction": {
+              "custom_recognition_param": {"strategy": "directboss"}
+            },
+            "EC_ActionSelect": {
+              "custom_action_param": {"strategy": "directboss"}
+            }
+          }
+        },
+        {
+          "name": "保守",
+          "pipeline_override": {
+            "EC_ShouldRetreatOnLastAction": {
+              "custom_recognition_param": {"strategy": "conservative"}
+            },
+            "EC_ActionSelect": {
+              "custom_action_param": {"strategy": "conservative"}
+            }
+          }
+        },
+        {
+          "name": "均衡",
+          "pipeline_override": {
+            "EC_ShouldRetreatOnLastAction": {
+              "custom_recognition_param": {"strategy": "balanced"}
+            },
+            "EC_ActionSelect": {
+              "custom_action_param": {"strategy": "balanced"}
+            }
+          }
+        },
+        {
+          "name": "激进",
+          "pipeline_override": {
+            "EC_ShouldRetreatOnLastAction": {
+              "custom_recognition_param": {"strategy": "aggressive"}
+            },
+            "EC_ActionSelect": {
+              "custom_action_param": {"strategy": "aggressive"}
+            }
+          }
+        }
+      ]
+    },
+    "EC_选择部队": {
+      "name": "EC_选择部队",
+      "label": "选择部队",
+      "default_case": "部队一",
+      "cases": [
+        {
+          "name": "部队一",
+          "pipeline_override": {
+            "EC_ClickTeam": {
+              "target": [154, 93, 1, 1],
+              "post_wait_freezes": {
+                "target": [108, 76, 106, 6]
+              }
+            }
+          }
+        },
+        {
+          "name": "部队二",
+          "pipeline_override": {
+            "EC_ClickTeam": {
+              "target": [282, 94, 1, 1],
+              "post_wait_freezes": {
+                "target": [229, 76, 105, 6]
+              }
+            }
+          }
+        },
+        {
+          "name": "部队三",
+          "pipeline_override": {
+            "EC_ClickTeam": {
+              "target": [398, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [351, 76, 106, 6]
+              }
+            }
+          }
+        },
+        {
+          "name": "部队四",
+          "pipeline_override": {
+            "EC_ClickTeam": {
+              "target": [519, 89, 1, 1],
+              "post_wait_freezes": {
+                "target": [471, 76, 106, 6]
+              }
+            }
+          }
+        },
+        {
+          "name": "部队五",
+          "pipeline_override": {
+            "EC_ClickTeam": {
+              "target": [635, 91, 1, 1],
+              "post_wait_freezes": {
+                "target": [594, 75, 106, 7]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "EC_换队长": {
+      "name": "EC_换队长",
+      "label": "更换队长",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "EC_IsSwordSelect": {"enabled": true},
+            "EC_ClickCaptainSlot": {"enabled": true},
+            "EC_DetectSortOrder": {"enabled": true},
+            "EC_ClickDescending": {"enabled": true},
+            "EC_ConfirmSortAsc": {"enabled": true},
+            "EC_ClickCaptain1": {"enabled": true},
+            "EC_ClickCaptain2": {"enabled": true},
+            "EC_ClickCaptain3": {"enabled": true},
+            "EC_ClickCaptain4": {"enabled": true},
+            "EC_ClickCaptain5": {"enabled": true},
+            "EC_DragCaptain": {"enabled": true}
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "EC_不购买门票": {
+      "name": "EC_不购买门票",
+      "label": "不买门票",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "EC_HandleTicketPopup": {
+              "next": ["EC_CloseTicketPopup"]
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "EC_同步后勤": {
+      "name": "EC_同步后勤",
+      "label": "同步后勤",
+      "type": "checkbox",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "EC_IsHome": {
+              "next": ["Expedition"]
+            },
+            "E_CheckTeam1": {"enabled": true},
+            "E_CheckTeam2": {"enabled": true},
+            "E_CheckTeam3": {"enabled": true},
+            "E_CheckTeam4": {"enabled": true},
+            "E_CheckTeam5": {"enabled": true},
+            "E_SelectMap1": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {"team": 1}
+              },
+              "next": ["E_ConfirmDispatch1"]
+            },
+            "E_SelectMap2": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {"team": 2}
+              },
+              "next": ["E_ConfirmDispatch2"]
+            },
+            "E_SelectMap3": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {"team": 3}
+              },
+              "next": ["E_ConfirmDispatch3"]
+            },
+            "E_SelectMap4": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {"team": 4}
+              },
+              "next": ["E_ConfirmDispatch4"]
+            },
+            "E_SelectMap5": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionMapSelectAction",
+                "custom_action_param": {"team": 5}
+              },
+              "next": ["E_ConfirmDispatch5"]
+            },
+            "E_ClickSmallMap1": {"enabled": false},
+            "E_ClickSmallMap2": {"enabled": false},
+            "E_ClickSmallMap3": {"enabled": false},
+            "E_ClickSmallMap4": {"enabled": false},
+            "E_ClickSmallMap5": {"enabled": false},
+            "E_VerifyScreen1": {"on_error": ["E_CheckTeamStatus"]},
+            "E_VerifyScreen2": {"on_error": ["E_CheckTeamStatus"]},
+            "E_VerifyScreen3": {"on_error": ["E_CheckTeamStatus"]},
+            "E_VerifyScreen4": {"on_error": ["E_CheckTeamStatus"]},
+            "E_VerifyScreen5": {"on_error": ["E_CheckTeamStatus"]},
+            "E_ClickBackToHome": {
+              "action": {
+                "type": "Click",
+                "param": {
+                  "target": [1037, 169, 110, 44]
+                }
+              },
+              "next": ["EC_WaitRefresh"],
+              "on_error": ["EC_DetectWhereAmI"]
+            },
+            "E_AllTeamsBusy": {
+              "next": ["E_TimerStart"]
+            },
+            "E_TimerStart": {
+              "action": {
+                "type": "Custom",
+                "custom_action": "ExpeditionTimerAction",
+                "custom_action_param": {"mode": "start"}
+              },
+              "next": ["EC_NavigateToActivity"]
+            },
+            "E_CheckTimerExpired": {
+              "next": ["EC_ClickTeam"],
+              "on_error": ["E_GoHome"]
+            },
+            "EC_WaitRefresh": {"enabled": true}
           }
         }
       ],
@@ -5251,6 +5517,7 @@
             "S_FallbackWait": {"enabled": false},
             "M_FallbackWait": {"enabled": false},
             "LR_FallbackWait": {"enabled": false},
+            "EC_FallbackWait": {"enabled": false},
             "FB_FallbackWait": {"enabled": false},
             "D_FallbackWait": {"enabled": false},
             "U_FallbackWait": {"enabled": false},
@@ -5280,6 +5547,9 @@
           "label": "开启",
           "pipeline_override": {
             "LR_IsTeamSelect": {
+              "next": ["E_CheckTimerExpired"]
+            },
+            "EC_IsTeamSelect": {
               "next": ["E_CheckTimerExpired"]
             },
             "TT_IsTeamSelect": {
@@ -5339,6 +5609,7 @@
         "S_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "M_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "LR_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
+        "EC_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "FB_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "D_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "U_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
@@ -5368,6 +5639,9 @@
             "LR_ClickCaptain3": {
               "target": [220, 512, 107, 29]
             },
+            "EC_ClickCaptain3": {
+              "target": [220, 512, 107, 29]
+            },
             "U_ClickCaptain3": {
               "target": [220, 512, 107, 29]
             }
@@ -5387,6 +5661,11 @@
             },
             "LR_IsSwordSelect": {"enabled": false},
             "LR_DetectSortOrder": {"enabled": false},
+            "EC_CaptainHub": {
+              "next": ["EC_DragCaptain", "EC_IsPreSortieConfirm"]
+            },
+            "EC_IsSwordSelect": {"enabled": false},
+            "EC_DetectSortOrder": {"enabled": false},
             "U_CaptainHub": {
               "next": ["U_DragCaptain", "U_IsPreSortieConfirm"]
             },

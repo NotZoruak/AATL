@@ -295,6 +295,10 @@ public static class WorkRecordBuilder
         var action = match.Groups[2].Value;
         var detail = match.Groups[3].Value;
 
+        // 换队长拖拽的 OCR 保护日志仅用于排查，不作为用户可见的特殊情况。
+        if (prefix == "DragCaptain" && action.StartsWith("无可用位置", StringComparison.Ordinal))
+            return;
+
         if (prefix == "中断")
         {
             record.HasInterrupt = true;

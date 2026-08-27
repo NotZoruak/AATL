@@ -237,6 +237,18 @@
     "next": ["M_CheckAndMix", "M_ExitNoMaterial"],
     "on_error": ["M_DetectWhereAmI"]
   },
+  "M_ClickSelectAllLocked": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1158, 463, 80, 36]
+      }
+    },
+    "pre_delay": 500,
+    "post_delay": 1000,
+    "next": ["M_CheckAndMixLocked", "M_ExitNoMaterial"],
+    "on_error": ["M_DetectWhereAmI"]
+  },
   "M_CheckAndMix": {
     "recognition": {
       "type": "ColorMatch",
@@ -255,6 +267,26 @@
     "pre_delay": 500,
     "post_delay": 500,
     "next": ["M_ConfirmMix1"],
+    "on_error": ["M_ExitNoMaterial"]
+  },
+  "M_CheckAndMixLocked": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [1166, 586, 71, 19],
+        "upper": [25, 86, 182],
+        "lower": [21, 82, 178]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1166, 586, 71, 19]
+      }
+    },
+    "pre_delay": 500,
+    "post_delay": 500,
+    "next": ["M_ConfirmMix1Locked"],
     "on_error": ["M_ExitNoMaterial"]
   },
   "M_ExitNoMaterial": {
@@ -280,6 +312,18 @@
     "next": ["M_ConfirmMix2"],
     "on_error": ["M_DetectWhereAmI"]
   },
+  "M_ConfirmMix1Locked": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [746, 611, 82, 36]
+      }
+    },
+    "pre_delay": 500,
+    "post_delay": 500,
+    "next": ["M_ConfirmMix2Locked"],
+    "on_error": ["M_DetectWhereAmI"]
+  },
   "M_ConfirmMix2": {
     "action": {
       "type": "Click",
@@ -293,7 +337,41 @@
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckPos1": {
-    "next": ["M_DetectEmpty1", "M_DetectLocked1", "M_CheckLevel1", "M_ClickMixDirect1"],
+    "next": ["M_DetectTargetLocked1", "M_DetectEmpty1", "M_DetectLocked1", "M_CheckLevel1", "M_ClickMixDirect1"],
+    "on_error": ["M_DetectWhereAmI"]
+  },
+  "M_ConfirmMix2Locked": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [746, 611, 82, 36]
+      }
+    },
+    "pre_delay": 500,
+    "post_delay": 500,
+    "next": ["M_ClickSelectAllLocked"],
+    "on_error": ["M_DetectWhereAmI"]
+  },
+  "M_DetectTargetLocked1": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [88, 127, 7, 8],
+        "upper": [214, 175, 33],
+        "lower": [210, 171, 29]
+      }
+    },
+    "next": ["M_ClickLockedTarget1"],
+    "on_error": ["M_DetectEmpty1"]
+  },
+  "M_ClickLockedTarget1": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1216, 164, 9, 9]
+      }
+    },
+    "next": ["M_ClickSelectAllLocked"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_DetectEmpty1": {

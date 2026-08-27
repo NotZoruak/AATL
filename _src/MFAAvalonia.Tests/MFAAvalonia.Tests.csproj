@@ -32,5 +32,6 @@
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\RepairListOcrDecision.cs" Link="RepairListOcrDecision.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\NaibanOutfitRecognitionState.cs" Link="NaibanOutfitRecognitionState.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\SwordDropNotificationMatcher.cs" Link="SwordDropNotificationMatcher.cs" />
+    <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\EdoRoutePlanner.cs" Link="EdoRoutePlanner.cs" />
   </ItemGroup>
 </Project>

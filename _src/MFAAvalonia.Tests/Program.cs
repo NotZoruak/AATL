@@ -10,6 +10,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
+EdoRoutePlannerTests.Run();
+
 var emptyFilter = RepairFilterSelection.FromFlags(new Dictionary<string, bool>());
 AssertFalse(emptyFilter.HasAnyFilter, "未选择任何筛选条件时不应启用筛选");
 
@@ -188,6 +190,15 @@ AssertTrue(undergroundEarlyEndRecord[0].SpecialEvents.Exists(e => e.Description 
     "刀装近破坏撤退仍应作为特殊情况记录");
 AssertTrue(undergroundEarlyEndRecord[0].LogisticsCounts["倒计时结束"] == 1,
     "远征倒计时结束应计入后勤记录");
+
+var dragCaptainWarningRecord = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：江户潜入"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[江户潜入] 出阵"),
+    new LogEntry(logStart.AddSeconds(2), "WRN", "[DragCaptain] 无可用位置（空槽位或 OCR 失败），跳过拖拽"),
+    new LogEntry(logStart.AddSeconds(3), "INF", "停止前状态：SUCCEEDED"),
+]);
+AssertTrue(dragCaptainWarningRecord[0].SpecialEvents.Count == 0,
+    "换队长拖拽的无可用位置保护日志不应显示为特殊情况");
 
 var switchedTaskRecords = WorkRecordBuilder.Build([
     new LogEntry(logStart, "INF", "开始任务：异去"),

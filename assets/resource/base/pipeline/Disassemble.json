@@ -46,8 +46,10 @@
         "target": [1231, 8, 38, 39]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [1231, 8, 38, 39]
+    },
     "next": ["D_EmptyMailboxClick2"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -114,8 +116,10 @@
         "target": [1179, 8, 95, 56]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [1179, 8, 95, 56]
+    },
     "next": ["D_DetectWhereAmI"]
   },
   "D_DetectMenu": {
@@ -134,8 +138,10 @@
         "target": [748, 275, 76, 34]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [748, 275, 76, 34]
+    },
     "next": ["D_DetectWhereAmI"]
   },
   "D_DetectForge": {
@@ -152,8 +158,10 @@
         "target": [8, 303, 30, 74]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [8, 303, 30, 74]
+    },
     "next": ["D_DetectWhereAmI"]
   },
   "D_DetectDisassemble": {
@@ -170,8 +178,10 @@
         "target": [812, 115, 46, 25]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [812, 115, 46, 25]
+    },
     "next": ["D_DetectWhereAmI"]
   },
   "D_DetectFilter": {
@@ -188,8 +198,10 @@
         "target": [752, 145, 100, 25]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [752, 145, 100, 25]
+    },
     "next": ["D_FilterSwordHub"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -214,8 +226,7 @@
         "target": [235, 217, 83, 27]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_delay": 300,
     "next": [
       "D_FilterSword2",
       "D_FilterSword3",
@@ -235,8 +246,7 @@
         "target": [419, 218, 66, 30]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_delay": 300,
     "next": [
       "D_FilterSword3",
       "D_FilterSword4",
@@ -255,8 +265,7 @@
         "target": [596, 218, 56, 27]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_delay": 300,
     "next": ["D_FilterSword4", "D_FilterSword5", "D_FilterSword6", "D_FilterSword7", "D_FilterConfirm"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -268,8 +277,7 @@
         "target": [772, 215, 63, 32]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_delay": 300,
     "next": ["D_FilterSword5", "D_FilterSword6", "D_FilterSword7", "D_FilterConfirm"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -281,8 +289,7 @@
         "target": [241, 289, 74, 33]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_delay": 300,
     "next": ["D_FilterSword6", "D_FilterSword7", "D_FilterConfirm"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -294,8 +301,7 @@
         "target": [423, 290, 52, 31]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_delay": 300,
     "next": ["D_FilterSword7", "D_FilterConfirm"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -307,8 +313,7 @@
         "target": [588, 287, 68, 34]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_delay": 300,
     "next": ["D_FilterConfirm"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -319,8 +324,10 @@
         "target": [588, 604, 99, 39]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [588, 604, 99, 39]
+    },
     "next": ["D_FilterPostHub"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -342,8 +349,10 @@
         "target": [1149, 463, 107, 35]
       }
     },
-    "pre_delay": 1000,
-    "post_delay": 2000,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [1149, 463, 107, 35]
+    },
     "next": ["D_DisassembleCheckConfirm", "D_DisassembleGoToMailbox"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -357,33 +366,53 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [1197, 627, 6, 9]
+    },
     "next": ["D_DisassembleClickFinal"],
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_DisassembleClickFinal": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [590, 27, 98, 43],
+        "expected": "分解"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
         "target": [728, 609, 117, 40]
       }
     },
-    "pre_delay": 300,
-    "post_delay": 500,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [728, 609, 117, 40]
+    },
     "next": ["D_PostFilterDisassemble"],
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_DisassembleGoToMailbox": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1179, 8, 95, 56],
+        "expected": "目"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
         "target": [1179, 8, 95, 56]
       }
     },
-    "pre_delay": 1000,
-    "post_delay": 500,
-    "next": ["D_DisassembleVerifyMenu"],
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [1179, 8, 95, 56]
+    },
+    "next": ["D_DisassembleVerifyMenu", "D_DisassembleGoToMailbox"],
     "on_error": ["D_DetectWhereAmI"]
   },
   "D_DisassembleVerifyMenu": {
@@ -531,9 +560,7 @@
     },
     "pre_delay": 300,
     "post_delay": 500,
-    "timeout": 3000,
-    "next": ["D_MailboxCloseVerify"],
-    "on_error": ["D_DetectWhereAmI"]
+    "next": ["D_MailboxCloseVerify","D_DetectWhereAmI"]
   },
   "D_MailboxCloseVerify": {
     "recognition": {
@@ -582,7 +609,7 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "roi": [816, 577, 182, 59],
+        "target": [816, 577, 182, 59],
         "template": "Common/登录奖励.png",
         "green_mask": true,
         "threshold": [0.98]
@@ -593,7 +620,6 @@
       "time": 200,
       "target": [240, 104, 803, 561]
     },
-    "pre_delay": 100,
     "next": ["D_LoginRewardClick2"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -608,7 +634,6 @@
       "time": 200,
       "target": [240, 104, 803, 561]
     },
-    "pre_delay": 1000,
     "next": ["D_LoginRewardClick3"],
     "on_error": ["D_DetectWhereAmI"]
   },
@@ -619,7 +644,10 @@
         "target": [1092, 318, 1, 1]
       }
     },
-    "pre_delay": 1000,
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [240, 104, 803, 561]
+    },
     "timeout": 3000,
     "next": ["D_IsLoginReward"],
     "on_error": ["D_DetectWhereAmI"]
@@ -635,7 +663,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
     "next": ["D_DetectWhereAmI"]
   },
   "D_IsGameIcon": {
@@ -649,8 +676,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 3000,
     "next": ["D_DetectWhereAmI"]
   },
   "D_IsAdvertisementPopup": {
@@ -682,8 +707,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 3000,
     "next": ["D_DetectWhereAmI"]
   },
   "D_IsGameUpdatePopup": {
@@ -697,8 +720,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 2000,
     "next": ["D_DetectWhereAmI"]
   },
   "D_IsInGameUpdatePopup": {
@@ -715,8 +736,6 @@
         "target": [578, 440, 130, 55]
       }
     },
-    "pre_delay": 100,
-    "post_delay": 2000,
     "next": ["D_DetectWhereAmI"]
   },
   "D_RestartGame": {
@@ -737,7 +756,6 @@
       }
     },
     "action": {"type": "Click"},
-    "pre_delay": 100,
     "next": ["D_DetectWhereAmI"]
   },
   "D_IsConnectionInterrupted": {

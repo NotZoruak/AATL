@@ -3392,11 +3392,11 @@ public class MaaProcessor
         // 4. 合并任务自身的 option（task.option，最高优先级）
         UpdateTaskDictionary(ref taskModels, task.InterfaceItem?.Option, task.InterfaceItem?.Advanced);
 
-        // 5. 合战场/地下城/陆联同步远征：自动复用远征任务的队伍配置
-        if (task.InterfaceItem?.Entry == "Sortie" || task.InterfaceItem?.Entry == "Underground" || task.InterfaceItem?.Entry == "LRentaisen" || task.InterfaceItem?.Entry == "TacticalTraining")
+        // 5. 合战场/地下城/陆联/江户潜入同步远征：自动复用远征任务的队伍配置
+        if (task.InterfaceItem?.Entry == "Sortie" || task.InterfaceItem?.Entry == "Underground" || task.InterfaceItem?.Entry == "LRentaisen" || task.InterfaceItem?.Entry == "TacticalTraining" || task.InterfaceItem?.Entry == "EdoCastle")
         {
             var syncExpEnabled = task.InterfaceItem?.Option
-                ?.FirstOrDefault(o => (o.Name ?? "").EndsWith("同步远征"))
+                ?.FirstOrDefault(o => (o.Name ?? "").EndsWith("同步远征") || (o.Name ?? "").EndsWith("同步后勤"))
                 ?.SelectedCases?.Contains("") == true;
 
             if (syncExpEnabled)
@@ -3451,6 +3451,7 @@ public class MaaProcessor
                             "Sortie" => "S_NavigateToSortie",
                             "Underground" => "U_NavigateToActivity",
                             "TacticalTraining" => "TT_NavigateToActivity",
+                            "EdoCastle" => "EC_NavigateToActivity",
                             _ => "LR_NavigateToActivity"
                         };
                         var timerParam = new Dictionary<string, JToken>
@@ -3793,13 +3794,13 @@ public class MaaProcessor
         if (globalSelectOptions == null || globalSelectOptions.Count == 0)
             return;
 
-        // 「远征智能调度」仅对远征任务自身与开启同步远征的任务生效。
-        // 对未开启同步远征的任务注入其 override 会劫持队伍选择流程
+        // 「远征智能调度」仅对远征任务自身与开启同步后勤的任务生效。
+        // 对未开启同步后勤的任务注入其 override 会劫持队伍选择流程
         // （TT_IsTeamSelect 等跳转到 E_CheckTimerExpired，而计时器从未启动 → 视为过期 → 回本丸查看远征）。
         if (task != null)
         {
             var syncExpEnabled = task.Option
-                ?.FirstOrDefault(o => (o.Name ?? "").EndsWith("同步远征"))
+                ?.FirstOrDefault(o => (o.Name ?? "").EndsWith("同步远征") || (o.Name ?? "").EndsWith("同步后勤"))
                 ?.SelectedCases?.Contains("") == true;
             if (task.Entry != "Expedition" && !syncExpEnabled)
             {
@@ -4924,6 +4925,9 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.DrillResetVictoryAction());
             tasker.Resource.Register(new Custom.DrillVictoryAction());
             tasker.Resource.Register(new Custom.MixFindAllowedMaterialAction());
+            tasker.Resource.Register(new Custom.EdoActionSelectAction());
+            tasker.Resource.Register(new Custom.EdoLastActionRetreatRecognition());
+            tasker.Resource.Register(new Custom.EdoRetreatCompletionRecognition());
             tasker.Resource.Register(new Custom.FormationConfigAction());
             tasker.Resource.Register(new Custom.FormationFindSwordAction());
             tasker.Resource.Register(new Custom.FormationFilterClickAction());
