@@ -192,7 +192,7 @@
       }
     },
     "pre_delay": 100,
-    "next": ["EC_ClickActivityInMenu"],
+    "next": ["EC_ClickActivityInMenu","EC_DetectWhereAmI"],
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_IsGameIcon": {

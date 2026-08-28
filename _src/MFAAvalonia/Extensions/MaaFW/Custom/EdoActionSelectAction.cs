@@ -17,7 +17,7 @@ public sealed class EdoActionSelectAction : IMaaCustomAction
     private const int ActionWaitMilliseconds = 500;
     private const int TypeTimeoutMilliseconds = 3000;
     private const int TypePollMilliseconds = 100;
-    private static readonly int[] ActionCountRoi = [44, 37, 107, 28];
+    private static readonly int[] ActionCountRoi = [75, 35, 50, 32];
 
     private static readonly IReadOnlyDictionary<string, int[]> FlagRois =
         new Dictionary<string, int[]>(StringComparer.Ordinal)
@@ -79,13 +79,6 @@ public sealed class EdoActionSelectAction : IMaaCustomAction
                 return false;
             }
 
-            var remainingActions = ReadActionCount(context, image);
-            if (remainingActions < 1)
-            {
-                LoggerHelper.Warning("[江户潜入] 剩余行动次数 OCR 失败或已耗尽");
-                return false;
-            }
-
             var currentPoint = FindCurrentPoint(context, image);
             if (currentPoint == null)
             {
@@ -94,7 +87,25 @@ public sealed class EdoActionSelectAction : IMaaCustomAction
             }
 
             var runtimeState = LoadState();
-            if (currentPoint == "Start" && remainingActions == 6)
+            var recognizedActionCount = ReadActionCount(context, image, out var actionCountText);
+            var remainingActions = EdoActionCountParser.Resolve(
+                recognizedActionCount,
+                currentPoint,
+                runtimeState.RemainingActions);
+            if (remainingActions < 1)
+            {
+                LoggerHelper.Warning(
+                    $"[江户潜入] 剩余行动次数 OCR 失败或已耗尽，原始识别结果：{actionCountText ?? "<空>"}");
+                return false;
+            }
+
+            if (recognizedActionCount < 0)
+            {
+                LoggerHelper.Warning(
+                    $"[江户潜入] 剩余行动次数 OCR 失败，使用状态回退值：{remainingActions}，原始识别结果：{actionCountText ?? "<空>"}");
+            }
+
+            if (currentPoint == "Start" && remainingActions == EdoActionCountParser.InitialActionCount)
             {
                 EdoLastActionRetreatRecognition.ResetRetreatPending();
                 if (runtimeState.CurrentPoint != "Start" || runtimeState.PointTypes.Count > 0)
@@ -143,7 +154,7 @@ public sealed class EdoActionSelectAction : IMaaCustomAction
 
             runtimeState.CurrentPoint = plan.NextPoint;
             runtimeState.PointTypes[plan.NextPoint] = pointType;
-            runtimeState.RemainingActions = 0;
+            runtimeState.RemainingActions = Math.Max(remainingActions - 1, 0);
             SaveState(runtimeState);
             LoggerHelper.Info($"[江户潜入] {plan.NextPoint} 类型确认：{pointType}");
             return true;
@@ -174,37 +185,23 @@ public sealed class EdoActionSelectAction : IMaaCustomAction
 
     internal static int ReadActionCount<T>(T context, IMaaImageBuffer image) where T : IMaaContext
     {
-        var text = context.GetText(
+        return ReadActionCount(context, image, out _);
+    }
+
+    private static int ReadActionCount<T>(
+        T context,
+        IMaaImageBuffer image,
+        out string? text)
+        where T : IMaaContext
+    {
+        text = context.GetText(
             ActionCountRoi[0],
             ActionCountRoi[1],
             ActionCountRoi[2],
             ActionCountRoi[3],
             image);
-        var digits = new string((text ?? string.Empty).Where(char.IsDigit).ToArray());
-        if (int.TryParse(digits, out var value))
-            return value;
-
-        // 行动次数只有一位，OCR 可能将数字识别成中文数字，例如“冏一”。
-        foreach (var (numeral, number) in ChineseNumerals)
-        {
-            if ((text ?? string.Empty).Contains(numeral, StringComparison.Ordinal))
-                return number;
-        }
-
-        return -1;
+        return EdoActionCountParser.Parse(text);
     }
-
-    private static readonly IReadOnlyDictionary<string, int> ChineseNumerals =
-        new Dictionary<string, int>(StringComparer.Ordinal)
-        {
-            ["零"] = 0,
-            ["一"] = 1,
-            ["二"] = 2,
-            ["三"] = 3,
-            ["四"] = 4,
-            ["五"] = 5,
-            ["六"] = 6
-        };
 
     internal static string? FindCurrentPoint<T>(T context, IMaaImageBuffer image) where T : IMaaContext
     {

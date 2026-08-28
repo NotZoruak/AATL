@@ -12,6 +12,29 @@ using System.Reflection;
 
 EdoRoutePlannerTests.Run();
 
+AssertTrue(EdoActionCountParser.Parse("６回") == 6,
+    "行动次数 OCR 识别为全角数字时应仍能解析出次数");
+AssertTrue(EdoActionCountParser.Parse("7回") == 7,
+    "行动次数为七时应正确解析，不能误判为 OCR 失败");
+AssertTrue(EdoActionCountParser.Parse("12回") == 12,
+    "行动次数为两位数时应完整解析，不能只读取首位");
+AssertTrue(EdoActionCountParser.Parse("１２回") == 12,
+    "行动次数为全角两位数时应完整解析");
+AssertTrue(EdoActionCountParser.Parse("冏一") == 1,
+    "行动次数 OCR 识别为中文数字时应仍能解析出次数");
+AssertTrue(EdoActionCountParser.Parse("冏12") == 12,
+    "行动次数前缀被误识别时应仍能完整解析两位数字");
+AssertTrue(EdoActionCountParser.Parse("一7") == 7,
+    "同时出现汉字一与数字时应优先使用数字");
+AssertTrue(EdoActionCountParser.Parse("二7") == 7,
+    "同时出现其他汉字与数字时应忽略汉字");
+AssertTrue(EdoActionCountParser.Parse("行动次数") == -1,
+    "未识别到次数数字时应返回失败标记");
+AssertTrue(EdoActionCountParser.Resolve(-1, "Start", 0) == 7,
+    "开局行动次数无法 OCR 时应使用活动固定的七次行动");
+AssertTrue(EdoActionCountParser.Resolve(-1, "P01", 6) == 6,
+    "后续行动次数无法 OCR 时应使用已保存的剩余次数");
+
 var emptyFilter = RepairFilterSelection.FromFlags(new Dictionary<string, bool>());
 AssertFalse(emptyFilter.HasAnyFilter, "未选择任何筛选条件时不应启用筛选");
 

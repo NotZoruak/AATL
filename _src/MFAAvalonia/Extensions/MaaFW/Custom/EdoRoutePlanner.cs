@@ -21,6 +21,55 @@ public enum EdoPointType
     Boss
 }
 
+public static class EdoActionCountParser
+{
+    public const int InitialActionCount = 7;
+
+    public static int Parse(string? text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return -1;
+
+        var value = 0;
+        var readingDigits = false;
+        var sawChineseOne = false;
+        foreach (var character in text)
+        {
+            var digit = character switch
+            {
+                >= '0' and <= '9' => character - '0',
+                >= '０' and <= '９' => character - '０',
+                _ => -1
+            };
+            if (digit >= 0)
+            {
+                value = value * 10 + digit;
+                readingDigits = true;
+                continue;
+            }
+
+            if (readingDigits)
+                return value;
+
+            sawChineseOne |= character == '一';
+        }
+
+        return readingDigits ? value : sawChineseOne ? 1 : -1;
+    }
+
+    public static int Resolve(int recognizedCount, string currentPoint, int savedCount)
+    {
+        if (recognizedCount >= 0)
+            return recognizedCount;
+
+        if (savedCount > 0)
+            return savedCount;
+
+        return currentPoint == "Start" ? InitialActionCount : -1;
+    }
+
+}
+
 public static class EdoPointColorClassifier
 {
     public const int RequiredPixels = 20;
