@@ -1965,6 +1965,28 @@ public class MaaProcessor
         LoggerHelper.Error($"初始化控制器失败：title={title}, message={message}, reason={e.Message}", e);
     }
 
+    /// <summary>
+    /// 解析 MaaAgentBinary（minitouch/maatouch 等设备端代理）所在目录。
+    /// Windows 发布经 NetBeauty 将其归置到 runtimes/libs 下；非 Windows（如 macOS）
+    /// 不使用 NetBeauty，代理会留在 libs 或发布根目录，故按优先级回退查找。
+    /// </summary>
+    private static string ResolveAgentBinaryPath()
+    {
+        var candidates = new[]
+        {
+            Path.Combine(AppPaths.InstallRoot, "runtimes", "libs", "MaaAgentBinary"),
+            Path.Combine(AppPaths.InstallRoot, "libs", "MaaAgentBinary"),
+            Path.Combine(AppPaths.InstallRoot, "MaaAgentBinary"),
+        };
+        foreach (var path in candidates)
+        {
+            if (Directory.Exists(path))
+                return path;
+        }
+        // 均不存在时返回原默认路径，保持与旧行为一致（由 MaaFramework 报错提示）
+        return candidates[0];
+    }
+
     private MaaController InitializeController(MaaControllerTypes controllerType, bool logConfig)
     {
         ConnectToMAA(logConfig);
@@ -1996,7 +2018,7 @@ public class MaaProcessor
                     Config.AdbDevice.AdbSerial,
                     Config.AdbDevice.ScreenCap, Config.AdbDevice.Input,
                     !string.IsNullOrWhiteSpace(Config.AdbDevice.Config) ? Config.AdbDevice.Config : "{}",
-                    Path.Combine(AppPaths.InstallRoot, "runtimes", "libs", "MaaAgentBinary")
+                    ResolveAgentBinaryPath()
                 );
 
             case MaaControllerTypes.PlayCover:

@@ -31,6 +31,10 @@
         <MaaAgentBinaryPath>libs/MaaAgentBinary</MaaAgentBinaryPath>
         <BeautyLibsDir>.;./runtimes/libs</BeautyLibsDir>
         <BeautyOnPublishOnly>True</BeautyOnPublishOnly>
+        <!-- NetBeauty 的 BeautyLibsDir 用 ';' 分隔目录，在非 Windows 的 /bin/sh 下 ';' 会被当作命令分隔符
+             导致 nbeauty2 调用失败（exit 127）。NetBeauty 仅为整理输出目录的可选优化，非运行必需，
+             故在非 Windows 上禁用；代理路径由 MaaProcessor.ResolveAgentBinaryPath 回退查找 libs/ 或根目录。 -->
+        <DisableBeauty Condition="'$(OS)' != 'Windows_NT'">True</DisableBeauty>
         <DebugType>none</DebugType>
         <DebugSymbols>false</DebugSymbols>
     </PropertyGroup>
