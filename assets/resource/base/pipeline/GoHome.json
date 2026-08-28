@@ -23,6 +23,7 @@
       "G_IsGameUpdatePopup",
       "G_IsInGameUpdatePopup",
       "G_IsInternalReport",
+      "G_IsNetworkRequestTimeout",
       "G_IsConnectionInterrupted",
       "G_FallbackWait"
     ],
@@ -384,5 +385,22 @@
       }
     },
     "next": ["G_DetectWhereAmI"]
+  },
+  "G_IsNetworkRequestTimeout": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 304, 56, 35],
+        "expected": "网络"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [599, 442, 93, 55]
+      }
+    },
+    "next": ["G_DetectWhereAmI"],
+    "on_error": ["G_DetectWhereAmI"]
   }
 }

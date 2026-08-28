@@ -25,6 +25,7 @@
       "D_IsLoginButton",
       "D_IsGameUpdatePopup",
       "D_IsInGameUpdatePopup",
+      "D_IsNetworkRequestTimeout",
       "D_IsConnectionInterrupted",
       "D_FallbackWait"
     ],
@@ -773,5 +774,22 @@
       }
     },
     "next": ["D_DetectWhereAmI"]
+  },
+  "D_IsNetworkRequestTimeout": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 304, 56, 35],
+        "expected": "网络"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [599, 442, 93, 55]
+      }
+    },
+    "next": ["D_DetectWhereAmI"],
+    "on_error": ["D_DetectWhereAmI"]
   }
 }

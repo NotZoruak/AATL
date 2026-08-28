@@ -18,6 +18,7 @@
       "DT_IsInternalReport",
       "DT_LeaveTroopRecord",
       "DT_CheckHomeBrightness",
+      "DT_IsNetworkRequestTimeout",
       "DT_IsConnectionInterrupted"
     ],
     "on_error": ["DT_PrepareHub"]
@@ -422,6 +423,23 @@
       "type": "Click",
       "param": {
         "target": [738, 449, 100, 39]
+      }
+    },
+    "next": ["DT_DetectWhereAmI"],
+    "on_error": ["DT_DetectWhereAmI"]
+  },
+  "DT_IsNetworkRequestTimeout": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 304, 56, 35],
+        "expected": "网络"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [599, 442, 93, 55]
       }
     },
     "next": ["DT_DetectWhereAmI"],

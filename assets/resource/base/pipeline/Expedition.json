@@ -20,6 +20,7 @@
       "E_IsInGameUpdatePopup",
       "E_IsInternalReport",
       "E_LeaveTroopRecord",
+      "E_IsNetworkRequestTimeout",
       "E_IsConnectionInterrupted",
       "E_FallbackWait"
     ],
@@ -2459,5 +2460,22 @@
       }
     },
     "next": ["Expedition"]
+  },
+  "E_IsNetworkRequestTimeout": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 304, 56, 35],
+        "expected": "网络"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [599, 442, 93, 55]
+      }
+    },
+    "next": ["Expedition"],
+    "on_error": ["Expedition"]
   }
 }

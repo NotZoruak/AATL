@@ -1,10 +1,10 @@
 {
   "name": "MATR",
-  "version": "v0.12.0",
+  "version": "v0.12.1",
   "mirrorchyan_rid": "MATR",
   "mirrorchyan_multiplatform": true,
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.12.0 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.12.1 | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -2700,9 +2700,7 @@
             "S_Boss_E8_R1": {"enabled": true},
             "S_Boss_E8_R2": {"enabled": true},
             "S_Boss_E8_R3": {"enabled": true},
-            "S_Boss_E8_R4": {"enabled": true},
-            "S_ClickRetreat": {"enabled": true},
-            "S_ConfirmRetreat": {"enabled": true}
+            "S_Boss_E8_R4": {"enabled": true}
           }
         }
       ],

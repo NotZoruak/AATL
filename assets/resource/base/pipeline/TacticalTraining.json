@@ -20,6 +20,7 @@
       "TT_IsSwordDropColor",
       "TT_IsAnnouncementPopup",
       "TT_IsLoginReward",
+      "TT_IsNetworkRequestTimeout",
       "TT_IsConnectionInterrupted",
       "TT_IsAdvertisementPopup",
       "TT_IsGameIcon",
@@ -270,6 +271,23 @@
     },
     "pre_delay": 100,
     "next": ["TT_DetectWhereAmI"]
+  },
+  "TT_IsNetworkRequestTimeout": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 304, 56, 35],
+        "expected": "网络"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [599, 442, 93, 55]
+      }
+    },
+    "next": ["TT_DetectWhereAmI"],
+    "on_error": ["TT_DetectWhereAmI"]
   },
   "TT_IsBattleResult_Exp": {
     "recognition": {

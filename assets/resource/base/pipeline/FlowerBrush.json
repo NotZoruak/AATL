@@ -28,6 +28,7 @@
       "FB_IsGameUpdatePopup",
       "FB_IsInGameUpdatePopup",
       "FB_IsInternalReport",
+      "FB_IsNetworkRequestTimeout",
       "FB_IsConnectionInterrupted",
       "FB_FallbackWait"
     ],
@@ -931,5 +932,22 @@
       }
     },
     "next": ["FB_DetectWhereAmI"]
+  },
+  "FB_IsNetworkRequestTimeout": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 304, 56, 35],
+        "expected": "网络"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [599, 442, 93, 55]
+      }
+    },
+    "next": ["FB_DetectWhereAmI"],
+    "on_error": ["FB_DetectWhereAmI"]
   }
 }

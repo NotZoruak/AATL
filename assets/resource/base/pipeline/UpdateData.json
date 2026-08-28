@@ -5,7 +5,7 @@
   },
   "UD_DetectWhereAmI": {
     "timeout": 120000,
-    "next": ["UD_CheckHomeBrightness1", "UD_IsAnnouncementPopup", "UD_IsAdvertisementPopup", "UD_IsConnectionInterrupted", "UD_FallbackWait"],
+    "next": ["UD_CheckHomeBrightness1", "UD_IsAnnouncementPopup", "UD_IsAdvertisementPopup", "UD_IsNetworkRequestTimeout", "UD_IsConnectionInterrupted", "UD_FallbackWait"],
     "on_error": ["UD_RestartGame"]
   },
   "UD_CheckHomeBrightness1": {
@@ -260,6 +260,7 @@
       "UD_SB_IsGameUpdatePopup",
       "UD_SB_IsInGameUpdatePopup",
       "UD_SB_IsInternalReport",
+      "UD_SB_IsNetworkRequestTimeout",
       "UD_SB_IsConnectionInterrupted",
       "UD_SB_FallbackWait"
     ],
@@ -623,6 +624,23 @@
     "next": ["UD_SwordBookDetectWhereAmI"],
     "on_error": ["UD_SwordBookDetectWhereAmI"]
   },
+  "UD_SB_IsNetworkRequestTimeout": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 304, 56, 35],
+        "expected": "网络"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [599, 442, 93, 55]
+      }
+    },
+    "next": ["UD_SwordBookDetectWhereAmI"],
+    "on_error": ["UD_SwordBookDetectWhereAmI"]
+  },
   "UD_SB_FallbackWait": {
     "action": {
       "type": "Custom",
@@ -678,6 +696,23 @@
       "type": "Click",
       "param": {
         "target": [590, 440, 100, 60]
+      }
+    },
+    "next": ["UD_DetectWhereAmI"],
+    "on_error": ["UD_DetectWhereAmI"]
+  },
+  "UD_IsNetworkRequestTimeout": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 304, 56, 35],
+        "expected": "网络"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [599, 442, 93, 55]
       }
     },
     "next": ["UD_DetectWhereAmI"],

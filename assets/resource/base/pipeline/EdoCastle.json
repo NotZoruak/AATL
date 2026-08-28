@@ -33,6 +33,7 @@
       "EC_IsGameUpdatePopup",
       "EC_IsInGameUpdatePopup",
       "EC_IsInternalReport",
+      "EC_IsNetworkRequestTimeout",
       "EC_IsConnectionInterrupted",
       "EC_FallbackWait"
     ],
@@ -309,6 +310,23 @@
       }
     },
     "pre_delay": 100,
+    "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsNetworkRequestTimeout": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 304, 56, 35],
+        "expected": "网络"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [599, 442, 93, 55]
+      }
+    },
     "next": ["EC_DetectWhereAmI"],
     "on_error": ["EC_DetectWhereAmI"]
   },

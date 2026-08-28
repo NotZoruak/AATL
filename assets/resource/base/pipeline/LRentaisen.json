@@ -32,6 +32,7 @@
       "LR_IsGameUpdatePopup",
       "LR_IsInGameUpdatePopup",
       "LR_IsInternalReport",
+      "LR_IsNetworkRequestTimeout",
       "LR_IsConnectionInterrupted",
       "LR_FallbackWait"
     ],
@@ -299,6 +300,23 @@
     },
     "pre_delay": 100,
     "next": ["LR_DetectWhereAmI"]
+  },
+  "LR_IsNetworkRequestTimeout": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 304, 56, 35],
+        "expected": "网络"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [599, 442, 93, 55]
+      }
+    },
+    "next": ["LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_FallbackWait": {
     "next": ["LR_DetectWhereAmI"]

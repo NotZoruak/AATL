@@ -24,6 +24,7 @@
       "FC_IsGameUpdatePopup",
       "FC_IsInGameUpdatePopup",
       "FC_IsInternalReport",
+      "FC_IsNetworkRequestTimeout",
       "FC_IsConnectionInterrupted",
       "FC_HasExpeditionReturn_Exp",
       "FC_HasExpeditionReturn_Title",
@@ -227,6 +228,23 @@
     },
     "next": ["FC_DetectWhereAmI"],
     "post_delay": 500
+  },
+  "FC_IsNetworkRequestTimeout": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 304, 56, 35],
+        "expected": "网络"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [599, 442, 93, 55]
+      }
+    },
+    "next": ["FC_DetectWhereAmI"],
+    "on_error": ["FC_DetectWhereAmI"]
   },
   "FC_HasExpeditionReturn_Exp": {
     "recognition": {

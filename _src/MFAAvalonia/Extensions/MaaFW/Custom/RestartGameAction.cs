@@ -179,7 +179,10 @@ public class RestartGameAction : IMaaCustomAction
         LoggerHelper.Info("[RestartGameAction] 等待模拟器启动...");
         Thread.Sleep(10000);
         if (!WaitForAdbReady(30))
-            LoggerHelper.Info("[RestartGameAction] 模拟器启动超时，继续后续流程");
+        {
+            LoggerHelper.Info("[RestartGameAction] 模拟器启动超时，尝试强制重启模拟器进程");
+            RestartEmulatorForce();
+        }
     }
 
     /// <summary>
@@ -388,9 +391,27 @@ public class RestartGameAction : IMaaCustomAction
         }
     }
 
+    private bool TryRestartGame(string package)
+    {
+        LoggerHelper.Info($"[RestartGameAction] 强制停止游戏进程: {package}");
+        if (!RunAdbCommand(_adbPath!, _adbSerial ?? "", $"shell am force-stop {package}"))
+            LoggerHelper.Warning("[RestartGameAction] 强制停止游戏失败，继续尝试启动游戏");
+        Thread.Sleep(2000);
+
+        LoggerHelper.Info($"[RestartGameAction] 重新启动游戏: {package}");
+        if (!RunAdbCommand(_adbPath!, _adbSerial ?? "", $"shell monkey -p {package} -c android.intent.category.LAUNCHER 1"))
+        {
+            LoggerHelper.Warning("[RestartGameAction] 游戏启动失败");
+            return false;
+        }
+
+        LoggerHelper.Info("[RestartGameAction] 游戏重启完成");
+        return true;
+    }
+
     /// <summary>
-    /// 从当前处理器收集模拟器环境，执行完整的"重启模拟器+重启游戏"流程。
-    /// 供 pipeline 节点(Run)与 MATR 层卡死循环检测恢复复用。
+    /// 从当前处理器收集模拟器环境，优先重启游戏；仅在游戏重启失败时重启模拟器后重试。
+    /// 供 pipeline node 与 MATR 层卡死循环检测恢复复用。
     /// </summary>
     public static void RestartAndReloadGame()
     {
@@ -399,21 +420,14 @@ public class RestartGameAction : IMaaCustomAction
 
         var package = GetPackageName();
 
-        // 0. 重启模拟器（模拟器重启会连带杀死游戏进程）
+        if (action.TryRestartGame(package))
+            return;
+
+        LoggerHelper.Warning("[RestartGameAction] 游戏重启失败，开始重启模拟器");
         action.RestartEmulator();
 
-        // 1. 强制停止游戏进程，确保从卡死状态恢复
-        LoggerHelper.Info($"[RestartGameAction] 强制停止游戏进程: {package}");
-        if (!RunAdbCommand(action._adbPath!, action._adbSerial ?? "", $"shell am force-stop {package}"))
-            LoggerHelper.Warning("[RestartGameAction] 强制停止游戏失败，继续尝试启动游戏");
-        Thread.Sleep(2000);
-
-        // 2. 重新启动游戏
-        LoggerHelper.Info($"[RestartGameAction] 重新启动游戏: {package}");
-        if (!RunAdbCommand(action._adbPath!, action._adbSerial ?? "", $"shell monkey -p {package} -c android.intent.category.LAUNCHER 1"))
+        if (!action.TryRestartGame(package))
             throw new InvalidOperationException($"游戏启动失败，请检查应用包名和 ADB 连接。包名={package}");
-
-        LoggerHelper.Info("[RestartGameAction] 游戏重启完成");
     }
 
     public bool Run<T>(T context, in RunArgs args, in RunResults results) where T : IMaaContext

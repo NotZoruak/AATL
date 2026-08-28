@@ -33,6 +33,7 @@
       "U_IsGameUpdatePopup",
       "U_IsInGameUpdatePopup",
       "U_IsInternalReport",
+      "U_IsNetworkRequestTimeout",
       "U_IsConnectionInterrupted",
       "U_FallbackWait"
     ],
@@ -593,6 +594,23 @@
       }
     },
     "next": ["U_DetectWhereAmI"]
+  },
+  "U_IsNetworkRequestTimeout": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 304, 56, 35],
+        "expected": "网络"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [599, 442, 93, 55]
+      }
+    },
+    "next": ["U_DetectWhereAmI"],
+    "on_error": ["U_DetectWhereAmI"]
   },
   "U_LeaveTroopRecord": {
     "recognition": {
@@ -1613,9 +1631,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [591, 184, 1, 1],
+        "roi": [591, 183, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1634,9 +1653,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [650, 184, 1, 1],
+        "roi": [650, 182, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1655,9 +1675,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [708, 184, 1, 1],
+        "roi": [708, 182, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1676,9 +1697,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [591, 278, 1, 1],
+        "roi": [591, 277, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1697,9 +1719,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [650, 278, 1, 1],
+        "roi": [650, 276, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1718,9 +1741,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [708, 278, 1, 1],
+        "roi": [708, 276, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1739,9 +1763,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [591, 372, 1, 1],
+        "roi": [591, 371, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1760,9 +1785,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [650, 372, 1, 1],
+        "roi": [650, 370, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1781,9 +1807,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [708, 372, 1, 1],
+        "roi": [708, 370, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1802,9 +1829,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [591, 466, 1, 1],
+        "roi": [591, 465, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1823,9 +1851,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [650, 466, 1, 1],
+        "roi": [650, 464, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1844,9 +1873,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [708, 466, 1, 1],
+        "roi": [708, 464, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1865,9 +1895,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [591, 560, 1, 1],
+        "roi": [591, 559, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1886,9 +1917,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [650, 560, 1, 1],
+        "roi": [650, 558, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1907,9 +1939,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [708, 560, 1, 1],
+        "roi": [708, 558, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1928,9 +1961,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [591, 654, 1, 1],
+        "roi": [591, 653, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1949,9 +1983,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [650, 654, 1, 1],
+        "roi": [650, 652, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
@@ -1970,9 +2005,10 @@
     "recognition": {
       "type": "ColorMatch",
       "param": {
-        "roi": [708, 654, 1, 1],
+        "roi": [708, 652, 1, 5],
         "upper": [184, 183, 183],
-        "lower": [182, 181, 181]
+        "lower": [182, 181, 181],
+        "count": 1
       }
     },
     "action": {
