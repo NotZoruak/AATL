@@ -1,0 +1,752 @@
+{
+    "NewMix": {
+        "next": ["NM_DetectWhereAmI"]
+    },
+    "NM_DetectWhereAmI": {
+        "next": [
+            "NM_CheckHomeBrightness", 
+            "NM_IsInMenu", 
+            "NM_EnterMixTarget", 
+            "NM_IsSelectingMixTarget", 
+            "NM_IsInMailbox",
+            "NM_LeaveFilter"
+        ],
+        "timeout": 60000
+    },
+    "NM_CheckHomeBrightness": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [66, 58, 11, 13],
+                "upper": [40, 155, 30],
+                "lower": [23, 95, 15]
+            }
+        },
+        "next": ["NM_DetectHome", "NM_DetectWhereAmI"]
+    },
+    "NM_DetectHome": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [8, 1, 71, 107],
+                "template": "Common/本丸.png",
+                "green_mask": true,
+                "threshold": [0.98]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1179, 8, 95, 56]
+            }
+        },
+        "next": ["NM_DetectWhereAmI"]
+    },
+    "NM_IsInMenu": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [581, 28, 112, 57],
+                "template": "Common/菜单目录.png",
+                "green_mask": true,
+                "threshold": [0.98]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [453, 278, 84, 32]
+            }
+        },
+        "next": ["NM_DetectWhereAmI"]
+    },
+    "NM_EnterMixTarget": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [5, 295, 28, 15],
+                "lower": [20, 81, 177],
+                "upper": [26, 87, 183]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": ["NM_DetectWhereAmI"]
+    },
+    "NM_IsSelectingMixTarget": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [5, 295, 28, 15],
+                "lower": [186, 186, 186],
+                "upper": [192, 192, 192]
+            }
+        },
+        "next": ["NM_HideUnmixable", "NM_IsUnmixableHidden"],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_HideUnmixable": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [137, 106, 2, 4],
+                "lower": [255, 255, 255],
+                "upper": [255, 255, 255]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": ["NM_DetectWhereAmI"]
+    },
+    "NM_IsUnmixableHidden": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [137, 106, 2, 4],
+                "lower": [175, 30, 29],
+                "upper": [181, 36, 35]
+            }
+        },
+        "next": ["NM_OpenFilterForMix"],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_OpenFilterForMix": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [815, 82, 50, 27],
+                "expected": "选"
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": {
+            "time": 200,
+            "target": [815, 82, 50, 27]
+        },
+        "next": ["NM_IsFilterForMix", "NM_DetectWhereAmI"]
+    },
+    "NM_IsFilterForMix": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [487, 65, 91, 37],
+                "expected": "选"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [754, 137, 94, 27]
+            }
+        },
+        "post_delay": 200,
+        "next": ["NM_FilterSwordHub"]
+    },
+    "NM_FilterSwordHub": {
+        "next": [
+            "NM_FilterSword1",
+            "NM_FilterSword2",
+            "NM_FilterSword3",
+            "NM_FilterSword4",
+            "NM_FilterSword5",
+            "NM_FilterSword6",
+            "NM_FilterSword7",
+            "NM_FilterConfirmForMix"
+        ],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_FilterSword1": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [235, 217, 83, 27]
+            }
+        },
+        "post_delay": 200,
+        "next": [
+            "NM_FilterSword2",
+            "NM_FilterSword3",
+            "NM_FilterSword4",
+            "NM_FilterSword5",
+            "NM_FilterSword6",
+            "NM_FilterSword7",
+            "NM_FilterConfirmForMix"
+        ],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_FilterSword2": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [419, 218, 66, 30]
+            }
+        },
+        "post_delay": 200,
+        "next": [
+            "NM_FilterSword3",
+            "NM_FilterSword4",
+            "NM_FilterSword5",
+            "NM_FilterSword6",
+            "NM_FilterSword7",
+            "NM_FilterConfirmForMix"
+        ],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_FilterSword3": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [596, 218, 56, 27]
+            }
+        },
+        "post_delay": 200,
+        "next": [
+            "NM_FilterSword4",
+            "NM_FilterSword5",
+            "NM_FilterSword6",
+            "NM_FilterSword7",
+            "NM_FilterConfirmForMix"
+        ],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_FilterSword4": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [772, 215, 63, 32]
+            }
+        },
+        "post_delay": 200,
+        "next": [
+            "NM_FilterSword5",
+            "NM_FilterSword6",
+            "NM_FilterSword7",
+            "NM_FilterConfirmForMix"
+        ],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_FilterSword5": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [241, 289, 74, 33]
+            }
+        },
+        "post_delay": 200,
+        "next": [
+            "NM_FilterSword6",
+            "NM_FilterSword7",
+            "NM_FilterConfirmForMix"
+        ],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_FilterSword6": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [423, 290, 52, 31]
+            }
+        },
+        "post_delay": 200,
+        "next": ["NM_FilterSword7", "NM_FilterConfirmForMix"],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_FilterSword7": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [588, 287, 68, 34]
+            }
+        },
+        "post_delay": 200,
+        "next": ["NM_FilterConfirmForMix"],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_FilterConfirmForMix": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [603, 603, 75, 43],
+                "expected": "确定"
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": {
+            "time": 100,
+            "target": [603, 603, 75, 43]
+        },
+        "next": ["NM_SelectMixTarget"],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_SelectMixTarget": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [254, 90, 45, 25],
+                "expected": "习合"
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "custom_action": "NewMixTargetSelectionAction"
+        },
+        "next": [
+            "NM_IsLockedTargetSelected",
+            "NM_AreAllMixTargetsCompleted",
+            "NM_IsFirstMixTargetEmpty"
+        ]
+    },
+    "NM_IsLockedTargetSelected": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "NewMixTargetSelectionRecognition",
+                "custom_recognition_param": {
+                    "outcome": "Locked"
+                }
+            }
+        },
+        "next": ["NM_IsLockedMixMaterialSelection"]
+    },
+    "NM_AreAllMixTargetsCompleted": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "NewMixTargetSelectionRecognition",
+                "custom_recognition_param": {
+                    "outcome": "Completed"
+                }
+            }
+        },
+        "next": []
+    },
+    "NM_IsFirstMixTargetEmpty": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "NewMixTargetSelectionRecognition",
+                "custom_recognition_param": {
+                    "outcome": "NoSword"
+                }
+            }
+        },
+        "next": ["NM_OpenMenuForMailbox"]
+    },
+    "NM_OpenMenuForMailbox": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [1179, 8, 95, 56],
+                "expected": "目"
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": {
+            "time": 100,
+            "target": [1179, 8, 95, 56]
+        },
+        "next": ["NM_OpenMailbox", "NM_OpenMenuForMailbox"],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_OpenMailbox": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [980, 407, 82, 31],
+                "expected": "收件箱"
+            }
+        },
+        "action": { "type": "Click"},
+        "post_wait_freezes": {
+            "time": 100,
+            "target": [1179, 8, 95, 56]
+        },
+        "next": ["NM_DetectWhereAmI"]
+    },
+    "NM_IsInMailbox": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [589, 37, 104, 37],
+                "expected": "收件箱"
+            }
+        },
+        "next": ["NM_OpenFilterForMail"]
+    },
+    "NM_OpenFilterForMail": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [961, 112, 58, 26]
+            }
+        },
+        "post_wait_freezes": {
+            "time": 200,
+            "target": [961, 112, 58, 26]
+        },
+        "next": ["NM_IsFilterForMail","NM_DetectWhereAmI"]
+    },
+    "NM_IsFilterForMail": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [487, 65, 91, 37],
+                "expected": "选"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [754, 137, 94, 27]
+            }
+        },
+        "post_delay": 200,
+        "next": ["NM_ClickItemTypeForMail"]
+    },
+    "NM_ClickItemTypeForMail": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [956, 285, 112, 36]
+            }
+        },
+        "post_delay": 200,
+        "next": ["NM_FilterSwordHubForMail"]
+    },
+    "NM_FilterSwordHubForMail": {
+        "next": [
+            "NM_FilterSword1ForMail",
+            "NM_FilterSword2ForMail",
+            "NM_FilterSword3ForMail",
+            "NM_FilterSword4ForMail",
+            "NM_FilterSword5ForMail",
+            "NM_FilterSword6ForMail",
+            "NM_FilterSword7ForMail",
+            "NM_FilterConfirmForMail"
+        ]
+    },
+    "NM_FilterSword1ForMail": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [235, 217, 83, 27]
+            }
+        },
+        "post_delay": 200,
+        "next": [
+            "NM_FilterSword2ForMail",
+            "NM_FilterSword3ForMail",
+            "NM_FilterSword4ForMail",
+            "NM_FilterSword5ForMail",
+            "NM_FilterSword6ForMail",
+            "NM_FilterSword7ForMail",
+            "NM_FilterConfirmForMail"
+        ]
+    },
+    "NM_FilterSword2ForMail": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [419, 218, 66, 30]
+            }
+        },
+        "post_delay": 200,
+        "next": [
+            "NM_FilterSword3ForMail",
+            "NM_FilterSword4ForMail",
+            "NM_FilterSword5ForMail",
+            "NM_FilterSword6ForMail",
+            "NM_FilterSword7ForMail",
+            "NM_FilterConfirmForMail"
+        ]
+    },
+    "NM_FilterSword3ForMail": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [596, 218, 56, 27]
+            }
+        },
+        "post_delay": 200,
+        "next": [
+            "NM_FilterSword4ForMail",
+            "NM_FilterSword5ForMail",
+            "NM_FilterSword6ForMail",
+            "NM_FilterSword7ForMail",
+            "NM_FilterConfirmForMail"
+        ]
+    },
+    "NM_FilterSword4ForMail": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [772, 215, 63, 32]
+            }
+        },
+        "post_delay": 200,
+        "next": [
+            "NM_FilterSword5ForMail",
+            "NM_FilterSword6ForMail",
+            "NM_FilterSword7ForMail",
+            "NM_FilterConfirmForMail"
+        ]
+    },
+    "NM_FilterSword5ForMail": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [241, 289, 74, 33]
+            }
+        },
+        "post_delay": 200,
+        "next": [
+            "NM_FilterSword6ForMail",
+            "NM_FilterSword7ForMail",
+            "NM_FilterConfirmForMail"
+        ]
+    },
+    "NM_FilterSword6ForMail": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [423, 290, 52, 31]
+            }
+        },
+        "post_delay": 200,
+        "next": ["NM_FilterSword7ForMail", "NM_FilterConfirmForMail"]
+    },
+    "NM_FilterSword7ForMail": {
+        "enabled": false,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [588, 287, 68, 34]
+            }
+        },
+        "post_delay": 200,
+        "next": ["NM_FilterConfirmForMail"]
+    },
+    "NM_FilterConfirmForMail": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [603, 603, 75, 43],
+                "expected": "确定"
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": {
+            "time": 100,
+            "target": [603, 603, 75, 43]
+        },
+        "next": ["NM_ClaimMailboxForMail", "NM_IsMailboxEmpty"]
+    },
+    "NM_ClaimMailboxForMail": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [1147, 612, 19, 14],
+                "lower": [127, 167, 18],
+                "upper": [133, 173, 24]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": []
+    },
+    "NM_IsMailboxEmpty": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [1147, 612, 19, 14],
+                "lower": [148, 148, 148],
+                "upper": [154, 154, 154]
+            }
+        },
+        "next": ["NM_EmptyMailboxHub"]
+    },
+    "NM_EmptyMailboxHub": {
+        "next": ["NM_IsHomeAfterEmptyMailbox", "NM_ClickHomeAfterEmptyMailbox", "NM_OpenMenuAfterEmptyMailbox", "NM_CloseEmptyMailbox"],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_IsHomeAfterEmptyMailbox": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [8, 1, 71, 107],
+                "template": "Common/本丸.png",
+                "green_mask": true,
+                "threshold": [0.98]
+            }
+        },
+        "next": []
+    },
+    "NM_ClickHomeAfterEmptyMailbox": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [1040, 165, 94, 48],
+                "expected": "本丸"
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": {
+            "time": 100,
+            "target": [1040, 165, 94, 48]
+        },
+        "next": ["NM_EmptyMailboxHub"],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_OpenMenuAfterEmptyMailbox": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [1179, 8, 95, 56],
+                "expected": "目"
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": {
+            "time": 100,
+            "target": [1179, 8, 95, 56]
+        },
+        "next": ["NM_EmptyMailboxHub"],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_CloseEmptyMailbox": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [1248, 11, 5, 6],
+                "lower": [40, 40, 40],
+                "upper": [46, 46, 46]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": {
+            "time": 100,
+            "target": [1248, 11, 5, 6]
+        },
+        "next": ["NM_EmptyMailboxHub"],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_IsLockedMixMaterialSelection": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [327, 389, 55, 32],
+                "expected": "成果"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1159, 461, 82, 39]
+            }
+        },
+        "post_delay": 300,
+        "next": ["NM_ClickLockedMix", "NM_LeaveLockedMixNoMaterial"]
+    },
+    "NM_ClickLockedMix": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [1173, 589, 52, 16],
+                "lower": [20, 81, 177],
+                "upper": [26, 87, 183]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": {
+            "time": 100,
+            "target": [1173, 589, 52, 16]
+        },
+        "next": ["NM_ConfirmLockedMix","NM_ClickLockedMix"],
+        "on_error":["NM_DetectWhereAmI"]
+    },
+    "NM_ConfirmLockedMix": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [718, 626, 27, 4],
+                "lower": [127, 167, 18],
+                "upper": [133, 173, 24]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": ["NM_ConfirmLockedMixAgain"]
+    },
+    "NM_ConfirmLockedMixAgain": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [718, 626, 27, 4]
+            }
+        },
+        "pre_delay": 500,
+        "next": ["NM_IsLockedMixMaterialSelection","NM_ConfirmLockedMixAgain"]
+    },
+    "NM_LeaveLockedMixNoMaterial": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [139, 8, 28, 32]
+            }
+        },
+        "post_wait_freezes": {
+            "time": 100,
+            "target": [139, 8, 28, 32]
+        },
+        "next": ["NM_DetectWhereAmI"]
+    },
+    "NM_LeaveFilter": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [487, 65, 91, 37],
+                "expected": "选"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1159,49,9,12]
+            }
+        },
+        "next": ["NM_DetectWhereAmI"]
+    }
+}

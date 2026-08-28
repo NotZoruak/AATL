@@ -431,8 +431,15 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
                         Margin = new Thickness(0, 2, 0, 2),
                     });
                 }
-                // 子选项垂直排列，每项独占一行并横向拉伸，与任务选项面板的下拉框尺寸一致
-                var subWrap = new StackPanel { Margin = new Thickness(0, 0, 0, 0) };
+                // 刀种筛选的子选项横向排列，并根据可用宽度自动换行；其他子选项保持纵向排列
+                Panel subWrap = option.Name == "刀种筛选"
+                    ? new WrapPanel
+                    {
+                        Orientation = Orientation.Horizontal,
+                        HorizontalAlignment = HorizontalAlignment.Left,
+                        Margin = new Thickness(0)
+                    }
+                    : new StackPanel { Margin = new Thickness(0) };
                 foreach (var subName in caseOption.Option)
                 {
                     if (MaaProcessor.Interface?.Option?.TryGetValue(subName, out var subDef) != true) continue;
@@ -443,7 +450,11 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
                         option.SubOptions.Add(subSelect);
                     var savedDesc = subDef.Description;
                     subDef.Description = null;
-                    var itemBox = new StackPanel { Margin = new Thickness(0, 0, 0, 4) };
+                    var itemBox = new StackPanel
+                    {
+                        Margin = new Thickness(0, 0, 0, 4),
+                        HorizontalAlignment = HorizontalAlignment.Left
+                    };
                     AddSubOption(itemBox, subSelect, source);
                     subDef.Description = savedDesc;
                     var subDesc = GetTooltipText(savedDesc, subDef.Document);

@@ -17,6 +17,7 @@
       "M_DetectFilter",
       "M_DetectPurchasePopup",
       "M_DetectMailbox",
+      "M_PostFilterReward",
       "M_IsAnnouncementPopup",
       "M_IsTrainingLetter",
       "M_IsLoginReward",
@@ -208,7 +209,15 @@
     },
     "pre_delay": 500,
     "post_delay": 500,
-    "next": ["M_CheckSubLevel", "M_ClickSelectAll"],
+    "next": ["M_MixGreedySelection"],
+    "on_error": ["M_DetectWhereAmI"]
+  },
+  "M_MixGreedySelection": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "MixGreedySelectionAction"
+    },
+    "next": ["M_CheckAndMix", "M_ExitNoMaterial"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckSubLevel": {
@@ -216,7 +225,7 @@
     "recognition": {
       "type": "OCR",
       "param": {
-        "roi": [401, 299, 46, 27],
+        "roi": [410, 299, 31, 27],
         "expected": ["7", "8", "9", "10"]
       }
     },
@@ -224,6 +233,19 @@
     "post_delay": 500,
     "timeout": 1000,
     "next": ["M_ExitNoMaterial"],
+    "on_error": ["M_CheckSubLevel6"]
+  },
+  "M_CheckSubLevel6": {
+    "enabled": false,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [410, 299, 31, 27],
+        "expected": "6"
+      }
+    },
+    "timeout": 1000,
+    "next": ["M_ClickSelectMaterial1"],
     "on_error": ["M_ClickSelectAll"]
   },
   "M_ClickSelectAll": {
@@ -233,9 +255,68 @@
         "target": [1158, 463, 80, 36]
       }
     },
-    "pre_delay": 500,
-    "post_delay": 1000,
+    "post_delay":300,
     "next": ["M_CheckAndMix", "M_ExitNoMaterial"],
+    "on_error": ["M_DetectWhereAmI"]
+  },
+  "M_ClickSelectMaterial1": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1056, 143, 27, 55]
+      }
+    },
+    "next": ["M_ClickSelectMaterial2"],
+    "on_error": ["M_DetectWhereAmI"]
+  },
+  "M_ClickSelectMaterial2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1054, 243, 27, 54]
+      }
+    },
+    "next": ["M_ClickSelectMaterial3"],
+    "on_error": ["M_DetectWhereAmI"]
+  },
+  "M_ClickSelectMaterial3": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1052, 342, 33, 61]
+      }
+    },
+    "next": ["M_ClickSelectMaterial4"],
+    "on_error": ["M_DetectWhereAmI"]
+  },
+  "M_ClickSelectMaterial4": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1050, 439, 37, 65]
+      }
+    },
+    "next": ["M_ClickSelectMaterial5"],
+    "on_error": ["M_DetectWhereAmI"]
+  },
+  "M_ClickSelectMaterial5": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1053, 545, 28, 59]
+      }
+    },
+    "next": ["M_ClickSelectMaterial6"],
+    "on_error": ["M_DetectWhereAmI"]
+  },
+  "M_ClickSelectMaterial6": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1052, 648, 28, 26]
+      }
+    },
+    "next": ["M_CheckAndMix"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_ClickSelectAllLocked": {
@@ -265,9 +346,8 @@
         "target": [1166, 586, 71, 19]
       }
     },
-    "pre_delay": 500,
     "post_delay": 500,
-    "next": ["M_ConfirmMix1"],
+    "next": ["M_ConfirmMix1","M_CheckAndMix"],
     "on_error": ["M_ExitNoMaterial"]
   },
   "M_CheckAndMixLocked": {
@@ -285,7 +365,6 @@
         "target": [1166, 586, 71, 19]
       }
     },
-    "pre_delay": 500,
     "post_delay": 500,
     "next": ["M_ConfirmMix1Locked"],
     "on_error": ["M_ExitNoMaterial"]
@@ -297,23 +376,35 @@
         "target": [143, 11, 19, 25]
       }
     },
-    "pre_delay": 500,
     "post_delay": 500,
     "next": ["M_DetectWhereAmI"]
   },
   "M_ConfirmMix1": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [732, 605, 103, 47],
+        "expected": "确认"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
         "target": [746, 611, 82, 36]
       }
     },
-    "pre_delay": 500,
     "post_delay": 500,
     "next": ["M_ConfirmMix2"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_ConfirmMix1Locked": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [732, 605, 103, 47],
+        "expected": "确认"
+      }
+    },
     "action": {
       "type": "Click",
       "param": {
@@ -334,7 +425,11 @@
     },
     "pre_delay": 500,
     "post_delay": 500,
-    "next": ["M_CheckSubLevel", "M_ClickSelectAll"],
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [401, 299, 46, 27]
+    },
+    "next": ["M_MixGreedySelection"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_CheckPos1": {
@@ -877,6 +972,7 @@
       "M_FilterSword5",
       "M_FilterSword6",
       "M_FilterSword7",
+      "M_FilterItemType",
       "M_FilterConfirm",
       "M_DetectWhereAmI"
     ]
@@ -896,6 +992,7 @@
       "M_FilterSword5",
       "M_FilterSword6",
       "M_FilterSword7",
+      "M_FilterItemType",
       "M_FilterConfirm"
     ],
     "on_error": ["M_DetectWhereAmI"]
@@ -914,6 +1011,7 @@
       "M_FilterSword5",
       "M_FilterSword6",
       "M_FilterSword7",
+      "M_FilterItemType",
       "M_FilterConfirm"
     ],
     "on_error": ["M_DetectWhereAmI"]
@@ -926,7 +1024,7 @@
         "target": [596, 218, 56, 27]
       }
     },
-    "next": ["M_FilterSword4", "M_FilterSword5", "M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"],
+    "next": ["M_FilterSword4", "M_FilterSword5", "M_FilterSword6", "M_FilterSword7", "M_FilterItemType", "M_FilterConfirm"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword4": {
@@ -937,7 +1035,7 @@
         "target": [772, 215, 63, 32]
       }
     },
-    "next": ["M_FilterSword5", "M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"],
+    "next": ["M_FilterSword5", "M_FilterSword6", "M_FilterSword7", "M_FilterItemType", "M_FilterConfirm"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword5": {
@@ -948,7 +1046,7 @@
         "target": [241, 289, 74, 33]
       }
     },
-    "next": ["M_FilterSword6", "M_FilterSword7", "M_FilterConfirm"],
+    "next": ["M_FilterSword6", "M_FilterSword7", "M_FilterItemType", "M_FilterConfirm"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword6": {
@@ -959,7 +1057,7 @@
         "target": [423, 290, 52, 31]
       }
     },
-    "next": ["M_FilterSword7", "M_FilterConfirm"],
+    "next": ["M_FilterSword7", "M_FilterItemType", "M_FilterConfirm"],
     "on_error": ["M_DetectWhereAmI"]
   },
   "M_FilterSword7": {
@@ -970,6 +1068,24 @@
         "target": [588, 287, 68, 34]
       }
     },
+    "next": ["M_FilterItemType", "M_FilterConfirm"],
+    "on_error": ["M_DetectWhereAmI"]
+  },
+  "M_FilterItemType": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [955, 284, 120, 40],
+        "expected": "物品种类"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [955, 284, 120, 40]
+      }
+    },
+    "post_delay": 200,
     "next": ["M_FilterConfirm"],
     "on_error": ["M_DetectWhereAmI"]
   },
@@ -977,7 +1093,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [588, 604, 99, 39]
+        "target": [594,601,13,49]
       }
     },
     "next": ["M_FilterPostHub"],
@@ -1028,7 +1144,8 @@
         "target": [1121, 582, 91, 83]
       }
     },
-    "next": ["M_DetectReward"],
+    "post_delay": 300,
+    "next": ["M_DetectReward","M_DetectPurchase"],
     "on_error": ["M_FilterPostHub"]
   },
   "M_DetectReward": {

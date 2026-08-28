@@ -12,6 +12,35 @@ using System.Reflection;
 
 EdoRoutePlannerTests.Run();
 
+AssertTrue(
+    NewMixTargetSelectionDecision.Decide([
+        new NewMixTargetSlot(false, false, null),
+    ]).Outcome == NewMixTargetSelectionOutcome.NoSword,
+    "一号位没有刀时应进入无刀分支");
+AssertTrue(
+    NewMixTargetSelectionDecision.Decide([
+        new NewMixTargetSlot(true, false, 7),
+        new NewMixTargetSlot(true, true, 7),
+    ]) is { Outcome: NewMixTargetSelectionOutcome.Locked, Position: 2 },
+    "带锁刀应无视乱舞等级优先进入专用链路");
+AssertTrue(
+    NewMixTargetSelectionDecision.Decide([
+        new NewMixTargetSlot(true, false, 7),
+        new NewMixTargetSlot(true, false, 6),
+    ]) is { Outcome: NewMixTargetSelectionOutcome.Normal, Position: 2 },
+    "未上锁且乱舞低于7级的刀应进入普通习合链路");
+AssertTrue(
+    NewMixTargetSelectionDecision.Decide([
+        new NewMixTargetSlot(true, false, 7),
+        new NewMixTargetSlot(true, false, 8),
+    ]).Outcome == NewMixTargetSelectionOutcome.Completed,
+    "所有可见未上锁刀均达到7级时应结束任务");
+AssertTrue(
+    NewMixTargetSelectionDecision.Decide([
+        new NewMixTargetSlot(true, false, null),
+    ]).Outcome == NewMixTargetSelectionOutcome.Unreadable,
+    "未上锁刀的乱舞等级无法识别时不得点击选择按钮");
+
 AssertTrue(EdoActionCountParser.Parse("６回") == 6,
     "行动次数 OCR 识别为全角数字时应仍能解析出次数");
 AssertTrue(EdoActionCountParser.Parse("7回") == 7,
@@ -34,6 +63,11 @@ AssertTrue(EdoActionCountParser.Resolve(-1, "Start", 0) == 7,
     "开局行动次数无法 OCR 时应使用活动固定的七次行动");
 AssertTrue(EdoActionCountParser.Resolve(-1, "P01", 6) == 6,
     "后续行动次数无法 OCR 时应使用已保存的剩余次数");
+
+AssertTrue(RepairDetailFormatter.Format("太郎太刀", [632, 185, -1, 474]) == "太郎太刀 632/185/未识别/474",
+    "修复资源部分 OCR 失败时应保留已识别的刀剑名和资源消耗");
+AssertTrue(RepairDetailFormatter.Format("", [632, 185, -1, 474]) == "632/185/未识别/474",
+    "修复刀剑名 OCR 失败时仍应输出已识别的资源消耗");
 
 var emptyFilter = RepairFilterSelection.FromFlags(new Dictionary<string, bool>());
 AssertFalse(emptyFilter.HasAnyFilter, "未选择任何筛选条件时不应启用筛选");

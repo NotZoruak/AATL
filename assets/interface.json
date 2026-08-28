@@ -173,13 +173,22 @@
     },
     {
       "name": "习合",
-      "entry": "Mix",
+      "entry": "NewMix",
       "default_check": false,
       "repeatable": false,
       "repeat_count": 0,
-      "option": ["搓糖", "刀种筛选"],
+      "option": [
+        "NM_NoFilter",
+        "NM_ShortSword",
+        "NM_Wakizashi",
+        "NM_Uchigatana",
+        "NM_Tachi",
+        "NM_Odachi",
+        "NM_Spear",
+        "NM_Naginata"
+      ],
       "label": "习合搓糖",
-      "description": "⚠该功能测试数据较少，请在有人值守时使用。\n\n 自动习合操作。每轮仅处理前6把刀剑，搓糖开启后前6把均达乱舞7级时自动停止。推荐先刀解清理非搓糖刀种，再开启搓糖+关闭刀种筛选以获得最佳体验。\n\n- **搓糖**：习合至乱舞等级7级后跳过该刀剑，关闭则无等级限制。上锁刀剑不受此选项限制。\n- **刀种筛选**：点击齿轮选择要筛选的刀种，关闭则跳过筛选直接习合全部刀剑。"
+      "description": "⚠该功能测试数据较少，请在有人值守时使用。\n\n自动习合操作。仅按搓糖规则处理：未上锁刀剑达到乱舞等级7级后跳过，上锁刀剑不受等级限制。前6把可见未上锁刀剑均达到乱舞等级7级时任务自动停止。\n\n- **不筛选**：跳过刀种筛选，直接处理全部刀剑。\n- 不勾选不筛选时，可勾选要筛选的刀种。"
     },
     {
       "name": "后勤",
@@ -5396,6 +5405,130 @@
       ],
       "default_case": []
     },
+    "NM_NoFilter": {
+      "name": "NM_NoFilter",
+      "type": "checkbox",
+      "label": "不筛选",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "NM_IsUnmixableHidden": {
+              "next": ["NM_SelectMixTarget"]
+            },
+            "NM_ClickItemTypeForMail": {
+              "next": ["NM_FilterConfirmForMail"]
+            }
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "NM_ShortSword": {
+      "name": "NM_ShortSword",
+      "type": "checkbox",
+      "label": "短刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "NM_FilterSword1": {"enabled": true},
+            "NM_FilterSword1ForMail": {"enabled": true}
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "NM_Wakizashi": {
+      "name": "NM_Wakizashi",
+      "type": "checkbox",
+      "label": "胁差",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "NM_FilterSword2": {"enabled": true},
+            "NM_FilterSword2ForMail": {"enabled": true}
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "NM_Uchigatana": {
+      "name": "NM_Uchigatana",
+      "type": "checkbox",
+      "label": "打刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "NM_FilterSword3": {"enabled": true},
+            "NM_FilterSword3ForMail": {"enabled": true}
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "NM_Tachi": {
+      "name": "NM_Tachi",
+      "type": "checkbox",
+      "label": "太刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "NM_FilterSword4": {"enabled": true},
+            "NM_FilterSword4ForMail": {"enabled": true}
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "NM_Odachi": {
+      "name": "NM_Odachi",
+      "type": "checkbox",
+      "label": "大太刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "NM_FilterSword5": {"enabled": true},
+            "NM_FilterSword5ForMail": {"enabled": true}
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "NM_Spear": {
+      "name": "NM_Spear",
+      "type": "checkbox",
+      "label": "枪",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "NM_FilterSword6": {"enabled": true},
+            "NM_FilterSword6ForMail": {"enabled": true}
+          }
+        }
+      ],
+      "default_case": []
+    },
+    "NM_Naginata": {
+      "name": "NM_Naginata",
+      "type": "checkbox",
+      "label": "薙刀",
+      "cases": [
+        {
+          "name": "",
+          "pipeline_override": {
+            "NM_FilterSword7": {"enabled": true},
+            "NM_FilterSword7ForMail": {"enabled": true}
+          }
+        }
+      ],
+      "default_case": []
+    },
     "搓糖": {
       "name": "搓糖",
       "type": "switch",
@@ -5407,6 +5540,7 @@
           "label": "搓糖开启",
           "pipeline_override": {
             "M_CheckSubLevel": {"enabled": true},
+            "M_CheckSubLevel6": {"enabled": true},
             "M_CheckLevel1": {"enabled": true},
             "M_CheckLevel2": {"enabled": true},
             "M_CheckLevel3": {"enabled": true},

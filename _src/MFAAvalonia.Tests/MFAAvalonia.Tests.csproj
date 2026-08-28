@@ -30,8 +30,10 @@
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\RepairCooldownState.cs" Link="RepairCooldownState.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\FatigueCheckDecision.cs" Link="FatigueCheckDecision.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\RepairListOcrDecision.cs" Link="RepairListOcrDecision.cs" />
+    <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\RepairDetailFormatter.cs" Link="RepairDetailFormatter.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\NaibanOutfitRecognitionState.cs" Link="NaibanOutfitRecognitionState.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\SwordDropNotificationMatcher.cs" Link="SwordDropNotificationMatcher.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\EdoRoutePlanner.cs" Link="EdoRoutePlanner.cs" />
+    <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\NewMixTargetSelectionDecision.cs" Link="NewMixTargetSelectionDecision.cs" />
   </ItemGroup>
 </Project>

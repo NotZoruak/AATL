@@ -76,9 +76,7 @@ public class RepairStartLogAction : IMaaCustomAction
             .Select(roi => ParseNumber(ReadText(context, ParseRoi(roi, "修复资源 OCR ROI"))))
             .ToList();
 
-        return string.IsNullOrWhiteSpace(name) || costs.Count != 4 || costs.Any(cost => cost < 0)
-            ? string.Empty
-            : $"{name} {string.Join('/', costs)}";
+        return RepairDetailFormatter.Format(name, costs);
     }
 
     private static string ReadText<T>(T context, int[] roi) where T : IMaaContext
