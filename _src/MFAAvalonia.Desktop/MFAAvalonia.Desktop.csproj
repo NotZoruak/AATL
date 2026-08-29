@@ -1,14 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <OutputType>WinExe</OutputType>
+        <!-- WinExe 抑制 Windows 上的控制台窗口；非 Windows 上无该子系统概念，用 Exe 更贴切 -->
+        <OutputType Condition="'$(OS)' == 'Windows_NT'">WinExe</OutputType>
+        <OutputType Condition="'$(OS)' != 'Windows_NT'">Exe</OutputType>
         <AssemblyName>MATR</AssemblyName>
         <OutputName>MATR</OutputName>
         <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-        <Platforms>x64</Platforms>
-        <ApplicationManifest>app.manifest</ApplicationManifest>
-        <ApplicationIcon>..\MFAAvalonia\Assets\logo.ico</ApplicationIcon>
+        <!-- 实际以 RID 发布；声明 AnyCPU 以匹配默认 Platform，避免 osx/linux 构建被 x64-only 限制 -->
+        <Platforms>AnyCPU;x64</Platforms>
+        <!-- app.manifest 与 .ico 均为 Windows 专属，非 Windows 忽略；显式条件化保持整洁 -->
+        <ApplicationManifest Condition="'$(OS)' == 'Windows_NT'">app.manifest</ApplicationManifest>
+        <ApplicationIcon Condition="'$(OS)' == 'Windows_NT'">..\MFAAvalonia\Assets\logo.ico</ApplicationIcon>
         <CETCompat>false</CETCompat>
     </PropertyGroup>
 
