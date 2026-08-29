@@ -42,7 +42,10 @@ sealed class Program
         try
         {
             var projectDir = AppDomain.CurrentDomain.BaseDirectory;
-            var pythonExe = Path.Combine(projectDir, "venv", "Scripts", "python.exe");
+            // Python venv 布局因平台而异：Windows 为 venv/Scripts/python.exe，类 Unix 为 venv/bin/python
+            var pythonExe = OperatingSystem.IsWindows()
+                ? Path.Combine(projectDir, "venv", "Scripts", "python.exe")
+                : Path.Combine(projectDir, "venv", "bin", "python");
             var scriptPath = Path.Combine(projectDir, "matr", "pipeline_gen.py");
             if (File.Exists(pythonExe) && File.Exists(scriptPath))
             {
