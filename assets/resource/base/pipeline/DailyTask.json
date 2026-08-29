@@ -102,7 +102,7 @@
     "action": {
       "type": "Click",
       "param": {
-        "target": [1067, 558, 120, 79]
+        "target": [947, 533, 67, 75]
       }
     },
     "next": ["DT_DetectWhereAmI"],
@@ -1095,7 +1095,7 @@
       "custom_action_param": {
         "task": "日课 锻刀",
         "roi": [52, 509, 282, 34],
-        "click": [1067, 558, 120, 79]
+        "click": [947, 533, 67, 75]
       }
     },
     "next": ["DT_ForgeClaimCompletedHub"],

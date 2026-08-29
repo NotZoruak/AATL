@@ -201,7 +201,7 @@
       "custom_action_param": {
         "task": "地下城",
         "roi": [52, 509, 282, 34],
-        "click": [1067, 558, 120, 79]
+        "click": [947, 533, 67, 75]
       }
     },
     "next": ["U_DetectWhereAmI"]

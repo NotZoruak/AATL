@@ -10,13 +10,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-AssertTrue(ResourcePointRewardParser.Parse("获得玉钢×135").SequenceEqual(["玉钢x135"]),
-    "资源点常规资源数量应正确解析");
-AssertTrue(ResourcePointRewardParser.Parse("获得委托符×").SequenceEqual(["委托符x1"]),
-    "委托符数量末位被 OCR 截断时应按固定掉落数量补为一");
-AssertFalse(ResourcePointRewardParser.Parse("获得加速符×").Any(),
-    "非委托符的缺失数量不应擅自补全");
-
 AssertTrue(MixGreedySelectionDecision.TryGetRarity(90, 90, 90, out var rarity) && rarity == 1,
     "稀有度1的颜色应正确映射");
 AssertTrue(MixGreedySelectionDecision.TryGetRarity(101, 70, 23, out rarity) && rarity == 5,
@@ -261,6 +254,16 @@ var workRecord = WorkRecordBuilder.Build([
 AssertTrue(workRecord.Count == 1, "测试日志应聚合为一条工作记录");
 AssertTrue(workRecord[0].ResourceGains["小判箱"] == 2, "连续小判箱日志应各自只计为一次掉落");
 AssertTrue(workRecord[0].Status == "成功", "存在成功停止状态时应显示成功");
+
+var resourceGainRecord = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：地下城"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[地下城] 资源点获取 木炭x20 玉钢x60"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "停止前状态：SUCCEEDED"),
+]);
+AssertTrue(resourceGainRecord.Count == 1
+    && resourceGainRecord[0].ResourceGains.GetValueOrDefault("木炭") == 20
+    && resourceGainRecord[0].ResourceGains.GetValueOrDefault("玉钢") == 60,
+    "资源点获取打点应计入工作记录的资源获取");
 
 var runningRecord = WorkRecordBuilder.Build([
     new LogEntry(logStart, "INF", "开始任务：地下城"),

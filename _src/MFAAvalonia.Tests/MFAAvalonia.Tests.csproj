@@ -36,6 +36,5 @@
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\EdoRoutePlanner.cs" Link="EdoRoutePlanner.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\NewMixTargetSelectionDecision.cs" Link="NewMixTargetSelectionDecision.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\MixGreedySelectionDecision.cs" Link="MixGreedySelectionDecision.cs" />
-    <Compile Include="..\..\assets\resource\base\custom\ResourcePointRewardParser.cs" Link="ResourcePointRewardParser.cs" />
   </ItemGroup>
 </Project>

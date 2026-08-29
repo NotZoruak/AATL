@@ -6,6 +6,8 @@ using MFAAvalonia.Helper;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace MFAAvalonia.Extensions.MaaFW.Custom;
 
@@ -81,5 +83,26 @@ public class ResourcePointLogAction : IMaaCustomAction
         if (roi.Count != 4)
             throw new System.Exception("资源点 OCR ROI 必须是 [x, y, w, h]");
         return roi.ToObject<int[]>()!;
+    }
+}
+
+// 注意：CustomClassLoader 对 custom 目录中的每个 .cs 文件单独编译成独立程序集，
+// 跨文件引用会导致编译失败、action 无法注册，因此本辅助类必须与 action 同文件定义。
+// 资源点奖励解析：把 OCR 文本（如「获得木炭×20」）转成打点格式「木炭x20」，多个资源以空格分隔
+internal static class ResourcePointRewardParser
+{
+    public static IReadOnlyList<string> Parse(string text)
+    {
+        var parts = new List<string>();
+        // OCR 可能把乘号识别为全角乘号或半角字母 x/X。
+        var matches = Regex.Matches(text, @"获得\s*(?<name>[^×xX\s]+)[×xX](?<count>\d+)");
+        foreach (Match match in matches)
+            parts.Add($"{match.Groups["name"].Value}x{match.Groups["count"].Value}");
+
+        // 资源点中的委托符固定只会掉落一个；数量末位被 OCR 截断时按该规则补全。
+        if (parts.Count == 0 && Regex.IsMatch(text, @"获得\s*委托符\s*[×xX]\s*$"))
+            parts.Add("委托符x1");
+
+        return parts;
     }
 }
