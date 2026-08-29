@@ -10,6 +10,13 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
+AssertTrue(ResourcePointRewardParser.Parse("获得玉钢×135").SequenceEqual(["玉钢x135"]),
+    "资源点常规资源数量应正确解析");
+AssertTrue(ResourcePointRewardParser.Parse("获得委托符×").SequenceEqual(["委托符x1"]),
+    "委托符数量末位被 OCR 截断时应按固定掉落数量补为一");
+AssertFalse(ResourcePointRewardParser.Parse("获得加速符×").Any(),
+    "非委托符的缺失数量不应擅自补全");
+
 AssertTrue(MixGreedySelectionDecision.TryGetRarity(90, 90, 90, out var rarity) && rarity == 1,
     "稀有度1的颜色应正确映射");
 AssertTrue(MixGreedySelectionDecision.TryGetRarity(101, 70, 23, out rarity) && rarity == 5,
@@ -273,6 +280,22 @@ AssertTrue(swordBookScanRecords.Count == 1 && swordBookScanRecords[0].TaskName =
     "刀帐自动识别不应单独显示，也不应作为上一任务的业务记录");
 AssertTrue(swordBookScanRecords[0].SpecialEvents.Count == 0,
     "刀帐自动识别期间的日志不应附加到上一条业务记录");
+
+var mixRecords = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：习合"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[习合] 完成一圈"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "停止前状态：SUCCEEDED"),
+]);
+AssertTrue(mixRecords.Count == 0,
+    "习合搓糖任务不应显示在工作记录中");
+
+var labeledMixRecords = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：习合搓糖"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[习合] 完成一圈"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "停止前状态：SUCCEEDED"),
+]);
+AssertTrue(labeledMixRecords.Count == 0,
+    "以习合搓糖标签启动的任务不应显示在工作记录中");
 
 var adbWarningRecord = WorkRecordBuilder.Build([
     new LogEntry(logStart, "INF", "开始任务：地下城"),

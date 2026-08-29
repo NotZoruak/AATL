@@ -30,7 +30,8 @@ jobs:
             rid: win-x64
             asset: MATR-${{ inputs.version || github.ref_name }}-win-x64.zip
           - name: macOS Apple Silicon
-            runner: macos-latest
+            # Windows 交叉发布 osx-arm64，避开非 Windows 宿主上的 .NET 10 NuGet 还原问题。
+            runner: windows-latest
             rid: osx-arm64
             asset: MATR-${{ inputs.version || github.ref_name }}-macos-arm64.zip
 
@@ -41,10 +42,12 @@ jobs:
       - name: 安装 .NET SDK
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 10.0.x
+          # 10.0.400 在 GitHub 托管环境还原此项目时会触发 NuGet RestoreTask 无日志失败；
+          # 与本地已验证环境保持一致，固定使用 10.0.300。
+          dotnet-version: 10.0.300
 
       - name: 发布 Windows 程序
-        if: runner.os == 'Windows'
+        if: matrix.rid == 'win-x64'
         shell: pwsh
         run: |
           dotnet publish _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj `
@@ -54,11 +57,21 @@ jobs:
           pwsh tools/pack_win.ps1 -Version $env:VERSION -PublishDir $publish
 
       - name: 发布 macOS 应用包
-        if: runner.os == 'macOS'
-        shell: bash
+        if: matrix.rid == 'osx-arm64'
+        shell: pwsh
         run: |
-          chmod +x tools/pack_mac.sh
-          RID="${{ matrix.rid }}" tools/pack_mac.sh "$VERSION" --app --zip
+          $packageVersion = $env:VERSION
+          Remove-Item Env:VERSION
+          dotnet restore _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj `
+            -p:Configuration=Release -p:Platform=AnyCPU -r ${{ matrix.rid }} `
+            -p:MATR_TARGET_RID=${{ matrix.rid }} `
+            --disable-parallel
+          dotnet publish _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj `
+            -c Release -p:Platform=AnyCPU -r ${{ matrix.rid }} `
+            -p:MATR_TARGET_RID=${{ matrix.rid }} `
+            --self-contained true --no-restore
+          $publish = Join-Path $PWD "_src/bin/AnyCPU/Release/${{ matrix.rid }}/publish"
+          pwsh tools/pack_mac.ps1 -Version $packageVersion -PublishDir $publish
 
       - name: 上传构建产物
         uses: actions/upload-artifact@v4
@@ -67,8 +80,17 @@ jobs:
           path: ${{ matrix.asset }}
           if-no-files-found: error
 
+      - name: 上传 macOS 还原诊断
+        if: failure() && matrix.rid == 'osx-arm64'
+        uses: actions/upload-artifact@v4
+        with:
+          name: macOS-restore-diagnostic
+          path: ci-macos-restore.log
+          if-no-files-found: warn
+
   release:
     name: 创建 GitHub Release
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
     needs: build
     runs-on: ubuntu-latest
     steps:

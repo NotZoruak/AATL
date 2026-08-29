@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Controls.Notifications;
 using Avalonia.Markup.Xaml;
+using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Threading;
 using MFAAvalonia.Configuration;
 using MFAAvalonia.Extensions;
@@ -141,6 +142,7 @@ public partial class App : Application
             // 启动 MaaCore 日志运行期切块
             MaaLogRotator.Start();
             AvaloniaXamlLoader.Load(this);
+            LoadMarkdownPluginResources();
             LanguageHelper.Initialize();
             ConfigurationManager.Initialize();
             SystemSleepHelper.ApplyPreventSleep();
@@ -160,6 +162,19 @@ public partial class App : Application
             LoggerHelper.Error($"应用初始化失败：原因={ex.Message}", ex);
             ShowStartupErrorAndExit(ex, "应用初始化");
         }
+    }
+
+    private void LoadMarkdownPluginResources()
+    {
+        var source = new Uri(
+            OperatingSystem.IsMacOS()
+                ? "avares://MFAAvalonia.Core/Assets/Style/MdXaml.NoMath.axaml"
+                : "avares://MFAAvalonia.Core/Assets/Style/MdXaml.axaml");
+
+        Resources.MergedDictionaries.Add(new ResourceInclude(source)
+        {
+            Source = source,
+        });
     }
 
 

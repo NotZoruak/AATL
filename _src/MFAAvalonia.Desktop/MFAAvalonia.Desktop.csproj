@@ -26,7 +26,7 @@
 
     <PropertyGroup>
         <DebianPackageDependencies>dotnet-runtime-8.0;libc6;libgtk-3-0</DebianPackageDependencies>
-        <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' == ''">win-x64;linux-x64;osx-x64;win-arm64;linux-arm64;osx-arm64</RuntimeIdentifiers>
+        <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' == '' and '$(RuntimeIdentifiers)' == ''">win-x64;linux-x64;osx-x64;win-arm64;linux-arm64;osx-arm64</RuntimeIdentifiers>
         <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' != ''">$(RuntimeIdentifier)</RuntimeIdentifiers>
         <MaaFrameworkPlatform>$(RuntimeIdentifier)</MaaFrameworkPlatform>
         <OutputPath>../bin/$(Platform)/$(Configuration)/</OutputPath>
@@ -60,7 +60,7 @@
     <ItemGroup>
         <PackageReference Include="Avalonia.Desktop" Version="11.3.12"/>
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.12"/>
-        <PackageReference Include="nulastudio.NetBeauty" Version="2.1.5" />
+        <PackageReference Include="nulastudio.NetBeauty" Version="2.1.5" Condition="'$(MATR_TARGET_RID)' != 'osx-arm64'" />
     </ItemGroup>
 
     <ItemGroup>

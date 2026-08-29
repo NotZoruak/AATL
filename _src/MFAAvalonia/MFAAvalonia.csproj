@@ -3,7 +3,7 @@
         <OutputType>Library</OutputType>
         <AssemblyName>MFAAvalonia.Core</AssemblyName>
         <Nullable>annotations</Nullable>
-        <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' == ''">win-x64;linux-x64;osx-x64;win-arm64;linux-arm64;osx-arm64</RuntimeIdentifiers>
+        <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' == '' and '$(RuntimeIdentifiers)' == ''">win-x64;linux-x64;osx-x64;win-arm64;linux-arm64;osx-arm64</RuntimeIdentifiers>
         <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' != ''">$(RuntimeIdentifier)</RuntimeIdentifiers>
         <MaaFrameworkPlatform>$(RuntimeIdentifier)</MaaFrameworkPlatform>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
@@ -14,6 +14,10 @@
         <DebugSymbols>false</DebugSymbols>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'osx-arm64'">
+        <DefineConstants>$(DefineConstants);MATR_DISABLE_MATH</DefineConstants>
+    </PropertyGroup>
+
     <ItemGroup>
         <Folder Include="Assets\Sound\" />
         <AvaloniaResource Include="Assets\logo.ico" />
@@ -21,6 +25,11 @@
         <AvaloniaResource Include="Assets\**" />
         <Folder Include="resource\base\pipeline\" />
         <AvaloniaResource Remove="%(_MaaFrameworkRuntime.DestinationFolder)AnyCPU\**" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(RuntimeIdentifier)' == 'osx-arm64'">
+        <AvaloniaXaml Remove="Assets\Style\MdXaml.axaml" />
+        <AvaloniaResource Remove="Assets\Style\MdXaml.axaml" />
     </ItemGroup>
 
 
@@ -96,7 +105,7 @@
 
         <ProjectReference Include="../LazyStaticGenerator/LazyStaticGenerator.csproj" OutputItemType="Analyzer" ExcludeAssets="runtime;build;native;contentfiles" ReferenceOutputAssembly="false" />
         <ProjectReference Include="../SukiUI/SukiUI.csproj" />
-        <ProjectReference Include="../Markdown.Avalonia/Markdown.Avalonia.csproj" />
+        <ProjectReference Include="../Markdown.Avalonia/Markdown.Avalonia.csproj" AdditionalProperties="MATR_TARGET_RID=$(MATR_TARGET_RID)" />
     </ItemGroup>
     <PropertyGroup>
         <LazyStaticGeneratedDir>$(BaseIntermediateOutputPath)\LazyStaticGenerated</LazyStaticGeneratedDir>
