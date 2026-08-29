@@ -64,7 +64,11 @@ jobs:
         run: |
           chmod +x tools/pack_mac.sh
           while IFS= read -r -d '' project; do
-            dotnet restore "$project" --disable-parallel
+            if [[ "$project" == *_src/Markdown.Avalonia.Math/Markdown.Avalonia.Math.csproj ]]; then
+              dotnet restore "$project" --disable-parallel -p:TargetFramework=net10.0
+            else
+              dotnet restore "$project" --disable-parallel
+            fi
           done < <(find _src -name '*.csproj' -print0)
           dotnet restore _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj \
             -r "${{ matrix.rid }}" --no-dependencies --disable-parallel \
