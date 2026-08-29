@@ -15,7 +15,6 @@
 # 环境变量：
 #   RID     目标运行时（默认 osx-arm64，可设 osx-x64）
 #   DOTNET  dotnet 可执行文件（默认 dotnet；SDK 装在 ~/.dotnet 时设 DOTNET="$HOME/.dotnet/dotnet"）
-#   NO_RESTORE 设为 true 时跳过发布阶段的还原，复用已完成的还原结果
 #
 set -euo pipefail
 
@@ -41,9 +40,9 @@ fi
 
 RID="${RID:-osx-arm64}"
 DOTNET="${DOTNET:-dotnet}"
-NO_RESTORE="${NO_RESTORE:-false}"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CSPROJ="$ROOT/_src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj"
+CORE_CSPROJ="$ROOT/_src/MFAAvalonia/MFAAvalonia.csproj"
 PUBLISH_DIR="$ROOT/_src/bin/AnyCPU/Release/$RID/publish"
 case "$RID" in
     osx-arm64) PLATFORM="macos-arm64" ;;
@@ -57,11 +56,19 @@ command -v "$DOTNET" >/dev/null 2>&1 || { echo "找不到 dotnet（可用 DOTNET
 
 echo "==> 发布 ${RID}（self-contained=${SELF_CONTAINED}）…"
 rm -rf "$PUBLISH_DIR"
-if [ "$NO_RESTORE" = true ]; then
-    "$DOTNET" publish "$CSPROJ" -r "$RID" -c Release --self-contained "$SELF_CONTAINED" --no-restore
-else
-    "$DOTNET" publish "$CSPROJ" -r "$RID" -c Release --self-contained "$SELF_CONTAINED"
+RESTORE_LOG="$ROOT/ci-macos-restore.log"
+if ! "$DOTNET" restore "$CORE_CSPROJ" -p:RuntimeIdentifier="$RID" -p:MATR_TARGET_RID="$RID" --disable-parallel --verbosity diagnostic >"$RESTORE_LOG" 2>&1; then
+    echo "macOS 核心库依赖还原失败，详细日志保存在 $RESTORE_LOG"
+    tail -n 200 "$RESTORE_LOG"
+    exit 1
 fi
+if ! "$DOTNET" restore "$CSPROJ" -p:RuntimeIdentifier="$RID" -p:MATR_TARGET_RID="$RID" -p:RestoreProjectReferences=false --disable-parallel --verbosity diagnostic >>"$RESTORE_LOG" 2>&1; then
+    echo "macOS 依赖还原失败，详细日志保存在 $RESTORE_LOG"
+    tail -n 200 "$RESTORE_LOG"
+    exit 1
+fi
+rm -f "$RESTORE_LOG"
+"$DOTNET" publish "$CSPROJ" -r "$RID" -p:MATR_TARGET_RID="$RID" -c Release --self-contained "$SELF_CONTAINED" --no-restore
 
 # 把 publish 产物 + 资源组装到 $stage
 stage_payload() {
@@ -99,6 +106,15 @@ sanitize_version() {
 make_icns() {
     local src="$1" dst="$2"
     [ -f "$src" ] || return 1
+    if ! command -v sips >/dev/null 2>&1 || ! command -v iconutil >/dev/null 2>&1; then
+        # 交叉发布时使用 ImageMagick 生成 icns；真实 macOS 环境优先走下方原生工具链。
+        if command -v convert >/dev/null 2>&1; then
+            convert "$src" -background none -define icon:auto-resize=16,32,64,128,256,512 "$dst" >/dev/null 2>&1
+            [ -s "$dst" ]
+            return
+        fi
+        return 1
+    fi
     local tmp iconset
     tmp="$(mktemp -d)"; iconset="$tmp/MATR.iconset"; mkdir -p "$iconset"
     local sz
@@ -170,7 +186,15 @@ fi
 if [ "$ZIP" = true ]; then
     ZIP_NAME="MATR-$VERSION-$PLATFORM.zip"
     echo "==> 压缩 $ZIP_NAME …"
-    ( cd "$ROOT" && rm -f "$ZIP_NAME" \
-        && ditto -c -k --sequesterRsrc --keepParent "$RESULT" "$ZIP_NAME" )
+    if command -v ditto >/dev/null 2>&1; then
+        ( cd "$ROOT" && rm -f "$ZIP_NAME" \
+            && ditto -c -k --sequesterRsrc --keepParent "$RESULT" "$ZIP_NAME" )
+    elif command -v zip >/dev/null 2>&1; then
+        ( cd "$ROOT" && rm -f "$ZIP_NAME" \
+            && zip -qry "$ZIP_NAME" "$(basename "$RESULT")" )
+    else
+        echo "找不到 ditto 或 zip，无法创建压缩包" >&2
+        exit 1
+    fi
     echo "    压缩包：$ROOT/$ZIP_NAME"
 fi

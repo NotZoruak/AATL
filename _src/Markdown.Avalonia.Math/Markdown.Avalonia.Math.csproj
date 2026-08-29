@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.3.12" />
-    <PackageReference Include="Sylinko.CSharpMath.Avalonia" Version="11.3.1" />
+    <PackageReference Include="Sylinko.CSharpMath.Avalonia" Version="11.3.1" Condition="'$(MATR_TARGET_RID)' != 'osx-arm64'" />
   </ItemGroup>
 
   <ItemGroup>
