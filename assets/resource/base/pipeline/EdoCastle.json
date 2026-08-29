@@ -876,7 +876,7 @@
       }
     },
     "post_delay": 500,
-    "next": ["EC_ConfirmReturnHome", "EC_IsSpecialDrop"],
+    "next": ["EC_ConfirmReturnHome", "EC_IsSpecialDrop", "EC_WaitForEventPage"],
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_IsTicketPopup": {
