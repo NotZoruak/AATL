@@ -41,7 +41,7 @@ jobs:
       - name: 安装 .NET SDK
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 10.0.x
+          dotnet-version: 10.0.400
 
       - name: 发布 Windows 程序
         if: runner.os == 'Windows'
