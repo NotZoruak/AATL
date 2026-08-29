@@ -651,7 +651,7 @@ public static partial class Instances
                 if (IsResolved<VersionUpdateSettingsUserControlModel>())
                 {
                     var version = VersionUpdateSettingsUserControlModel;
-                    version.DownloadSourceIndex = ConfigurationManager.Current.GetValue(ConfigurationKeys.DownloadSourceIndex, 1);
+                    version.DownloadSourceIndex = ConfigurationManager.Current.GetValue(ConfigurationKeys.DownloadSourceIndex, 0);
                     version.UIUpdateChannelIndex = ConfigurationManager.Current.GetValue(ConfigurationKeys.UIUpdateChannelIndex, 2);
                     version.ResourceUpdateChannelIndex = ConfigurationManager.Current.GetValue(ConfigurationKeys.ResourceUpdateChannelIndex, 2);
                     version.GitHubToken = SimpleEncryptionHelper.Decrypt(ConfigurationManager.Current.GetValue(ConfigurationKeys.GitHubToken, string.Empty));
