@@ -69,6 +69,21 @@ stage_payload() {
     chmod +x "$dest/MATR" 2>/dev/null || true
 }
 
+# 从人类可读版本号推导合法的 macOS Bundle 版本字段。
+# CFBundleShortVersionString / CFBundleVersion 只接受"点分非负整数"（如 0.12.2），
+# 因此去掉前导 v、预发布后缀（-beta / -rc 等）与构建元数据；非法则回退到 0.0.0。
+sanitize_version() {
+    local v="$1"
+    v="${v#[vV]}"      # 去掉前导 v/V（v0.12.2 → 0.12.2）
+    v="${v%%-*}"       # 去掉 -beta / -rc1 等预发布后缀
+    v="${v%%+*}"       # 去掉 +build 构建元数据
+    if [[ "$v" =~ ^[0-9]+(\.[0-9]+){0,2}$ ]]; then
+        printf '%s' "$v"
+    else
+        printf '0.0.0'  # dev 等非数字版本回退到合法占位值
+    fi
+}
+
 # 由 PNG 生成 .icns（缺 logo 时跳过）
 make_icns() {
     local src="$1" dst="$2"
@@ -95,6 +110,8 @@ else
     rm -rf "$APPDIR"
     mkdir -p "$APPDIR/Contents/MacOS" "$APPDIR/Contents/Resources"
     stage_payload "$APPDIR/Contents/MacOS"
+    PLIST_VERSION="$(sanitize_version "$VERSION")"
+    echo "    Bundle 版本：${PLIST_VERSION}（源版本：${VERSION}）"
     if make_icns "$LOGO" "$APPDIR/Contents/Resources/MATR.icns"; then
         ICON_LINE="    <key>CFBundleIconFile</key><string>MATR</string>"
     else
@@ -108,8 +125,8 @@ else
     <key>CFBundleName</key><string>MATR</string>
     <key>CFBundleDisplayName</key><string>MATR</string>
     <key>CFBundleIdentifier</key><string>com.notzoruak.matr</string>
-    <key>CFBundleVersion</key><string>${VERSION}</string>
-    <key>CFBundleShortVersionString</key><string>${VERSION}</string>
+    <key>CFBundleVersion</key><string>${PLIST_VERSION}</string>
+    <key>CFBundleShortVersionString</key><string>${PLIST_VERSION}</string>
     <key>CFBundleExecutable</key><string>MATR</string>
 ${ICON_LINE}
     <key>CFBundlePackageType</key><string>APPL</string>
