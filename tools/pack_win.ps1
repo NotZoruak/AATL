@@ -1,7 +1,9 @@
 ﻿param(
-    [string]$Version = "v0.12.3-beta.2",
+    [string]$Version = "v0.12.3",
     [string]$PublishDir = ""
 )
+
+$ErrorActionPreference = 'Stop'
 
 $Root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $TempBase = "$Root\_temp_zip"
@@ -17,6 +19,13 @@ if (Test-Path $ZipFile) { Remove-Item -Force $ZipFile }
 # Create temp dirs
 New-Item -ItemType Directory -Force -Path "$TempDir\assets" | Out-Null
 
+# 发布产物缺失时直接失败，避免打出缺少程序本体的残废包
+foreach ($name in @("MATR.exe", "MATR.dll", "libloader.dll")) {
+    if (-not (Test-Path "$SourceDir\$name")) {
+        throw "发布产物缺失: $SourceDir\$name（请先执行 dotnet publish）"
+    }
+}
+
 # Copy files
 Copy-Item "$SourceDir\MATR.exe" $TempDir
 Copy-Item "$SourceDir\MATR.dll" $TempDir
@@ -28,6 +37,13 @@ Copy-Item "$Root\README.md" $TempDir
 Copy-Item "$Root\LICENSE" $TempDir
 Copy-Item "$Root\assets\interface.json" "$TempDir\assets\interface.json"
 Copy-Item "$SourceDir\runtimes" -Recurse -Destination "$TempDir\runtimes"
+
+# 禁用 NetBeauty 后托管库平铺在 publish 根目录，直接拷贝到包根（与可执行文件同目录的标准 .NET 布局，
+# 避免 Main 方法 JIT 解析 MFAAvalonia.Core 时早于 PrivatePathHelper.Resolving 注册导致加载失败）。
+# MATR.dll / libloader.dll 已拷贝到包根目录，这里排除避免重复。
+Get-ChildItem "$SourceDir" -File -Filter "*.dll" | Where-Object { $_.Name -notin @("MATR.dll", "libloader.dll") } | ForEach-Object {
+    Copy-Item $_.FullName -Destination $TempDir
+}
 $KeepDirs = @("libs", "plugins", $Platform)
 Get-ChildItem "$TempDir\runtimes" -Directory | ForEach-Object {
     if ($KeepDirs -notcontains $_.Name) { Remove-Item -Recurse -Force $_.FullName }
@@ -39,8 +55,11 @@ if (Test-Path "$SourceDir\libs") {
     Copy-Item "$SourceDir\libs\*" -Recurse -Destination "$TempDir\runtimes\libs"
 }
 if (Test-Path "$SourceDir\MaaAgentBinary") {
-    New-Item -ItemType Directory -Force -Path "$TempDir\runtimes\libs\MaaAgentBinary" | Out-Null
-    Copy-Item "$SourceDir\MaaAgentBinary\*" -Recurse -Destination "$TempDir\runtimes\libs\MaaAgentBinary"
+    # libs 拷贝可能已带入同名子目录；先清空目标再拷，避免文件冲突
+    $AgentTarget = "$TempDir\runtimes\libs\MaaAgentBinary"
+    if (Test-Path $AgentTarget) { Remove-Item -Recurse -Force $AgentTarget }
+    New-Item -ItemType Directory -Force -Path $AgentTarget | Out-Null
+    Copy-Item "$SourceDir\MaaAgentBinary\*" -Recurse -Destination $AgentTarget
 }
 if (Test-Path "$SourceDir\plugins") {
     Copy-Item "$SourceDir\plugins" -Recurse -Destination "$TempDir\plugins"

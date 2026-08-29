@@ -43,10 +43,12 @@
         <MaaAgentBinaryPath>libs/MaaAgentBinary</MaaAgentBinaryPath>
         <BeautyLibsDir>.;./runtimes/libs</BeautyLibsDir>
         <BeautyOnPublishOnly>True</BeautyOnPublishOnly>
-        <!-- NetBeauty 的 BeautyLibsDir 用 ';' 分隔目录，在非 Windows 的 /bin/sh 下 ';' 会被当作命令分隔符
-             导致 nbeauty2 调用失败（exit 127）。NetBeauty 仅为整理输出目录的可选优化，非运行必需，
-             故在非 Windows 上禁用；代理路径由 MaaProcessor.ResolveAgentBinaryPath 回退查找 libs/ 或根目录。 -->
-        <DisableBeauty Condition="'$(_MatrIsWindows)' != 'true'">True</DisableBeauty>
+        <!-- NetBeauty 仅为整理输出目录的可选优化，非运行必需，故全部禁用：
+             - 其 BeautyLibsDir 用 ';' 分隔目录，在非 Windows 的 /bin/sh 下 ';' 会被当作命令分隔符导致失败；
+             - 在 Windows 上会把托管库整理进字面目录 ".;/runtimes/libs"，破坏标准 publish 布局。
+             发布产物保持标准平铺布局，由 tools/pack_win.ps1 统一整理到 runtimes/libs。
+             代理路径由 MaaProcessor.ResolveAgentBinaryPath 回退查找 libs/ 或根目录。 -->
+        <DisableBeauty>True</DisableBeauty>
         <DebugType>none</DebugType>
         <DebugSymbols>false</DebugSymbols>
     </PropertyGroup>
@@ -69,6 +71,14 @@
 
     <ItemGroup>
         <RuntimeHostConfigurationOption Include="SubdirectoriesToProbe" Value="runtimes/libs"/>
+        <!-- MaaFramework 的 .NET 启动钩子：在 Main 之前加载 MaaFramework 原生库。
+             声明为程序集引用以进入 deps.json，并由 RuntimeHostConfigurationOption 写入 runtimeconfig.json
+             的 STARTUP_HOOKS，使发布产物不再依赖手工放置 libloader.dll。 -->
+        <Reference Include="libloader">
+            <HintPath>..\..\libloader.dll</HintPath>
+            <Private>true</Private>
+        </Reference>
+        <RuntimeHostConfigurationOption Include="STARTUP_HOOKS" Value="libloader"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -117,7 +127,8 @@
 
     <Target Name="RemoveUnwantedFiles" AfterTargets="Publish" Condition="'$(PublishDir)' != ''">
         <PropertyGroup>
-            <MainPublishDir>$([MSBuild]::NormalizeDirectory('$(OutputPath)\$(RuntimeIdentifier)\publish'))</MainPublishDir>
+            <!-- 使用发布时实际写入的 PublishDir，避免按 OutputPath 推算（宿主 RID 不附加进输出路径时推算会错位） -->
+            <MainPublishDir>$([MSBuild]::NormalizeDirectory('$(PublishDir)'))</MainPublishDir>
         </PropertyGroup>
 
         <ItemGroup>
