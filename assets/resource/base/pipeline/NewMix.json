@@ -9,6 +9,8 @@
             "NM_EnterMixTarget", 
             "NM_IsSelectingMixTarget", 
             "NM_IsInMailbox",
+            "NM_IsClaimMailboxPopup",
+            "NM_IsMixMaterialSelection",
             "NM_LeaveFilter"
         ],
         "timeout": 60000
@@ -76,11 +78,10 @@
     },
     "NM_IsSelectingMixTarget": {
         "recognition": {
-            "type": "ColorMatch",
+            "type": "OCR",
             "param": {
-                "roi": [5, 295, 28, 15],
-                "lower": [186, 186, 186],
-                "upper": [192, 192, 192]
+                "roi": [255, 90, 43, 23],
+                "expected": "习合"
             }
         },
         "next": ["NM_HideUnmixable", "NM_IsUnmixableHidden"],
@@ -90,9 +91,10 @@
         "recognition": {
             "type": "ColorMatch",
             "param": {
-                "roi": [137, 106, 2, 4],
+                "roi": [132, 93, 20, 20],
                 "lower": [255, 255, 255],
-                "upper": [255, 255, 255]
+                "upper": [255, 255, 255],
+                "count": 400
             }
         },
         "action": {
@@ -123,10 +125,7 @@
         "action": {
             "type": "Click"
         },
-        "post_wait_freezes": {
-            "time": 200,
-            "target": [815, 82, 50, 27]
-        },
+        "post_delay": 500,
         "next": ["NM_IsFilterForMix", "NM_DetectWhereAmI"]
     },
     "NM_IsFilterForMix": {
@@ -284,10 +283,7 @@
         "action": {
             "type": "Click"
         },
-        "post_wait_freezes": {
-            "time": 100,
-            "target": [603, 603, 75, 43]
-        },
+        "post_delay": 200,
         "next": ["NM_SelectMixTarget"],
         "on_error": ["NM_DetectWhereAmI"]
     },
@@ -305,6 +301,7 @@
         },
         "next": [
             "NM_IsLockedTargetSelected",
+            "NM_IsNormalTargetSelected",
             "NM_AreAllMixTargetsCompleted",
             "NM_IsFirstMixTargetEmpty"
         ]
@@ -320,6 +317,18 @@
             }
         },
         "next": ["NM_IsLockedMixMaterialSelection"]
+    },
+    "NM_IsNormalTargetSelected": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "NewMixTargetSelectionRecognition",
+                "custom_recognition_param": {
+                    "outcome": "Normal"
+                }
+            }
+        },
+        "next": ["NM_DetectWhereAmI"]
     },
     "NM_AreAllMixTargetsCompleted": {
         "recognition": {
@@ -371,12 +380,15 @@
                 "expected": "收件箱"
             }
         },
-        "action": { "type": "Click"},
-        "post_wait_freezes": {
-            "time": 100,
-            "target": [1179, 8, 95, 56]
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1013,406,1,1]
+            }
         },
-        "next": ["NM_DetectWhereAmI"]
+        "post_delay": 1000,
+        "next": ["NM_IsInMailbox","NM_OpenMailbox"],
+        "on_error": ["NM_DetectWhereAmI"]
     },
     "NM_IsInMailbox": {
         "recognition": {
@@ -559,7 +571,7 @@
             "type": "Click"
         },
         "post_wait_freezes": {
-            "time": 100,
+            "time": 200,
             "target": [603, 603, 75, 43]
         },
         "next": ["NM_ClaimMailboxForMail", "NM_IsMailboxEmpty"]
@@ -576,7 +588,39 @@
         "action": {
             "type": "Click"
         },
-        "next": []
+        "pre_delay": 500,
+        "post_delay": 500,
+        "next": ["NM_ClaimMailboxHub"]
+    },
+    "NM_ClaimMailboxHub": {
+        "next": ["NM_CloseClaimMailboxPopup", "NM_DetectWhereAmI"]
+    },
+    "NM_IsClaimMailboxPopup": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [571, 48, 138, 48],
+                "expected": "奖励确认"
+            }
+        },
+        "next": ["NM_CloseClaimMailboxPopup"]
+    },
+    "NM_CloseClaimMailboxPopup": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [1234, 11, 34, 36],
+                "expected": ["×", "x", "X"]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": {
+            "time": 100,
+            "target": [1234, 11, 34, 36]
+        },
+        "next": ["NM_ClaimMailboxHub"]
     },
     "NM_IsMailboxEmpty": {
         "recognition": {
@@ -660,6 +704,138 @@
         "next": ["NM_EmptyMailboxHub"],
         "on_error": ["NM_DetectWhereAmI"]
     },
+    "NM_IsMixMaterialSelection": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [328, 389, 55, 32],
+                "expected": "成果"
+            }
+        },
+        "next": [
+            "NM_CloseProtectedSwordDisplay",
+            "NM_SortMixMaterialAscending",
+            "NM_IsMixLevelCompleted",
+            "NM_HasMixMaterial",
+            "NM_LeaveMixWithoutMaterial"
+        ]
+    },
+    "NM_CloseProtectedSwordDisplay": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [137, 106, 3, 5],
+                "lower": [175, 30, 29],
+                "upper": [181, 36, 35]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": {
+            "time": 100,
+            "target": [137, 106, 3, 5]
+        },
+        "next": ["NM_IsMixMaterialSelection","NM_DetectWhereAmI"]
+    },
+    "NM_SortMixMaterialAscending": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [1001, 88, 1, 1],
+                "lower": [241, 241, 242],
+                "upper": [243, 243, 244]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 200,
+        "next": ["NM_IsMixMaterialSelection"]
+    },
+    "NM_IsMixLevelCompleted": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [415, 299, 20, 24],
+                "expected": ["7", "8", "9", "10"]
+            }
+        },
+        "next": ["NM_LeaveMixWithoutMaterial"]
+    },
+    "NM_HasMixMaterial": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [1084, 137, 6, 541],
+                "lower": [40, 40, 40],
+                "upper": [46, 46, 46]
+            }
+        },
+        "next": ["NM_HandleMixMaterialSelection"]
+    },
+    "NM_HandleMixMaterialSelection": {
+        "action": {
+            "type": "Custom",
+            "custom_action": "MixGreedySelectionAction"
+        },
+        "next": ["NM_ClickMix"]
+    },
+    "NM_ClickMix": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [1173, 589, 52, 16],
+                "lower": [20, 81, 177],
+                "upper": [26, 87, 183]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 200,
+        "next": ["NM_ConfirmMix", "NM_ClickMix"],
+        "on_error": ["NM_DetectWhereAmI"]
+    },
+    "NM_ConfirmMix": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [718, 626, 27, 4],
+                "lower": [127, 167, 18],
+                "upper": [133, 173, 24]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 500,
+        "next": ["NM_ConfirmMixAgain"]
+    },
+    "NM_ConfirmMixAgain": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [718, 626, 27, 4]
+            }
+        },
+        "post_delay": 800,
+        "next": ["NM_IsMixMaterialSelection", "NM_ConfirmMixAgain"]
+    },
+    "NM_LeaveMixWithoutMaterial": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [137, 5, 31, 35]
+            }
+        },
+        "pre_delay": 500,
+        "post_wait_freezes": {
+            "time": 100,
+            "target": [137, 5, 31, 35]
+        },
+        "next": ["NM_DetectWhereAmI"]
+    },
     "NM_IsLockedMixMaterialSelection": {
         "recognition": {
             "type": "OCR",
@@ -674,6 +850,7 @@
                 "target": [1159, 461, 82, 39]
             }
         },
+        "pre_delay": 500,
         "post_delay": 300,
         "next": ["NM_ClickLockedMix", "NM_LeaveLockedMixNoMaterial"]
     },

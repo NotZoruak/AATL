@@ -35,5 +35,6 @@
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\SwordDropNotificationMatcher.cs" Link="SwordDropNotificationMatcher.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\EdoRoutePlanner.cs" Link="EdoRoutePlanner.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\NewMixTargetSelectionDecision.cs" Link="NewMixTargetSelectionDecision.cs" />
+    <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\MixGreedySelectionDecision.cs" Link="MixGreedySelectionDecision.cs" />
   </ItemGroup>
 </Project>

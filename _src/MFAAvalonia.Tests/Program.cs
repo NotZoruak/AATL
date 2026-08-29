@@ -10,6 +10,62 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
+AssertTrue(MixGreedySelectionDecision.TryGetRarity(90, 90, 90, out var rarity) && rarity == 1,
+    "稀有度1的颜色应正确映射");
+AssertTrue(MixGreedySelectionDecision.TryGetRarity(101, 70, 23, out rarity) && rarity == 5,
+    "稀有度5的颜色应正确映射");
+AssertFalse(MixGreedySelectionDecision.TryGetRarity(100, 100, 100, out _),
+    "未知颜色不应映射为稀有度");
+AssertTrue(MixGreedySelectionDecision.CalculateRequiredMaterialCount(1, 1, 1) == 57,
+    "稀有度1、乱舞1级且距下级1振时应还需57把素材");
+AssertTrue(MixGreedySelectionDecision.CalculateRequiredMaterialCount(4, 5, 2) == 9,
+    "稀有度4、乱舞5级且距下级2振时应还需9把素材");
+AssertTrue(MixGreedySelectionDecision.TryParseSelectedCount(" 12／30 ", out var selected) && selected == 12,
+    "应解析全角斜杠的已选数量");
+AssertTrue(MixGreedySelectionDecision.TryParseSelectedCount("8/3O", out selected) && selected == 8,
+    "应兼容容量30中的字母O误识别");
+AssertFalse(MixGreedySelectionDecision.TryParseSelectedCount("无法识别", out _),
+    "无斜杠的文本不应被识别为已选数量");
+AssertTrue(MixGreedySelectionDecision.GetCancelCount(9, 30) == 21,
+    "已选数量超额时应计算需取消的素材数");
+AssertTrue(MixGreedySelectionDecision.GetCancelCount(30, 9) == -21,
+    "已选数量不足时应保留负差值，以便直接习合");
+var createPlanMethod = typeof(MixGreedySelectionDecision).GetMethod("CreatePlan");
+var insufficientPlan = createPlanMethod?.Invoke(null, [10, 4]);
+AssertTrue(insufficientPlan?.GetType().GetProperty("Mode")?.GetValue(insufficientPlan)?.ToString() == "Proceed",
+    "素材不足时选材计划应直接进入习合");
+var clearPlan = createPlanMethod?.Invoke(null, [6, 30]);
+AssertTrue(clearPlan?.GetType().GetProperty("Mode")?.GetValue(clearPlan)?.ToString() == "ClearAndReselect",
+    "超额超过15把时选材计划应全部解除后重选");
+AssertFalse(MixGreedySelectionDecision.ShouldClearAllSelection(15),
+    "超额15把时应逐把取消");
+AssertTrue(MixGreedySelectionDecision.ShouldClearAllSelection(16),
+    "超额超过15把时应先全部解除");
+var manualClickAttemptsProperty = typeof(MixGreedySelectionDecision).GetProperty("ManualClickAttempts");
+AssertTrue(manualClickAttemptsProperty?.GetValue(null) is 2,
+    "手动选材首次未出现绿色状态时应重试一次");
+var clearAllDelayProperty = typeof(MixGreedySelectionDecision).GetProperty("ClearAllDelayMilliseconds");
+AssertTrue(clearAllDelayProperty?.GetValue(null) is 500,
+    "全部解除后应等待500毫秒再检查首行绿色状态");
+var clearAllAttemptsProperty = typeof(MixGreedySelectionDecision).GetProperty("ClearAllAttempts");
+AssertTrue(clearAllAttemptsProperty?.GetValue(null) is 2,
+    "首行仍为绿色时应最多再执行一次全部解除");
+var swipeSettleDelayProperty = typeof(MixGreedySelectionDecision).GetProperty("SwipeSettleDelayMilliseconds");
+AssertTrue(swipeSettleDelayProperty?.GetValue(null) is 500,
+    "滑动结束后应等待500毫秒再检查素材选择状态");
+var restoreAfterSwipeMethod = typeof(MixGreedySelectionDecision).GetMethod("ShouldRestoreLastSelectedMaterialAfterSwipe");
+AssertTrue(restoreAfterSwipeMethod?.Invoke(null, [true, false]) is true,
+    "滑动前第五行已选而滑动后第一行失去绿色状态时应恢复选择");
+AssertTrue(restoreAfterSwipeMethod?.Invoke(null, [false, false]) is false,
+    "滑动前第五行未选时不应恢复下一页第一行的选择");
+AssertTrue(MixGreedySelectionDecision.CancelPositions.SequenceEqual([
+    new MixGreedyPoint(857, 212),
+    new MixGreedyPoint(858, 313),
+    new MixGreedyPoint(858, 414),
+    new MixGreedyPoint(858, 516),
+    new MixGreedyPoint(858, 617),
+]), "五行手动选材应仅将绿色状态识别点向左偏移242像素");
+
 EdoRoutePlannerTests.Run();
 
 AssertTrue(

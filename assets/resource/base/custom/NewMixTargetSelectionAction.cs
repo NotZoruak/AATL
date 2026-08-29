@@ -26,12 +26,12 @@ public sealed class NewMixTargetSelectionAction : IMaaCustomAction
 
     private static readonly int[][] LevelRois =
     [
-        [604, 146, 38, 22],
-        [604, 247, 38, 22],
-        [604, 348, 38, 22],
-        [604, 449, 38, 22],
-        [604, 550, 38, 22],
-        [604, 651, 38, 22]
+        [614, 148, 16, 17],
+        [614, 249, 16, 17],
+        [614, 351, 17, 18],
+        [614, 452, 18, 19],
+        [614, 552, 18, 21],
+        [614, 653, 19, 22]
     ];
 
     private static readonly int[][] SelectTargets =
@@ -137,7 +137,7 @@ public sealed class NewMixTargetSelectionAction : IMaaCustomAction
 
     private static bool ContainsGray(Bitmap bitmap, int[] roi, byte lower, byte upper)
     {
-        return ContainsColor(bitmap, roi, lower, lower, lower, 0, upper, upper, upper);
+        return ContainsColor(bitmap, roi, lower, lower, lower, upper, upper, upper);
     }
 
     private static bool ContainsColor(Bitmap bitmap, int[] roi, byte red, byte green, byte blue, byte tolerance)

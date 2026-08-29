@@ -5,35 +5,48 @@ using MaaFramework.Binding.Custom;
 using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.Helper;
 using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
 namespace MFAAvalonia.Extensions.MaaFW.Custom;
 
-/// <summary>按乱舞等级尽量减少习合素材溢出的正常习合选择动作。</summary>
+/// <summary>按精确需求量选择习合素材，尽量避免乱舞经验溢出。</summary>
 public sealed class MixGreedySelectionAction : IMaaCustomAction
 {
-    private static readonly int[] LevelRoi = [410, 299, 31, 27];
-    private static readonly int[] ClearSelection = [1154, 363, 95, 26];
-    private static readonly int[] SelectAll = [1158, 463, 80, 36];
-    private static readonly int[][] MaterialPositions =
+    private static readonly MixGreedyPoint[] SelectedMaterialMarkers =
     [
-        [1056, 143, 27, 55],
-        [1054, 243, 27, 54],
-        [1052, 342, 33, 61],
-        [1050, 439, 37, 65],
-        [1053, 545, 28, 59],
-        [1052, 648, 28, 26]
+        new(1099, 212),
+        new(1100, 313),
+        new(1100, 414),
+        new(1100, 516),
+        new(1100, 617)
     ];
 
-    private const int BackX = 152;
-    private const int BackY = 23;
-    private const int PinkX = 287;
-    private const int PinkY = 309;
-    private const int PinkR = 211;
-    private const int PinkG = 69;
-    private const int PinkB = 105;
-    private const int ColorTolerance = 3;
+    private static readonly int[] SelectAll = [1145, 460, 111, 40];
+    private static readonly int[] ClearAllSelection = [1151, 361, 101, 30];
+
+    private const int RarityX = 246;
+    private const int RarityY = 211;
+    private const int LevelX = 415;
+    private const int LevelY = 299;
+    private const int LevelWidth = 20;
+    private const int LevelHeight = 24;
+    private const int NeedX = 427;
+    private const int NeedY = 340;
+    private const int NeedWidth = 22;
+    private const int NeedHeight = 21;
+    private const int SelectedCountX = 1148;
+    private const int SelectedCountY = 315;
+    private const int SelectedCountWidth = 109;
+    private const int SelectedCountHeight = 26;
+    private const int SelectedGreenR = 145;
+    private const int SelectedGreenG = 255;
+    private const int SelectedGreenB = 67;
+    private const int SelectedGreenTolerance = 2;
+    private const int BottomX = 1112;
+    private const int BottomY = 686;
+    private const int MaxPageScrolls = 20;
 
     public string Name { get; set; } = nameof(MixGreedySelectionAction);
 
@@ -42,88 +55,292 @@ public sealed class MixGreedySelectionAction : IMaaCustomAction
         try
         {
             ActionParamHelper.ThrowIfStopping(context);
-
-            if (!TryReadLevel(context, out var level))
+            if (!TryReadRarity(context, out var rarity)
+                || !TryReadInteger(context, LevelX, LevelY, LevelWidth, LevelHeight, out var level)
+                || !TryReadInteger(context, NeedX, NeedY, NeedWidth, NeedHeight, out var needForNextLevel))
             {
-                LoggerHelper.Warning("[日课 合成] 葛朗台模式无法识别当前乱舞等级");
+                LoggerHelper.Warning("[习合] 无法读取稀有度、乱舞等级或下一级需求");
                 return false;
             }
 
-            LoggerHelper.Info($"[日课 合成] 葛朗台模式当前乱舞等级：{level}");
-            if (level >= 7)
+            if (level is < 1 or >= 7)
             {
-                LoggerHelper.Info("[日课 合成] 当前乱舞等级已达到7级，返回刀剑列表");
-                context.Click(BackX, BackY);
+                LoggerHelper.Warning($"[习合] 当前乱舞等级异常或已满级：{level}");
                 return false;
             }
+
+            var required = MixGreedySelectionDecision.CalculateRequiredMaterialCount(rarity, level, needForNextLevel);
+            LoggerHelper.Info($"[习合] 稀有度{rarity}、乱舞{level}级，升至7级需素材{required}把");
 
             ClickRegion(context, SelectAll, "一键选择");
-            if (!TryReadLevel(context, out level))
+            if (!TryReadSelectedCount(context, out var selected))
             {
-                LoggerHelper.Warning("[日课 合成] 一键选择后无法识别乱舞等级");
+                LoggerHelper.Warning("[习合] 无法读取一键选择后的已选数量");
                 return false;
             }
 
-            LoggerHelper.Info($"[日课 合成] 一键选择后乱舞等级：{level}");
-            if (level > 7)
+            var plan = MixGreedySelectionDecision.CreatePlan(required, selected);
+            if (plan.Mode == MixMaterialSelectionMode.Proceed)
             {
-                LoggerHelper.Info("[日课 合成] 一键选择造成等级溢出，清空选择并逐个选择素材");
-                ClearAndSelectUntilSeven(context);
+                if (plan.Difference < 0)
+                    LoggerHelper.Info($"[习合] 素材不足：已选{selected}把、目标{required}把，直接习合");
+                else
+                    LoggerHelper.Info($"[习合] 一键选择已精确选中{selected}把素材");
                 return true;
             }
 
-            if (level == 7 && IsPinkProgress(context))
+            LoggerHelper.Info($"[习合] 一键选择{selected}把，需要取消{plan.ExcessCount}把");
+
+            if (plan.Mode == MixMaterialSelectionMode.ClearAndReselect)
             {
-                LoggerHelper.Info("[日课 合成] 一键选择造成经验溢出，清空选择并逐个选择素材");
-                ClearAndSelectUntilSeven(context);
+                LoggerHelper.Info("[习合] 超额超过15把，全部解除后按升序重新选择");
+                if (!ClearAllAndSelectMaterials(context, required))
+                    return false;
+            }
+            else if (!CancelExcessMaterials(context, plan.ExcessCount))
+            {
+                return false;
             }
 
+            if (!TryReadSelectedCount(context, out selected) || selected != required)
+            {
+                LoggerHelper.Warning($"[习合] 调整后已选数量异常：{selected}，预期：{required}");
+                return false;
+            }
+
+            LoggerHelper.Info($"[习合] 素材数量已精确调整为{selected}把");
             return true;
         }
         catch (MaaStopException)
         {
-            LoggerHelper.Info("[日课 合成] 手动停止葛朗台选择");
+            LoggerHelper.Info("[习合] 手动停止葛朗台选材");
             return false;
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
-            LoggerHelper.Error($"[日课 合成] 葛朗台选择异常：{e.Message}");
+            LoggerHelper.Error($"[习合] 葛朗台选材异常：{exception.Message}");
             return false;
         }
     }
 
-    /// <summary>清空一键选择结果，再按顺序逐把选择，达到7级后停止。</summary>
-    private static void ClearAndSelectUntilSeven<T>(T context) where T : IMaaContext
+    /// <summary>全部解除后确认首行未选中，再按升序逐把选择至目标数量。</summary>
+    private static bool ClearAllAndSelectMaterials<T>(T context, int required) where T : IMaaContext
     {
-        ClickRegion(context, ClearSelection, "取消一键选择");
-
-        foreach (var position in MaterialPositions)
+        for (var attempt = 1; attempt <= MixGreedySelectionDecision.ClearAllAttempts; attempt++)
         {
-            ActionParamHelper.ThrowIfStopping(context);
-            ClickRegion(context, position, "逐个选择素材");
+            ClickRegion(context, ClearAllSelection, "全部解除", 0);
+            ActionParamHelper.SleepWithStopCheck(context, MixGreedySelectionDecision.ClearAllDelayMilliseconds);
+            if (!IsSelectedMaterial(context, SelectedMaterialMarkers[0]))
+                return SelectMaterials(context, required);
 
-            if (!TryReadLevel(context, out var level))
+            if (attempt < MixGreedySelectionDecision.ClearAllAttempts)
+                LoggerHelper.Warning("[习合] 全部解除后第一行素材仍为绿色，重新解除一次");
+        }
+
+        LoggerHelper.Warning("[习合] 两次全部解除后第一行素材仍处于选中状态");
+        return false;
+    }
+
+    /// <summary>按升序逐页选择素材；每页只处理五个完整素材行。</summary>
+    private static bool SelectMaterials<T>(T context, int required) where T : IMaaContext
+    {
+        var selectedCount = 0;
+        for (var page = 0; selectedCount < required && page <= MaxPageScrolls; page++)
+        {
+            foreach (var index in Enumerable.Range(0, SelectedMaterialMarkers.Length))
             {
-                LoggerHelper.Warning("[日课 合成] 逐个选择后无法识别乱舞等级，停止继续选择");
-                return;
+                if (selectedCount == required)
+                    return true;
+                if (IsSelectedMaterial(context, SelectedMaterialMarkers[index]))
+                    continue;
+
+                var selectPosition = MixGreedySelectionDecision.CancelPositions[index];
+                var selected = false;
+                for (var attempt = 1; attempt <= MixGreedySelectionDecision.ManualClickAttempts; attempt++)
+                {
+                    context.Click(selectPosition.X, selectPosition.Y);
+                    ActionParamHelper.SleepWithStopCheck(context, 200);
+                    selected = IsSelectedMaterial(context, SelectedMaterialMarkers[index]);
+                    if (selected)
+                        break;
+
+                    LoggerHelper.Warning($"[习合] 第{index + 1}行素材第{attempt}次选择后未出现绿色状态");
+                }
+
+                if (!selected)
+                    return false;
+
+                selectedCount++;
             }
 
-            LoggerHelper.Info($"[日课 合成] 逐个选择后乱舞等级：{level}");
-            if (level >= 7)
-                return;
+            if (selectedCount == required)
+                return true;
+            if (IsAtMaterialBottom(context))
+            {
+                LoggerHelper.Warning($"[习合] 已到底部，仅选中{selectedCount}把素材，预期{required}把");
+                return false;
+            }
+
+            if (!HoldSwipeAndRestoreLastMaterial(context))
+                return false;
+        }
+
+        LoggerHelper.Warning("[习合] 素材列表翻页次数超过上限");
+        return false;
+    }
+
+    /// <summary>逐页取消超额素材；每页只处理五个完整素材行。</summary>
+    private static bool CancelExcessMaterials<T>(T context, int cancelCount) where T : IMaaContext
+    {
+        for (var page = 0; cancelCount > 0 && page <= MaxPageScrolls; page++)
+        {
+            foreach (var index in Enumerable.Range(0, SelectedMaterialMarkers.Length))
+            {
+                if (cancelCount == 0)
+                    return true;
+
+                if (!IsSelectedMaterial(context, SelectedMaterialMarkers[index]))
+                    continue;
+
+                var cancelPosition = MixGreedySelectionDecision.CancelPositions[index];
+                context.Click(cancelPosition.X, cancelPosition.Y);
+                ActionParamHelper.SleepWithStopCheck(context, 200);
+                if (IsSelectedMaterial(context, SelectedMaterialMarkers[index]))
+                {
+                    LoggerHelper.Warning($"[习合] 第{index + 1}行素材取消未生效");
+                    return false;
+                }
+
+                cancelCount--;
+            }
+
+            if (cancelCount == 0)
+                return true;
+            if (IsAtMaterialBottom(context))
+            {
+                LoggerHelper.Warning($"[习合] 已到底部，仍有{cancelCount}把素材未取消");
+                return false;
+            }
+
+            if (!HoldSwipeAndRestoreLastMaterial(context))
+                return false;
+        }
+
+        LoggerHelper.Warning("[习合] 素材列表翻页次数超过上限");
+        return false;
+    }
+
+    /// <summary>连续按住完成素材列表滑动：起点、移动和终点各保持500毫秒。</summary>
+    private static void HoldSwipeToNextMaterialPage<T>(T context) where T : IMaaContext
+    {
+        const int startX = 1100;
+        const int startY = 617;
+        const int endX = 1099;
+        const int endY = 212;
+        const int steps = 10;
+        var tasker = context.Tasker;
+
+        tasker.TouchDown(0, startX, startY, 100);
+        try
+        {
+            ActionParamHelper.SleepWithStopCheck(context, 500);
+            for (var step = 1; step <= steps; step++)
+            {
+                ActionParamHelper.ThrowIfStopping(context);
+                var x = startX + (endX - startX) * step / steps;
+                var y = startY + (endY - startY) * step / steps;
+                tasker.TouchMove(0, x, y, 100);
+                ActionParamHelper.SleepWithStopCheck(context, 500 / steps);
+            }
+
+            ActionParamHelper.SleepWithStopCheck(context, 500);
+        }
+        finally
+        {
+            tasker.TouchUp(0);
         }
     }
 
-    /// <summary>点击指定区域中心，并等待画面完成一次更新。</summary>
-    private static void ClickRegion<T>(T context, int[] region, string description) where T : IMaaContext
+    /// <summary>滑动后恢复可能被起点误取消、已移动至下一页首行的第五行素材。</summary>
+    private static bool HoldSwipeAndRestoreLastMaterial<T>(T context) where T : IMaaContext
     {
-        context.Click(region[0] + region[2] / 2, region[1] + region[3] / 2);
-        LoggerHelper.Info($"[日课 合成] {description}：({region[0] + region[2] / 2},{region[1] + region[3] / 2})");
+        var wasLastSelectedBeforeSwipe = IsSelectedMaterial(context, SelectedMaterialMarkers[^1]);
+        HoldSwipeToNextMaterialPage(context);
+        ActionParamHelper.SleepWithStopCheck(context, MixGreedySelectionDecision.SwipeSettleDelayMilliseconds);
+
+        var isFirstSelectedAfterSwipe = IsSelectedMaterial(context, SelectedMaterialMarkers[0]);
+        if (!MixGreedySelectionDecision.ShouldRestoreLastSelectedMaterialAfterSwipe(
+                wasLastSelectedBeforeSwipe,
+                isFirstSelectedAfterSwipe))
+            return true;
+
+        var restorePosition = MixGreedySelectionDecision.CancelPositions[0];
+        context.Click(restorePosition.X, restorePosition.Y);
         ActionParamHelper.SleepWithStopCheck(context, 200);
+        if (IsSelectedMaterial(context, SelectedMaterialMarkers[0]))
+        {
+            LoggerHelper.Info("[习合] 已恢复被滑动起点误取消的素材");
+            return true;
+        }
+
+        LoggerHelper.Warning("[习合] 滑动后恢复被误取消的素材失败");
+        return false;
     }
 
-    /// <summary>读取当前具体习合页面左侧的乱舞等级。</summary>
-    private static bool TryReadLevel<T>(T context, out int level) where T : IMaaContext
+    /// <summary>判断指定素材行右侧是否显示已选中的绿色背景。</summary>
+    private static bool IsSelectedMaterial<T>(T context, MixGreedyPoint marker) where T : IMaaContext
+    {
+        using var image = context.GetImage();
+        if (image == null)
+            return false;
+        using var bitmap = image.ToBitmap();
+        if (bitmap == null)
+            return false;
+
+        var pixel = ReadPixel(bitmap, marker.X, marker.Y);
+        return Math.Abs(pixel.R - SelectedGreenR) <= SelectedGreenTolerance
+            && Math.Abs(pixel.G - SelectedGreenG) <= SelectedGreenTolerance
+            && Math.Abs(pixel.B - SelectedGreenB) <= SelectedGreenTolerance;
+    }
+
+    /// <summary>判断素材列表是否已滑到底部。</summary>
+    private static bool IsAtMaterialBottom<T>(T context) where T : IMaaContext
+    {
+        using var image = context.GetImage();
+        if (image == null)
+            return true;
+        using var bitmap = image.ToBitmap();
+        if (bitmap == null)
+            return true;
+
+        var pixel = ReadPixel(bitmap, BottomX, BottomY);
+        return pixel.R is >= 114 and <= 116
+            && pixel.G is >= 113 and <= 115
+            && pixel.B is >= 113 and <= 115;
+    }
+
+    /// <summary>读取稀有度对应的固定像素颜色。</summary>
+    private static bool TryReadRarity<T>(T context, out int rarity) where T : IMaaContext
+    {
+        using var image = context.GetImage();
+        if (image == null)
+        {
+            rarity = 0;
+            return false;
+        }
+        using var bitmap = image.ToBitmap();
+        if (bitmap == null)
+        {
+            rarity = 0;
+            return false;
+        }
+
+        var pixel = ReadPixel(bitmap, RarityX, RarityY);
+        return MixGreedySelectionDecision.TryGetRarity(pixel.R, pixel.G, pixel.B, out rarity);
+    }
+
+    /// <summary>读取仅包含一个正整数的 OCR 区域。</summary>
+    private static bool TryReadInteger<T>(T context, int x, int y, int width, int height, out int value) where T : IMaaContext
     {
         for (var attempt = 0; attempt < 5; attempt++)
         {
@@ -131,9 +348,9 @@ public sealed class MixGreedySelectionAction : IMaaCustomAction
             using var image = context.GetImage();
             if (image != null)
             {
-                var text = context.GetText(LevelRoi[0], LevelRoi[1], LevelRoi[2], LevelRoi[3], image);
+                var text = context.GetText(x, y, width, height, image);
                 var match = Regex.Match(text ?? string.Empty, @"\d+");
-                if (int.TryParse(match.Value, out level))
+                if (int.TryParse(match.Value, out value) && value > 0)
                     return true;
             }
 
@@ -141,30 +358,44 @@ public sealed class MixGreedySelectionAction : IMaaCustomAction
                 ActionParamHelper.SleepWithStopCheck(context, 200);
         }
 
-        level = -1;
+        value = 0;
         return false;
     }
 
-    /// <summary>判断经验进度条是否仍有未消化的溢出经验。</summary>
-    private static bool IsPinkProgress<T>(T context) where T : IMaaContext
+    /// <summary>读取“已选数量/30”形式的 OCR 结果。</summary>
+    private static bool TryReadSelectedCount<T>(T context, out int selected) where T : IMaaContext
     {
-        using var image = context.GetImage();
-        if (image == null)
-            return false;
+        for (var attempt = 0; attempt < 5; attempt++)
+        {
+            ActionParamHelper.ThrowIfStopping(context);
+            using var image = context.GetImage();
+            if (image != null)
+            {
+                var text = context.GetText(SelectedCountX, SelectedCountY, SelectedCountWidth, SelectedCountHeight, image);
+                if (MixGreedySelectionDecision.TryParseSelectedCount(text, out selected))
+                    return true;
+            }
 
-        using var bitmap = image.ToBitmap();
-        if (bitmap == null)
-            return false;
+            if (attempt < 4)
+                ActionParamHelper.SleepWithStopCheck(context, 200);
+        }
 
-        var pixel = ReadPixel(bitmap, PinkX, PinkY);
-        var hit = Math.Abs(pixel.R - PinkR) <= ColorTolerance
-            && Math.Abs(pixel.G - PinkG) <= ColorTolerance
-            && Math.Abs(pixel.B - PinkB) <= ColorTolerance;
-        LoggerHelper.Info($"[日课 合成] 7级经验条溢出颜色识别：{hit}");
-        return hit;
+        selected = 0;
+        return false;
     }
 
-    /// <summary>读取指定坐标的 RGB 像素。</summary>
+    /// <summary>点击指定区域中心并等待页面更新。</summary>
+    private static void ClickRegion<T>(T context, int[] region, string description, int delayMilliseconds = 200) where T : IMaaContext
+    {
+        var x = region[0] + region[2] / 2;
+        var y = region[1] + region[3] / 2;
+        context.Click(x, y);
+        LoggerHelper.Info($"[习合] {description}：({x},{y})");
+        if (delayMilliseconds > 0)
+            ActionParamHelper.SleepWithStopCheck(context, delayMilliseconds);
+    }
+
+    /// <summary>读取位图中的单个 RGB 像素。</summary>
     private static RgbColor ReadPixel(Bitmap bitmap, int x, int y)
     {
         if (x < 0 || y < 0 || x >= bitmap.PixelSize.Width || y >= bitmap.PixelSize.Height)
