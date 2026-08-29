@@ -1615,7 +1615,7 @@
     "pre_delay": 100,
     "post_wait_freezes": {"time": 200},
     "next": ["E_FlowerIsSwordSelect"],
-    "on_error": ["E_GoHome"]
+    "on_error": ["E_FlowerBattleHub"]
   },
   "E_FlowerIsSwordSelect": {
     "recognition": {
