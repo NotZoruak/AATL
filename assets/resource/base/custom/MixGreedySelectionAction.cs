@@ -57,7 +57,7 @@ public sealed class MixGreedySelectionAction : IMaaCustomAction
             ActionParamHelper.ThrowIfStopping(context);
             if (!TryReadRarity(context, out var rarity)
                 || !TryReadInteger(context, LevelX, LevelY, LevelWidth, LevelHeight, out var level)
-                || !TryReadInteger(context, NeedX, NeedY, NeedWidth, NeedHeight, out var needForNextLevel))
+                || !TryReadNeedForNextLevel(context, out var needForNextLevel))
             {
                 LoggerHelper.Warning("[习合] 无法读取稀有度、乱舞等级或下一级需求");
                 return false;
@@ -360,6 +360,17 @@ public sealed class MixGreedySelectionAction : IMaaCustomAction
 
         value = 0;
         return false;
+    }
+
+    /// <summary>优先读取常规需求区域，失败后使用更紧凑的备用区域重试。</summary>
+    private static bool TryReadNeedForNextLevel<T>(T context, out int value) where T : IMaaContext
+    {
+        if (TryReadInteger(context, NeedX, NeedY, NeedWidth, NeedHeight, out value))
+            return true;
+
+        var fallbackRoi = MixGreedySelectionDecision.FallbackNeedOcrRoi;
+        LoggerHelper.Info("[习合] 常规下一级需求 OCR 未命中，尝试备用区域");
+        return TryReadInteger(context, fallbackRoi.X, fallbackRoi.Y, fallbackRoi.Width, fallbackRoi.Height, out value);
     }
 
     /// <summary>读取“已选数量/30”形式的 OCR 结果。</summary>

@@ -53,6 +53,9 @@ AssertTrue(clearAllAttemptsProperty?.GetValue(null) is 2,
 var swipeSettleDelayProperty = typeof(MixGreedySelectionDecision).GetProperty("SwipeSettleDelayMilliseconds");
 AssertTrue(swipeSettleDelayProperty?.GetValue(null) is 500,
     "滑动结束后应等待500毫秒再检查素材选择状态");
+var fallbackNeedRoi = typeof(MixGreedySelectionDecision).GetProperty("FallbackNeedOcrRoi")?.GetValue(null);
+AssertTrue(fallbackNeedRoi?.ToString() == "MixGreedyRectangle { X = 431, Y = 342, Width = 15, Height = 17 }",
+    "下一级需求的备用OCR区域应使用指定的小范围坐标");
 var restoreAfterSwipeMethod = typeof(MixGreedySelectionDecision).GetMethod("ShouldRestoreLastSelectedMaterialAfterSwipe");
 AssertTrue(restoreAfterSwipeMethod?.Invoke(null, [true, false]) is true,
     "滑动前第五行已选而滑动后第一行失去绿色状态时应恢复选择");
@@ -94,8 +97,9 @@ AssertTrue(
 AssertTrue(
     NewMixTargetSelectionDecision.Decide([
         new NewMixTargetSlot(true, false, null),
-    ]).Outcome == NewMixTargetSelectionOutcome.Unreadable,
-    "未上锁刀的乱舞等级无法识别时不得点击选择按钮");
+        new NewMixTargetSlot(true, false, 6),
+    ]) is { Outcome: NewMixTargetSelectionOutcome.Normal, Position: 2 },
+    "未识别位置应跳过并继续选择后续可习合刀剑");
 
 AssertTrue(EdoActionCountParser.Parse("６回") == 6,
     "行动次数 OCR 识别为全角数字时应仍能解析出次数");

@@ -1,10 +1,10 @@
 {
   "name": "MATR",
-  "version": "v0.12.2",
+  "version": "v0.12.3-beta.1",
   "mirrorchyan_rid": "MATR",
   "mirrorchyan_multiplatform": true,
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.12.2 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.12.3-beta.1 | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -188,7 +188,7 @@
         "NM_Naginata"
       ],
       "label": "习合搓糖",
-      "description": "⚠该功能测试数据较少，请在有人值守时使用。\n\n自动习合操作。仅按搓糖规则处理：未上锁刀剑达到乱舞等级7级后跳过，上锁刀剑不受等级限制。前6把可见未上锁刀剑均达到乱舞等级7级时任务自动停止。\n\n- **不筛选**：跳过刀种筛选，直接处理全部刀剑。\n- 不勾选不筛选时，可勾选要筛选的刀种。"
+      "description": "自动习合操作。仅按搓糖规则处理：未上锁刀剑达到乱舞等级7级后跳过，上锁刀剑不受等级限制。前6把可见未上锁刀剑均达到乱舞等级7级时任务自动停止。邮箱为空时任务自动停止，但是当选择不筛选，且邮箱内存在无法收取的物品（如刀装位已满时的刀装）时，会陷入循环，需手动停止。"
     },
     {
       "name": "后勤",

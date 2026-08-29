@@ -51,11 +51,11 @@ MATR 是一个基于 MaaFramework 的《刀剑乱舞》PC 端长期自动化系�
 
 ### 1. 下载
 
-前往 [Releases](https://github.com/NotZoruak/MATR/releases) 页面，在最新版本下方点击「Assets」展开文件列表，下载命名为 `MATR-vx.x.x.zip` 的文件，解压到空目录。
+前往 [Releases](https://github.com/NotZoruak/MATR/releases) 页面，在最新版本下方点击「Assets」展开文件列表，根据系统下载对应压缩包并解压到空目录：Windows 下载 `MATR-vx.x.x-win-x64.zip`，Apple Silicon Mac 下载 `MATR-vx.x.x-macos-arm64.zip`。
 
 > 已安装的用户可通过软件内设置面板检查更新，支持 GitHub 和 [Mirror酱](https://mirrorchyan.com) 双下载源切换（Mirror酱 需购买 CDK 激活）。
 >
-> 注意：Release 基于 x86_64 架构，Windows 系统。Arm 架构（如苹果 M 系列芯片、树莓派等）、Mac 系统、Linux 系统暂不支持。
+> 注意：Windows 包适用于 x86_64 架构；macOS 包适用于 Apple Silicon（arm64）架构。Linux 和其他架构暂不支持。
 
 ### 2. 启动
 

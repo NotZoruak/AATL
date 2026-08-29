@@ -1,0 +1,87 @@
+name: 构建并发布跨平台安装包
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "版本号，例如 v0.12.2"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+env:
+  VERSION: ${{ inputs.version || github.ref_name }}
+
+jobs:
+  build:
+    name: 构建 ${{ matrix.name }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Windows x64
+            runner: windows-latest
+            rid: win-x64
+            asset: MATR-${{ inputs.version || github.ref_name }}-win-x64.zip
+          - name: macOS Apple Silicon
+            runner: macos-latest
+            rid: osx-arm64
+            asset: MATR-${{ inputs.version || github.ref_name }}-macos-arm64.zip
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: 发布 Windows 程序
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          dotnet publish _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj `
+            -c Release -p:Platform=AnyCPU -r ${{ matrix.rid }} `
+            --self-contained false
+          $publish = Join-Path $PWD "_src/bin/AnyCPU/Release/${{ matrix.rid }}/publish"
+          pwsh tools/pack_win.ps1 -Version $env:VERSION -PublishDir $publish
+
+      - name: 发布 macOS 应用包
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          chmod +x tools/pack_mac.sh
+          RID="${{ matrix.rid }}" tools/pack_mac.sh "$VERSION" --app --zip
+
+      - name: 上传构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.name }}
+          path: ${{ matrix.asset }}
+          if-no-files-found: error
+
+  release:
+    name: 创建 GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: 下载构建产物
+        uses: actions/download-artifact@v4
+        with:
+          path: assets
+          merge-multiple: true
+
+      - name: 发布 Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.VERSION }}
+          files: assets/*.zip
+          generate_release_notes: true
+          prerelease: ${{ contains(env.VERSION, '-') }}

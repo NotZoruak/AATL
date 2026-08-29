@@ -1,8 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <!-- 优先使用目标 RID；普通构建没有 RID 时，回退到当前 .NET SDK 的宿主 RID。 -->
+        <_MatrTargetRid Condition="'$(RuntimeIdentifier)' != ''">$(RuntimeIdentifier)</_MatrTargetRid>
+        <_MatrTargetRid Condition="'$(RuntimeIdentifier)' == ''">$(NETCoreSdkRuntimeIdentifier)</_MatrTargetRid>
+        <_MatrIsWindows Condition="$([System.String]::Copy('$(_MatrTargetRid)').StartsWith('win'))">true</_MatrIsWindows>
+        <_MatrIsWindows Condition="'$(_MatrIsWindows)' == ''">false</_MatrIsWindows>
+    </PropertyGroup>
+
+    <PropertyGroup>
         <!-- WinExe 抑制 Windows 上的控制台窗口；非 Windows 上无该子系统概念，用 Exe 更贴切 -->
-        <OutputType Condition="'$(OS)' == 'Windows_NT'">WinExe</OutputType>
-        <OutputType Condition="'$(OS)' != 'Windows_NT'">Exe</OutputType>
+        <OutputType Condition="'$(_MatrIsWindows)' == 'true'">WinExe</OutputType>
+        <OutputType Condition="'$(_MatrIsWindows)' != 'true'">Exe</OutputType>
         <AssemblyName>MATR</AssemblyName>
         <OutputName>MATR</OutputName>
         <TargetFramework>net10.0</TargetFramework>
@@ -11,8 +19,8 @@
         <!-- 实际以 RID 发布；声明 AnyCPU 以匹配默认 Platform，避免 osx/linux 构建被 x64-only 限制 -->
         <Platforms>AnyCPU;x64</Platforms>
         <!-- app.manifest 与 .ico 均为 Windows 专属，非 Windows 忽略；显式条件化保持整洁 -->
-        <ApplicationManifest Condition="'$(OS)' == 'Windows_NT'">app.manifest</ApplicationManifest>
-        <ApplicationIcon Condition="'$(OS)' == 'Windows_NT'">..\MFAAvalonia\Assets\logo.ico</ApplicationIcon>
+        <ApplicationManifest Condition="'$(_MatrIsWindows)' == 'true'">app.manifest</ApplicationManifest>
+        <ApplicationIcon Condition="'$(_MatrIsWindows)' == 'true'">..\MFAAvalonia\Assets\logo.ico</ApplicationIcon>
         <CETCompat>false</CETCompat>
     </PropertyGroup>
 
@@ -38,12 +46,12 @@
         <!-- NetBeauty 的 BeautyLibsDir 用 ';' 分隔目录，在非 Windows 的 /bin/sh 下 ';' 会被当作命令分隔符
              导致 nbeauty2 调用失败（exit 127）。NetBeauty 仅为整理输出目录的可选优化，非运行必需，
              故在非 Windows 上禁用；代理路径由 MaaProcessor.ResolveAgentBinaryPath 回退查找 libs/ 或根目录。 -->
-        <DisableBeauty Condition="'$(OS)' != 'Windows_NT'">True</DisableBeauty>
+        <DisableBeauty Condition="'$(_MatrIsWindows)' != 'true'">True</DisableBeauty>
         <DebugType>none</DebugType>
         <DebugSymbols>false</DebugSymbols>
     </PropertyGroup>
 
-    <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
+    <ItemGroup Condition="'$(_MatrIsWindows)' == 'true'">
         <PackageReference Update="Packaging.Targets">
             <Version>0.1.232</Version>
         </PackageReference>

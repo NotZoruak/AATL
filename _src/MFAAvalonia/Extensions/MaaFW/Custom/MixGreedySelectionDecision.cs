@@ -19,6 +19,9 @@ public static class MixGreedySelectionDecision
     /// <summary>滑动结束后等待列表停止惯性滚动的时长。</summary>
     public static int SwipeSettleDelayMilliseconds => 500;
 
+    /// <summary>下一级需求数字未识别时使用的备用 OCR 区域。</summary>
+    public static MixGreedyRectangle FallbackNeedOcrRoi => new(431, 342, 15, 17);
+
     /// <summary>判断滑动起点误取消第五行素材后是否需要恢复选择。</summary>
     public static bool ShouldRestoreLastSelectedMaterialAfterSwipe(bool wasLastSelectedBeforeSwipe, bool isFirstSelectedAfterSwipe) =>
         wasLastSelectedBeforeSwipe && !isFirstSelectedAfterSwipe;
@@ -102,6 +105,9 @@ public static class MixGreedySelectionDecision
 
 /// <summary>屏幕中的一个像素坐标。</summary>
 public readonly record struct MixGreedyPoint(int X, int Y);
+
+/// <summary>屏幕中的一个矩形区域。</summary>
+public readonly record struct MixGreedyRectangle(int X, int Y, int Width, int Height);
 
 /// <summary>习合素材选择的后续执行方式。</summary>
 public enum MixMaterialSelectionMode

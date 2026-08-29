@@ -50,6 +50,8 @@ public sealed class NewMixTargetSelectionAction : IMaaCustomAction
     private const byte LockedG = 173;
     private const byte LockedB = 31;
     private const byte ColorTolerance = 2;
+    private const int LevelOcrAttempts = 5;
+    private const int ExpandedLevelOcrMargin = 4;
 
     public string Name { get; set; } = nameof(NewMixTargetSelectionAction);
 
@@ -116,7 +118,24 @@ public sealed class NewMixTargetSelectionAction : IMaaCustomAction
 
     private static int? TryReadLevel<T>(T context, int[] roi) where T : IMaaContext
     {
-        for (var attempt = 0; attempt < 3; attempt++)
+        var level = TryReadLevel(context, roi, LevelOcrAttempts);
+        if (level.HasValue)
+            return level;
+
+        var expandedRoi = new[]
+        {
+            Math.Max(0, roi[0] - ExpandedLevelOcrMargin),
+            Math.Max(0, roi[1] - ExpandedLevelOcrMargin),
+            roi[2] + ExpandedLevelOcrMargin * 2,
+            roi[3] + ExpandedLevelOcrMargin * 2
+        };
+        LoggerHelper.Warning($"[新习合] 乱舞等级常规 OCR 未命中，尝试扩大区域：[{expandedRoi[0]},{expandedRoi[1]},{expandedRoi[2]},{expandedRoi[3]}]");
+        return TryReadLevel(context, expandedRoi, LevelOcrAttempts);
+    }
+
+    private static int? TryReadLevel<T>(T context, int[] roi, int attempts) where T : IMaaContext
+    {
+        for (var attempt = 0; attempt < attempts; attempt++)
         {
             ActionParamHelper.ThrowIfStopping(context);
             using var image = context.GetImage();
@@ -128,7 +147,7 @@ public sealed class NewMixTargetSelectionAction : IMaaCustomAction
                     return level;
             }
 
-            if (attempt < 2)
+            if (attempt < attempts - 1)
                 ActionParamHelper.SleepWithStopCheck(context, 200);
         }
 

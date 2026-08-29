@@ -19,7 +19,10 @@ jobs:
         include:
           - os: win
             arch: x86_64
-            filename: 'MATR-*.zip'
+            filename: 'MATR-*-win-x64.zip'
+          - os: macos
+            arch: aarch64
+            filename: 'MATR-*-macos-arm64.zip'
 
     steps:
       - uses: MirrorChyan/uploading-action@v1

@@ -34,7 +34,7 @@ public static class NewMixTargetSelectionDecision
                 return new(NewMixTargetSelectionOutcome.Locked, index + 1);
 
             if (slot.Level is null)
-                return new(NewMixTargetSelectionOutcome.Unreadable, index + 1);
+                continue;
 
             if (slot.Level < 7)
                 return new(NewMixTargetSelectionOutcome.Normal, index + 1);

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 #
-# macOS 打包脚本（tools/pack.ps1 的 macOS 等价物）。
+# macOS 打包脚本（tools/pack_win.ps1 的 macOS 等价物）。
 # 将 `dotnet publish` 产物与游戏资源（assets/interface.json + assets/resource）
 # 组装成可运行的输出：
-#   - 默认：文件夹 MATR-<版本>-<RID>/（内含原生可执行文件 ./MATR）
+#   - 默认：文件夹 MATR-<版本>-<平台>/（内含原生可执行文件 ./MATR）
 #   - --app：双击即用的 MATR.app 应用包（自动自包含，用户无需安装 .NET）
 #
 # 用法：
@@ -43,7 +43,12 @@ DOTNET="${DOTNET:-dotnet}"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CSPROJ="$ROOT/_src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj"
 PUBLISH_DIR="$ROOT/_src/bin/AnyCPU/Release/$RID/publish"
-OUT="$ROOT/MATR-$VERSION-$RID"
+case "$RID" in
+    osx-arm64) PLATFORM="macos-arm64" ;;
+    osx-x64) PLATFORM="macos-x64" ;;
+    *) PLATFORM="$RID" ;;
+esac
+OUT="$ROOT/MATR-$VERSION-$PLATFORM"
 LOGO="$ROOT/assets/resource/logo/MATR.png"
 
 command -v "$DOTNET" >/dev/null 2>&1 || { echo "找不到 dotnet（可用 DOTNET=/path/to/dotnet 指定）" >&2; exit 1; }
@@ -157,7 +162,7 @@ else
 fi
 
 if [ "$ZIP" = true ]; then
-    ZIP_NAME="MATR-$VERSION-$RID.zip"
+    ZIP_NAME="MATR-$VERSION-$PLATFORM.zip"
     echo "==> 压缩 $ZIP_NAME …"
     ( cd "$ROOT" && rm -f "$ZIP_NAME" \
         && ditto -c -k --sequesterRsrc --keepParent "$RESULT" "$ZIP_NAME" )
