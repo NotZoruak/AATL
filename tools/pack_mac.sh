@@ -2,13 +2,16 @@
 #
 # macOS 打包脚本（tools/pack.ps1 的 macOS 等价物）。
 # 将 `dotnet publish` 产物与游戏资源（assets/interface.json + assets/resource）
-# 组装成一个可直接运行的文件夹 MATR-<版本>-<RID>/，内含原生可执行文件 ./MATR。
+# 组装成可运行的输出：
+#   - 默认：文件夹 MATR-<版本>-<RID>/（内含原生可执行文件 ./MATR）
+#   - --app：双击即用的 MATR.app 应用包（自动自包含，用户无需安装 .NET）
 #
 # 用法：
-#   tools/pack_mac.sh [版本] [--self-contained] [--zip]
-#     版本            输出目录/压缩包名中的版本号（默认 dev）
+#   tools/pack_mac.sh [版本] [--self-contained] [--app] [--zip]
+#     版本            输出名中的版本号（默认 dev）
 #     --self-contained 打包自包含 .NET 运行时（免装/免设 DOTNET_ROOT，体积更大）
-#     --zip           额外产出 MATR-<版本>-<RID>.zip
+#     --app           产出 MATR.app（隐含 --self-contained，除非显式框架依赖）
+#     --zip           额外产出压缩包
 # 环境变量：
 #   RID     目标运行时（默认 osx-arm64，可设 osx-x64）
 #   DOTNET  dotnet 可执行文件（默认 dotnet；SDK 装在 ~/.dotnet 时设 DOTNET="$HOME/.dotnet/dotnet"）
@@ -17,15 +20,23 @@ set -euo pipefail
 
 VERSION="dev"
 SELF_CONTAINED=false
+SELF_CONTAINED_SET=false
+APP=false
 ZIP=false
 for arg in "$@"; do
     case "$arg" in
-        --self-contained) SELF_CONTAINED=true ;;
+        --self-contained) SELF_CONTAINED=true; SELF_CONTAINED_SET=true ;;
+        --framework-dependent) SELF_CONTAINED=false; SELF_CONTAINED_SET=true ;;
+        --app) APP=true ;;
         --zip) ZIP=true ;;
         -*) echo "未知选项：$arg" >&2; exit 2 ;;
         *) VERSION="$arg" ;;
     esac
 done
+# .app 面向"下载即用"，默认自包含（除非用户显式选择框架依赖）
+if [ "$APP" = true ] && [ "$SELF_CONTAINED_SET" = false ]; then
+    SELF_CONTAINED=true
+fi
 
 RID="${RID:-osx-arm64}"
 DOTNET="${DOTNET:-dotnet}"
@@ -33,6 +44,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CSPROJ="$ROOT/_src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj"
 PUBLISH_DIR="$ROOT/_src/bin/AnyCPU/Release/$RID/publish"
 OUT="$ROOT/MATR-$VERSION-$RID"
+LOGO="$ROOT/assets/resource/logo/MATR.png"
 
 command -v "$DOTNET" >/dev/null 2>&1 || { echo "找不到 dotnet（可用 DOTNET=/path/to/dotnet 指定）" >&2; exit 1; }
 
@@ -40,39 +52,97 @@ echo "==> 发布 ${RID}（self-contained=${SELF_CONTAINED}）…"
 rm -rf "$PUBLISH_DIR"
 "$DOTNET" publish "$CSPROJ" -r "$RID" -c Release --self-contained "$SELF_CONTAINED"
 
-echo "==> 组装 $OUT …"
-rm -rf "$OUT"; mkdir -p "$OUT"
-cp -R "$PUBLISH_DIR/." "$OUT/"
-# 移除运行期生成的目录（若上次在 publish 目录跑过）
-rm -rf "$OUT/config" "$OUT/debug" "$OUT/temp" "$OUT/backup"
+# 把 publish 产物 + 资源组装到 $stage
+stage_payload() {
+    local dest="$1"
+    mkdir -p "$dest"
+    cp -R "$PUBLISH_DIR/." "$dest/"
+    rm -rf "$dest/config" "$dest/debug" "$dest/temp" "$dest/backup"
+    mkdir -p "$dest/assets"
+    cp "$ROOT/assets/interface.json" "$dest/assets/interface.json"
+    cp -R "$ROOT/assets/resource" "$dest/assets/resource"
+    rm -rf "$dest/assets/resource/config" "$dest/assets/resource/temp" \
+           "$dest/assets/resource/backup" "$dest/assets/resource/base/image/unused"
+    [ -d "$dest/MaaAgentBinary" ] && [ -d "$dest/libs/MaaAgentBinary" ] && rm -rf "$dest/MaaAgentBinary"
+    cp "$ROOT/README.md" "$dest/" 2>/dev/null || true
+    cp "$ROOT/LICENSE" "$dest/" 2>/dev/null || true
+    chmod +x "$dest/MATR" 2>/dev/null || true
+}
 
-# 铺入游戏资源（不在 publish 产物中，需手动拷贝，与 pack.ps1 一致）
-mkdir -p "$OUT/assets"
-cp "$ROOT/assets/interface.json" "$OUT/assets/interface.json"
-cp -R "$ROOT/assets/resource" "$OUT/assets/resource"
-# 剔除开发期/个人数据资源子目录（与 pack.ps1 一致）
-rm -rf "$OUT/assets/resource/config" "$OUT/assets/resource/temp" \
-       "$OUT/assets/resource/backup" "$OUT/assets/resource/base/image/unused"
+# 由 PNG 生成 .icns（缺 logo 时跳过）
+make_icns() {
+    local src="$1" dst="$2"
+    [ -f "$src" ] || return 1
+    local tmp iconset
+    tmp="$(mktemp -d)"; iconset="$tmp/MATR.iconset"; mkdir -p "$iconset"
+    local sz
+    for sz in 16 32 64 128 256 512; do
+        sips -z "$sz" "$sz" "$src" --out "$iconset/icon_${sz}x${sz}.png" >/dev/null 2>&1
+        sips -z "$((sz*2))" "$((sz*2))" "$src" --out "$iconset/icon_${sz}x${sz}@2x.png" >/dev/null 2>&1
+    done
+    iconutil -c icns "$iconset" -o "$dst" >/dev/null 2>&1
+    local rc=$?; rm -rf "$tmp"; return $rc
+}
 
-# 代理二进制在运行期从 libs/MaaAgentBinary 解析；若同时存在根部冗余副本则移除
-[ -d "$OUT/MaaAgentBinary" ] && [ -d "$OUT/libs/MaaAgentBinary" ] && rm -rf "$OUT/MaaAgentBinary"
-
-cp "$ROOT/README.md" "$OUT/" 2>/dev/null || true
-cp "$ROOT/LICENSE" "$OUT/" 2>/dev/null || true
-chmod +x "$OUT/MATR" 2>/dev/null || true
-
-echo "==> 完成：$OUT"
-if [ "$SELF_CONTAINED" = false ]; then
-    echo "    框架依赖构建：需要已安装 .NET 10 运行时。"
-    echo "    dotnet 不在 PATH 时可用： DOTNET_ROOT=\"\$HOME/.dotnet\" \"$OUT/MATR\""
-    echo "    或运行 \"$OUT/DependencySetup_依赖库安装_mac.sh\" 安装 .NET 10 运行时。"
+if [ "$APP" = false ]; then
+    echo "==> 组装 $OUT …"
+    rm -rf "$OUT"
+    stage_payload "$OUT"
+    RESULT="$OUT"
 else
-    echo "    自包含构建：直接运行 →  \"$OUT/MATR\""
+    APPDIR="$ROOT/MATR.app"
+    echo "==> 组装应用包 $APPDIR …"
+    rm -rf "$APPDIR"
+    mkdir -p "$APPDIR/Contents/MacOS" "$APPDIR/Contents/Resources"
+    stage_payload "$APPDIR/Contents/MacOS"
+    if make_icns "$LOGO" "$APPDIR/Contents/Resources/MATR.icns"; then
+        ICON_LINE="    <key>CFBundleIconFile</key><string>MATR</string>"
+    else
+        echo "    （未找到 logo，跳过图标）"; ICON_LINE=""
+    fi
+    cat > "$APPDIR/Contents/Info.plist" <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key><string>MATR</string>
+    <key>CFBundleDisplayName</key><string>MATR</string>
+    <key>CFBundleIdentifier</key><string>com.notzoruak.matr</string>
+    <key>CFBundleVersion</key><string>${VERSION}</string>
+    <key>CFBundleShortVersionString</key><string>${VERSION}</string>
+    <key>CFBundleExecutable</key><string>MATR</string>
+${ICON_LINE}
+    <key>CFBundlePackageType</key><string>APPL</string>
+    <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
+    <key>LSMinimumSystemVersion</key><string>11.0</string>
+    <key>NSHighResolutionCapable</key><true/>
+    <key>LSApplicationCategoryType</key><string>public.app-category.utilities</string>
+</dict>
+</plist>
+PLIST
+    RESULT="$APPDIR"
+fi
+
+echo "==> 完成：$RESULT"
+if [ "$APP" = true ]; then
+    if [ "$SELF_CONTAINED" = true ]; then
+        echo "    双击 MATR.app 即可运行（自包含，无需安装 .NET）。"
+    else
+        echo "    双击 MATR.app 运行；框架依赖，需已安装 .NET 10 运行时。"
+    fi
+    echo "    首次打开若被 Gatekeeper 拦截：右键 → 打开（未签名/未公证的正常提示），"
+    echo "    或执行： xattr -dr com.apple.quarantine \"$RESULT\""
+elif [ "$SELF_CONTAINED" = false ]; then
+    echo "    框架依赖构建：需已安装 .NET 10 运行时。"
+    echo "    dotnet 不在 PATH 时： DOTNET_ROOT=\"\$HOME/.dotnet\" \"$RESULT/MATR\""
+else
+    echo "    自包含：直接运行 →  \"$RESULT/MATR\""
 fi
 
 if [ "$ZIP" = true ]; then
-    echo "==> 压缩…"
-    ( cd "$ROOT" && rm -f "MATR-$VERSION-$RID.zip" \
-        && ditto -c -k --sequesterRsrc --keepParent "$OUT" "MATR-$VERSION-$RID.zip" )
-    echo "    压缩包：$ROOT/MATR-$VERSION-$RID.zip"
+    ZIP_NAME="MATR-$VERSION-$RID.zip"
+    echo "==> 压缩 $ZIP_NAME …"
+    ( cd "$ROOT" && rm -f "$ZIP_NAME" \
+        && ditto -c -k --sequesterRsrc --keepParent "$RESULT" "$ZIP_NAME" )
+    echo "    压缩包：$ROOT/$ZIP_NAME"
 fi
