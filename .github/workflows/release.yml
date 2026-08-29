@@ -63,8 +63,11 @@ jobs:
         shell: bash
         run: |
           chmod +x tools/pack_mac.sh
+          while IFS= read -r -d '' project; do
+            dotnet restore "$project" --disable-parallel
+          done < <(find _src -name '*.csproj' -print0)
           dotnet restore _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj \
-            -r "${{ matrix.rid }}" --disable-parallel \
+            -r "${{ matrix.rid }}" --no-dependencies --disable-parallel \
             -p:RuntimeIdentifiers="${{ matrix.rid }}" \
             -p:RestoreUseStaticGraphEvaluation=false
           RID="${{ matrix.rid }}" tools/pack_mac.sh "$VERSION" --app --zip --no-restore
