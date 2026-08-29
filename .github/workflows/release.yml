@@ -49,7 +49,7 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           dotnet restore _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj `
-            -r ${{ matrix.rid }} --disable-parallel
+            --disable-parallel
           dotnet publish _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj `
             -c Release -p:Platform=AnyCPU -r ${{ matrix.rid }} `
             --self-contained false --no-restore
@@ -62,7 +62,7 @@ jobs:
         run: |
           chmod +x tools/pack_mac.sh
           dotnet restore _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj \
-            -r "${{ matrix.rid }}" --disable-parallel
+            --disable-parallel
           RID="${{ matrix.rid }}" tools/pack_mac.sh "$VERSION" --app --zip --no-restore
 
       - name: 上传构建产物
