@@ -57,8 +57,10 @@ jobs:
         if: runner.os == 'macOS'
         shell: bash
         run: |
+          dotnet restore _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj \
+            -p:RuntimeIdentifier="${{ matrix.rid }}"
           chmod +x tools/pack_mac.sh
-          RID="${{ matrix.rid }}" tools/pack_mac.sh "$VERSION" --app --zip
+          NO_RESTORE=true RID="${{ matrix.rid }}" tools/pack_mac.sh "$VERSION" --app --zip
 
       - name: 上传构建产物
         uses: actions/upload-artifact@v4

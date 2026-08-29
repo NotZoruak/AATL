@@ -15,6 +15,7 @@
 # 环境变量：
 #   RID     目标运行时（默认 osx-arm64，可设 osx-x64）
 #   DOTNET  dotnet 可执行文件（默认 dotnet；SDK 装在 ~/.dotnet 时设 DOTNET="$HOME/.dotnet/dotnet"）
+#   NO_RESTORE 设为 true 时跳过发布阶段的还原，复用已完成的还原结果
 #
 set -euo pipefail
 
@@ -40,6 +41,7 @@ fi
 
 RID="${RID:-osx-arm64}"
 DOTNET="${DOTNET:-dotnet}"
+NO_RESTORE="${NO_RESTORE:-false}"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CSPROJ="$ROOT/_src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj"
 PUBLISH_DIR="$ROOT/_src/bin/AnyCPU/Release/$RID/publish"
@@ -55,7 +57,11 @@ command -v "$DOTNET" >/dev/null 2>&1 || { echo "找不到 dotnet（可用 DOTNET
 
 echo "==> 发布 ${RID}（self-contained=${SELF_CONTAINED}）…"
 rm -rf "$PUBLISH_DIR"
-"$DOTNET" publish "$CSPROJ" -r "$RID" -c Release --self-contained "$SELF_CONTAINED"
+if [ "$NO_RESTORE" = true ]; then
+    "$DOTNET" publish "$CSPROJ" -r "$RID" -c Release --self-contained "$SELF_CONTAINED" --no-restore
+else
+    "$DOTNET" publish "$CSPROJ" -r "$RID" -c Release --self-contained "$SELF_CONTAINED"
+fi
 
 # 把 publish 产物 + 资源组装到 $stage
 stage_payload() {
