@@ -47,9 +47,12 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
+          $ErrorActionPreference = 'Stop'
+          dotnet restore _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj `
+            -r ${{ matrix.rid }} --disable-parallel
           dotnet publish _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj `
             -c Release -p:Platform=AnyCPU -r ${{ matrix.rid }} `
-            --self-contained false
+            --self-contained false --no-restore
           $publish = Join-Path $PWD "_src/bin/AnyCPU/Release/${{ matrix.rid }}/publish"
           pwsh tools/pack_win.ps1 -Version $env:VERSION -PublishDir $publish
 
@@ -58,7 +61,9 @@ jobs:
         shell: bash
         run: |
           chmod +x tools/pack_mac.sh
-          RID="${{ matrix.rid }}" tools/pack_mac.sh "$VERSION" --app --zip
+          dotnet restore _src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj \
+            -r "${{ matrix.rid }}" --disable-parallel
+          RID="${{ matrix.rid }}" tools/pack_mac.sh "$VERSION" --app --zip --no-restore
 
       - name: 上传构建产物
         uses: actions/upload-artifact@v4
