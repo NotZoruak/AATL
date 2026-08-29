@@ -23,14 +23,12 @@ SELF_CONTAINED=false
 SELF_CONTAINED_SET=false
 APP=false
 ZIP=false
-NO_RESTORE=false
 for arg in "$@"; do
     case "$arg" in
         --self-contained) SELF_CONTAINED=true; SELF_CONTAINED_SET=true ;;
         --framework-dependent) SELF_CONTAINED=false; SELF_CONTAINED_SET=true ;;
         --app) APP=true ;;
         --zip) ZIP=true ;;
-        --no-restore) NO_RESTORE=true ;;
         -*) echo "未知选项：$arg" >&2; exit 2 ;;
         *) VERSION="$arg" ;;
     esac
@@ -57,11 +55,7 @@ command -v "$DOTNET" >/dev/null 2>&1 || { echo "找不到 dotnet（可用 DOTNET
 
 echo "==> 发布 ${RID}（self-contained=${SELF_CONTAINED}）…"
 rm -rf "$PUBLISH_DIR"
-PUBLISH_ARGS=(publish "$CSPROJ" -r "$RID" -c Release --self-contained "$SELF_CONTAINED")
-if [ "$NO_RESTORE" = true ]; then
-    PUBLISH_ARGS+=(--no-restore)
-fi
-"$DOTNET" "${PUBLISH_ARGS[@]}"
+"$DOTNET" publish "$CSPROJ" -r "$RID" -c Release --self-contained "$SELF_CONTAINED"
 
 # 把 publish 产物 + 资源组装到 $stage
 stage_payload() {
