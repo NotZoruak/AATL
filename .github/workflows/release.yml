@@ -30,7 +30,7 @@ jobs:
             rid: win-x64
             asset: MATR-${{ inputs.version || github.ref_name }}-win-x64.zip
           - name: macOS Apple Silicon
-            runner: macos-latest
+            runner: macos-14
             rid: osx-arm64
             asset: MATR-${{ inputs.version || github.ref_name }}-macos-arm64.zip
 
