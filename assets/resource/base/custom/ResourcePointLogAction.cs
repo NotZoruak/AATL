@@ -6,8 +6,6 @@ using MFAAvalonia.Helper;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace MFAAvalonia.Extensions.MaaFW.Custom;
 
@@ -51,14 +49,10 @@ public class ResourcePointLogAction : IMaaCustomAction
     // 把 OCR 文本（如「获得木炭×20」）转成打点格式「木炭x20」，多个资源以空格分隔
     private static void LogGained(string prefix, string text)
     {
-        // OCR 可能把乘号识别为全角乘号或半角字母 x/X。
-        var matches = Regex.Matches(text, @"获得\s*(?<name>[^×xX\s]+)[×xX](?<count>\d+)");
-        if (matches.Count == 0)
+        var parts = ResourcePointRewardParser.Parse(text);
+        if (parts.Count == 0)
             return;
 
-        var parts = new List<string>();
-        foreach (Match match in matches)
-            parts.Add($"{match.Groups["name"].Value}x{match.Groups["count"].Value}");
         LoggerHelper.Info($"{prefix} 资源点获取 {string.Join(" ", parts)}");
     }
 
