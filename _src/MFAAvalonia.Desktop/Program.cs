@@ -1,6 +1,8 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Media;
+using Avalonia.Media.Fonts;
 using Avalonia.Threading;
 using MaaFramework.Binding;
 using MFAAvalonia;
@@ -42,7 +44,10 @@ sealed class Program
         try
         {
             var projectDir = AppDomain.CurrentDomain.BaseDirectory;
-            var pythonExe = Path.Combine(projectDir, "venv", "Scripts", "python.exe");
+            // Python venv 布局因平台而异：Windows 为 venv/Scripts/python.exe，类 Unix 为 venv/bin/python
+            var pythonExe = OperatingSystem.IsWindows()
+                ? Path.Combine(projectDir, "venv", "Scripts", "python.exe")
+                : Path.Combine(projectDir, "venv", "bin", "python");
             var scriptPath = Path.Combine(projectDir, "matr", "pipeline_gen.py");
             if (File.Exists(pythonExe) && File.Exists(scriptPath))
             {
@@ -246,6 +251,18 @@ sealed class Program
         return AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
+            // 跨平台 CJK 字体回退：部分控件（如 SukiUI 默认字体回退到仅含拉丁字形的 Quicksand）
+            // 在缺少 CJK 回退的平台（如 macOS）会把中文显示为方框（豆腐块）。此处补充系统级回退，
+            // 不存在的字体会被自动跳过：Windows=Microsoft YaHei，macOS=PingFang SC，Linux=Noto Sans CJK SC。
+            .With(new FontManagerOptions
+            {
+                FontFallbacks =
+                [
+                    new FontFallback { FontFamily = new FontFamily("Microsoft YaHei") },
+                    new FontFallback { FontFamily = new FontFamily("PingFang SC") },
+                    new FontFallback { FontFamily = new FontFamily("Noto Sans CJK SC") },
+                ],
+            })
             .LogToTrace();
     }
 

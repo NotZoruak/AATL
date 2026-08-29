@@ -1013,13 +1013,11 @@
                                 IsVisible="{Binding ShowSettings}"
                                 Spacing="8">
                         <RadioButton FontSize="11" FontWeight="Bold"
-                                     Classes="Inner"
                                      IsChecked="{Binding IsCommon}"
                                      GroupName="SettingA">
                             <TextBlock Text="{markup:I18n {x:Static helper:LangKeys.CommonSetting}}" />
                         </RadioButton>
                         <RadioButton FontSize="11" FontWeight="Bold"
-                                     Classes="Inner"
                                      GroupName="SettingA"
                                      IsChecked="{calcBinding:Binding '!IsCommon'}">
                             <TextBlock Text="全局" />
