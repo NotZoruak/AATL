@@ -116,6 +116,8 @@ public static class WorkRecordBuilder
         var lastTime = DateTime.MinValue;
         // 短时间重复过滤：记录内最近一次词表行内容与时间
         var lastSeen = new Dictionary<WorkRecord, (DateTime Time, string Content)>();
+        // 行军误命中过滤：记录内最近一次返回本丸时间（见 MarchMisclickFilterSeconds）
+        var lastReturnHomeTime = new Dictionary<WorkRecord, DateTime>();
 
         foreach (var entry in entries)
         {
@@ -213,7 +215,7 @@ public static class WorkRecordBuilder
                     ? FindRecordForPrefix(word.Groups[1].Value, records, current)
                     : current;
                 if (target != null)
-                    Accumulate(target, entry.Timestamp.Value, entry.Content, entry.Level, lastSeen);
+                    Accumulate(target, entry.Timestamp.Value, entry.Content, entry.Level, lastSeen, lastReturnHomeTime);
             }
         }
 
@@ -269,8 +271,12 @@ public static class WorkRecordBuilder
     // 短时间重复过滤窗口（秒）：识别循环连续命中同一 node 会重复输出同一词表行，窗口内只计一次
     private const double RepeatFilterSeconds = 3;
 
+    // 行军误命中过滤窗口（秒）：撤退确认后回本丸的加载过渡期内行军按钮残留会误命中，窗口内的行军词条不计。
+    private const double MarchMisclickFilterSeconds = 10;
+
     private static void Accumulate(WorkRecord record, DateTime time, string content, string level,
-        Dictionary<WorkRecord, (DateTime Time, string Content)> lastSeen)
+        Dictionary<WorkRecord, (DateTime Time, string Content)> lastSeen,
+        Dictionary<WorkRecord, DateTime> lastReturnHomeTime)
     {
         var match = WordRegex.Match(content);
 
@@ -312,10 +318,15 @@ public static class WorkRecordBuilder
                 record.SortieCount++;
                 break;
             case "点击行军":
+                // 撤退确认后回本丸的加载过渡期内，行军按钮残留会误命中；此窗口内的行军不计。
+                if (lastReturnHomeTime.TryGetValue(record, out var lastHome)
+                    && (time - lastHome).TotalSeconds <= MarchMisclickFilterSeconds)
+                    return;
                 record.MarchCount++;
                 break;
             case "返回本丸":
                 record.ReturnHomeCount++;
+                lastReturnHomeTime[record] = time;
                 break;
             case "完成一圈":
                 record.RoundCount++;
