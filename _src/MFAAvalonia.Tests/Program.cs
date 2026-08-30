@@ -10,6 +10,15 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
+var actualWindowSize = WindowSizePersistence.GetValidSize(1366, 768);
+AssertTrue(actualWindowSize is { Width: 1366, Height: 768 },
+    "窗口保存应使用用户拖拽后的实际客户区尺寸");
+var rootViewSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Views", "Windows", "RootView.axaml.cs"));
+AssertTrue(rootViewSource.IndexOf("InitializeComponent();", StringComparison.Ordinal)
+    < rootViewSource.IndexOf("LoadWindowSizeAndPosition();", StringComparison.Ordinal),
+    "窗口应在加载已保存尺寸前完成XAML初始化，避免默认尺寸覆盖配置");
+
 AssertTrue(MixGreedySelectionDecision.TryGetRarity(90, 90, 90, out var rarity) && rarity == 1,
     "稀有度1的颜色应正确映射");
 AssertTrue(MixGreedySelectionDecision.TryGetRarity(101, 70, 23, out rarity) && rarity == 5,

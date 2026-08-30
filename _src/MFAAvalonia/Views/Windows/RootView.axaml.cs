@@ -29,11 +29,11 @@ public partial class RootView : SukiWindow
         // 添加初始化标志
         _isInitializing = true;
 
-        // 先从配置中加载窗口大小和位置，在窗口显示前设置
-        LoadWindowSizeAndPosition();
-
         // 初始化组件
         InitializeComponent();
+
+        // 在XAML初始化完成后加载窗口大小和位置，避免默认值覆盖配置
+        LoadWindowSizeAndPosition();
 
         // 设置事件处理
         PropertyChanged += (_, e) =>
@@ -147,7 +147,7 @@ public partial class RootView : SukiWindow
             {
                 processor.Dispose();
             }
-            DispatcherHelper.PostOnMainThread(SaveWindowSizeAndPositionImmediately);
+            SaveWindowSizeAndPositionImmediately();
             if (!noLog)
                 LoggerHelper.Info("应用已关闭");
             TrayIconManager.DisposeTrayIcon(Application.Current);
@@ -558,12 +558,11 @@ public partial class RootView : SukiWindow
             if (WindowState == WindowState.Normal)
             {
                 // 缓存窗口大小
-                double width = Width;
-                double height = Height;
-                if (width > 100 && height > 100)
+                var size = WindowSizePersistence.GetValidSize(ClientSize.Width, ClientSize.Height);
+                if (size is { } validSize)
                 {
-                    _lastValidWidth = width;
-                    _lastValidHeight = height;
+                    _lastValidWidth = validSize.Width;
+                    _lastValidHeight = validSize.Height;
                 }
 
                 // 缓存窗口位置
