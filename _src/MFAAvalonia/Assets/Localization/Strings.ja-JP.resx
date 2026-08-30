@@ -1567,6 +1567,9 @@
   <data name="ExportLogDialogStart" xml:space="preserve">
         <value>エクスポートの開始</value>
     </data>
+  <data name="ExportLogDialogCombinePackage" xml:space="preserve">
+        <value>1つのパッケージに統合</value>
+    </data>
   <data name="ExportLogTimeRangeLast24Hours" xml:space="preserve">
         <value>過去 24 時間</value>
     </data>

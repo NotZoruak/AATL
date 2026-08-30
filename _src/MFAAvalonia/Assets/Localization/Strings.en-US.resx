@@ -1302,6 +1302,9 @@
     <data name="ExportLogDialogStart" xml:space="preserve">
         <value>Start Export</value>
     </data>
+    <data name="ExportLogDialogCombinePackage" xml:space="preserve">
+        <value>Combine into one package</value>
+    </data>
     <data name="ExportLogTimeRangeLast24Hours" xml:space="preserve">
         <value>Last 24 hours</value>
     </data>

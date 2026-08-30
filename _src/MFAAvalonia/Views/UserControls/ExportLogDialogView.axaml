@@ -150,22 +150,30 @@
             </StackPanel>
         </ScrollViewer>
 
-        <StackPanel
-            Grid.Row="2"
-            HorizontalAlignment="Right"
-            Orientation="Horizontal"
-            Spacing="10">
-            <Button
-                Classes="Outlined export-action"
-                Command="{Binding CloseCommand}"
-                Content="{markup:I18n {x:Static helper:LangKeys.ButtonClose}}"
-                IsEnabled="{Binding !IsExporting}" />
-            <Button
-                Classes="Flat export-action"
-                BorderThickness="0"
-                Command="{Binding StartExportCommand}"
-                Content="{markup:I18n {x:Static helper:LangKeys.ExportLogDialogStart}}"
-                IsEnabled="{Binding CanStartExport}" />
-        </StackPanel>
+        <Grid Grid.Row="2" ColumnDefinitions="*,Auto">
+            <CheckBox
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="{markup:I18n {x:Static helper:LangKeys.ExportLogDialogCombinePackage}}"
+                IsChecked="{Binding CombinePackage}" />
+            <StackPanel
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal"
+                Spacing="10">
+                <Button
+                    Classes="Outlined export-action"
+                    Command="{Binding CloseCommand}"
+                    Content="{markup:I18n {x:Static helper:LangKeys.ButtonClose}}"
+                    IsEnabled="{Binding !IsExporting}" />
+                <Button
+                    Classes="Flat export-action"
+                    BorderThickness="0"
+                    Command="{Binding StartExportCommand}"
+                    Content="{markup:I18n {x:Static helper:LangKeys.ExportLogDialogStart}}"
+                    IsEnabled="{Binding CanStartExport}" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

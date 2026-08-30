@@ -1308,6 +1308,9 @@
     <data name="ExportLogDialogStart" xml:space="preserve">
         <value>開始導出</value>
     </data>
+    <data name="ExportLogDialogCombinePackage" xml:space="preserve">
+        <value>整合打包</value>
+    </data>
     <data name="ExportLogTimeRangeLast24Hours" xml:space="preserve">
         <value>最近 24 小時</value>
     </data>

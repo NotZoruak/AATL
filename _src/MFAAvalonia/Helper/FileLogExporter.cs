@@ -142,7 +142,9 @@ public static class FileLogExporter
                         return ExportLogResult.Failed;
                     }
 
-                    var archiveFiles = await Task.Run(() => CreateArchiveVolumes(tempDir));
+                    var archiveFiles = await Task.Run(() => CreateArchiveVolumes(
+                        tempDir,
+                        options?.CombinePackage ?? false));
                     await PublishArchiveVolumesAsync(saveFile, archiveFiles);
 
                     if (skippedCount > 0)
@@ -456,7 +458,7 @@ public static class FileLogExporter
         source.CopyTo(destination);
     }
 
-    private static List<string> CreateArchiveVolumes(string sourceDirectory)
+    private static List<string> CreateArchiveVolumes(string sourceDirectory, bool combinePackage)
     {
         var files = Directory.GetFiles(sourceDirectory, "*", SearchOption.AllDirectories)
             .OrderBy(file => Path.GetRelativePath(sourceDirectory, file), StringComparer.Ordinal)
@@ -468,7 +470,7 @@ public static class FileLogExporter
         {
             var singleArchive = Path.Combine(archiveDirectory, "archive.zip");
             CreateArchive(singleArchive, sourceDirectory, files);
-            if (new FileInfo(singleArchive).Length <= MaxArchiveVolumeBytes)
+            if (combinePackage || new FileInfo(singleArchive).Length <= MaxArchiveVolumeBytes)
                 return [singleArchive];
 
             File.Delete(singleArchive);
@@ -634,6 +636,7 @@ public static class FileLogExporter
 
 public sealed class ExportLogPackageOptions
 {
+    public bool CombinePackage { get; init; }
     public bool IncludeMaaLog { get; init; } = true;
     public bool IncludeGuiLog { get; init; } = true;
     public bool IncludeCustomLog { get; init; } = true;

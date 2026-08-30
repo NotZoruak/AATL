@@ -445,6 +445,7 @@ public static class LangKeys
 	public static readonly string ExportLogDialogImagesDescription = "ExportLogDialogImagesDescription";
 	public static readonly string ExportLogDialogOtherImages = "ExportLogDialogOtherImages";
 	public static readonly string ExportLogDialogStart = "ExportLogDialogStart";
+	public static readonly string ExportLogDialogCombinePackage = "ExportLogDialogCombinePackage";
 	public static readonly string ExportLogTimeRangeLast24Hours = "ExportLogTimeRangeLast24Hours";
 	public static readonly string ExportLogTimeRangeLast3Days = "ExportLogTimeRangeLast3Days";
 	public static readonly string ExportLogTimeRangeLast7Days = "ExportLogTimeRangeLast7Days";

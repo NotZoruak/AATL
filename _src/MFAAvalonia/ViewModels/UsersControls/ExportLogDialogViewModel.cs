@@ -50,6 +50,8 @@ public sealed partial class ExportLogDialogViewModel : ViewModelBase
     public string OnErrorFolderLabel => "on_error";
     public string VisionFolderLabel => "vision";
 
+    public bool CombinePackage { get; set; }
+
     public bool CanStartExport =>
         !IsExporting && (IncludeMaaLog || IncludeGuiLog || IncludeCustomLog || IncludeOnErrorImages || IncludeVisionImages || IncludeOtherImages);
 
@@ -111,6 +113,7 @@ public sealed partial class ExportLogDialogViewModel : ViewModelBase
             IncludeOnErrorImages = IncludeOnErrorImages,
             IncludeVisionImages = IncludeVisionImages,
             IncludeOtherImages = IncludeOtherImages,
+            CombinePackage = CombinePackage,
             OnErrorImageTimeRange = SelectedOnErrorImageTimeRange.Value,
             VisionImageTimeRange = SelectedVisionImageTimeRange.Value,
             OtherImageTimeRange = SelectedOtherImageTimeRange.Value
