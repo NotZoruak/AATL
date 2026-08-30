@@ -41,14 +41,13 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
         <MaaAgentBinaryPath>libs/MaaAgentBinary</MaaAgentBinaryPath>
-        <BeautyLibsDir>.;./runtimes/libs</BeautyLibsDir>
+        <BeautyLibsDir>./runtimes/libs</BeautyLibsDir>
         <BeautyOnPublishOnly>True</BeautyOnPublishOnly>
-        <!-- NetBeauty 仅为整理输出目录的可选优化，非运行必需，故全部禁用：
-             - 其 BeautyLibsDir 用 ';' 分隔目录，在非 Windows 的 /bin/sh 下 ';' 会被当作命令分隔符导致失败；
-             - 在 Windows 上会把托管库整理进字面目录 ".;/runtimes/libs"，破坏标准 publish 布局。
-             发布产物保持标准平铺布局，由 tools/pack_win.ps1 统一整理到 runtimes/libs。
-             代理路径由 MaaProcessor.ResolveAgentBinaryPath 回退查找 libs/ 或根目录。 -->
-        <DisableBeauty>True</DisableBeauty>
+        <!-- NetBeauty 整理托管库到 runtimes/libs，保持发布根目录干净。
+             BeautyLibsDir 曾误配为 ".;./runtimes/libs"，产生字面目录 ".;" 导致库被藏进
+             ".;/runtimes/libs"；改为 "./runtimes/libs" 后按预期整理。
+             非 Windows 上 BeautyLibsDir 的 ';' 分隔在 /bin/sh 下会当作命令分隔符，故仅在 Windows 生效。 -->
+        <DisableBeauty Condition="'$(_MatrIsWindows)' != 'true'">True</DisableBeauty>
         <DebugType>none</DebugType>
         <DebugSymbols>false</DebugSymbols>
     </PropertyGroup>

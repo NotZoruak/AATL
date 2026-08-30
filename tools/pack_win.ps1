@@ -37,13 +37,6 @@ Copy-Item "$Root\README.md" $TempDir
 Copy-Item "$Root\LICENSE" $TempDir
 Copy-Item "$Root\assets\interface.json" "$TempDir\assets\interface.json"
 Copy-Item "$SourceDir\runtimes" -Recurse -Destination "$TempDir\runtimes"
-
-# 禁用 NetBeauty 后托管库平铺在 publish 根目录，直接拷贝到包根（与可执行文件同目录的标准 .NET 布局，
-# 避免 Main 方法 JIT 解析 MFAAvalonia.Core 时早于 PrivatePathHelper.Resolving 注册导致加载失败）。
-# MATR.dll / libloader.dll 已拷贝到包根目录，这里排除避免重复。
-Get-ChildItem "$SourceDir" -File -Filter "*.dll" | Where-Object { $_.Name -notin @("MATR.dll", "libloader.dll") } | ForEach-Object {
-    Copy-Item $_.FullName -Destination $TempDir
-}
 $KeepDirs = @("libs", "plugins", $Platform)
 Get-ChildItem "$TempDir\runtimes" -Directory | ForEach-Object {
     if ($KeepDirs -notcontains $_.Name) { Remove-Item -Recurse -Force $_.FullName }
