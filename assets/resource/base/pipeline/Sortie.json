@@ -25,7 +25,8 @@
       "S_IsMenuDirectory",
       "S_IsTeamStatusPanel",
       "S_CheckHomeBrightness",
-      "S_IsKebiishi",
+      "S_IsKebiishi1",
+      "S_IsKebiishi2",
       "S_LeaveTroopRecord",
       "S_IsAnnouncementPopup",
       "S_IsTrainingLetter",
@@ -378,7 +379,61 @@
         "expected": "部队选择"
       }
     },
-    "next": ["S_CheckEquipmentPopup", "S_StopOnEquipmentPopup", "S_ClickTeam"],
+    "next": ["S_CheckEquipmentPopup", "S_StopOnEquipmentPopup", "S_DisableAutoMarch", "S_ClickAutoMarchNoDelegate","S_ClickTeam"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_DisableAutoMarch": {
+    "enabled": false,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1173, 373, 57, 23],
+        "template": "Common/自动行军_委托中.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1151, 396, 105, 28]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [1151, 396, 105, 28]
+    },
+    "next": ["S_ClickAutoMarchNoDelegate"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_ClickAutoMarchNoDelegate": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [440, 584, 110, 38],
+        "expected": "不委托"
+      }
+    },
+    "action": {"type": "Click"},
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [440, 584, 110, 38]
+    },
+    "next": ["S_ReturnFromAutoMarch"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_ReturnFromAutoMarch": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1024, 30, 35, 36]
+      }
+    },
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [1024, 30, 35, 36]
+    },
+    "next": ["S_IsTeamSelect"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_ClickTeam": {
@@ -849,8 +904,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E4_R2": {
     "enabled": false,
@@ -870,8 +924,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E4_R3": {
     "enabled": false,
@@ -891,8 +944,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E4_R4": {
     "enabled": false,
@@ -912,8 +964,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E5_R1": {
     "enabled": false,
@@ -933,8 +984,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E5_R2": {
     "enabled": false,
@@ -954,8 +1004,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E5_R3": {
     "enabled": false,
@@ -975,8 +1024,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E5_R4_1": {
     "enabled": false,
@@ -996,8 +1044,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E5_R4_2": {
     "enabled": false,
@@ -1017,8 +1064,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_MidRetreat_E4_R1_1": {
     "enabled": false,
@@ -1038,8 +1084,7 @@
         "message": "[合战场] 道中撤退"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_MidRetreat_E4_R1_2": {
     "enabled": false,
@@ -1059,8 +1104,7 @@
         "message": "[合战场] 道中撤退"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_MidRetreat_E6_R1": {
     "enabled": false,
@@ -1080,8 +1124,7 @@
         "message": "[合战场] 道中撤退"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E6_R1": {
     "enabled": false,
@@ -1101,8 +1144,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E6_R1_2": {
     "enabled": false,
@@ -1122,8 +1164,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E6_R2": {
     "enabled": false,
@@ -1143,8 +1184,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E6_R3": {
     "enabled": false,
@@ -1164,8 +1204,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E6_R4": {
     "enabled": false,
@@ -1185,8 +1224,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E7_R1": {
     "enabled": false,
@@ -1207,8 +1245,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E7_R2_1": {
     "enabled": false,
@@ -1229,8 +1266,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E7_R2_2": {
     "enabled": false,
@@ -1251,8 +1287,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E7_R3_1": {
     "enabled": false,
@@ -1273,8 +1308,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E7_R3_2": {
     "enabled": false,
@@ -1295,8 +1329,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E7_R4": {
     "enabled": false,
@@ -1317,8 +1350,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E8_R1": {
     "enabled": false,
@@ -1339,8 +1371,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E8_R2": {
     "enabled": false,
@@ -1361,8 +1392,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E8_R3": {
     "enabled": false,
@@ -1383,8 +1413,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E8_R4": {
     "enabled": false,
@@ -1405,8 +1434,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_ClickRetreat": {
     "enabled": true,
@@ -1971,8 +1999,7 @@
       "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[疲劳检测] 检测到刀剑疲劳，撤退"}
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_GuiEqDamageLog": {
     "action": {
@@ -1980,8 +2007,7 @@
       "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[刀装检测] 检测到刀装破坏，撤退"}
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_GuiEqNearDamageLog": {
     "action": {
@@ -1989,8 +2015,7 @@
       "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[刀装检测] 检测到刀装近破坏，撤退"}
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_NavigateToRepair": {
     "next": ["S_ClickMenuForRepair", "S_DetectWhereAmI"]
@@ -2396,7 +2421,7 @@
     "next": ["E_CheckTeamStatus"],
     "on_error": ["S_DetectWhereAmI"]
   },
-  "S_IsKebiishi": {
+  "S_IsKebiishi1": {
     "recognition": {
       "type": "TemplateMatch",
       "param": {
@@ -2407,6 +2432,21 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["S_DetectWhereAmI"]
+  },
+  "S_IsKebiishi2": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [106, 573, 35, 33],
+        "template": "Common/检非2.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "repeat": 3,
+    "repeat_delay": 500,
     "next": ["S_DetectWhereAmI"]
   },
   "S_IsInternalReport": {
@@ -2443,8 +2483,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_VerifyRepairMenuClosed": {
     "recognition": {
@@ -2554,8 +2593,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E2_R2_1": {
     "enabled": false,
@@ -2575,8 +2613,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E2_R2_2": {
     "enabled": false,
@@ -2596,8 +2633,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E2_R3_1": {
     "enabled": false,
@@ -2617,8 +2653,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E2_R3_2": {
     "enabled": false,
@@ -2638,8 +2673,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E2_R3_3": {
     "enabled": false,
@@ -2659,8 +2693,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E2_R4": {
     "enabled": false,
@@ -2680,8 +2713,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E3_R1": {
     "enabled": false,
@@ -2701,8 +2733,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E3_R2": {
     "enabled": false,
@@ -2722,8 +2753,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E3_R3": {
     "enabled": false,
@@ -2743,8 +2773,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_Boss_E3_R4": {
     "enabled": false,
@@ -2764,8 +2793,7 @@
         "message": "[合战场] 命中王点"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_IsAnnouncementPopup": {
     "recognition": {
@@ -2843,8 +2871,7 @@
         "message": "[合战场] 道中撤退"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_MidRetreat_E8_R2": {
     "enabled": false,
@@ -2865,8 +2892,7 @@
         "message": "[合战场] 道中撤退"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_MidRetreat_E8_R3": {
     "enabled": false,
@@ -2887,8 +2913,7 @@
         "message": "[合战场] 道中撤退"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_MidRetreat_E8_R4": {
     "enabled": false,
@@ -2909,8 +2934,7 @@
         "message": "[合战场] 道中撤退"
       }
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_CheckHomeBrightness": {
     "recognition": {
@@ -3005,8 +3029,7 @@
       "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，撤退撤退"}
     },
-    "next": ["S_ClickRetreat"],
-    "on_error": ["S_DetectWhereAmI"]
+    "next": ["S_ClickRetreat", "S_DetectWhereAmI"]
   },
   "S_LogStopOnDamage": {
     "action": {
