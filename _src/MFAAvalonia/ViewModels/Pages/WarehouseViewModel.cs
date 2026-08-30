@@ -91,6 +91,7 @@ public partial class WarehouseViewModel : ViewModelBase
             OnPropertyChanged(nameof(NoOtherItems));
             OnPropertyChanged(nameof(HasUnsavedChanges));
         };
+        UpdateDataPersistenceService.WarehouseDataSaved += OnWarehouseDataSaved;
         RebuildCharts();
     }
 
@@ -210,6 +211,47 @@ public partial class WarehouseViewModel : ViewModelBase
 
     partial void OnIsRecognizingChanged(bool value) => OnPropertyChanged(nameof(IsIdle));
     private void OnDataChanged() => OnPropertyChanged(nameof(HasUnsavedChanges));
+
+    private void OnWarehouseDataSaved()
+    {
+        _ = DispatcherHelper.RunOnMainThreadAsync(RefreshSavedData);
+    }
+
+    private void RefreshSavedData()
+    {
+        if (HasUnsavedChanges)
+        {
+            LoggerHelper.Warning("[仓库] 页面存在未保存修改，跳过外部保存后的自动刷新");
+            return;
+        }
+
+        var data = ConfigurationManager.Current.GetValue(ConfigurationKeys.WarehouseData, new WarehouseData());
+        _editor.LoadData(data);
+        _pendingResourceHistory = [];
+        _hasPendingChartChanges = false;
+
+        foreach (var item in CoreResources)
+        {
+            var value = GetValue(data.CoreResources, item.Name);
+            item.Count = Math.Clamp(value, 0, item.Maximum);
+            _savedCore[item.Name] = value;
+        }
+
+        _savedOther.Clear();
+        OtherItems.Clear();
+        foreach (var pair in WarehouseScanDraftService.NormalizeOtherItems(data.OtherItems))
+        {
+            OtherItems.Add(new WarehouseOtherItemViewModel(pair.Key, pair.Value, OnDataChanged));
+            _savedOther[pair.Key] = pair.Value;
+        }
+
+        RebuildCharts();
+        OnPropertyChanged(nameof(HasOtherItems));
+        OnPropertyChanged(nameof(NoOtherItems));
+        OnPropertyChanged(nameof(HasChartHistory));
+        OnPropertyChanged(nameof(NoChartHistory));
+        OnPropertyChanged(nameof(HasUnsavedChanges));
+    }
 
     private void LoadDraft()
     {

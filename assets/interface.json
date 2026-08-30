@@ -1,10 +1,10 @@
 {
   "name": "MATR",
-  "version": "v0.12.6",
+  "version": "v0.12.7",
   "mirrorchyan_rid": "MATR",
   "mirrorchyan_multiplatform": true,
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.12.6 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.12.7 | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -5323,8 +5323,7 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword1": {"enabled": true},
-            "M_FilterSword1": {"enabled": true}
+            "D_FilterSword1": {"enabled": true}
           }
         }
       ],
@@ -5338,8 +5337,7 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword2": {"enabled": true},
-            "M_FilterSword2": {"enabled": true}
+            "D_FilterSword2": {"enabled": true}
           }
         }
       ],
@@ -5353,8 +5351,7 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword3": {"enabled": true},
-            "M_FilterSword3": {"enabled": true}
+            "D_FilterSword3": {"enabled": true}
           }
         }
       ],
@@ -5368,8 +5365,7 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword4": {"enabled": true},
-            "M_FilterSword4": {"enabled": true}
+            "D_FilterSword4": {"enabled": true}
           }
         }
       ],
@@ -5383,8 +5379,7 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword5": {"enabled": true},
-            "M_FilterSword5": {"enabled": true}
+            "D_FilterSword5": {"enabled": true}
           }
         }
       ],
@@ -5398,8 +5393,7 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword6": {"enabled": true},
-            "M_FilterSword6": {"enabled": true}
+            "D_FilterSword6": {"enabled": true}
           }
         }
       ],
@@ -5413,8 +5407,7 @@
         {
           "name": "",
           "pipeline_override": {
-            "D_FilterSword7": {"enabled": true},
-            "M_FilterSword7": {"enabled": true}
+            "D_FilterSword7": {"enabled": true}
           }
         }
       ],
@@ -5544,112 +5537,6 @@
       ],
       "default_case": []
     },
-    "搓糖": {
-      "name": "搓糖",
-      "type": "switch",
-      "label": "搓糖",
-      "default_case": "No",
-      "cases": [
-        {
-          "name": "Yes",
-          "label": "搓糖开启",
-          "pipeline_override": {
-            "M_CheckSubLevel": {"enabled": true},
-            "M_CheckSubLevel6": {"enabled": true},
-            "M_CheckLevel1": {"enabled": true},
-            "M_CheckLevel2": {"enabled": true},
-            "M_CheckLevel3": {"enabled": true},
-            "M_CheckLevel4": {"enabled": true},
-            "M_CheckLevel5": {"enabled": true},
-            "M_CheckLevel6": {"enabled": true},
-            "M_ClickMixDirect1": {"enabled": false},
-            "M_ClickMixDirect2": {"enabled": false},
-            "M_ClickMixDirect3": {"enabled": false},
-            "M_ClickMixDirect4": {"enabled": false},
-            "M_ClickMixDirect5": {"enabled": false},
-            "M_ClickMixDirect6": {"enabled": false},
-            "M_CheckPos1": {
-              "next": ["M_DetectEmpty1", "M_DetectLocked1", "M_CheckLevel1", "M_ClickMixBtn1"]
-            },
-            "M_CheckPos2": {
-              "next": ["M_DetectEmpty2", "M_DetectLocked2", "M_CheckLevel2", "M_ClickMixBtn2"]
-            },
-            "M_CheckPos3": {
-              "next": ["M_DetectEmpty3", "M_DetectLocked3", "M_CheckLevel3", "M_ClickMixBtn3"]
-            },
-            "M_CheckPos4": {
-              "next": ["M_DetectEmpty4", "M_DetectLocked4", "M_CheckLevel4", "M_ClickMixBtn4"]
-            },
-            "M_CheckPos5": {
-              "next": ["M_DetectEmpty5", "M_DetectLocked5", "M_CheckLevel5", "M_ClickMixBtn5"]
-            },
-            "M_CheckPos6": {
-              "next": ["M_DetectEmpty6", "M_DetectLocked6", "M_CheckLevel6", "M_ClickMixBtn6"]
-            },
-            "M_DetectLocked1": {
-              "on_error": ["M_CheckLevel1"]
-            },
-            "M_DetectLocked2": {
-              "on_error": ["M_CheckLevel2"]
-            },
-            "M_DetectLocked3": {
-              "on_error": ["M_CheckLevel3"]
-            },
-            "M_DetectLocked4": {
-              "on_error": ["M_CheckLevel4"]
-            },
-            "M_DetectLocked5": {
-              "on_error": ["M_CheckLevel5"]
-            },
-            "M_DetectLocked6": {
-              "on_error": ["M_CheckLevel6"]
-            }
-          }
-        },
-        {
-          "name": "No",
-          "label": "搓糖关闭"
-        }
-      ]
-    },
-    "刀种筛选": {
-      "name": "刀种筛选",
-      "label": "刀种筛选",
-      "type": "switch",
-      "description": "开启后按所选刀种筛选可习合刀剑，关闭则跳过筛选直接习合全部刀剑。",
-      "default_case": "Yes",
-      "cases": [
-        {
-          "name": "Yes",
-          "label": "筛选开启",
-          "option": [
-            "短",
-            "胁",
-            "打",
-            "太",
-            "大太",
-            "枪",
-            "薙"
-          ]
-        },
-        {
-          "name": "No",
-          "label": "不筛选",
-          "pipeline_override": {
-            "M_HideUnmixable": {
-              "next": ["M_FilterPostHub"]
-            },
-            "M_DetectMailbox": {
-              "next": ["M_NoFilterClick1"]
-            },
-            "M_NoFilterClick1": {"enabled": true},
-            "M_NoFilterClick2": {"enabled": true},
-            "M_NoFilterClick3": {"enabled": true},
-            "M_NoFilterClick4": {"enabled": true}
-          }
-        }
-      ]
-    },
     "卡死重启": {
       "name": "卡死重启",
       "label": "卡死重启",
@@ -5662,7 +5549,6 @@
           "option": ["卡死等待时间", "目标应用"],
           "pipeline_override": {
             "S_FallbackWait": {"enabled": false},
-            "M_FallbackWait": {"enabled": false},
             "LR_FallbackWait": {"enabled": false},
             "EC_FallbackWait": {"enabled": false},
             "FB_FallbackWait": {"enabled": false},
@@ -5754,7 +5640,6 @@
       ],
       "pipeline_override": {
         "S_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
-        "M_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "LR_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "EC_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "FB_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},

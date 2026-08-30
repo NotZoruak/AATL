@@ -20,6 +20,7 @@
       "D_IsTrainingLetter",
       "D_IsLoginReward",
       "D_IsInternalReport",
+      "D_IsTrainingApplication",
       "D_IsAdvertisementPopup",
       "D_IsGameIcon",
       "D_IsLoginButton",
@@ -47,12 +48,12 @@
         "target": [1231, 8, 38, 39]
       }
     },
+    "next": ["D_EmptyMailboxClick2"],
+    "on_error": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1231, 8, 38, 39]
-    },
-    "next": ["D_EmptyMailboxClick2"],
-    "on_error": ["D_DetectWhereAmI"]
+    }
   },
   "D_EmptyMailboxClick2": {
     "action": {
@@ -117,11 +118,11 @@
         "target": [1179, 8, 95, 56]
       }
     },
+    "next": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1179, 8, 95, 56]
-    },
-    "next": ["D_DetectWhereAmI"]
+    }
   },
   "D_DetectMenu": {
     "recognition": {
@@ -139,11 +140,11 @@
         "target": [748, 275, 76, 34]
       }
     },
+    "next": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [748, 275, 76, 34]
-    },
-    "next": ["D_DetectWhereAmI"]
+    }
   },
   "D_DetectForge": {
     "recognition": {
@@ -159,11 +160,11 @@
         "target": [8, 303, 30, 74]
       }
     },
+    "next": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [8, 303, 30, 74]
-    },
-    "next": ["D_DetectWhereAmI"]
+    }
   },
   "D_DetectDisassemble": {
     "recognition": {
@@ -179,11 +180,11 @@
         "target": [812, 115, 46, 25]
       }
     },
+    "next": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [812, 115, 46, 25]
-    },
-    "next": ["D_DetectWhereAmI"]
+    }
   },
   "D_DetectFilter": {
     "recognition": {
@@ -199,12 +200,12 @@
         "target": [752, 145, 100, 25]
       }
     },
+    "next": ["D_FilterSwordHub"],
+    "on_error": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [752, 145, 100, 25]
-    },
-    "next": ["D_FilterSwordHub"],
-    "on_error": ["D_DetectWhereAmI"]
+    }
   },
   "D_FilterSwordHub": {
     "next": [
@@ -325,12 +326,12 @@
         "target": [588, 604, 99, 39]
       }
     },
+    "next": ["D_FilterPostHub"],
+    "on_error": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [588, 604, 99, 39]
-    },
-    "next": ["D_FilterPostHub"],
-    "on_error": ["D_DetectWhereAmI"]
+    }
   },
   "D_FilterPostHub": {
     "timeout": 5000,
@@ -350,12 +351,12 @@
         "target": [1149, 463, 107, 35]
       }
     },
+    "next": ["D_DisassembleCheckConfirm", "D_DisassembleGoToMailbox"],
+    "on_error": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1149, 463, 107, 35]
-    },
-    "next": ["D_DisassembleCheckConfirm", "D_DisassembleGoToMailbox"],
-    "on_error": ["D_DetectWhereAmI"]
+    }
   },
   "D_DisassembleCheckConfirm": {
     "recognition": {
@@ -367,12 +368,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["D_DisassembleClickFinal"],
+    "on_error": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1197, 627, 6, 9]
-    },
-    "next": ["D_DisassembleClickFinal"],
-    "on_error": ["D_DetectWhereAmI"]
+    }
   },
   "D_DisassembleClickFinal": {
     "recognition": {
@@ -388,12 +389,12 @@
         "target": [728, 609, 117, 40]
       }
     },
+    "next": ["D_PostFilterDisassemble"],
+    "on_error": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [728, 609, 117, 40]
-    },
-    "next": ["D_PostFilterDisassemble"],
-    "on_error": ["D_DetectWhereAmI"]
+    }
   },
   "D_DisassembleGoToMailbox": {
     "recognition": {
@@ -409,12 +410,12 @@
         "target": [1179, 8, 95, 56]
       }
     },
+    "next": ["D_DisassembleVerifyMenu", "D_DisassembleGoToMailbox"],
+    "on_error": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1179, 8, 95, 56]
-    },
-    "next": ["D_DisassembleVerifyMenu", "D_DisassembleGoToMailbox"],
-    "on_error": ["D_DetectWhereAmI"]
+    }
   },
   "D_DisassembleVerifyMenu": {
     "recognition": {
@@ -475,6 +476,61 @@
   },
   "D_FallbackWait": {
     "next": ["D_DetectWhereAmI"]
+  },
+  "D_IsTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [101, 590, 399, 42],
+        "expected": "一样"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [197, 600, 52, 26]
+      }
+    },
+    "next": ["D_ClickTrainingApplication", "D_IsTrainingApplication", "D_CancelTrainingApplication"],
+    "on_error": ["D_DetectWhereAmI"],
+    "repeat": 5,
+    "repeat_delay": 500
+  },
+  "D_ClickTrainingApplication": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [96, 558, 54, 38],
+        "template": "Common/修行申请_狐之助.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [96, 558, 54, 38]
+      }
+    },
+    "next": ["D_CancelTrainingApplication", "D_ClickTrainingApplication"],
+    "on_error": ["D_DetectWhereAmI"]
+  },
+  "D_CancelTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [460, 587, 69, 37],
+        "expected": "取消"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [460, 587, 69, 37]
+      }
+    },
+    "next": ["D_CancelTrainingApplication", "D_DetectWhereAmI"],
+    "on_error": ["D_DetectWhereAmI"]
   },
   "D_PostFilterReward": {
     "recognition": {
@@ -561,7 +617,7 @@
     },
     "pre_delay": 300,
     "post_delay": 500,
-    "next": ["D_MailboxCloseVerify","D_DetectWhereAmI"]
+    "next": ["D_MailboxCloseVerify", "D_DetectWhereAmI"]
   },
   "D_MailboxCloseVerify": {
     "recognition": {
@@ -603,26 +659,26 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200},
-    "next": ["D_IsAnnouncementPopup", "D_DetectWhereAmI"]
+    "next": ["D_IsAnnouncementPopup", "D_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 200}
   },
   "D_IsLoginReward": {
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "target": [816, 577, 182, 59],
         "template": "Common/登录奖励.png",
         "green_mask": true,
-        "threshold": [0.98]
+        "threshold": [0.98],
+        "target": [816, 577, 182, 59]
       }
     },
     "action": {"type": "Click"},
+    "next": ["D_LoginRewardClick2"],
+    "on_error": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [240, 104, 803, 561]
-    },
-    "next": ["D_LoginRewardClick2"],
-    "on_error": ["D_DetectWhereAmI"]
+    }
   },
   "D_LoginRewardClick2": {
     "action": {
@@ -631,12 +687,12 @@
         "target": [1092, 318, 1, 1]
       }
     },
+    "next": ["D_LoginRewardClick3"],
+    "on_error": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [240, 104, 803, 561]
-    },
-    "next": ["D_LoginRewardClick3"],
-    "on_error": ["D_DetectWhereAmI"]
+    }
   },
   "D_LoginRewardClick3": {
     "action": {
@@ -645,13 +701,13 @@
         "target": [1092, 318, 1, 1]
       }
     },
+    "timeout": 3000,
+    "next": ["D_IsLoginReward"],
+    "on_error": ["D_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [240, 104, 803, 561]
-    },
-    "timeout": 3000,
-    "next": ["D_IsLoginReward"],
-    "on_error": ["D_DetectWhereAmI"]
+    }
   },
   "D_IsInternalReport": {
     "recognition": {

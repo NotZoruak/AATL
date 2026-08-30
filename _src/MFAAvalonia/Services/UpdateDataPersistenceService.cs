@@ -15,6 +15,9 @@ namespace MFAAvalonia.Services;
 /// <summary>负责把更新数据任务的识别草稿写入正式配置。</summary>
 public static class UpdateDataPersistenceService
 {
+    /// <summary>仓库正式数据保存完成时触发。</summary>
+    public static event Action? WarehouseDataSaved;
+
     /// <summary>刀帐正式数据保存完成时触发。</summary>
     public static event Action? SwordBookDataSaved;
 
@@ -29,7 +32,9 @@ public static class UpdateDataPersistenceService
         if (!TryLoadWarehouseData(draftPath, out var warehouseData))
             return false;
 
+        ConfigurationManager.Current.ReloadFromDisk();
         ConfigurationManager.Current.SetValue(ConfigurationKeys.WarehouseData, warehouseData);
+        WarehouseDataSaved?.Invoke();
         return true;
     }
 
@@ -39,6 +44,7 @@ public static class UpdateDataPersistenceService
         if (!TryLoadSwordBookStates(draftPath, out var states))
             return false;
 
+        ConfigurationManager.Current.ReloadFromDisk();
         var serializerSettings = new JsonSerializerSettings
         {
             DefaultValueHandling = DefaultValueHandling.Include,

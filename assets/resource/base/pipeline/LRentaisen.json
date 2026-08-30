@@ -32,6 +32,7 @@
       "LR_IsGameUpdatePopup",
       "LR_IsInGameUpdatePopup",
       "LR_IsInternalReport",
+      "LR_IsTrainingApplication",
       "LR_IsNetworkRequestTimeout",
       "LR_IsConnectionInterrupted",
       "LR_FallbackWait"
@@ -49,8 +50,8 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200},
-    "next": ["LR_IsAnnouncementPopup", "LR_DetectWhereAmI"]
+    "next": ["LR_IsAnnouncementPopup", "LR_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 200}
   },
   "LR_IsSupplyPopup": {
     "recognition": {
@@ -82,13 +83,13 @@
       }
     },
     "action": {"type": "Click"},
+    "pre_delay": 100,
+    "next": ["LR_LoginRewardClick2"],
+    "on_error": ["LR_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [240, 104, 803, 561]
-    },
-    "pre_delay": 100,
-    "next": ["LR_LoginRewardClick2"],
-    "on_error": ["LR_DetectWhereAmI"]
+    }
   },
   "LR_LoginRewardClick2": {
     "action": {
@@ -97,13 +98,13 @@
         "target": [1092, 318, 1, 1]
       }
     },
+    "pre_delay": 1000,
+    "next": ["LR_LoginRewardClick3"],
+    "on_error": ["LR_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [240, 104, 803, 561]
-    },
-    "pre_delay": 1000,
-    "next": ["LR_LoginRewardClick3"],
-    "on_error": ["LR_DetectWhereAmI"]
+    }
   },
   "LR_LoginRewardClick3": {
     "action": {
@@ -318,8 +319,60 @@
     "next": ["LR_DetectWhereAmI"],
     "on_error": ["LR_DetectWhereAmI"]
   },
-  "LR_FallbackWait": {
-    "next": ["LR_DetectWhereAmI"]
+  "LR_IsTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [101, 590, 399, 42],
+        "expected": "一样"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [197, 600, 52, 26]
+      }
+    },
+    "next": ["LR_ClickTrainingApplication", "LR_IsTrainingApplication", "LR_CancelTrainingApplication"],
+    "on_error": ["LR_DetectWhereAmI"],
+    "repeat": 5,
+    "repeat_delay": 500
+  },
+  "LR_ClickTrainingApplication": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [96, 558, 54, 38],
+        "template": "Common/修行申请_狐之助.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [96, 558, 54, 38]
+      }
+    },
+    "next": ["LR_CancelTrainingApplication", "LR_ClickTrainingApplication"],
+    "on_error": ["LR_DetectWhereAmI"]
+  },
+  "LR_CancelTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [460, 587, 69, 37],
+        "expected": "取消"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [460, 587, 69, 37]
+      }
+    },
+    "next": ["LR_CancelTrainingApplication", "LR_DetectWhereAmI"],
+    "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_IsBattleResult_Exp": {
     "recognition": {
@@ -595,12 +648,12 @@
         "target": [154, 93, 1, 1]
       }
     },
+    "next": ["LR_CaptainHub"],
+    "on_error": ["LR_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [108, 76, 106, 6]
-    },
-    "next": ["LR_CaptainHub"],
-    "on_error": ["LR_DetectWhereAmI"]
+    }
   },
   "LR_TryClickHome": {
     "next": ["LR_ClickHomeInMenu", "LR_DetectWhereAmI"]
@@ -1031,6 +1084,9 @@
         "target": [623, 459, 32, 15]
       }
     },
+    "next": ["LR_DetectWhereAmI"]
+  },
+  "LR_FallbackWait": {
     "next": ["LR_DetectWhereAmI"]
   },
   "LR_RestartGame": {

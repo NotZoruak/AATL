@@ -33,6 +33,7 @@
       "EC_IsGameUpdatePopup",
       "EC_IsInGameUpdatePopup",
       "EC_IsInternalReport",
+      "EC_IsTrainingApplication",
       "EC_IsNetworkRequestTimeout",
       "EC_IsConnectionInterrupted",
       "EC_FallbackWait"
@@ -50,9 +51,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200},
     "next": ["EC_IsAnnouncementPopup", "EC_DetectWhereAmI"],
-    "on_error": ["EC_DetectWhereAmI"]
+    "on_error": ["EC_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 200}
   },
   "EC_IsSupplyPopup": {
     "recognition": {
@@ -85,13 +86,13 @@
       }
     },
     "action": {"type": "Click"},
+    "pre_delay": 100,
+    "next": ["EC_LoginRewardClick2"],
+    "on_error": ["EC_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [240, 104, 803, 561]
-    },
-    "pre_delay": 100,
-    "next": ["EC_LoginRewardClick2"],
-    "on_error": ["EC_DetectWhereAmI"]
+    }
   },
   "EC_LoginRewardClick2": {
     "action": {
@@ -100,13 +101,13 @@
         "target": [1092, 318, 1, 1]
       }
     },
+    "pre_delay": 1000,
+    "next": ["EC_LoginRewardClick3"],
+    "on_error": ["EC_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [240, 104, 803, 561]
-    },
-    "pre_delay": 1000,
-    "next": ["EC_LoginRewardClick3"],
-    "on_error": ["EC_DetectWhereAmI"]
+    }
   },
   "EC_LoginRewardClick3": {
     "action": {
@@ -192,7 +193,7 @@
       }
     },
     "pre_delay": 100,
-    "next": ["EC_ClickActivityInMenu","EC_DetectWhereAmI"],
+    "next": ["EC_ClickActivityInMenu", "EC_DetectWhereAmI"],
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_IsGameIcon": {
@@ -332,6 +333,61 @@
   },
   "EC_FallbackWait": {
     "next": ["EC_DetectWhereAmI"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [101, 590, 399, 42],
+        "expected": "一样"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [197, 600, 52, 26]
+      }
+    },
+    "next": ["EC_ClickTrainingApplication", "EC_IsTrainingApplication", "EC_CancelTrainingApplication"],
+    "on_error": ["EC_DetectWhereAmI"],
+    "repeat": 5,
+    "repeat_delay": 500
+  },
+  "EC_ClickTrainingApplication": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [96, 558, 54, 38],
+        "template": "Common/修行申请_狐之助.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [96, 558, 54, 38]
+      }
+    },
+    "next": ["EC_CancelTrainingApplication", "EC_ClickTrainingApplication"],
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_CancelTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [460, 587, 69, 37],
+        "expected": "取消"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [460, 587, 69, 37]
+      }
+    },
+    "next": ["EC_CancelTrainingApplication", "EC_DetectWhereAmI"],
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_IsBattleResult_Exp": {
@@ -583,12 +639,12 @@
         "target": [154, 93, 1, 1]
       }
     },
+    "next": ["EC_CaptainHub"],
+    "on_error": ["EC_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [108, 76, 106, 6]
-    },
-    "next": ["EC_CaptainHub"],
-    "on_error": ["EC_DetectWhereAmI"]
+    }
   },
   "EC_TryClickHome": {
     "next": ["EC_ClickHomeInMenu", "EC_DetectWhereAmI"],
@@ -828,9 +884,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",
-      "custom_action_param": {
-        "message": "[江户潜入] 完成一圈"
-      }
+      "custom_action_param": {"message": "[江户潜入] 完成一圈"}
     },
     "next": []
   },
@@ -853,9 +907,7 @@
         "expected": "返回"
       }
     },
-    "action": {
-      "type": "Click"
-    },
+    "action": {"type": "Click"},
     "post_delay": 500,
     "next": ["EC_ConfirmReturnHome", "EC_BeginRetreat"],
     "on_error": ["EC_DetectWhereAmI"]
@@ -879,8 +931,8 @@
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_RetreatTerminate": {
-    "next": ["EC_IsSpecialDropRetreat", "EC_WaitForEventPageRetreat","EC_ConfirmReturnHome"],
     "timeout": 10000,
+    "next": ["EC_IsSpecialDropRetreat", "EC_WaitForEventPageRetreat", "EC_ConfirmReturnHome"],
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_IsSpecialDropRetreat": {
@@ -924,8 +976,8 @@
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_CheckMoreSpecialDrops": {
-    "next": ["EC_IsSpecialDrop", "EC_WaitForEventPage", "EC_IsActionSelect"],
     "timeout": 10000,
+    "next": ["EC_IsSpecialDrop", "EC_WaitForEventPage", "EC_IsActionSelect"],
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_IsActionSelect": {
@@ -948,9 +1000,7 @@
       "type": "Custom",
       "param": {
         "custom_recognition": "EdoLastActionRetreatRecognition",
-        "custom_recognition_param": {
-          "strategy": "balanced"
-        }
+        "custom_recognition_param": {"strategy": "balanced"}
       }
     },
     "next": ["EC_BeginRetreat"],
@@ -960,9 +1010,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "EdoActionSelectAction",
-      "custom_action_param": {
-        "strategy": "balanced"
-      }
+      "custom_action_param": {"strategy": "balanced"}
     },
     "next": ["EC_DetectWhereAmI"],
     "on_error": ["EC_DetectWhereAmI"]
@@ -1025,9 +1073,9 @@
         "threshold": [0.98]
       }
     },
-    "timeout": 5000,
     "pre_delay": 0,
     "post_delay": 0,
+    "timeout": 5000,
     "next": ["EC_ActionSelect"],
     "on_error": ["EC_DetectWhereAmI"]
   },
@@ -1125,20 +1173,18 @@
         "target": [772, 448, 32, 40]
       }
     },
+    "next": ["EC_LogPreDamage"],
+    "on_error": ["EC_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [368, 464, 539, 90]
-    },
-    "next": ["EC_LogPreDamage"],
-    "on_error": ["EC_DetectWhereAmI"]
+    }
   },
   "EC_LogPreDamage": {
     "action": {
       "type": "Custom",
       "custom_action": "GuiLogAction",
-      "custom_action_param": {
-        "message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"
-      }
+      "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，准备进入修复流程"}
     },
     "next": ["EC_NavigateToRepair"],
     "on_error": ["EC_DetectWhereAmI"]
@@ -1156,9 +1202,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200},
     "next": ["EC_ClickRepairInMenu", "EC_ClickMenuForRepair"],
-    "on_error": ["EC_DetectWhereAmI"]
+    "on_error": ["EC_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 200}
   },
   "EC_ClickRepairInMenu": {
     "recognition": {
@@ -1169,9 +1215,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["EC_SelectDamagedSword", "EC_ClickRepairInMenu"],
-    "on_error": ["EC_DetectWhereAmI"]
+    "on_error": ["EC_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "EC_SelectDamagedSword": {
     "recognition": {
@@ -1194,9 +1240,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["EC_ConfirmSelectSlot"],
-    "on_error": ["EC_DetectWhereAmI"]
+    "on_error": ["EC_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "EC_SelectRepairSlot2": {
     "recognition": {
@@ -1208,9 +1254,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["EC_ConfirmSelectSlot"],
-    "on_error": ["EC_DetectWhereAmI"]
+    "on_error": ["EC_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "EC_SelectRepairSlot3": {
     "recognition": {
@@ -1222,9 +1268,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["EC_ConfirmSelectSlot"],
-    "on_error": ["EC_DetectWhereAmI"]
+    "on_error": ["EC_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "EC_SelectRepairSlot4": {
     "recognition": {
@@ -1236,9 +1282,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["EC_ConfirmSelectSlot"],
-    "on_error": ["EC_DetectWhereAmI"]
+    "on_error": ["EC_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "EC_CheckRepairScreen": {
     "recognition": {
@@ -1260,12 +1306,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["EC_CheckAccel", "EC_ClickAccel"],
+    "on_error": ["EC_LogNoDamagedSword"],
     "post_wait_freezes": {
       "time": 200,
       "target": [262, 307, 147, 46]
-    },
-    "next": ["EC_CheckAccel", "EC_ClickAccel"],
-    "on_error": ["EC_LogNoDamagedSword"]
+    }
   },
   "EC_CheckAccel": {
     "recognition": {
@@ -1286,12 +1332,12 @@
         "target": [1156, 241, 27, 25]
       }
     },
+    "next": ["EC_CaptureRepairInfo"],
+    "on_error": ["EC_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [1156, 241, 27, 25]
-    },
-    "next": ["EC_CaptureRepairInfo"],
-    "on_error": ["EC_DetectWhereAmI"]
+    }
   },
   "EC_CaptureRepairInfo": {
     "action": {
@@ -1320,20 +1366,18 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["EC_LogRepairDone"],
+    "on_error": ["EC_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [1159, 588, 83, 44]
-    },
-    "next": ["EC_LogRepairDone"],
-    "on_error": ["EC_DetectWhereAmI"]
+    }
   },
   "EC_LogRepairDone": {
     "action": {
       "type": "Custom",
       "custom_action": "GuiLogAction",
-      "custom_action_param": {
-        "message": "[重伤检测] 修复完成"
-      }
+      "custom_action_param": {"message": "[重伤检测] 修复完成"}
     },
     "next": ["EC_LogRepairDoneLog"],
     "on_error": ["EC_DetectWhereAmI"]
@@ -1409,9 +1453,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "GuiLogAction",
-      "custom_action_param": {
-        "message": "未检测到可修复刀剑"
-      }
+      "custom_action_param": {"message": "未检测到可修复刀剑"}
     },
     "next": ["EC_DetectWhereAmI"],
     "on_error": ["EC_DetectWhereAmI"]

@@ -55,6 +55,13 @@ public partial class MFAConfiguration(string name, string fileName, Dictionary<s
         }
 
     public bool ContainsKey(string key) => Config.ContainsKey(key);
+
+    /// <summary>从磁盘重新加载当前配置，避免使用过期的内存快照覆盖较新的配置数据。</summary>
+    public void ReloadFromDisk()
+    {
+        Config = JsonHelper.LoadConfig(FileName, new Dictionary<string, object>());
+    }
+
     public T GetValue<T>(string key, T defaultValue, List<T> whitelist)
     {
         var value = GetValue(key, defaultValue);

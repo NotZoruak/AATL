@@ -16,6 +16,7 @@
       "DT_IsGameUpdatePopup",
       "DT_IsInGameUpdatePopup",
       "DT_IsInternalReport",
+      "DT_IsTrainingApplication",
       "DT_LeaveTroopRecord",
       "DT_CheckHomeBrightness",
       "DT_IsNetworkRequestTimeout",
@@ -276,12 +277,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_IsAnnouncementPopup", "DT_DetectWhereAmI"],
+    "on_error": ["DT_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1056, 463, 63, 193]
-    },
-    "next": ["DT_IsAnnouncementPopup", "DT_DetectWhereAmI"],
-    "on_error": ["DT_DetectWhereAmI"]
+    }
   },
   "DT_IsTrainingLetter": {
     "recognition": {
@@ -404,12 +405,12 @@
         "target": [63, 28, 17, 17]
       }
     },
+    "next": ["DT_DetectWhereAmI"],
+    "on_error": ["DT_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 500,
       "target": [577, 8, 130, 35]
-    },
-    "next": ["DT_DetectWhereAmI"],
-    "on_error": ["DT_DetectWhereAmI"]
+    }
   },
   "DT_IsConnectionInterrupted": {
     "recognition": {
@@ -495,12 +496,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_LoginRewardHub"],
+    "on_error": ["DT_LoginRewardHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1111, 406, 65, 31]
-    },
-    "next": ["DT_LoginRewardHub"],
-    "on_error": ["DT_LoginRewardHub"]
+    }
   },
   "DT_LoginRewardAnnouncement2": {
     "recognition": {
@@ -511,12 +512,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_LoginRewardSignIn", "DT_LoginRewardHub"],
+    "on_error": ["DT_LoginRewardHub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1195, 282, 61, 27]
-    },
-    "next": ["DT_LoginRewardSignIn", "DT_LoginRewardHub"],
-    "on_error": ["DT_LoginRewardHub"]
+    }
   },
   "DT_LoginRewardSignIn": {
     "recognition": {
@@ -527,12 +528,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_LoginRewardDailyAvailable", "DT_LoginRewardAlreadyClaimed"],
+    "on_error": ["DT_LoginRewardHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [498, 33, 75, 33]
-    },
-    "next": ["DT_LoginRewardDailyAvailable", "DT_LoginRewardAlreadyClaimed"],
-    "on_error": ["DT_LoginRewardHub"]
+    }
   },
   "DT_LoginRewardDailyAvailable": {
     "recognition": {
@@ -562,12 +563,12 @@
         "target": [1181, 11, 38, 35]
       }
     },
+    "next": ["DT_LoginRewardAlreadyClaimedFinished"],
+    "on_error": ["DT_LoginRewardHub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1181, 11, 38, 35]
-    },
-    "next": ["DT_LoginRewardAlreadyClaimedFinished"],
-    "on_error": ["DT_LoginRewardHub"]
+    }
   },
   "DT_LoginRewardAlreadyClaimedFinished": {
     "recognition": {
@@ -598,12 +599,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_LoginRewardClosePopupHub"],
+    "on_error": ["DT_LoginRewardClosePopupHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1180, 10, 42, 39]
-    },
-    "next": ["DT_LoginRewardClosePopupHub"],
-    "on_error": ["DT_LoginRewardClosePopupHub"]
+    }
   },
   "DT_LoginRewardFinished": {
     "recognition": {
@@ -658,12 +659,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_WarmGiftHub"],
+    "on_error": ["DT_WarmGiftHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1186, 19, 38, 36]
-    },
-    "next": ["DT_WarmGiftHub"],
-    "on_error": ["DT_WarmGiftHub"]
+    }
   },
   "DT_WarmGiftClickStore": {
     "recognition": {
@@ -679,12 +680,12 @@
         "target": [1028, 267, 104, 41]
       }
     },
+    "next": ["DT_WarmGiftHub"],
+    "on_error": ["DT_WarmGiftHub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1028, 267, 104, 41]
-    },
-    "next": ["DT_WarmGiftHub"],
-    "on_error": ["DT_WarmGiftHub"]
+    }
   },
   "DT_WarmGiftDetectPrice": {
     "recognition": {
@@ -714,12 +715,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_WarmGiftFinishClaimHub"],
+    "on_error": ["DT_WarmGiftHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [510, 308, 82, 26]
-    },
-    "next": ["DT_WarmGiftFinishClaimHub"],
-    "on_error": ["DT_WarmGiftHub"]
+    }
   },
   "DT_WarmGiftClaim2": {
     "recognition": {
@@ -730,12 +731,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_WarmGiftFinishClaimHub"],
+    "on_error": ["DT_WarmGiftHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1100, 307, 83, 27]
-    },
-    "next": ["DT_WarmGiftFinishClaimHub"],
-    "on_error": ["DT_WarmGiftHub"]
+    }
   },
   "DT_WarmGiftClaim3": {
     "recognition": {
@@ -746,12 +747,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_WarmGiftFinishClaimHub"],
+    "on_error": ["DT_WarmGiftHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [515, 543, 84, 28]
-    },
-    "next": ["DT_WarmGiftFinishClaimHub"],
-    "on_error": ["DT_WarmGiftHub"]
+    }
   },
   "DT_WarmGiftClaim4": {
     "recognition": {
@@ -762,12 +763,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_WarmGiftFinishClaimHub"],
+    "on_error": ["DT_WarmGiftHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1100, 545, 85, 29]
-    },
-    "next": ["DT_WarmGiftFinishClaimHub"],
-    "on_error": ["DT_WarmGiftHub"]
+    }
   },
   "DT_WarmGiftFinishClaimHub": {
     "next": ["DT_WarmGiftPurchaseDetail", "DT_WarmGiftCloseClaimPopup"],
@@ -787,12 +788,12 @@
         "target": [593, 479, 97, 48]
       }
     },
+    "next": ["DT_WarmGiftHub"],
+    "on_error": ["DT_WarmGiftFinishClaimHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [593, 479, 97, 48]
-    },
-    "next": ["DT_WarmGiftHub"],
-    "on_error": ["DT_WarmGiftFinishClaimHub"]
+    }
   },
   "DT_WarmGiftCloseClaimPopup": {
     "action": {
@@ -859,12 +860,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_MixHub"],
+    "on_error": ["DT_MixHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1186, 19, 38, 36]
-    },
-    "next": ["DT_MixHub"],
-    "on_error": ["DT_MixHub"]
+    }
   },
   "DT_MixClickEnhance": {
     "recognition": {
@@ -875,12 +876,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_MixHub"],
+    "on_error": ["DT_MixHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [448, 274, 94, 37]
-    },
-    "next": ["DT_MixHub"],
-    "on_error": ["DT_MixHub"]
+    }
   },
   "DT_MixSelectSword": {
     "recognition": {
@@ -896,12 +897,12 @@
         "target": [1203, 141, 34, 56]
       }
     },
+    "next": ["DT_MixHub"],
+    "on_error": ["DT_MixHub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1203, 141, 34, 56]
-    },
-    "next": ["DT_MixHub"],
-    "on_error": ["DT_MixHub"]
+    }
   },
   "DT_MixMaterialPage": {
     "recognition": {
@@ -919,12 +920,12 @@
       "type": "Custom",
       "custom_action": "MixFindAllowedMaterialAction"
     },
+    "next": ["DT_MixHub"],
+    "on_error": ["DT_MixNoAllowedMaterial"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1156, 600, 91, 58]
-    },
-    "next": ["DT_MixHub"],
-    "on_error": ["DT_MixNoAllowedMaterial"]
+    }
   },
   "DT_MixNoAllowedMaterial": {
     "action": {
@@ -1010,12 +1011,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_ForgeHub"],
+    "on_error": ["DT_ForgeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [741, 273, 88, 38]
-    },
-    "next": ["DT_ForgeHub"],
-    "on_error": ["DT_ForgeHub"]
+    }
   },
   "DT_ForgeDetectStatus": {
     "recognition": {
@@ -1073,12 +1074,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_ForgeClaimCompletedHub"],
+    "on_error": ["DT_ForgeClaimCompletedHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [328, 315, 9, 12]
-    },
-    "next": ["DT_ForgeClaimCompletedHub"],
-    "on_error": ["DT_ForgeClaimCompletedHub"]
+    }
   },
   "DT_ForgeClaimIsSwordDropColor": {
     "recognition": {
@@ -1129,8 +1130,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "Common/十连锻刀收获.png",
-        "roi": [31, 18, 61, 38]
+        "roi": [31, 18, 61, 38],
+        "template": "Common/十连锻刀收获.png"
       }
     },
     "action": {"type": "Click"},
@@ -1204,8 +1205,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "Common/all50锻刀公式.png",
-        "roi": [695, 178, 209, 86]
+        "roi": [695, 178, 209, 86],
+        "template": "Common/all50锻刀公式.png"
       }
     },
     "next": ["DT_ForgeAll50Check1_2"],
@@ -1215,8 +1216,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "Common/all50锻刀公式.png",
-        "roi": [695, 310, 209, 86]
+        "roi": [695, 310, 209, 86],
+        "template": "Common/all50锻刀公式.png"
       }
     },
     "next": ["DT_ForgeAll50Check1_3"],
@@ -1226,8 +1227,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "Common/all50锻刀公式.png",
-        "roi": [695, 442, 209, 86]
+        "roi": [695, 442, 209, 86],
+        "template": "Common/all50锻刀公式.png"
       }
     },
     "next": ["DT_ForgeAll50Check1_4"],
@@ -1237,8 +1238,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "Common/all50锻刀公式.png",
-        "roi": [695, 575, 209, 86]
+        "roi": [695, 575, 209, 86],
+        "template": "Common/all50锻刀公式.png"
       }
     },
     "next": ["DT_ForgeClickStart1"],
@@ -1397,8 +1398,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "Common/all50锻刀公式.png",
-        "roi": [695, 178, 209, 86]
+        "roi": [695, 178, 209, 86],
+        "template": "Common/all50锻刀公式.png"
       }
     },
     "next": ["DT_ForgeAll50Check2_2"],
@@ -1408,8 +1409,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "Common/all50锻刀公式.png",
-        "roi": [695, 310, 209, 86]
+        "roi": [695, 310, 209, 86],
+        "template": "Common/all50锻刀公式.png"
       }
     },
     "next": ["DT_ForgeAll50Check2_3"],
@@ -1419,8 +1420,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "Common/all50锻刀公式.png",
-        "roi": [695, 442, 209, 86]
+        "roi": [695, 442, 209, 86],
+        "template": "Common/all50锻刀公式.png"
       }
     },
     "next": ["DT_ForgeAll50Check2_4"],
@@ -1430,8 +1431,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "Common/all50锻刀公式.png",
-        "roi": [695, 575, 209, 86]
+        "roi": [695, 575, 209, 86],
+        "template": "Common/all50锻刀公式.png"
       }
     },
     "next": ["DT_ForgeClickStart2"],
@@ -1590,8 +1591,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "Common/all50锻刀公式.png",
-        "roi": [695, 178, 209, 86]
+        "roi": [695, 178, 209, 86],
+        "template": "Common/all50锻刀公式.png"
       }
     },
     "next": ["DT_ForgeAll50Check3_2"],
@@ -1601,8 +1602,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "Common/all50锻刀公式.png",
-        "roi": [695, 310, 209, 86]
+        "roi": [695, 310, 209, 86],
+        "template": "Common/all50锻刀公式.png"
       }
     },
     "next": ["DT_ForgeAll50Check3_3"],
@@ -1612,8 +1613,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "Common/all50锻刀公式.png",
-        "roi": [695, 442, 209, 86]
+        "roi": [695, 442, 209, 86],
+        "template": "Common/all50锻刀公式.png"
       }
     },
     "next": ["DT_ForgeAll50Check3_4"],
@@ -1623,8 +1624,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "Common/all50锻刀公式.png",
-        "roi": [695, 575, 209, 86]
+        "roi": [695, 575, 209, 86],
+        "template": "Common/all50锻刀公式.png"
       }
     },
     "next": ["DT_ForgeClickStart3"],
@@ -1794,12 +1795,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_ForgeDisassembleDetectSelect"],
+    "on_error": ["DT_ForgeDisassembleSelectAllowed"],
     "post_wait_freezes": {
       "time": 500,
       "target": [137, 141, 4, 4]
-    },
-    "next": ["DT_ForgeDisassembleDetectSelect"],
-    "on_error": ["DT_ForgeDisassembleSelectAllowed"]
+    }
   },
   "DT_ForgeDisassembleSelectAllowed": {
     "action": {
@@ -1831,12 +1832,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_ForgeDisassembleReturnToForge"],
+    "on_error": ["DT_ForgeHub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [735, 605, 103, 45]
-    },
-    "next": ["DT_ForgeDisassembleReturnToForge"],
-    "on_error": ["DT_ForgeHub"]
+    }
   },
   "DT_ForgeDisassembleReturnToForge": {
     "action": {
@@ -2016,12 +2017,12 @@
         "click": [1146, 581, 109, 92]
       }
     },
+    "next": ["DT_DrillBattle1Hub"],
+    "on_error": ["DT_DrillHub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1146, 581, 109, 92]
-    },
-    "next": ["DT_DrillBattle1Hub"],
-    "on_error": ["DT_DrillHub"]
+    }
   },
   "DT_DrillBattle1Hub": {
     "next": [
@@ -2119,12 +2120,12 @@
         "click": [1146, 581, 109, 92]
       }
     },
+    "next": ["DT_DrillBattle2Hub"],
+    "on_error": ["DT_DrillHub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1146, 581, 109, 92]
-    },
-    "next": ["DT_DrillBattle2Hub"],
-    "on_error": ["DT_DrillHub"]
+    }
   },
   "DT_DrillBattle2Hub": {
     "next": [
@@ -2222,12 +2223,12 @@
         "click": [1146, 581, 109, 92]
       }
     },
+    "next": ["DT_DrillBattle3Hub"],
+    "on_error": ["DT_DrillHub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1146, 581, 109, 92]
-    },
-    "next": ["DT_DrillBattle3Hub"],
-    "on_error": ["DT_DrillHub"]
+    }
   },
   "DT_DrillBattle3Hub": {
     "next": [
@@ -2325,12 +2326,12 @@
         "click": [1146, 581, 109, 92]
       }
     },
+    "next": ["DT_DrillBattle4Hub"],
+    "on_error": ["DT_DrillHub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1146, 581, 109, 92]
-    },
-    "next": ["DT_DrillBattle4Hub"],
-    "on_error": ["DT_DrillHub"]
+    }
   },
   "DT_DrillBattle4Hub": {
     "next": [
@@ -2428,12 +2429,12 @@
         "click": [1146, 581, 109, 92]
       }
     },
+    "next": ["DT_DrillBattle5Hub"],
+    "on_error": ["DT_DrillHub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1146, 581, 109, 92]
-    },
-    "next": ["DT_DrillBattle5Hub"],
-    "on_error": ["DT_DrillHub"]
+    }
   },
   "DT_DrillBattle5Hub": {
     "next": [
@@ -2489,12 +2490,12 @@
         "target": [154, 93, 1, 1]
       }
     },
+    "next": ["DT_DrillIsImmediateSortie1"],
+    "on_error": ["DT_DrillBattle1Hub"],
     "post_wait_freezes": {
       "time": 100,
       "target": [108, 76, 106, 6]
-    },
-    "next": ["DT_DrillIsImmediateSortie1"],
-    "on_error": ["DT_DrillBattle1Hub"]
+    }
   },
   "DT_DrillIsImmediateSortie1": {
     "recognition": {
@@ -2510,12 +2511,12 @@
         "target": [1204, 629, 1, 1]
       }
     },
+    "next": ["DT_DrillBattle1Hub"],
+    "on_error": ["DT_DrillBattle1Hub"],
     "post_wait_freezes": {
       "time": 100,
       "target": [1156, 584, 96, 47]
-    },
-    "next": ["DT_DrillBattle1Hub"],
-    "on_error": ["DT_DrillBattle1Hub"]
+    }
   },
   "DT_DrillIsFormationSelect1": {
     "recognition": {
@@ -2598,12 +2599,12 @@
         "target": [1146, 581, 109, 92]
       }
     },
+    "next": ["DT_DrillBattle1Hub"],
+    "on_error": ["DT_DrillBattle1Hub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1146, 581, 109, 92]
-    },
-    "next": ["DT_DrillBattle1Hub"],
-    "on_error": ["DT_DrillBattle1Hub"]
+    }
   },
   "DT_DrillOpponentSelectComplete1": {
     "recognition": {
@@ -2658,12 +2659,12 @@
         "target": [154, 93, 1, 1]
       }
     },
+    "next": ["DT_DrillIsImmediateSortie2"],
+    "on_error": ["DT_DrillBattle2Hub"],
     "post_wait_freezes": {
       "time": 100,
       "target": [108, 76, 106, 6]
-    },
-    "next": ["DT_DrillIsImmediateSortie2"],
-    "on_error": ["DT_DrillBattle2Hub"]
+    }
   },
   "DT_DrillIsImmediateSortie2": {
     "recognition": {
@@ -2679,12 +2680,12 @@
         "target": [1204, 629, 1, 1]
       }
     },
+    "next": ["DT_DrillBattle2Hub"],
+    "on_error": ["DT_DrillBattle2Hub"],
     "post_wait_freezes": {
       "time": 100,
       "target": [1156, 584, 96, 47]
-    },
-    "next": ["DT_DrillBattle2Hub"],
-    "on_error": ["DT_DrillBattle2Hub"]
+    }
   },
   "DT_DrillIsFormationSelect2": {
     "recognition": {
@@ -2767,12 +2768,12 @@
         "target": [1146, 581, 109, 92]
       }
     },
+    "next": ["DT_DrillBattle2Hub"],
+    "on_error": ["DT_DrillBattle2Hub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1146, 581, 109, 92]
-    },
-    "next": ["DT_DrillBattle2Hub"],
-    "on_error": ["DT_DrillBattle2Hub"]
+    }
   },
   "DT_DrillOpponentSelectComplete2": {
     "recognition": {
@@ -2827,12 +2828,12 @@
         "target": [154, 93, 1, 1]
       }
     },
+    "next": ["DT_DrillIsImmediateSortie3"],
+    "on_error": ["DT_DrillBattle3Hub"],
     "post_wait_freezes": {
       "time": 100,
       "target": [108, 76, 106, 6]
-    },
-    "next": ["DT_DrillIsImmediateSortie3"],
-    "on_error": ["DT_DrillBattle3Hub"]
+    }
   },
   "DT_DrillIsImmediateSortie3": {
     "recognition": {
@@ -2848,12 +2849,12 @@
         "target": [1204, 629, 1, 1]
       }
     },
+    "next": ["DT_DrillBattle3Hub"],
+    "on_error": ["DT_DrillBattle3Hub"],
     "post_wait_freezes": {
       "time": 100,
       "target": [1156, 584, 96, 47]
-    },
-    "next": ["DT_DrillBattle3Hub"],
-    "on_error": ["DT_DrillBattle3Hub"]
+    }
   },
   "DT_DrillIsFormationSelect3": {
     "recognition": {
@@ -2936,12 +2937,12 @@
         "target": [1146, 581, 109, 92]
       }
     },
+    "next": ["DT_DrillBattle3Hub"],
+    "on_error": ["DT_DrillBattle3Hub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1146, 581, 109, 92]
-    },
-    "next": ["DT_DrillBattle3Hub"],
-    "on_error": ["DT_DrillBattle3Hub"]
+    }
   },
   "DT_DrillOpponentSelectComplete3": {
     "recognition": {
@@ -2996,12 +2997,12 @@
         "target": [154, 93, 1, 1]
       }
     },
+    "next": ["DT_DrillIsImmediateSortie4"],
+    "on_error": ["DT_DrillBattle4Hub"],
     "post_wait_freezes": {
       "time": 100,
       "target": [108, 76, 106, 6]
-    },
-    "next": ["DT_DrillIsImmediateSortie4"],
-    "on_error": ["DT_DrillBattle4Hub"]
+    }
   },
   "DT_DrillIsImmediateSortie4": {
     "recognition": {
@@ -3017,12 +3018,12 @@
         "target": [1204, 629, 1, 1]
       }
     },
+    "next": ["DT_DrillBattle4Hub"],
+    "on_error": ["DT_DrillBattle4Hub"],
     "post_wait_freezes": {
       "time": 100,
       "target": [1156, 584, 96, 47]
-    },
-    "next": ["DT_DrillBattle4Hub"],
-    "on_error": ["DT_DrillBattle4Hub"]
+    }
   },
   "DT_DrillIsFormationSelect4": {
     "recognition": {
@@ -3105,12 +3106,12 @@
         "target": [1146, 581, 109, 92]
       }
     },
+    "next": ["DT_DrillBattle4Hub"],
+    "on_error": ["DT_DrillBattle4Hub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1146, 581, 109, 92]
-    },
-    "next": ["DT_DrillBattle4Hub"],
-    "on_error": ["DT_DrillBattle4Hub"]
+    }
   },
   "DT_DrillOpponentSelectComplete4": {
     "recognition": {
@@ -3165,12 +3166,12 @@
         "target": [154, 93, 1, 1]
       }
     },
+    "next": ["DT_DrillIsImmediateSortie5"],
+    "on_error": ["DT_DrillBattle5Hub"],
     "post_wait_freezes": {
       "time": 100,
       "target": [108, 76, 106, 6]
-    },
-    "next": ["DT_DrillIsImmediateSortie5"],
-    "on_error": ["DT_DrillBattle5Hub"]
+    }
   },
   "DT_DrillIsImmediateSortie5": {
     "recognition": {
@@ -3186,12 +3187,12 @@
         "target": [1204, 629, 1, 1]
       }
     },
+    "next": ["DT_DrillBattle5Hub"],
+    "on_error": ["DT_DrillBattle5Hub"],
     "post_wait_freezes": {
       "time": 100,
       "target": [1156, 584, 96, 47]
-    },
-    "next": ["DT_DrillBattle5Hub"],
-    "on_error": ["DT_DrillBattle5Hub"]
+    }
   },
   "DT_DrillIsFormationSelect5": {
     "recognition": {
@@ -3274,12 +3275,12 @@
         "target": [1146, 581, 109, 92]
       }
     },
+    "next": ["DT_DrillBattle5Hub"],
+    "on_error": ["DT_DrillBattle5Hub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1146, 581, 109, 92]
-    },
-    "next": ["DT_DrillBattle5Hub"],
-    "on_error": ["DT_DrillBattle5Hub"]
+    }
   },
   "DT_DrillOpponentSelectComplete5": {
     "recognition": {
@@ -3372,9 +3373,9 @@
         "target": [1206, 642, 1, 1]
       }
     },
-    "post_wait_freezes": {"time": 100},
     "next": ["DT_KebiHub"],
-    "on_error": ["DT_KebiHub"]
+    "on_error": ["DT_KebiHub"],
+    "post_wait_freezes": {"time": 100}
   },
   "DT_KebiIsPastRegionSelect": {
     "recognition": {
@@ -3417,9 +3418,9 @@
         "target": [173, 365, 97, 96]
       }
     },
-    "post_wait_freezes": {"time": 100},
     "next": ["DT_KebiHub"],
-    "on_error": ["DT_KebiHub"]
+    "on_error": ["DT_KebiHub"],
+    "post_wait_freezes": {"time": 100}
   },
   "DT_KebiIsTeamSelect": {
     "recognition": {
@@ -3439,12 +3440,12 @@
         "target": [154, 93, 1, 1]
       }
     },
+    "next": ["DT_KebiIsImmediateSortie"],
+    "on_error": ["DT_KebiHub"],
     "post_wait_freezes": {
       "time": 100,
       "target": [108, 76, 106, 6]
-    },
-    "next": ["DT_KebiIsImmediateSortie"],
-    "on_error": ["DT_KebiHub"]
+    }
   },
   "DT_KebiIsImmediateSortie": {
     "recognition": {
@@ -3460,12 +3461,12 @@
         "target": [1204, 629, 1, 1]
       }
     },
+    "next": ["DT_KebiHub"],
+    "on_error": ["DT_KebiHub"],
     "post_wait_freezes": {
       "time": 100,
       "target": [1156, 584, 96, 47]
-    },
-    "next": ["DT_KebiHub"],
-    "on_error": ["DT_KebiHub"]
+    }
   },
   "DT_KebiIsFormationSelect": {
     "enabled": false,
@@ -3607,12 +3608,12 @@
         "target": [1173, 416, 70, 68]
       }
     },
+    "next": ["DT_KebiConfirmReturnHome", "DT_KebiPrepareFinishHub"],
+    "on_error": ["DT_KebiPrepareFinishHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [369, 287, 546, 238]
-    },
-    "next": ["DT_KebiConfirmReturnHome", "DT_KebiPrepareFinishHub"],
-    "on_error": ["DT_KebiPrepareFinishHub"]
+    }
   },
   "DT_KebiConfirmReturnHome": {
     "recognition": {
@@ -3628,12 +3629,12 @@
         "target": [490, 469, 10, 10]
       }
     },
+    "next": ["DT_KebiReturnHomeHub"],
+    "on_error": ["DT_KebiPrepareFinishHub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [490, 469, 10, 10]
-    },
-    "next": ["DT_KebiReturnHomeHub"],
-    "on_error": ["DT_KebiPrepareFinishHub"]
+    }
   },
   "DT_KebiClickMenu": {
     "recognition": {
@@ -3644,9 +3645,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["DT_KebiHub"],
-    "on_error": ["DT_KebiHub"]
+    "on_error": ["DT_KebiHub"],
+    "post_wait_freezes": {"time": 100}
   },
   "DT_KebiIsMenuDirectory": {
     "recognition": {
@@ -3670,9 +3671,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["DT_KebiHub"],
-    "on_error": ["DT_KebiHub"]
+    "on_error": ["DT_KebiHub"],
+    "post_wait_freezes": {"time": 100}
   },
   "DT_KebiFallbackWait": {
     "action": {"type": "DoNothing"},
@@ -3712,12 +3713,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_RewardHub"],
+    "on_error": ["DT_RewardHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1197, 390, 50, 30]
-    },
-    "next": ["DT_RewardHub"],
-    "on_error": ["DT_RewardHub"]
+    }
   },
   "DT_RewardClickTask": {
     "recognition": {
@@ -3728,12 +3729,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_RewardHub"],
+    "on_error": ["DT_RewardHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [989, 518, 66, 31]
-    },
-    "next": ["DT_RewardHub"],
-    "on_error": ["DT_RewardHub"]
+    }
   },
   "DT_RewardDetectTaskList": {
     "recognition": {
@@ -3754,17 +3755,17 @@
       "type": "ColorMatch",
       "param": {
         "roi": [1136, 570, 26, 21],
-        "lower": [208, 113, 5],
-        "upper": [214, 119, 11]
+        "upper": [214, 119, 11],
+        "lower": [208, 113, 5]
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_RewardClaimedLog"],
+    "on_error": ["DT_RewardClaimHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1136, 570, 26, 21]
-    },
-    "next": ["DT_RewardClaimedLog"],
-    "on_error": ["DT_RewardClaimHub"]
+    }
   },
   "DT_RewardNoClaimableLog": {
     "action": {
@@ -3796,12 +3797,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_RewardClosePopupHub"],
+    "on_error": ["DT_RewardClosePopupHub"],
     "post_wait_freezes": {
       "time": 300,
       "target": [1234, 11, 34, 36]
-    },
-    "next": ["DT_RewardClosePopupHub"],
-    "on_error": ["DT_RewardClosePopupHub"]
+    }
   },
   "DT_RewardFallbackWait": {
     "action": {"type": "DoNothing"},
@@ -3820,12 +3821,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_LoginRewardReturnHomeHub"],
+    "on_error": ["DT_LoginRewardReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1186, 19, 38, 36]
-    },
-    "next": ["DT_LoginRewardReturnHomeHub"],
-    "on_error": ["DT_LoginRewardReturnHomeHub"]
+    }
   },
   "DT_LoginRewardReturnHomeClickHome": {
     "recognition": {
@@ -3836,12 +3837,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_LoginRewardReturnHomeHub"],
+    "on_error": ["DT_LoginRewardReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1037, 166, 101, 47]
-    },
-    "next": ["DT_LoginRewardReturnHomeHub"],
-    "on_error": ["DT_LoginRewardReturnHomeHub"]
+    }
   },
   "DT_LoginRewardReturnHomeCheckBrightness": {
     "recognition": {
@@ -3875,12 +3876,12 @@
         "target": [180, 11, 25, 28]
       }
     },
+    "next": ["DT_LoginRewardReturnHomeHub"],
+    "on_error": ["DT_LoginRewardReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [180, 11, 25, 28]
-    },
-    "next": ["DT_LoginRewardReturnHomeHub"],
-    "on_error": ["DT_LoginRewardReturnHomeHub"]
+    }
   },
   "DT_WarmGiftReturnHomeHub": {
     "next": ["DT_WarmGiftReturnHomeCheckBrightness", "DT_WarmGiftReturnHomeClickMenu", "DT_WarmGiftReturnHomeClickHome", "DT_WarmGiftReturnHomeFallbackWait"]
@@ -3894,12 +3895,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_WarmGiftReturnHomeHub"],
+    "on_error": ["DT_WarmGiftReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1186, 19, 38, 36]
-    },
-    "next": ["DT_WarmGiftReturnHomeHub"],
-    "on_error": ["DT_WarmGiftReturnHomeHub"]
+    }
   },
   "DT_WarmGiftReturnHomeClickHome": {
     "recognition": {
@@ -3910,12 +3911,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_WarmGiftReturnHomeHub"],
+    "on_error": ["DT_WarmGiftReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1037, 166, 101, 47]
-    },
-    "next": ["DT_WarmGiftReturnHomeHub"],
-    "on_error": ["DT_WarmGiftReturnHomeHub"]
+    }
   },
   "DT_WarmGiftReturnHomeCheckBrightness": {
     "recognition": {
@@ -3949,12 +3950,12 @@
         "target": [180, 11, 25, 28]
       }
     },
+    "next": ["DT_WarmGiftReturnHomeHub"],
+    "on_error": ["DT_WarmGiftReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [180, 11, 25, 28]
-    },
-    "next": ["DT_WarmGiftReturnHomeHub"],
-    "on_error": ["DT_WarmGiftReturnHomeHub"]
+    }
   },
   "DT_MixReturnHomeHub": {
     "next": ["DT_MixReturnHomeCheckBrightness", "DT_MixReturnHomeClickMenu", "DT_MixReturnHomeClickHome", "DT_MixReturnHomeFallbackWait"]
@@ -3968,12 +3969,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_MixReturnHomeHub"],
+    "on_error": ["DT_MixReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1186, 19, 38, 36]
-    },
-    "next": ["DT_MixReturnHomeHub"],
-    "on_error": ["DT_MixReturnHomeHub"]
+    }
   },
   "DT_MixReturnHomeClickHome": {
     "recognition": {
@@ -3984,12 +3985,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_MixReturnHomeHub"],
+    "on_error": ["DT_MixReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1037, 166, 101, 47]
-    },
-    "next": ["DT_MixReturnHomeHub"],
-    "on_error": ["DT_MixReturnHomeHub"]
+    }
   },
   "DT_MixReturnHomeCheckBrightness": {
     "recognition": {
@@ -4023,12 +4024,12 @@
         "target": [180, 11, 25, 28]
       }
     },
+    "next": ["DT_MixReturnHomeHub"],
+    "on_error": ["DT_MixReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [180, 11, 25, 28]
-    },
-    "next": ["DT_MixReturnHomeHub"],
-    "on_error": ["DT_MixReturnHomeHub"]
+    }
   },
   "DT_ForgeReturnHomeHub": {
     "next": ["DT_ForgeReturnHomeCheckBrightness", "DT_ForgeReturnHomeClickMenu", "DT_ForgeReturnHomeClickHome", "DT_ForgeReturnHomeFallbackWait"]
@@ -4042,12 +4043,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_ForgeReturnHomeHub"],
+    "on_error": ["DT_ForgeReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1186, 19, 38, 36]
-    },
-    "next": ["DT_ForgeReturnHomeHub"],
-    "on_error": ["DT_ForgeReturnHomeHub"]
+    }
   },
   "DT_ForgeReturnHomeClickHome": {
     "recognition": {
@@ -4058,12 +4059,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_ForgeReturnHomeHub"],
+    "on_error": ["DT_ForgeReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1037, 166, 101, 47]
-    },
-    "next": ["DT_ForgeReturnHomeHub"],
-    "on_error": ["DT_ForgeReturnHomeHub"]
+    }
   },
   "DT_ForgeReturnHomeCheckBrightness": {
     "recognition": {
@@ -4097,12 +4098,12 @@
         "target": [180, 11, 25, 28]
       }
     },
+    "next": ["DT_ForgeReturnHomeHub"],
+    "on_error": ["DT_ForgeReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [180, 11, 25, 28]
-    },
-    "next": ["DT_ForgeReturnHomeHub"],
-    "on_error": ["DT_ForgeReturnHomeHub"]
+    }
   },
   "DT_DrillReturnHomeHub": {
     "next": ["DT_DrillReturnHomeCheckBrightness", "DT_DrillReturnHomeClickMenu", "DT_DrillReturnHomeClickHome", "DT_DrillReturnHomeFallbackWait"]
@@ -4116,12 +4117,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_DrillReturnHomeHub"],
+    "on_error": ["DT_DrillReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1186, 19, 38, 36]
-    },
-    "next": ["DT_DrillReturnHomeHub"],
-    "on_error": ["DT_DrillReturnHomeHub"]
+    }
   },
   "DT_DrillReturnHomeClickHome": {
     "recognition": {
@@ -4132,12 +4133,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_DrillReturnHomeHub"],
+    "on_error": ["DT_DrillReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1037, 166, 101, 47]
-    },
-    "next": ["DT_DrillReturnHomeHub"],
-    "on_error": ["DT_DrillReturnHomeHub"]
+    }
   },
   "DT_DrillReturnHomeCheckBrightness": {
     "recognition": {
@@ -4171,12 +4172,12 @@
         "target": [180, 11, 25, 28]
       }
     },
+    "next": ["DT_DrillReturnHomeHub"],
+    "on_error": ["DT_DrillReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [180, 11, 25, 28]
-    },
-    "next": ["DT_DrillReturnHomeHub"],
-    "on_error": ["DT_DrillReturnHomeHub"]
+    }
   },
   "DT_KebiReturnHomeHub": {
     "next": ["DT_KebiReturnHomeCheckBrightness", "DT_KebiReturnHomeClickMenu", "DT_KebiReturnHomeClickHome", "DT_KebiReturnHomeFallbackWait"]
@@ -4190,12 +4191,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_KebiReturnHomeHub"],
+    "on_error": ["DT_KebiReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1186, 19, 38, 36]
-    },
-    "next": ["DT_KebiReturnHomeHub"],
-    "on_error": ["DT_KebiReturnHomeHub"]
+    }
   },
   "DT_KebiReturnHomeClickHome": {
     "recognition": {
@@ -4206,12 +4207,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["DT_KebiReturnHomeHub"],
+    "on_error": ["DT_KebiReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1037, 166, 101, 47]
-    },
-    "next": ["DT_KebiReturnHomeHub"],
-    "on_error": ["DT_KebiReturnHomeHub"]
+    }
   },
   "DT_KebiReturnHomeCheckBrightness": {
     "recognition": {
@@ -4245,12 +4246,12 @@
         "target": [180, 11, 25, 28]
       }
     },
+    "next": ["DT_KebiReturnHomeHub"],
+    "on_error": ["DT_KebiReturnHomeHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [180, 11, 25, 28]
-    },
-    "next": ["DT_KebiReturnHomeHub"],
-    "on_error": ["DT_KebiReturnHomeHub"]
+    }
   },
   "DT_Finish": {
     "on_error": ["DT_RestartGame"]
@@ -4258,6 +4259,61 @@
   "DT_FallbackWait": {
     "next": ["DT_DetectWhereAmI"],
     "on_error": ["DT_RestartGame"]
+  },
+  "DT_IsTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [101, 590, 399, 42],
+        "expected": "一样"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [197, 600, 52, 26]
+      }
+    },
+    "next": ["DT_ClickTrainingApplication", "DT_IsTrainingApplication", "DT_CancelTrainingApplication"],
+    "on_error": ["DT_DetectWhereAmI"],
+    "repeat": 5,
+    "repeat_delay": 500
+  },
+  "DT_ClickTrainingApplication": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [96, 558, 54, 38],
+        "template": "Common/修行申请_狐之助.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [96, 558, 54, 38]
+      }
+    },
+    "next": ["DT_CancelTrainingApplication", "DT_ClickTrainingApplication"],
+    "on_error": ["DT_DetectWhereAmI"]
+  },
+  "DT_CancelTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [460, 587, 69, 37],
+        "expected": "取消"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [460, 587, 69, 37]
+      }
+    },
+    "next": ["DT_CancelTrainingApplication", "DT_DetectWhereAmI"],
+    "on_error": ["DT_DetectWhereAmI"]
   },
   "DT_RestartGame": {
     "action": {

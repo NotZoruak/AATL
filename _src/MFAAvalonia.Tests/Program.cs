@@ -672,6 +672,9 @@ var oldSwordBook = new List<SwordBookPortraitState>
 ConfigurationManager.Current.SetValue(ConfigurationKeys.WarehouseData, oldWarehouse.Clone());
 ConfigurationManager.Current.SetValue(ConfigurationKeys.SwordBookEntries, CloneSwordBookStates(oldSwordBook));
 
+var warehouseDataSavedEventRaised = false;
+Action warehouseDataSavedHandler = () => warehouseDataSavedEventRaised = true;
+UpdateDataPersistenceService.WarehouseDataSaved += warehouseDataSavedHandler;
 var warehouseDraftSavePath = Path.Combine(Path.GetTempPath(), $"matr-update-data-warehouse-{Guid.NewGuid():N}.json");
 File.WriteAllText(warehouseDraftSavePath,
     """
@@ -695,6 +698,9 @@ File.WriteAllText(warehouseDraftSavePath,
     """);
 AssertTrue(InvokeTrySaveWarehouseDraft(warehouseDraftSavePath),
     "有效的仓库识别草稿应能写入正式仓库数据");
+UpdateDataPersistenceService.WarehouseDataSaved -= warehouseDataSavedHandler;
+AssertTrue(warehouseDataSavedEventRaised,
+    "仓库数据保存后应通知仓库页面刷新正式数据");
 DeleteIfExists(warehouseDraftSavePath);
 
 var savedWarehouse = ConfigurationManager.Current.GetValue(ConfigurationKeys.WarehouseData, new WarehouseData());
@@ -707,6 +713,47 @@ AssertTrue(savedWarehouse.ResourceHistory.Count == 1 && savedWarehouse.ResourceH
     "保存仓库草稿后应保留草稿中的历史快照");
 AssertTrue(AreSameSwordBookStates(untouchedSwordBook, oldSwordBook),
     "保存仓库草稿时不应改写刀帐正式数据");
+
+ConfigurationManager.Current.Reset();
+ConfigurationManager.Current.SetValue(ConfigurationKeys.WarehouseData, oldWarehouse.Clone());
+ConfigurationManager.Current.SetValue(ConfigurationKeys.SwordBookEntries, CloneSwordBookStates(oldSwordBook));
+var persistedWarehouseDraftPath = Path.Combine(Path.GetTempPath(), $"matr-update-data-warehouse-persisted-{Guid.NewGuid():N}.json");
+File.WriteAllText(persistedWarehouseDraftPath,
+    """
+    {
+      "core_resources": {
+        "木炭": 999
+      },
+      "other_items": {},
+      "resource_history": []
+    }
+    """);
+AssertTrue(InvokeTrySaveWarehouseDraft(persistedWarehouseDraftPath),
+    "仓库数据应先成功写入磁盘，作为后续刀帐保存的基准");
+DeleteIfExists(persistedWarehouseDraftPath);
+
+// 模拟界面仍持有旧仓库数据：后续刀帐保存不能用该旧状态覆盖磁盘中的新仓库数据。
+ConfigurationManager.Current.SetStaleValue(ConfigurationKeys.WarehouseData, oldWarehouse.Clone());
+var persistedSwordBookDraftPath = Path.Combine(Path.GetTempPath(), $"matr-update-data-swordbook-persisted-{Guid.NewGuid():N}.json");
+File.WriteAllText(persistedSwordBookDraftPath,
+    """
+    [
+      {
+        "Number": "3",
+        "Owned": true,
+        "Wounded": false,
+        "TrueSword": false,
+        "InnerCare": false,
+        "Casual": false
+      }
+    ]
+    """);
+AssertTrue(InvokeTrySaveSwordBookDraft(persistedSwordBookDraftPath),
+    "刀帐保存应成功写入，同时保留磁盘中的最新仓库数据");
+DeleteIfExists(persistedSwordBookDraftPath);
+var warehouseAfterStaleSwordBookSave = ConfigurationManager.Current.GetValue(ConfigurationKeys.WarehouseData, new WarehouseData());
+AssertTrue(warehouseAfterStaleSwordBookSave.CoreResources["木炭"] == 999,
+    "刀帐保存不能用内存中的旧仓库数据覆盖磁盘中的最新仓库数据");
 
 ConfigurationManager.Current.Reset();
 ConfigurationManager.Current.SetValue(ConfigurationKeys.WarehouseData, oldWarehouse.Clone());

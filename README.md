@@ -141,7 +141,7 @@ MATR/
 │       │   │   ├── TacticalTraining.json ← 战术强化训练
 │       │   │   ├── FlowerBrush.json      ← 刷花
 │       │   │   ├── Disassemble.json      ← 刀解
-│       │   │   ├── Mix.json              ← 习合
+│       │   │   ├── NewMix.json           ← 习合
 │       │   │   └── GoHome.json           ← 回到本丸
 │       │   ├── image/                    ← 模板匹配图片
 │       │   ├── custom/                   ← 自定义动作脚本

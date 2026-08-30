@@ -15,6 +15,7 @@ namespace MFAAvalonia.Configuration
     public sealed class MFAConfiguration
     {
         private readonly Dictionary<string, object?> _values = new(StringComparer.Ordinal);
+        private readonly Dictionary<string, object?> _persistedValues = new(StringComparer.Ordinal);
 
         public bool ContainsKey(string key) => _values.ContainsKey(key);
 
@@ -68,6 +69,20 @@ namespace MFAAvalonia.Configuration
                 return;
 
             _values[key] = value;
+            _persistedValues[key] = value;
+        }
+
+        public void SetStaleValue(string key, object? value)
+        {
+            if (value != null)
+                _values[key] = value;
+        }
+
+        public void ReloadFromDisk()
+        {
+            _values.Clear();
+            foreach (var pair in _persistedValues)
+                _values[pair.Key] = pair.Value;
         }
 
         public bool TryGetValue<T>(string key, out T output, params JsonConverter[] valueConverters)
@@ -82,7 +97,11 @@ namespace MFAAvalonia.Configuration
             return false;
         }
 
-        public void Reset() => _values.Clear();
+        public void Reset()
+        {
+            _values.Clear();
+            _persistedValues.Clear();
+        }
 
         private bool TryConvertValue<T>(string key, out T? value)
         {

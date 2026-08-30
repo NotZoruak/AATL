@@ -19,6 +19,7 @@
       "E_IsGameUpdatePopup",
       "E_IsInGameUpdatePopup",
       "E_IsInternalReport",
+      "E_IsTrainingApplication",
       "E_LeaveTroopRecord",
       "E_IsNetworkRequestTimeout",
       "E_IsConnectionInterrupted",
@@ -65,11 +66,11 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["E_IsTeamStatusPanel", "Expedition"],
     "post_wait_freezes": {
       "time": 200,
       "target": [0, 629, 136, 91]
-    },
-    "next": ["E_IsTeamStatusPanel", "Expedition"]
+    }
   },
   "E_CheckTeam1": {
     "enabled": false,
@@ -524,12 +525,12 @@
       }
     },
     "pre_delay": 100,
+    "next": ["E_GoHome"],
+    "on_error": ["Expedition"],
     "post_wait_freezes": {
       "time": 200,
       "target": [0, 610, 148, 110]
-    },
-    "next": ["E_GoHome"],
-    "on_error": ["Expedition"]
+    }
   },
   "E_TrackerOCR": {
     "enabled": false,
@@ -591,9 +592,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200},
     "next": ["E_PostClickDirectoryHub"],
-    "on_error": ["Expedition"]
+    "on_error": ["Expedition"],
+    "post_wait_freezes": {"time": 200}
   },
   "E_PostClickDirectoryHub": {
     "next": ["E_VerifyMenuDir", "E_GoHome"],
@@ -677,9 +678,9 @@
         "threshold": [0.98]
       }
     },
-    "post_wait_freezes": {"time": 200},
     "next": ["E_GoHome"],
-    "on_error": ["Expedition"]
+    "on_error": ["Expedition"],
+    "post_wait_freezes": {"time": 200}
   },
   "E_VerifyLeftMenu": {
     "recognition": {
@@ -746,6 +747,61 @@
   },
   "E_FallbackWait": {
     "next": ["Expedition"]
+  },
+  "E_IsTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [101, 590, 399, 42],
+        "expected": "一样"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [197, 600, 52, 26]
+      }
+    },
+    "next": ["E_ClickTrainingApplication", "E_IsTrainingApplication", "E_CancelTrainingApplication"],
+    "on_error": ["Expedition"],
+    "repeat": 5,
+    "repeat_delay": 500
+  },
+  "E_ClickTrainingApplication": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [96, 558, 54, 38],
+        "template": "Common/修行申请_狐之助.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [96, 558, 54, 38]
+      }
+    },
+    "next": ["E_CancelTrainingApplication", "E_ClickTrainingApplication"],
+    "on_error": ["Expedition"]
+  },
+  "E_CancelTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [460, 587, 69, 37],
+        "expected": "取消"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [460, 587, 69, 37]
+      }
+    },
+    "next": ["E_CancelTrainingApplication", "Expedition"],
+    "on_error": ["Expedition"]
   },
   "E_VerifyTeamSelect": {
     "recognition": {
@@ -842,8 +898,8 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200},
-    "next": ["E_IsAnnouncementPopup", "Expedition"]
+    "next": ["E_IsAnnouncementPopup", "Expedition"],
+    "post_wait_freezes": {"time": 200}
   },
   "E_IsLoginReward": {
     "recognition": {
@@ -856,9 +912,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200},
     "next": ["E_LoginRewardClick2"],
-    "on_error": ["Expedition"]
+    "on_error": ["Expedition"],
+    "post_wait_freezes": {"time": 200}
   },
   "E_LoginRewardClick2": {
     "action": {
@@ -1294,12 +1350,12 @@
         "target": [789, 512, 1, 4]
       }
     },
+    "next": ["E_CheckFatigue1", "E_UseTeamRecord_Step4_Rec1"],
+    "on_error": ["Expedition"],
     "post_wait_freezes": {
       "time": 200,
       "target": [786, 124, 310, 183]
-    },
-    "next": ["E_CheckFatigue1", "E_UseTeamRecord_Step4_Rec1"],
-    "on_error": ["Expedition"]
+    }
   },
   "E_UseTeamRecord_Step4_Rec2": {
     "recognition": {
@@ -1315,12 +1371,12 @@
         "target": [789, 512, 1, 4]
       }
     },
+    "next": ["E_CheckFatigue2", "E_UseTeamRecord_Step4_Rec2"],
+    "on_error": ["Expedition"],
     "post_wait_freezes": {
       "time": 200,
       "target": [786, 124, 310, 183]
-    },
-    "next": ["E_CheckFatigue2", "E_UseTeamRecord_Step4_Rec2"],
-    "on_error": ["Expedition"]
+    }
   },
   "E_UseTeamRecord_Step4_Rec3": {
     "recognition": {
@@ -1336,12 +1392,12 @@
         "target": [789, 512, 1, 4]
       }
     },
+    "next": ["E_CheckFatigue3", "E_UseTeamRecord_Step4_Rec3"],
+    "on_error": ["Expedition"],
     "post_wait_freezes": {
       "time": 200,
       "target": [786, 124, 310, 183]
-    },
-    "next": ["E_CheckFatigue3", "E_UseTeamRecord_Step4_Rec3"],
-    "on_error": ["Expedition"]
+    }
   },
   "E_UseTeamRecord_Step4_Rec4": {
     "recognition": {
@@ -1357,12 +1413,12 @@
         "target": [789, 512, 1, 4]
       }
     },
+    "next": ["E_CheckFatigue4", "E_UseTeamRecord_Step4_Rec4"],
+    "on_error": ["Expedition"],
     "post_wait_freezes": {
       "time": 200,
       "target": [786, 124, 310, 183]
-    },
-    "next": ["E_CheckFatigue4", "E_UseTeamRecord_Step4_Rec4"],
-    "on_error": ["Expedition"]
+    }
   },
   "E_UseTeamRecord_Step4_Rec5": {
     "recognition": {
@@ -1378,12 +1434,12 @@
         "target": [789, 512, 1, 4]
       }
     },
+    "next": ["E_CheckFatigue5", "E_UseTeamRecord_Step4_Rec5"],
+    "on_error": ["Expedition"],
     "post_wait_freezes": {
       "time": 200,
       "target": [786, 124, 310, 183]
-    },
-    "next": ["E_CheckFatigue5", "E_UseTeamRecord_Step4_Rec5"],
-    "on_error": ["Expedition"]
+    }
   },
   "E_CheckFatigue1": {
     "action": {
@@ -1613,9 +1669,9 @@
       }
     },
     "pre_delay": 100,
-    "post_wait_freezes": {"time": 200},
     "next": ["E_FlowerIsSwordSelect"],
-    "on_error": ["E_FlowerBattleHub"]
+    "on_error": ["E_FlowerBattleHub"],
+    "post_wait_freezes": {"time": 200}
   },
   "E_FlowerIsSwordSelect": {
     "recognition": {
@@ -1746,9 +1802,9 @@
     },
     "action": {"type": "Click"},
     "pre_delay": 100,
-    "post_wait_freezes": {"time": 200},
     "next": ["E_FlowerCheckCaptain"],
-    "on_error": ["E_FlowerBattleHub"]
+    "on_error": ["E_FlowerBattleHub"],
+    "post_wait_freezes": {"time": 200}
   },
   "E_FlowerCaptainSwipe": {
     "action": {
@@ -1805,6 +1861,61 @@
     "next": ["E_FlowerBattleHub"],
     "on_error": ["E_FlowerBattleHub"]
   },
+  "E_FlowerIsTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [101, 590, 399, 42],
+        "expected": "一样"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [197, 600, 52, 26]
+      }
+    },
+    "next": ["E_FlowerClickTrainingApplication", "E_FlowerIsTrainingApplication", "E_FlowerCancelTrainingApplication"],
+    "on_error": ["E_FlowerBattleHub"],
+    "repeat": 5,
+    "repeat_delay": 500
+  },
+  "E_FlowerClickTrainingApplication": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [96, 558, 54, 38],
+        "template": "Common/修行申请_狐之助.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [96, 558, 54, 38]
+      }
+    },
+    "next": ["E_FlowerCancelTrainingApplication", "E_FlowerClickTrainingApplication"],
+    "on_error": ["E_FlowerBattleHub"]
+  },
+  "E_FlowerCancelTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [460, 587, 69, 37],
+        "expected": "取消"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [460, 587, 69, 37]
+      }
+    },
+    "next": ["E_FlowerCancelTrainingApplication", "E_FlowerBattleHub"],
+    "on_error": ["E_FlowerBattleHub"]
+  },
   "E_FlowerBattleHub": {
     "timeout": 120000,
     "next": [
@@ -1828,6 +1939,7 @@
       "E_FlowerIsGameUpdatePopup",
       "E_FlowerIsInGameUpdatePopup",
       "E_FlowerIsInternalReport",
+      "E_FlowerIsTrainingApplication",
       "E_FlowerFallbackWait"
     ],
     "on_error": ["E_FlowerRestartGame"]
@@ -1914,9 +2026,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200},
     "next": ["E_FlowerBattleHub"],
-    "on_error": ["E_FlowerBattleHub"]
+    "on_error": ["E_FlowerBattleHub"],
+    "post_wait_freezes": {"time": 200}
   },
   "E_FlowerIsAdvertisementPopup": {
     "recognition": {
@@ -2175,9 +2287,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200},
     "next": ["E_VerifyRepairScreen", "E_ClickRepairButton"],
-    "on_error": ["E_GoHome"]
+    "on_error": ["E_GoHome"],
+    "post_wait_freezes": {"time": 200}
   },
   "E_VerifyRepairScreen": {
     "recognition": {
@@ -2201,12 +2313,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot1"],
+    "on_error": ["E_GoHome"],
     "post_wait_freezes": {
       "time": 200,
       "target": [114, 123, 316, 240]
-    },
-    "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot1"],
-    "on_error": ["E_GoHome"]
+    }
   },
   "E_SelectRepairSlot2": {
     "enabled": false,
@@ -2219,12 +2331,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot2"],
+    "on_error": ["E_GoHome"],
     "post_wait_freezes": {
       "time": 200,
       "target": [114, 123, 316, 240]
-    },
-    "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot2"],
-    "on_error": ["E_GoHome"]
+    }
   },
   "E_SelectRepairSlot3": {
     "enabled": false,
@@ -2237,12 +2349,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot3"],
+    "on_error": ["E_GoHome"],
     "post_wait_freezes": {
       "time": 200,
       "target": [114, 123, 316, 240]
-    },
-    "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot3"],
-    "on_error": ["E_GoHome"]
+    }
   },
   "E_SelectRepairSlot4": {
     "enabled": false,
@@ -2255,12 +2367,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot4"],
+    "on_error": ["E_GoHome"],
     "post_wait_freezes": {
       "time": 200,
       "target": [114, 123, 316, 240]
-    },
-    "next": ["E_VerifyRepairSelect", "E_SelectRepairSlot4"],
-    "on_error": ["E_GoHome"]
+    }
   },
   "E_VerifyRepairSelect": {
     "recognition": {
@@ -2270,12 +2382,12 @@
         "expected": "修复刀剑男士"
       }
     },
+    "next": ["E_FindRepairableSword", "E_SelectRepairSlot1"],
+    "on_error": ["E_GoHome"],
     "post_wait_freezes": {
       "time": 200,
       "target": [459, 127, 16, 554]
-    },
-    "next": ["E_FindRepairableSword", "E_SelectRepairSlot1"],
-    "on_error": ["E_GoHome"]
+    }
   },
   "E_ConfirmRepair": {
     "recognition": {
@@ -2346,9 +2458,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200},
     "next": ["E_NaibanVerifyTable", "E_NaibanClickEntry"],
-    "on_error": ["E_AllTeamsBusy"]
+    "on_error": ["E_AllTeamsBusy"],
+    "post_wait_freezes": {"time": 200}
   },
   "E_NaibanVerifyTable": {
     "recognition": {
@@ -2364,9 +2476,9 @@
         "target": [1149, 585, 98, 89]
       }
     },
-    "post_wait_freezes": {"time": 200},
     "next": ["E_NaibanVerifyConfirm", "E_NaibanVerifyTable"],
-    "on_error": ["E_NaibanClickEntry"]
+    "on_error": ["E_NaibanClickEntry"],
+    "post_wait_freezes": {"time": 200}
   },
   "E_NaibanVerifyConfirm": {
     "recognition": {
@@ -2382,9 +2494,9 @@
         "target": [725, 588, 125, 40]
       }
     },
-    "post_wait_freezes": {"time": 200},
     "next": ["E_NaibanVerifyConfirmLog"],
-    "on_error": ["E_GoHome"]
+    "on_error": ["E_GoHome"],
+    "post_wait_freezes": {"time": 200}
   },
   "E_NaibanVerifyConfirmLog": {
     "action": {
@@ -2432,9 +2544,9 @@
         "click": [1067, 558, 120, 79]
       }
     },
-    "post_wait_freezes": {"time": 200},
     "next": ["E_NaibanDialogue", "E_NaibanOutfitFinish"],
-    "on_error": ["E_NaibanOutfitFinish"]
+    "on_error": ["E_NaibanOutfitFinish"],
+    "post_wait_freezes": {"time": 200}
   },
   "E_NaibanOutfitFinish": {
     "action": {

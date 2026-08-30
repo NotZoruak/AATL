@@ -13,6 +13,7 @@
       "U_HasExpeditionReturn_Title",
       "U_IsSwordDropColor",
       "U_IsKobanChest",
+      "U_IsTrainingApplication",
       "U_IsResourcePoint",
       "U_IsSpecialDrop",
       "U_IsFormationSelect",
@@ -50,26 +51,26 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200},
-    "next": ["U_IsAnnouncementPopup", "U_DetectWhereAmI"]
+    "next": ["U_IsAnnouncementPopup", "U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 200}
   },
   "U_IsLoginReward": {
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "target": [816, 577, 182, 59],
         "template": "Common/登录奖励.png",
         "green_mask": true,
-        "threshold": [0.98]
+        "threshold": [0.98],
+        "target": [816, 577, 182, 59]
       }
     },
     "action": {"type": "Click"},
+    "next": ["U_LoginRewardClick2"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [240, 104, 803, 561]
-    },
-    "next": ["U_LoginRewardClick2"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_LoginRewardClick2": {
     "action": {
@@ -78,12 +79,12 @@
         "target": [1092, 318, 1, 1]
       }
     },
+    "next": ["U_LoginRewardClick3"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [240, 104, 803, 561]
-    },
-    "next": ["U_LoginRewardClick3"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_LoginRewardClick3": {
     "action": {
@@ -327,12 +328,12 @@
         "target": [154, 93, 1, 1]
       }
     },
+    "next": ["U_CaptainHub"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [108, 76, 106, 6]
-    },
-    "next": ["U_CaptainHub"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_IsSortie": {
     "recognition": {
@@ -387,11 +388,11 @@
         "target": [1141, 614, 120, 49]
       }
     },
+    "next": ["U_IsTeamSelect", "U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 500,
       "target": [1146, 619, 116, 40]
-    },
-    "next": ["U_IsTeamSelect", "U_DetectWhereAmI"]
+    }
   },
   "U_IsMenuDirectory": {
     "recognition": {
@@ -559,12 +560,12 @@
         "target": [1173, 416, 70, 68]
       }
     },
+    "next": ["U_ConfirmReturnHome", "U_ReturnHomeAfterMarch", "U_DetectWhereAmI"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [369, 287, 546, 238]
-    },
-    "next": ["U_ConfirmReturnHome", "U_ReturnHomeAfterMarch", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_IsInternalReport": {
     "recognition": {
@@ -630,8 +631,60 @@
     },
     "next": ["U_DetectWhereAmI"]
   },
-  "U_FallbackWait": {
-    "next": ["U_DetectWhereAmI"]
+  "U_IsTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [101, 590, 399, 42],
+        "expected": "一样"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [197, 600, 52, 26]
+      }
+    },
+    "next": ["U_ClickTrainingApplication", "U_IsTrainingApplication", "U_CancelTrainingApplication"],
+    "on_error": ["U_DetectWhereAmI"],
+    "repeat": 5,
+    "repeat_delay": 500
+  },
+  "U_ClickTrainingApplication": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [96, 558, 54, 38],
+        "template": "Common/修行申请_狐之助.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [96, 558, 54, 38]
+      }
+    },
+    "next": ["U_CancelTrainingApplication", "U_ClickTrainingApplication"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_CancelTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [460, 587, 69, 37],
+        "expected": "取消"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [460, 587, 69, 37]
+      }
+    },
+    "next": ["U_CancelTrainingApplication", "U_DetectWhereAmI"],
+    "on_error": ["U_DetectWhereAmI"]
   },
   "U_CaptainHub": {
     "next": ["U_ClickCaptainSlot", "U_IsPreSortieConfirm"],
@@ -649,12 +702,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["U_PreCheckTroopRecord"],
+    "on_error": ["U_ClickTeam"],
     "post_wait_freezes": {
       "time": 100,
       "target": [423, 484, 145, 56]
-    },
-    "next": ["U_PreCheckTroopRecord"],
-    "on_error": ["U_ClickTeam"]
+    }
   },
   "U_CheckAccel": {
     "recognition": {
@@ -675,12 +728,12 @@
         "target": [1156, 241, 27, 25]
       }
     },
+    "next": ["U_CaptureRepairInfo"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [1156, 241, 27, 25]
-    },
-    "next": ["U_CaptureRepairInfo"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_ClickCaptain1": {
     "enabled": false,
@@ -690,9 +743,9 @@
         "target": [828, 82, 68, 25]
       }
     },
-    "post_wait_freezes": {"time": 100},
     "next": ["U_ClickCaptain2"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "U_ClickCaptain2": {
     "enabled": false,
@@ -702,12 +755,12 @@
         "target": [752, 137, 97, 29]
       }
     },
+    "next": ["U_ClickCaptain3"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [752, 137, 97, 29]
-    },
-    "next": ["U_ClickCaptain3"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_ClickCaptain3": {
     "enabled": false,
@@ -717,12 +770,12 @@
         "target": [407, 510, 90, 31]
       }
     },
+    "next": ["U_ClickCaptain4"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [407, 510, 90, 31]
-    },
-    "next": ["U_ClickCaptain4"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_ClickCaptain4": {
     "enabled": false,
@@ -732,12 +785,12 @@
         "target": [965, 438, 91, 34]
       }
     },
+    "next": ["U_ClickCaptain5"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [965, 438, 91, 34]
-    },
-    "next": ["U_ClickCaptain5"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_ClickCaptain5": {
     "enabled": false,
@@ -747,9 +800,9 @@
         "target": [592, 603, 107, 46]
       }
     },
-    "post_wait_freezes": {"time": 100},
     "next": ["U_DetectSortOrder"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "U_ClickCaptainSlot": {
     "enabled": false,
@@ -759,8 +812,8 @@
         "target": [1024, 140, 30, 50]
       }
     },
-    "post_wait_freezes": {"time": 100},
-    "next": ["U_DetectWhereAmI"]
+    "next": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "U_ClickDescending": {
     "enabled": false,
@@ -772,9 +825,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["U_DetectSortOrder"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "U_ClickMenuForRepair": {
     "recognition": {
@@ -785,9 +838,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 200},
     "next": ["U_ClickRepairInMenu", "U_ClickMenuForRepair"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 200}
   },
   "U_ClickRepairInMenu": {
     "recognition": {
@@ -798,9 +851,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["U_SelectDamagedSword", "U_ClickRepairInMenu"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "U_ClickSortieInMenu": {
     "recognition": {
@@ -811,8 +864,8 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
-    "next": ["U_VerifyMenuClosed", "U_DetectWhereAmI"]
+    "next": ["U_VerifyMenuClosed", "U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "U_ClickSortieNow": {
     "action": {
@@ -821,12 +874,12 @@
         "target": [1204, 629, 1, 1]
       }
     },
+    "next": ["U_PostSortieHub"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [392, 249, 487, 307]
-    },
-    "next": ["U_PostSortieHub"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_ConfirmEnterUnderground": {
     "recognition": {
@@ -857,12 +910,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["U_CheckAccel", "U_ClickAccel"],
+    "on_error": ["U_LogNoDamagedSword"],
     "post_wait_freezes": {
       "time": 200,
       "target": [262, 307, 147, 46]
-    },
-    "next": ["U_CheckAccel", "U_ClickAccel"],
-    "on_error": ["U_LogNoDamagedSword"]
+    }
   },
   "U_CaptureRepairInfo": {
     "action": {
@@ -905,9 +958,9 @@
         "target": [1189, 140, 37, 61]
       }
     },
-    "post_wait_freezes": {"time": 100},
     "next": ["U_IsPreSortieConfirm"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "U_DecideDamage_Pre": {
     "next": ["U_NavigateToRepair", "U_LogStopOnDamageRepair"],
@@ -979,12 +1032,12 @@
         "target": [772, 448, 32, 40]
       }
     },
+    "next": ["U_LogPreDamage"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [368, 464, 539, 90]
-    },
-    "next": ["U_LogPreDamage"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_IsPreSortieConfirm": {
     "recognition": {
@@ -1018,9 +1071,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["U_PreCheckUseRecord"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "U_PreCheckUseRecord": {
     "enabled": false,
@@ -1044,12 +1097,12 @@
         "target": [1209, 140, 30, 71]
       }
     },
+    "next": ["U_PreCheckUseRecordBtn"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["U_PreCheckUseRecordBtn"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_PreCheckClickRecord2": {
     "enabled": false,
@@ -1059,12 +1112,12 @@
         "target": [1209, 250, 30, 71]
       }
     },
+    "next": ["U_PreCheckUseRecordBtn"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["U_PreCheckUseRecordBtn"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_PreCheckClickRecord3": {
     "enabled": false,
@@ -1074,12 +1127,12 @@
         "target": [1209, 360, 30, 71]
       }
     },
+    "next": ["U_PreCheckUseRecordBtn"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["U_PreCheckUseRecordBtn"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_PreCheckClickRecord4": {
     "enabled": false,
@@ -1089,12 +1142,12 @@
         "target": [1209, 465, 30, 71]
       }
     },
+    "next": ["U_PreCheckUseRecordBtn"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["U_PreCheckUseRecordBtn"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_PreCheckClickRecord5": {
     "enabled": false,
@@ -1104,12 +1157,12 @@
         "target": [1209, 575, 30, 71]
       }
     },
+    "next": ["U_PreCheckUseRecordBtn"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["U_PreCheckUseRecordBtn"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_PreCheckUseRecordBtn": {
     "enabled": false,
@@ -1119,12 +1172,12 @@
         "target": [707, 53, 72, 64]
       }
     },
+    "next": ["U_PreConfirmSupply"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [442, 253, 395, 125]
-    },
-    "next": ["U_PreConfirmSupply"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_PreConfirmSupply": {
     "enabled": false,
@@ -1143,9 +1196,9 @@
         "click": [789, 512, 1, 4]
       }
     },
-    "post_wait_freezes": {"time": 200},
     "next": ["U_GuiSupplyLog"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 200}
   },
   "U_ReturnHomeAfterMarch": {
     "recognition": {
@@ -1161,12 +1214,12 @@
         "target": [1173, 416, 70, 68]
       }
     },
+    "next": ["U_ConfirmReturnHome", "U_ReturnHomeAfterMarch", "U_DetectWhereAmI"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [369, 287, 546, 238]
-    },
-    "next": ["U_ConfirmReturnHome", "U_ReturnHomeAfterMarch", "U_DetectWhereAmI"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_SelectDamagedSword": {
     "recognition": {
@@ -1189,9 +1242,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["U_ConfirmSelectSlot"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "U_SelectRepairSlot2": {
     "recognition": {
@@ -1203,9 +1256,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["U_ConfirmSelectSlot"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "U_SelectRepairSlot3": {
     "recognition": {
@@ -1217,9 +1270,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["U_ConfirmSelectSlot"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "U_SelectRepairSlot4": {
     "recognition": {
@@ -1231,9 +1284,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["U_ConfirmSelectSlot"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "U_CheckRepairScreen": {
     "recognition": {
@@ -1308,12 +1361,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["U_PostClickMenuHub"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [1183, 18, 87, 40]
-    },
-    "next": ["U_PostClickMenuHub"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_CheckNavDirForRetry": {
     "recognition": {
@@ -1324,9 +1377,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["U_PostClickMenuHub"],
-    "on_error": ["U_DetectWhereAmI"]
+    "on_error": ["U_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "U_ClickRepairDone": {
     "recognition": {
@@ -1337,12 +1390,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["U_LogRepairDone"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [1159, 588, 83, 44]
-    },
-    "next": ["U_LogRepairDone"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_ClickRepairandStop": {
     "recognition": {
@@ -1393,11 +1446,11 @@
         "click": [490, 469, 10, 10]
       }
     },
+    "next": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 500,
       "target": [490, 469, 10, 10]
-    },
-    "next": ["U_DetectWhereAmI"]
+    }
   },
   "U_VerifyAfterRepairMenuClosed": {
     "recognition": {
@@ -1438,11 +1491,11 @@
       }
     },
     "action": {"type": "Click"},
+    "on_error": ["U_ClickTeam"],
     "post_wait_freezes": {
       "time": 200,
       "target": [427, 269, 426, 130]
-    },
-    "on_error": ["U_ClickTeam"]
+    }
   },
   "U_StopOnDamagePopup": {
     "enabled": false,
@@ -1461,12 +1514,12 @@
         "target": [788, 465, 1, 1]
       }
     },
+    "next": ["U_LogStopOnDamage"],
+    "on_error": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [368, 464, 539, 90]
-    },
-    "next": ["U_LogStopOnDamage"],
-    "on_error": ["U_DetectWhereAmI"]
+    }
   },
   "U_LogPreDamage": {
     "action": {
@@ -1512,6 +1565,9 @@
       "custom_action_param": {"message": "[重伤检测] 检测到刀剑男士重伤，任务终止"}
     },
     "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_FallbackWait": {
+    "next": ["U_DetectWhereAmI"]
   },
   "U_RestartGame": {
     "action": {
@@ -2094,6 +2150,7 @@
       "UF_IsGameUpdatePopup",
       "UF_IsInGameUpdatePopup",
       "UF_IsInternalReport",
+      "UF_IsTrainingApplication",
       "UF_FallbackWait"
     ],
     "on_error": ["UF_RestartGame"]
@@ -2107,9 +2164,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["UF_PostClickMenuHub"],
-    "on_error": ["UF_DetectWhereAmI"]
+    "on_error": ["UF_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "UF_PostClickMenuHub": {
     "next": ["UF_IsMenuDirectory", "UF_DetectWhereAmI"],
@@ -2137,9 +2194,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["UF_DetectWhereAmI"],
-    "on_error": ["UF_Hub"]
+    "on_error": ["UF_Hub"],
+    "post_wait_freezes": {"time": 100}
   },
   "UF_IsEraSelect": {
     "recognition": {
@@ -2172,9 +2229,9 @@
         "target": [1199, 633, 3, 1]
       }
     },
-    "post_wait_freezes": {"time": 100},
     "next": ["UF_DetectWhereAmI"],
-    "on_error": ["UF_DetectWhereAmI"]
+    "on_error": ["UF_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "UF_IsRegionSelect": {
     "recognition": {
@@ -2217,9 +2274,9 @@
         "target": [194, 213, 8, 1]
       }
     },
-    "post_wait_freezes": {"time": 100},
     "next": ["UF_DetectWhereAmI"],
-    "on_error": ["UF_DetectWhereAmI"]
+    "on_error": ["UF_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "UF_IsTeamSelect": {
     "recognition": {
@@ -2253,12 +2310,12 @@
         "target": [154, 93, 1, 1]
       }
     },
+    "next": ["UF_DissolveHub"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [108, 76, 106, 6]
-    },
-    "next": ["UF_DissolveHub"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_DissolveHub": {
     "next": ["UF_DissolveCheck", "UF_CheckFatigue"],
@@ -2401,9 +2458,64 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["U_DetectWhereAmI"],
-    "on_error": ["UF_Hub"]
+    "on_error": ["UF_Hub"],
+    "post_wait_freezes": {"time": 100}
+  },
+  "UF_IsTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [101, 590, 399, 42],
+        "expected": "一样"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [197, 600, 52, 26]
+      }
+    },
+    "next": ["UF_ClickTrainingApplication", "UF_IsTrainingApplication", "UF_CancelTrainingApplication"],
+    "on_error": ["UF_DetectWhereAmI"],
+    "repeat": 5,
+    "repeat_delay": 500
+  },
+  "UF_ClickTrainingApplication": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [96, 558, 54, 38],
+        "template": "Common/修行申请_狐之助.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [96, 558, 54, 38]
+      }
+    },
+    "next": ["UF_CancelTrainingApplication", "UF_ClickTrainingApplication"],
+    "on_error": ["UF_DetectWhereAmI"]
+  },
+  "UF_CancelTrainingApplication": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [460, 587, 69, 37],
+        "expected": "取消"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [460, 587, 69, 37]
+      }
+    },
+    "next": ["UF_CancelTrainingApplication", "UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"]
   },
   "UF_FallbackWait": {
     "next": ["UF_DetectWhereAmI"],
@@ -2428,9 +2540,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["UF_UseRecord_Step2_Rec1", "UF_UseRecord_Step2_Rec2", "UF_UseRecord_Step2_Rec3", "UF_UseRecord_Step2_Rec4", "UF_UseRecord_Step2_Rec5"],
-    "on_error": ["UF_DetectWhereAmI"]
+    "on_error": ["UF_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "UF_UseRecord_Step2_Rec1": {
     "enabled": false,
@@ -2449,12 +2561,12 @@
         "target": [1209, 140, 30, 71]
       }
     },
+    "next": ["UF_UseRecord_Step3"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["UF_UseRecord_Step3"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_UseRecord_Step2_Rec2": {
     "enabled": false,
@@ -2473,12 +2585,12 @@
         "target": [1209, 250, 30, 71]
       }
     },
+    "next": ["UF_UseRecord_Step3"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["UF_UseRecord_Step3"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_UseRecord_Step2_Rec3": {
     "enabled": false,
@@ -2497,12 +2609,12 @@
         "target": [1209, 360, 30, 71]
       }
     },
+    "next": ["UF_UseRecord_Step3"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["UF_UseRecord_Step3"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_UseRecord_Step2_Rec4": {
     "enabled": false,
@@ -2521,12 +2633,12 @@
         "target": [1209, 465, 30, 71]
       }
     },
+    "next": ["UF_UseRecord_Step3"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["UF_UseRecord_Step3"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_UseRecord_Step2_Rec5": {
     "enabled": false,
@@ -2545,12 +2657,12 @@
         "target": [1209, 575, 30, 71]
       }
     },
+    "next": ["UF_UseRecord_Step3"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["UF_UseRecord_Step3"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_UseRecord_Step3": {
     "action": {
@@ -2559,12 +2671,12 @@
         "target": [707, 53, 72, 64]
       }
     },
+    "next": ["UF_UseRecord_Step4", "UF_UseRecord_Step3"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [442, 253, 395, 125]
-    },
-    "next": ["UF_UseRecord_Step4", "UF_UseRecord_Step3"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_UseRecord_Step4": {
     "recognition": {
@@ -2580,9 +2692,9 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "post_wait_freezes": {"time": 100},
     "next": ["UF_NavigateBack"],
-    "on_error": ["UF_DetectWhereAmI"]
+    "on_error": ["UF_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "UF_EqRefill_Step1": {
     "enabled": false,
@@ -2596,9 +2708,9 @@
       }
     },
     "action": {"type": "Click"},
-    "post_wait_freezes": {"time": 100},
     "next": ["UF_EqRefill_Step2_Rec1", "UF_EqRefill_Step2_Rec2", "UF_EqRefill_Step2_Rec3", "UF_EqRefill_Step2_Rec4", "UF_EqRefill_Step2_Rec5"],
-    "on_error": ["UF_DetectWhereAmI"]
+    "on_error": ["UF_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "UF_EqRefill_Step2_Rec1": {
     "enabled": false,
@@ -2617,12 +2729,12 @@
         "target": [1209, 140, 30, 71]
       }
     },
+    "next": ["UF_EqRefill_Step3"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["UF_EqRefill_Step3"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_EqRefill_Step2_Rec2": {
     "enabled": false,
@@ -2641,12 +2753,12 @@
         "target": [1209, 250, 30, 71]
       }
     },
+    "next": ["UF_EqRefill_Step3"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["UF_EqRefill_Step3"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_EqRefill_Step2_Rec3": {
     "enabled": false,
@@ -2665,12 +2777,12 @@
         "target": [1209, 360, 30, 71]
       }
     },
+    "next": ["UF_EqRefill_Step3"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["UF_EqRefill_Step3"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_EqRefill_Step2_Rec4": {
     "enabled": false,
@@ -2689,12 +2801,12 @@
         "target": [1209, 465, 30, 71]
       }
     },
+    "next": ["UF_EqRefill_Step3"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["UF_EqRefill_Step3"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_EqRefill_Step2_Rec5": {
     "enabled": false,
@@ -2713,12 +2825,12 @@
         "target": [1209, 575, 30, 71]
       }
     },
+    "next": ["UF_EqRefill_Step3"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [655, 121, 540, 562]
-    },
-    "next": ["UF_EqRefill_Step3"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_EqRefill_Step3": {
     "action": {
@@ -2727,12 +2839,12 @@
         "target": [707, 53, 72, 64]
       }
     },
+    "next": ["UF_EqRefill_Step4"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 200,
       "target": [442, 253, 395, 125]
-    },
-    "next": ["UF_EqRefill_Step4"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_EqRefill_Step4": {
     "recognition": {
@@ -2748,9 +2860,9 @@
         "target": [789, 512, 1, 4]
       }
     },
-    "post_wait_freezes": {"time": 100},
     "next": ["UF_DetectWhereAmI"],
-    "on_error": ["UF_DetectWhereAmI"]
+    "on_error": ["UF_DetectWhereAmI"],
+    "post_wait_freezes": {"time": 100}
   },
   "UF_IsAnnouncementPopup": {
     "recognition": {
@@ -2763,13 +2875,13 @@
       }
     },
     "action": {"type": "Click"},
+    "timeout": 3000,
+    "next": ["UF_IsAnnouncementPopup", "UF_DetectWhereAmI"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [1056, 463, 63, 193]
-    },
-    "timeout": 3000,
-    "next": ["UF_IsAnnouncementPopup", "UF_DetectWhereAmI"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_IsTrainingLetter": {
     "recognition": {
@@ -2796,12 +2908,12 @@
       }
     },
     "action": {"type": "Click"},
+    "next": ["UF_LoginRewardClick2"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 500,
       "target": [232, 99, 817, 568]
-    },
-    "next": ["UF_LoginRewardClick2"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_LoginRewardClick2": {
     "action": {
@@ -2810,12 +2922,12 @@
         "target": [1092, 318, 1, 1]
       }
     },
+    "next": ["UF_LoginRewardClick3"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 500,
       "target": [232, 99, 817, 568]
-    },
-    "next": ["UF_LoginRewardClick3"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_LoginRewardClick3": {
     "action": {
@@ -2824,13 +2936,13 @@
         "target": [1092, 318, 1, 1]
       }
     },
+    "timeout": 3000,
+    "next": ["UF_IsLoginReward"],
+    "on_error": ["UF_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 500,
       "target": [232, 99, 817, 568]
-    },
-    "timeout": 3000,
-    "next": ["UF_IsLoginReward"],
-    "on_error": ["UF_DetectWhereAmI"]
+    }
   },
   "UF_IsGameIcon": {
     "recognition": {
