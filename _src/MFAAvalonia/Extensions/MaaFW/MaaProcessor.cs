@@ -4976,7 +4976,6 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.MixFindAllowedMaterialAction());
             tasker.Resource.Register(new Custom.EdoActionSelectAction());
             tasker.Resource.Register(new Custom.EdoLastActionRetreatRecognition());
-            tasker.Resource.Register(new Custom.EdoRetreatCompletionRecognition());
             tasker.Resource.Register(new Custom.FormationConfigAction());
             tasker.Resource.Register(new Custom.FormationFindSwordAction());
             tasker.Resource.Register(new Custom.FormationFilterClickAction());

@@ -128,8 +128,8 @@ AssertTrue(EdoActionCountParser.Parse("二7") == 7,
     "同时出现其他汉字与数字时应忽略汉字");
 AssertTrue(EdoActionCountParser.Parse("行动次数") == -1,
     "未识别到次数数字时应返回失败标记");
-AssertTrue(EdoActionCountParser.Resolve(-1, "Start", 0) == 7,
-    "开局行动次数无法 OCR 时应使用活动固定的七次行动");
+AssertTrue(EdoActionCountParser.Resolve(-1, "Start", 0) == -1,
+    "开局行动次数无法 OCR 时不能假定固定次数");
 AssertTrue(EdoActionCountParser.Resolve(-1, "P01", 6) == 6,
     "后续行动次数无法 OCR 时应使用已保存的剩余次数");
 

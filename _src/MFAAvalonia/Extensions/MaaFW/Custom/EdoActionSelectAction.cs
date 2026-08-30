@@ -17,6 +17,7 @@ public sealed class EdoActionSelectAction : IMaaCustomAction
     private const int ActionWaitMilliseconds = 500;
     private const int TypeTimeoutMilliseconds = 3000;
     private const int TypePollMilliseconds = 100;
+    private const int ColorConfirmationCount = 3;
     private static readonly int[] ActionCountRoi = [75, 35, 50, 32];
 
     private static readonly IReadOnlyDictionary<string, int[]> FlagRois =
@@ -105,15 +106,17 @@ public sealed class EdoActionSelectAction : IMaaCustomAction
                     $"[江户潜入] 剩余行动次数 OCR 失败，使用状态回退值：{remainingActions}，原始识别结果：{actionCountText ?? "<空>"}");
             }
 
-            if (currentPoint == "Start" && remainingActions == EdoActionCountParser.InitialActionCount)
+            if (currentPoint == "Start")
             {
-                EdoLastActionRetreatRecognition.ResetRetreatPending();
-                if (runtimeState.CurrentPoint != "Start" || runtimeState.PointTypes.Count > 0)
+                if (runtimeState.CurrentPoint != "Start"
+                    || runtimeState.PointTypes.Count > 0
+                    || runtimeState.VisitedPoints.Count > 0)
                     runtimeState = new EdoRuntimeState();
             }
 
-            ScanBlackPoints(context, image, runtimeState);
+            ScanPointTypes(context, image, runtimeState);
             runtimeState.CurrentPoint = currentPoint;
+            runtimeState.VisitedPoints.Add(currentPoint);
             runtimeState.RemainingActions = remainingActions;
             SaveState(runtimeState);
 
@@ -121,7 +124,8 @@ public sealed class EdoActionSelectAction : IMaaCustomAction
             var planningState = EdoPlanningState.Create(
                 currentPoint,
                 remainingActions,
-                runtimeState.PointTypes);
+                runtimeState.PointTypes,
+                runtimeState.VisitedPoints);
             var plan = EdoRoutePlanner.Plan(planningState, strategy);
             if (plan.NextPoint == null || !PointRois.TryGetValue(plan.NextPoint, out var targetRoi))
             {
@@ -138,6 +142,9 @@ public sealed class EdoActionSelectAction : IMaaCustomAction
             context.Click(
                 targetRoi[0] + targetRoi[2] / 2,
                 targetRoi[1] + targetRoi[3] / 2);
+
+            runtimeState.VisitedPoints.Add(plan.NextPoint);
+            SaveState(runtimeState);
 
             if (plan.NextPoint == "Boss")
             {
@@ -226,32 +233,49 @@ public sealed class EdoActionSelectAction : IMaaCustomAction
         return matches.Count == 1 ? matches[0] : null;
     }
 
-    private static void ScanBlackPoints<T>(
+    private static void ScanPointTypes<T>(
         T context,
         IMaaImageBuffer image,
         EdoRuntimeState state)
         where T : IMaaContext
     {
+        var results = PointRois.Keys.ToDictionary(
+            point => point,
+            _ => new List<EdoPointType>(ColorConfirmationCount),
+            StringComparer.Ordinal);
+        for (var attempt = 0; attempt < ColorConfirmationCount; attempt++)
+        {
+            ActionParamHelper.ThrowIfStopping(context);
+            if (attempt > 0)
+                ActionParamHelper.SleepWithStopCheck(context, TypePollMilliseconds);
+
+            if (attempt == 0)
+            {
+                RecordPointTypes(context, image, results);
+                continue;
+            }
+
+            using var confirmationImage = context.GetImage();
+            if (confirmationImage != null)
+                RecordPointTypes(context, confirmationImage, results);
+        }
+
         foreach (var pair in PointRois)
         {
-            if (state.PointTypes.ContainsKey(pair.Key))
-                continue;
-
-            var roi = pair.Value;
-            var black = context.ColorMatch(
-                31, 31, 31,
-                25, 25, 25,
-                image,
-                out _,
-                threshold: 1.0,
-                x: roi[0],
-                y: roi[1],
-                w: roi[2],
-                h: roi[3],
-                count: EdoPointColorClassifier.RequiredPixels);
-            if (black)
-                state.PointTypes[pair.Key] = EdoPointType.Black;
+            var confirmedType = EdoPointColorClassifier.Confirm(results[pair.Key]);
+            if (confirmedType != EdoPointType.Unknown)
+                state.PointTypes[pair.Key] = confirmedType;
         }
+    }
+
+    private static void RecordPointTypes<T>(
+        T context,
+        IMaaImageBuffer image,
+        IReadOnlyDictionary<string, List<EdoPointType>> results)
+        where T : IMaaContext
+    {
+        foreach (var pair in PointRois)
+            results[pair.Key].Add(ReadPointType(context, image, pair.Value));
     }
 
     private static EdoPointType WaitForPointType<T>(
@@ -264,13 +288,22 @@ public sealed class EdoActionSelectAction : IMaaCustomAction
         for (var attempt = 0; attempt < attempts; attempt++)
         {
             ActionParamHelper.ThrowIfStopping(context);
-            using var image = context.GetImage();
-            if (image != null)
+            var results = new List<EdoPointType>(ColorConfirmationCount);
+            for (var confirmation = 0; confirmation < ColorConfirmationCount; confirmation++)
             {
-                var type = ReadPointType(context, image, roi);
-                if (type != EdoPointType.Unknown)
-                    return type;
+                if (confirmation > 0)
+                    ActionParamHelper.SleepWithStopCheck(context, TypePollMilliseconds);
+
+                using var image = context.GetImage();
+                if (image == null)
+                    break;
+
+                results.Add(ReadPointType(context, image, roi));
             }
+
+            var confirmedType = EdoPointColorClassifier.Confirm(results);
+            if (confirmedType != EdoPointType.Unknown)
+                return confirmedType;
 
             ActionParamHelper.SleepWithStopCheck(context, TypePollMilliseconds);
         }
@@ -350,5 +383,6 @@ public sealed class EdoActionSelectAction : IMaaCustomAction
         public string CurrentPoint { get; set; } = "Start";
         public int RemainingActions { get; set; }
         public Dictionary<string, EdoPointType> PointTypes { get; set; } = new(StringComparer.Ordinal);
+        public HashSet<string> VisitedPoints { get; set; } = new(StringComparer.Ordinal);
     }
 }

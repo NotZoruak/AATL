@@ -832,8 +832,7 @@
         "message": "[江户潜入] 完成一圈"
       }
     },
-    "next": [],
-    "on_error": ["EC_DetectWhereAmI"]
+    "next": []
   },
   "EC_BeginRetreat": {
     "action": {
@@ -876,8 +875,38 @@
       }
     },
     "post_delay": 500,
-    "next": ["EC_ConfirmReturnHome", "EC_IsSpecialDrop", "EC_WaitForEventPage"],
+    "next": ["EC_RetreatTerminate"],
     "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_RetreatTerminate": {
+    "next": ["EC_IsSpecialDropRetreat", "EC_WaitForEventPageRetreat","EC_ConfirmReturnHome"],
+    "timeout": 10000,
+    "on_error": ["EC_DetectWhereAmI"]
+  },
+  "EC_IsSpecialDropRetreat": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [468, 188, 313, 41],
+        "template": "Activity/江户城_特殊掉落.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["EC_RetreatTerminate"]
+  },
+  "EC_WaitForEventPageRetreat": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [427, 69, 388, 52],
+        "template": "Activity/江户城.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["EC_TerminateRetreat"]
   },
   "EC_IsTicketPopup": {
     "recognition": {
@@ -896,6 +925,7 @@
   },
   "EC_CheckMoreSpecialDrops": {
     "next": ["EC_IsSpecialDrop", "EC_WaitForEventPage", "EC_IsActionSelect"],
+    "timeout": 10000,
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_IsActionSelect": {
@@ -947,19 +977,7 @@
         "threshold": [0.98]
       }
     },
-    "timeout": 10000,
-    "next": ["EC_IsRetreatCompletion", "EC_TerminateRound"],
-    "on_error": ["EC_DetectWhereAmI"]
-  },
-  "EC_IsRetreatCompletion": {
-    "recognition": {
-      "type": "Custom",
-      "param": {
-        "custom_recognition": "EdoRetreatCompletionRecognition"
-      }
-    },
-    "next": ["EC_TerminateRetreat"],
-    "on_error": ["EC_TerminateRound"]
+    "next": ["EC_TerminateRound"]
   },
   "EC_TerminateRetreat": {
     "action": {
@@ -970,8 +988,7 @@
         "message": "[江户潜入] 剩余一步且王点不可达，撤退"
       }
     },
-    "next": ["EC_TerminateRound"],
-    "on_error": ["EC_DetectWhereAmI"]
+    "next": ["EC_TerminateRound"]
   },
   "EC_PostSortieHub": {
     "next": ["EC_IsTicketPopup", "EC_IsPreDamage", "EC_ClickEnterBattle"],

@@ -23,8 +23,6 @@ public enum EdoPointType
 
 public static class EdoActionCountParser
 {
-    public const int InitialActionCount = 7;
-
     public static int Parse(string? text)
     {
         if (string.IsNullOrWhiteSpace(text))
@@ -65,7 +63,7 @@ public static class EdoActionCountParser
         if (savedCount > 0)
             return savedCount;
 
-        return currentPoint == "Start" ? InitialActionCount : -1;
+        return -1;
     }
 
 }
@@ -87,6 +85,16 @@ public static class EdoPointColorClassifier
 
         return EdoPointType.Unknown;
     }
+
+    public static EdoPointType Confirm(IReadOnlyList<EdoPointType> results)
+    {
+        if (results.Count != 3 || results[0] == EdoPointType.Unknown)
+            return EdoPointType.Unknown;
+
+        return results.All(result => result == results[0])
+            ? results[0]
+            : EdoPointType.Unknown;
+    }
 }
 
 public sealed class EdoPlanningState
@@ -94,11 +102,13 @@ public sealed class EdoPlanningState
     private EdoPlanningState(
         string currentPoint,
         int remainingActions,
-        IReadOnlyDictionary<string, EdoPointType> pointTypes)
+        IReadOnlyDictionary<string, EdoPointType> pointTypes,
+        IReadOnlySet<string> visitedPoints)
     {
         CurrentPoint = currentPoint;
         RemainingActions = remainingActions;
         PointTypes = pointTypes;
+        VisitedPoints = visitedPoints;
     }
 
     public string CurrentPoint { get; }
@@ -106,6 +116,8 @@ public sealed class EdoPlanningState
     public int RemainingActions { get; }
 
     public IReadOnlyDictionary<string, EdoPointType> PointTypes { get; }
+
+    public IReadOnlySet<string> VisitedPoints { get; }
 
     public static EdoPlanningState Create(string currentPoint, int remainingActions)
     {
@@ -115,17 +127,24 @@ public sealed class EdoPlanningState
     public static EdoPlanningState Create(
         string currentPoint,
         int remainingActions,
-        IReadOnlyDictionary<string, EdoPointType>? pointTypes)
+        IReadOnlyDictionary<string, EdoPointType>? pointTypes,
+        IReadOnlySet<string>? visitedPoints = null)
     {
         if (string.IsNullOrWhiteSpace(currentPoint))
             throw new ArgumentException("当前位置不能为空", nameof(currentPoint));
 
-        return new EdoPlanningState(
-            currentPoint,
-            remainingActions,
-            new Dictionary<string, EdoPointType>(
-                pointTypes ?? new Dictionary<string, EdoPointType>(),
-                StringComparer.Ordinal));
+        var pointTypeCopy = new Dictionary<string, EdoPointType>(
+            pointTypes ?? new Dictionary<string, EdoPointType>(),
+            StringComparer.Ordinal);
+        var visitedCopy = new HashSet<string>(StringComparer.Ordinal)
+        {
+            "Start",
+            currentPoint
+        };
+        if (visitedPoints != null)
+            visitedCopy.UnionWith(visitedPoints);
+
+        return new EdoPlanningState(currentPoint, remainingActions, pointTypeCopy, visitedCopy);
     }
 }
 
@@ -176,7 +195,12 @@ public static class EdoRoutePlanner
         if (strategy == EdoStrategy.DirectBoss)
             return CreateBossRoute(state);
 
+        if (strategy == EdoStrategy.Conservative)
+            return CreateConservativePlan(state);
+
         var idealSuffix = FindIdealSuffix(state.CurrentPoint, state.PointTypes);
+        if (idealSuffix.Count > 0 && IsVisited(state, idealSuffix[0]))
+            return CreateBossRoute(state);
         var bestSafePrefix = Array.Empty<string>();
         var bestProbability = 0d;
         for (var length = 1; length <= idealSuffix.Count; length++)
@@ -203,6 +227,68 @@ public static class EdoRoutePlanner
         }
 
         return CreateBossRoute(state);
+    }
+
+    private static EdoPlanResult CreateConservativePlan(EdoPlanningState state)
+    {
+        if (!Adjacency.TryGetValue(state.CurrentPoint, out var neighbors))
+            return new EdoPlanResult(null, [], false);
+
+        var candidates = neighbors
+            .Where(point => CanReachBossInWorstCase(state, point))
+            .OrderBy(point => IsVisited(state, point))
+            .ThenBy(point => GetForwardIdealPriority(state.CurrentPoint, point))
+            .ThenBy(point => FindShortestRoute(point, "Boss").Count)
+            .ThenBy(point => point, StringComparer.Ordinal);
+        var nextPoint = candidates.FirstOrDefault();
+        if (nextPoint == null)
+            return CreateBossRoute(state);
+
+        return new EdoPlanResult(
+            nextPoint,
+            [state.CurrentPoint, nextPoint],
+            nextPoint != "Boss",
+            1);
+    }
+
+    private static bool CanReachBossInWorstCase(EdoPlanningState state, string candidate)
+    {
+        var actionsAfterMove = state.RemainingActions - 1;
+        if (actionsAfterMove < 0)
+            return false;
+
+        var distanceToBoss = FindShortestRoute(candidate, "Boss").Count - 1;
+        if (distanceToBoss < 0)
+            return false;
+
+        // 最坏情况按普通点不提供任何额外行动计算，确保每次重新规划仍然有必经余量。
+        return actionsAfterMove >= distanceToBoss;
+    }
+
+    private static int GetIdealRouteIndex(string point)
+    {
+        for (var index = 0; index < IdealRoute.Count; index++)
+        {
+            if (IdealRoute[index] == point)
+                return index;
+        }
+
+        return int.MaxValue;
+    }
+
+    private static bool IsVisited(EdoPlanningState state, string point)
+    {
+        return state.VisitedPoints.Contains(point);
+    }
+
+    private static int GetForwardIdealPriority(string currentPoint, string candidate)
+    {
+        var currentIndex = GetIdealRouteIndex(currentPoint);
+        var candidateIndex = GetIdealRouteIndex(candidate);
+        if (candidateIndex > currentIndex)
+            return candidateIndex - currentIndex;
+
+        return IdealRoute.Count + candidateIndex;
     }
 
     private static IReadOnlyList<string> FindIdealSuffix(
@@ -261,7 +347,7 @@ public static class EdoRoutePlanner
 
     private static EdoPlanResult CreateBossRoute(EdoPlanningState state)
     {
-        var route = FindShortestRoute(state.CurrentPoint, "Boss");
+        var route = FindShortestRoute(state.CurrentPoint, "Boss", state.VisitedPoints);
         var probability = route.Count > 1
             ? EstimateBossSuccessProbability(state, route.Skip(1).ToArray())
             : 0;
@@ -417,40 +503,72 @@ public static class EdoRoutePlanner
         return Adjacency.TryGetValue(from, out var neighbors) && neighbors.Contains(to);
     }
 
-    private static IReadOnlyList<string> FindShortestRoute(string start, string destination)
+    private static IReadOnlyList<string> FindShortestRoute(
+        string start,
+        string destination,
+        IReadOnlySet<string>? visitedPoints = null)
     {
-        var queue = new Queue<string>();
-        var previous = new Dictionary<string, string?>(StringComparer.Ordinal)
-        {
-            [start] = null
-        };
-        queue.Enqueue(start);
+        var distances = GetDistancesFrom(destination);
+        if (!distances.TryGetValue(start, out var distance))
+            return [];
 
+        var routes = new List<IReadOnlyList<string>>();
+        CollectShortestRoutes(start, destination, distance, distances, [start], routes);
+        return routes
+            .OrderBy(route => route.Skip(1).Count(point => visitedPoints?.Contains(point) == true))
+            .ThenBy(route => route.Count > 1 ? GetForwardIdealPriority(route[0], route[1]) : 0)
+            .ThenBy(route => string.Join(",", route), StringComparer.Ordinal)
+            .FirstOrDefault() ?? [];
+    }
+
+    private static Dictionary<string, int> GetDistancesFrom(string destination)
+    {
+        var distances = new Dictionary<string, int>(StringComparer.Ordinal)
+        {
+            [destination] = 0
+        };
+        var queue = new Queue<string>();
+        queue.Enqueue(destination);
         while (queue.Count > 0)
         {
             var current = queue.Dequeue();
-            if (current == destination)
-                break;
-
             foreach (var neighbor in Adjacency[current])
             {
-                if (previous.ContainsKey(neighbor))
+                if (distances.ContainsKey(neighbor))
                     continue;
 
-                previous[neighbor] = current;
+                distances[neighbor] = distances[current] + 1;
                 queue.Enqueue(neighbor);
             }
         }
 
-        if (!previous.ContainsKey(destination))
-            return [];
+        return distances;
+    }
 
-        var route = new List<string>();
-        for (var current = destination; current != null; current = previous[current])
-            route.Add(current);
+    private static void CollectShortestRoutes(
+        string current,
+        string destination,
+        int distance,
+        IReadOnlyDictionary<string, int> distances,
+        List<string> route,
+        ICollection<IReadOnlyList<string>> routes)
+    {
+        if (current == destination)
+        {
+            routes.Add([.. route]);
+            return;
+        }
 
-        route.Reverse();
-        return route;
+        foreach (var neighbor in Adjacency[current])
+        {
+            if (!distances.TryGetValue(neighbor, out var neighborDistance)
+                || neighborDistance != distance - 1)
+                continue;
+
+            route.Add(neighbor);
+            CollectShortestRoutes(neighbor, destination, neighborDistance, distances, route, routes);
+            route.RemoveAt(route.Count - 1);
+        }
     }
 
     private sealed record SimulationState(
