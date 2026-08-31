@@ -438,10 +438,8 @@
       }
     },
     "next": ["FC_IsTeamEmpty", "FC_DissolveTeam"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "FC_IsTeamEmpty": {
     "recognition": {

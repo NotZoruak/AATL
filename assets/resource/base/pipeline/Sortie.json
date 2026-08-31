@@ -271,7 +271,7 @@
     "next": ["S_PostSortieHub"],
     "on_error": ["S_DetectWhereAmI"],
     "post_wait_freezes": {
-      "time": 100,
+      "time": 200,
       "target": [1156, 584, 96, 47]
     }
   },
@@ -284,6 +284,7 @@
       "S_IsIsekaiTicketConfirm",
       "S_PostKebiishi1",
       "S_PostKebiishi2",
+      "S_IsTeamSelect",
       "S_SortieSuccess"
     ],
     "on_error": ["S_DetectWhereAmI"]
@@ -367,7 +368,12 @@
         "target": [565, 578, 151, 48]
       }
     },
-    "next": ["S_IsIsekaiNoTicket", "S_DetectWhereAmI"]
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [565, 578, 151, 48]
+    },
+    "next": ["S_IsIsekaiNoTicket", "S_IsIsekaiTicketConfirm"],
+    "on_error": ["S_DetectWhereAmI"]
   },
   "S_IsIsekaiNoTicket": {
     "enabled": false,
@@ -384,7 +390,11 @@
         "target": [582, 593, 113, 40]
       }
     },
-    "next": ["S_IsIsekaiConfirmPurchase"],
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [582, 593, 113, 40]
+    },
+    "next": ["S_IsIsekaiConfirmPurchase","S_IsIsekaiNoTicket"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_IsIsekaiConfirmPurchase": {
@@ -499,10 +509,8 @@
     },
     "next": ["S_CaptainHub"],
     "on_error": ["S_DetectWhereAmI"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "S_PreCheckTroopRecord": {
     "enabled": false,
@@ -3639,10 +3647,8 @@
     },
     "next": ["SF_DissolveHub"],
     "on_error": ["SF_DetectWhereAmI"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "SF_DissolveHub": {
     "next": ["SF_DissolveCheck", "SF_CheckFatigue"],

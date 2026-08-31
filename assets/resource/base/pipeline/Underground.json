@@ -330,10 +330,8 @@
     },
     "next": ["U_CaptainHub"],
     "on_error": ["U_DetectWhereAmI"],
-    "post_wait_freezes": {
-      "time": 200,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "U_IsSortie": {
     "recognition": {
@@ -2312,10 +2310,8 @@
     },
     "next": ["UF_DissolveHub"],
     "on_error": ["UF_DetectWhereAmI"],
-    "post_wait_freezes": {
-      "time": 200,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "UF_DissolveHub": {
     "next": ["UF_DissolveCheck", "UF_CheckFatigue"],

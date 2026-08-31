@@ -2481,7 +2481,9 @@
     },
     "post_delay": 500,
     "next": ["DT_DrillClickTeamAgain1"],
-    "on_error": ["DT_DrillBattle1Hub"]
+    "on_error": ["DT_DrillBattle1Hub"],
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "DT_DrillClickTeamAgain1": {
     "action": {
@@ -2492,10 +2494,8 @@
     },
     "next": ["DT_DrillIsImmediateSortie1"],
     "on_error": ["DT_DrillBattle1Hub"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "DT_DrillIsImmediateSortie1": {
     "recognition": {
@@ -2650,7 +2650,9 @@
     },
     "post_delay": 500,
     "next": ["DT_DrillClickTeamAgain2"],
-    "on_error": ["DT_DrillBattle2Hub"]
+    "on_error": ["DT_DrillBattle2Hub"],
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "DT_DrillClickTeamAgain2": {
     "action": {
@@ -2661,10 +2663,8 @@
     },
     "next": ["DT_DrillIsImmediateSortie2"],
     "on_error": ["DT_DrillBattle2Hub"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "DT_DrillIsImmediateSortie2": {
     "recognition": {
@@ -2819,7 +2819,9 @@
     },
     "post_delay": 500,
     "next": ["DT_DrillClickTeamAgain3"],
-    "on_error": ["DT_DrillBattle3Hub"]
+    "on_error": ["DT_DrillBattle3Hub"],
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "DT_DrillClickTeamAgain3": {
     "action": {
@@ -2830,10 +2832,8 @@
     },
     "next": ["DT_DrillIsImmediateSortie3"],
     "on_error": ["DT_DrillBattle3Hub"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "DT_DrillIsImmediateSortie3": {
     "recognition": {
@@ -2988,7 +2988,9 @@
     },
     "post_delay": 500,
     "next": ["DT_DrillClickTeamAgain4"],
-    "on_error": ["DT_DrillBattle4Hub"]
+    "on_error": ["DT_DrillBattle4Hub"],
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "DT_DrillClickTeamAgain4": {
     "action": {
@@ -2999,10 +3001,8 @@
     },
     "next": ["DT_DrillIsImmediateSortie4"],
     "on_error": ["DT_DrillBattle4Hub"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "DT_DrillIsImmediateSortie4": {
     "recognition": {
@@ -3157,7 +3157,9 @@
     },
     "post_delay": 500,
     "next": ["DT_DrillClickTeamAgain5"],
-    "on_error": ["DT_DrillBattle5Hub"]
+    "on_error": ["DT_DrillBattle5Hub"],
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "DT_DrillClickTeamAgain5": {
     "action": {
@@ -3168,10 +3170,8 @@
     },
     "next": ["DT_DrillIsImmediateSortie5"],
     "on_error": ["DT_DrillBattle5Hub"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "DT_DrillIsImmediateSortie5": {
     "recognition": {
@@ -3442,10 +3442,8 @@
     },
     "next": ["DT_KebiIsImmediateSortie"],
     "on_error": ["DT_KebiHub"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "DT_KebiIsImmediateSortie": {
     "recognition": {

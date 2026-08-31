@@ -702,10 +702,8 @@
     },
     "next": ["TT_CheckCaptainColor"],
     "on_error": ["TT_DetectWhereAmI"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "TT_CaptainHub": {
     "recognition": {

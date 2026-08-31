@@ -320,10 +320,8 @@
     },
     "next": ["FB_Dissolve"],
     "on_error": ["FB_DetectWhereAmI"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "FB_Dissolve": {
     "next": ["FB_DissolveCheck", "FB_ClickCaptainSlot"],

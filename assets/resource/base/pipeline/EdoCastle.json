@@ -641,10 +641,8 @@
     },
     "next": ["EC_CaptainHub"],
     "on_error": ["EC_DetectWhereAmI"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [108, 76, 106, 6]
-    }
+    "repeat": 2,
+    "repeat_delay": 300
   },
   "EC_TryClickHome": {
     "next": ["EC_ClickHomeInMenu", "EC_DetectWhereAmI"],
