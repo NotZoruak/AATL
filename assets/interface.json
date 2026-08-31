@@ -1,10 +1,10 @@
 {
   "name": "MATR",
-  "version": "v0.12.7",
+  "version": "v0.12.8-beta.1",
   "mirrorchyan_rid": "MATR",
   "mirrorchyan_multiplatform": true,
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.12.7 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.12.8-beta.1 | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -5559,7 +5559,26 @@
             "E_FlowerFallbackWait": {"enabled": false},
             "FB_PostFallbackWait": {"enabled": false},
             "SF_FallbackWait": {"enabled": false},
-            "TT_FallbackWait": {"enabled": false}
+            "TT_FallbackWait": {"enabled": false},
+            "UD_FallbackWait": {"enabled": false},
+            "UD_SB_FallbackWait": {"enabled": false},
+            "FC_FallbackWait": {"enabled": false},
+            "UF_FallbackWait": {"enabled": false},
+            "DT_PresetFallbackWait": {"enabled": false},
+            "DT_LoginRewardFallbackWait": {"enabled": false},
+            "DT_WarmGiftFallbackWait": {"enabled": false},
+            "DT_MixFallbackWait": {"enabled": false},
+            "DT_ForgeFallbackWait": {"enabled": false},
+            "DT_DrillFallbackWait": {"enabled": false},
+            "DT_KebiFallbackWait": {"enabled": false},
+            "DT_RewardFallbackWait": {"enabled": false},
+            "DT_LoginRewardReturnHomeFallbackWait": {"enabled": false},
+            "DT_WarmGiftReturnHomeFallbackWait": {"enabled": false},
+            "DT_MixReturnHomeFallbackWait": {"enabled": false},
+            "DT_ForgeReturnHomeFallbackWait": {"enabled": false},
+            "DT_DrillReturnHomeFallbackWait": {"enabled": false},
+            "DT_KebiReturnHomeFallbackWait": {"enabled": false},
+            "DT_FallbackWait": {"enabled": false}
           }
         },
         {

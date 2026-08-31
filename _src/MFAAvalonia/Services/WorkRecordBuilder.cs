@@ -114,8 +114,10 @@ public static class WorkRecordBuilder
         var pending = new Queue<(string Name, string Entry)>(); // 已定义待执行的任务
         WorkRecord? current = null;
         var lastTime = DateTime.MinValue;
-        // 短时间重复过滤：记录内最近一次词表行内容与时间
-        var lastSeen = new Dictionary<WorkRecord, (DateTime Time, string Content)>();
+        // 短时间重复过滤：按记录与词条内容分别保存最近一次时间，避免交错日志互相覆盖
+        var lastSeen = new Dictionary<(WorkRecord Record, string Key), DateTime>();
+        // 小判箱重复过滤需要判断词条是否连续出现，因此额外保存记录内最后一条已接受内容
+        var lastAcceptedKey = new Dictionary<WorkRecord, string>();
         // 行军误命中过滤：记录内最近一次返回本丸时间（见 MarchMisclickFilterSeconds）
         var lastReturnHomeTime = new Dictionary<WorkRecord, DateTime>();
 
@@ -215,7 +217,7 @@ public static class WorkRecordBuilder
                     ? FindRecordForPrefix(word.Groups[1].Value, records, current)
                     : current;
                 if (target != null)
-                    Accumulate(target, entry.Timestamp.Value, entry.Content, entry.Level, lastSeen, lastReturnHomeTime);
+                    Accumulate(target, entry.Timestamp.Value, entry.Content, entry.Level, lastSeen, lastAcceptedKey, lastReturnHomeTime);
             }
         }
 
@@ -271,34 +273,42 @@ public static class WorkRecordBuilder
     // 短时间重复过滤窗口（秒）：识别循环连续命中同一 node 会重复输出同一词表行，窗口内只计一次
     private const double RepeatFilterSeconds = 3;
 
+    // 撤退信息过滤窗口（秒）：同一撤退原因在返回本丸过程中可能被多个 node 重复命中，窗口内只计一次
+    private const double RetreatFilterSeconds = 30;
+
     // 行军误命中过滤窗口（秒）：撤退确认后回本丸的加载过渡期内行军按钮残留会误命中，窗口内的行军词条不计。
     private const double MarchMisclickFilterSeconds = 10;
 
     private static void Accumulate(WorkRecord record, DateTime time, string content, string level,
-        Dictionary<WorkRecord, (DateTime Time, string Content)> lastSeen,
+        Dictionary<(WorkRecord Record, string Key), DateTime> lastSeen,
+        Dictionary<WorkRecord, string> lastAcceptedKey,
         Dictionary<WorkRecord, DateTime> lastReturnHomeTime)
     {
         var match = WordRegex.Match(content);
+        var action = match.Success ? match.Groups[2].Value : "";
+        var filterKey = match.Success
+            ? $"{match.Groups[1].Value}\u001F{action}\u001F{match.Groups[3].Value}"
+            : content;
+        var filterWindow = IsRetreatAction(action) ? RetreatFilterSeconds : RepeatFilterSeconds;
 
         // 小判箱弹窗会持续显示数秒，识别循环会连续产生多条相同日志。
         // 只要小判箱日志在事件流中连续出现，就视为同一次掉落，不受通用 3 秒窗口限制。
         if (match.Success
-            && match.Groups[2].Value == "小判箱掉落"
-            && lastSeen.TryGetValue(record, out var lastKoban)
-            && lastKoban.Content == content)
+            && action == "小判箱掉落"
+            && lastAcceptedKey.TryGetValue(record, out var lastKey)
+            && lastKey == filterKey)
             return;
 
-        // 通用短时间重复过滤：同一内容在 3 秒窗口内重复出现只计一次
-        if (lastSeen.TryGetValue(record, out var last)
-            && last.Content == content
-            && (time - last.Time).TotalSeconds <= RepeatFilterSeconds)
+        // 按内容独立过滤：普通词条使用3秒，撤退词条使用30秒；交错的其他内容不会重置窗口
+        if (lastSeen.TryGetValue((record, filterKey), out var lastTime)
+            && (time - lastTime).TotalSeconds <= filterWindow)
             return;
-        lastSeen[record] = (time, content);
+        lastSeen[(record, filterKey)] = time;
+        lastAcceptedKey[record] = filterKey;
 
         if (!match.Success)
             return;
         var prefix = match.Groups[1].Value;
-        var action = match.Groups[2].Value;
         var detail = match.Groups[3].Value;
 
         // 换队长拖拽的 OCR 保护日志仅用于排查，不作为用户可见的特殊情况。
@@ -402,18 +412,24 @@ public static class WorkRecordBuilder
         else if (level == "WRN")
         {
             if (prefix == "RestartGameAction" && action == "ADB")
-            {
-                var warning = string.IsNullOrWhiteSpace(detail) ? "ADB 连接恢复流程" : detail;
-                record.SpecialEvents.Add(new SpecialEvent(time, $"卡死重启：ADB 连接警告：{warning}"));
                 return;
-            }
 
             // 特殊情况只收 Warning 档词条（词表约定），Info 词条如命中王点/刷花不展示
-            record.SpecialEvents.Add(new SpecialEvent(time, action));
+            var warningDescription = string.IsNullOrWhiteSpace(detail) ? action : $"{action} {detail}";
+            record.SpecialEvents.Add(new SpecialEvent(time, warningDescription));
         }
                 break;
         }
     }
+
+    private static bool IsRetreatAction(string action) => action is
+        "重伤撤退"
+        or "刀装破坏撤退"
+        or "刀装近破坏撤退"
+        or "疲劳撤退"
+        or "道中撤退"
+        or "队长重伤撤退"
+        or "命中王点";
 
     private static bool TryParseDispatch(string detail, out string unit, out string map)
     {

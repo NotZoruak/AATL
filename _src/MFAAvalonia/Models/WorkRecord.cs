@@ -32,20 +32,19 @@ public sealed class WorkRecord
     /// <summary>保存记录或合并记录的累计时长覆盖值，普通日志记录为空。</summary>
     public TimeSpan? DurationOverride { get; set; }
 
-    /// <summary>运行结果：进行中/成功/中断/手动停止/失败/未开始；界面将成功显示为完成。</summary>
+    /// <summary>运行结果：进行中/成功/中断/手动停止/失败/未开始；成功和手动停止在界面统一显示为结束。</summary>
     public string Status { get; set; } = "进行中";
 
     /// <summary>界面显示的状态名称。</summary>
     [JsonIgnore]
-    public string DisplayStatus => Status == "成功" ? "完成" : Status;
+    public string DisplayStatus => Status is "成功" or "手动停止" ? "结束" : Status;
 
     /// <summary>界面显示的状态文字颜色。</summary>
     [JsonIgnore]
-    public string StatusForeground => Status switch
+    public string StatusForeground => DisplayStatus switch
     {
-        "成功" => "#15803D",
+        "结束" => "#15803D",
         "进行中" => "#2563EB",
-        "手动停止" => "#B45309",
         "失败" => "#B42318",
         "中断" => "#9F1239",
         _ => "#667085",
@@ -53,11 +52,10 @@ public sealed class WorkRecord
 
     /// <summary>界面显示的状态标签背景颜色。</summary>
     [JsonIgnore]
-    public string StatusBackground => Status switch
+    public string StatusBackground => DisplayStatus switch
     {
-        "成功" => "#F0FDF4",
+        "结束" => "#F0FDF4",
         "进行中" => "#EFF6FF",
-        "手动停止" => "#FFF7ED",
         "失败" => "#FEF3F2",
         "中断" => "#FFF1F2",
         _ => "#F2F4F7",
@@ -88,7 +86,7 @@ public sealed class WorkRecord
     /// <summary>列表行文本：08-18 12:00—13:27 地下城 (中断)</summary>
     public string ListLine =>
         $"{StartTime:MM-dd HH:mm}—{EndTime:HH:mm}  {TaskName}" +
-        (Status == "成功" ? "" : $" ({Status})");
+        (DisplayStatus == "结束" ? "" : $" ({DisplayStatus})");
 
     /// <summary>记录列表中的时间文本</summary>
     public string ListTimeText => $"{StartTime:MM-dd HH:mm}–{EndTime:HH:mm} · {DurationText}";

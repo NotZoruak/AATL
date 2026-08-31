@@ -216,6 +216,20 @@ AssertTrue(editor.Entries[0].Wounded, "撤销应恢复已保存的立绘状态")
 var logStart = new DateTime(2026, 8, 21, 3, 44, 55);
 var dailyPipeline = JObject.Parse(File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "assets", "resource", "base", "pipeline", "DailyTask.json")));
+var interfaceJson = JObject.Parse(File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "assets", "interface.json")));
+var freezeRestartOverride = interfaceJson["option"]?["卡死重启"]?["cases"]?
+    .FirstOrDefault(item => (string?)item?["name"] == "Yes")?["pipeline_override"] as JObject;
+var fallbackWaitNames = Directory.GetFiles(Path.Combine(
+        Directory.GetCurrentDirectory(), "assets", "resource", "base", "pipeline"), "*.json")
+    .SelectMany(file => JObject.Parse(File.ReadAllText(file)).Properties())
+    .Where(property => property.Name.EndsWith("FallbackWait", StringComparison.Ordinal))
+    .Select(property => property.Name)
+    .Distinct(StringComparer.Ordinal)
+    .ToList();
+AssertTrue(
+    fallbackWaitNames.All(name => freezeRestartOverride?[name]?["enabled"]?.Value<bool>() == false),
+    $"卡死重启开关应覆盖全部 FallbackWait：{string.Join(", ", fallbackWaitNames.Where(name => freezeRestartOverride?[name]?["enabled"]?.Value<bool>() != false))}");
 for (var index = 1; index <= 5; index++)
 {
     var enterTrainingAction = dailyPipeline[$"DT_DrillEnterTraining{index}"]?["action"];
@@ -263,6 +277,15 @@ var workRecord = WorkRecordBuilder.Build([
 AssertTrue(workRecord.Count == 1, "测试日志应聚合为一条工作记录");
 AssertTrue(workRecord[0].ResourceGains["小判箱"] == 2, "连续小判箱日志应各自只计为一次掉落");
 AssertTrue(workRecord[0].Status == "成功", "存在成功停止状态时应显示成功");
+var completedDisplayRecord = new WorkRecord { Status = "成功" };
+var manuallyStoppedDisplayRecord = new WorkRecord { Status = "手动停止" };
+AssertTrue(completedDisplayRecord.DisplayStatus == "结束"
+    && manuallyStoppedDisplayRecord.DisplayStatus == "结束"
+    && completedDisplayRecord.StatusForeground == "#15803D"
+    && manuallyStoppedDisplayRecord.StatusForeground == "#15803D"
+    && completedDisplayRecord.StatusBackground == "#F0FDF4"
+    && manuallyStoppedDisplayRecord.StatusBackground == "#F0FDF4",
+    "成功和手动停止在工作记录中都应显示为绿色的结束状态");
 
 var resourceGainRecord = WorkRecordBuilder.Build([
     new LogEntry(logStart, "INF", "开始任务：地下城"),
@@ -311,13 +334,27 @@ AssertTrue(labeledMixRecords.Count == 0,
 
 var adbWarningRecord = WorkRecordBuilder.Build([
     new LogEntry(logStart, "INF", "开始任务：地下城"),
-    new LogEntry(logStart.AddSeconds(1), "WRN", "[RestartGameAction] ADB 命令返回警告: device offline"),
+    new LogEntry(logStart.AddSeconds(1), "WRN", "[卡死重启] 模拟器无响应：超过 120 秒无回调"),
+    new LogEntry(logStart.AddSeconds(2), "WRN", "[RestartGameAction] ADB 命令返回警告: device offline"),
 ]);
 AssertTrue(
     adbWarningRecord[0].SpecialEvents.Count == 1
-        && adbWarningRecord[0].SpecialEvents[0].Description.Contains("卡死重启")
-        && adbWarningRecord[0].SpecialEvents[0].Description.Contains("device offline"),
-    "卡死重启期间的 ADB 警告应以可读文本显示在特殊情况中");
+        && adbWarningRecord[0].SpecialEvents[0].Description.Contains("模拟器无响应")
+        && adbWarningRecord[0].SpecialEvents[0].Description.Contains("120 秒无回调")
+        && adbWarningRecord[0].SpecialEvents.All(eventItem => !eventItem.Description.Contains("device offline")),
+    "卡死重启期间的 ADB 警告不应与统一卡死事件重复显示");
+
+var autoRecoveryRecords = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：合战场"),
+    new LogEntry(logStart.AddSeconds(1), "WRN", "[卡死重启] 动作循环卡死：node=S_IsBattleResult_Exp, action=Click"),
+    new LogEntry(logStart.AddSeconds(2), "WRN", "[卡死重启] 模拟器无响应：超过 120 秒无回调"),
+]);
+AssertTrue(
+    autoRecoveryRecords.Count == 1
+        && autoRecoveryRecords[0].SpecialEvents.Count == 2
+        && autoRecoveryRecords[0].SpecialEvents[0].Description.Contains("S_IsBattleResult_Exp")
+        && autoRecoveryRecords[0].SpecialEvents[1].Description.Contains("120 秒无回调"),
+    "所有卡死重启类型都应完整进入工作记录特殊情况");
 
 var earlyEndRecord = WorkRecordBuilder.Build([
     new LogEntry(logStart, "INF", "开始任务：合战场"),
@@ -327,6 +364,49 @@ var earlyEndRecord = WorkRecordBuilder.Build([
 ]);
 AssertTrue(earlyEndRecord.Count == 1 && earlyEndRecord[0].ReturnHomeCount == 0,
     "撤退原因本身不应重复计入返回本丸次数");
+AssertTrue(earlyEndRecord[0].DisplayStatus == "结束",
+    "手动停止或任务失败导致的结束应在工作记录中显示为结束");
+
+var retreatFilterRecord = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：合战场"),
+    new LogEntry(logStart.AddSeconds(1), "WRN", "[合战场] 重伤撤退"),
+    new LogEntry(logStart.AddSeconds(10), "WRN", "[合战场] 刀装破坏撤退"),
+    new LogEntry(logStart.AddSeconds(20), "WRN", "[合战场] 重伤撤退"),
+    new LogEntry(logStart.AddSeconds(29), "WRN", "[合战场] 重伤撤退"),
+    new LogEntry(logStart.AddSeconds(32), "WRN", "[合战场] 重伤撤退"),
+    new LogEntry(logStart.AddSeconds(33), "WRN", "[合战场] 刀装破坏撤退"),
+    new LogEntry(logStart.AddSeconds(34), "WRN", "[合战场] 疲劳撤退"),
+    new LogEntry(logStart.AddSeconds(35), "INF", "[合战场] 命中王点"),
+    new LogEntry(logStart.AddSeconds(36), "INF", "停止前状态：STOPPED"),
+]);
+AssertTrue(
+    retreatFilterRecord.Count == 1
+    && retreatFilterRecord[0].SpecialEvents.Count == 4
+    && retreatFilterRecord[0].SpecialEvents.Count(eventItem => eventItem.Description == "重伤撤退") == 2
+    && retreatFilterRecord[0].SpecialEvents.Count(eventItem => eventItem.Description == "刀装破坏撤退") == 1
+    && retreatFilterRecord[0].SpecialEvents.Exists(eventItem => eventItem.Description == "疲劳撤退"),
+    "同类撤退信息应在30秒内合并，不同撤退原因和王点信息不应互相合并");
+
+var interleavedRepeatRecord = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：地下城"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[地下城] 点击行军"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "[地下城] 出阵"),
+    new LogEntry(logStart.AddSeconds(3), "INF", "[地下城] 点击行军"),
+    new LogEntry(logStart.AddSeconds(4), "INF", "停止前状态：SUCCEEDED"),
+]);
+AssertTrue(
+    interleavedRepeatRecord.Count == 1 && interleavedRepeatRecord[0].MarchCount == 1,
+    "通用重复过滤应按词条内容独立计时，不应被交错的其他日志覆盖");
+
+var contextualRepeatRecord = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：地下城"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[cfg=Default] [地下城] 点击行军"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "[cfg=Default][inst=日常/default] [地下城] 点击行军"),
+    new LogEntry(logStart.AddSeconds(3), "INF", "停止前状态：SUCCEEDED"),
+]);
+AssertTrue(
+    contextualRepeatRecord.Count == 1 && contextualRepeatRecord[0].MarchCount == 1,
+    "重复过滤不应受业务词条前上下文块格式差异影响");
 
 var returnHomeRecord = WorkRecordBuilder.Build([
     new LogEntry(logStart, "INF", "开始任务：地下城"),

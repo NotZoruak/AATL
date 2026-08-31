@@ -413,8 +413,10 @@ public class RestartGameAction : IMaaCustomAction
     /// 从当前处理器收集模拟器环境，优先重启游戏；仅在游戏重启失败时重启模拟器后重试。
     /// 供 pipeline node 与 MATR 层卡死循环检测恢复复用。
     /// </summary>
-    public static void RestartAndReloadGame()
+    public static void RestartAndReloadGame(bool logAutoRecovery = true)
     {
+        if (logAutoRecovery)
+            MaaProcessorManager.Instance.Current?.LogAutoRecovery("任务流程触发重启");
         var action = new RestartGameAction();
         action.EnsureAdbInfo();
 

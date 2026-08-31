@@ -457,11 +457,11 @@ public partial class TaskQueueViewModel : ViewModelBase
     /// <summary>
     /// 循环卡死触发处理:Maa 回调线程触发,切主线程编排恢复流程。
     /// </summary>
-    private void OnLoopStuckDetected()
+    private void OnLoopStuckDetected(string reason)
     {
         DispatcherHelper.PostOnMainThread(() =>
         {
-            _ = RunAutoRecoverAsync();
+            _ = RunAutoRecoverAsync(reason);
         });
     }
 
@@ -469,16 +469,17 @@ public partial class TaskQueueViewModel : ViewModelBase
     /// 循环卡死自动恢复:停止任务 → 重启模拟器与游戏 → 重连 → 重新启动任务队列。
     /// 任一步失败时记录错误并复位检测,保证后续循环可再次触发重试。
     /// </summary>
-    private async Task RunAutoRecoverAsync()
+    private async Task RunAutoRecoverAsync(string reason)
     {
         try
         {
             // 重置最后回调时间,防止恢复流程自身耗时(CLI 超时等)被无响应检测误判为再次触发
             Processor.ResetLastCallbackTime();
+            Processor.LogAutoRecovery(reason);
             LoggerHelper.Warning("自动恢复开始:停止任务 → 重启模拟器 → 重启游戏 → 重连 → 从断点继续任务队列。");
             StopTask();
             await Task.Delay(1500);
-            await Task.Run(() => RestartGameAction.RestartAndReloadGame());
+            await Task.Run(() => RestartGameAction.RestartAndReloadGame(logAutoRecovery: false));
             LoggerHelper.Info("自动恢复:模拟器与游戏重启完成,重新连接模拟器...");
             await Processor.ReconnectAsync();
             // 断点继续：从上次中断的任务继续执行，已完成任务不重跑
@@ -515,8 +516,7 @@ public partial class TaskQueueViewModel : ViewModelBase
                 if ((DateTime.Now - Processor.LastCallbackTime).TotalSeconds < StuckSilentThresholdSeconds)
                     continue;
 
-                LoggerHelper.Warning("检测到模拟器无响应(超过 120 秒无回调且不在智能等待窗口),触发自动恢复。");
-                await RunAutoRecoverAsync();
+                await RunAutoRecoverAsync("模拟器无响应：超过 120 秒无回调且不在智能等待窗口");
                 return;
             }
             catch (OperationCanceledException)

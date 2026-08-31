@@ -359,6 +359,21 @@ public class MaaProcessor
         });
     }
 
+    /// <summary>记录卡死重启事件，同时写入文件日志和实时日志面板。</summary>
+    public void LogAutoRecovery(string reason)
+    {
+        var content = $"[卡死重启] {reason}";
+        using (BeginInstanceLogScope("AutoRecovery", "Monitor"))
+            LoggerHelper.Warning(content);
+
+        DispatcherHelper.PostOnMainThread(() =>
+        {
+            LogItemViewModels.Add(new LogItemViewModel(content, Brushes.Orange, "Regular", "HH':'mm':'ss",
+                showTime: true, changeColor: false));
+            TrimExcessLogs();
+        });
+    }
+
     public void AddLog(string content,
         string color = "",
         string weight = "Regular",
@@ -1647,7 +1662,7 @@ public class MaaProcessor
     }
 
     /// <summary>循环卡死检测触发事件(Maa 回调线程触发,订阅方自行调度到主线程)</summary>
-    public event Action? LoopStuckDetected;
+    public event Action<string>? LoopStuckDetected;
 
     /// <summary>复位循环卡死检测状态(自动恢复流程完成后调用,允许后续循环重新计数)</summary>
     public void ResetLoopDetector()
@@ -1863,8 +1878,7 @@ public class MaaProcessor
             // 在正常等待期会持续执行,参与计数会导致误判画面冻结
             if ((actionName is "Click" or "Swipe") && _loopDetector.Feed(nodeName, actionName, hitX, hitY))
             {
-                LoggerHelper.Warning($"检测到动作循环卡死(画面冻结):节点={nodeName}, 动作={actionName}, 坐标=({hitX},{hitY})。触发自动恢复。");
-                LoopStuckDetected?.Invoke();
+                LoopStuckDetected?.Invoke($"动作循环卡死：node={nodeName}, action={actionName}, 坐标=({hitX},{hitY})");
             }
         }
 
