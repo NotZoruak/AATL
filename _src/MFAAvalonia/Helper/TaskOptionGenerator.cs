@@ -82,7 +82,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
     }
 
     /// <summary>
-    /// 遍历选项列表，将连续 checkbox 收集到一个两列 UniformGrid 中，非 checkbox 直接添加
+    /// 遍历选项列表，将连续 checkbox 收集到一个可自适应换行的横向面板中，非 checkbox 直接添加
     /// </summary>
     private void AddOptionsWithCheckboxGrid(StackPanel panel, DragItemViewModel dragItem, List<MaaInterface.MaaInterfaceSelectOption> options)
     {
@@ -93,7 +93,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
             if (checkboxBatch.Count == 0) return;
             var grid = new UniformGrid
             {
-                Columns = 2,
+                Columns = 1,
                 Margin = new Thickness(10, 4, 10, 4),
                 HorizontalAlignment = HorizontalAlignment.Stretch
             };
@@ -101,24 +101,30 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
             {
                 grid.Children.Add(CreateCheckboxControl(opt, ifOpt, dragItem));
             }
-            grid.SizeChanged += (sender, _) =>
+            void UpdateColumns()
             {
-                if (sender is not UniformGrid ug || ug.Children.Count == 0) return;
+                if (grid.Children.Count == 0 || grid.Bounds.Width <= 0) return;
+
                 double maxChildWidth = 0;
-                foreach (var child in ug.Children)
+                foreach (var child in grid.Children)
                 {
-                    if (child is Control c)
-                    {
-                        c.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-                        if (c.DesiredSize.Width > maxChildWidth)
-                            maxChildWidth = c.DesiredSize.Width;
-                    }
+                    if (child is not Control control) continue;
+                    control.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                    maxChildWidth = Math.Max(maxChildWidth, control.DesiredSize.Width);
                 }
-                if (maxChildWidth <= 0) return;
-                var available = ug.Bounds.Width - ug.Margin.Left - ug.Margin.Right;
-                var cols = Math.Max(1, (int)(available / maxChildWidth));
-                ug.Columns = cols;
-            };
+
+                var availableWidth = grid.Bounds.Width - grid.Margin.Left - grid.Margin.Right;
+                if (maxChildWidth <= 0 || availableWidth <= 0) return;
+
+                var columns = Math.Clamp(
+                    (int)Math.Floor(availableWidth / maxChildWidth),
+                    1,
+                    grid.Children.Count);
+                if (grid.Columns != columns)
+                    grid.Columns = columns;
+            }
+
+            grid.SizeChanged += (_, _) => UpdateColumns();
             panel.Children.Add(grid);
             checkboxBatch.Clear();
         }
@@ -567,7 +573,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         if (isSingleCase)
         {
             // 单个勾选框：CheckBox + 文字在右侧
-            container = new StackPanel { Margin = new Thickness(10, 6, 10, 6), Spacing = 4 };
+            container = new StackPanel { Margin = new Thickness(0, 6, 0, 6), Spacing = 4 };
 
             var caseOption = interfaceOption.Cases![0];
             caseOption.InitializeDisplayName();
@@ -627,7 +633,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         else
         {
             // 多个勾选框：WrapPanel 自适应换行
-            container = new StackPanel { Margin = new Thickness(10, 10, 10, 6), Spacing = 4 };
+            container = new StackPanel { Margin = new Thickness(0, 10, 0, 6), Spacing = 4 };
 
             var header = (StackPanel)CreateOptionHeader(interfaceOption);
             header.Margin = new Thickness(0);
@@ -820,6 +826,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         MaaInterface.MaaInterfaceOption interfaceOption)
     {
         var grid = CreateBaseGrid();
+        var pipelineType = input.PipelineType?.ToLower() ?? "string";
         
         // Adjust margin based on whether header is shown
         var hasOptionDescription = !string.IsNullOrWhiteSpace(GetTooltipText(interfaceOption.Description, interfaceOption.Document));
@@ -828,7 +835,8 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         if (needsHeader)
         {
             // When header is shown, container already has margin, so grid needs no extra left/right margin
-            grid.Margin = new Thickness(0, 3, 0, 3);
+            // 右侧预留设置面板滚动条空间，避免输入框被滚动条遮挡
+            grid.Margin = new Thickness(0, 3, 10, 3);
         }
         else
         {
@@ -838,13 +846,15 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
 
         // TextBox
         var displayValue = currentValue == MaaInterface.MaaInterfaceOption.ExplicitNullMarker ? "null" : currentValue;
+        var inputMinWidth = pipelineType == "int" ? 100 : 120;
         var textBox = new TextBox
         {
-            MinWidth = 200,
+            MinWidth = inputMinWidth,
             Margin = new Thickness(0, 2, 0, 2),
             BorderThickness = new Thickness(1),
             Text = displayValue,
-            VerticalAlignment = VerticalAlignment.Center
+            VerticalAlignment = VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Left
         };
         textBox.Bind(TextBox.BorderBrushProperty, new DynamicResourceExtension("SukiControlBorderBrush"));
         
@@ -854,7 +864,11 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         BindIdleEnabled(textBox);
 
         // Events
-        textBox.TextChanged += (_, _) => HandleStringInputChange(textBox, input, option, interfaceOption);
+        textBox.TextChanged += (_, _) =>
+        {
+            HandleStringInputChange(textBox, input, option, interfaceOption);
+            ResizeTextBoxToContent();
+        };
         
         // Initial setup
         HandleStringInputChange(textBox, input, option, interfaceOption, true); 
@@ -870,13 +884,30 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
             labelPanel.Children.Insert(0, icon);
         }
 
+        labelPanel.MinWidth = 0;
+
         Grid.SetColumn(labelPanel, 0);
         Grid.SetColumn(textBox, 1);
         
-        AddResponsiveBehavior(grid, labelPanel, textBox);
+        AddTextInputLayout(grid, labelPanel, textBox);
         
         grid.Children.Add(labelPanel);
         grid.Children.Add(textBox);
+
+        void ResizeTextBoxToContent()
+        {
+            if (grid.Bounds.Width <= 0) return;
+
+            textBox.Width = double.NaN;
+            textBox.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+            var desiredWidth = Math.Max(inputMinWidth, textBox.DesiredSize.Width);
+            var availableWidth = Math.Max(inputMinWidth, grid.Bounds.Width - 150);
+            var targetWidth = Math.Min(desiredWidth, availableWidth);
+            if (double.IsNaN(textBox.Width) || Math.Abs(textBox.Width - targetWidth) > 0.5)
+                textBox.Width = targetWidth;
+        }
+
+        grid.SizeChanged += (_, _) => ResizeTextBoxToContent();
 
         return grid;
     }
@@ -1392,11 +1423,25 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
 
     private void AddResponsiveBehavior(Grid grid, Control label, Control input)
     {
-        // 文字与输入框始终同一行（两列布局），不做窄屏换行
+        // 标签与控件保持原有的单行两列布局
         grid.RowDefinitions.Clear();
         grid.ColumnDefinitions.Clear();
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(5, GridUnitType.Star) });
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(6, GridUnitType.Star) });
+
+        Grid.SetRow(label, 0);
+        Grid.SetRow(input, 0);
+        Grid.SetColumn(label, 0);
+        Grid.SetColumn(input, 1);
+    }
+
+    private static void AddTextInputLayout(Grid grid, Control label, Control input)
+    {
+        // 文本输入框使用统一标签列，保证不同输入项的输入框左边界对齐
+        grid.RowDefinitions.Clear();
+        grid.ColumnDefinitions.Clear();
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(150, GridUnitType.Pixel) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
         Grid.SetRow(label, 0);
         Grid.SetRow(input, 0);

@@ -15,9 +15,104 @@ AssertTrue(actualWindowSize is { Width: 1366, Height: 768 },
     "窗口保存应使用用户拖拽后的实际客户区尺寸");
 var rootViewSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Views", "Windows", "RootView.axaml.cs"));
+var rootViewMarkup = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Views", "Windows", "RootView.axaml"));
+var taskQueueViewSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Views", "Pages", "TaskQueueView.axaml.cs"));
+var taskOptionGeneratorSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "TaskOptionGenerator.cs"));
 AssertTrue(rootViewSource.IndexOf("InitializeComponent();", StringComparison.Ordinal)
     < rootViewSource.IndexOf("LoadWindowSizeAndPosition();", StringComparison.Ordinal),
     "窗口应在加载已保存尺寸前完成XAML初始化，避免默认尺寸覆盖配置");
+AssertTrue(rootViewMarkup.Contains("Width=\"920\"", StringComparison.Ordinal)
+    && rootViewMarkup.Contains("Height=\"690\"", StringComparison.Ordinal),
+    "窗口默认尺寸应为920×690");
+AssertTrue(taskQueueViewSource.Contains("new WrapPanel", StringComparison.Ordinal)
+    && !taskQueueViewSource.Contains("new UniformGrid { Columns = 2", StringComparison.Ordinal),
+    "复选框应根据可用宽度自适应换行，不能固定为两列");
+AssertTrue(taskOptionGeneratorSource.Contains("var grid = new UniformGrid", StringComparison.Ordinal)
+    && taskOptionGeneratorSource.Contains("void UpdateColumns()", StringComparison.Ordinal)
+    && taskOptionGeneratorSource.Contains("grid.Columns = columns", StringComparison.Ordinal),
+    "实际生成任务选项的复选框布局应根据可用宽度自适应列数，并拉伸填满当前行");
+
+var optionInterfaceJson = JObject.Parse(File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "assets", "interface.json")));
+var sortiePipeline = JObject.Parse(File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "assets", "resource", "base", "pipeline", "Sortie.json")));
+var dashboardLayout = JObject.Parse(File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "assets", "resource", "mfa_layout.json")));
+AssertTrue(dashboardLayout["settings"]?["row_span"]?.Value<int>() == 5
+    && dashboardLayout["task_desc"]?["row"]?.Value<int>() == 5
+    && dashboardLayout["task_desc"]?["row_span"]?.Value<int>() == 3,
+    "任务设置和任务说明卡片的默认高度应分别为5行和3行");
+var autoMarchOption = optionInterfaceJson["option"]?["S_自动行军"];
+var autoMarchOverride = autoMarchOption?["cases"]?.Children<JObject>().Single()["pipeline_override"]?["S_DisableAutoMarch"];
+AssertTrue(autoMarchOption?["type"]?.Value<string>() == "checkbox"
+    && autoMarchOption["default_case"] is JArray
+    && autoMarchOverride?["enabled"]?.Value<bool>() == false,
+    "自动行军应为默认关闭且勾选后取消关闭自动行军流程的复选框");
+AssertTrue(sortiePipeline["S_DisableAutoMarch"]?["enabled"]?.Value<bool>() == true,
+    "关闭自动行军流程默认应启用，以支持自动行军选项反转逻辑");
+var sortieTask = optionInterfaceJson["task"]!.Children<JObject>()
+    .Single(task => task["name"]?.Value<string>() == "合战场");
+var undergroundTask = optionInterfaceJson["task"]!.Children<JObject>()
+    .Single(task => task["name"]?.Value<string>() == "地下城");
+var defaultTasks = optionInterfaceJson["task"]!.Children<JObject>().ToList();
+AssertTrue(defaultTasks[0]["name"]?.Value<string>() == "更新数据"
+    && defaultTasks[1]["name"]?.Value<string>() == "日课",
+    "默认任务排序中一键日课应紧跟在更新数据下面");
+foreach (var task in optionInterfaceJson["task"]!.Children<JObject>())
+{
+    var taskOptions = task["option"]!.Values<string>().ToList();
+    var syncOption = taskOptions.FirstOrDefault(optionName =>
+        optionName.EndsWith("同步远征", StringComparison.Ordinal)
+        || optionName.EndsWith("同步后勤", StringComparison.Ordinal));
+    if (syncOption != null)
+    {
+        AssertTrue(taskOptions[^1] == syncOption,
+            $"{task["name"]}的同步后勤选项应始终排在最后");
+    }
+}
+
+foreach (var (task, prefix) in new[] { (sortieTask, "S_"), (undergroundTask, "U_") })
+{
+    var orderedTaskOptions = task["option"]!.Values<string>().ToList();
+    var taskOptions = orderedTaskOptions.ToHashSet();
+    var fatigueProcessingIndex = orderedTaskOptions.IndexOf($"{prefix}疲劳处理");
+    AssertTrue(fatigueProcessingIndex >= 0
+        && orderedTaskOptions.Skip(fatigueProcessingIndex + 1)
+            .All(optionName => optionInterfaceJson["option"]?[optionName!]?["type"]?.Value<string>() == "checkbox"),
+        $"{prefix}疲劳处理之后应全部为复选框");
+    AssertTrue(fatigueProcessingIndex >= 0
+        && orderedTaskOptions.Skip(fatigueProcessingIndex + 1).Take(3).SequenceEqual([
+            $"{prefix}补充刀装", $"{prefix}刀装保护", $"{prefix}疲劳撤退"]),
+        $"{prefix}疲劳处理之后应先排列三个新增复选框");
+    AssertTrue(taskOptions.Contains($"{prefix}补充刀装"), $"{prefix}任务应提供独立的补充刀装选项");
+    AssertTrue(taskOptions.Contains($"{prefix}刀装保护"), $"{prefix}任务应提供独立的刀装保护选项");
+    AssertTrue(taskOptions.Contains($"{prefix}疲劳撤退"), $"{prefix}任务应提供独立的疲劳撤退选项");
+    AssertFalse(taskOptions.Contains($"{prefix}刀装破坏处理"), $"{prefix}任务不应继续使用组合式刀装破坏处理选项");
+
+    var supplementOption = optionInterfaceJson["option"]![$"{prefix}补充刀装"]!;
+    var equipmentProtectionOption = optionInterfaceJson["option"]![$"{prefix}刀装保护"]!;
+    var fatigueRetreatOption = optionInterfaceJson["option"]![$"{prefix}疲劳撤退"]!;
+    AssertTrue(supplementOption["type"]?.Value<string>() == "checkbox" && supplementOption["default_case"] is JArray,
+        $"{prefix}补充刀装应为默认关闭的独立勾选项");
+    AssertTrue(equipmentProtectionOption["type"]?.Value<string>() == "checkbox" && equipmentProtectionOption["default_case"] is JArray,
+        $"{prefix}刀装保护应为默认关闭的独立勾选项");
+    AssertTrue(fatigueRetreatOption["type"]?.Value<string>() == "checkbox" && fatigueRetreatOption["default_case"] is JArray,
+        $"{prefix}疲劳撤退应为默认关闭的独立勾选项");
+    AssertTrue(supplementOption["description"] == null
+        && equipmentProtectionOption["description"] == null
+        && fatigueRetreatOption["description"] == null,
+        $"{prefix}三个复选框不应显示选项描述");
+
+    var fatigueOption = optionInterfaceJson["option"]![$"{prefix}疲劳处理"]!;
+    foreach (var fatigueCase in fatigueOption["cases"]!.Children<JObject>())
+    {
+        AssertFalse(fatigueCase["pipeline_override"]?[ $"{prefix}FatigueDetect"] != null,
+            $"{prefix}疲劳处理不应再负责行军中的重疲劳撤退");
+    }
+}
 
 AssertTrue(MixGreedySelectionDecision.TryGetRarity(90, 90, 90, out var rarity) && rarity == 1,
     "稀有度1的颜色应正确映射");

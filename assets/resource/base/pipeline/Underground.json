@@ -1444,7 +1444,6 @@
         "click": [490, 469, 10, 10]
       }
     },
-    "next": ["U_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 500,
       "target": [490, 469, 10, 10]

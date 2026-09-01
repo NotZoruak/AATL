@@ -23,13 +23,13 @@
   "live_view": {
     "row": 0,
     "col": 8,
-    "row_span": 4,
+    "row_span": 3,
     "col_span": 4
   },
   "log": {
-    "row": 4,
+    "row": 3,
     "col": 8,
-    "row_span": 4,
+    "row_span": 5,
     "col_span": 4
   }
 }

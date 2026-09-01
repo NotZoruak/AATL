@@ -751,11 +751,11 @@
       }
     },
     "pre_delay": 500,
-    "next": ["NM_DetectWhereAmI"],
     "post_wait_freezes": {
       "time": 100,
       "target": [137, 5, 31, 35]
-    }
+    },
+    "next": ["NM_SelectMixTarget","NM_DetectWhereAmI"]
   },
   "NM_IsLockedMixMaterialSelection": {
     "recognition": {

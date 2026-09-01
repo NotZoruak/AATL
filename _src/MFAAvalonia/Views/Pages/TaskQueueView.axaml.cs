@@ -859,7 +859,12 @@ public partial class TaskQueueView : UserControl
             void FlushCheckboxBatch()
             {
                 if (checkboxBatch.Count == 0) return;
-                var grid = new UniformGrid { Columns = 2, Margin = new Thickness(10, 4, 10, 4) };
+                var grid = new WrapPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    Margin = new Thickness(10, 4, 10, 4)
+                };
                 foreach (var (opt, ifOpt) in checkboxBatch)
                 {
                     grid.Children.Add(CreateCheckboxControl(opt, ifOpt));
@@ -907,7 +912,12 @@ public partial class TaskQueueView : UserControl
             void FlushCheckboxBatch()
             {
                 if (checkboxBatch.Count == 0) return;
-                var grid = new UniformGrid { Columns = 2, Margin = new Thickness(10, 4, 10, 4) };
+                var grid = new WrapPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    Margin = new Thickness(10, 4, 10, 4)
+                };
                 foreach (var (opt, ifOpt) in checkboxBatch)
                 {
                     grid.Children.Add(CreateCheckboxControl(opt, ifOpt));
