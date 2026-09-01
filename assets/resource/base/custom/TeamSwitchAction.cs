@@ -74,6 +74,8 @@ public class TeamSwitchAction : IMaaCustomAction
             context.Click(confirmX, confirmY);
             ActionParamHelper.SleepWithStopCheck(context, 500);
 
+            TeamSwitchState.SetCurrentTeam(teamIndex + 1);
+
             LoggerHelper.Info($"[TeamSwitch] 换队完成: 第{nextRound}轮 → 部队{teamIndex + 1}");
             return true;
         }

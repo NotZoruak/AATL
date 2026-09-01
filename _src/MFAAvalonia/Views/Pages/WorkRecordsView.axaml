@@ -307,31 +307,37 @@
                         <TextBlock Text="{Binding SelectedTimeText}"
                                    FontSize="14"
                                    Foreground="#7B8798" />
-                        <StackPanel Orientation="Horizontal"
-                                    Spacing="24"
-                                    Margin="0,3,0,0">
+                        <WrapPanel Margin="0,3,0,0"
+                                   HorizontalAlignment="Stretch">
                             <TextBlock Text="{Binding SelectedRecord.SortieCount, StringFormat=出阵次数：{0}}"
                                        FontSize="14"
-                                       Foreground="#344054" />
+                                       Foreground="#344054"
+                                       IsVisible="{Binding SelectedHasSortie}"
+                                       Margin="0,0,24,6" />
                             <TextBlock
                                        Text="{Binding SelectedRecord.MarchCount, StringFormat=行军次数：{0}}"
                                        FontSize="14"
-                                       Foreground="#344054" />
+                                       Foreground="#344054"
+                                       Margin="0,0,24,6" />
                             <TextBlock
                                        Text="{Binding SelectedRecord.RoundCount, StringFormat=完成圈数：{0}}"
                                        FontSize="14"
-                                       Foreground="#344054" />
+                                       Foreground="#344054"
+                                       IsVisible="{Binding SelectedHasRound}"
+                                       Margin="0,0,24,6" />
                             <TextBlock
                                        Text="{Binding SelectedRecord.FlowerBrushCount, StringFormat=刷花次数：{0}}"
                                        FontSize="14"
                                        Foreground="#344054"
+                                       Margin="0,0,24,6"
                                        IsVisible="{Binding SelectedHasFlowerBrush}" />
                             <TextBlock
                                        Text="{Binding SelectedRecord.ReturnHomeCount, StringFormat=返回本丸：{0}}"
                                        FontSize="14"
                                        Foreground="#344054"
+                                       Margin="0,0,24,6"
                                        IsVisible="{Binding SelectedHasReturnHome}" />
-                        </StackPanel>
+                        </WrapPanel>
                     </StackPanel>
                 </Border>
 
@@ -347,9 +353,20 @@
                         <StackPanel Spacing="6"
                                     IsVisible="{Binding SelectedHasResources}">
                             <TextBlock Classes="RecordSectionTitle" Text="资源收获" />
-                            <TextBlock Classes="RecordResourceBody"
-                                       Text="{Binding SelectedResourcesText}"
-                                       TextWrapping="Wrap" />
+                            <ItemsControl ItemsSource="{Binding SelectedResourceItems}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Classes="RecordResourceBody"
+                                                   Text="{Binding}"
+                                                   Margin="0,0,14,6" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </StackPanel>
                         <StackPanel Spacing="6"
                                     IsVisible="{Binding SelectedHasSwordDrops}"

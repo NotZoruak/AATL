@@ -2088,6 +2088,9 @@
               "post_wait_freezes": {
                 "target": [108, 76, 106, 6]
               }
+            },
+            "LR_IsTeamSwitchNeeded": {
+              "custom_recognition_param": {"initial_team": "1"}
             }
           }
         },
@@ -2099,6 +2102,9 @@
               "post_wait_freezes": {
                 "target": [229, 76, 105, 6]
               }
+            },
+            "LR_IsTeamSwitchNeeded": {
+              "custom_recognition_param": {"initial_team": "2"}
             }
           }
         },
@@ -2110,6 +2116,9 @@
               "post_wait_freezes": {
                 "target": [351, 76, 106, 6]
               }
+            },
+            "LR_IsTeamSwitchNeeded": {
+              "custom_recognition_param": {"initial_team": "3"}
             }
           }
         },
@@ -2121,6 +2130,9 @@
               "post_wait_freezes": {
                 "target": [471, 76, 106, 6]
               }
+            },
+            "LR_IsTeamSwitchNeeded": {
+              "custom_recognition_param": {"initial_team": "4"}
             }
           }
         },
@@ -2132,6 +2144,9 @@
               "post_wait_freezes": {
                 "target": [594, 75, 106, 7]
               }
+            },
+            "LR_IsTeamSwitchNeeded": {
+              "custom_recognition_param": {"initial_team": "5"}
             }
           }
         }
@@ -2175,6 +2190,9 @@
         }
       ],
       "pipeline_override": {
+        "LR_IsTeamSwitchNeeded": {
+          "custom_recognition_param": {"team_config": "{team_config}"}
+        },
         "LR_RunTeamSwitch": {
           "custom_action_param": {"team_config": "{team_config}"}
         }

@@ -50,6 +50,7 @@ public partial class WorkRecordsViewModel : ViewModelBase
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SelectedDurationText))]
     [NotifyPropertyChangedFor(nameof(SelectedResourcesText))]
+    [NotifyPropertyChangedFor(nameof(SelectedResourceItems))]
     [NotifyPropertyChangedFor(nameof(SelectedHasResources))]
     [NotifyPropertyChangedFor(nameof(SelectedSwordDropsText))]
     [NotifyPropertyChangedFor(nameof(SelectedHasSwordDrops))]
@@ -69,6 +70,8 @@ public partial class WorkRecordsViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(SelectedHasSpecialEvents))]
     [NotifyPropertyChangedFor(nameof(SelectedHasReturnHome))]
     [NotifyPropertyChangedFor(nameof(SelectedHasFlowerBrush))]
+    [NotifyPropertyChangedFor(nameof(SelectedHasSortie))]
+    [NotifyPropertyChangedFor(nameof(SelectedHasRound))]
     [NotifyPropertyChangedFor(nameof(SelectedTimeText))]
     [NotifyPropertyChangedFor(nameof(SelectedConfigSourceText))]
     private WorkRecord? _selectedRecord;
@@ -344,6 +347,12 @@ public partial class WorkRecordsViewModel : ViewModelBase
     /// <summary>是否有返回本丸记录（0 次不显示该行）</summary>
     public bool SelectedHasReturnHome => SelectedRecord?.ReturnHomeCount > 0;
 
+    /// <summary>是否有出阵记录（0 次不显示该项）</summary>
+    public bool SelectedHasSortie => SelectedRecord?.SortieCount > 0;
+
+    /// <summary>是否有完成圈数记录（0 次不显示该项）</summary>
+    public bool SelectedHasRound => SelectedRecord?.RoundCount > 0;
+
     /// <summary>是否有出阵刷花（0 次不显示该行）</summary>
     public bool SelectedHasFlowerBrush => SelectedRecord?.FlowerBrushCount > 0;
 
@@ -389,6 +398,15 @@ public partial class WorkRecordsViewModel : ViewModelBase
             : string.Join("  ", SelectedRecord.ResourceGains
                 .OrderBy(kv => Array.IndexOf(ResourceOrder, kv.Key) is var i && i < 0 ? int.MaxValue : i)
                 .Select(kv => $"{kv.Key}x{kv.Value}"));
+
+    /// <summary>资源收获条目，供窄宽度下按完整条目自动换行显示</summary>
+    public IReadOnlyList<string> SelectedResourceItems =>
+        SelectedRecord is null
+            ? []
+            : SelectedRecord.ResourceGains
+                .OrderBy(kv => Array.IndexOf(ResourceOrder, kv.Key) is var i && i < 0 ? int.MaxValue : i)
+                .Select(kv => $"{kv.Key}x{kv.Value}")
+                .ToList();
 
     /// <summary>是否有资源收获</summary>
     public bool SelectedHasResources => SelectedRecord?.ResourceGains.Count > 0;

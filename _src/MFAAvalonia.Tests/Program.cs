@@ -175,6 +175,26 @@ AssertTrue(MixGreedySelectionDecision.CancelPositions.SequenceEqual([
 
 EdoRoutePlannerTests.Run();
 
+AssertTrue(TeamSwitchDecision.GetTargetTeam("111112222", 9, 1) == 1,
+    "第2轮应以选择部队作为当前部队进行比较");
+AssertFalse(TeamSwitchDecision.ShouldSwitch("111112222", 8, 1, 1),
+    "目标部队未变化时不应重复切换");
+AssertTrue(TeamSwitchDecision.ShouldSwitch("111112222", 4, 1, 1),
+    "目标部队从1变为2时应执行切换");
+AssertFalse(TeamSwitchDecision.ShouldSwitch("111112222", 3, 2, 2),
+    "切换到目标部队后不应再次切换");
+AssertTrue(TeamSwitchDecision.ShouldSwitch("211112222", 9, 1, 1),
+    "第2轮目标与初始部队不同时应执行切换");
+AssertFalse(TeamSwitchState.ShouldSwitch("111112222", 9, 1),
+    "状态判断应把选择部队1作为第2轮的当前部队");
+AssertFalse(TeamSwitchState.ShouldSwitch("111112222", 8, 1),
+    "连续目标为部队1时不应重复换队");
+AssertTrue(TeamSwitchState.ShouldSwitch("111112222", 4, 1),
+    "状态判断应在目标从部队1变为部队2时请求换队");
+TeamSwitchState.SetCurrentTeam(2);
+AssertFalse(TeamSwitchState.ShouldSwitch("111112222", 3, 1),
+    "状态更新为部队2后不应重复换队");
+
 AssertTrue(
     NewMixTargetSelectionDecision.Decide([
         new NewMixTargetSlot(false, false, null),

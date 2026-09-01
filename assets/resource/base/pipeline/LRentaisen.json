@@ -983,7 +983,22 @@
     "next": ["LR_DetectWhereAmI"]
   },
   "LR_ActionSelectHub": {
-    "next": ["LR_ClickSwitchTeam", "LR_CheckCaptainDamage", "LR_ClickContinueBattle", "LR_DetectWhereAmI"]
+    "next": ["LR_IsTeamSwitchNeeded", "LR_CheckCaptainDamage", "LR_ClickContinueBattle", "LR_DetectWhereAmI"]
+  },
+  "LR_IsTeamSwitchNeeded": {
+    "enabled": false,
+    "recognition": {
+      "type": "Custom",
+      "param": {
+        "custom_recognition": "TeamSwitchNeededRecognition",
+        "custom_recognition_param": {
+          "team_config": "{team_config}",
+          "initial_team": "{initial_team}"
+        }
+      }
+    },
+    "next": ["LR_ClickSwitchTeam"],
+    "on_error": ["LR_CheckCaptainDamage"]
   },
   "LR_ClickSwitchTeam": {
     "enabled": false,
