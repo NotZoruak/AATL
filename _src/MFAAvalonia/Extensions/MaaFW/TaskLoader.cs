@@ -67,6 +67,15 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
 
         var (updateList, removeList) = SynchronizeTaskItems(ref currentTasks, drags, tasks);
 
+        var legacyGlobalOptions = instanceConfig.GetValue(
+            ConfigurationKeys.GlobalOptionItems,
+            new List<MaaInterface.MaaInterfaceSelectOption>());
+        var migratedCount = CaptainSettingsHelper.MigrateLegacySkipPositions(
+            updateList.Where(item => item.InterfaceItem != null).Select(item => item.InterfaceItem!),
+            legacyGlobalOptions);
+        if (migratedCount > 0)
+            LoggerHelper.Info($"[换队长配置] 已迁移 {migratedCount} 个任务的旧跳过位置");
+
         instanceConfig.SetValue(ConfigurationKeys.CurrentTasks, currentTasks);
         
         updateList.RemoveAll(d => removeList.Contains(d));

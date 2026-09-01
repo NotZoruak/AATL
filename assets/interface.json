@@ -80,7 +80,7 @@
         "S_同步远征"
       ],
       "label": "常驻作战",
-      "description": "合战场（过去/异去）出阵自动化。\n\n* **疲劳处理**：该功能较脆弱，建议在有人值守时使用。需要同时开启「更换队长」。\n* **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n* **刀装保护**：行军中检测到刀装被破坏/接近被破坏时撤退。\n* **疲劳撤退**：行军中检测刀剑重疲劳状态时撤退。\n* **更换队长**：换队长的方式可在全局设置中修改。\n* **同步后勤**：回本丸后自动检查队伍状态并派遣远征。请确保使用的队伍在远征任务中设置为休息。"
+      "description": "合战场（过去/异去）出阵自动化。\n\n* **疲劳处理**：该功能较脆弱，建议在有人值守时使用。需要同时开启「更换队长」。\n* **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n* **刀装保护**：行军中检测到刀装被破坏/接近被破坏时撤退。\n* **疲劳撤退**：行军中检测刀剑重疲劳状态时撤退。\n* **更换队长**：点击右侧齿轮配置跳过位置。\n* **同步后勤**：回本丸后自动检查队伍状态并派遣远征。请确保使用的队伍在远征任务中设置为休息。"
     },
     {
       "name": "地下城",
@@ -103,7 +103,7 @@
         "U_同步远征"
       ],
       "label": "大阪挖地",
-      "description": "沉眠于地下的千两箱/地下城 活动自动化出阵。\n\n* **层数选择**：设定目标层数（1-99）。选择不启用时直接进入当前层数。\n* **疲劳处理**：该功能较脆弱，建议在有人值守时使用。需要同时开启「更换队长」。\n* **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n* **刀装保护**：行军中检测到刀装被破坏/接近被破坏时撤退。\n* **疲劳撤退**：行军中检测刀剑重疲劳状态时撤退。\n* **更换队长**：换队长的方式可在全局设置中修改。\n* **每轮回程**：每轮战斗结束后返回本丸。\n* **动画跳过**：增加一些点击以实现跳过动画的功能。在全局设置中开启「卡死重启」功能时，该选项不生效。\n* **同步后勤**：回本丸后自动检查队伍状态并派遣远征。请确保使用的队伍在远征任务中设置为休息。开启「智能远征调度」后，会在每圈结束时检查远征倒计时，若倒计时结束，会主动返回本丸。"
+      "description": "沉眠于地下的千两箱/地下城 活动自动化出阵。\n\n* **层数选择**：设定目标层数（1-99）。选择不启用时直接进入当前层数。\n* **疲劳处理**：该功能较脆弱，建议在有人值守时使用。需要同时开启「更换队长」。\n* **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n* **刀装保护**：行军中检测到刀装被破坏/接近被破坏时撤退。\n* **疲劳撤退**：行军中检测刀剑重疲劳状态时撤退。\n* **更换队长**：点击右侧齿轮配置跳过位置。\n* **每轮回程**：每轮战斗结束后返回本丸。\n* **动画跳过**：增加一些点击以实现跳过动画的功能。在全局设置中开启「卡死重启」功能时，该选项不生效。\n* **同步后勤**：回本丸后自动检查队伍状态并派遣远征。请确保使用的队伍在远征任务中设置为休息。开启「智能远征调度」后，会在每圈结束时检查远征倒计时，若倒计时结束，会主动返回本丸。"
     },
     {
       "name": "陆联",
@@ -120,7 +120,7 @@
         "LR_同步远征"
       ],
       "label": "海陆联队",
-      "description": "联队战/海联/陆联 活动自动化出阵。\n\n* **更换队长**：换队长的方式可在全局设置中修改\n* **部队交替**：在行动选择界面自动切换部队，勾选后点击齿轮设置队伍序列。\n* **选择部队**：选择出阵部队（第1轮使用）。\n* **同步后勤**：回本丸后自动检查队伍状态并派遣远征。请确保使用的队伍在远征任务中设置为休息。\n\n> ⚠️ **注意**：游戏本身会在通行令牌不足时自动使用多倍道具。"
+      "description": "联队战/海联/陆联 活动自动化出阵。\n\n* **更换队长**：点击右侧齿轮配置跳过位置。\n* **部队交替**：在行动选择界面自动切换部队，勾选后点击齿轮设置队伍序列。\n* **选择部队**：选择出阵部队（第1轮使用）。\n* **同步后勤**：回本丸后自动检查队伍状态并派遣远征。请确保使用的队伍在远征任务中设置为休息。\n\n> ⚠️ **注意**：游戏本身会在通行令牌不足时自动使用多倍道具。"
     },
     {
       "name": "江户潜入",
@@ -136,7 +136,7 @@
         "EC_同步后勤"
       ],
       "label": "江户潜入",
-      "description": "江户城潜入调查 活动自动化出阵。\n\n* **难度**：固定使用 E4（超难）。\n* **行动策略**：直奔王点：字面意思；保守：优先保证能进王点；均衡：比保守激进一点；激进：战至最后一刻，自刎归天！\n* **同步后勤**：回本丸后自动检查队伍状态并派遣远征。请确保使用的队伍在远征任务中设置为休息。"
+      "description": "江户城潜入调查 活动自动化出阵。\n\n* **难度**：固定使用 E4（超难）。\n* **行动策略**：直奔王点：字面意思；保守：优先保证能进王点；均衡：比保守激进一点；激进：战至最后一刻，自刎归天！\n* **更换队长**：点击右侧齿轮配置跳过位置。\n* **同步后勤**：回本丸后自动检查队伍状态并派遣远征。请确保使用的队伍在远征任务中设置为休息。"
     },
     {
       "name": "战术强化",
@@ -215,7 +215,7 @@
       "description": "后勤（远征+修刀+内番）任务自动化。推荐通过其它任务的「同步后勤」选项调用，而不是单独运行。\n\n* **远征**：定时检查并派遣部队远征，五队可分别设置远征地图或休息。\n* **修刀**：检查远征队伍后，启用空闲工坊自动修复受损刀剑（避开编入队伍的刀剑），不使用加速符。可自定义使用的工坊和筛选条件。\n* **内番**：检查远征队伍后，若内番位置空闲，自动进入今日内番表指派内番。\n\n> ⚠️若停止后勤任务后启动其他任务失败，重启 MATR 即可。"
     }
   ],
-  "global_option": ["换队长方式", "远征智能调度", "长期远征计划", "卡死重启"],
+  "global_option": ["远征智能调度", "长期远征计划", "卡死重启"],
   "option": {
     "部队一": {
       "name": "部队一",
@@ -1555,20 +1555,23 @@
       "cases": [
         {
           "name": "",
+          "option": ["S_跳过位置"],
           "pipeline_override": {
-            "S_IsSwordSelect": {"enabled": true},
-            "S_DetectSortOrder": {"enabled": true},
-            "S_ClickDescending": {"enabled": true},
-            "S_ConfirmSortAsc": {"enabled": true},
-            "S_ClickCaptain1": {"enabled": true},
-            "S_ClickCaptain2": {"enabled": true},
-            "S_ClickCaptain3": {"enabled": true},
-            "S_ClickCaptain4": {"enabled": true},
-            "S_ClickCaptain5": {"enabled": true},
-            "S_ClickCaptainSlot": {"enabled": true},
+            "S_CaptainHub": {"next": ["S_DragCaptain", "S_IsPreSortieConfirm"]},
             "S_DragCaptain": {"enabled": true}
           }
         }
+      ],
+      "default_case": []
+    },
+    "S_跳过位置": {
+      "name": "S_跳过位置",
+      "label": "跳过位置",
+      "type": "checkbox",
+      "description": "换队长时跳过指定位置。若在任务中启用了「疲劳撤退」，不建议在此处勾选。",
+      "cases": [
+        {"name": "位置一"}, {"name": "位置二"}, {"name": "位置三"},
+        {"name": "位置四"}, {"name": "位置五"}, {"name": "位置六"}
       ],
       "default_case": []
     },
@@ -2159,17 +2162,9 @@
       "cases": [
         {
           "name": "",
+          "option": ["LR_跳过位置"],
           "pipeline_override": {
-            "LR_IsSwordSelect": {"enabled": true},
-            "LR_ClickCaptainSlot": {"enabled": true},
-            "LR_DetectSortOrder": {"enabled": true},
-            "LR_ClickDescending": {"enabled": true},
-            "LR_ConfirmSortAsc": {"enabled": true},
-            "LR_ClickCaptain1": {"enabled": true},
-            "LR_ClickCaptain2": {"enabled": true},
-            "LR_ClickCaptain3": {"enabled": true},
-            "LR_ClickCaptain4": {"enabled": true},
-            "LR_ClickCaptain5": {"enabled": true},
+            "LR_CaptainHub": {"next": ["LR_DragCaptain", "LR_IsPreSortieConfirm"]},
             "LR_DragCaptain": {"enabled": true}
           }
         }
@@ -2350,17 +2345,9 @@
       "cases": [
         {
           "name": "",
+          "option": ["EC_跳过位置"],
           "pipeline_override": {
-            "EC_IsSwordSelect": {"enabled": true},
-            "EC_ClickCaptainSlot": {"enabled": true},
-            "EC_DetectSortOrder": {"enabled": true},
-            "EC_ClickDescending": {"enabled": true},
-            "EC_ConfirmSortAsc": {"enabled": true},
-            "EC_ClickCaptain1": {"enabled": true},
-            "EC_ClickCaptain2": {"enabled": true},
-            "EC_ClickCaptain3": {"enabled": true},
-            "EC_ClickCaptain4": {"enabled": true},
-            "EC_ClickCaptain5": {"enabled": true},
+            "EC_CaptainHub": {"next": ["EC_DragCaptain", "EC_IsPreSortieConfirm"]},
             "EC_DragCaptain": {"enabled": true}
           }
         }
@@ -2653,9 +2640,6 @@
           "name": "刷花",
           "DisplayName": "刷花",
           "pipeline_override": {
-            "S_ConfirmSortAsc": {
-              "next": ["S_FatigueCheck"]
-            },
             "S_DragCaptain": {
               "next": ["S_FatigueCheck"]
             },
@@ -2669,9 +2653,6 @@
           "name": "停止",
           "DisplayName": "停止",
           "pipeline_override": {
-            "S_ConfirmSortAsc": {
-              "next": ["S_FatigueCheck"]
-            },
             "S_DragCaptain": {
               "next": ["S_FatigueCheck"]
             },
@@ -3188,17 +3169,9 @@
       "cases": [
         {
           "name": "",
+          "option": ["U_跳过位置"],
           "pipeline_override": {
-            "U_IsSwordSelect": {"enabled": true},
-            "U_DetectSortOrder": {"enabled": true},
-            "U_ClickDescending": {"enabled": true},
-            "U_ConfirmSortAsc": {"enabled": true},
-            "U_ClickCaptain1": {"enabled": true},
-            "U_ClickCaptain2": {"enabled": true},
-            "U_ClickCaptain3": {"enabled": true},
-            "U_ClickCaptain4": {"enabled": true},
-            "U_ClickCaptain5": {"enabled": true},
-            "U_ClickCaptainSlot": {"enabled": true},
+            "U_CaptainHub": {"next": ["U_DragCaptain", "U_IsPreSortieConfirm"]},
             "U_DragCaptain": {"enabled": true}
           }
         }
@@ -3264,9 +3237,6 @@
           "name": "停止",
           "DisplayName": "停止",
           "pipeline_override": {
-            "U_ConfirmSortAsc": {
-              "next": ["U_FatigueCheck"]
-            },
             "U_DragCaptain": {
               "next": ["U_FatigueCheck"]
             },
@@ -3284,9 +3254,6 @@
             "UF_Hub": {"enabled": true},
             "UF_UseRecord_Step1": {"enabled": true},
             "UF_EqRefill_Step1": {"enabled": true},
-            "U_ConfirmSortAsc": {
-              "next": ["U_FatigueCheck"]
-            },
             "U_DragCaptain": {
               "next": ["U_FatigueCheck"]
             }
@@ -5698,68 +5665,41 @@
         "Expedition": {"timeout": "{timeout_seconds}000"}
       }
     },
-    "换队长方式": {
-      "name": "换队长方式",
-      "label": "换队长方式",
-      "type": "select",
-      "default_case": "队内拖拽",
-      "cases": [
-        {
-          "name": "马匹筛选",
-          "DisplayName": "马匹筛选"
-        },
-        {
-          "name": "刀装筛选",
-          "DisplayName": "刀装筛选",
-          "pipeline_override": {
-            "S_ClickCaptain3": {
-              "target": [220, 512, 107, 29]
-            },
-            "LR_ClickCaptain3": {
-              "target": [220, 512, 107, 29]
-            },
-            "EC_ClickCaptain3": {
-              "target": [220, 512, 107, 29]
-            },
-            "U_ClickCaptain3": {
-              "target": [220, 512, 107, 29]
-            }
-          }
-        },
-        {
-          "name": "队内拖拽",
-          "DisplayName": "队内拖拽",
-          "pipeline_override": {
-            "S_CaptainHub": {
-              "next": ["S_DragCaptain", "S_IsPreSortieConfirm"]
-            },
-            "S_IsSwordSelect": {"enabled": false},
-            "S_DetectSortOrder": {"enabled": false},
-            "LR_CaptainHub": {
-              "next": ["LR_DragCaptain", "LR_IsPreSortieConfirm"]
-            },
-            "LR_IsSwordSelect": {"enabled": false},
-            "LR_DetectSortOrder": {"enabled": false},
-            "EC_CaptainHub": {
-              "next": ["EC_DragCaptain", "EC_IsPreSortieConfirm"]
-            },
-            "EC_IsSwordSelect": {"enabled": false},
-            "EC_DetectSortOrder": {"enabled": false},
-            "U_CaptainHub": {
-              "next": ["U_DragCaptain", "U_IsPreSortieConfirm"]
-            },
-            "U_IsSwordSelect": {"enabled": false},
-            "U_DetectSortOrder": {"enabled": false}
-          },
-          "option": ["拖拽跳过位置"]
-        }
-      ]
-    },
-    "拖拽跳过位置": {
-      "name": "拖拽跳过位置",
-      "label": "拖拽跳过位置",
+    "U_跳过位置": {
+      "name": "U_跳过位置",
+      "label": "跳过位置",
       "type": "checkbox",
-      "description": "队内拖拽换队长时跳过指定位置。若在任务中启用了「疲劳撤退」，请不要在此处勾选。",
+      "description": "换队长时跳过指定位置。若在任务中启用了「疲劳撤退」，不建议在此处勾选。",
+      "cases": [
+        {"name": "位置一"},
+        {"name": "位置二"},
+        {"name": "位置三"},
+        {"name": "位置四"},
+        {"name": "位置五"},
+        {"name": "位置六"}
+      ],
+      "default_case": []
+    },
+    "LR_跳过位置": {
+      "name": "LR_跳过位置",
+      "label": "跳过位置",
+      "type": "checkbox",
+      "description": "换队长时跳过指定位置。若在任务中启用了「疲劳撤退」，不建议在此处勾选。",
+      "cases": [
+        {"name": "位置一"},
+        {"name": "位置二"},
+        {"name": "位置三"},
+        {"name": "位置四"},
+        {"name": "位置五"},
+        {"name": "位置六"}
+      ],
+      "default_case": []
+    },
+    "EC_跳过位置": {
+      "name": "EC_跳过位置",
+      "label": "跳过位置",
+      "type": "checkbox",
+      "description": "换队长时跳过指定位置。若在任务中启用了「疲劳撤退」，不建议在此处勾选。",
       "cases": [
         {"name": "位置一"},
         {"name": "位置二"},
@@ -5874,7 +5814,7 @@
       "name": "疲劳阈值",
       "label": "疲劳阈值",
       "type": "input",
-      "description": "若开启该功能，「换队长方式」请勿选择为「刀装筛选」。\n开启后，远征派遣前将检测队伍中刀剑男士的疲劳值。若低于阈值，自动 1-1 单骑刷花至阈值以上。\n使用前请为远征刀剑男士装备满刀装并标记喜爱，同时将远征部队记录在对应部队记录槽位。对于非远征刀剑男士，请不要同时为他们标记喜爱与装备刀装。",
+      "description": "开启后，远征派遣前将检测队伍中刀剑男士的疲劳值。若低于阈值，自动 1-1 单骑刷花至阈值以上。\n使用前请为远征刀剑男士装备满刀装并标记喜爱，同时将远征部队记录在对应部队记录槽位。对于非远征刀剑男士，请不要同时为他们标记喜爱与装备刀装。",
       "default_case": "91",
       "inputs": [
         {

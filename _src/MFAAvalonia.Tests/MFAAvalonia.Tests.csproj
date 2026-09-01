@@ -38,5 +38,6 @@
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\NewMixTargetSelectionDecision.cs" Link="NewMixTargetSelectionDecision.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\MixGreedySelectionDecision.cs" Link="MixGreedySelectionDecision.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\TeamSwitchDecision.cs" Link="TeamSwitchDecision.cs" />
+    <Compile Include="..\MFAAvalonia\Extensions\MaaFW\CaptainSettingsDecision.cs" Link="CaptainSettingsDecision.cs" />
   </ItemGroup>
 </Project>

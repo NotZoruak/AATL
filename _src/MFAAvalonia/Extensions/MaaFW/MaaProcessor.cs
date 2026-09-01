@@ -3428,6 +3428,25 @@ public class MaaProcessor
         // 4. 合并任务自身的 option（task.option，最高优先级）
         UpdateTaskDictionary(ref taskModels, task.InterfaceItem?.Option, task.InterfaceItem?.Advanced);
 
+        var dragNodeName = CaptainSettingsDecision.GetDragNodeName(task.InterfaceItem?.Entry);
+        if (dragNodeName != null)
+        {
+            var skipPositions = CaptainSettingsHelper.GetSelectedSkipPositions(task.InterfaceItem);
+            taskModels.Merge(new Dictionary<string, JToken>
+            {
+                [dragNodeName] = new JObject
+                {
+                    ["action"] = new JObject
+                    {
+                        ["custom_action_param"] = new JObject
+                        {
+                            ["skip_positions"] = new JArray(skipPositions)
+                        }
+                    }
+                }
+            });
+        }
+
         // 5. 合战场/地下城/陆联/江户潜入同步远征：自动复用远征任务的队伍配置
         if (task.InterfaceItem?.Entry == "Sortie" || task.InterfaceItem?.Entry == "Underground" || task.InterfaceItem?.Entry == "LRentaisen" || task.InterfaceItem?.Entry == "TacticalTraining" || task.InterfaceItem?.Entry == "EdoCastle")
         {

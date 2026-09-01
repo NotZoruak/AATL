@@ -18,7 +18,6 @@
       "EC_IsMenuDirectory",
       "EC_IsTicketPopup",
       "EC_IsReplenishDone",
-      "EC_IsSwordSelect",
       "EC_IsTeamSelect",
       "EC_IsBattleResult_Exp",
       "EC_IsBattleResult_Title",
@@ -458,19 +457,7 @@
     "next": ["EC_DetectWhereAmI"],
     "on_error": ["EC_DetectWhereAmI"]
   },
-  "EC_IsSwordSelect": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [530, 6, 224, 45],
-        "expected": "刀剑男士选择"
-      }
-    },
-    "next": ["EC_ClickCaptain1"],
-    "on_error": ["EC_DetectWhereAmI"]
-  },
-  "EC_IsTeamSelect": {
+"EC_IsTeamSelect": {
     "recognition": {
       "type": "OCR",
       "param": {
@@ -547,110 +534,7 @@
     "next": ["EC_PostClickMenuHub"],
     "on_error": ["EC_DetectWhereAmI"]
   },
-  "EC_ClickCaptain1": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [828, 82, 68, 25]
-      }
-    },
-    "pre_delay": 100,
-    "post_delay": 800,
-    "next": ["EC_ClickCaptain2"],
-    "on_error": ["EC_DetectWhereAmI"]
-  },
-  "EC_ClickCaptain2": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [752, 137, 97, 29]
-      }
-    },
-    "pre_delay": 100,
-    "post_delay": 800,
-    "next": ["EC_ClickCaptain3"],
-    "on_error": ["EC_DetectWhereAmI"]
-  },
-  "EC_ClickCaptain3": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [407, 510, 90, 31]
-      }
-    },
-    "pre_delay": 100,
-    "post_delay": 800,
-    "next": ["EC_ClickCaptain4"],
-    "on_error": ["EC_DetectWhereAmI"]
-  },
-  "EC_ClickCaptain4": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [965, 438, 91, 34]
-      }
-    },
-    "pre_delay": 100,
-    "post_delay": 800,
-    "next": ["EC_ClickCaptain5"],
-    "on_error": ["EC_DetectWhereAmI"]
-  },
-  "EC_ClickCaptain5": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [592, 603, 107, 46]
-      }
-    },
-    "pre_delay": 100,
-    "next": ["EC_DetectSortOrder"],
-    "on_error": ["EC_DetectWhereAmI"]
-  },
-  "EC_DetectSortOrder": {
-    "enabled": false,
-    "next": ["EC_ClickDescending", "EC_ConfirmSortAsc"],
-    "on_error": ["EC_DetectWhereAmI"]
-  },
-  "EC_ClickDescending": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [939, 77, 56, 39],
-        "expected": "降序"
-      }
-    },
-    "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 800,
-    "next": ["EC_DetectSortOrder"],
-    "on_error": ["EC_DetectWhereAmI"]
-  },
-  "EC_ConfirmSortAsc": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [939, 77, 56, 39],
-        "expected": "升序"
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1189, 140, 37, 61]
-      }
-    },
-    "pre_delay": 100,
-    "next": ["EC_AfterCaptain"],
-    "on_error": ["EC_DetectWhereAmI"]
-  },
-  "EC_ClickTeam": {
+"EC_ClickTeam": {
     "action": {
       "type": "Click",
       "param": {
@@ -880,23 +764,10 @@
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_CaptainHub": {
-    "next": ["EC_ClickCaptainSlot", "EC_IsPreSortieConfirm"],
+    "next": ["EC_IsPreSortieConfirm"],
     "on_error": ["EC_DetectWhereAmI"]
   },
-  "EC_ClickCaptainSlot": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1024, 140, 30, 50]
-      }
-    },
-    "pre_delay": 100,
-    "post_delay": 1000,
-    "next": ["EC_DetectWhereAmI"],
-    "on_error": ["EC_DetectWhereAmI"]
-  },
-  "EC_TerminateRound": {
+"EC_TerminateRound": {
     "action": {
       "type": "Custom",
       "custom_action": "LogAction",

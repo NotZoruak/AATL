@@ -1,5 +1,6 @@
 using MFAAvalonia.Models;
 using MFAAvalonia.Services;
+using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.Extensions.MaaFW.Custom;
 using MFAAvalonia.Configuration;
 using MFAAvalonia.Helper;
@@ -37,6 +38,66 @@ AssertTrue(taskOptionGeneratorSource.Contains("var grid = new UniformGrid", Stri
 
 var optionInterfaceJson = JObject.Parse(File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "assets", "interface.json")));
+AssertTrue(CaptainSettingsDecision.GetDragNodeName("Underground") == "U_DragCaptain",
+    "地下城应映射到 U_DragCaptain");
+AssertTrue(CaptainSettingsDecision.GetDragNodeName("TacticalTraining") == "TT_DragCaptain",
+    "战术强化应映射到 TT_DragCaptain");
+AssertTrue(CaptainSettingsDecision.GetDragNodeName("FlowerBrush") == null,
+    "不支持的任务入口不应映射拖拽 action");
+AssertTrue(CaptainSettingsDecision.GetSkipOptionName("Sortie") == "S_跳过位置",
+    "合战场应映射到任务专属跳过位置");
+AssertTrue(CaptainSettingsDecision.GetSkipOptionName("TacticalTraining") == null,
+    "战术强化不应拥有跳过位置配置");
+AssertTrue(CaptainSettingsDecision.ParseSkipPositions(["位置二", "位置五", "未知位置"]).SetEquals([1, 4]),
+    "位置名称应转换为有效的零基索引");
+AssertFalse(optionInterfaceJson["global_option"]!.Values<string>().Contains("换队长方式"),
+    "换队长方式不应继续作为全局设置");
+AssertTrue(optionInterfaceJson["option"]?["换队长方式"] == null
+    && optionInterfaceJson["option"]?["拖拽跳过位置"] == null,
+    "已移除的全局换队长配置不应残留定义");
+foreach (var (taskEntry, captainOptionName, skipOptionName) in new[]
+         {
+             ("Sortie", "S_换队长", "S_跳过位置"),
+             ("Underground", "U_换队长", "U_跳过位置"),
+             ("LRentaisen", "LR_换队长", "LR_跳过位置"),
+             ("EdoCastle", "EC_换队长", "EC_跳过位置")
+         })
+{
+    var captainOption = optionInterfaceJson["option"]?[captainOptionName];
+    AssertTrue(captainOption?["type"]?.Value<string>() == "checkbox"
+        && captainOption["cases"]?.Children<JObject>().Single()["option"]?.Values<string>().SequenceEqual([skipOptionName]) == true,
+        $"{taskEntry}的更换队长应通过齿轮进入任务专属跳过位置设置");
+    var dragNodeName = CaptainSettingsDecision.GetDragNodeName(taskEntry)!;
+    AssertTrue(captainOption["cases"]?.Children<JObject>().Single()["pipeline_override"]?[dragNodeName]?["enabled"]?.Value<bool>() == true,
+        $"{taskEntry}启用更换队长时应启用拖拽 node");
+    AssertTrue(optionInterfaceJson["option"]?[skipOptionName]?["label"]?.Value<string>() == "跳过位置",
+        $"{taskEntry}的跳过位置设置应使用统一名称");
+}
+AssertTrue(optionInterfaceJson["option"]?["TT_换队长"]?["cases"]?.Children<JObject>().Single()["option"] == null,
+    "战术强化的更换队长不应提供跳过位置设置");
+AssertFalse(optionInterfaceJson.ToString().Contains("马匹筛选", StringComparison.Ordinal)
+    || optionInterfaceJson.ToString().Contains("刀装筛选", StringComparison.Ordinal),
+    "资源配置不应保留马匹或刀装筛选换队长内容");
+foreach (var (pipelineFileName, prefix) in new[]
+         {
+             ("Sortie.json", "S_"),
+             ("Underground.json", "U_"),
+             ("LRentaisen.json", "LR_"),
+             ("EdoCastle.json", "EC_")
+         })
+{
+    var pipeline = JObject.Parse(File.ReadAllText(Path.Combine(
+        Directory.GetCurrentDirectory(), "assets", "resource", "base", "pipeline", pipelineFileName)));
+    var retiredNodeNames = new[]
+    {
+        "IsSwordSelect", "DetectSortOrder", "ClickDescending", "ConfirmSortAsc",
+        "ClickCaptain1", "ClickCaptain2", "ClickCaptain3", "ClickCaptain4", "ClickCaptain5", "ClickCaptainSlot"
+    };
+    AssertTrue(retiredNodeNames.All(nodeName => pipeline[$"{prefix}{nodeName}"] == null),
+        $"{pipelineFileName}不应保留旧筛选换队长 node");
+    AssertTrue(pipeline[$"{prefix}CaptainHub"]?["next"]?.Values<string>().SequenceEqual([$"{prefix}IsPreSortieConfirm"]) == true,
+        $"{pipelineFileName}的 CaptainHub 默认应直接进入出阵确认");
+}
 var sortiePipeline = JObject.Parse(File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "assets", "resource", "base", "pipeline", "Sortie.json")));
 var dashboardLayout = JObject.Parse(File.ReadAllText(Path.Combine(
@@ -1155,6 +1216,7 @@ static bool AreSameSwordBookStates(IReadOnlyList<SwordBookPortraitState> left, I
 
     return true;
 }
+
 
 static void DeleteIfExists(string path)
 {

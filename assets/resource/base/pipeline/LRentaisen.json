@@ -15,7 +15,6 @@
       "LR_IsMenuDirectory",
       "LR_IsTicketPopup",
       "LR_IsReplenishDone",
-      "LR_IsSwordSelect",
       "LR_IsTeamSelect",
       "LR_IsBattleResult_Exp",
       "LR_IsBattleResult_Title",
@@ -424,19 +423,7 @@
     "pre_delay": 100,
     "next": ["LR_DetectWhereAmI"]
   },
-  "LR_IsSwordSelect": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [530, 6, 224, 45],
-        "expected": "刀剑男士选择"
-      }
-    },
-    "next": ["LR_ClickCaptain1"],
-    "on_error": ["LR_DetectWhereAmI"]
-  },
-  "LR_IsTeamSelect": {
+"LR_IsTeamSelect": {
     "recognition": {
       "type": "OCR",
       "param": {
@@ -538,110 +525,7 @@
     "next": ["LR_PostClickMenuHub"],
     "on_error": ["LR_DetectWhereAmI"]
   },
-  "LR_ClickCaptain1": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [828, 82, 68, 25]
-      }
-    },
-    "pre_delay": 100,
-    "post_delay": 800,
-    "next": ["LR_ClickCaptain2"],
-    "on_error": ["LR_DetectWhereAmI"]
-  },
-  "LR_ClickCaptain2": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [752, 137, 97, 29]
-      }
-    },
-    "pre_delay": 100,
-    "post_delay": 800,
-    "next": ["LR_ClickCaptain3"],
-    "on_error": ["LR_DetectWhereAmI"]
-  },
-  "LR_ClickCaptain3": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [407, 510, 90, 31]
-      }
-    },
-    "pre_delay": 100,
-    "post_delay": 800,
-    "next": ["LR_ClickCaptain4"],
-    "on_error": ["LR_DetectWhereAmI"]
-  },
-  "LR_ClickCaptain4": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [965, 438, 91, 34]
-      }
-    },
-    "pre_delay": 100,
-    "post_delay": 800,
-    "next": ["LR_ClickCaptain5"],
-    "on_error": ["LR_DetectWhereAmI"]
-  },
-  "LR_ClickCaptain5": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [592, 603, 107, 46]
-      }
-    },
-    "pre_delay": 100,
-    "next": ["LR_DetectSortOrder"],
-    "on_error": ["LR_DetectWhereAmI"]
-  },
-  "LR_DetectSortOrder": {
-    "enabled": false,
-    "next": ["LR_ClickDescending", "LR_ConfirmSortAsc"],
-    "on_error": ["LR_DetectWhereAmI"]
-  },
-  "LR_ClickDescending": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [939, 77, 56, 39],
-        "expected": "降序"
-      }
-    },
-    "action": {"type": "Click"},
-    "pre_delay": 100,
-    "post_delay": 800,
-    "next": ["LR_DetectSortOrder"],
-    "on_error": ["LR_DetectWhereAmI"]
-  },
-  "LR_ConfirmSortAsc": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [939, 77, 56, 39],
-        "expected": "升序"
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1189, 140, 37, 61]
-      }
-    },
-    "pre_delay": 100,
-    "next": ["LR_AfterCaptain"],
-    "on_error": ["LR_DetectWhereAmI"]
-  },
-  "LR_ClickTeam": {
+"LR_ClickTeam": {
     "action": {
       "type": "Click",
       "param": {
@@ -901,22 +785,10 @@
     "on_error": ["LR_DetectWhereAmI"]
   },
   "LR_CaptainHub": {
-    "next": ["LR_ClickCaptainSlot", "LR_IsPreSortieConfirm"],
+    "next": ["LR_IsPreSortieConfirm"],
     "on_error": ["LR_DetectWhereAmI"]
   },
-  "LR_ClickCaptainSlot": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1024, 140, 30, 50]
-      }
-    },
-    "pre_delay": 100,
-    "post_delay": 1000,
-    "next": ["LR_DetectWhereAmI"]
-  },
-  "LR_TerminateRound": {
+"LR_TerminateRound": {
     "next": [],
     "on_error": ["LR_DetectWhereAmI"]
   },

@@ -17,7 +17,6 @@
       "U_IsResourcePoint",
       "U_IsSpecialDrop",
       "U_IsFormationSelect",
-      "U_IsSwordSelect",
       "U_IsTeamSelect",
       "U_IsSortie",
       "U_IsEventPage",
@@ -298,19 +297,7 @@
     },
     "next": ["U_DetectWhereAmI"]
   },
-  "U_IsSwordSelect": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [530, 6, 224, 45],
-        "expected": "刀剑男士选择"
-      }
-    },
-    "next": ["U_ClickCaptain1"],
-    "on_error": ["U_DetectWhereAmI"]
-  },
-  "U_IsTeamSelect": {
+"U_IsTeamSelect": {
     "recognition": {
       "type": "OCR",
       "param": {
@@ -685,7 +672,7 @@
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_CaptainHub": {
-    "next": ["U_ClickCaptainSlot", "U_IsPreSortieConfirm"],
+    "next": ["U_IsPreSortieConfirm"],
     "on_error": ["U_DetectWhereAmI"]
   },
   "U_CheckEquipmentPopup": {
@@ -733,101 +720,7 @@
       "target": [1156, 241, 27, 25]
     }
   },
-  "U_ClickCaptain1": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [828, 82, 68, 25]
-      }
-    },
-    "next": ["U_ClickCaptain2"],
-    "on_error": ["U_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
-  },
-  "U_ClickCaptain2": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [752, 137, 97, 29]
-      }
-    },
-    "next": ["U_ClickCaptain3"],
-    "on_error": ["U_DetectWhereAmI"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [752, 137, 97, 29]
-    }
-  },
-  "U_ClickCaptain3": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [407, 510, 90, 31]
-      }
-    },
-    "next": ["U_ClickCaptain4"],
-    "on_error": ["U_DetectWhereAmI"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [407, 510, 90, 31]
-    }
-  },
-  "U_ClickCaptain4": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [965, 438, 91, 34]
-      }
-    },
-    "next": ["U_ClickCaptain5"],
-    "on_error": ["U_DetectWhereAmI"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [965, 438, 91, 34]
-    }
-  },
-  "U_ClickCaptain5": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [592, 603, 107, 46]
-      }
-    },
-    "next": ["U_DetectSortOrder"],
-    "on_error": ["U_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
-  },
-  "U_ClickCaptainSlot": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1024, 140, 30, 50]
-      }
-    },
-    "next": ["U_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
-  },
-  "U_ClickDescending": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [939, 77, 56, 39],
-        "expected": "降序"
-      }
-    },
-    "action": {"type": "Click"},
-    "next": ["U_DetectSortOrder"],
-    "on_error": ["U_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
-  },
-  "U_ClickMenuForRepair": {
+"U_ClickMenuForRepair": {
     "recognition": {
       "type": "OCR",
       "param": {
@@ -941,35 +834,11 @@
     },
     "next": ["U_DetectWhereAmI"]
   },
-  "U_ConfirmSortAsc": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [939, 77, 56, 39],
-        "expected": "升序"
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1189, 140, 37, 61]
-      }
-    },
-    "next": ["U_IsPreSortieConfirm"],
-    "on_error": ["U_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
-  },
-  "U_DecideDamage_Pre": {
+"U_DecideDamage_Pre": {
     "next": ["U_NavigateToRepair", "U_LogStopOnDamageRepair"],
     "on_error": ["U_DetectWhereAmI"]
   },
-  "U_DetectSortOrder": {
-    "enabled": false,
-    "next": ["U_ClickDescending", "U_ConfirmSortAsc"],
-    "on_error": ["U_DetectWhereAmI"]
-  },
-  "U_DirAfterRepair": {
+"U_DirAfterRepair": {
     "recognition": {
       "type": "OCR",
       "param": {

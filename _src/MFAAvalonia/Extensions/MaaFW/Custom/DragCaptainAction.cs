@@ -1,5 +1,6 @@
 using MaaFramework.Binding;
 using MaaFramework.Binding.Custom;
+using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.Helper;
 using System;
 using System.Collections.Generic;
@@ -44,8 +45,8 @@ public class DragCaptainAction : IMaaCustomAction
             ActionParamHelper.ThrowIfStopping(context);
             var tasker = context.Tasker;
 
-            // 读取跳过位置配置
-            var skipPositions = GetSkipPositions();
+            // 读取当前任务注入的跳过位置配置
+            var skipPositions = ParseSkipPositions(args.ActionParam);
 
             // OCR 六个位置的疲劳值，空槽位标记为不可用
             var fatigueValues = new int?[6];
@@ -125,28 +126,10 @@ public class DragCaptainAction : IMaaCustomAction
         }
     }
 
-    /// <summary>从全局选项读取跳过位置配置，返回 0-based 索引集合</summary>
-    private static HashSet<int> GetSkipPositions()
+    /// <summary>从任务 action 参数读取跳过位置配置，返回零基索引集合。</summary>
+    public static HashSet<int> ParseSkipPositions(string? actionParam)
     {
-        var skipSet = new HashSet<int>();
-        var iface = MaaProcessor.Interface;
-        var globalOpts = iface?.GlobalSelectOptions;
-        if (globalOpts == null) return skipSet;
-
-        // 「拖拽跳过位置」是「换队长方式」的子选项，需穿透 SubOptions 查找
-        var captainOpt = globalOpts.FirstOrDefault(o => o.Name == "换队长方式");
-        var dragSkipOpt = captainOpt?.SubOptions?.FirstOrDefault(o => o.Name == "拖拽跳过位置");
-        if (dragSkipOpt?.SelectedCases == null) return skipSet;
-
-        foreach (var name in dragSkipOpt.SelectedCases)
-        {
-            if (name == "位置一") skipSet.Add(0);
-            else if (name == "位置二") skipSet.Add(1);
-            else if (name == "位置三") skipSet.Add(2);
-            else if (name == "位置四") skipSet.Add(3);
-            else if (name == "位置五") skipSet.Add(4);
-            else if (name == "位置六") skipSet.Add(5);
-        }
-        return skipSet;
+        var actionParamJson = ActionParamHelper.Parse(actionParam ?? string.Empty);
+        return CaptainSettingsDecision.ParseSkipPositions(actionParamJson["skip_positions"]?.Values<string>());
     }
 }

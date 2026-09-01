@@ -14,7 +14,6 @@
       "S_IsTrainingApplication",
       "S_IsResourcePoint",
       "S_IsFormationSelect",
-      "S_IsSwordSelect",
       "S_IsTeamSelect",
       "S_IsPastEraSelect",
       "S_IsIsekaiEraSelect",
@@ -204,57 +203,7 @@
     },
     "next": ["S_DetectWhereAmI"]
   },
-  "S_IsSwordSelect": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [530, 6, 224, 45],
-        "expected": "刀剑男士选择"
-      }
-    },
-    "next": ["S_ClickCaptain1"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_DetectSortOrder": {
-    "enabled": false,
-    "next": ["S_ClickDescending", "S_ConfirmSortAsc"],
-    "on_error": ["S_DetectWhereAmI"]
-  },
-  "S_ClickDescending": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [939, 77, 56, 39],
-        "expected": "降序"
-      }
-    },
-    "action": {"type": "Click"},
-    "next": ["S_DetectSortOrder"],
-    "on_error": ["S_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
-  },
-  "S_ConfirmSortAsc": {
-    "enabled": false,
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "roi": [939, 77, 56, 39],
-        "expected": "升序"
-      }
-    },
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1189, 140, 37, 61]
-      }
-    },
-    "next": ["S_IsPreSortieConfirm"],
-    "on_error": ["S_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
-  },
-  "S_IsPreSortieConfirm": {
+"S_IsPreSortieConfirm": {
     "recognition": {
       "type": "OCR",
       "param": {
@@ -2362,88 +2311,8 @@
     "next": ["S_ClickRepairInMenu"],
     "on_error": ["S_SelectDamagedSword"]
   },
-  "S_ClickCaptain1": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [828, 82, 68, 25]
-      }
-    },
-    "next": ["S_ClickCaptain2"],
-    "on_error": ["S_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
-  },
-  "S_ClickCaptain2": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [752, 137, 97, 29]
-      }
-    },
-    "next": ["S_ClickCaptain3"],
-    "on_error": ["S_DetectWhereAmI"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [752, 137, 97, 29]
-    }
-  },
-  "S_ClickCaptain3": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [407, 510, 90, 31]
-      }
-    },
-    "next": ["S_ClickCaptain4"],
-    "on_error": ["S_DetectWhereAmI"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [407, 510, 90, 31]
-    }
-  },
-  "S_ClickCaptain4": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [965, 438, 91, 34]
-      }
-    },
-    "next": ["S_ClickCaptain5"],
-    "on_error": ["S_DetectWhereAmI"],
-    "post_wait_freezes": {
-      "time": 100,
-      "target": [965, 438, 91, 34]
-    }
-  },
-  "S_ClickCaptain5": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [592, 603, 107, 46]
-      }
-    },
-    "next": ["S_DetectSortOrder"],
-    "on_error": ["S_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
-  },
-  "S_ClickCaptainSlot": {
-    "enabled": false,
-    "action": {
-      "type": "Click",
-      "param": {
-        "target": [1024, 140, 30, 50]
-      }
-    },
-    "next": ["S_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
-  },
-  "S_CaptainHub": {
-    "next": ["S_ClickCaptainSlot", "S_IsPreSortieConfirm"],
+"S_CaptainHub": {
+    "next": ["S_IsPreSortieConfirm"],
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_PreConfirmSupply": {
