@@ -33,6 +33,14 @@ public static class UpdateDataPersistenceService
             return false;
 
         ConfigurationManager.Current.ReloadFromDisk();
+        var existingWarehouse = ConfigurationManager.Current.GetValue(
+            ConfigurationKeys.WarehouseData,
+            new WarehouseData());
+        warehouseData.ResourceHistory =
+        [
+            .. existingWarehouse.ResourceHistory.Select(CloneSnapshot),
+            .. warehouseData.ResourceHistory.Select(CloneSnapshot),
+        ];
         ConfigurationManager.Current.SetValue(ConfigurationKeys.WarehouseData, warehouseData);
         WarehouseDataSaved?.Invoke();
         return true;
@@ -163,6 +171,12 @@ public static class UpdateDataPersistenceService
             })
             .Where(snapshot => snapshot.Values.Count > 0)];
     }
+
+    private static WarehouseResourceSnapshot CloneSnapshot(WarehouseResourceSnapshot snapshot) => new()
+    {
+        RecordedAt = snapshot.RecordedAt,
+        Values = new Dictionary<string, int>(snapshot.Values, StringComparer.Ordinal),
+    };
 
     private sealed class WarehouseDraftDocument
     {

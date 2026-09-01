@@ -836,6 +836,47 @@ AssertTrue(warehouseAfterStaleSwordBookSave.CoreResources["木炭"] == 999,
     "刀帐保存不能用内存中的旧仓库数据覆盖磁盘中的最新仓库数据");
 
 ConfigurationManager.Current.Reset();
+var warehouseWithHistory = new WarehouseData
+{
+    CoreResources = new Dictionary<string, int> { ["木炭"] = 10 },
+    ResourceHistory =
+    [
+        new WarehouseResourceSnapshot
+        {
+            RecordedAt = new DateTime(2026, 8, 29, 12, 0, 0, DateTimeKind.Local),
+            Values = new Dictionary<string, int> { ["木炭"] = 10 },
+        },
+    ],
+};
+ConfigurationManager.Current.SetValue(ConfigurationKeys.WarehouseData, warehouseWithHistory);
+var historyPreservingDraftPath = Path.Combine(Path.GetTempPath(), $"matr-update-data-warehouse-history-{Guid.NewGuid():N}.json");
+File.WriteAllText(historyPreservingDraftPath,
+    """
+    {
+      "core_resources": {
+        "木炭": 20
+      },
+      "other_items": {},
+      "resource_history": [
+        {
+          "recorded_at": "2026-08-30T12:00:00+08:00",
+          "values": {
+            "木炭": 20
+          }
+        }
+      ]
+    }
+    """);
+AssertTrue(InvokeTrySaveWarehouseDraft(historyPreservingDraftPath),
+    "带有历史记录的仓库草稿应能保存");
+DeleteIfExists(historyPreservingDraftPath);
+var warehouseAfterHistoryPreservingSave = ConfigurationManager.Current.GetValue(ConfigurationKeys.WarehouseData, new WarehouseData());
+AssertTrue(warehouseAfterHistoryPreservingSave.ResourceHistory.Count == 2
+    && warehouseAfterHistoryPreservingSave.ResourceHistory[0].Values["木炭"] == 10
+    && warehouseAfterHistoryPreservingSave.ResourceHistory[1].Values["木炭"] == 20,
+    "更新数据保存仓库时应保留已有折线图记录并追加新记录");
+
+ConfigurationManager.Current.Reset();
 ConfigurationManager.Current.SetValue(ConfigurationKeys.WarehouseData, oldWarehouse.Clone());
 ConfigurationManager.Current.SetValue(ConfigurationKeys.SwordBookEntries, CloneSwordBookStates(oldSwordBook));
 var invalidWarehouseDraftPath = Path.Combine(Path.GetTempPath(), $"matr-update-data-warehouse-invalid-{Guid.NewGuid():N}.json");

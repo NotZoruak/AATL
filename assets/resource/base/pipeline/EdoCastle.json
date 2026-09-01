@@ -7,6 +7,7 @@
     "pre_delay": 0,
     "timeout": 120000,
     "next": [
+      "EC_DeclineUmeboshiUse",
       "EC_IsSupplyPopup",
       "EC_HasExpeditionReturn_Exp",
       "EC_HasExpeditionReturn_Title",
@@ -39,6 +40,23 @@
       "EC_FallbackWait"
     ],
     "on_error": ["EC_RestartGame"]
+  },
+  "EC_DeclineUmeboshiUse": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [508, 368, 76, 36],
+        "expected": "不使用"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [462, 457, 75, 44]
+      }
+    },
+    "next": ["EC_TerminateRound"],
+    "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_IsAnnouncementPopup": {
     "recognition": {
@@ -975,7 +993,7 @@
   },
   "EC_CheckMoreSpecialDrops": {
     "timeout": 10000,
-    "next": ["EC_IsSpecialDrop", "EC_WaitForEventPage", "EC_IsActionSelect"],
+    "next": ["EC_IsSpecialDrop", "EC_WaitForEventPage", "EC_IsActionSelect","EC_DeclineUmeboshiUse"],
     "on_error": ["EC_DetectWhereAmI"]
   },
   "EC_IsActionSelect": {
