@@ -1063,9 +1063,97 @@
         "click": [789, 512, 1, 4]
       }
     },
-    "next": ["U_GuiSupplyLog"],
+    "next": ["U_FallbackConfirmRecord", "U_GuiSupplyLog"],
     "on_error": ["U_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 200}
+    "post_delay": 500
+  },
+  "U_FallbackConfirmRecord": {
+    "enabled": false,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [567, 37, 138, 35],
+        "expected": "记录确认"
+      }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "记录中刀装不足"}
+    },
+    "next": ["U_FallbackConfirmRecordLog"],
+    "on_error": ["U_GuiSupplyLog"]
+  },
+  "U_FallbackConfirmRecordLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {
+        "level": "Info",
+        "message": "记录中刀装不足"
+      }
+    },
+    "next": ["U_FallbackConfirmRecordClick"],
+    "on_error": ["U_GuiSupplyLog"]
+  },
+  "U_FallbackConfirmRecordClick": {
+    "action": {
+      "type": "Click",
+      "param": {"target": [1024, 519, 99, 48]}
+    },
+    "next": ["U_FallbackVerifyTeamSelect"],
+    "on_error": ["U_GuiSupplyLog"]
+  },
+  "U_FallbackVerifyTeamSelect": {
+    "enabled": true,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [561, 1, 160, 49],
+        "expected": "部队选择"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {"target": [1050, 80, 27, 28]}
+    },
+    "next": ["U_FallbackFindMissingEquipment"],
+    "on_error": ["U_DetectWhereAmI"]
+  },
+  "U_FallbackFindMissingEquipment": {
+    "enabled": true,
+    "action": {
+      "type": "Custom",
+      "custom_action": "EquipmentFallbackAction"
+    },
+    "next": ["U_FallbackConfirmOneClickEquip"],
+    "on_error": ["U_IsPreSortieConfirm"]
+  },
+  "U_FallbackConfirmOneClickEquip": {
+    "enabled": true,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [574, 9, 135, 38],
+        "expected": "更换装备"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {"target": [564, 84, 108, 20]}
+    },
+    "next": ["U_FallbackReturnFromEquip"],
+    "on_error": ["U_DetectWhereAmI"],
+    "post_delay": 500
+  },
+  "U_FallbackReturnFromEquip": {
+    "enabled": true,
+    "action": {
+      "type": "Click",
+      "param": {"target": [136, 10, 31, 29]}
+    },
+    "next": ["U_FallbackFindMissingEquipment"],
+    "on_error": ["U_DetectWhereAmI"]
   },
   "U_ReturnHomeAfterMarch": {
     "recognition": {

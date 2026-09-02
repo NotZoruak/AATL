@@ -5017,6 +5017,7 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.FormationEquipSelectAction());
             tasker.Resource.Register(new Custom.FormationHorseSelectAction());
             tasker.Resource.Register(new Custom.FormationEquipStateMachine());
+            tasker.Resource.Register(new Custom.EquipmentFallbackAction());
             LoggerHelper.Info("已注册内置特殊任务动作。");
 
             // 获取当前资源的自定义目录

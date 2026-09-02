@@ -1995,6 +1995,13 @@
     "on_error": ["S_DetectWhereAmI"]
   },
   "S_GuiSupplyLog": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [576, 151, 126, 34],
+        "expected": "部队记录"
+      }
+    },
     "action": {
       "type": "Custom",
       "custom_action": "GuiLogAction",
@@ -2333,9 +2340,97 @@
         "click": [789, 512, 1, 4]
       }
     },
-    "next": ["S_GuiSupplyLog"],
+    "post_delay": 500,
+    "next": ["S_FallbackConfirmRecord", "S_GuiSupplyLog"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_FallbackConfirmRecord": {
+    "enabled": false,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [567, 37, 138, 35],
+        "expected": "记录确认"
+      }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "记录中刀装不足"}
+    },
+    "next": ["S_FallbackConfirmRecordLog"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_FallbackConfirmRecordLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "LogAction",
+      "custom_action_param": {
+        "level": "Info",
+        "message": "记录中刀装不足"
+      }
+    },
+    "next": ["S_FallbackConfirmRecordClick"]
+  },
+  "S_FallbackConfirmRecordClick": {
+    "action": {
+      "type": "Click",
+      "param": {"target": [1024, 519, 99, 48]}
+    },
+    "next": ["S_FallbackVerifyTeamSelect"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_FallbackVerifyTeamSelect": {
+    "enabled": true,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [561, 1, 160, 49],
+        "expected": "部队选择"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {"target": [1050, 80, 27, 28]}
+    },
+    "post_wait_freezes": {"time": 200, "target": [1050, 80, 27, 28]},
+    "next": ["S_FallbackFindMissingEquipment"],
+    "on_error": ["S_DetectWhereAmI"]
+  },
+  "S_FallbackFindMissingEquipment": {
+    "enabled": true,
+    "action": {
+      "type": "Custom",
+      "custom_action": "EquipmentFallbackAction"
+    },
+    "next": ["S_FallbackConfirmOneClickEquip"],
+    "on_error": ["S_IsPreSortieConfirm"]
+  },
+  "S_FallbackConfirmOneClickEquip": {
+    "enabled": true,
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [574, 9, 135, 38],
+        "expected": "更换装备"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {"target": [564, 84, 108, 20]}
+    },
+    "next": ["S_FallbackReturnFromEquip"],
     "on_error": ["S_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
+    "post_delay": 500
+  },
+  "S_FallbackReturnFromEquip": {
+    "enabled": true,
+    "action": {
+      "type": "Click",
+      "param": {"target": [136, 10, 31, 29]}
+    },
+    "next": ["S_FallbackFindMissingEquipment"],
+    "on_error": ["S_DetectWhereAmI"]
   },
   "S_WaitRefresh": {
     "recognition": {
