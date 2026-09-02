@@ -80,7 +80,7 @@
         "S_同步远征"
       ],
       "label": "常驻作战",
-      "description": "合战场（过去/异去）出阵自动化。\n\n* **疲劳处理**：该功能较脆弱，建议在有人值守时使用。需要同时开启「更换队长」。\n* **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n* **刀装保护**：行军中检测到刀装被破坏/接近被破坏时撤退。\n* **疲劳撤退**：行军中检测刀剑重疲劳状态时撤退。\n* **更换队长**：点击右侧齿轮配置跳过位置。\n* **同步后勤**：回本丸后自动检查队伍状态并派遣远征。请确保使用的队伍在远征任务中设置为休息。"
+      "description": "合战场（过去/异去）出阵自动化。\n\n过去的王点前撤退和异去的重复次数设置：点「过去/异去」选项旁边的齿轮\n\n* **疲劳处理**：该功能较脆弱，建议在有人值守时使用。需要同时开启「更换队长」。\n* **补充刀装**：出阵前检测刀装不足弹窗并自动补充，使用前请将部队保存至对应的记录槽。\n* **刀装保护**：行军中检测到刀装被破坏/接近被破坏时撤退。\n* **疲劳撤退**：行军中检测刀剑重疲劳状态时撤退。\n* **更换队长**：点击右侧齿轮配置跳过位置。\n* **同步后勤**：回本丸后自动检查队伍状态并派遣远征。请确保使用的队伍在远征任务中设置为休息。"
     },
     {
       "name": "地下城",
@@ -6703,12 +6703,18 @@
     "D_演练避战强敌": {
       "name": "D_演练避战强敌",
       "label": "避战强敌",
-      "type": "checkbox",
-      "default_case": [],
+      "type": "switch",
+      "inline_sub_options": true,
+      "default_case": "No",
       "cases": [
         {
-          "name": "演练避战强敌",
-          "label": "避战强敌",
+          "name": "No",
+          "label": "关闭"
+        },
+        {
+          "name": "Yes",
+          "label": "开启",
+          "option": ["D_演练威胁度"],
           "pipeline_override": {
             "DT_DrillDangerCheck1": {"enabled": true},
             "DT_DrillDangerCheck2": {"enabled": true},
@@ -6718,6 +6724,30 @@
           }
         }
       ]
+    },
+    "D_演练威胁度": {
+      "name": "D_演练威胁度",
+      "label": "威胁度阈值",
+      "type": "input",
+      "description": "对面每有一把丙子或极化刀剑，威胁度加一；威胁度达到阈值时视为强敌。",
+      "inputs": [
+        {
+          "name": "threshold",
+          "default": "6",
+          "pipeline_type": "int",
+          "control": "slider",
+          "minimum": 1,
+          "maximum": 6,
+          "tick_frequency": 1
+        }
+      ],
+      "pipeline_override": {
+        "DT_DrillDangerCheck1": {"action": {"custom_action_param": {"threshold": "{threshold}"}}},
+        "DT_DrillDangerCheck2": {"action": {"custom_action_param": {"threshold": "{threshold}"}}},
+        "DT_DrillDangerCheck3": {"action": {"custom_action_param": {"threshold": "{threshold}"}}},
+        "DT_DrillDangerCheck4": {"action": {"custom_action_param": {"threshold": "{threshold}"}}},
+        "DT_DrillDangerCheck5": {"action": {"custom_action_param": {"threshold": "{threshold}"}}}
+      }
     },
     "D_检非违使": {
       "name": "D_检非违使",

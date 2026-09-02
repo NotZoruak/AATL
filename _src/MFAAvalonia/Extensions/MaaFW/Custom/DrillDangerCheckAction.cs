@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 
 namespace MFAAvalonia.Extensions.MaaFW.Custom;
 
-/// <summary>统计演练对手的高危险刀剑数量，危险度达到六时返回失败。</summary>
+/// <summary>统计演练对手的危险度，达到配置的威胁度阈值时返回失败。</summary>
 public class DrillDangerCheckAction : IMaaCustomAction
 {
     private static readonly int[][] ExtremeMarkerRois =
@@ -29,6 +29,13 @@ public class DrillDangerCheckAction : IMaaCustomAction
     {
         try
         {
+            var threshold = 6;
+            if (!string.IsNullOrWhiteSpace(args.ActionParam))
+            {
+                var param = ActionParamHelper.Parse(args.ActionParam);
+                threshold = Math.Clamp((int?)param["threshold"] ?? 6, 1, 6);
+            }
+
             using var image = context.GetImage();
             if (image == null)
             {
@@ -48,8 +55,8 @@ public class DrillDangerCheckAction : IMaaCustomAction
             if (names.Any(item => item.Text?.Contains("丙子", StringComparison.Ordinal) == true))
                 danger++;
 
-            LoggerHelper.Info($"[日课 演练] 对手危险度={danger}");
-            return danger < 6;
+            LoggerHelper.Info($"[日课 演练] 对手危险度={danger}，避战阈值={threshold}");
+            return DrillDangerDecision.ShouldEnterTraining(danger, threshold);
         }
         catch (MaaStopException)
         {

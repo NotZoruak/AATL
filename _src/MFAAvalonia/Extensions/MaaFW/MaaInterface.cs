@@ -134,6 +134,22 @@ public partial class MaaInterface
         [JsonProperty("default")]
         public string? Default { get; set; }
 
+        /// <summary>输入控件类型；slider 表示离散滑块。</summary>
+        [JsonProperty("control")]
+        public string? Control { get; set; }
+
+        /// <summary>滑块最小值。</summary>
+        [JsonProperty("minimum")]
+        public double? Minimum { get; set; }
+
+        /// <summary>滑块最大值。</summary>
+        [JsonProperty("maximum")]
+        public double? Maximum { get; set; }
+
+        /// <summary>滑块刻度间隔。</summary>
+        [JsonProperty("tick_frequency")]
+        public double? TickFrequency { get; set; }
+
         /// <summary>pipeline_override 中的数据类型: "string", "int", "bool"</summary>
         [JsonProperty("pipeline_type")]
         public string? PipelineType { get; set; }
@@ -145,6 +161,10 @@ public partial class MaaInterface
         /// <summary>正则校验错误时显示的信息，支持国际化</summary>
         [JsonProperty("pattern_msg")]
         public string? PatternMsg { get; set; }
+
+        /// <summary>是否使用离散滑块控件。</summary>
+        [JsonIgnore]
+        public bool IsSlider => string.Equals(Control, "slider", StringComparison.OrdinalIgnoreCase);
 
         /// <summary>获取显示名称（优先 Label，否则 Name）</summary>
         [JsonIgnore]
@@ -262,6 +282,10 @@ public partial class MaaInterface
         /// <summary>是否为 checkbox 多选类型</summary>
         [JsonIgnore]
         public bool IsCheckbox => OptionType == "checkbox";
+
+        /// <summary>是否在当前 option 页面直接显示子配置项。</summary>
+        [JsonProperty("inline_sub_options")]
+        public bool InlineSubOptions { get; set; }
 
         [JsonIgnore]
         public bool IsHotkey => OptionType == "hotkey";
@@ -613,6 +637,7 @@ public partial class MaaInterface
              if (other.DefaultCases != null && other.DefaultCases.Count > 0) DefaultCases = other.DefaultCases;
              if (other.Controller != null) Controller = other.Controller;
              if (other.Resource != null) Resource = other.Resource;
+             if (other.InlineSubOptions) InlineSubOptions = true;
         }
     }
 

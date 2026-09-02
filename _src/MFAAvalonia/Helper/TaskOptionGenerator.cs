@@ -607,7 +607,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
             };
 
             // 齿轮图标（子选项入口）
-            if (HasSubOptions(interfaceOption))
+            if (HasSubOptions(interfaceOption) && !interfaceOption.InlineSubOptions)
             {
                 var gearRow = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 4 };
                 gearRow.Children.Add(checkBox);
@@ -638,7 +638,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
             var header = (StackPanel)CreateOptionHeader(interfaceOption);
             header.Margin = new Thickness(0);
             container.Children.Add(header);
-            if (HasSubOptions(interfaceOption))
+            if (HasSubOptions(interfaceOption) && !interfaceOption.InlineSubOptions)
                 AppendGearIcon(header, option, interfaceOption, source);
 
             wrapPanel = new WrapPanel
@@ -653,7 +653,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         void UpdateSubOptions()
         {
             subOptionsContainer.Children.Clear();
-            if (HasSubOptions(interfaceOption)) return; // 有齿轮入口，子选项只在子页面显示
+            if (HasSubOptions(interfaceOption) && !interfaceOption.InlineSubOptions) return; // 有齿轮入口，子选项只在子页面显示
             if (interfaceOption.Cases == null) return;
 
             option.SubOptions ??= new List<MaaInterface.MaaInterfaceSelectOption>();
@@ -806,7 +806,11 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
 
             var pipelineType = input.PipelineType?.ToLower() ?? "string";
 
-            if (pipelineType == "bool")
+            if (input.IsSlider)
+            {
+                container.Children.Add(CreateSliderInputControl(input, currentValue, option, interfaceOption));
+            }
+            else if (pipelineType == "bool")
             {
                 container.Children.Add(CreateBoolInputControl(input, currentValue, option, interfaceOption));
             }
@@ -817,6 +821,94 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         }
 
         return container;
+    }
+
+    private Control CreateSliderInputControl(
+        MaaInterface.MaaInterfaceOptionInput input,
+        string currentValue,
+        MaaInterface.MaaInterfaceSelectOption option,
+        MaaInterface.MaaInterfaceOption interfaceOption)
+    {
+        var grid = CreateBaseGrid();
+        var minimum = input.Minimum ?? 0;
+        var maximum = input.Maximum ?? 100;
+        var tickFrequency = input.TickFrequency ?? 1;
+        var value = double.TryParse(currentValue, out var parsedValue)
+            ? Math.Clamp(parsedValue, minimum, maximum)
+            : Math.Clamp(input.Minimum ?? 0, minimum, maximum);
+
+        var slider = new Slider
+        {
+            Minimum = minimum,
+            Maximum = maximum,
+            TickFrequency = tickFrequency,
+            IsSnapToTickEnabled = true,
+            TickPlacement = TickPlacement.BottomRight,
+            Value = value,
+            Margin = new Thickness(0, 2, 0, 2),
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            VerticalAlignment = VerticalAlignment.Center,
+        };
+        BindIdleEnabled(slider);
+
+        var valueText = new TextBlock
+        {
+            Text = value.ToString("0.##"),
+            MinWidth = 36,
+            Margin = new Thickness(8, 0, 0, 0),
+            VerticalAlignment = VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Right,
+            TextAlignment = TextAlignment.Center,
+        };
+
+        slider.ValueChanged += (_, _) =>
+        {
+            var snappedValue = Math.Clamp(Math.Round(slider.Value / tickFrequency) * tickFrequency, minimum, maximum);
+            if (Math.Abs(slider.Value - snappedValue) > 0.001)
+            {
+                slider.Value = snappedValue;
+                return;
+            }
+
+            var displayValue = snappedValue.ToString("0.##");
+            valueText.Text = displayValue;
+            option.Data ??= new Dictionary<string, string?>();
+            option.Data[input.Name!] = displayValue;
+            UpdatePipeline(option, interfaceOption);
+            saveConfigurationAction();
+        };
+
+        var sliderPanel = new Grid
+        {
+            ColumnDefinitions =
+            {
+                new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                new ColumnDefinition { Width = GridLength.Auto },
+            },
+        };
+        Grid.SetColumn(slider, 0);
+        Grid.SetColumn(valueText, 1);
+        sliderPanel.Children.Add(slider);
+        sliderPanel.Children.Add(valueText);
+
+        var hasOptionDescription = !string.IsNullOrWhiteSpace(GetTooltipText(interfaceOption.Description, interfaceOption.Document));
+        var isFullWidthSlider = interfaceOption.Inputs?.Count == 1 && hasOptionDescription;
+        if (isFullWidthSlider)
+        {
+            Grid.SetColumn(sliderPanel, 0);
+            Grid.SetColumnSpan(sliderPanel, 2);
+            grid.Children.Add(sliderPanel);
+            return grid;
+        }
+
+        var labelPanel = CreateLabelPanel(input.DisplayName, input.Name, input.Description);
+        labelPanel.Margin = new Thickness(10, 0, 5, 0);
+        Grid.SetColumn(labelPanel, 0);
+        Grid.SetColumn(sliderPanel, 1);
+        AddResponsiveBehavior(grid, labelPanel, sliderPanel);
+        grid.Children.Add(labelPanel);
+        grid.Children.Add(sliderPanel);
+        return grid;
     }
 
     private Control CreateStringInputControl(
@@ -1014,7 +1106,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         void UpdateSubOptions(int index)
         {
             subOptionsContainer.Children.Clear();
-            if (HasSubOptions(interfaceOption)) return; // 有齿轮入口，子选项只在子页面显示
+            if (HasSubOptions(interfaceOption) && !interfaceOption.InlineSubOptions) return; // 有齿轮入口，子选项只在子页面显示
             if (interfaceOption.Cases == null || index < 0 || index >= interfaceOption.Cases.Count) return;
 
             var selectedCase = interfaceOption.Cases[index];
@@ -1051,7 +1143,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         labelPanel.Children.Insert(0, icon);
         if (IsDailyPresetOption(option.Name))
             AppendDailyPresetGearIcon(labelPanel, option, source);
-        else if (HasSubOptions(interfaceOption))
+        else if (HasSubOptions(interfaceOption) && !interfaceOption.InlineSubOptions)
             AppendGearIcon(labelPanel, option, interfaceOption, source);
 
         Grid.SetColumn(labelPanel, 0);

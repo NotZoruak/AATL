@@ -144,6 +144,20 @@
     "next": [],
     "on_error": []
   },
+  "DT_HandleAnnouncementPopup": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [1056, 463, 63, 193],
+        "template": "Common/公告弹窗.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": [],
+    "on_error": []
+  },
   "DT_HandleTrainingLetter": {
     "recognition": {
       "type": "TemplateMatch",
@@ -169,6 +183,25 @@
       }
     },
     "action": {"type": "Click"},
+    "next": [],
+    "on_error": []
+  },
+  "DT_HandleLeaveTroopRecord": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [577, 8, 130, 35],
+        "template": "Common/部队记录页面.png",
+        "green_mask": true,
+        "threshold": [0.95]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [63, 28, 17, 17]
+      }
+    },
     "next": [],
     "on_error": []
   },
@@ -244,6 +277,23 @@
       "type": "Click",
       "param": {
         "target": [578, 440, 130, 55]
+      }
+    },
+    "next": [],
+    "on_error": []
+  },
+  "DT_HandleNetworkRequestTimeout": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [524, 304, 56, 35],
+        "expected": "网络"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [599, 442, 93, 55]
       }
     },
     "next": [],
@@ -476,13 +526,16 @@
       "DT_LoginRewardSignIn",
       "[JumpBack]DT_HandleExperience",
       "[JumpBack]DT_HandleSwordDrop",
+      "[JumpBack]DT_HandleAnnouncementPopup",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleLeaveTroopRecord",
       "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",
       "[JumpBack]DT_HandleInGameUpdatePopup",
+      "[JumpBack]DT_HandleNetworkRequestTimeout",
       "[JumpBack]DT_HandleConnectionInterrupted",
       "DT_LoginRewardFallbackWait"
     ]
@@ -581,7 +634,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "GuiLogAction",
-      "custom_action_param": {"message": "日课 登录奖励 已被领取"}
+      "custom_action_param": {"message": "日课 登录奖励 领取完成"}
     },
     "next": ["DT_LoginRewardReturnHomeHub"],
     "on_error": ["DT_LoginRewardReturnHomeHub"]
@@ -617,7 +670,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "GuiLogAction",
-      "custom_action_param": {"message": "日课 登录奖励 成功"}
+      "custom_action_param": {"message": "日课 登录奖励 领取完成"}
     },
     "next": ["DT_LoginRewardReturnHomeHub"],
     "on_error": ["DT_LoginRewardClosePopupHub"]
@@ -638,13 +691,16 @@
       "DT_WarmGiftDetectPrice",
       "[JumpBack]DT_HandleExperience",
       "[JumpBack]DT_HandleSwordDrop",
+      "[JumpBack]DT_HandleAnnouncementPopup",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleLeaveTroopRecord",
       "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",
       "[JumpBack]DT_HandleInGameUpdatePopup",
+      "[JumpBack]DT_HandleNetworkRequestTimeout",
       "[JumpBack]DT_HandleConnectionInterrupted",
       "DT_WarmGiftClickMenu",
       "DT_WarmGiftFallbackWait"
@@ -701,7 +757,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "GuiLogAction",
-      "custom_action_param": {"message": "日课 暖心礼包 已被领取"}
+      "custom_action_param": {"message": "日课 暖心礼包 领取完成"}
     },
     "next": ["DT_WarmGiftReturnHomeHub"],
     "on_error": ["DT_WarmGiftReturnHomeHub"]
@@ -839,13 +895,16 @@
       "DT_MixClickCombine1",
       "[JumpBack]DT_HandleExperience",
       "[JumpBack]DT_HandleSwordDrop",
+      "[JumpBack]DT_HandleAnnouncementPopup",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleLeaveTroopRecord",
       "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",
       "[JumpBack]DT_HandleInGameUpdatePopup",
+      "[JumpBack]DT_HandleNetworkRequestTimeout",
       "[JumpBack]DT_HandleConnectionInterrupted",
       "DT_MixClickMenu",
       "DT_MixFallbackWait"
@@ -990,13 +1049,16 @@
       "DT_ForgeReturnFromDisassemble",
       "[JumpBack]DT_HandleExperience",
       "[JumpBack]DT_HandleSwordDrop",
+      "[JumpBack]DT_HandleAnnouncementPopup",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleLeaveTroopRecord",
       "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",
       "[JumpBack]DT_HandleInGameUpdatePopup",
+      "[JumpBack]DT_HandleNetworkRequestTimeout",
       "[JumpBack]DT_HandleConnectionInterrupted",
       "DT_ForgeClickMenu",
       "DT_ForgeFallbackWait"
@@ -1877,13 +1939,16 @@
       "DT_DrillDetectOpponentSelect",
       "[JumpBack]DT_HandleExperience",
       "[JumpBack]DT_HandleSwordDrop",
+      "[JumpBack]DT_HandleAnnouncementPopup",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleLeaveTroopRecord",
       "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",
       "[JumpBack]DT_HandleInGameUpdatePopup",
+      "[JumpBack]DT_HandleNetworkRequestTimeout",
       "[JumpBack]DT_HandleConnectionInterrupted",
       "DT_DrillClickMenu",
       "DT_DrillFallbackWait"
@@ -3330,13 +3395,16 @@
       "DT_KebiIsMenuDirectory",
       "[JumpBack]DT_HandleExperience",
       "[JumpBack]DT_HandleSwordDrop",
+      "[JumpBack]DT_HandleAnnouncementPopup",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleLeaveTroopRecord",
       "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",
       "[JumpBack]DT_HandleInGameUpdatePopup",
+      "[JumpBack]DT_HandleNetworkRequestTimeout",
       "[JumpBack]DT_HandleConnectionInterrupted",
       "DT_KebiClickMenu",
       "DT_KebiFallbackWait"
@@ -3691,13 +3759,16 @@
       "DT_RewardDetectTaskList",
       "[JumpBack]DT_HandleExperience",
       "[JumpBack]DT_HandleSwordDrop",
+      "[JumpBack]DT_HandleAnnouncementPopup",
       "[JumpBack]DT_HandleTrainingLetter",
       "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleLeaveTroopRecord",
       "[JumpBack]DT_HandleAdvertisementPopup",
       "[JumpBack]DT_HandleGameIcon",
       "[JumpBack]DT_HandleLoginButton",
       "[JumpBack]DT_HandleGameUpdatePopup",
       "[JumpBack]DT_HandleInGameUpdatePopup",
+      "[JumpBack]DT_HandleNetworkRequestTimeout",
       "[JumpBack]DT_HandleConnectionInterrupted",
       "DT_RewardFallbackWait"
     ]

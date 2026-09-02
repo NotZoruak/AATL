@@ -1301,9 +1301,9 @@
                                      GridColumn="8"
                                      GridRow="0"
                                      GridColumnSpan="4"
-                                     GridRowSpan="3"
+                                     GridRowSpan="4"
                                      ExpandedColumnSpan="4"
-                                     ExpandedRowSpan="3"
+                                     ExpandedRowSpan="4"
                                      CollapsedHeight="40">
                 <dashboard:DashboardCard.TitleContent>
                     <TextBlock FontSize="11"
@@ -1479,9 +1479,9 @@
                                      GridColumn="8"
                                      GridRow="3"
                                      GridColumnSpan="4"
-                                     GridRowSpan="5"
+                                     GridRowSpan="4"
                                      ExpandedColumnSpan="4"
-                                     ExpandedRowSpan="5">
+                                     ExpandedRowSpan="4">
                 <dashboard:DashboardCard.TitleContent>
                     <TextBlock FontSize="11"
                                FontWeight="Bold"

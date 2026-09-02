@@ -25,9 +25,9 @@ var taskOptionGeneratorSource = File.ReadAllText(Path.Combine(
 AssertTrue(rootViewSource.IndexOf("InitializeComponent();", StringComparison.Ordinal)
     < rootViewSource.IndexOf("LoadWindowSizeAndPosition();", StringComparison.Ordinal),
     "窗口应在加载已保存尺寸前完成XAML初始化，避免默认尺寸覆盖配置");
-AssertTrue(rootViewMarkup.Contains("Width=\"920\"", StringComparison.Ordinal)
-    && rootViewMarkup.Contains("Height=\"690\"", StringComparison.Ordinal),
-    "窗口默认尺寸应为920×690");
+AssertTrue(rootViewMarkup.Contains("Width=\"1024\"", StringComparison.Ordinal)
+    && rootViewMarkup.Contains("Height=\"768\"", StringComparison.Ordinal),
+    "窗口默认尺寸应为1024×768");
 AssertTrue(taskQueueViewSource.Contains("new WrapPanel", StringComparison.Ordinal)
     && !taskQueueViewSource.Contains("new UniformGrid { Columns = 2", StringComparison.Ordinal),
     "复选框应根据可用宽度自适应换行，不能固定为两列");
@@ -38,6 +38,34 @@ AssertTrue(taskOptionGeneratorSource.Contains("var grid = new UniformGrid", Stri
 
 var optionInterfaceJson = JObject.Parse(File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "assets", "interface.json")));
+var drillAvoidStrongOption = optionInterfaceJson["option"]?["D_演练避战强敌"];
+var drillThreatOption = optionInterfaceJson["option"]?["D_演练威胁度"];
+AssertTrue(drillAvoidStrongOption?["type"]?.Value<string>() == "switch"
+    && drillAvoidStrongOption["inline_sub_options"]?.Value<bool>() == true
+    && drillAvoidStrongOption["default_case"]?.Value<string>() == "No"
+    && drillAvoidStrongOption["cases"]?.Children<JObject>().Single(caseItem => caseItem["name"]?.Value<string>() == "Yes")["option"]?.Values<string>()
+        .SequenceEqual(["D_演练威胁度"]) == true,
+    "避战强敌应在同一页面显示威胁度子选项");
+AssertTrue(drillThreatOption?["type"]?.Value<string>() == "input"
+    && drillThreatOption["label"]?.Value<string>() == "威胁度阈值"
+    && drillThreatOption["description"]?.Value<string>() == "对面每有一把丙子或极化刀剑，威胁度加一；威胁度达到阈值时视为强敌。"
+    && drillThreatOption["inputs"]?.Children<JObject>().Single()["control"]?.Value<string>() == "slider"
+    && drillThreatOption["inputs"]?.Children<JObject>().Single()["minimum"]?.Value<int>() == 1
+    && drillThreatOption["inputs"]?.Children<JObject>().Single()["maximum"]?.Value<int>() == 6
+    && drillThreatOption["inputs"]?.Children<JObject>().Single()["tick_frequency"]?.Value<int>() == 1
+    && drillThreatOption["inputs"]?.Children<JObject>().Single()["default"]?.Value<string>() == "6",
+    "威胁度子选项应为1到6的离散滑块且默认值为6");
+AssertTrue(taskOptionGeneratorSource.Contains("var isFullWidthSlider", StringComparison.Ordinal)
+    && taskOptionGeneratorSource.Contains("Grid.SetColumnSpan(sliderPanel, 2)", StringComparison.Ordinal),
+    "带标题说明的单滑块应在标题下方占满可用宽度");
+AssertTrue(Enumerable.Range(1, 5).All(index =>
+        drillThreatOption?["pipeline_override"]?[$"DT_DrillDangerCheck{index}"]?["action"]?["custom_action_param"]?["threshold"]?.Value<string>() == "{threshold}"),
+    "威胁度子选项应将阈值传递给全部五个演练判断 node");
+AssertTrue(DrillDangerDecision.ShouldEnterTraining(5, 6)
+    && !DrillDangerDecision.ShouldEnterTraining(6, 6)
+    && DrillDangerDecision.ShouldEnterTraining(3, 4)
+    && !DrillDangerDecision.ShouldEnterTraining(4, 4),
+    "威胁度阈值应按大于等于阈值跳过强敌");
 AssertTrue(CaptainSettingsDecision.GetDragNodeName("Underground") == "U_DragCaptain",
     "地下城应映射到 U_DragCaptain");
 AssertTrue(CaptainSettingsDecision.GetDragNodeName("TacticalTraining") == "TT_DragCaptain",
@@ -50,6 +78,19 @@ AssertTrue(CaptainSettingsDecision.GetSkipOptionName("TacticalTraining") == null
     "战术强化不应拥有跳过位置配置");
 AssertTrue(CaptainSettingsDecision.ParseSkipPositions(["位置二", "位置五", "未知位置"]).SetEquals([1, 4]),
     "位置名称应转换为有效的零基索引");
+var equipmentFallbackDecisionType = typeof(CaptainSettingsDecision).Assembly
+    .GetType("MFAAvalonia.Extensions.MaaFW.Custom.EquipmentFallbackDecision");
+var equipmentFallbackTarget = equipmentFallbackDecisionType?
+    .GetMethod("GetOneClickEquipButtonTarget")?
+    .Invoke(null, [201]);
+AssertTrue(equipmentFallbackTarget?.ToString() == "(966, 201)",
+    "一键装备按钮应保持缺装模板命中行的 y 坐标，并使用固定 x=966");
+var maaProcessorSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Extensions", "MaaFW", "MaaProcessor.cs"));
+AssertTrue(maaProcessorSource.Contains(
+        "tasker.Resource.Register(new Custom.EquipmentFallbackAction());",
+        StringComparison.Ordinal),
+    "刀装不足时的一键装备 action 必须注册到运行时资源");
 AssertFalse(optionInterfaceJson["global_option"]!.Values<string>().Contains("换队长方式"),
     "换队长方式不应继续作为全局设置");
 AssertTrue(optionInterfaceJson["option"]?["换队长方式"] == null
@@ -174,6 +215,77 @@ foreach (var (task, prefix) in new[] { (sortieTask, "S_"), (undergroundTask, "U_
             $"{prefix}疲劳处理不应再负责行军中的重疲劳撤退");
     }
 }
+
+var undergroundPipeline = JObject.Parse(File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "assets", "resource", "base", "pipeline", "Underground.json")));
+foreach (var (prefix, pipeline) in new[] { ("S_", sortiePipeline), ("U_", undergroundPipeline) })
+{
+    string fallbackOptionName = $"{prefix}记录不足时一键装备";
+    var supplementOption = optionInterfaceJson["option"]?[$"{prefix}补充刀装"];
+    var fallbackOption = optionInterfaceJson["option"]?[fallbackOptionName];
+    AssertTrue(supplementOption?["cases"]?.Children<JObject>().Single()["option"]?.Values<string>()
+            .SequenceEqual([fallbackOptionName]) == true,
+        $"{prefix}补充刀装应提供一键装备子选项");
+    AssertTrue(fallbackOption?["type"]?.Value<string>() == "checkbox"
+        && fallbackOption["default_case"] is JArray,
+        $"{prefix}一键装备子选项应默认关闭");
+    AssertTrue(pipeline[$"{prefix}PreConfirmSupply"]?["post_delay"]?.Value<int>() == 500,
+        $"{prefix}部队记录确认后应等待500毫秒，确保确认弹窗完全出现");
+    var fallbackOverride = fallbackOption?["cases"]?.Children<JObject>().Single()["pipeline_override"];
+    AssertTrue(pipeline[$"{prefix}PreConfirmSupply"]?["next"]?.Values<string>()
+            .SequenceEqual([$"{prefix}FallbackConfirmRecord", $"{prefix}GuiSupplyLog"]) == true,
+        $"{prefix}部队记录确认后应固定优先检查记录确认页");
+    var downstreamFallbackNodes = new[]
+    {
+        $"{prefix}FallbackVerifyTeamSelect",
+        $"{prefix}FallbackFindMissingEquipment",
+        $"{prefix}FallbackConfirmOneClickEquip",
+        $"{prefix}FallbackReturnFromEquip"
+    };
+    AssertTrue(fallbackOverride?[$"{prefix}PreConfirmSupply"] == null
+        && fallbackOverride?[$"{prefix}FallbackConfirmRecord"]?["enabled"]?.Value<bool>() == true
+        && downstreamFallbackNodes.All(nodeName => fallbackOverride?[nodeName] == null)
+        && pipeline[$"{prefix}FallbackConfirmRecord"]?["enabled"]?.Value<bool>() == false
+        && downstreamFallbackNodes.All(nodeName => pipeline[nodeName]?["enabled"]?.Value<bool>() == true),
+        $"{prefix}一键装备子选项应只启用兜底入口，后续 node 应默认开启");
+    AssertTrue(pipeline[$"{prefix}FallbackConfirmRecord"]?["action"]?["custom_action"]?.Value<string>()
+            == "GuiLogAction"
+        && pipeline[$"{prefix}FallbackConfirmRecord"]?["action"]?["custom_action_param"]?["message"]?.Value<string>()
+            == "记录中刀装不足"
+        && pipeline[$"{prefix}FallbackConfirmRecord"]?["next"]?.Values<string>()
+            .SequenceEqual([$"{prefix}FallbackConfirmRecordLog"]) == true
+        && pipeline[$"{prefix}FallbackConfirmRecord"]?["on_error"]?.Values<string>()
+            .SequenceEqual([$"{prefix}GuiSupplyLog"]) == true,
+        $"{prefix}记录确认后应先向界面输出刀装不足日志；未出现确认页时应保留原补充路径");
+    AssertTrue(pipeline[$"{prefix}FallbackConfirmRecordLog"]?["action"]?["custom_action"]?.Value<string>()
+            == "LogAction"
+        && pipeline[$"{prefix}FallbackConfirmRecordLog"]?["action"]?["custom_action_param"]?["message"]?.Value<string>()
+            == "记录中刀装不足"
+        && pipeline[$"{prefix}FallbackConfirmRecordLog"]?["next"]?.Values<string>()
+            .SequenceEqual([$"{prefix}FallbackConfirmRecordClick"]) == true
+        && pipeline[$"{prefix}FallbackConfirmRecordClick"]?["action"]?["type"]?.Value<string>() == "Click"
+        && pipeline[$"{prefix}FallbackConfirmRecordClick"]?["next"]?.Values<string>()
+            .SequenceEqual([$"{prefix}FallbackVerifyTeamSelect"]) == true,
+        $"{prefix}记录确认后应写入文件日志，再点击确认按钮并验证部队选择页");
+    AssertTrue(pipeline[$"{prefix}FallbackConfirmRecord"]?["recognition"]?["param"]?["expected"]?.Value<string>()
+            == "记录确认"
+        && pipeline[$"{prefix}FallbackConfirmRecord"]?["recognition"]?["param"]?["roi"]?.Values<int>()
+            .SequenceEqual([567, 37, 138, 35]) == true,
+        $"{prefix}记录确认页应按确认弹窗标题识别");
+    AssertTrue(pipeline[$"{prefix}FallbackFindMissingEquipment"]?["action"]?["custom_action"]?.Value<string>()
+            == "EquipmentFallbackAction"
+        && pipeline[$"{prefix}FallbackFindMissingEquipment"]?["on_error"]?.Values<string>().SingleOrDefault()
+            == $"{prefix}IsPreSortieConfirm",
+        $"{prefix}未发现缺装刀剑时应直接进入即刻出阵");
+    AssertTrue(pipeline[$"{prefix}FallbackReturnFromEquip"]?["next"]?.Values<string>()
+            .SequenceEqual([$"{prefix}FallbackFindMissingEquipment"]) == true,
+        $"{prefix}一键装备返回后应直接重新检查缺装刀剑，不能再次点击一键装备入口");
+}
+AssertTrue(sortiePipeline["S_GuiSupplyLog"]?["recognition"]?["type"]?.Value<string>() == "OCR"
+    && sortiePipeline["S_GuiSupplyLog"]?["recognition"]?["param"]?["roi"]?.Values<int>()
+        .SequenceEqual([576, 151, 126, 34]) == true
+    && sortiePipeline["S_GuiSupplyLog"]?["recognition"]?["param"]?["expected"]?.Value<string>() == "部队记录",
+    "合战场补充刀装日志应仅在部队记录页面命中");
 
 AssertTrue(MixGreedySelectionDecision.TryGetRarity(90, 90, 90, out var rarity) && rarity == 1,
     "稀有度1的颜色应正确映射");

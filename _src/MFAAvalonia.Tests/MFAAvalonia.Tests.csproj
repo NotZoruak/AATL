@@ -39,5 +39,7 @@
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\MixGreedySelectionDecision.cs" Link="MixGreedySelectionDecision.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\TeamSwitchDecision.cs" Link="TeamSwitchDecision.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\CaptainSettingsDecision.cs" Link="CaptainSettingsDecision.cs" />
+    <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\EquipmentFallbackDecision.cs" Link="EquipmentFallbackDecision.cs" />
+    <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\DrillDangerDecision.cs" Link="DrillDangerDecision.cs" />
   </ItemGroup>
 </Project>

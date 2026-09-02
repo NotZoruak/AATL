@@ -3313,6 +3313,14 @@ public class MaaProcessor
             else if (interfaceOption.Cases is { } cases && cases.Count > 0)
             {
                 var index = selectOption.Index;
+                if (interfaceOption.IsSwitch
+                    && index == null
+                    && selectOption.SelectedCases is { Count: > 0 }
+                    && cases.ShouldSwitchButton(out var legacyYesIndex, out _))
+                {
+                    index = legacyYesIndex;
+                    selectOption.Index = index;
+                }
                 if (index == null && interfaceOption.DefaultCase != null)
                 {
                     // Index 未初始化时从 default_case 反查
