@@ -162,7 +162,7 @@
     "on_error": ["E_DetectExpeditionScreen"]
   },
   "E_CheckTeam2": {
-    "enabled": true,
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -251,7 +251,7 @@
     "on_error": ["E_DetectExpeditionScreen"]
   },
   "E_CheckTeam3": {
-    "enabled": true,
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -340,7 +340,7 @@
     "on_error": ["E_DetectExpeditionScreen"]
   },
   "E_CheckTeam4": {
-    "enabled": true,
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
@@ -429,7 +429,7 @@
     "on_error": ["E_DetectExpeditionScreen"]
   },
   "E_CheckTeam5": {
-    "enabled": true,
+    "enabled": false,
     "recognition": {
       "type": "OCR",
       "param": {
