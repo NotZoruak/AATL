@@ -58,6 +58,11 @@ AssertTrue(drillThreatOption?["type"]?.Value<string>() == "input"
 AssertTrue(taskOptionGeneratorSource.Contains("var isFullWidthSlider", StringComparison.Ordinal)
     && taskOptionGeneratorSource.Contains("Grid.SetColumnSpan(sliderPanel, 2)", StringComparison.Ordinal),
     "带标题说明的单滑块应在标题下方占满可用宽度");
+AssertTrue(SwordBookFilterMatcher.Matches(true, SwordBookFilter.Owned)
+    && !SwordBookFilterMatcher.Matches(false, SwordBookFilter.Owned)
+    && SwordBookFilterMatcher.Matches(false, SwordBookFilter.Unowned)
+    && SwordBookFilterMatcher.Matches(true, SwordBookFilter.All),
+    "刀帐筛选应正确匹配全部、已拥有和未拥有状态");
 AssertTrue(Enumerable.Range(1, 5).All(index =>
         drillThreatOption?["pipeline_override"]?[$"DT_DrillDangerCheck{index}"]?["action"]?["custom_action_param"]?["threshold"]?.Value<string>() == "{threshold}"),
     "威胁度子选项应将阈值传递给全部五个演练判断 node");

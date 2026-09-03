@@ -27,11 +27,18 @@ public partial class SwordBookViewModel : ViewModelBase
     private static readonly string DraftPath = Path.Combine(AppPaths.ConfigDirectory, "swordbook_scan.json");
 
     public ObservableCollection<SwordBookRowViewModel> Entries { get; } = [];
+    public ObservableCollection<SwordBookRowViewModel> VisibleEntries { get; } = [];
+    public IReadOnlyList<string> FilterOptions { get; } = ["全部", "已拥有", "未拥有"];
     public string Instruction => "请先将游戏页面切换至序号最小的已拥有刀剑男士的刀帐页面，自动识别将从当前刀剑开始扫描。";
     public bool HasUnsavedChanges => Entries.Any(HasChanged);
     public bool IsIdle => !IsRecognizing;
 
     [ObservableProperty] private bool _isRecognizing;
+    [ObservableProperty] private string _ownedFilter = "全部";
+    [ObservableProperty] private string _woundedFilter = "全部";
+    [ObservableProperty] private string _trueSwordFilter = "全部";
+    [ObservableProperty] private string _innerCareFilter = "全部";
+    [ObservableProperty] private string _casualFilter = "全部";
 
     public SwordBookViewModel()
     {
@@ -149,6 +156,11 @@ public partial class SwordBookViewModel : ViewModelBase
     }
 
     partial void OnIsRecognizingChanged(bool value) => OnPropertyChanged(nameof(IsIdle));
+    partial void OnOwnedFilterChanged(string value) => ApplyFilters();
+    partial void OnWoundedFilterChanged(string value) => ApplyFilters();
+    partial void OnTrueSwordFilterChanged(string value) => ApplyFilters();
+    partial void OnInnerCareFilterChanged(string value) => ApplyFilters();
+    partial void OnCasualFilterChanged(string value) => ApplyFilters();
 
     private static Task ShowRecognitionFailureAsync()
     {
@@ -184,6 +196,7 @@ public partial class SwordBookViewModel : ViewModelBase
                 : item.Name;
             Entries.Add(new SwordBookRowViewModel(item.Number, item.Type, displayName, OnRowChanged));
         }
+        ApplyFilters();
     }
 
     private void LoadSavedState()
@@ -225,7 +238,30 @@ public partial class SwordBookViewModel : ViewModelBase
         NotifySavedStateChanged();
     }
 
-    private void OnRowChanged() => NotifySavedStateChanged();
+    private void OnRowChanged()
+    {
+        ApplyFilters();
+        NotifySavedStateChanged();
+    }
+
+    private void ApplyFilters()
+    {
+        VisibleEntries.Clear();
+        foreach (var row in Entries)
+            if (SwordBookFilterMatcher.Matches(row.Owned, ParseFilter(OwnedFilter))
+                && SwordBookFilterMatcher.Matches(row.Wounded, ParseFilter(WoundedFilter))
+                && SwordBookFilterMatcher.Matches(row.TrueSword, ParseFilter(TrueSwordFilter))
+                && SwordBookFilterMatcher.Matches(row.InnerCare, ParseFilter(InnerCareFilter))
+                && SwordBookFilterMatcher.Matches(row.Casual, ParseFilter(CasualFilter)))
+                VisibleEntries.Add(row);
+    }
+
+    private static SwordBookFilter ParseFilter(string value) => value switch
+    {
+        "已拥有" => SwordBookFilter.Owned,
+        "未拥有" => SwordBookFilter.Unowned,
+        _ => SwordBookFilter.All,
+    };
     private void NotifySavedStateChanged()
     {
         OnPropertyChanged(nameof(HasUnsavedChanges));

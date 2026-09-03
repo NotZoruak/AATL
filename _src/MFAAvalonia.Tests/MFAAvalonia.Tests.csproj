@@ -15,6 +15,7 @@
     <Compile Include="..\MFAAvalonia\Models\FormationPreset.cs" Link="FormationPreset.cs" />
     <Compile Include="..\MFAAvalonia\Models\WorkRecord.cs" Link="WorkRecord.cs" />
     <Compile Include="..\MFAAvalonia\Models\SwordBookEntry.cs" Link="SwordBookEntry.cs" />
+    <Compile Include="..\MFAAvalonia\Services\SwordBookFilter.cs" Link="SwordBookFilter.cs" />
     <Compile Include="..\MFAAvalonia\Services\LogParser.cs" Link="LogParser.cs" />
     <Compile Include="..\MFAAvalonia\Services\SwordBookEditor.cs" Link="SwordBookEditor.cs" />
     <Compile Include="..\MFAAvalonia\Services\WorkRecordBuilder.cs" Link="WorkRecordBuilder.cs" />

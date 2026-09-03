@@ -25,20 +25,25 @@
             <TextBlock Grid.Column="1" Text="{Binding Instruction}" FontSize="12" VerticalAlignment="Center" TextWrapping="Wrap" Foreground="{DynamicResource SukiLowText}" />
         </Grid>
         <Border Grid.Row="1" Background="{DynamicResource SukiCardBackground}" CornerRadius="10" Padding="18,12" Margin="0,0,18,0">
-            <Grid ColumnDefinitions="70,100,200,80,*,*,*,*" RowDefinitions="Auto,Auto" ColumnSpacing="4">
-                <TextBlock Grid.RowSpan="2" Text="序号" VerticalAlignment="Center" FontWeight="SemiBold" />
-                <TextBlock Grid.Column="1" Grid.RowSpan="2" Text="刀种" VerticalAlignment="Center" FontWeight="SemiBold" />
-                <TextBlock Grid.Column="2" Grid.RowSpan="2" Text="刀名" VerticalAlignment="Center" FontWeight="SemiBold" />
-                <TextBlock Grid.Column="3" Grid.RowSpan="2" Text="已拥有" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" />
+            <Grid ColumnDefinitions="70,100,200,80,*,*,*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="4" RowSpacing="4">
+                <TextBlock Grid.RowSpan="3" Text="序号" VerticalAlignment="Center" FontWeight="SemiBold" />
+                <TextBlock Grid.Column="1" Grid.RowSpan="3" Text="刀种" VerticalAlignment="Center" FontWeight="SemiBold" />
+                <TextBlock Grid.Column="2" Grid.RowSpan="3" Text="刀名" VerticalAlignment="Center" FontWeight="SemiBold" />
+                <TextBlock Grid.Column="3" Grid.Row="0" Text="已拥有" HorizontalAlignment="Center" FontWeight="SemiBold" />
                 <TextBlock Grid.Column="4" Grid.ColumnSpan="4" Text="立绘" HorizontalAlignment="Center" FontWeight="SemiBold" />
                 <TextBlock Grid.Column="4" Grid.Row="1" Text="中伤" HorizontalAlignment="Center" />
                 <TextBlock Grid.Column="5" Grid.Row="1" Text="真剑" HorizontalAlignment="Center" />
                 <TextBlock Grid.Column="6" Grid.Row="1" Text="内番" HorizontalAlignment="Center" />
                 <TextBlock Grid.Column="7" Grid.Row="1" Text="轻装" HorizontalAlignment="Center" />
+                <ComboBox Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding OwnedFilter}" HorizontalContentAlignment="Center" />
+                <ComboBox Grid.Column="4" Grid.Row="2" ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding WoundedFilter}" HorizontalContentAlignment="Center" />
+                <ComboBox Grid.Column="5" Grid.Row="2" ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding TrueSwordFilter}" HorizontalContentAlignment="Center" />
+                <ComboBox Grid.Column="6" Grid.Row="2" ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding InnerCareFilter}" HorizontalContentAlignment="Center" />
+                <ComboBox Grid.Column="7" Grid.Row="2" ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding CasualFilter}" HorizontalContentAlignment="Center" />
             </Grid>
         </Border>
         <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Entries}">
+            <ItemsControl ItemsSource="{Binding VisibleEntries}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="pages:SwordBookRowViewModel">
                         <Border Background="{DynamicResource SukiCardBackground}" CornerRadius="8" Padding="18,10" Margin="0,0,0,6" HorizontalAlignment="Stretch">
