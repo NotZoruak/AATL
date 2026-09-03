@@ -146,6 +146,99 @@ foreach (var (pipelineFileName, prefix) in new[]
 }
 var sortiePipeline = JObject.Parse(File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "assets", "resource", "base", "pipeline", "Sortie.json")));
+var updateDataPipeline = JObject.Parse(File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "assets", "resource", "base", "pipeline", "UpdateData.json")));
+var updateDataRecoveryNodes = new[]
+{
+    "UD_LeaveTroopRecord",
+    "UD_IsAnnouncementPopup",
+    "UD_IsAdvertisementPopup",
+    "UD_IsTrainingLetter",
+    "UD_IsLoginReward",
+    "UD_IsGameIcon",
+    "UD_IsLoginButton",
+    "UD_IsGameUpdatePopup",
+    "UD_IsInGameUpdatePopup",
+    "UD_IsInternalReport",
+    "UD_IsConnectionInterrupted",
+    "UD_FallbackWait"
+};
+var updateDataExpeditionResultNodes = new[]
+{
+    "UD_ClickExpeditionReturn_Exp",
+    "UD_ClickExpeditionReturn_Title"
+};
+AssertTrue(updateDataRecoveryNodes.All(nodeName => updateDataPipeline[nodeName] != null),
+    "更新数据主枢纽应包含完整的闪退恢复和异常弹窗处理 node");
+AssertTrue(updateDataRecoveryNodes.All(nodeName =>
+        updateDataPipeline[nodeName]?["on_error"]?.Values<string>().SequenceEqual(["UD_DetectWhereAmI"]) == true),
+    "更新数据主枢纽的通用恢复 node 失败时应回到更新数据主枢纽");
+AssertTrue(updateDataPipeline["UD_DetectWhereAmI"]?["next"]?.Values<string>().Intersect(updateDataRecoveryNodes).Count()
+    == updateDataRecoveryNodes.Length,
+    "更新数据主枢纽应将完整通用恢复链加入识别顺序");
+AssertTrue(updateDataPipeline["UD_IsAdvertisementPopup"]?["recognition"]?["type"]?.Value<string>() == "TemplateMatch"
+    && updateDataPipeline["UD_IsAdvertisementPopup"]?["recognition"]?["param"]?["template"]?.Value<string>() == "Common/广告.png",
+    "更新数据广告弹窗应使用广告模板识别，不能使用 OCR");
+AssertTrue(updateDataExpeditionResultNodes.All(nodeName => updateDataPipeline[nodeName] != null)
+    && updateDataPipeline["UD_DetectWhereAmI"]?["next"]?.Values<string>().Take(2).SequenceEqual(updateDataExpeditionResultNodes) == true,
+    "更新数据主枢纽应优先识别远征结果画面");
+AssertTrue(updateDataExpeditionResultNodes.All(nodeName =>
+        updateDataPipeline[nodeName]?["next"]?.Values<string>().SequenceEqual(["UD_DetectWhereAmI"]) == true),
+    "更新数据远征结果处理完成后应回到更新数据主枢纽");
+AssertTrue(updateDataPipeline["UD_DetectWhereAmI"]?["next"]?.Values<string>().SequenceEqual([
+        "UD_ClickExpeditionReturn_Exp", "UD_ClickExpeditionReturn_Title",
+        "UD_LeaveTroopRecord", "UD_IsAnnouncementPopup", "UD_IsAdvertisementPopup",
+        "UD_IsTrainingLetter", "UD_IsLoginReward", "UD_IsGameIcon", "UD_IsLoginButton",
+        "UD_IsGameUpdatePopup", "UD_IsInGameUpdatePopup", "UD_IsInternalReport",
+        "UD_IsNetworkRequestTimeout", "UD_IsConnectionInterrupted",
+        "UD_CheckHomeBrightness1", "UD_FallbackWait"]) == true,
+    "更新数据主枢纽的识别顺序应先处理恢复画面，再确认本丸");
+AssertTrue(updateDataPipeline["UD_IsAnnouncementPopup"]?["recognition"]?["type"]?.Value<string>() == "TemplateMatch"
+    && updateDataPipeline["UD_IsAnnouncementPopup"]?["recognition"]?["param"]?["template"]?.Value<string>() == "Common/公告弹窗.png",
+    "更新数据公告弹窗应使用公告模板识别");
+AssertTrue(updateDataPipeline["UD_IsConnectionInterrupted"]?["recognition"]?["param"]?["expected"]?.Value<string>() == "连接中断"
+    && updateDataPipeline["UD_IsConnectionInterrupted"]?["action"]?["param"]?["target"]?.Values<int>().SequenceEqual([738, 449, 100, 39]) == true,
+    "更新数据连接中断应使用精确文案和确认按钮坐标");
+var warehousePipeline = JObject.Parse(File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "assets", "resource", "base", "pipeline", "Warehouse.json")));
+var warehouseExpeditionResultNodes = new[]
+{
+    "Warehouse_ClickExpeditionReturn_Exp",
+    "Warehouse_ClickExpeditionReturn_Title"
+};
+var warehouseRecoveryNodes = new[]
+{
+    "Warehouse_LeaveTroopRecord",
+    "Warehouse_IsAnnouncementPopup",
+    "Warehouse_IsTrainingLetter",
+    "Warehouse_IsLoginReward",
+    "Warehouse_LoginRewardClick2",
+    "Warehouse_LoginRewardClick3",
+    "Warehouse_IsAdvertisementPopup",
+    "Warehouse_IsGameIcon",
+    "Warehouse_IsLoginButton",
+    "Warehouse_IsGameUpdatePopup",
+    "Warehouse_IsInGameUpdatePopup",
+    "Warehouse_IsInternalReport",
+    "Warehouse_IsNetworkRequestTimeout",
+    "Warehouse_IsConnectionInterrupted",
+    "Warehouse_FallbackWait"
+};
+AssertTrue(warehouseExpeditionResultNodes.All(nodeName => warehousePipeline[nodeName] != null)
+    && warehousePipeline["Warehouse_Start"]?["next"]?.Values<string>().Intersect(warehouseExpeditionResultNodes).Count()
+        == warehouseExpeditionResultNodes.Length,
+    "仓库入口应优先识别并关闭远征结果画面");
+AssertTrue(warehouseExpeditionResultNodes.All(nodeName =>
+        warehousePipeline[nodeName]?["next"]?.Values<string>().SequenceEqual(["Warehouse_Start"]) == true),
+    "仓库远征结果处理完成后应回到仓库入口");
+AssertTrue(warehouseRecoveryNodes.All(nodeName => warehousePipeline[nodeName] != null)
+    && warehouseRecoveryNodes.All(nodeName =>
+        warehousePipeline[nodeName]?["on_error"]?.Values<string>().SequenceEqual(["Warehouse_Start"]) == true),
+    "仓库入口应包含完整闪退恢复链且失败时回到仓库入口");
+AssertTrue(warehousePipeline["Warehouse_Start"]?["timeout"]?.Value<int>() == 120000
+    && warehousePipeline["Warehouse_Start"]?["on_error"]?.Values<string>().SequenceEqual(["Warehouse_RestartGame"]) == true
+    && warehousePipeline["Warehouse_RestartGame"]?["next"]?.Values<string>().SequenceEqual(["Warehouse_Start"]) == true,
+    "仓库入口超时后应重启游戏并回到仓库入口");
 var dashboardLayout = JObject.Parse(File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "assets", "resource", "mfa_layout.json")));
 AssertTrue(dashboardLayout["settings"]?["row_span"]?.Value<int>() == 5
