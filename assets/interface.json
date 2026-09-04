@@ -24,7 +24,7 @@
   "resource": [
     {
       "name": "刀剑乱舞",
-      "path": ["{PROJECT_DIR}/resource/base"],
+      "path": ["{PROJECT_DIR}/assets/resource/base"],
       "DisplayName": "刀剑乱舞",
       "DisplayDescription": "刀剑乱舞（Touken Ranbu）自动化资源"
     }
@@ -5687,6 +5687,7 @@
             "TT_FallbackWait": {"enabled": false},
             "UD_FallbackWait": {"enabled": false},
             "UD_SB_FallbackWait": {"enabled": false},
+            "Warehouse_FallbackWait": {"enabled": false},
             "FC_FallbackWait": {"enabled": false},
             "UF_FallbackWait": {"enabled": false},
             "DT_PresetFallbackWait": {"enabled": false},

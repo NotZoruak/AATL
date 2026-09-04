@@ -18,8 +18,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markdown.Avalonia.Tight", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markdown.Avalonia.SyntaxHigh", "Markdown.Avalonia.SyntaxHigh\Markdown.Avalonia.SyntaxHigh.csproj", "{8E5FBE54-5429-4884-843D-5693D8D3B144}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markdown.Avalonia.Math", "Markdown.Avalonia.Math\Markdown.Avalonia.Math.csproj", "{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorDocument.Avalonia", "ColorDocument.Avalonia\ColorDocument.Avalonia.csproj", "{13789D1B-258F-4032-9875-C283B312B89F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorTextBlock.Avalonia", "ColorTextBlock.Avalonia\ColorTextBlock.Avalonia.csproj", "{649B551C-FC7C-42C2-9A8B-196165C41296}"
@@ -27,6 +25,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFAAvalonia.Android", "MFAAvalonia.Android\MFAAvalonia.Android.csproj", "{AA3F756D-A5AD-44F6-8232-8EB69664F3F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFAAvalonia.Desktop", "MFAAvalonia.Desktop\MFAAvalonia.Desktop.csproj", "{B68D4668-1F6B-47C6-A06C-DE0ACEB3CCE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markdown.Avalonia.Html.Tests", "Markdown.Avalonia.Html.Tests\Markdown.Avalonia.Html.Tests.csproj", "{9242A40F-DD92-4013-BD6F-B895DB1FBF2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markdown.Avalonia.Math", "Markdown.Avalonia.Math\Markdown.Avalonia.Math.csproj", "{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,10 +72,6 @@ Global
 		{8E5FBE54-5429-4884-843D-5693D8D3B144}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E5FBE54-5429-4884-843D-5693D8D3B144}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E5FBE54-5429-4884-843D-5693D8D3B144}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13789D1B-258F-4032-9875-C283B312B89F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13789D1B-258F-4032-9875-C283B312B89F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13789D1B-258F-4032-9875-C283B312B89F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -88,5 +86,13 @@ Global
 		{B68D4668-1F6B-47C6-A06C-DE0ACEB3CCE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B68D4668-1F6B-47C6-A06C-DE0ACEB3CCE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B68D4668-1F6B-47C6-A06C-DE0ACEB3CCE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9242A40F-DD92-4013-BD6F-B895DB1FBF2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9242A40F-DD92-4013-BD6F-B895DB1FBF2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9242A40F-DD92-4013-BD6F-B895DB1FBF2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9242A40F-DD92-4013-BD6F-B895DB1FBF2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85DCB45E-18A7-4EE4-A205-A55AA1FA23E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

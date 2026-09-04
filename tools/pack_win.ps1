@@ -42,24 +42,34 @@ Get-ChildItem "$TempDir\runtimes" -Directory | ForEach-Object {
     if ($KeepDirs -notcontains $_.Name) { Remove-Item -Recurse -Force $_.FullName }
 }
 
-# CI 发布目录中的通用库、设备代理和插件位于根目录，统一整理到应用运行时布局。
+# 发布目录中的根级 libs 是兼容输入；发布包统一使用 runtimes/libs 布局。
 if (Test-Path "$SourceDir\libs") {
     New-Item -ItemType Directory -Force -Path "$TempDir\runtimes\libs" | Out-Null
-    Copy-Item "$SourceDir\libs\*" -Recurse -Destination "$TempDir\runtimes\libs"
+    Get-ChildItem -LiteralPath "$SourceDir\libs" -Force | ForEach-Object {
+        $Destination = Join-Path "$TempDir\runtimes\libs" $_.Name
+        if ($_.PSIsContainer -and (Test-Path $Destination)) {
+            Copy-Item (Join-Path $_.FullName '*') -Recurse -Destination $Destination -Force
+        }
+        else {
+            Copy-Item $_.FullName -Recurse -Destination $Destination -Force
+        }
+    }
 }
-if (Test-Path "$SourceDir\MaaAgentBinary") {
-    # libs 拷贝可能已带入同名子目录；先清空目标再拷，避免文件冲突
-    $AgentTarget = "$TempDir\runtimes\libs\MaaAgentBinary"
-    if (Test-Path $AgentTarget) { Remove-Item -Recurse -Force $AgentTarget }
-    New-Item -ItemType Directory -Force -Path $AgentTarget | Out-Null
-    Copy-Item "$SourceDir\MaaAgentBinary\*" -Recurse -Destination $AgentTarget
+
+# 发布目录 runtimes/libs 由本次构建生成，优先级高于兼容输入的根级 libs。
+# 否则根级目录残留的旧 MFAAvalonia.Core.dll 会覆盖刚构建的程序集。
+if (Test-Path "$SourceDir\runtimes\libs") {
+    Copy-Item "$SourceDir\runtimes\libs\*" -Recurse -Destination "$TempDir\runtimes\libs" -Force
+}
+$AgentTarget = "$TempDir\runtimes\libs\MaaAgentBinary"
+if (Test-Path $AgentTarget) {
+    Remove-Item -Recurse -Force $AgentTarget
 }
 if (Test-Path "$SourceDir\plugins") {
     Copy-Item "$SourceDir\plugins" -Recurse -Destination "$TempDir\plugins"
 }
 
-# 移除 libs 中与 win-x64/native 重复的原生库（如 libSkiaSharp.dll），
-# 运行时实际加载的是 win-x64/native 下的同名文件，libs 中的副本为发布冗余。
+# 移除 libs 中与 win-x64/native 重复的原生库（如 libSkiaSharp.dll）。
 Get-ChildItem "$TempDir\runtimes\libs" -File | ForEach-Object {
     if (Test-Path "$TempDir\runtimes\$Platform\native\$($_.Name)") {
         Remove-Item -Force $_.FullName

@@ -1,32 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <!-- 优先使用目标 RID；普通构建没有 RID 时，回退到当前 .NET SDK 的宿主 RID。 -->
-        <_MatrTargetRid Condition="'$(RuntimeIdentifier)' != ''">$(RuntimeIdentifier)</_MatrTargetRid>
-        <_MatrTargetRid Condition="'$(RuntimeIdentifier)' == ''">$(NETCoreSdkRuntimeIdentifier)</_MatrTargetRid>
-        <_MatrIsWindows Condition="$([System.String]::Copy('$(_MatrTargetRid)').StartsWith('win'))">true</_MatrIsWindows>
-        <_MatrIsWindows Condition="'$(_MatrIsWindows)' == ''">false</_MatrIsWindows>
-    </PropertyGroup>
-
-    <PropertyGroup>
-        <!-- WinExe 抑制 Windows 上的控制台窗口；非 Windows 上无该子系统概念，用 Exe 更贴切 -->
-        <OutputType Condition="'$(_MatrIsWindows)' == 'true'">WinExe</OutputType>
-        <OutputType Condition="'$(_MatrIsWindows)' != 'true'">Exe</OutputType>
-        <AssemblyName>MATR</AssemblyName>
-        <OutputName>MATR</OutputName>
+        <OutputType>WinExe</OutputType>
+        <AssemblyName>MFAAvalonia</AssemblyName>
+        <OutputName>MFAAvalonia</OutputName>
         <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-        <!-- 实际以 RID 发布；声明 AnyCPU 以匹配默认 Platform，避免 osx/linux 构建被 x64-only 限制 -->
-        <Platforms>AnyCPU;x64</Platforms>
-        <!-- app.manifest 与 .ico 均为 Windows 专属，非 Windows 忽略；显式条件化保持整洁 -->
-        <ApplicationManifest Condition="'$(_MatrIsWindows)' == 'true'">app.manifest</ApplicationManifest>
-        <ApplicationIcon Condition="'$(_MatrIsWindows)' == 'true'">..\MFAAvalonia\Assets\logo.ico</ApplicationIcon>
+        <Platforms>x64</Platforms>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <ApplicationIcon>..\MFAAvalonia\Assets\logo.ico</ApplicationIcon>
         <CETCompat>false</CETCompat>
     </PropertyGroup>
 
     <PropertyGroup>
         <DebianPackageDependencies>dotnet-runtime-8.0;libc6;libgtk-3-0</DebianPackageDependencies>
-        <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' == '' and '$(RuntimeIdentifiers)' == ''">win-x64;linux-x64;osx-x64;win-arm64;linux-arm64;osx-arm64</RuntimeIdentifiers>
+        <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' == ''">win-x64;linux-x64;osx-x64;win-arm64;linux-arm64;osx-arm64</RuntimeIdentifiers>
         <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' != ''">$(RuntimeIdentifier)</RuntimeIdentifiers>
         <MaaFrameworkPlatform>$(RuntimeIdentifier)</MaaFrameworkPlatform>
         <OutputPath>../bin/$(Platform)/$(Configuration)/</OutputPath>
@@ -40,19 +28,14 @@
         <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-        <MaaAgentBinaryPath>libs/MaaAgentBinary</MaaAgentBinaryPath>
+        <MaaAgentBinaryPath>runtimes/libs/MaaAgentBinary</MaaAgentBinaryPath>
         <BeautyLibsDir>./runtimes/libs</BeautyLibsDir>
         <BeautyOnPublishOnly>True</BeautyOnPublishOnly>
-        <!-- NetBeauty 整理托管库到 runtimes/libs，保持发布根目录干净。
-             BeautyLibsDir 曾误配为 ".;./runtimes/libs"，产生字面目录 ".;" 导致库被藏进
-             ".;/runtimes/libs"；改为 "./runtimes/libs" 后按预期整理。
-             非 Windows 上 BeautyLibsDir 的 ';' 分隔在 /bin/sh 下会当作命令分隔符，故仅在 Windows 生效。 -->
-        <DisableBeauty Condition="'$(_MatrIsWindows)' != 'true'">True</DisableBeauty>
         <DebugType>none</DebugType>
         <DebugSymbols>false</DebugSymbols>
     </PropertyGroup>
 
-    <ItemGroup Condition="'$(_MatrIsWindows)' == 'true'">
+    <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
         <PackageReference Update="Packaging.Targets">
             <Version>0.1.232</Version>
         </PackageReference>
@@ -61,7 +44,7 @@
     <ItemGroup>
         <PackageReference Include="Avalonia.Desktop" Version="11.3.12"/>
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.12"/>
-        <PackageReference Include="nulastudio.NetBeauty" Version="2.1.5" Condition="'$(MATR_TARGET_RID)' != 'osx-arm64'" />
+        <PackageReference Include="nulastudio.NetBeauty" Version="2.1.5" />
     </ItemGroup>
 
     <ItemGroup>
@@ -70,14 +53,6 @@
 
     <ItemGroup>
         <RuntimeHostConfigurationOption Include="SubdirectoriesToProbe" Value="runtimes/libs"/>
-        <!-- MaaFramework 的 .NET 启动钩子：在 Main 之前加载 MaaFramework 原生库。
-             声明为程序集引用以进入 deps.json，并由 RuntimeHostConfigurationOption 写入 runtimeconfig.json
-             的 STARTUP_HOOKS，使发布产物不再依赖手工放置 libloader.dll。 -->
-        <Reference Include="libloader">
-            <HintPath>..\..\libloader.dll</HintPath>
-            <Private>true</Private>
-        </Reference>
-        <RuntimeHostConfigurationOption Include="STARTUP_HOOKS" Value="libloader"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -126,8 +101,7 @@
 
     <Target Name="RemoveUnwantedFiles" AfterTargets="Publish" Condition="'$(PublishDir)' != ''">
         <PropertyGroup>
-            <!-- 使用发布时实际写入的 PublishDir，避免按 OutputPath 推算（宿主 RID 不附加进输出路径时推算会错位） -->
-            <MainPublishDir>$([MSBuild]::NormalizeDirectory('$(PublishDir)'))</MainPublishDir>
+            <MainPublishDir>$([MSBuild]::NormalizeDirectory('$(OutputPath)\$(RuntimeIdentifier)\publish'))</MainPublishDir>
         </PropertyGroup>
 
         <ItemGroup>
@@ -136,9 +110,5 @@
         </ItemGroup>
 
         <Delete Files="@(PdbFilesToDelete);@(XmlFilesToDelete);@(RuntimeConfigFilesToDelete)" ContinueOnError="true"/>
-
-        <!-- 移除 NuGet 包自带的默认 interface.json（项目使用根目录的自定义版本） -->
-        <RemoveDir Directories="$(MainPublishDir)resource\agent;$(MainPublishDir)resource\backup;$(MainPublishDir)resource\config;$(MainPublishDir)resource\temp" ContinueOnError="true"/>
-        <Delete Files="$(MainPublishDir)resource\interface.json;$(MainPublishDir)resource\mfa_layout.json;$(MainPublishDir)resource\Changelog.md" ContinueOnError="true"/>
     </Target>
 </Project>

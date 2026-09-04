@@ -13,6 +13,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="avares://MFAAvalonia.Core/Assets/Style/Geometry.axaml" />
+                <ResourceInclude Source="avares://MFAAvalonia.Core/Assets/Style/MdXaml.axaml" />
                 <ResourceInclude Source="avares://MFAAvalonia.Core/Views/UserControls/TooltipBlock.axaml" />
                 <ResourceInclude Source="avares://MFAAvalonia.Core/Views/UserControls/DisplayIcon.axaml" />
                 <ResourceInclude Source="avares://MFAAvalonia.Core/Views/UserControls/SchedulePicker.axaml" />

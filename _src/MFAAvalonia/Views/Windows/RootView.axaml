@@ -23,10 +23,10 @@
     xmlns:helper="clr-namespace:MFAAvalonia.Helper"
     xmlns:markup="https://codewf.com"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mobile="clr-namespace:MFAAvalonia.Views.Mobile"
     xmlns:pages="clr-namespace:MFAAvalonia.Views.Pages"
     xmlns:suki="https://github.com/kikipoulet/SukiUI"
     xmlns:windows="clr-namespace:MFAAvalonia.ViewModels.Windows"
-    xmlns:mobile="clr-namespace:MFAAvalonia.Views.Mobile"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     NonClientAreaContentIsHitTestVisible="True" Icon="{Binding Source={x:Static helper:IconHelper.WindowIcon}}"
     xmlns:fluent="clr-namespace:FluentIcons.Avalonia.Fluent.Markup;assembly=FluentIcons.Avalonia.Fluent">
@@ -233,5 +233,4 @@
             Name="DialogHost" />
     </suki:SukiWindow.Hosts>
     <mobile:RootViewContent />
-
 </suki:SukiWindow>

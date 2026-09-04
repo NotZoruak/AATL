@@ -14,14 +14,30 @@ using System.Reflection;
 var actualWindowSize = WindowSizePersistence.GetValidSize(1366, 768);
 AssertTrue(actualWindowSize is { Width: 1366, Height: 768 },
     "窗口保存应使用用户拖拽后的实际客户区尺寸");
+AssertTrue(TaskQueueContinuationPolicy.CanContinue(true, true),
+    "失败且启用继续时应继续执行队列");
+AssertFalse(TaskQueueContinuationPolicy.CanContinue(true, false),
+    "失败但未启用继续时应停止队列");
+AssertFalse(TaskQueueContinuationPolicy.CanContinue(false, true),
+    "非失败状态不应因继续选项而推进队列");
 var rootViewSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Views", "Windows", "RootView.axaml.cs"));
 var rootViewMarkup = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Views", "Windows", "RootView.axaml"));
 var taskQueueViewSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Views", "Pages", "TaskQueueView.axaml.cs"));
+var taskQueueViewMarkup = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Views", "Pages", "TaskQueueView.axaml"));
+var taskQueueViewModelSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "ViewModels", "Pages", "TaskQueueViewModel.cs"));
+var appSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "App.axaml.cs"));
 var taskOptionGeneratorSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "TaskOptionGenerator.cs"));
+var packWinScript = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "tools", "pack_win.ps1"));
+var packMacScript = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "tools", "pack_mac.ps1"));
 AssertTrue(rootViewSource.IndexOf("InitializeComponent();", StringComparison.Ordinal)
     < rootViewSource.IndexOf("LoadWindowSizeAndPosition();", StringComparison.Ordinal),
     "窗口应在加载已保存尺寸前完成XAML初始化，避免默认尺寸覆盖配置");
@@ -31,6 +47,42 @@ AssertTrue(rootViewMarkup.Contains("Width=\"1024\"", StringComparison.Ordinal)
 AssertTrue(taskQueueViewSource.Contains("new WrapPanel", StringComparison.Ordinal)
     && !taskQueueViewSource.Contains("new UniformGrid { Columns = 2", StringComparison.Ordinal),
     "复选框应根据可用宽度自适应换行，不能固定为两列");
+AssertTrue(taskQueueViewMarkup.Contains("Command=\"{Binding ToggleSelectAllCommand}\"", StringComparison.Ordinal)
+    && !taskQueueViewMarkup.Contains("Command=\"{Binding SelectAllCommand}\"", StringComparison.Ordinal)
+    && !taskQueueViewMarkup.Contains("Command=\"{Binding SelectNoneCommand}\"", StringComparison.Ordinal),
+    "任务列表必须使用一个按钮在全选与全不选之间切换，不能恢复上游的两个独立按钮");
+AssertTrue(taskQueueViewModelSource.Contains("private void ToggleSelectAll()", StringComparison.Ordinal)
+    && !taskQueueViewModelSource.Contains("private void SelectAll()", StringComparison.Ordinal)
+    && !taskQueueViewModelSource.Contains("private void SelectNone()", StringComparison.Ordinal),
+    "任务列表必须通过 ToggleSelectAll 统一处理全选与全不选");
+AssertTrue(appSource.Contains(
+        ".AddView<WorkRecordNameDialogView, WorkRecordNameDialogViewModel>(services)",
+        StringComparison.Ordinal),
+    "工作记录保存时必须注册名称输入对话框视图，避免提示找不到 WorkRecordNameDialogViewModel 对应视图");
+var applyCurrentDeviceSelectionSource = ExtractSourceSection(
+    taskQueueViewModelSource,
+    "private void ApplyCurrentDeviceSelection",
+    "private void SetEmptyDeviceState");
+AssertFalse(applyCurrentDeviceSelectionSource.Contains("Dispatcher.UIThread.Post", StringComparison.Ordinal),
+    "恢复已保存的 ADB 设备必须同步写入连接配置，不能延后到后台 UI 队列，否则启动连接会读到空序列号");
+AssertFalse(taskQueueViewModelSource.Contains("_liveViewNoImageLogged", StringComparison.Ordinal),
+    "实时画面首帧尚未完成时不应立即输出无画面警告，必须改为连续失败确认");
+var liveViewFrameAvailability = new LiveViewFrameAvailability();
+AssertTrue(liveViewFrameAvailability.RecordFrame(false) == LiveViewFrameAvailabilityChange.None
+    && liveViewFrameAvailability.RecordFrame(false) == LiveViewFrameAvailabilityChange.None
+    && liveViewFrameAvailability.RecordFrame(false) == LiveViewFrameAvailabilityChange.BecameUnavailable,
+    "实时画面应在连续三个定时周期无图像后才提示不可用");
+AssertTrue(liveViewFrameAvailability.RecordFrame(true) == LiveViewFrameAvailabilityChange.Recovered
+    && liveViewFrameAvailability.RecordFrame(false) == LiveViewFrameAvailabilityChange.None,
+    "实时画面恢复后应重置故障状态，下一次短暂缺帧不应立即再次提示");
+AssertTrue(packWinScript.Contains("$AgentTarget = \"$TempDir\\runtimes\\libs\\MaaAgentBinary\"", StringComparison.Ordinal)
+    && packWinScript.Contains("Remove-Item -Recurse -Force $AgentTarget", StringComparison.Ordinal),
+    "Windows 打包脚本在复制运行时库后必须清理已移除的 MaaAgentBinary 目录");
+AssertTrue(packMacScript.Contains("$AgentTarget = Join-Path $MacOsDir 'MaaAgentBinary'", StringComparison.Ordinal)
+    && packMacScript.Contains("$RuntimeAgentTarget = Join-Path $MacOsDir 'runtimes\\libs\\MaaAgentBinary'", StringComparison.Ordinal)
+    && packMacScript.Contains("Remove-Item -LiteralPath $AgentTarget -Recurse -Force", StringComparison.Ordinal)
+    && packMacScript.Contains("Remove-Item -LiteralPath $RuntimeAgentTarget -Recurse -Force", StringComparison.Ordinal),
+    "macOS 打包脚本在复制发布产物后必须清理根目录和 runtimes/libs 中已移除的 MaaAgentBinary 目录");
 AssertTrue(taskOptionGeneratorSource.Contains("var grid = new UniformGrid", StringComparison.Ordinal)
     && taskOptionGeneratorSource.Contains("void UpdateColumns()", StringComparison.Ordinal)
     && taskOptionGeneratorSource.Contains("grid.Columns = columns", StringComparison.Ordinal),
@@ -340,6 +392,9 @@ foreach (var (prefix, pipeline) in new[] { ("S_", sortiePipeline), ("U_", underg
         $"{prefix}FallbackConfirmOneClickEquip",
         $"{prefix}FallbackReturnFromEquip"
     };
+    var expectedFallbackError = prefix == "S_"
+        ? new[] { "S_DetectWhereAmI" }
+        : new[] { "U_GuiSupplyLog" };
     AssertTrue(fallbackOverride?[$"{prefix}PreConfirmSupply"] == null
         && fallbackOverride?[$"{prefix}FallbackConfirmRecord"]?["enabled"]?.Value<bool>() == true
         && downstreamFallbackNodes.All(nodeName => fallbackOverride?[nodeName] == null)
@@ -353,7 +408,7 @@ foreach (var (prefix, pipeline) in new[] { ("S_", sortiePipeline), ("U_", underg
         && pipeline[$"{prefix}FallbackConfirmRecord"]?["next"]?.Values<string>()
             .SequenceEqual([$"{prefix}FallbackConfirmRecordLog"]) == true
         && pipeline[$"{prefix}FallbackConfirmRecord"]?["on_error"]?.Values<string>()
-            .SequenceEqual([$"{prefix}GuiSupplyLog"]) == true,
+            .SequenceEqual(expectedFallbackError) == true,
         $"{prefix}记录确认后应先向界面输出刀装不足日志；未出现确认页时应保留原补充路径");
     AssertTrue(pipeline[$"{prefix}FallbackConfirmRecordLog"]?["action"]?["custom_action"]?.Value<string>()
             == "LogAction"
@@ -1350,6 +1405,16 @@ AssertTrue(naibanOutfitState.TryFinishMissingOutfit(), "未识别到内番服时
 AssertFalse(naibanOutfitState.TryFinishMissingOutfit(), "同一轮内番服结束结算不应重复输出未显示记录");
 
 Console.WriteLine("FormationPreset 测试通过。");
+
+static string ExtractSourceSection(string source, string startMarker, string endMarker)
+{
+    var start = source.IndexOf(startMarker, StringComparison.Ordinal);
+    var end = source.IndexOf(endMarker, start, StringComparison.Ordinal);
+    if (start < 0 || end < 0)
+        throw new InvalidOperationException($"未找到源码片段：{startMarker} 至 {endMarker}");
+
+    return source[start..end];
+}
 
 static void AssertFalse(bool value, string message)
 {

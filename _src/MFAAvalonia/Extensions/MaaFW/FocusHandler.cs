@@ -6,9 +6,7 @@ using Markdown.Avalonia.Full;
 using Markdown.Avalonia.Html;
 using Markdown.Avalonia.Svg;
 using Markdown.Avalonia.SyntaxHigh;
-#if !MATR_DISABLE_MATH
 using Markdown.Avalonia.Math;
-#endif
 using MaaFramework.Binding.Buffers;
 using MaaFramework.Binding.Notification;
 using MFAAvalonia.Extensions;
@@ -236,15 +234,9 @@ public class FocusHandler
                             .Queue());
                     break;
                 case "notification":
-                    DispatcherHelper.PostOnMainThread(() =>
-                    {
-                        ToastNotification.Instance.AddToast(new NotificationView(4000)
-                        {
-                            TitleText = LangKeys.Tip.ToLocalization(),
-                            MessageText = CreateFocusMarkdownContent(displayText, NotificationMarkdownMaxHeight)
-                        });
-                        ToastNotification.PlayNotificationSound();
-                    });
+                    ToastNotification.Show(
+                        LangKeys.Tip.ToLocalization(),
+                        CreateFocusMarkdownContent(displayText, NotificationMarkdownMaxHeight));
                     break;
                 case "dialog":
                     // 非阻塞式弹窗：fire-and-forget，任务继续执行
@@ -543,9 +535,7 @@ public class FocusHandler
         plugins.Plugins.Add(new SvgFormat());
         plugins.Plugins.Add(new Markdown.Avalonia.ChatAISetup());
         plugins.Plugins.Add(new SyntaxHighlight());
-#if !MATR_DISABLE_MATH
         plugins.Plugins.Add(new MathPlugin());
-#endif
         return plugins;
     }
 

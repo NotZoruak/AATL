@@ -379,7 +379,7 @@ public sealed class MaaProcessorManager
 
                 if (_viewModels.TryGetValue(instanceId, out var viewModel))
                 {
-                    (viewModel as IDisposable)?.Dispose();
+                    viewModel.Dispose();
                 }
 
                 processor.Dispose();
@@ -435,6 +435,7 @@ public sealed class MaaProcessorManager
     /// 需要延迟加载的实例ID列表
     /// </summary>
     private readonly List<string> _pendingInstanceIds = new();
+    private bool _isLazyLoadingComplete;
 
     /// <summary>
     /// 迁移旧的 mfa_*.json 配置文件到多实例系统
@@ -927,6 +928,8 @@ public sealed class MaaProcessorManager
                         
                         // 保存实例名称到配置文件
                         processor.InstanceConfiguration.SetValue(ConfigurationKeys.InstanceName, instanceName);
+                        ApplyPresetSettings(processor, preset, i);
+                        // 先应用 preset，再写入专属配置，避免 preset 命令覆盖模板设置。
 
                         LoggerHelper.Info($"[初始化] 基于 preset '{preset.Name}' 创建实例 {instanceId} (显示名称: {instanceName})");
                     }
@@ -947,6 +950,7 @@ public sealed class MaaProcessorManager
                             DispatcherHelper.PostOnMainThread(() =>
                             {
                                 Current.ViewModel.ApplyPresetCommand.Execute(firstPreset);
+                                ApplyPresetSettings(Current, firstPreset, 0);
                             });
                         }
 
@@ -956,6 +960,8 @@ public sealed class MaaProcessorManager
                         {
                             _pendingInstanceIds.Add(_instanceOrder[i]);
                         }
+
+                        _isLazyLoadingComplete = false;
                     }
 
                     return;
@@ -980,6 +986,7 @@ public sealed class MaaProcessorManager
                 Current.InstanceConfiguration.SetValue(ConfigurationKeys.InstanceName, _instanceNames["default"]);
                 SaveInstanceConfig();
                 _pendingInstanceIds.Clear();
+                _isLazyLoadingComplete = true;
             }
 
             return;
@@ -1111,11 +1118,14 @@ public sealed class MaaProcessorManager
             if (string.IsNullOrWhiteSpace(lastActive) || !validIds.Contains(lastActive))
                 lastActive = _instanceOrder.FirstOrDefault() ?? ids[0];
 
-            // 支持 -c 参数按实例名称激活多开实例
-            if (AppRuntime.Args.TryGetValue("c", out var configParam) && !string.IsNullOrEmpty(configParam))
+            // 支持 -c/-i/--instance 按实例 ID 或名称激活实例。
+            if (AppRuntime.RequestedInstance is { } instanceSelector)
             {
                 var matchedId = _instanceOrder.FirstOrDefault(id =>
-                    _instanceNames.TryGetValue(id, out var name) && name.Equals(configParam, StringComparison.OrdinalIgnoreCase));
+                                    id.Equals(instanceSelector, StringComparison.OrdinalIgnoreCase))
+                                ?? _instanceOrder.FirstOrDefault(id =>
+                                    _instanceNames.TryGetValue(id, out var name)
+                                    && name.Equals(instanceSelector, StringComparison.OrdinalIgnoreCase));
                 if (matchedId != null)
                     lastActive = matchedId;
             }
@@ -1131,6 +1141,8 @@ public sealed class MaaProcessorManager
                 if (id != lastActive && validIds.Contains(id))
                     _pendingInstanceIds.Add(id);
             }
+
+            _isLazyLoadingComplete = false;
         }
     }
     /// <summary>
@@ -1158,6 +1170,49 @@ public sealed class MaaProcessorManager
             }
         }
         return instanceIds;
+    }
+
+    private static void ApplyPresetSettings(MaaProcessor processor, MaaInterface.MaaInterfacePreset? preset, int presetIndex = -1)
+    {
+        var settings = new Dictionary<string, object>();
+        foreach (var value in ConfigurationManager.GetTemplateSettings())
+            settings[value.Key] = value.Value;
+        if (ConfigurationManager.Current.Config.TryGetValue(ConfigurationKeys.EnableLiveView, out var globalLiveView))
+            settings[ConfigurationKeys.EnableLiveView] = globalLiveView;
+        if (ConfigurationManager.Current.Config.TryGetValue(ConfigurationKeys.LiveViewRefreshRate, out var globalRefreshRate))
+            settings[ConfigurationKeys.LiveViewRefreshRate] = globalRefreshRate;
+
+        // preset 专属值优先于全局默认值。
+        var presetSettings = presetIndex >= 0
+            ? ConfigurationManager.GetPresetSettings(presetIndex, preset?.Name, preset?.Label, preset?.DisplayName)
+            : ConfigurationManager.GetPresetSettings(preset?.Name, preset?.Label, preset?.DisplayName);
+        foreach (var value in presetSettings)
+            settings[value.Key] = value.Value;
+
+        if (settings.Count == 0)
+        {
+            LoggerHelper.Info($"[初始化] preset '{preset?.Name}' 未找到专属配置");
+            return;
+        }
+
+        processor.InstanceConfiguration.SetValues(settings);
+        LoggerHelper.Info($"[初始化] preset '{preset?.Name}' 已写入 {settings.Count} 项实例配置");
+
+        // TaskQueueViewModel 读取这些值发生在实例构造时；同步刷新可见属性，
+        // 使首次按 preset 初始化时立即反映模板配置。
+        if (settings.TryGetValue(ConfigurationKeys.EnableLiveView, out var liveView)
+            && bool.TryParse(liveView?.ToString(), out var enableLiveView)
+            && processor.ViewModel != null)
+        {
+            processor.ViewModel.EnableLiveView = enableLiveView;
+        }
+
+        if (settings.TryGetValue(ConfigurationKeys.LiveViewRefreshRate, out var refreshRate)
+            && double.TryParse(refreshRate?.ToString(), out var rate)
+            && processor.ViewModel != null)
+        {
+            processor.ViewModel.LiveViewRefreshRate = rate;
+        }
     }
 
     /// <summary>
@@ -1291,6 +1346,7 @@ public sealed class MaaProcessorManager
             {
                 if (_pendingInstanceIds.Count == 0)
                 {
+                    _isLazyLoadingComplete = true;
                     return;
                 }
 
@@ -1314,6 +1370,7 @@ public sealed class MaaProcessorManager
                 DispatcherHelper.PostOnMainThread(() =>
                 {
                     processor.ViewModel.ApplyPresetCommand.Execute(preset);
+                    ApplyPresetSettings(processor, preset, presetIndex);
                 });
             }
 
@@ -1365,6 +1422,20 @@ public sealed class MaaProcessorManager
                 result.Add((id, name));
             }
             return result;
+        }
+    }
+
+    public string? ResolveInstanceId(string selector)
+    {
+        if (string.IsNullOrWhiteSpace(selector)) return null;
+
+        lock (_lock)
+        {
+            return _instanceOrder.FirstOrDefault(id =>
+                       id.Equals(selector, StringComparison.OrdinalIgnoreCase))
+                   ?? _instanceOrder.FirstOrDefault(id =>
+                       _instanceNames.TryGetValue(id, out var name)
+                       && name.Equals(selector, StringComparison.OrdinalIgnoreCase));
         }
     }
 

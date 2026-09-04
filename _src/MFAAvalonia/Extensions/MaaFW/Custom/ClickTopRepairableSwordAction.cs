@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Media.Imaging;
 using MaaFramework.Binding;
+using MaaFramework.Binding.Buffers;
 using MaaFramework.Binding.Custom;
 using MFAAvalonia.Extensions;
 using MFAAvalonia.Helper;
@@ -278,7 +279,13 @@ public class ClickTopRepairableSwordAction : IMaaCustomAction
             return null;
         }
 
-        using var bitmap = image.ToBitmap();
+        if (image is not MaaImageBuffer imageBuffer)
+        {
+            LoggerHelper.Warning("[修刀选刀] 截图缓冲区类型不受支持");
+            return null;
+        }
+
+        using var bitmap = imageBuffer.ToBitmap();
         if (bitmap == null)
         {
             LoggerHelper.Warning("[修刀选刀] 截图转 Bitmap 失败");

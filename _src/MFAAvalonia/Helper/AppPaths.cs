@@ -29,7 +29,7 @@ public static class AppPaths
     public static string TempMaaFwDirectory => Path.Combine(TempDirectory, "temp_maafw");
     public static string InterfaceJsonPath => Path.Combine(DataRoot, "assets", "interface.json");
     public static string InterfaceJsoncPath => Path.Combine(DataRoot, "assets", "interface.jsonc");
-    public static string GlobalConfigPath => Path.Combine(DataRoot, "appsettings.json");
+    public static string GlobalConfigPath => Path.Combine(Path.GetDirectoryName(ConfigDirectory) ?? InstallRoot, "appsettings.json");
     public static string ChangesPath => Path.Combine(DataRoot, "changes.json");
     public static string BackupDirectory => Path.Combine(DataRoot, "backup");
     public static bool IsUsingIndependentDataRoot => !string.Equals(DataRoot, InstallRoot, StringComparison.OrdinalIgnoreCase);
@@ -134,7 +134,6 @@ public static class AppPaths
             if (!Directory.Exists(InstallRoot))
                 return;
 
-            // 清理根目录下的 backupMFA 文件
             foreach (var backupFile in Directory.EnumerateFiles(InstallRoot, "*.backupMFA", SearchOption.TopDirectoryOnly))
             {
                 try
@@ -148,170 +147,10 @@ public static class AppPaths
                     logWarning?.Invoke($"清理 backupMFA 文件失败：文件={backupFile}，原因={ex.Message}");
                 }
             }
-
-            // 清理 libs 子目录下的 backupMFA 文件（仅保留每个 DLL 的最新备份）
-            var libsPath = Path.Combine(InstallRoot, "runtimes/libs");
-            if (Directory.Exists(libsPath))
-            {
-                var backupGroups = Directory.EnumerateFiles(libsPath, "*.backupMFA")
-                    .GroupBy(f =>
-                    {
-                        var fileName = Path.GetFileName(f);
-                        // 文件名格式: <dll>.<timestamp>.backupMFA，提取 DLL 名
-                        var parts = fileName.Split('.');
-                        return parts.Length > 0 ? parts[0] : fileName;
-                    });
-
-                foreach (var group in backupGroups)
-                {
-                    // 按文件名降序排列（时间戳越大越新），跳过最新的，删除其余
-                    var ordered = group.OrderByDescending(f => f).ToList();
-                    for (var i = 1; i < ordered.Count; i++)
-                    {
-                        try
-                        {
-                            File.SetAttributes(ordered[i], FileAttributes.Normal);
-                            File.Delete(ordered[i]);
-                        }
-                        catch (Exception ex)
-                        {
-                            logWarning?.Invoke($"清理 libs backupMFA 失败：文件={ordered[i]}，原因={ex.Message}");
-                        }
-                    }
-                }
-            }
         }
         catch (Exception ex)
         {
             logWarning?.Invoke($"处理旧主程序 backupMFA 清理失败：原因={ex.Message}");
-        }
-    }
-
-    public static void CleanupOldDebugLogs(int retainDays = 3, Action<string>? logInfo = null, Action<string>? logWarning = null)
-    {
-        try
-        {
-            if (!Directory.Exists(InstallRoot))
-                return;
-
-            var debugPath = Path.Combine(InstallRoot, "debug");
-            if (!Directory.Exists(debugPath))
-                return;
-
-            var cutoff = DateTime.Now.AddDays(-retainDays);
-
-            // 轮转主日志 maafw.log（启动时重命名为备份，MaaFramework 会自动创建新的）
-            var mainLog = Path.Combine(debugPath, "maafw.log");
-            if (File.Exists(mainLog) && new FileInfo(mainLog).Length > 0)
-            {
-                try
-                {
-                    var bakName = $"maafw.bak.{DateTime.Now:yyyy.MM.dd-HH.mm.ss.fff}.log";
-                    File.Move(mainLog, Path.Combine(debugPath, bakName));
-                    logInfo?.Invoke($"已轮转调试日志：{bakName}");
-                }
-                catch (Exception ex)
-                {
-                    logWarning?.Invoke($"轮转调试日志失败：原因={ex.Message}");
-                }
-            }
-
-            // 清理过期的备份日志
-            foreach (var file in Directory.EnumerateFiles(debugPath, "maafw.bak.*.log", SearchOption.AllDirectories))
-            {
-                try
-                {
-                    if (File.GetLastWriteTime(file) < cutoff)
-                    {
-                        File.SetAttributes(file, FileAttributes.Normal);
-                        File.Delete(file);
-                        logInfo?.Invoke($"已清理过期调试日志：文件={Path.GetFileName(file)}");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    logWarning?.Invoke($"清理调试日志失败：文件={file}，原因={ex.Message}");
-                }
-            }
-
-            // debug 目录磁盘占用超 500MB 时仅保留最新 10 条 maafw.bak.*.log(日志已按 20MiB 切块,单块很小,可多保留历史)
-            try
-            {
-                var debugDirSize = Directory.EnumerateFiles(debugPath, "*", SearchOption.AllDirectories)
-                    .Sum(f => { try { return new FileInfo(f).Length; } catch { return 0L; } });
-                if (debugDirSize > 500 * 1024 * 1024)
-                {
-                    var excessBakFiles = Directory.EnumerateFiles(debugPath, "maafw.bak.*.log", SearchOption.TopDirectoryOnly)
-                        .OrderByDescending(f => f)
-                        .Skip(10)
-                        .ToList();
-                    foreach (var file in excessBakFiles)
-                    {
-                        try
-                        {
-                            File.SetAttributes(file, FileAttributes.Normal);
-                            File.Delete(file);
-                            logInfo?.Invoke($"debug 目录超 500MB，已清理备份日志：文件={Path.GetFileName(file)}");
-                        }
-                        catch (Exception ex)
-                        {
-                            logWarning?.Invoke($"清理备份日志失败：文件={file}，原因={ex.Message}");
-                        }
-                    }
-
-                    // 超 500MB 时清理 on_error 截图，仅保留最新 50 张(单张约 0.8MB,占用有限)
-                    var onErrorPath = Path.Combine(debugPath, "on_error");
-                    if (Directory.Exists(onErrorPath))
-                    {
-                        var excessScreenshots = Directory.EnumerateFiles(onErrorPath, "*.png", SearchOption.TopDirectoryOnly)
-                            .OrderByDescending(f => f)
-                            .Skip(50)
-                            .ToList();
-                        foreach (var file in excessScreenshots)
-                        {
-                            try
-                            {
-                                File.SetAttributes(file, FileAttributes.Normal);
-                                File.Delete(file);
-                                logInfo?.Invoke($"debug 目录超 500MB，已清理 on_error 截图：文件={Path.GetFileName(file)}");
-                            }
-                            catch (Exception ex)
-                            {
-                                logWarning?.Invoke($"清理 on_error 截图失败：文件={file}，原因={ex.Message}");
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                logWarning?.Invoke($"检查 debug 目录大小时出错：原因={ex.Message}");
-            }
-
-            // 清理过期的调试截图
-            foreach (var pattern in new[] { "*.png", "*.jpg", "*.jpeg" })
-            {
-                foreach (var file in Directory.EnumerateFiles(debugPath, pattern, SearchOption.AllDirectories))
-                {
-                    try
-                    {
-                        if (File.GetLastWriteTime(file) < cutoff)
-                        {
-                            File.SetAttributes(file, FileAttributes.Normal);
-                            File.Delete(file);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        logWarning?.Invoke($"清理调试截图失败：文件={file}，原因={ex.Message}");
-                    }
-                }
-            }
-            logInfo?.Invoke("调试文件清理完成");
-        }
-        catch (Exception ex)
-        {
-            logWarning?.Invoke($"清理调试日志异常：原因={ex.Message}");
         }
     }
 }

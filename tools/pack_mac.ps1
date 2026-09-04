@@ -48,6 +48,20 @@ if (Test-Path $ZipFile) { Remove-Item -LiteralPath $ZipFile -Force }
 
 New-Item -ItemType Directory -Force -Path $MacOsDir, $ResourcesDir, (Join-Path $MacOsDir 'assets') | Out-Null
 Copy-Item (Join-Path $PublishDir '*') -Destination $MacOsDir -Recurse -Force
+$AgentTarget = Join-Path $MacOsDir 'MaaAgentBinary'
+if (Test-Path $AgentTarget) {
+    Remove-Item -LiteralPath $AgentTarget -Recurse -Force
+}
+$RuntimeAgentTarget = Join-Path $MacOsDir 'runtimes\libs\MaaAgentBinary'
+if (Test-Path $RuntimeAgentTarget) {
+    Remove-Item -LiteralPath $RuntimeAgentTarget -Recurse -Force
+}
+$SourceExecutable = Join-Path $MacOsDir 'MFAAvalonia'
+$BundleExecutable = Join-Path $MacOsDir 'MATR'
+if (-not (Test-Path -LiteralPath $SourceExecutable)) {
+    throw "macOS 发布产物缺少入口程序: $SourceExecutable"
+}
+Move-Item -LiteralPath $SourceExecutable -Destination $BundleExecutable -Force
 Copy-Item (Join-Path $Root 'assets\interface.json') -Destination (Join-Path $MacOsDir 'assets\interface.json') -Force
 Copy-Item (Join-Path $Root 'assets\resource') -Destination (Join-Path $MacOsDir 'assets\resource') -Recurse -Force
 Copy-Item (Join-Path $Root 'README.md') -Destination $MacOsDir -Force

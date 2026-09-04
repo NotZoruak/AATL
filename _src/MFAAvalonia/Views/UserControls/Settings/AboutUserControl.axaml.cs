@@ -8,8 +8,6 @@ using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.Helper;
 using MFAAvalonia.ViewModels.Windows;
 using MFAAvalonia.Views.Windows;
-using Avalonia.VisualTree;
-using MFAAvalonia.Views.Mobile;
 using System;
 using System.IO;
 using System.Linq;
@@ -21,7 +19,7 @@ public partial class AboutUserControl : UserControl
     public AboutUserControl()
     {
         InitializeComponent();
-
+        TutorialCard.IsVisible = !OperatingSystem.IsAndroid();
     }
     private async void Button_OnClick(object? sender, RoutedEventArgs e)
     {
@@ -37,7 +35,7 @@ public partial class AboutUserControl : UserControl
     
     private void DisplayAnnouncement(object? sender, RoutedEventArgs e)
     {
-       _ = AnnouncementViewModel.CheckAnnouncement(true);
+       AnnouncementViewModel.CheckAnnouncement(true);
     }
     
     private void ClearCache_Click(object? sender, RoutedEventArgs e)
@@ -134,8 +132,7 @@ public partial class AboutUserControl : UserControl
 
     private void StartTutorial_Click(object? sender, RoutedEventArgs e)
     {
-        var rootContent = this.GetVisualAncestors().OfType<RootViewContent>().FirstOrDefault();
-        rootContent?.TryStartTutorial();
+        ToastHelper.Info("桌面版暂不提供移动端教程。");
     }
 }
 

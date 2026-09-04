@@ -9,7 +9,6 @@ using MFAAvalonia.Configuration;
 using MFAAvalonia.Helper;
 using MFAAvalonia.Helper.ValueType;
 using MFAAvalonia.Helper.Converters;
-using MFAAvalonia.Services;
 using MFAAvalonia.ViewModels.Other;
 using MFAAvalonia.ViewModels.Pages;
 using MFAAvalonia.Views.Windows;
@@ -47,8 +46,7 @@ public class MaaProcessor
 
     private static readonly Random Random = new();
     private int _taskQueueTotal;
-    private int _taskSuccessCount;
-    private int _taskFailureCount;
+    private int _isTaskRunActive;
     private readonly BlockingCollection<Func<Task>> _commandQueue = new();
     private readonly object _commandThreadLock = new();
     private readonly CancellationTokenSource _commandThreadCts = new();
@@ -56,7 +54,10 @@ public class MaaProcessor
     public static string Resource => AppPaths.ResourceDirectory;
     public static string ResourceBase => Path.Combine(Resource, "base");
     public static ObservableCollection<MaaProcessor> Processors { get; } = new();
-    public static MaaToolkit Toolkit { get; } = new(true);
+    // Android processes start with "/" as Environment.CurrentDirectory. Passing the
+    // application data root explicitly prevents MaaToolkit from probing /config/maa_option.json,
+    // which throws an uncaught native std::filesystem exception and aborts the process.
+    public static MaaToolkit Toolkit { get; } = new(true, AppPaths.DataRoot);
     public static MaaGlobal Global { get; } = new();
     public string InstanceId { get; }
     public InstanceConfiguration InstanceConfiguration { get; }
@@ -84,6 +85,27 @@ public class MaaProcessor
     public void ClearLogs()
     {
         LogItemViewModels.Clear();
+        PlatformRunProgress.ClearLogs?.Invoke(InstanceId);
+    }
+
+    private void PublishPlatformLog(LogItemViewModel log)
+    {
+        static uint ToArgb(IBrush? brush, uint fallback)
+        {
+            if (brush is not ISolidColorBrush solid)
+                return fallback;
+            var color = solid.Color;
+            return ((uint)color.A << 24) | ((uint)color.R << 16) | ((uint)color.G << 8) | color.B;
+        }
+
+        PlatformRunProgress.Log?.Invoke(new RunLogEntry(
+            InstanceId,
+            log.Time,
+            log.Content,
+            log.UseMarkdown,
+            log.ShowTime,
+            ToArgb(log.Color, 0xffffffff),
+            ToArgb(log.BackgroundColor, 0x00000000)));
     }
 
     private IDisposable BeginInstanceLogScope(string operation, string source = "Runtime")
@@ -278,7 +300,8 @@ public class MaaProcessor
         IBrush? brush,
         string weight = "Regular",
         bool changeColor = true,
-        bool showTime = true)
+        bool showTime = true,
+        bool useMarkdown = false)
     {
         brush ??= Brushes.Black;
 
@@ -347,11 +370,14 @@ public class MaaProcessor
 
         DispatcherHelper.PostOnMainThread(() =>
         {
-            LogItemViewModels.Add(new LogItemViewModel(content, brush, weight, "HH':'mm':'ss",
+            var log = new LogItemViewModel(content, brush, weight, "HH':'mm':'ss",
                 showTime: showTime, changeColor: changeColor)
             {
-                BackgroundColor = backGroundBrush
-            });
+                BackgroundColor = backGroundBrush,
+                UseMarkdown = useMarkdown
+            };
+            LogItemViewModels.Add(log);
+            PublishPlatformLog(log);
             using var logScope = BeginInstanceLogScope("MonitorLog", "Monitor");
             LoggerHelper.Info($"[Record] {content}");
 
@@ -359,7 +385,18 @@ public class MaaProcessor
         });
     }
 
-    /// <summary>记录卡死重启事件，同时写入文件日志和实时日志面板。</summary>
+    public void AddLog(string content,
+        string color = "",
+        string weight = "Regular",
+        bool changeColor = true,
+        bool showTime = true,
+        bool useMarkdown = false)
+    {
+        var brush = BrushHelper.ConvertToBrush(color, Brushes.Black);
+        AddLog(content, brush, weight, changeColor, showTime, useMarkdown);
+    }
+
+    /// <summary>记录卡死恢复事件，同时写入文件日志和实时日志面板。</summary>
     public void LogAutoRecovery(string reason)
     {
         var content = $"[卡死重启] {reason}";
@@ -374,26 +411,20 @@ public class MaaProcessor
         });
     }
 
-    public void AddLog(string content,
-        string color = "",
-        string weight = "Regular",
-        bool changeColor = true,
-        bool showTime = true)
-    {
-        var brush = BrushHelper.ConvertToBrush(color, Brushes.Black);
-        AddLog(content, brush, weight, changeColor, showTime);
-    }
-
     public void AddLogByKey(string key, IBrush? brush = null, bool changeColor = true, bool transformKey = true, params string[] formatArgsKeys)
     {
         brush ??= Brushes.Black;
-        DispatcherHelper.PostOnMainThread(() =>
+        Task.Run(() =>
         {
-            var log = new LogItemViewModel(key, brush, "Regular", true, "HH':'mm':'ss", changeColor: changeColor, showTime: true, transformKey: transformKey, formatArgsKeys);
-            LogItemViewModels.Add(log);
-            using var logScope = BeginInstanceLogScope("MonitorLog", "Monitor");
-            LoggerHelper.Info(log.Content);
-            TrimExcessLogs();
+            DispatcherHelper.PostOnMainThread(() =>
+            {
+                var log = new LogItemViewModel(key, brush, "Regular", true, "HH':'mm':'ss", changeColor: changeColor, showTime: true, transformKey: transformKey, formatArgsKeys);
+                LogItemViewModels.Add(log);
+                PublishPlatformLog(log);
+                using var logScope = BeginInstanceLogScope("MonitorLog", "Monitor");
+                LoggerHelper.Info(log.Content);
+                TrimExcessLogs();
+            });
         });
     }
 
@@ -415,6 +446,7 @@ public class MaaProcessor
                     UseMarkdown = true
                 };
                 LogItemViewModels.Add(log);
+                PublishPlatformLog(log);
                 using var logScope = BeginInstanceLogScope("MonitorMarkdown", "Monitor");
                 LoggerHelper.Info(log.Content);
                 TrimExcessLogs();
@@ -437,13 +469,6 @@ public class MaaProcessor
     }
 
     /// <summary>
-    /// {PROJECT_DIR} 占位符的标准替换值：interface 文件所在目录。
-    /// 与 MaaFramework 官方及 MPE 生态的语义保持一致。
-    /// </summary>
-    public static string ProjectDir =>
-        Path.GetDirectoryName(GetInterfaceFilePath() ?? AppPaths.InterfaceJsonPath) ?? AppPaths.DataRoot;
-
-    /// <summary>
     /// 获取 interface 文件路径，优先返回 .jsonc，其次 .json
     /// </summary>
     public static string? GetInterfaceFilePath()
@@ -459,13 +484,14 @@ public class MaaProcessor
         return null;
     }
 
-    private static bool? _cachedIsV3;
+    private static readonly object InterfacePreloadLock = new();
+    private static Task<MaaInterface>? _interfacePreloadTask;
 
     public MaaProcessor(string instanceId)
     {
         InstanceId = instanceId;
         InstanceConfiguration = new InstanceConfiguration(instanceId);
-        DispatcherHelper.PostOnMainThread(() => Processors.Add(this));
+        DispatcherHelper.RunOnMainThread(() => Processors.Add(this));
 
         TaskQueue.CountChanged += (_, args) =>
         {
@@ -490,34 +516,9 @@ public class MaaProcessor
             }
         };
 
-        // 使用缓存避免每个实例都重复读取 interface.json
-        if (_cachedIsV3.HasValue)
-        {
-            IsV3 = _cachedIsV3.Value;
-        }
-        else
-        {
-            CheckInterface(out _, out _, out _, out _, out _);
-            try
-            {
-                var filePath = GetInterfaceFilePath();
-                if (filePath != null)
-                {
-                    var content = File.ReadAllText(filePath);
-                    var @interface = JObject.Parse(content, JsoncLoadSettings);
-                    var interfaceVersion = @interface["interface_version"]?.ToString();
-                    if (int.TryParse(interfaceVersion, out var result) && result >= 3)
-                    {
-                        IsV3 = true;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                LoggerHelper.Error($"读取 interface_version 失败：file={GetInterfaceFilePath()}, reason={e.Message}", e);
-            }
-            _cachedIsV3 = IsV3;
-        }
+        // 这里只读取预加载数据的协议版本，不应用 Interface。
+        // MaaProcessorManager 的 Lazy 构造完成后，LoadInstanceConfig 才会在主线程应用完整数据。
+        IsV3 = GetPreloadedInterfaceVersion() >= 3;
     }
     private bool _isClosed = false;
     public bool IsClosed => _isClosed;
@@ -535,6 +536,7 @@ public class MaaProcessor
     public void Dispose()
     {
         _isClosed = true;
+        DetachScreenshotTasker(requireStopped: true);
         _detachedScreenshotCleanupCancellationTokenSource?.Cancel();
         _detachedScreenshotCleanupCancellationTokenSource?.Dispose();
         lock (_detachedScreenshotTaskersLock)
@@ -557,7 +559,7 @@ public class MaaProcessor
             foreach (var customResource in value?.Resource ?? Enumerable.Empty<MaaInterface.MaaInterfaceResource>())
             {
                 var nameKey = customResource.Name?.Trim() ?? string.Empty;
-                var paths = MaaInterface.ReplacePlaceholder(customResource.Path ?? new(), ProjectDir);
+                var paths = MaaInterface.ReplacePlaceholder(customResource.Path ?? new(), AppPaths.DataRoot);
                 customResource.ResolvedPath = paths;
                 value!.Resources[nameKey] = customResource;
             }
@@ -590,7 +592,7 @@ public class MaaProcessor
                 // 加载多语言配置
                 if (value.Languages is { Count: > 0 })
                 {
-                    LanguageHelper.LoadLanguagesFromInterface(value.Languages, ProjectDir);
+                    LanguageHelper.LoadLanguagesFromInterface(value.Languages, AppPaths.DataRoot);
                 }
 
                 if (MaaProcessorManager.IsInstanceCreated)
@@ -618,7 +620,7 @@ public class MaaProcessor
     /// </summary>
     async private static Task LoadContactAndDescriptionAsync(MaaInterface maaInterface)
     {
-        var projectDir = ProjectDir;
+        var projectDir = AppPaths.DataRoot;
 
         if (!Instances.IsResolved<SettingsViewModel>())
         {
@@ -670,7 +672,10 @@ public class MaaProcessor
     public MaaTasker? MaaTasker { get; set; }
     private MaaTasker? _screenshotTasker;
     private Task<MaaTasker?>? _screenshotTaskerInitTask;
+    private long _screenshotTaskerGeneration;
+    private long _screenshotTaskerInitGeneration;
     private readonly Lock _screenshotTaskerInitLock = new();
+
     private sealed class DetachedScreenshotTaskerRecord
     {
         public MaaTasker Tasker { get; init; } = null!;
@@ -684,48 +689,44 @@ public class MaaProcessor
     private CancellationTokenSource? _detachedScreenshotCleanupCancellationTokenSource;
     private Task? _detachedScreenshotCleanupTask;
     public MaaTasker? ScreenshotTasker => _screenshotTasker;
-    public void SetTasker(MaaTasker? maaTasker = null)
+    public void SetTasker(MaaTasker? maaTasker = null, bool requireAllStopped = false)
     {
         ResetActionFailedCount();
-        if (maaTasker == null && MaaTasker != null)
+        if (maaTasker == null)
         {
             var oldTasker = MaaTasker;
             MaaTasker = null; // 先设置为 null，防止重复释放
+            var taskerStopped = true;
 
-            try
+            if (oldTasker != null)
             {
-                // 使用超时机制避免无限等待，最多等待 5 秒
-                var stopTask = Task.Run(() =>
+                try
                 {
-                    try
+                    // 使用超时机制避免无限等待，最多等待 5 秒
+                    var stopTask = Task.Run(() => oldTasker.Stop().Wait());
+                    if (!stopTask.Wait(TimeSpan.FromSeconds(5)))
                     {
-                        oldTasker.Stop().Wait();
+                        taskerStopped = false;
+                        LoggerHelper.Warning("停止 MaaTasker 超时：已等待 5 秒。");
                     }
-                    catch (Exception ex)
+                    else if (stopTask.IsFaulted)
                     {
-            LoggerHelper.Warning($"停止 MaaTasker 内部任务失败：{ex.Message}");
+                        taskerStopped = false;
+                        LoggerHelper.Warning($"停止 MaaTasker 内部任务失败：{stopTask.Exception?.GetBaseException().Message}");
                     }
-                });
-
-                if (!stopTask.Wait(TimeSpan.FromSeconds(5)))
+                }
+                catch (Exception e)
                 {
-                    LoggerHelper.Warning("停止 MaaTasker 超时：已等待 5 秒。");
+                    taskerStopped = false;
+                    LoggerHelper.Warning($"停止 MaaTasker 失败：{e.Message}");
                 }
             }
-            catch (Exception e)
-            {
-                LoggerHelper.Warning($"停止 MaaTasker 失败：{e.Message}");
-            }
 
-            _agentStarted = false;
-            AgentHelper.KillAllAgents(_agentContexts, oldTasker);
             ViewModel?.SetConnected(false);
-            DetachScreenshotTasker();
-        }
-        else if (maaTasker == null)
-        {
-            // 即使主 Tasker 已经为空，也要确保截图 Tasker 被清理。
-            DetachScreenshotTasker();
+            var screenshotTaskerStopped = DetachScreenshotTasker(requireAllStopped);
+
+            if (requireAllStopped && (!taskerStopped || !screenshotTaskerStopped))
+                throw new InvalidOperationException("更新前未能停止所有 MaaTasker 或截图 Tasker。");
         }
         else if (maaTasker != null)
         {
@@ -735,20 +736,88 @@ public class MaaProcessor
         }
     }
 
-    private void DetachScreenshotTasker()
+    private bool DetachScreenshotTasker(bool requireStopped = false)
     {
-        var screenshotTasker = _screenshotTasker;
-        _screenshotTasker = null;
+        MaaTasker? screenshotTasker;
+        Task<MaaTasker?>? initTask;
         lock (_screenshotTaskerInitLock)
         {
+            _screenshotTaskerGeneration++;
+            screenshotTasker = _screenshotTasker;
+            _screenshotTasker = null;
+            initTask = _screenshotTaskerInitTask;
             _screenshotTaskerInitTask = null;
         }
 
+        if (!requireStopped)
+        {
+            QueueDetachedScreenshotTasker(screenshotTasker);
+            return true;
+        }
+
+        var taskersToStop = new List<MaaTasker>();
+        AddUniqueScreenshotTasker(taskersToStop, screenshotTasker);
+
+        List<DetachedScreenshotTaskerRecord> detachedSnapshot;
+        lock (_detachedScreenshotTaskersLock)
+        {
+            detachedSnapshot = _detachedScreenshotTaskers.ToList();
+            _detachedScreenshotTaskers.Clear();
+        }
+        foreach (var record in detachedSnapshot)
+            AddUniqueScreenshotTasker(taskersToStop, record.Tasker);
+
+        var allStopped = true;
+        if (initTask != null)
+        {
+            try
+            {
+                if (!initTask.Wait(TimeSpan.FromSeconds(5)))
+                {
+                    allStopped = false;
+                    LoggerHelper.Warning("等待截图 Tasker 初始化结束超时：已等待 5 秒。");
+                }
+                else if (initTask.Status == TaskStatus.RanToCompletion)
+                {
+                    AddUniqueScreenshotTasker(taskersToStop, initTask.Result);
+                }
+                else if (initTask.IsFaulted)
+                {
+                    LoggerHelper.Warning($"截图 Tasker 初始化失败：{initTask.Exception?.GetBaseException().Message}");
+                }
+            }
+            catch (Exception ex)
+            {
+                allStopped = false;
+                LoggerHelper.Warning($"等待截图 Tasker 初始化结束失败：{ex.Message}");
+            }
+        }
+
+        foreach (var tasker in taskersToStop)
+        {
+            if (StopAndDisposeScreenshotTasker(tasker)) continue;
+            allStopped = false;
+            QueueDetachedScreenshotTasker(tasker);
+        }
+
+        return allStopped;
+    }
+
+    private static void AddUniqueScreenshotTasker(List<MaaTasker> taskers, MaaTasker? tasker)
+    {
+        if (tasker != null && taskers.All(existing => !ReferenceEquals(existing, tasker)))
+            taskers.Add(tasker);
+    }
+
+    private void QueueDetachedScreenshotTasker(MaaTasker? screenshotTasker)
+    {
         if (screenshotTasker == null)
             return;
 
         lock (_detachedScreenshotTaskersLock)
         {
+            if (_detachedScreenshotTaskers.Any(record => ReferenceEquals(record.Tasker, screenshotTasker)))
+                return;
             _detachedScreenshotTaskers.Add(new DetachedScreenshotTaskerRecord
             {
                 Tasker = screenshotTasker
@@ -756,6 +825,42 @@ public class MaaProcessor
         }
         EnsureDetachedScreenshotTaskerCleanupLoop();
         LoggerHelper.Warning("主连接上下文已变化，旧截图任务执行器已脱钩，等待按新连接重建。");
+    }
+
+    private bool StopAndDisposeScreenshotTasker(MaaTasker screenshotTasker)
+    {
+        try
+        {
+            var stopTask = Task.Run(() =>
+            {
+                if (screenshotTasker.IsStopping)
+                    throw new InvalidOperationException("截图 Tasker 仍处于停止过程中。");
+                if (screenshotTasker.IsRunning && !screenshotTasker.IsStopping)
+                    screenshotTasker.Stop().Wait();
+            });
+            if (!stopTask.Wait(TimeSpan.FromSeconds(5)))
+            {
+                LoggerHelper.Warning("停止截图 Tasker 超时：已等待 5 秒。");
+                return false;
+            }
+            if (stopTask.IsFaulted)
+            {
+                LoggerHelper.Warning($"停止截图 Tasker 失败：{stopTask.Exception?.GetBaseException().Message}");
+                return false;
+            }
+
+            screenshotTasker.Dispose();
+            return true;
+        }
+        catch (ObjectDisposedException)
+        {
+            return true;
+        }
+        catch (Exception ex)
+        {
+            LoggerHelper.Warning($"停止或释放截图 Tasker 失败：{ex.Message}");
+            return false;
+        }
     }
 
     private void EnsureDetachedScreenshotTaskerCleanupLoop()
@@ -938,10 +1043,16 @@ public class MaaProcessor
             return;
 
         Task<MaaTasker?> initTask;
+        long initGeneration;
         lock (_screenshotTaskerInitLock)
         {
-            _screenshotTaskerInitTask ??= InitializeScreenshotTaskerAsync(token);
+            if (_screenshotTaskerInitTask == null)
+            {
+                _screenshotTaskerInitGeneration = _screenshotTaskerGeneration;
+                _screenshotTaskerInitTask = InitializeScreenshotTaskerAsync(token);
+            }
             initTask = _screenshotTaskerInitTask;
+            initGeneration = _screenshotTaskerInitGeneration;
         }
 
         MaaTasker? tasker = null;
@@ -958,18 +1069,12 @@ public class MaaProcessor
             LoggerHelper.Warning($"截图任务执行器预热失败：{ex.Message}");
         }
 
-        lock (_screenshotTaskerInitLock)
-        {
-            if (_screenshotTasker == null)
-            {
-                _screenshotTasker = tasker;
-            }
-            _screenshotTaskerInitTask = null;
-        }
+        PublishInitializedScreenshotTasker(initTask, tasker, initGeneration);
     }
 
     private bool UseSeparateScreenshotTasker =>
-        InstanceConfiguration.GetValue(ConfigurationKeys.UseSeparateScreenshotTasker, true);
+        !PlatformControllerFactory.CanInitializeWithoutDevice
+        && InstanceConfiguration.GetValue(ConfigurationKeys.UseSeparateScreenshotTasker, true);
 
     private MaaTasker? GetScreenshotTasker(CancellationToken token = default)
     {
@@ -987,26 +1092,50 @@ public class MaaProcessor
         if (_screenshotTasker == null && !_isClosed)
         {
             Task<MaaTasker?> initTask;
+            long initGeneration;
             lock (_screenshotTaskerInitLock)
             {
-                _screenshotTaskerInitTask ??= InitializeScreenshotTaskerAsync(token);
+                if (_screenshotTaskerInitTask == null)
+                {
+                    _screenshotTaskerInitGeneration = _screenshotTaskerGeneration;
+                    _screenshotTaskerInitTask = InitializeScreenshotTaskerAsync(token);
+                }
                 initTask = _screenshotTaskerInitTask;
+                initGeneration = _screenshotTaskerInitGeneration;
             }
 
             initTask.Wait(token);
             var tasker = initTask.Result;
 
-            lock (_screenshotTaskerInitLock)
-            {
-                if (_screenshotTasker == null)
-                {
-                    _screenshotTasker = tasker;
-                }
-                _screenshotTaskerInitTask = null;
-            }
+            PublishInitializedScreenshotTasker(initTask, tasker, initGeneration);
         }
 
         return _screenshotTasker;
+    }
+
+    private void PublishInitializedScreenshotTasker(
+        Task<MaaTasker?> initTask,
+        MaaTasker? tasker,
+        long initGeneration)
+    {
+        var accepted = false;
+        lock (_screenshotTaskerInitLock)
+        {
+            if (ReferenceEquals(_screenshotTaskerInitTask, initTask))
+                _screenshotTaskerInitTask = null;
+
+            if (tasker != null
+                && initGeneration == _screenshotTaskerGeneration
+                && MaaTasker != null
+                && !_isClosed)
+            {
+                _screenshotTasker ??= tasker;
+                accepted = ReferenceEquals(_screenshotTasker, tasker);
+            }
+        }
+
+        if (!accepted)
+            QueueDetachedScreenshotTasker(tasker);
     }
 
     private bool ShouldRecreateScreenshotTasker()
@@ -1040,36 +1169,8 @@ public class MaaProcessor
 
     private void DisposeScreenshotTasker()
     {
-        if (_screenshotTasker == null)
-            return;
-
-        var screenshotTasker = _screenshotTasker;
-        _screenshotTasker = null;
-        lock (_screenshotTaskerInitLock)
-        {
-            _screenshotTaskerInitTask = null;
-        }
-
-        try
-        {
-            if (screenshotTasker.IsRunning && !screenshotTasker.IsStopping)
-            {
-                screenshotTasker.Stop().Wait();
-            }
-        }
-        catch (Exception ex)
-        {
-            LoggerHelper.Warning($"停止截图任务执行器失败：{ex.Message}");
-        }
-
-        try
-        {
-            screenshotTasker.Dispose();
-        }
-        catch (Exception ex)
-        {
-            LoggerHelper.Warning($"释放截图任务执行器失败：{ex.Message}");
-        }
+        ResetLiveViewScreencapJob();
+        DetachScreenshotTasker(requireStopped: true);
     }
 
     public ObservableCollection<DragItemViewModel> TasksSource { get; private set; } =
@@ -1078,8 +1179,6 @@ public class MaaProcessor
     private FocusHandler? _focusHandler;
     private TaskLoader? _taskLoader;
 
-    private List<AgentContext> _agentContexts = [];
-    private bool _agentStarted;
     private MFATask.MFATaskStatus Status = MFATask.MFATaskStatus.NOT_STARTED;
     private int _stopCompletionMessageHandled;
     private const int ActionFailedLimit = 20;
@@ -1087,17 +1186,36 @@ public class MaaProcessor
     private readonly Lock _screencapLogLock = new();
     private bool _screencapAbortLogPending;
     private bool _screencapDisconnectedLogPending;
-    private readonly Helper.LoopDetector _loopDetector = new();
+    private bool _screencapFailureLogged;
     private int _isConnecting;
+    private readonly SemaphoreSlim _connectionGate = new(1, 1);
     private bool _suppressConnectionAttemptErrorToast;
     public bool IsConnecting => _isConnecting != 0;
+    public bool IsTaskRunActive => Volatile.Read(ref _isTaskRunActive) != 0;
 
     private MaaController? GetScreenshotController(bool test)
     {
         if (test && !_isClosed)
-            TryConnectAsync(CancellationToken.None);
+            _ = TryConnectForLiveViewAsync();
 
         return GetScreenshotTasker(CancellationToken.None)?.Controller;
+    }
+
+    private async Task TryConnectForLiveViewAsync()
+    {
+        try
+        {
+            await TryConnectAsync(CancellationToken.None);
+        }
+        catch (OperationCanceledException)
+        {
+            // Live view connection probes are best-effort and may be cancelled on shutdown.
+        }
+        catch (Exception ex)
+        {
+            // A live-view refresh must never create an unobserved background exception.
+            LoggerHelper.Debug($"实时画面后台连接探测失败：{ex.Message}");
+        }
     }
 
     private bool ShouldScreencapForLiveView()
@@ -1157,6 +1275,89 @@ public class MaaProcessor
             LoggerHelper.Warning($"提交截图任务失败：{ex.Message}");
             return MaaJobStatus.Invalid;
         }
+    }
+
+    /// <summary>
+    /// 实时视图在途截图任务（流水线复用，非阻塞）。
+    /// </summary>
+    private MaaJob? _liveViewScreencapJob;
+
+    /// <summary>
+    /// 流水线式提交实时视图截图：非阻塞，提交后立即返回，截图由控制器在后台执行。
+    /// 若上一帧截图仍在执行则复用而不重复提交，避免任务堆积。
+    /// 相比原 PostScreencap 的同步 Screencap().Wait()，定时器不再被截图耗时阻塞，
+    /// 实时视图刷新率可真正由 LiveViewRefreshRate 决定。
+    /// </summary>
+    /// <returns>null 表示控制器不可用；Succeeded 表示已提交或仍有正常在途截图；
+    /// Failed/Invalid 表示上一帧截图失败（与 PostScreencap 的失败语义一致）。</returns>
+    public MaaJobStatus? PostScreencapPipelined()
+    {
+        var controller = GetScreenshotController(false);
+        if (controller == null)
+        {
+            return MaaJobStatus.Invalid;
+        }
+
+        if (!controller.IsConnected)
+        {
+            return IsAnyScreenshotRelatedWorkRunning(controller)
+                ? MaaJobStatus.Succeeded
+                : MaaJobStatus.Invalid;
+        }
+
+        var job = Volatile.Read(ref _liveViewScreencapJob);
+        if (job != null)
+        {
+            MaaJobStatus status;
+            try
+            {
+                status = job.Status;
+            }
+            catch (ObjectDisposedException)
+            {
+                // 任务器已重建，放弃旧的在途任务
+                Volatile.Write(ref _liveViewScreencapJob, null);
+                return MaaJobStatus.Invalid;
+            }
+            catch
+            {
+                Volatile.Write(ref _liveViewScreencapJob, null);
+                return MaaJobStatus.Invalid;
+            }
+
+            if (status.IsRunning() || status.IsPending())
+            {
+                // 上一帧仍在执行，保持流水线复用，不重复提交
+                return MaaJobStatus.Succeeded;
+            }
+
+            // 上一帧已结束：若失败，先向调用方上报（仅一次），随后替换为新的在途任务
+            Volatile.Write(ref _liveViewScreencapJob, null);
+            if (status is MaaJobStatus.Failed or MaaJobStatus.Invalid)
+            {
+                return status;
+            }
+        }
+
+        try
+        {
+            Volatile.Write(ref _liveViewScreencapJob, controller.Screencap());
+            return MaaJobStatus.Succeeded;
+        }
+        catch (Exception ex)
+        {
+            LoggerHelper.Warning($"提交截图任务失败：{ex.Message}");
+            Volatile.Write(ref _liveViewScreencapJob, null);
+            return MaaJobStatus.Invalid;
+        }
+    }
+
+    /// <summary>
+    /// 实时视图流水线清理：放弃在途截图任务（截图任务器重建/断开时调用）。
+    /// </summary>
+    public void ResetLiveViewScreencapJob()
+    {
+        Volatile.Write(ref _liveViewScreencapJob, null);
     }
 
     public bool IsMainControllerConnected()
@@ -1336,7 +1537,7 @@ public class MaaProcessor
 
             if (controllerConfig?.AttachResourcePath != null)
             {
-                var attachedPaths = MaaInterface.ReplacePlaceholder(controllerConfig.AttachResourcePath, ProjectDir);
+                var attachedPaths = MaaInterface.ReplacePlaceholder(controllerConfig.AttachResourcePath, AppPaths.DataRoot);
                 if (attachedPaths != null)
                 {
                     resources.AddRange(attachedPaths.Select(Path.GetFullPath));
@@ -1436,6 +1637,21 @@ public class MaaProcessor
         {
             return (null, false, false);
         }
+        try
+        {
+            var preTaskExecuted = await RunPreTasksAsync(token);
+            if (preTaskExecuted && ViewModel?.CurrentController != MaaControllerTypes.PlayCover && ViewModel?.CurrentDevice == null)
+            {
+                await Task.Run(() => ViewModel.AutoDetectDevice(token, showToast: false), token);
+            }
+        }
+        catch (OperationCanceledException) { throw; }
+        catch (Exception ex)
+        {
+            LoggerHelper.Error("执行 PI pretask 失败", ex);
+            AddLog($"pretask failed: {ex.Message}", Brushes.OrangeRed, changeColor: false);
+            return (null, true, false);
+        }
         MaaResource maaResource = null;
         try
         {
@@ -1445,6 +1661,20 @@ public class MaaProcessor
             var resources = currentResource?.ResolvedPath ?? currentResource?.Path ?? [];
             resources = resources.Select(Path.GetFullPath).ToList();
 
+            // PI v2.6.0 要求 hash 只基于 resource.path，必须在 attach_resource_path 之前校验。
+            if (!string.IsNullOrWhiteSpace(currentResource?.Hash))
+            {
+                using var hashResource = new MaaResource(resources);
+                var actualHash = hashResource.Hash;
+                if (!string.Equals(actualHash, currentResource.Hash, StringComparison.OrdinalIgnoreCase))
+                {
+                    var message = $"资源完整性校验不匹配：expected={currentResource.Hash}, actual={actualHash}";
+                    LoggerHelper.Warning(message);
+                    AddLog(message, Brushes.OrangeRed, changeColor: false);
+                    ToastHelper.Warn(message);
+                }
+            }
+
             var controllerType = ViewModel?.CurrentController ?? MaaControllerTypes.Adb;
             var controllerName = controllerType.ToJsonKey();
             var controllerConfig = Interface?.Controller?.FirstOrDefault(c =>
@@ -1452,7 +1682,7 @@ public class MaaProcessor
 
             if (controllerConfig?.AttachResourcePath != null)
             {
-                var attachedPaths = MaaInterface.ReplacePlaceholder(controllerConfig.AttachResourcePath, ProjectDir);
+                var attachedPaths = MaaInterface.ReplacePlaceholder(controllerConfig.AttachResourcePath, AppPaths.DataRoot);
                 if (attachedPaths != null)
                 {
                     resources.AddRange(attachedPaths.Select(Path.GetFullPath));
@@ -1486,15 +1716,17 @@ public class MaaProcessor
             LoggerHelper.Warning("资源加载已取消。");
             return (null, InvalidResource, ShouldRetry);
         }
-        catch (MaaJobStatusException)
+        catch (MaaJobStatusException ex)
         {
             ShouldRetry = false;
+            TelemetryService.RecordTaskFailure(InstanceId, "resource_initialization_failed", "resource_load", ex);
             return (null, InvalidResource, ShouldRetry);
         }
         catch (Exception e)
         {
             ShouldRetry = false;
             LoggerHelper.Error("资源初始化失败", e);
+            TelemetryService.RecordTaskFailure(InstanceId, "resource_initialization_failed", "resource_load", e);
             return (null, InvalidResource, ShouldRetry);
         }
 
@@ -1517,6 +1749,7 @@ public class MaaProcessor
             if (controller == null)
             {
                 LoggerHelper.Warning("控制器初始化结果为空，已中止本次连接尝试。");
+                TelemetryService.RecordTaskFailure(InstanceId, "controller_initialization_failed", "controller", "null_result");
                 return (null, InvalidResource, ShouldRetry);
             }
 
@@ -1536,13 +1769,15 @@ public class MaaProcessor
             LoggerHelper.Warning("控制器初始化已取消。");
             return (null, InvalidResource, ShouldRetry);
         }
-        catch (MaaException)
+        catch (MaaException ex)
         {
+            TelemetryService.RecordTaskFailure(InstanceId, "controller_initialization_failed", "controller", ex);
             return (null, InvalidResource, ShouldRetry); // 控制器异常可以重试
         }
         catch (Exception e)
         {
             LoggerHelper.Error("控制器初始化失败", e);
+            TelemetryService.RecordTaskFailure(InstanceId, "controller_initialization_failed", "controller", e);
             return (null, InvalidResource, ShouldRetry); // 控制器错误可以重试
         }
 
@@ -1563,11 +1798,25 @@ public class MaaProcessor
             // 尝试连接控制器，验证连接是否成功
             // 这对于 Win32 控制器特别重要，因为当 HWnd 为 IntPtr.Zero 时，
             // MaaWin32Controller 创建成功但LinkStart 会失败
-            var linkStatus = tasker.Controller?.LinkStart().Wait();
+            MaaJobStatus? linkStatus;
+            try
+            {
+                linkStatus = tasker.Controller?.LinkStart().Wait();
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                TelemetryService.RecordTaskFailure(InstanceId, "controller_link_start_failed", "controller", ex);
+                throw;
+            }
             if (linkStatus != MaaJobStatus.Succeeded)
             {
                 LoggerHelper.Warning($"控制器 LinkStart 失败：状态={linkStatus}");
                 tasker.Dispose();
+                TelemetryService.RecordTaskFailure(InstanceId, "controller_link_start_failed", "controller", linkStatus.ToString());
                 return (null, InvalidResource, ShouldRetry);
             }
 
@@ -1595,43 +1844,6 @@ public class MaaProcessor
                 LoggerHelper.Error($"清理临时目录失败：reason={e.Message}", e);
             }
 
-            // 获取代理配置并启动 Agent（支持多 Agent）
-            var agentConfigs = Interface?.Agent;
-            if (AgentHelper.HasAgentConfigs(agentConfigs) && !_agentStarted)
-            {
-                try
-                {
-                    AgentHelper.KillAllAgents(_agentContexts);
-                    _agentContexts = await AgentHelper.StartAgentsAsync(tasker, agentConfigs!, InstanceConfiguration, this, token);
-                    if (_agentContexts.Count == 0 && agentConfigs!.Any(a => a.ChildExec != null))
-                    {
-                        // Agent 启动失败（StartAgentsAsync 内部已处理错误日志）
-                        ShouldRetry = false;
-                        return (null, InvalidResource, ShouldRetry);
-                    }
-                    _agentStarted = true;
-                }
-                catch (OperationCanceledException)
-                {
-                    LoggerHelper.Info("用户已取消 Agent 初始化。");
-                    AgentHelper.KillAllAgents(_agentContexts);
-                    throw;
-                }
-                catch (Exception ex)
-                {
-                    AddLogByKey(LangKeys.AgentStartFailed, Brushes.OrangeRed, changeColor: false);
-                    LoggerHelper.Error($"启动 Agent 失败：reason={ex.Message}", ex);
-                    var isNullReference = ex is NullReferenceException
-                        || ex.Message.Contains("Object reference not set to an instance of an object.", StringComparison.OrdinalIgnoreCase);
-                    if (isNullReference)
-                        ToastHelper.Error(LangKeys.AgentStartFailed.ToLocalization());
-                    else
-                        ToastHelper.Error(LangKeys.AgentStartFailed.ToLocalization(), ex.Message);
-                    AgentHelper.KillAllAgents(_agentContexts);
-                    ShouldRetry = false;
-                    return (null, InvalidResource, ShouldRetry);
-                }
-            }
             RegisterCustomRecognitionsAndActions(tasker);
             ViewModel?.SetConnected(true);
             //  tasker.Utility.SetOption_Recording(ConfigurationManager.Maa.GetValue(ConfigurationKeys.Recording, false));
@@ -1639,8 +1851,14 @@ public class MaaProcessor
             tasker.Global.SetOption(GlobalOption.SaveOnError, ConfigurationManager.Maa.GetValue(ConfigurationKeys.SaveOnError, true));
             tasker.Global.SetOption_DebugMode(ConfigurationManager.Maa.GetValue(ConfigurationKeys.ShowHitDraw, false));
             LoggerHelper.Info("MaaFW 调试模式：" + ConfigurationManager.Maa.GetValue(ConfigurationKeys.ShowHitDraw, false));
-            // 注意：只订阅一次回调，避免嵌套订阅导致内存泄漏
-            tasker.Callback += HandleCallBack;
+            // The Android native task runner invokes node callbacks while its action
+            // lock is held. Crossing that callback into Mono can suspend the Avalonia
+            // process before StartApp/touch reaches the controller, even when the
+            // managed handler immediately queues its work. Android gets task state
+            // from the queued MaaJob and video from the Shizuku display backend, so it
+            // must not subscribe to this synchronous native callback stream.
+            if (!OperatingSystem.IsAndroid())
+                tasker.Callback += HandleCallBack;
             ResetScreencapFailureLogFlags();
             return (tasker, InvalidResource, ShouldRetry);
         }
@@ -1649,43 +1867,19 @@ public class MaaProcessor
             LoggerHelper.Warning("任务执行器初始化已取消。");
             return (null, InvalidResource, ShouldRetry);
         }
-        catch (MaaException)
+        catch (MaaException ex)
         {
+            TelemetryService.RecordTaskFailure(InstanceId, "tasker_initialization_failed", "tasker", ex);
             return (null, InvalidResource, ShouldRetry);
         }
         catch (Exception e)
         {
             LoggerHelper.Error("任务执行器初始化失败", e);
+            TelemetryService.RecordTaskFailure(InstanceId, "tasker_initialization_failed", "tasker", e);
             return (null, InvalidResource, ShouldRetry);
         }
 
     }
-
-    /// <summary>循环卡死检测触发事件(Maa 回调线程触发,订阅方自行调度到主线程)</summary>
-    public event Action<string>? LoopStuckDetected;
-
-    /// <summary>复位循环卡死检测状态(自动恢复流程完成后调用,允许后续循环重新计数)</summary>
-    public void ResetLoopDetector()
-    {
-        _loopDetector.Reset();
-    }
-
-    /// <summary>最后一次 Maa 回调时间(供无响应检测)</summary>
-    public DateTime LastCallbackTime { get; private set; } = DateTime.Now;
-
-    /// <summary>重置最后回调时间(自动恢复开始时调用,防止恢复流程自身耗时被误判为无响应)</summary>
-    public void ResetLastCallbackTime()
-    {
-        LastCallbackTime = DateTime.Now;
-    }
-
-    /// <summary>「卡死重启」全局选项是否开启(Index==0 即 Yes)。开启时循环检测才生效。</summary>
-    private bool IsLoopDetectorEnabled()
-    {
-        return Interface?.GlobalSelectOptions
-            ?.FirstOrDefault(o => o.Name == "卡死重启")?.Index == 0;
-    }
-
 // public void HandleControllerCallBack(object? sender, MaaCallbackEventArgs args)
 // {
 //     var message = args.Message;
@@ -1697,7 +1891,34 @@ public class MaaProcessor
 
     public void HandleCallBack(object? sender, MaaCallbackEventArgs args)
     {
-        LastCallbackTime = DateTime.Now;
+        if (OperatingSystem.IsAndroid())
+        {
+            // MaaFramework invokes callbacks synchronously while some native action
+            // locks are still held. Keep the Android native callback boundary free of
+            // UI, telemetry, and reverse Tasker calls; otherwise Action.Starting can
+            // deadlock the task thread and eventually ANR the Avalonia main thread.
+            // MaaCallbackEventArgs owns managed strings, so copying it is sufficient.
+            var copiedArgs = new MaaCallbackEventArgs(args.Message, args.Details, args.HandleType);
+            var copiedSender = sender is MaaTasker ? sender : MaaTasker;
+            _ = Task.Run(() =>
+            {
+                try
+                {
+                    HandleCallBackCore(copiedSender, copiedArgs);
+                }
+                catch (Exception ex)
+                {
+                    LoggerHelper.Warning($"处理 Android MaaFramework 回调时发生错误：{ex.Message}");
+                }
+            });
+            return;
+        }
+
+        HandleCallBackCore(sender, args);
+    }
+
+    private void HandleCallBackCore(object? sender, MaaCallbackEventArgs args)
+    {
         JObject jObject;
         try
         {
@@ -1709,13 +1930,28 @@ public class MaaProcessor
         }
 
         var callbackName = jObject["name"]?.ToString() ?? string.Empty;
+        var shouldTraceNodeEvent = ShouldTraceNodeEvent(jObject, args.Message);
+        if (CancellationTokenSource?.IsCancellationRequested != true
+            && (shouldTraceNodeEvent || args.Message.Equals("Node.PipelineNode.Starting", StringComparison.Ordinal)))
+        {
+            TelemetryService.RecordNodeEvent(InstanceId, args.Message, args.Details, shouldTraceNodeEvent);
+        }
 
-        MaaTasker? tasker = null;
-        if (sender is MaaTasker t)
-            tasker = t;
-        if (sender is MaaContext context)
-            tasker = context.Tasker;
-        if (tasker != null && Instances.GameSettingsUserControlModel.ShowHitDraw)
+        var showHitDraw = Instances.GameSettingsUserControlModel.ShowHitDraw;
+        var hasFocus = jObject["focus"] is
+            { Type: not JTokenType.Null and not JTokenType.Undefined };
+        MaaTasker? tasker = sender as MaaTasker;
+        if ((showHitDraw || hasFocus) && tasker == null)
+        {
+            // MaaContext.Tasker is a native reverse lookup. During Action.Starting,
+            // MaaFramework still owns the action lock, so performing that lookup from
+            // its callback re-enters the tasker and deadlocks before the controller
+            // receives StartApp/touch calls. The processor already owns the exact
+            // tasker for this run; use that managed reference instead.
+            tasker = MaaTasker;
+        }
+
+        if (tasker != null && showHitDraw)
         {
             var name = jObject["name"]?.ToString() ?? string.Empty;
             if (args.Message.StartsWith(MaaMsg.Node.Recognition.Succeeded) || args.Message.StartsWith(MaaMsg.Node.Action.Succeeded))
@@ -1861,28 +2097,11 @@ public class MaaProcessor
             }
         }
 
-        // MaaFW 5.10 动作完成消息为 Node.PipelineNode.Succeeded(含 action_details),
-        // 节点名需取 action_details.name(外层 name 为流程上下文,冻结循环中轮流变化)
-        if (args.Message.StartsWith(MaaMsg.Node.PipelineNode.Succeeded) && IsLoopDetectorEnabled())
-        {
-            var nodeName = jObject["action_details"]?["name"]?.ToString() ?? "";
-            var actionName = jObject["action_details"]?["action"]?.ToString() ?? "";
-            int hitX = 0, hitY = 0;
-            if (jObject["action_details"]?["box"] is JArray boxArr && boxArr.Count >= 2)
-            {
-                hitX = (int)Math.Round(boxArr[0].Value<double>());
-                hitY = (int)Math.Round(boxArr[1].Value<double>());
-            }
-
-            // 只统计点击/滑动等真实交互动作:DoNothing(纯检测)与 Custom(如智能等待)
-            // 在正常等待期会持续执行,参与计数会导致误判画面冻结
-            if ((actionName is "Click" or "Swipe") && _loopDetector.Feed(nodeName, actionName, hitX, hitY))
-            {
-                LoopStuckDetected?.Invoke($"动作循环卡死：node={nodeName}, action={actionName}, 坐标=({hitX},{hitY})");
-            }
-        }
-
-        if (jObject.ContainsKey("focus"))
+        // MaaFramework includes `focus: null` in ordinary node callbacks. Treating
+        // the mere presence of that field as an active focus makes Action.Starting
+        // call back into GetCachedImage while the native action lock is held. The
+        // Android tasker then deadlocks before StartApp reaches the controller.
+        if (hasFocus)
         {
             _focusHandler ??= new FocusHandler(AutoInitDictionary, ViewModel!);
             _focusHandler.UpdateDictionary(AutoInitDictionary);
@@ -1979,31 +2198,17 @@ public class MaaProcessor
         LoggerHelper.Error($"初始化控制器失败：title={title}, message={message}, reason={e.Message}", e);
     }
 
-    /// <summary>
-    /// 解析 MaaAgentBinary（minitouch/maatouch 等设备端代理）所在目录。
-    /// Windows 发布经 NetBeauty 将其归置到 runtimes/libs 下；非 Windows（如 macOS）
-    /// 不使用 NetBeauty，代理会留在 libs 或发布根目录，故按优先级回退查找。
-    /// </summary>
-    private static string ResolveAgentBinaryPath()
-    {
-        var candidates = new[]
-        {
-            Path.Combine(AppPaths.InstallRoot, "runtimes", "libs", "MaaAgentBinary"),
-            Path.Combine(AppPaths.InstallRoot, "libs", "MaaAgentBinary"),
-            Path.Combine(AppPaths.InstallRoot, "MaaAgentBinary"),
-        };
-        foreach (var path in candidates)
-        {
-            if (Directory.Exists(path))
-                return path;
-        }
-        // 均不存在时返回原默认路径，保持与旧行为一致（由 MaaFramework 报错提示）
-        return candidates[0];
-    }
-
     private MaaController InitializeController(MaaControllerTypes controllerType, bool logConfig)
     {
         ConnectToMAA(logConfig);
+
+        var platformController = PlatformControllerFactory.TryCreate(controllerType);
+        if (platformController != null)
+        {
+            if (logConfig)
+                LoggerHelper.Info($"当前平台已接管控制器：{platformController.GetType().Name}");
+            return platformController;
+        }
 
         // 对于 Win32 和 Gamepad 控制器，检查管理员权限
         if (OperatingSystem.IsWindows() && (controllerType == MaaControllerTypes.Win32 || controllerType == MaaControllerTypes.Gamepad))
@@ -2032,7 +2237,7 @@ public class MaaProcessor
                     Config.AdbDevice.AdbSerial,
                     Config.AdbDevice.ScreenCap, Config.AdbDevice.Input,
                     !string.IsNullOrWhiteSpace(Config.AdbDevice.Config) ? Config.AdbDevice.Config : "{}",
-                    ResolveAgentBinaryPath()
+                    Path.Combine(AppPaths.InstallRoot, "libs", "MaaAgentBinary")
                 );
 
             case MaaControllerTypes.PlayCover:
@@ -2044,33 +2249,49 @@ public class MaaProcessor
 
                 return new MaaPlayCoverController(Config.PlayCover.PlayCoverAddress, Config.PlayCover.UUID);
 
+            case MaaControllerTypes.MacOS:
+                if (logConfig)
+                {
+                    LoggerHelper.Info("当前控制器类型：MacOS");
+                    LoggerHelper.Info($"窗口名称：{Config.MacOSWindow.Name}");
+                    LoggerHelper.Info($"窗口 ID：{Config.MacOSWindow.WindowId}");
+                    LoggerHelper.Info($"截图模式：{Config.MacOSWindow.ScreenCap}");
+                    LoggerHelper.Info($"输入模式：{Config.MacOSWindow.Input}");
+                }
+
+                return new MaaMacOSController(
+                    Config.MacOSWindow.WindowId,
+                    Config.MacOSWindow.ScreenCap,
+                    Config.MacOSWindow.Input,
+                    Config.MacOSWindow.Link,
+                    Config.MacOSWindow.Check);
+
+            case MaaControllerTypes.WlRoots:
+                if (logConfig)
+                {
+                    LoggerHelper.Info("当前控制器类型：WlRoots");
+                    LoggerHelper.Info($"Wayland Socket：{Config.WlRoots.SocketPath}");
+                    LoggerHelper.Info($"使用 Win32 VK 键码：{Config.WlRoots.UseWin32VirtualKeyCodes}");
+                }
+
+                return new MaaWlRootsController(
+                    Config.WlRoots.SocketPath,
+                    Config.WlRoots.UseWin32VirtualKeyCodes,
+                    Config.WlRoots.Link,
+                    Config.WlRoots.Check);
+
             case MaaControllerTypes.Gamepad:
-                // Gamepad 控制器使用 Win32 控制器的配置，但会创建虚拟手柄
                 if (logConfig)
                 {
                     LoggerHelper.Info("当前控制器类型：Gamepad");
                     LoggerHelper.Info($"窗口名称：{Config.DesktopWindow.Name}");
                     LoggerHelper.Info($"窗口句柄：{Config.DesktopWindow.HWnd}");
-                    LoggerHelper.Info($"截图模式：{Config.DesktopWindow.ScreenCap}");
-
-                    // 获取 Gamepad 特定配置
-                    var gamepadConfig = Interface?.Controller?.FirstOrDefault(c =>
-                        c.Type?.Equals("gamepad", StringComparison.OrdinalIgnoreCase) == true)?.Gamepad;
-                    if (gamepadConfig != null)
-                    {
-                        LoggerHelper.Info($"手柄类型：{gamepadConfig.GamepadType ?? "Xbox360"}");
-                        LoggerHelper.Info($"ClassRegex：{gamepadConfig.ClassRegex}");
-                        LoggerHelper.Info($"WindowRegex：{gamepadConfig.WindowRegex}");
-                    }
+                    LoggerHelper.Info($"截图模式：{Config.Gamepad.ScreenCap}");
+                    LoggerHelper.Info($"手柄类型：{Config.Gamepad.Type}");
                 }
 
-                // Gamepad 控制器目前使用 Win32 控制器实现
-                // TODO: 当MaaFramework 支持 Gamepad 控制器时，替换为专用实现
-                return new MaaWin32Controller(
-                    Config.DesktopWindow.HWnd,
-                    Config.DesktopWindow.ScreenCap, Config.DesktopWindow.Mouse, Config.DesktopWindow.KeyBoard,
-                    Config.DesktopWindow.Link,
-                    Config.DesktopWindow.Check);
+                return new MaaGamepadController(Config.DesktopWindow.HWnd, Config.Gamepad.Type,
+                    Config.Gamepad.ScreenCap, Config.DesktopWindow.Link, Config.DesktopWindow.Check);
 
             case MaaControllerTypes.Win32:
             default:
@@ -2112,7 +2333,7 @@ public class MaaProcessor
                         Name = "默认",
                         Path =
                         [
-                            "{PROJECT_DIR}/assets/resource/base",
+                            "{PROJECT_DIR}/resource/base",
                         ],
                     },
                 ],
@@ -2162,8 +2383,75 @@ public class MaaProcessor
 // 防止 interface 加载失败时 Toast 重复显示
     private static bool _interfaceLoadErrorShown = false;
 
+    /// <summary>
+    /// 在 UI 和实例初始化期间并行预加载 interface。此阶段只读取和解析数据，
+    /// 不设置 Interface，避免从后台线程触发语言及 UI 刷新。
+    /// </summary>
+    public static void StartInterfacePreload()
+    {
+        lock (InterfacePreloadLock)
+        {
+            if (Interface != null || _interfacePreloadTask != null)
+            {
+                return;
+            }
+
+            var interfacePath = GetInterfaceFilePath();
+            if (interfacePath == null)
+            {
+                return;
+            }
+
+            _interfacePreloadTask = Task.Run(() =>
+            {
+                var stopwatch = Stopwatch.StartNew();
+                var result = LoadMaaInterfaceRecursive(interfacePath);
+                LoggerHelper.Info($"[Interface] 预加载完成，耗时 {stopwatch.ElapsedMilliseconds} ms");
+                return result;
+            });
+        }
+    }
+
+    private static int? GetPreloadedInterfaceVersion()
+    {
+        if (Interface != null)
+        {
+            return Interface.InterfaceVersion;
+        }
+
+        StartInterfacePreload();
+
+        Task<MaaInterface>? preloadTask;
+        lock (InterfacePreloadLock)
+        {
+            preloadTask = _interfacePreloadTask;
+        }
+
+        if (preloadTask == null)
+        {
+            return null;
+        }
+
+        try
+        {
+            return preloadTask.GetAwaiter().GetResult().InterfaceVersion;
+        }
+        catch
+        {
+            // ReadInterface 会在管理器构造完成后统一记录并展示解析错误。
+            // 此处等待任务也确保预加载异常已被观察，不会落到终结器线程。
+            return null;
+        }
+    }
+
     public static (string Key, string Fallback, string Version, string CustomTitle, string CustomFallback) ReadInterface()
     {
+        if (Interface != null)
+        {
+            return (Interface.Label ?? string.Empty, Interface.Name ?? string.Empty, Interface.Version ?? string.Empty,
+                Interface.Title ?? string.Empty, Interface.CustomTitle ?? string.Empty);
+        }
+
         if (CheckInterface(out string name, out string back, out string version, out string customTitle, out var fallBack))
         {
             return (name, back, version, customTitle, fallBack);
@@ -2175,13 +2463,20 @@ public class MaaProcessor
 
         try
         {
-            // 使用递归加载支持 import
-            Interface = LoadMaaInterfaceRecursive(interfacePath);
+            Task<MaaInterface>? preloadTask;
+            lock (InterfacePreloadLock)
+            {
+                preloadTask = _interfacePreloadTask;
+            }
+
+            // 优先复用启动阶段的预加载结果；非标准启动流程仍同步加载。
+            Interface = preloadTask?.GetAwaiter().GetResult() ?? LoadMaaInterfaceRecursive(interfacePath);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
             Interface = defaultValue;
             var error = "";
+            LoggerHelper.Error($"加载界面资源定义失败：file={interfaceFileName}, reason={ex.Message}", ex);
 
             try
             {
@@ -2256,7 +2551,8 @@ public class MaaProcessor
         if (loaded == null)
             throw new Exception($"Failed to load interface file: {fullPath}");
 
-        var result = new MaaInterface();
+        // PI import 的顺序为主文件在前、随后按 import 数组顺序追加；同名 option 以后导入者为准。
+        var result = loaded;
 
         if (loaded.Import != null)
         {
@@ -2273,12 +2569,18 @@ public class MaaProcessor
                     var filteredImport = new MaaInterface
                     {
                         Group = imported.Group,
-                        Task = imported.Task,
                         Option = imported.Option,
-                        Preset = imported.Preset
+                        PreTask = imported.PreTask,
+                        GlobalOption = imported.GlobalOption,
+                        Setting = imported.Setting
                     };
 
                     result.Merge(filteredImport);
+                    // 协议规定 task / preset 按 import 顺序追加，不按名称覆盖或去重。
+                    if (imported.Task is { Count: > 0 })
+                        result.Task = [.. result.Task ?? [], .. imported.Task];
+                    if (imported.Preset is { Count: > 0 })
+                        result.Preset = [.. result.Preset ?? [], .. imported.Preset];
                 }
                 catch (Exception ex)
                 {
@@ -2287,8 +2589,98 @@ public class MaaProcessor
             }
         }
 
-        result.Merge(loaded);
         return result;
+    }
+
+    private async Task<bool> RunPreTasksAsync(CancellationToken token)
+    {
+        if (Interface?.PreTask is not { Count: > 0 }) return false;
+        var controllerName = ViewModel?.GetCurrentControllerName()
+            ?? MaaInterfaceActivationHelper.ResolveControllerName(
+                Interface, ViewModel?.CurrentController ?? MaaControllerTypes.None)
+            ?? ViewModel?.CurrentController.ToJsonKey();
+        var resourceName = ViewModel?.CurrentResource;
+        var executed = false;
+
+        foreach (var preTask in Interface.PreTask)
+        {
+            if (string.IsNullOrWhiteSpace(preTask.Exec))
+                throw new InvalidDataException("pretask.exec is required");
+            if (preTask.Controller is { Count: > 0 }
+                && !preTask.Controller.Any(name => string.Equals(name, controllerName, StringComparison.OrdinalIgnoreCase))) continue;
+            if (preTask.Resource is { Count: > 0 }
+                && !preTask.Resource.Any(name => string.Equals(name, resourceName, StringComparison.OrdinalIgnoreCase))) continue;
+
+            var exec = MaaInterface.ReplacePlaceholder(preTask.Exec, ResourceBase) ?? preTask.Exec;
+            var info = new ProcessStartInfo
+            {
+                FileName = exec,
+                WorkingDirectory = ResourceBase,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+            foreach (var arg in preTask.Args ?? []) info.ArgumentList.Add(arg);
+            if (preTask.Option is { Count: > 0 })
+                info.ArgumentList.Add(BuildPreTaskOptionJson(preTask.Option, controllerName, resourceName));
+
+            LoggerHelper.Info($"执行 pretask：{preTask.Name ?? preTask.Exec}");
+            executed = true;
+            using var process = Process.Start(info) ?? throw new InvalidOperationException($"无法启动 pretask: {preTask.Exec}");
+            await process.WaitForExitAsync(token);
+            if (process.ExitCode != 0)
+                throw new InvalidOperationException($"pretask '{preTask.Name ?? preTask.Exec}' exited with code {process.ExitCode}");
+        }
+
+        return executed;
+    }
+
+    private static bool ShouldTraceNodeEvent(JObject details, string message)
+    {
+        var defaultValue = message.Equals("Node.PipelineNode.Failed", StringComparison.Ordinal);
+        if (details["focus"] is not JObject focus
+            || !focus.TryGetValue(message, StringComparison.Ordinal, out var template)
+            || template is not JObject templateObject)
+            return defaultValue;
+
+        return templateObject["trace"]?.Value<bool?>() ?? defaultValue;
+    }
+
+    private string BuildPreTaskOptionJson(IEnumerable<string> optionNames, string? controllerName, string? resourceName)
+    {
+        var result = new JObject();
+        var selected = ViewModel?.TaskItemViewModels
+            .SelectMany(item => item.IsResourceOptionItem
+                ? item.ResourceItem?.SelectOptions ?? []
+                : item.InterfaceItem?.Option ?? [])
+            .Where(option => !string.IsNullOrWhiteSpace(option.Name))
+            .GroupBy(option => option.Name!)
+            .ToDictionary(group => group.Key, group => group.First())
+            ?? new Dictionary<string, MaaInterface.MaaInterfaceSelectOption>();
+
+        foreach (var name in optionNames)
+        {
+            if (Interface?.Option?.TryGetValue(name, out var definition) != true) continue;
+            if (!MaaInterfaceActivationHelper.IsOptionApplicable(Interface, definition, controllerName, resourceName)) continue;
+            selected.TryGetValue(name, out var value);
+            if (definition.IsCheckbox)
+                result[name] = JToken.FromObject(value?.SelectedCases ?? definition.DefaultCases ?? []);
+            else if (definition.IsInput || definition.IsHotkey)
+            {
+                var data = value?.Data ?? new Dictionary<string, string?>();
+                var defaults = definition.IsHotkey
+                    ? definition.Hotkeys?.ToDictionary(x => x.Name ?? string.Empty, x => x.Default ?? string.Empty)
+                    : definition.Inputs?.ToDictionary(x => x.Name ?? string.Empty, x => x.Default ?? string.Empty);
+                result[name] = JObject.FromObject(defaults == null
+                    ? data
+                    : defaults.Concat(data).GroupBy(x => x.Key).ToDictionary(x => x.Key, x => x.Last().Value));
+            }
+            else
+            {
+                var index = value?.Index ?? Math.Max(0, definition.Cases?.FindIndex(x => x.Name == definition.DefaultCase) ?? 0);
+                result[name] = definition.Cases?.ElementAtOrDefault(index)?.Name ?? definition.DefaultCase ?? string.Empty;
+            }
+        }
+        return result.ToString(Formatting.None);
     }
 
     public bool InitializeData(Collection<DragItemViewModel>? dragItem = null)
@@ -2429,7 +2821,7 @@ public class MaaProcessor
                     }
                     catch (Exception ex)
                     {
-                    LoggerHelper.Warning($"创建资源目录失败：{rp}，原因：{ex.Message}");
+                        LoggerHelper.Warning($"创建资源目录失败：{rp}，原因：{ex.Message}");
                     }
                 }
             }
@@ -2532,6 +2924,8 @@ public class MaaProcessor
         }
         ConfigureMaaProcessorForADB(logConfig);
         ConfigureMaaProcessorForWin32(logConfig);
+        ConfigureMaaProcessorForMacOS(logConfig);
+        ConfigureMaaProcessorForGamepad(logConfig);
         ConfigureMaaProcessorForPlayCover();
     }
 
@@ -2567,17 +2961,9 @@ public class MaaProcessor
             new UniversalEnumConverter<AdbInputMethods>());
         return inputType switch
         {
-            AdbInputMethods.None => GetEffectiveInputMethods(),
+            AdbInputMethods.None => Config.AdbDevice.Info?.InputMethods ?? AdbInputMethods.Default,
             _ => inputType
         };
-    }
-
-    private AdbInputMethods GetEffectiveInputMethods()
-    {
-        var detected = Config.AdbDevice.Info?.InputMethods ?? AdbInputMethods.Default;
-        if (detected == AdbInputMethods.Default && IsMuMuDeviceName())
-            return AdbInputMethods.EmulatorExtras;
-        return detected;
     }
 
     private AdbScreencapMethods ConfigureAdbScreenCapTypes()
@@ -2587,21 +2973,10 @@ public class MaaProcessor
             new UniversalEnumConverter<AdbScreencapMethods>());
         return screenCapType switch
         {
-            AdbScreencapMethods.None => GetEffectiveScreencapMethods(),
+            AdbScreencapMethods.None => Config.AdbDevice.Info?.ScreencapMethods ?? AdbScreencapMethods.Default,
             _ => screenCapType
         };
     }
-
-    private AdbScreencapMethods GetEffectiveScreencapMethods()
-    {
-        var detected = Config.AdbDevice.Info?.ScreencapMethods ?? AdbScreencapMethods.Default;
-        if (detected == AdbScreencapMethods.Default && IsMuMuDeviceName())
-            return AdbScreencapMethods.EmulatorExtras;
-        return detected;
-    }
-
-    private bool IsMuMuDeviceName() =>
-        Config.AdbDevice.Name.Contains("MuMu", StringComparison.OrdinalIgnoreCase);
 
     private void ConfigureMaaProcessorForWin32(bool logConfig)
     {
@@ -2635,6 +3010,34 @@ public class MaaProcessor
         {
             Config.PlayCover.UUID = controller.PlayCover.Uuid;
         }
+    }
+
+    private void ConfigureMaaProcessorForMacOS(bool logConfig)
+    {
+        if (ViewModel?.CurrentController != MaaControllerTypes.MacOS)
+            return;
+
+        Config.MacOSWindow.ScreenCap = InstanceConfiguration.GetValue(ConfigurationKeys.MacOSControlScreenCapType,
+            MacOSScreencapMethod.ScreenCaptureKit, default(MacOSScreencapMethod), new UniversalEnumConverter<MacOSScreencapMethod>());
+        Config.MacOSWindow.Input = InstanceConfiguration.GetValue(ConfigurationKeys.MacOSControlInputType,
+            MacOSInputMethod.GlobalEvent, default(MacOSInputMethod), new UniversalEnumConverter<MacOSInputMethod>());
+
+        if (logConfig)
+            LoggerHelper.Info($"{LangKeys.CaptureModeOption.ToLocalization()}:{Config.MacOSWindow.ScreenCap},{LangKeys.InputModeOption.ToLocalization()}:{Config.MacOSWindow.Input}");
+    }
+
+    private void ConfigureMaaProcessorForGamepad(bool logConfig)
+    {
+        if (ViewModel?.CurrentController != MaaControllerTypes.Gamepad)
+            return;
+
+        Config.Gamepad.ScreenCap = InstanceConfiguration.GetValue(ConfigurationKeys.GamepadControlScreenCapType,
+            Win32ScreencapMethods.FramePool, Win32ScreencapMethods.None, new UniversalEnumConverter<Win32ScreencapMethods>());
+        Config.Gamepad.Type = InstanceConfiguration.GetValue(ConfigurationKeys.GamepadType,
+            GamepadType.Xbox360, default(GamepadType), new UniversalEnumConverter<GamepadType>());
+
+        if (logConfig)
+            LoggerHelper.Info($"{LangKeys.CaptureModeOption.ToLocalization()}:{Config.Gamepad.ScreenCap},{LangKeys.VirtualGamepadType.ToLocalization()}:{Config.Gamepad.Type}");
     }
 
     private Win32ScreencapMethods ConfigureWin32ScreenCapTypes()
@@ -2678,6 +3081,7 @@ public class MaaProcessor
         {
             _screencapAbortLogPending = false;
             _screencapDisconnectedLogPending = false;
+            _screencapFailureLogged = false;
         }
     }
 
@@ -2896,11 +3300,11 @@ public class MaaProcessor
     {
         ProcessHelper.HardRestartAdb(Config.AdbDevice.AdbPath);
     }
-    
+
     public async Task TestConnecting()
     {
-        if (Interlocked.CompareExchange(ref _isConnecting, 1, 0) != 0)
-            return;
+        await _connectionGate.WaitAsync();
+        Interlocked.Exchange(ref _isConnecting, 1);
         try
         {
             await GetTaskerAsync();
@@ -2911,6 +3315,7 @@ public class MaaProcessor
         finally
         {
             Interlocked.Exchange(ref _isConnecting, 0);
+            _connectionGate.Release();
         }
     }
 
@@ -2922,11 +3327,21 @@ public class MaaProcessor
 
     public void Start(bool onlyStart = false, bool checkUpdate = false)
     {
+        if (!TryBeginTaskRun())
+        {
+            LoggerHelper.Info("任务启动请求已忽略：当前已有任务链正在启动或运行。");
+            return;
+        }
         EnqueueCommand(() => StartInternal(null, onlyStart, checkUpdate));
     }
 
     public void Start(List<DragItemViewModel> dragItemViewModels, bool onlyStart = false, bool checkUpdate = false, bool ignoreCheckedState = false)
     {
+        if (!TryBeginTaskRun())
+        {
+            LoggerHelper.Info("任务启动请求已忽略：当前已有任务链正在启动或运行。");
+            return;
+        }
         EnqueueCommand(() => StartInternal(dragItemViewModels, onlyStart, checkUpdate, ignoreCheckedState));
     }
 
@@ -2948,10 +3363,57 @@ public class MaaProcessor
                 tasks = FilterExecutableTasks(dragItemViewModels, ignoreCheckedState);
             }
 
-            _ = StartTask(tasks, onlyStart, checkUpdate);
+            _ = RunTaskChainAsync(tasks, onlyStart, checkUpdate);
+            return Task.CompletedTask;
         }
 
+        EndTaskRun();
         return Task.CompletedTask;
+    }
+
+    private bool TryBeginTaskRun()
+    {
+        if (Interlocked.CompareExchange(ref _isTaskRunActive, 1, 0) != 0)
+            return false;
+
+        DispatcherHelper.PostOnMainThread(() =>
+        {
+            if (ViewModel != null)
+                ViewModel.IsRunning = true;
+        });
+        return true;
+    }
+
+    private void EndTaskRun()
+    {
+        Interlocked.Exchange(ref _isTaskRunActive, 0);
+        DispatcherHelper.PostOnMainThread(() =>
+        {
+            if (ViewModel != null)
+                ViewModel.IsRunning = TaskQueue.Count > 0;
+        });
+    }
+
+    private async Task RunTaskChainAsync(List<DragItemViewModel> tasks, bool onlyStart, bool checkUpdate)
+    {
+        try
+        {
+            await StartTask(tasks, onlyStart, checkUpdate);
+        }
+        catch (OperationCanceledException)
+        {
+            Status = MFATask.MFATaskStatus.STOPPED;
+        }
+        catch (Exception ex)
+        {
+            Status = MFATask.MFATaskStatus.FAILED;
+            LoggerHelper.Error($"任务链执行异常：reason={ex.Message}", ex);
+            Stop(Status, true, onlyStart);
+        }
+        finally
+        {
+            EndTaskRun();
+        }
     }
 
     private List<DragItemViewModel> FilterExecutableTasks(IEnumerable<DragItemViewModel>? source, bool ignoreCheckedState = false)
@@ -2960,24 +3422,24 @@ public class MaaProcessor
         var currentControllerName = ViewModel?.GetCurrentControllerName();
 
         return source?
-                   .Where(task =>
-                   {
-                       if (task.IsResourceOptionItem)
-                       {
-                           return false;
-                       }
+                .Where(task =>
+                {
+                    if (task.IsResourceOptionItem)
+                    {
+                        return false;
+                    }
 
-                       var isSupported = task.SupportsResource(currentResourceName)
-                                         && task.SupportsController(currentControllerName);
+                    var isSupported = task.SupportsResource(currentResourceName)
+                        && task.SupportsController(currentControllerName);
 
-                       task.IsResourceSupported = task.SupportsResource(currentResourceName);
-                       task.IsControllerSupported = task.SupportsController(currentControllerName);
-                       task.IsTaskSupported = isSupported;
+                    task.IsResourceSupported = task.SupportsResource(currentResourceName);
+                    task.IsControllerSupported = task.SupportsController(currentControllerName);
+                    task.IsTaskSupported = isSupported;
 
-                       return (ignoreCheckedState || task.IsChecked || task.IsCheckedWithNull == null) && isSupported;
-                   })
-                   .ToList()
-                    ?? new List<DragItemViewModel>();
+                    return (ignoreCheckedState || task.IsChecked || task.IsCheckedWithNull == null) && isSupported;
+                })
+                .ToList()
+            ?? new List<DragItemViewModel>();
     }
 
     public CancellationTokenSource? CancellationTokenSource
@@ -2987,46 +3449,6 @@ public class MaaProcessor
     } = new();
     private DateTime? _startTime;
     private List<DragItemViewModel> _tempTasks = [];
-
-    /// <summary>恢复请求的起始任务下标（0 = 从头执行全部任务）；StartTask 读取后立即重置</summary>
-    private int _resumeStartIndex;
-    private bool _resumePending;
-
-    /// <summary>记录各任务在自动恢复前已经成功完成的轮次。</summary>
-    private readonly Dictionary<int, int> _completedTaskRounds = new();
-
-    /// <summary>下一个待执行任务下标（卡死自动恢复断点用，任务完成时推进）</summary>
-    private int _nextTaskIndex;
-
-    /// <summary>设置恢复起始下标，卡死自动恢复后从该任务继续执行队列</summary>
-    public void SetResumeStartIndex(int index)
-    {
-        _resumeStartIndex = Math.Max(0, index);
-        _resumePending = true;
-    }
-
-    /// <summary>下一个待执行任务下标（卡死自动恢复断点）</summary>
-    public int NextTaskIndex => _nextTaskIndex;
-
-    /// <summary>自定编队：部队选择点击位置（部队一~五，1280×720 基准）</summary>
-    private static readonly int[][] FormationTeamClickCoords =
-    [
-        [154, 93],
-        [282, 94],
-        [398, 91],
-        [519, 89],
-        [635, 91],
-    ];
-
-    /// <summary>自定编队：部队选中验证识别区域（部队一~五）</summary>
-    private static readonly int[][] FormationTeamVerifyRois =
-    [
-        [172, 81, 17, 9],
-        [284, 77, 18, 9],
-        [431, 80, 16, 8],
-        [555, 78, 16, 8],
-        [675, 79, 16, 8],
-    ];
 
     public async Task StartTask(List<DragItemViewModel>? tasks, bool onlyStart = false, bool checkUpdate = false)
     {
@@ -3040,29 +3462,16 @@ public class MaaProcessor
 
         var token = CancellationTokenSource.Token;
 
+        var runId = 0L;
         if (!onlyStart)
         {
             tasks ??= new List<DragItemViewModel>();
             _tempTasks = tasks;
+            runId = ViewModel?.BeginTaskRun(tasks) ?? 0;
             LoggerHelper.Info($"准备执行任务队列：任务数量={tasks.Count}");
-            var runnableTasks = tasks.Where(ShouldRunTask).ToList();
-            var taskAndParams = runnableTasks.Select((task, index) => CreateNodeAndParam(task, index + 1)).ToList();
-            // 卡死自动恢复断点：从上次中断位置继续（正常启动为 0）
-            var isRecovery = _resumePending;
-            var startIndex = _resumeStartIndex;
-            if (isRecovery && taskAndParams.Count > 0)
-                startIndex = Math.Min(startIndex, taskAndParams.Count - 1);
-            _resumeStartIndex = 0;
-            _resumePending = false;
-            if (!isRecovery)
-                _completedTaskRounds.Clear();
-            _nextTaskIndex = startIndex;
-            if (isRecovery)
-            {
-                LoggerHelper.Warning($"自动恢复：从任务队列第 {startIndex + 1}/{taskAndParams.Count} 个任务继续执行");
-            }
+            var taskAndParams = tasks.Select((task, index) => CreateNodeAndParam(task, index + 1, runId)).ToList();
             InitializeConnectionTasksAsync(token);
-            AddCoreTasksAsync(taskAndParams, token, startIndex);
+            AddCoreTasksAsync(taskAndParams, token);
         }
 
         AddPostTasksAsync(onlyStart, checkUpdate, token);
@@ -3076,60 +3485,74 @@ public class MaaProcessor
             ClearTaskbarProgress();
         }
 
-        await TaskManager.RunTaskAsync(async () =>
+        if (!onlyStart)
         {
-            await ExecuteTasks(token);
-            Stop(Status, true, onlyStart);
-        }, token: token, name: "启动任务");
-
-    }
-
-    /// <summary>过滤当前不满足触发间隔的更新数据任务。</summary>
-    private bool ShouldRunTask(DragItemViewModel task)
-    {
-        if (!string.Equals(task.InterfaceItem?.Entry, "UpdateData", StringComparison.Ordinal))
-            return true;
-
-        var intervalOption = task.InterfaceItem.Option?.FirstOrDefault(option => option.Name == "触发间隔");
-        var interval = "每天";
-        if (intervalOption?.Index is int index
-            && MaaProcessor.Interface?.Option?.TryGetValue("触发间隔", out var definition) == true
-            && definition.Cases != null
-            && index >= 0
-            && index < definition.Cases.Count)
-        {
-            interval = definition.Cases[index].Name ?? interval;
+            var telemetryTaskNames = (tasks ?? [])
+                .Select(task => task.InterfaceItem?.Name ?? task.Name ?? "unknown")
+                .ToList();
+            var controllerType = ViewModel?.CurrentController ?? MaaControllerTypes.None;
+            TelemetryService.StartRun(
+                InstanceId,
+                telemetryTaskNames,
+                ViewModel?.GetCurrentControllerName(),
+                controllerType.ToJsonKey());
         }
 
-        if (UpdateDataScheduleService.ShouldRun(InstanceConfiguration, interval, DateTime.Now))
-            return true;
+        try
+        {
+            await TaskManager.RunTaskAsync(async () =>
+            {
+                var queueResult = await ExecuteTasks(token);
+                Stop(Status, true, onlyStart, queueCompleted: queueResult.QueueCompleted);
+            }, token: token, name: "启动任务");
+        }
+        finally
+        {
+            if (!onlyStart)
+            {
+                TelemetryService.FinishRun(InstanceId, Status);
+                ViewModel?.FinalizeTaskRun(runId);
+            }
+        }
 
-        LoggerHelper.Info($"跳过更新数据任务：触发间隔={interval}，本周期已成功执行");
-        return false;
     }
 
-    async private Task ExecuteTasks(CancellationToken token)
+    private readonly record struct TaskQueueResult(bool QueueCompleted);
+
+    async private Task<TaskQueueResult> ExecuteTasks(CancellationToken token)
     {
-        while (TaskQueue.Count > 0 && !token.IsCancellationRequested)
+        var completedWithFailures = false;
+        while (!token.IsCancellationRequested && TaskQueue.TryDequeue(out var task))
         {
+            // 等待 modal 弹窗确认（display=modal 时任务队列暂停推进）
             while (_isWaitingForModal && !token.IsCancellationRequested)
             {
                 await Task.Delay(100, token);
             }
             if (token.IsCancellationRequested) break;
 
-            var task = TaskQueue.Dequeue();
-            var status = await task.Run(token);
-            if (status != MFATask.MFATaskStatus.SUCCEEDED)
+            var result = await task.Run(token);
+            if (result.Status == MFATask.MFATaskStatus.FAILED)
             {
-                Status = status;
-                break;
+                completedWithFailures = true;
+                if (result.ContinueQueue)
+                    continue;
+            }
+
+            if (result.Status != MFATask.MFATaskStatus.SUCCEEDED)
+            {
+                Status = result.Status;
+                return new TaskQueueResult(false);
             }
         }
         if (Status == MFATask.MFATaskStatus.NOT_STARTED)
-            Status = !token.IsCancellationRequested ? MFATask.MFATaskStatus.SUCCEEDED : MFATask.MFATaskStatus.STOPPED;
-        var stopped = token.IsCancellationRequested;
-        AddLog(stopped ? $"任务已停止：{_taskSuccessCount} 个成功，{_taskFailureCount} 个失败" : $"任务执行完毕：{_taskSuccessCount} 个成功，{_taskFailureCount} 个失败", (IBrush?)null);
+            Status = token.IsCancellationRequested
+                ? MFATask.MFATaskStatus.STOPPED
+                : completedWithFailures
+                    ? MFATask.MFATaskStatus.FAILED
+                    : MFATask.MFATaskStatus.SUCCEEDED;
+
+        return new TaskQueueResult(!token.IsCancellationRequested);
     }
 
     public class NodeAndParam
@@ -3145,6 +3568,8 @@ public class MaaProcessor
         //     set;
         // }
         public string? Param { get; set; }
+        public DragItemViewModel? SourceItem { get; set; }
+        public long RunId { get; set; }
     }
 
     private void UpdateTaskDictionary(ref MaaToken taskModels,
@@ -3310,26 +3735,12 @@ public class MaaProcessor
                 }
             }
             // 处理 select/switch 类型
-            else if (interfaceOption.Cases is { } cases && cases.Count > 0)
+            else if (selectOption.Index is int index
+                     && interfaceOption.Cases is { } cases
+                     && index >= 0
+                     && index < cases.Count)
             {
-                var index = selectOption.Index;
-                if (interfaceOption.IsSwitch
-                    && index == null
-                    && selectOption.SelectedCases is { Count: > 0 }
-                    && cases.ShouldSwitchButton(out var legacyYesIndex, out _))
-                {
-                    index = legacyYesIndex;
-                    selectOption.Index = index;
-                }
-                if (index == null && interfaceOption.DefaultCase != null)
-                {
-                    // Index 未初始化时从 default_case 反查
-                    index = cases.FindIndex(c => c.Name == interfaceOption.DefaultCase);
-                    if (index < 0) index = 0;
-                }
-                if (index is not (>= 0 and < int.MaxValue) || index.Value >= cases.Count)
-                    continue;
-                var selectedCase = cases[index.Value];
+                var selectedCase = cases[index];
 
                 // 合并当前 case 的 pipeline_override
                 if (selectedCase.PipelineOverride != null)
@@ -3414,7 +3825,7 @@ public class MaaProcessor
         }
     }
 
-    private NodeAndParam CreateNodeAndParam(DragItemViewModel task, int index)
+    private NodeAndParam CreateNodeAndParam(DragItemViewModel task, int index, long runId)
     {
         var taskModels = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(JsonConvert.SerializeObject(task.InterfaceItem?.PipelineOverride ?? new Dictionary<string, JToken>(), new JsonSerializerSettings()
         {
@@ -3425,7 +3836,7 @@ public class MaaProcessor
 
         // PI v2.3.0 合并顺序：global_option < resource.option < controller.option < task.option
         // 1. 合并全局选项（global_option，最低优先级）
-        MergeGlobalOptionParams(ref taskModels, task.InterfaceItem);
+        MergeGlobalOptionParams(ref taskModels);
 
         // 2. 合并当前资源的全局选项参数（resource.option）
         MergeResourceOptionParams(ref taskModels);
@@ -3435,366 +3846,6 @@ public class MaaProcessor
 
         // 4. 合并任务自身的 option（task.option，最高优先级）
         UpdateTaskDictionary(ref taskModels, task.InterfaceItem?.Option, task.InterfaceItem?.Advanced);
-
-        var dragNodeName = CaptainSettingsDecision.GetDragNodeName(task.InterfaceItem?.Entry);
-        if (dragNodeName != null)
-        {
-            var skipPositions = CaptainSettingsHelper.GetSelectedSkipPositions(task.InterfaceItem);
-            taskModels.Merge(new Dictionary<string, JToken>
-            {
-                [dragNodeName] = new JObject
-                {
-                    ["action"] = new JObject
-                    {
-                        ["custom_action_param"] = new JObject
-                        {
-                            ["skip_positions"] = new JArray(skipPositions)
-                        }
-                    }
-                }
-            });
-        }
-
-        // 5. 合战场/地下城/陆联/江户潜入同步远征：自动复用远征任务的队伍配置
-        if (task.InterfaceItem?.Entry == "Sortie" || task.InterfaceItem?.Entry == "Underground" || task.InterfaceItem?.Entry == "LRentaisen" || task.InterfaceItem?.Entry == "TacticalTraining" || task.InterfaceItem?.Entry == "EdoCastle")
-        {
-            var syncExpEnabled = task.InterfaceItem?.Option
-                ?.FirstOrDefault(o => (o.Name ?? "").EndsWith("同步远征") || (o.Name ?? "").EndsWith("同步后勤"))
-                ?.SelectedCases?.Contains("") == true;
-
-            if (syncExpEnabled)
-            {
-                var savedTasks = InstanceConfiguration.GetValue(
-                    ConfigurationKeys.TaskItems,
-                    new List<MaaInterface.MaaInterfaceTask>());
-
-                // 兜底：缓存中 TaskItems 为空时（可能被惰性 IEnumerable 污染导致类型转换失败，
-                // 或实例配置尚未同步），从磁盘重新加载后再读一次
-                if (savedTasks == null || savedTasks.Count == 0)
-                {
-                    InstanceConfiguration.ReloadFromDisk();
-                    savedTasks = InstanceConfiguration.GetValue(
-                        ConfigurationKeys.TaskItems,
-                        new List<MaaInterface.MaaInterfaceTask>());
-                }
-
-                var expTask = savedTasks?.FirstOrDefault(t => t.Entry == "Expedition");
-
-                // 诊断日志:同步后勤合并时 expTask 的读取结果,用于排查部队选项未合并问题
-                var diagTeam4 = expTask?.Option?.FirstOrDefault(o => o.Name == "部队四");
-                var diagTeam5 = expTask?.Option?.FirstOrDefault(o => o.Name == "部队五");
-                LoggerHelper.Info(
-                    $"[同步后勤] savedTasks={savedTasks?.Count ?? -1} expTask={expTask?.Name ?? "null"}(entry={expTask?.Entry ?? "null"}) " +
-                    $"option数={expTask?.Option?.Count ?? -1} 部队四Index={diagTeam4?.Index?.ToString() ?? "null"} 部队五Index={diagTeam5?.Index?.ToString() ?? "null"} " +
-                    $"部队五选项在列表中={(expTask?.Option?.Any(o => o.Name == "部队五") ?? false)}");
-
-                if (expTask?.Option != null)
-                {
-                    var teamOptionNames = new List<string> { "部队一", "部队二", "部队三", "部队四", "部队五" };
-                    ProcessOptions(ref taskModels, expTask.Option, teamOptionNames);
-
-                    // 同步后勤场景复用修刀配置：修刀 switch 及修复工坊子选项一并合并，
-                    // 使其他任务同步后勤跳转远征流水线时修刀检查同样生效
-                    var repairOptionNames = new List<string> { "修刀" };
-                    ProcessOptions(ref taskModels, expTask.Option, repairOptionNames);
-
-                    // 同步内番开关：其他任务同步后勤跳转远征流水线时内番检查同样生效
-                    var naibanOptionNames = new List<string> { "内番" };
-                    ProcessOptions(ref taskModels, expTask.Option, naibanOptionNames);
-
-                    // 注入远征刷新间隔到计时器节点
-                    var refreshOpt = expTask.Option.FirstOrDefault(o => o.Name == "RefreshInterval");
-                    if (refreshOpt?.Data != null &&
-                        refreshOpt.Data.TryGetValue("seconds", out var secondsStr) &&
-                        int.TryParse(secondsStr, out var seconds))
-                    {
-                        // 根据任务入口确定计时器结束后的返回目标
-                        var timerNext = task.InterfaceItem?.Entry switch
-                        {
-                            "Sortie" => "S_NavigateToSortie",
-                            "Underground" => "U_NavigateToActivity",
-                            "TacticalTraining" => "TT_NavigateToActivity",
-                            "EdoCastle" => "EC_NavigateToActivity",
-                            _ => "LR_NavigateToActivity"
-                        };
-                        var timerParam = new Dictionary<string, JToken>
-                        {
-                            ["action"] = new JObject
-                            {
-                                ["type"] = "Custom",
-                                ["custom_action"] = "ExpeditionTimerAction",
-                                ["custom_action_param"] = new JObject
-                                {
-                                    ["mode"] = "start",
-                                    ["interval"] = seconds
-                                }
-                            },
-                            ["next"] = new JArray(timerNext)
-                        };
-                        taskModels.Merge(new Dictionary<string, JToken>
-                        {
-                            ["E_TimerStart"] = JToken.FromObject(timerParam)
-                        });
-
-                        // 同时注入到 E_SmartWait，供 SmartWaitAction 读取
-                        var smartWaitParam = new Dictionary<string, JToken>
-                        {
-                            ["action"] = new JObject
-                            {
-                                ["type"] = "Custom",
-                                ["custom_action"] = "SmartWaitAction",
-                                ["custom_action_param"] = new JObject
-                                {
-                                    ["interval"] = seconds
-                                }
-                            }
-                        };
-                        taskModels.Merge(new Dictionary<string, JToken>
-                        {
-                            ["E_SmartWait"] = JToken.FromObject(smartWaitParam),
-                            ["U_SmartWait"] = JToken.FromObject(smartWaitParam)
-                        });
-                    }
-                }
-            }
-        }
-
-        // 远征任务自身：注入 RefreshInterval 到 E_SmartWait
-        if (task.InterfaceItem?.Entry == "Expedition")
-        {
-            var expRefreshOpt = task.InterfaceItem?.Option
-                ?.FirstOrDefault(o => o.Name == "RefreshInterval");
-            if (expRefreshOpt?.Data != null &&
-                expRefreshOpt.Data.TryGetValue("seconds", out var expSecondsStr) &&
-                int.TryParse(expSecondsStr, out var expSeconds))
-            {
-                var smartWaitParam = new Dictionary<string, JToken>
-                {
-                    ["action"] = new JObject
-                    {
-                        ["type"] = "Custom",
-                        ["custom_action"] = "SmartWaitAction",
-                        ["custom_action_param"] = new JObject
-                        {
-                            ["interval"] = expSeconds
-                        }
-                    }
-                };
-                taskModels.Merge(new Dictionary<string, JToken>
-                {
-                    ["E_SmartWait"] = JToken.FromObject(smartWaitParam)
-                });
-            }
-        }
-
-        // 自定编队：根据预设生成运行时 override（选队坐标、开关路由、空槽位跳过）。
-        // 日课通过同一入口复用这套流程，但完成后回到日课自己的下级枢纽。
-        if (task.InterfaceItem?.Entry == "FormationConfig" || task.InterfaceItem?.Entry == "DailyTask")
-        {
-            bool isDailyTask = task.InterfaceItem?.Entry == "DailyTask";
-            LoggerHelper.Info($"[FormationConfig] CreateNodeAndParam 特判进入，DailyTask={isDailyTask}，PipelineOverride=" +
-                JsonConvert.SerializeObject(task.InterfaceItem?.PipelineOverride));
-            // 从 PipelineOverride 读取 preset_id（MaaToken 仅支持合并，不支持读取）
-            int presetId = 0;
-            if (isDailyTask)
-            {
-                var dailyPresetOption = task.InterfaceItem?.Option
-                    ?.FirstOrDefault(o => o.Name == "D_启用预设部队");
-                if (dailyPresetOption?.Data != null
-                    && dailyPresetOption.Data.TryGetValue("preset_id", out var presetIdText)
-                    && int.TryParse(presetIdText, out var dailyPresetId))
-                {
-                    presetId = dailyPresetId;
-                }
-            }
-            else if (task.InterfaceItem?.PipelineOverride != null
-                && task.InterfaceItem.PipelineOverride.TryGetValue("FormationConfig", out var fcToken)
-                && fcToken is JObject fcObj)
-            {
-                presetId = fcObj["custom_action_param"]?["preset_id"]?.Value<int>() ?? 0;
-            }
-
-            var formationPresets = InstanceConfiguration.GetValue<List<MFAAvalonia.Models.FormationPreset>>(ConfigurationKeys.FormationPresets, []);
-            var formationPreset = formationPresets?.FirstOrDefault(p => p.Id == presetId);
-            LoggerHelper.Info($"[FormationConfig] 特判 presetId={presetId}, presetsCount={formationPresets?.Count ?? -1}, preset={formationPreset?.Id ?? -1}");
-            if (formationPreset != null)
-            {
-                formationPreset.EnsureSlots();
-                int team = Math.Clamp(formationPreset.Team, 1, 5);
-
-                var overrideDict = new Dictionary<string, JToken>
-                {
-                    // 入口参数：preset_id 注入 custom_action_param
-                    ["FormationConfig"] = new JObject
-                    {
-                        ["action"] = new JObject
-                        {
-                            ["type"] = "Custom",
-                            ["custom_action"] = "FormationConfigAction",
-                            ["custom_action_param"] = new JObject { ["preset_id"] = presetId }
-                        }
-                    },
-                    // 选队坐标（按预设目标部队）
-                    ["FC_ClickTeam"] = new JObject
-                    {
-                        ["action"] = new JObject
-                        {
-                            ["param"] = new JObject { ["target"] = new JArray(FormationTeamClickCoords[team - 1]) }
-                        }
-                    },
-                    ["FC_VerifySelectedTeam1"] = new JObject
-                    {
-                        ["recognition"] = new JObject
-                        {
-                            ["param"] = new JObject { ["roi"] = new JArray(FormationTeamVerifyRois[team - 1]) }
-                        }
-                    },
-                    ["FC_VerifySelectedTeam2"] = new JObject
-                    {
-                        ["recognition"] = new JObject
-                        {
-                            ["param"] = new JObject { ["roi"] = new JArray(FormationTeamVerifyRois[team - 1]) }
-                        }
-                    },
-                    // 部队编号注入（装备解除面板选队、部队记录槽）
-                    ["FC_ClickEquipCond3"] = new JObject
-                    {
-                        ["action"] = new JObject
-                        {
-                            ["custom_action_param"] = new JObject { ["team"] = team }
-                        }
-                    },
-                    ["FC_ClickRecordSlot"] = new JObject
-                    {
-                        ["action"] = new JObject
-                        {
-                            ["custom_action_param"] = new JObject { ["team"] = team }
-                        }
-                    },
-                };
-
-                // 仅使用记录：选定部队后直接进入记录页面，调用目标部队记录，不执行预设编成。
-                if (formationPreset.UseGameFormationRecordOnly)
-                {
-                    ((JObject)overrideDict["FC_ClickTeam"])["next"] = new JArray("FC_UseRecord_Step1");
-                }
-                // 仅记录编队：选定部队后直接保存当前编成，不执行预设编成。
-                else if (formationPreset.SaveGameFormationRecordOnly)
-                {
-                    ((JObject)overrideDict["FC_ClickTeam"])["next"] = new JArray("FC_ClickTroopRecord");
-                }
-
-                // 仅使用记录且开启卸装备：只解除目标部队装备，不解散队伍，完成后调用部队记录。
-                if (formationPreset.UseGameFormationRecordOnly && formationPreset.ClearEquipmentBeforeFormation)
-                {
-                    ((JObject)overrideDict["FC_ClickTeam"])["next"] = new JArray("FC_IsTeamEmpty", "FC_RemoveEquip");
-                    overrideDict["FC_IsTeamEmpty"] = new JObject
-                    {
-                        ["next"] = new JArray("FC_UseRecord_Step1")
-                    };
-                    overrideDict["FC_ConfirmEquipRemove"] = new JObject
-                    {
-                        ["next"] = new JArray("FC_UseRecord_Step1")
-                    };
-                }
-                // 普通编成模式的卸装备：解除装备后继续解散并重新编成。
-                else if (!formationPreset.UseGameFormationRecordOnly && !formationPreset.SaveGameFormationRecordOnly
-                    && formationPreset.ClearEquipmentBeforeFormation)
-                {
-                    ((JObject)overrideDict["FC_ClickTeam"])["next"] = new JArray("FC_IsTeamEmpty", "FC_RemoveEquip");
-                }
-
-                // 保存记录开关：关闭时确认回编成页后直接回本丸结束
-                if (!formationPreset.SaveGameFormationRecordAfterFormation)
-                {
-                    overrideDict["FC_IsBackToFormation"] = new JObject
-                    {
-                        ["next"] = new JArray("FC_BackToHome")
-                    };
-                }
-
-                // 空刀名槽位跳过：空槽位入口节点 disabled，编入链重接至下一个非空槽位
-                var memberSlots = Enumerable.Range(1, 6)
-                    .Where(i => !string.IsNullOrWhiteSpace(formationPreset.Slots[i - 1].Sword))
-                    .ToList();
-                for (int idx = 0; idx < memberSlots.Count; idx++)
-                {
-                    int m = memberSlots[idx];
-                    string nextNode = idx + 1 < memberSlots.Count
-                        ? $"FC_ConfigureSwordSlot{memberSlots[idx + 1]}"
-                        : "FC_OpenEquip";
-                    overrideDict[$"FC_FindSword{m}"] = new JObject { ["next"] = new JArray(nextNode) };
-                }
-                for (int n = 1; n <= 6; n++)
-                {
-                    if (!memberSlots.Contains(n))
-                        overrideDict[$"FC_ConfigureSwordSlot{n}"] = new JObject { ["enabled"] = false };
-                }
-
-                if (isDailyTask)
-                {
-                    overrideDict["FC_BackToHome"] = new JObject
-                    {
-                        ["next"] = new JArray("DT_LoginRewardGate")
-                    };
-                }
-
-                taskModels.Merge(overrideDict);
-            }
-        }
-
-        // 王点匹配效率优化：根据选择时代禁用非本时代 boss 节点，减少模板匹配数量
-        if (task.InterfaceItem?.Entry == "Sortie")
-        {
-            var eraOption = task.InterfaceItem?.Option
-                ?.FirstOrDefault(o => o.Name == "S_选择时代");
-            if (eraOption?.Index is int eraIndex && eraIndex >= 1)
-            {
-                var bossNodePrefixes = new Dictionary<int, string[]>
-                {
-                    [1] = ["S_Boss_E2_"],
-                    [2] = ["S_Boss_E3_"],
-                    [3] = ["S_Boss_E4_", "S_MidRetreat_E4_"],
-                    [4] = ["S_Boss_E5_"],
-                    [5] = ["S_Boss_E6_", "S_MidRetreat_E6_"],
-                    [6] = ["S_Boss_E7_"],
-                    [7] = ["S_Boss_E8_", "S_MidRetreat_E8_"]
-                };
-
-                // 全部 boss + 道中节点
-                var allBossNodes = new[]
-                {
-                    "S_Boss_E2_R1", "S_Boss_E2_R2_1", "S_Boss_E2_R2_2",
-                    "S_Boss_E2_R3_1", "S_Boss_E2_R3_2", "S_Boss_E2_R3_3", "S_Boss_E2_R4",
-                    "S_Boss_E3_R1", "S_Boss_E3_R2", "S_Boss_E3_R3", "S_Boss_E3_R4",
-                    "S_Boss_E4_R1", "S_Boss_E4_R2", "S_Boss_E4_R3", "S_Boss_E4_R4",
-                    "S_MidRetreat_E4_R1", "S_MidRetreat_E4_R2",
-                    "S_Boss_E5_R1", "S_Boss_E5_R3", "S_Boss_E5_R3_2",
-                    "S_Boss_E5_R4_1", "S_Boss_E5_R4_2",
-                    "S_Boss_E6_R1", "S_Boss_E6_R2", "S_Boss_E6_R3", "S_Boss_E6_R4",
-                    "S_MidRetreat_E6_R1",
-                    "S_Boss_E7_R1", "S_Boss_E7_R2_1", "S_Boss_E7_R2_2",
-                    "S_Boss_E7_R3_1", "S_Boss_E7_R3_2", "S_Boss_E7_R4",
-                    "S_Boss_E8_R1", "S_Boss_E8_R2", "S_Boss_E8_R3", "S_Boss_E8_R4",
-                    "S_MidRetreat_E8_R1", "S_MidRetreat_E8_R2",
-                    "S_MidRetreat_E8_R3", "S_MidRetreat_E8_R4"
-                };
-
-                if (bossNodePrefixes.TryGetValue(eraIndex, out var prefixes))
-                {
-                    var disableNodes = new Dictionary<string, JToken>();
-                    foreach (var node in allBossNodes)
-                    {
-                        if (!prefixes.Any(p => node.StartsWith(p)))
-                        {
-                            disableNodes[node] = JToken.FromObject(new { enabled = false });
-                        }
-                    }
-                    if (disableNodes.Count > 0)
-                        taskModels.Merge(disableNodes);
-                }
-            }
-        }
 
         var taskParams = SerializeTaskParams(taskModels);
         // var settings = new JsonSerializerSettings
@@ -3808,97 +3859,27 @@ public class MaaProcessor
         // var tasks = JsonConvert.DeserializeObject<Dictionary<string, MaaNode>>(json, settings);
         // tasks = tasks.MergeMaaNodes(taskModels);
         LoggerHelper.Info($"[任务管线合并] 任务#{index} 名称=[{task.Name ?? task.InterfaceItem?.Name ?? "<未命名>"}] 入口=[{task.InterfaceItem?.Entry ?? "<空>"}] 参数={taskParams}");
-
-        // 异去模式重复次数联动：「过去/异去」选「异去」时，重复次数取「异去_重复次数」输入值。
-        // 该输入项是「异去」case 的子选项，存储于「过去/异去」选项的 SubOptions 中，不在顶层 Option 列表里；
-        // 异去每轮打完命中 S_IsIsekaiBattleEnd 结束任务，由队列按该值循环 N 轮；
-        // 选「过去」时强制 3 轮（不使用 UI 设置的重复次数；如需调整轮数请修改此处代码）
-        var repeatCount = task.InterfaceItem?.RepeatCount;
-        var modeOption = task.InterfaceItem?.Option?.FirstOrDefault(o => o.Name == "过去/异去");
-        if (modeOption != null)
-        {
-            if (modeOption.Index == 1)
-            {
-                var repeatOption = modeOption.SubOptions?.FirstOrDefault(o => o.Name == "异去_重复次数");
-                if (repeatOption?.Data != null
-                    && repeatOption.Data.TryGetValue("repeat_count", out var repeatStr)
-                    && int.TryParse(repeatStr, out var repeatValue))
-                {
-                    repeatCount = repeatValue;
-                }
-            }
-            else
-            {
-                // 过去：强制 3 轮，不使用 UI 设置的重复次数
-                repeatCount = 3;
-            }
-        }
-
-        // 部队颜色验证兼容旧配置：旧版任务选项仍使用未编号的 node 名称，
-        // 将最终合并后的 ROI 同步到浅色和深色两种验证 node。
-        var teamVerifyAliases = new Dictionary<string, (string Light, string Dark)>
-        {
-            ["S_TeamVerifyColor"] = ("S_TeamVerifyColor1", "S_TeamVerifyColor2"),
-            ["SF_TeamVerifyColorN"] = ("SF_TeamVerifyColorN1", "SF_TeamVerifyColorN2"),
-            ["FB_TeamVerifyColor"] = ("FB_TeamVerifyColor1", "FB_TeamVerifyColor2"),
-            ["LR_TeamVerifyColor"] = ("LR_TeamVerifyColor1", "LR_TeamVerifyColor2"),
-            ["TT_TeamVerifyColor"] = ("TT_TeamVerifyColor1", "TT_TeamVerifyColor2"),
-            ["U_TeamVerifyColor"] = ("U_TeamVerifyColor1", "U_TeamVerifyColor2"),
-            ["UF_TeamVerifyColorN"] = ("UF_TeamVerifyColorN1", "UF_TeamVerifyColorN2")
-        };
-        foreach (var (legacyName, names) in teamVerifyAliases)
-        {
-            taskModels.CopyAliases(legacyName, names.Light, names.Dark);
-            taskModels.CopyAliases(names.Light, names.Dark);
-        }
-
         return new NodeAndParam
         {
             Index = index,
             Name = task.Name,
             Entry = task.InterfaceItem?.Entry,
-            // repeat_count < 0 表示无限重复（MFATask 中转为 int.MaxValue），
-            // 挂机任务（如合战场）失败后会自动重新提交，配合重启恢复实现不中断
-            // repeat_count > 0 时直接生效（不受 Repeatable 限制，GUI 仍按 Repeatable 决定是否显示重复次数选项）
-            // 异去模式经上述联动传入的 -1 同样直通为无限（否则 Repeatable=false 会被折成单次）
-            Count = repeatCount is > 0
-                ? repeatCount.Value
-                : (repeatCount == -1
-                    ? -1
-                    : (task.InterfaceItem?.Repeatable == true ? (repeatCount ?? 1) : 1)),
+            Count = task.InterfaceItem?.Repeatable == true ? (task.InterfaceItem?.RepeatCount ?? 1) : 1,
             // Tasks = tasks,
-            Param = taskParams
+            Param = taskParams,
+            SourceItem = task,
+            RunId = runId
         };
     }
 
     /// <summary>
     /// 合并全局选项参数（global_option，最低优先级）
     /// </summary>
-    /// <param name="taskModels">任务参数</param>
-    /// <param name="task">当前任务；为 null 时不做过滤（保持原行为）</param>
-    private void MergeGlobalOptionParams(ref MaaToken taskModels, MaaInterface.MaaInterfaceTask? task = null)
+    private void MergeGlobalOptionParams(ref MaaToken taskModels)
     {
         var globalSelectOptions = Interface?.GlobalSelectOptions;
         if (globalSelectOptions == null || globalSelectOptions.Count == 0)
             return;
-
-        // 「远征智能调度」仅对远征任务自身与开启同步后勤的任务生效。
-        // 对未开启同步后勤的任务注入其 override 会劫持队伍选择流程
-        // （TT_IsTeamSelect 等跳转到 E_CheckTimerExpired，而计时器从未启动 → 视为过期 → 回本丸查看远征）。
-        if (task != null)
-        {
-            var syncExpEnabled = task.Option
-                ?.FirstOrDefault(o => (o.Name ?? "").EndsWith("同步远征") || (o.Name ?? "").EndsWith("同步后勤"))
-                ?.SelectedCases?.Contains("") == true;
-            if (task.Entry != "Expedition" && !syncExpEnabled)
-            {
-                globalSelectOptions = globalSelectOptions
-                    .Where(o => o.Name != "远征智能调度")
-                    .ToList();
-                if (globalSelectOptions.Count == 0)
-                    return;
-            }
-        }
 
         ProcessOptions(ref taskModels, globalSelectOptions);
     }
@@ -3947,7 +3928,7 @@ public class MaaProcessor
     {
         var controllerType = ViewModel?.CurrentController ?? MaaControllerTypes.None;
         return MaaInterfaceActivationHelper.ResolveControllerName(Interface, controllerType)
-               ?? controllerType.ToJsonKey();
+            ?? controllerType.ToJsonKey();
     }
 
     private void InitializeConnectionTasksAsync(CancellationToken token)
@@ -3983,10 +3964,8 @@ public class MaaProcessor
 
     async private Task HandleDeviceConnectionAsync(CancellationToken token, bool showMessage = true)
     {
-        if (Interlocked.CompareExchange(ref _isConnecting, 1, 0) != 0)
-        {
-            return;
-        }
+        await _connectionGate.WaitAsync(token);
+        Interlocked.Exchange(ref _isConnecting, 1);
 
         var previousSuppressConnectionAttemptErrorToast = _suppressConnectionAttemptErrorToast;
         _suppressConnectionAttemptErrorToast = true;
@@ -4005,13 +3984,16 @@ public class MaaProcessor
             }
 
             var controllerType = ViewModel?.CurrentController ?? MaaControllerTypes.Adb;
-            var isAdb = controllerType == MaaControllerTypes.Adb;
+            // Android interfaces commonly declare an ADB controller for compatibility,
+            // but the registered platform factory owns the complete connection lifecycle.
+            var isPlatformController = PlatformControllerFactory.CanInitializeWithoutDevice;
+            var isAdb = controllerType == MaaControllerTypes.Adb && !isPlatformController;
             var isPlayCover = controllerType == MaaControllerTypes.PlayCover;
             var strictRecoveryTarget = isAdb && ShouldStrictMatchSavedAdbTarget();
             ViewModel?.SetAdbRecoverySelectionLock(strictRecoveryTarget);
             var targetKey = controllerType switch
             {
-                MaaControllerTypes.Adb => LangKeys.Emulator,
+                MaaControllerTypes.Adb when !isPlatformController => LangKeys.Emulator,
                 MaaControllerTypes.Win32 => LangKeys.Window,
                 MaaControllerTypes.PlayCover => LangKeys.TabPlayCover,
                 _ => LangKeys.Window
@@ -4029,7 +4011,7 @@ public class MaaProcessor
                 await EnsureAdbTargetReadyAsync(token, showMessage, delayFingerprintMatching);
             }
 
-            if (!isPlayCover && ViewModel?.CurrentDevice == null && InstanceConfiguration.GetValue(ConfigurationKeys.AutoDetectOnConnectionFailed, true) && !delayFingerprintMatching)
+            if (!isPlatformController && !isPlayCover && ViewModel?.CurrentDevice == null && InstanceConfiguration.GetValue(ConfigurationKeys.AutoDetectOnConnectionFailed, true) && !delayFingerprintMatching)
                 ViewModel?.TryReadAdbDeviceFromConfig(false, true, true, false, strictRecoveryTarget);
 
             var tuple = await TryConnectAsync(token);
@@ -4056,7 +4038,12 @@ public class MaaProcessor
                 _suppressConnectionAttemptErrorToast = previousSuppressConnectionAttemptErrorToast;
                 if (!tuple.Item2 && shouldRetry)
                     HandleConnectionFailureAsync(controllerType, token);
-                throw new Exception(ConnectionFailedAfterAllRetriesMessage);
+                var connectionException = new InvalidOperationException(ConnectionFailedAfterAllRetriesMessage);
+                connectionException.Data["controller.type"] = controllerType.ToString();
+                // Exhausted connection retries are a user/device state, not an application
+                // exception. Keep the task failure detail without creating a Sentry issue.
+                TelemetryService.RecordTaskFailure(InstanceId, "connection_failed", "connection", "retries_exhausted");
+                throw connectionException;
             }
 
             if (isAdb)
@@ -4072,6 +4059,7 @@ public class MaaProcessor
             ViewModel?.SetAdbRecoverySelectionLock(false);
             _suppressConnectionAttemptErrorToast = previousSuppressConnectionAttemptErrorToast;
             Interlocked.Exchange(ref _isConnecting, 0);
+            _connectionGate.Release();
         }
     }
 
@@ -4158,11 +4146,11 @@ public class MaaProcessor
     private bool ShouldStrictMatchSavedAdbTarget()
     {
         return (ViewModel?.CurrentController ?? MaaControllerTypes.Adb) == MaaControllerTypes.Adb
-               && InstanceConfiguration.GetValue(ConfigurationKeys.RememberAdb, true)
-               && InstanceConfiguration.TryGetValue(ConfigurationKeys.AdbDevice, out AdbDeviceInfo _,
-                   new UniversalEnumConverter<AdbInputMethods>(), new UniversalEnumConverter<AdbScreencapMethods>())
-               && InstanceConfiguration.GetValue(ConfigurationKeys.RetryOnDisconnected, false)
-               && CanStartSoftware(out _);
+            && InstanceConfiguration.GetValue(ConfigurationKeys.RememberAdb, true)
+            && InstanceConfiguration.TryGetValue(ConfigurationKeys.AdbDevice, out AdbDeviceInfo _,
+                new UniversalEnumConverter<AdbInputMethods>(), new UniversalEnumConverter<AdbScreencapMethods>())
+            && InstanceConfiguration.GetValue(ConfigurationKeys.RetryOnDisconnected, false)
+            && CanStartSoftware(out _);
     }
 
     async private Task<bool> RetryConnectionAsync(CancellationToken token, bool showMessage, Func<Task> action, string logKey, bool enable = true, Action? other = null)
@@ -4218,97 +4206,30 @@ public class MaaProcessor
     }
 
 
-    private void AddCoreTasksAsync(List<NodeAndParam> taskAndParams, CancellationToken token, int startIndex = 0)
+    private void AddCoreTasksAsync(List<NodeAndParam> taskAndParams, CancellationToken token)
     {
-        _taskSuccessCount = 0;
-        _taskFailureCount = 0;
-        for (int i = startIndex; i < taskAndParams.Count; i++)
+        foreach (var task in taskAndParams)
         {
-            var task = taskAndParams[i];
-            var requestedCount = task.Count ?? 1;
-            var completedRounds = _completedTaskRounds.GetValueOrDefault(i);
-            var remainingCount = requestedCount > 0 && requestedCount != int.MaxValue
-                ? Math.Max(1, requestedCount - completedRounds)
-                : requestedCount;
-            var maaTask = CreateMaaFWTask(task.Name,
+            TaskQueue.Enqueue(CreateMaaFWTask(task.Name,
                 async () =>
                 {
                     token.ThrowIfCancellationRequested();
-                    var status = await TryRunTasksAsync(MaaTasker, task.Entry, task.Param, task.Name, token, isCoreTask: true);
-                    if (status != MaaJobStatus.Succeeded)
-                        throw new InvalidOperationException($"MAAFW 任务失败：{task.Name}");
-
-                    _nextTaskIndex = i + 1;
-                }, remainingCount);
-            maaTask.IterationCompleted = round =>
-            {
-                _completedTaskRounds[i] = completedRounds + round;
-                LoggerHelper.Info($"任务轮次进度：任务={task.Name}，已完成={_completedTaskRounds[i]}，目标={requestedCount}");
-            };
-            TaskQueue.Enqueue(maaTask);
-            // 不同任务之间插入回本丸（最后一个任务不插）
-            if (i < taskAndParams.Count - 1)
-            {
-                TaskQueue.Enqueue(CreateMaaFWTask("回本丸", async () =>
-                {
-                    // 合并全局选项 override（如卡死重启禁用的兜底节点），
-                    // 避免内部任务以 "{}" 启动导致兜底未被禁用、卡死时无限空转
-                    await TryRunTasksAsync(MaaTasker, "GoHome", BuildGoHomeParam(), "回本丸", token);
-                }));
-            }
+                    // if (task.Tasks != null)
+                    //     NodeDictionary = task.Tasks;
+                    return await TryRunTasksAsync(MaaTasker, task.Entry, task.Param, token);
+                }, task.Count ?? 1, task.SourceItem, task.RunId
+            ));
         }
     }
 
-    /// <summary>
-    /// 生成回本丸任务参数：合并全局选项 override（含卡死重启等），
-    /// 使任务队列插入的回本丸与正常任务应用一致的兜底禁用策略
-    /// </summary>
-    private string BuildGoHomeParam()
-    {
-        var taskModels = JsonConvert.DeserializeObject<Dictionary<string, JToken>>("{}", new JsonSerializerSettings
-        {
-            Formatting = Formatting.Indented,
-            NullValueHandling = NullValueHandling.Ignore,
-            DefaultValueHandling = DefaultValueHandling.Ignore
-        })!.ToMaaToken();
-
-        // 传入 Entry 为 GoHome 的空任务，使「远征智能调度」等仅对特定任务生效的选项被排除
-        var goHomeTask = new MaaInterface.MaaInterfaceTask { Entry = "GoHome" };
-        MergeGlobalOptionParams(ref taskModels, goHomeTask);
-        return SerializeTaskParams(taskModels);
-    }
-
-    async private Task<MaaJobStatus> TryRunTasksAsync(MaaTasker? maa, string? task, string? param, string? taskName, CancellationToken token, bool isCoreTask = false)
+    async private Task<MaaJobStatus> TryRunTasksAsync(MaaTasker? maa, string? task, string? param, CancellationToken token)
     {
         if (maa == null || task == null) return MaaJobStatus.Invalid;
 
-        using var entryScope = LoggerHelper.PushContext(entry: task);
-        MaaJobStatus jobStatus = MaaJobStatus.Failed;
         var job = maa.AppendTask(task, param ?? "{}");
-        await TaskManager.RunTaskAsync((Action)(() =>
-        {
-            if (InstanceConfiguration.GetValue(ConfigurationKeys.ContinueRunningWhenError, true))
-                jobStatus = job.Wait();
-            else
-                jobStatus = job.Wait().ThrowIfNot(MaaJobStatus.Succeeded);
-        }), token, (ex) => throw ex, name: "队列任务", catchException: true, shouldLog: false);
-
-        if (isCoreTask)
-        {
-            if (jobStatus == MaaJobStatus.Succeeded)
-                _taskSuccessCount++;
-            else
-                _taskFailureCount++;
-        }
-
-        // 成功时不再输出「任务完成」：轮次进度日志（任务完成: X 进度 Y/Z）已包含完成信息；
-        // 失败时仍输出「任务失败」便于定位问题
-        if (jobStatus != MaaJobStatus.Succeeded)
-            AddLog($"{taskName} 任务失败", (IBrush?)null);
-
-        // 等待 PostStop 清理完成，防止下一轮 AppendTask 被中断
-        await Task.Delay(500, token);
-        return jobStatus;
+        TelemetryService.SetActiveTaskId(InstanceId, job.Id);
+        return await TaskManager.RunTaskAsync(() => job.Wait(), token, (ex) => throw ex,
+            name: "队列任务", catchException: true, shouldLog: false);
     }
 
     async private Task RunScript(string str = "Prescript")
@@ -4334,15 +4255,19 @@ public class MaaProcessor
         }
     }
 
-    private MFATask CreateMaaFWTask(string? name, Func<Task> action, int count = 1)
+    private MFATask CreateMaaFWTask(string? name, Func<Task<MaaJobStatus>> action, int count = 1,
+        DragItemViewModel? sourceItem = null, long runId = 0)
     {
         return new MFATask
         {
             Name = name,
             Count = count,
             Type = MFATask.MFATaskType.MAAFW,
-            Action = action,
-            OwnerViewModel = ViewModel
+            MaaAction = action,
+            OwnerViewModel = ViewModel,
+            SourceItem = sourceItem,
+            RunId = runId,
+            ContinueOnError = InstanceConfiguration.GetValue(ConfigurationKeys.ContinueRunningWhenError, true)
         };
     }
 
@@ -4391,12 +4316,14 @@ public class MaaProcessor
 
     private readonly Lock _stopLock = new();
 
-    public void Stop(MFATask.MFATaskStatus status, bool finished = false, bool onlyStart = false, Action? action = null)
+    public void Stop(MFATask.MFATaskStatus status, bool finished = false, bool onlyStart = false,
+        Action? action = null, bool queueCompleted = false)
     {
-        EnqueueCommand(() => StopInternal(status, finished, onlyStart, action));
+        EnqueueCommand(() => StopInternal(status, finished, onlyStart, queueCompleted, action));
     }
 
-    private Task StopInternal(MFATask.MFATaskStatus status, bool finished, bool onlyStart, Action? action)
+    private Task StopInternal(MFATask.MFATaskStatus status, bool finished, bool onlyStart,
+        bool queueCompleted, Action? action)
     {
         using var logScope = BeginInstanceLogScope("StopTask", "Worker");
         ResetActionFailedCount();
@@ -4426,7 +4353,7 @@ public class MaaProcessor
                     return Task.CompletedTask;
                 }
 
-                CancelOperations(status == MFATask.MFATaskStatus.STOPPED && !_agentStarted && _agentContexts.Count > 0);
+                CancelOperations();
 
                 TaskQueue.Clear();
 
@@ -4454,7 +4381,7 @@ public class MaaProcessor
                         }
 
                     }
-                    HandleStopResult(status, stopResult, onlyStart, action, isUpdateRelated);
+                    HandleStopResult(status, stopResult, onlyStart, queueCompleted, action, isUpdateRelated);
                     DispatcherHelper.PostOnMainThread(() =>
                     {
                         if (ViewModel != null) ViewModel.ToggleEnable = true;
@@ -4480,11 +4407,6 @@ public class MaaProcessor
         SetWaitingForModal(false);
         _emulatorCancellationTokenSource?.SafeCancel();
         CancellationTokenSource.SafeCancel();
-        if (killAgent)
-        {
-            AgentHelper.KillAllAgents(_agentContexts);
-            _agentContexts = [];
-        }
     }
 
     private bool ShouldProcessStop(bool finished)
@@ -4501,16 +4423,6 @@ public class MaaProcessor
 
             stopAction.Invoke();
 
-            // 任务已停止,日志写入静止,执行一次兜底切块
-            try
-            {
-                MaaLogRotator.TryRotateIfNeeded();
-            }
-            catch (Exception ex)
-            {
-                LoggerHelper.Warning($"停止后日志切块异常: {ex.Message}");
-            }
-
             DispatcherHelper.PostOnMainThread(() => Instances.RootViewModel.Idle = true);
         }, null, "停止maafw任务");
     }
@@ -4524,11 +4436,12 @@ public class MaaProcessor
         return status;
     }
 
-    private void HandleStopResult(MFATask.MFATaskStatus status, MaaJobStatus success, bool onlyStart, Action? action = null, bool isUpdateRelated = false)
+    private void HandleStopResult(MFATask.MFATaskStatus status, MaaJobStatus success, bool onlyStart,
+        bool queueCompleted = false, Action? action = null, bool isUpdateRelated = false)
     {
         if (success == MaaJobStatus.Succeeded)
         {
-            DisplayTaskCompletionMessage(status, onlyStart, action);
+            DisplayTaskCompletionMessage(status, onlyStart, queueCompleted, action);
         }
         else if (success == MaaJobStatus.Invalid)
         {
@@ -4545,7 +4458,8 @@ public class MaaProcessor
         _tempTasks = [];
     }
 
-    private void DisplayTaskCompletionMessage(MFATask.MFATaskStatus status, bool onlyStart = false, Action? action = null)
+    private void DisplayTaskCompletionMessage(MFATask.MFATaskStatus status, bool onlyStart = false,
+        bool queueCompleted = false, Action? action = null)
     {
         if (Interlocked.Exchange(ref _stopCompletionMessageHandled, 1) == 1)
         {
@@ -4561,6 +4475,9 @@ public class MaaProcessor
             ExternalNotificationHelper.ExternalNotificationAsync(Instances.ExternalNotificationSettingsUserControlModel.EnabledCustom
                 ? Instances.ExternalNotificationSettingsUserControlModel.CustomFailureText
                 : LangKeys.TaskFailed.ToLocalization());
+
+            if (queueCompleted && !onlyStart)
+                HandleAfterTaskOperation();
         }
         else if (status == MFATask.MFATaskStatus.STOPPED)
         {
@@ -5025,6 +4942,8 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.FormationEquipSelectAction());
             tasker.Resource.Register(new Custom.FormationHorseSelectAction());
             tasker.Resource.Register(new Custom.FormationEquipStateMachine());
+            tasker.Resource.Register(new Custom.HeiLiuAction((content, color) => AddLog(content, color)));
+            tasker.Resource.Register(new Custom.SwitchInstanceAction(this));
             tasker.Resource.Register(new Custom.EquipmentFallbackAction());
             LoggerHelper.Info("已注册内置特殊任务动作。");
 

@@ -43,7 +43,13 @@ public class DrillDangerCheckAction : IMaaCustomAction
                 return false;
             }
 
-            using var bitmap = image.ToBitmap();
+            if (image is not MaaImageBuffer imageBuffer)
+            {
+                LoggerHelper.Warning("[日课 演练] 截图缓冲区类型不受支持，按强敌处理");
+                return false;
+            }
+
+            using var bitmap = imageBuffer.ToBitmap();
             if (bitmap == null)
             {
                 LoggerHelper.Warning("[日课 演练] 读取对手情报截图失败，按强敌处理");

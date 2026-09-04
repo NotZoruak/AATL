@@ -56,7 +56,7 @@ public partial class MFAConfiguration(string name, string fileName, Dictionary<s
 
     public bool ContainsKey(string key) => Config.ContainsKey(key);
 
-    /// <summary>从磁盘重新加载当前配置，避免使用过期的内存快照覆盖较新的配置数据。</summary>
+    /// <summary>从磁盘重新加载当前配置，避免过期内存快照覆盖较新的数据。</summary>
     public void ReloadFromDisk()
     {
         Config = JsonHelper.LoadConfig(FileName, new Dictionary<string, object>());

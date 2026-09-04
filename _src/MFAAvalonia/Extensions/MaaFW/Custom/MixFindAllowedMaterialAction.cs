@@ -1,5 +1,6 @@
 using Avalonia;
 using MaaFramework.Binding;
+using MaaFramework.Binding.Buffers;
 using MaaFramework.Binding.Custom;
 using MFAAvalonia.Configuration;
 using MFAAvalonia.Helper;
@@ -88,7 +89,10 @@ public class MixFindAllowedMaterialAction : IMaaCustomAction
         if (candidates.Count == 0)
             return false;
 
-        using var bitmap = image.ToBitmap();
+        if (image is not MaaImageBuffer imageBuffer)
+            return false;
+
+        using var bitmap = imageBuffer.ToBitmap();
         if (bitmap == null)
             return false;
 
