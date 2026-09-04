@@ -90,6 +90,10 @@ AssertTrue(taskOptionGeneratorSource.Contains("var grid = new UniformGrid", Stri
 
 var optionInterfaceJson = JObject.Parse(File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "assets", "interface.json")));
+AssertTrue(optionInterfaceJson["resource"]?.Children<JObject>().Single(resource =>
+        resource["name"]?.Value<string>() == "刀剑乱舞")["path"]?.Values<string>()
+        .SequenceEqual(["{PROJECT_DIR}/resource/base"]) == true,
+    "资源路径必须相对 interface.json 所在的 assets 目录，不能重复拼接 assets");
 var drillAvoidStrongOption = optionInterfaceJson["option"]?["D_演练避战强敌"];
 var drillThreatOption = optionInterfaceJson["option"]?["D_演练威胁度"];
 AssertTrue(drillAvoidStrongOption?["type"]?.Value<string>() == "switch"
