@@ -3187,6 +3187,7 @@
       "SF_HasExpeditionReturn_Exp",
       "SF_HasExpeditionReturn_Title",
       "SF_CheckHomeBrightness",
+      "SF_IsMenuDirectory",
       "SF_IsEraSelect",
       "SF_IsRegionSelect",
       "SF_IsSortieActivity",
@@ -3449,13 +3450,21 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["SF_PostClickMenuHub"],
-    "on_error": ["SF_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
+    "post_wait_freezes": {"time": 200, "target": [1183, 18, 87, 40]},
+    "next": ["SF_PostClickMenuHub","SF_ClickMenu"],
+    "on_error": ["SF_DetectWhereAmI"]
   },
   "SF_PostClickMenuHub": {
-    "next": ["SF_IsMenuDirectory", "SF_DetectWhereAmI"],
-    "on_error": ["SF_DetectWhereAmI"]
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [581, 28, 112, 57],
+        "template": "Common/菜单目录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "next": ["SF_IsMenuDirectory", "SF_DetectWhereAmI"]
   },
   "SF_IsMenuDirectory": {
     "recognition": {
@@ -3467,7 +3476,7 @@
         "threshold": [0.98]
       }
     },
-    "next": ["SF_ClickSortieInMenu"],
+    "next": ["SF_ClickSortieInMenu","SF_IsMenuDirectory"],
     "on_error": ["SF_DetectWhereAmI"]
   },
   "SF_ClickSortieInMenu": {
@@ -3479,9 +3488,8 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["SF_DetectWhereAmI"],
-    "on_error": ["SF_Hub"],
-    "post_wait_freezes": {"time": 100}
+    "post_wait_freezes": {"time": 100, "target": [160, 158, 97, 62]},
+    "next": ["SF_DetectWhereAmI"]
   },
   "SF_IsEraSelect": {
     "recognition": {
@@ -3514,9 +3522,8 @@
         "target": [1199, 633, 3, 1]
       }
     },
-    "next": ["SF_DetectWhereAmI"],
-    "on_error": ["SF_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
+    "post_wait_freezes": {"time": 100},
+    "next": ["SF_DetectWhereAmI"]
   },
   "SF_IsRegionSelect": {
     "recognition": {
@@ -3559,9 +3566,8 @@
         "target": [194, 213, 8, 1]
       }
     },
-    "next": ["SF_DetectWhereAmI"],
-    "on_error": ["SF_DetectWhereAmI"],
-    "post_wait_freezes": {"time": 100}
+    "post_wait_freezes": {"time": 100},
+    "next": ["SF_DetectWhereAmI"]
   },
   "SF_IsSortieActivity": {
     "recognition": {
@@ -4090,9 +4096,8 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["S_DetectWhereAmI"],
-    "on_error": ["SF_Hub"],
-    "post_wait_freezes": {"time": 100}
+    "post_wait_freezes": {"time": 200, "target": [1183, 18, 87, 40]},
+    "next": ["SF_NavigateBack","S_DetectWhereAmI"]
   },
   "SF_IsTrainingApplication": {
     "recognition": {
