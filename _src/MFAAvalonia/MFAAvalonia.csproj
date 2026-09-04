@@ -3,7 +3,7 @@
         <OutputType>Library</OutputType>
         <AssemblyName>MFAAvalonia.Core</AssemblyName>
         <Nullable>annotations</Nullable>
-        <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' == '' and '$(RuntimeIdentifiers)' == ''">win-x64;linux-x64;osx-x64;win-arm64;linux-arm64;osx-arm64</RuntimeIdentifiers>
+        <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' == ''">win-x64;linux-x64;osx-x64;win-arm64;linux-arm64;osx-arm64</RuntimeIdentifiers>
         <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' != ''">$(RuntimeIdentifier)</RuntimeIdentifiers>
         <MaaFrameworkPlatform>$(RuntimeIdentifier)</MaaFrameworkPlatform>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
@@ -14,22 +14,12 @@
         <DebugSymbols>false</DebugSymbols>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'osx-arm64'">
-        <DefineConstants>$(DefineConstants);MATR_DISABLE_MATH</DefineConstants>
-    </PropertyGroup>
-
     <ItemGroup>
         <Folder Include="Assets\Sound\" />
         <AvaloniaResource Include="Assets\logo.ico" />
         <AvaloniaResource Include="Assets\Sound\**" />
-        <AvaloniaResource Include="Assets\**" />
         <Folder Include="resource\base\pipeline\" />
         <AvaloniaResource Remove="%(_MaaFrameworkRuntime.DestinationFolder)AnyCPU\**" />
-    </ItemGroup>
-
-    <ItemGroup Condition="'$(RuntimeIdentifier)' == 'osx-arm64'">
-        <AvaloniaXaml Remove="Assets\Style\MdXaml.axaml" />
-        <AvaloniaResource Remove="Assets\Style\MdXaml.axaml" />
     </ItemGroup>
 
 
@@ -45,11 +35,11 @@
     <!-- Version -->
     <PropertyGroup>
         <ApplicationRevision>0</ApplicationRevision>
-        <ApplicationVersion>2.13.0</ApplicationVersion>
-        <Version>1.1</Version>
-        <FileVersion>2.13.0</FileVersion>
-        <AssemblyVersion>2.13.0</AssemblyVersion>
-        <InformationalVersion>0.0.1</InformationalVersion>
+        <ApplicationVersion>2.16.1.0</ApplicationVersion>
+        <Version>2.16.1</Version>
+        <FileVersion>2.16.1.0</FileVersion>
+        <AssemblyVersion>2.16.1.0</AssemblyVersion>
+        <InformationalVersion>2.16.1</InformationalVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -71,7 +61,7 @@
         <PackageReference Include="Lang.Avalonia" Version="11.3.12.1" />
         <PackageReference Include="Maa.AgentBinary" Version="1.2.0" />
         <PackageReference Include="Maa.Framework" Version="5.10.0" />
-        <PackageReference Include="Maa.Framework.Runtimes" Version="5.12.2" />
+        <PackageReference Include="Maa.Framework.Runtimes" Version="5.12.3" />
         <PackageReference Include="MailKit" Version="4.14.1" />
         <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="5.0.0" />
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
@@ -103,9 +93,9 @@
         <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.3" />
         <PackageReference Include="WindowsAPICodePack" Version="8.0.14" />
 
-        <ProjectReference Include="../LazyStaticGenerator/LazyStaticGenerator.csproj" OutputItemType="Analyzer" ExcludeAssets="runtime;build;native;contentfiles" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="../LazyStaticGenerator/LazyStaticGenerator.csproj" OutputItemType="Analyzer" ExcludeAssets="runtime;build;native;contentfiles" ReferenceOutputAssembly="false" GlobalPropertiesToRemove="RuntimeIdentifier;RuntimeIdentifiers" />
         <ProjectReference Include="../SukiUI/SukiUI.csproj" />
-        <ProjectReference Include="../Markdown.Avalonia/Markdown.Avalonia.csproj" AdditionalProperties="MATR_TARGET_RID=$(MATR_TARGET_RID)" />
+        <ProjectReference Include="../Markdown.Avalonia/Markdown.Avalonia.csproj" />
     </ItemGroup>
     <PropertyGroup>
         <LazyStaticGeneratedDir>$(BaseIntermediateOutputPath)\LazyStaticGenerated</LazyStaticGeneratedDir>

@@ -192,7 +192,7 @@ public partial class MaaInterface
         [JsonProperty("type")]
         public string? Type { get; set; }
 
-        /// <summary>是否为下拉框启用搜索功能</summary>
+        /// <summary>是否为下拉框启用搜索功能。</summary>
         [JsonProperty("is_searchable")]
         public bool IsSearchable { get; set; }
 
@@ -283,7 +283,7 @@ public partial class MaaInterface
         [JsonIgnore]
         public bool IsCheckbox => OptionType == "checkbox";
 
-        /// <summary>是否在当前 option 页面直接显示子配置项。</summary>
+        /// <summary>是否在当前选项页面直接展示下级选项。</summary>
         [JsonProperty("inline_sub_options")]
         public bool InlineSubOptions { get; set; }
 
@@ -583,12 +583,7 @@ public partial class MaaInterface
             if (input == null) return (true, null);
 
             if (string.IsNullOrEmpty(input.Verify))
-            {
-                // 默认验证：不为空
-                if (string.IsNullOrWhiteSpace(value))
-                    return (false, input.PatternMsg ?? $"{LanguageHelper.GetLocalizedDisplayName(input.Label, input.Name ?? string.Empty)}");
                 return (true, null);
-            }
 
             try
             {
@@ -1331,6 +1326,8 @@ public partial class MaaInterface
 
         [ObservableProperty] [JsonIgnore] private string _taskCountText = string.Empty;
 
+        [ObservableProperty] [JsonIgnore] private bool _canExpandDescription;
+
         public void InitializeDisplayName()
         {
             UpdateDisplayName();
@@ -1349,12 +1346,14 @@ public partial class MaaInterface
             {
                 DisplayDescription = LanguageHelper.GetLocalizedString(Description.ResolveContentAsync().Result);
                 HasDescription = !string.IsNullOrWhiteSpace(DisplayDescription);
+                CanExpandDescription = IsDescriptionLikelyOverflowing(DisplayDescription);
             }
             catch (Exception ex)
             {
                 LoggerHelper.Warning($"Failed to resolve preset description for '{Name}': {ex.Message}");
                 DisplayDescription = string.Empty;
                 HasDescription = false;
+                CanExpandDescription = false;
             }
             if (!string.IsNullOrWhiteSpace(Icon))
             {
@@ -1372,6 +1371,16 @@ public partial class MaaInterface
         public void Dispose()
         {
             LanguageHelper.LanguageChanged -= OnLanguageChanged;
+        }
+
+        private static bool IsDescriptionLikelyOverflowing(string description)
+        {
+            var normalized = description.Replace("\r\n", "\n", StringComparison.Ordinal).Replace('\r', '\n');
+            if (normalized.Count(character => character == '\n') >= 2)
+                return true;
+
+            var visualUnits = normalized.Sum(character => character <= sbyte.MaxValue ? 1 : 2);
+            return visualUnits > 84;
         }
     }
 
@@ -1481,6 +1490,33 @@ public partial class MaaInterface
     [JsonProperty("version")]
     public string? Version { get; set; }
 
+    [JsonProperty("telemetry")]
+    public MaaInterfaceTelemetry? Telemetry { get; set; }
+
+    public class MaaInterfaceTelemetry
+    {
+        [JsonProperty("sentry")]
+        public MaaInterfaceSentryTelemetry? Sentry { get; set; }
+    }
+
+    public class MaaInterfaceSentryTelemetry
+    {
+        [JsonProperty("dsn")]
+        public string? Dsn { get; set; }
+
+        [JsonProperty("tracing")]
+        public bool? Tracing { get; set; }
+
+        [JsonProperty("traces_sample_rate")]
+        public double? TracesSampleRate { get; set; }
+
+        [JsonProperty("failure_attachments_sample_rate")]
+        public double? FailureAttachmentsSampleRate { get; set; }
+
+        [JsonProperty("environment")]
+        public string? Environment { get; set; }
+    }
+
     [JsonProperty("__mfa_max_version")]
     public string? MFAMaxVersion { get; set; }
 
@@ -1488,7 +1524,20 @@ public partial class MaaInterface
     public string? MFAMinVersion { get; set; }
 
     [JsonProperty("welcome")]
-    public string? Welcome { get; set; }
+    [JsonConverter(typeof(MaaWelcomeConverter))]
+    public List<MaaInterfaceWelcome>? Welcome { get; set; }
+
+    public class MaaInterfaceWelcome
+    {
+        [JsonProperty("label")]
+        public string? Label { get; set; }
+
+        [JsonProperty("content")]
+        public string? Content { get; set; }
+
+        [JsonIgnore]
+        public bool IsLegacyString { get; set; }
+    }
 
     [JsonProperty("message")]
     public string? Message { get; set; }
@@ -1706,9 +1755,18 @@ public partial class MaaInterface
         if (!string.IsNullOrEmpty(other.Name)) Name = other.Name;
         if (!string.IsNullOrEmpty(other.Label)) Label = other.Label;
         if (!string.IsNullOrEmpty(other.Version)) Version = other.Version;
+        if (other.Telemetry != null) Telemetry = other.Telemetry;
         if (!string.IsNullOrEmpty(other.MFAMaxVersion)) MFAMaxVersion = other.MFAMaxVersion;
         if (!string.IsNullOrEmpty(other.MFAMinVersion)) MFAMinVersion = other.MFAMinVersion;
-        if (!string.IsNullOrEmpty(other.Welcome)) Welcome = other.Welcome;
+        if (other.Welcome != null)
+        {
+            Welcome = other.Welcome.Select(item => new MaaInterfaceWelcome
+            {
+                Label = item.Label,
+                Content = item.Content,
+                IsLegacyString = item.IsLegacyString,
+            }).ToList();
+        }
         if (!string.IsNullOrEmpty(other.Message)) Message = other.Message;
         if (!string.IsNullOrEmpty(other.Github)) Github = other.Github;
         if (!string.IsNullOrEmpty(other.Url)) Url = other.Url;

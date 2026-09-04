@@ -3,7 +3,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Controls.Notifications;
 using Avalonia.Markup.Xaml;
-using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Threading;
 using MFAAvalonia.Configuration;
 using MFAAvalonia.Extensions;
@@ -15,7 +14,6 @@ using MFAAvalonia.ViewModels.Pages;
 using MFAAvalonia.ViewModels.UsersControls;
 using MFAAvalonia.ViewModels.UsersControls.Settings;
 using MFAAvalonia.ViewModels.Windows;
-using MFAAvalonia.Views.Mobile;
 using MFAAvalonia.Views.Pages;
 using MFAAvalonia.Views.UserControls;
 using MFAAvalonia.Views.UserControls.Settings;
@@ -40,54 +38,64 @@ namespace MFAAvalonia;
 
 public partial class App : Application
 {
-    private static readonly IReadOnlyDictionary<string, string[]> MaaNativeLibraryManifestByOs =
+    private static readonly string[] WindowsMaaNativeLibraryManifest =
+    [
+        "fastdeploy_ppocr_maa.dll",
+        "MaaAdbControlUnit.dll",
+        "MaaAgentClient.dll",
+        "MaaAgentServer.dll",
+        "MaaCustomControlUnit.dll",
+        "MaaFramework.dll",
+        "MaaGamepadControlUnit.dll",
+        "MaaRecordControlUnit.dll",
+        "MaaReplayControlUnit.dll",
+        "MaaToolkit.dll",
+        "MaaUtils.dll",
+        "MaaWin32ControlUnit.dll",
+        "onnxruntime_maa.dll",
+        "opencv_world4_maa.dll",
+        "MaaFramework.Binding.Native.dll",
+    ];
+
+    private static readonly string[] LinuxMaaNativeLibraryManifest =
+    [
+        "libMaaAdbControlUnit.so",
+        "libMaaAgentClient.so",
+        "libMaaAgentServer.so",
+        "libMaaCustomControlUnit.so",
+        "libMaaFramework.so",
+        "libMaaKWinControlUnit.so",
+        "libMaaRecordControlUnit.so",
+        "libMaaReplayControlUnit.so",
+        "libMaaToolkit.so",
+        "libMaaUtils.so",
+        "libMaaWlRootsControlUnit.so",
+    ];
+
+    private static readonly string[] MacOsMaaNativeLibraryManifest =
+    [
+        "libMaaAdbControlUnit.dylib",
+        "libMaaAgentClient.dylib",
+        "libMaaAgentServer.dylib",
+        "libMaaCustomControlUnit.dylib",
+        "libMaaFramework.dylib",
+        "libMaaMacOSControlUnit.dylib",
+        "libMaaPlayCoverControlUnit.dylib",
+        "libMaaRecordControlUnit.dylib",
+        "libMaaReplayControlUnit.dylib",
+        "libMaaToolkit.dylib",
+        "libMaaUtils.dylib",
+    ];
+
+    private static readonly IReadOnlyDictionary<string, string[]> MaaNativeLibraryManifestByRuntimeIdentifier =
         new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
         {
-            ["win"] =
-            [
-                "fastdeploy_ppocr_maa.dll",
-                "MaaAdbControlUnit.dll",
-                "MaaAgentClient.dll",
-                "MaaAgentServer.dll",
-                "MaaCustomControlUnit.dll",
-                "MaaFramework.dll",
-                "MaaGamepadControlUnit.dll",
-                "MaaRecordControlUnit.dll",
-                "MaaReplayControlUnit.dll",
-                "MaaToolkit.dll",
-                "MaaUtils.dll",
-                "MaaWin32ControlUnit.dll",
-                "onnxruntime_maa.dll",
-                "opencv_world4_maa.dll",
-                "MaaFramework.Binding.Native.dll",
-            ],
-            ["linux"] =
-            [
-                "libMaaAdbControlUnit.so",
-                "libMaaAgentClient.so",
-                "libMaaAgentServer.so",
-                "libMaaCustomControlUnit.so",
-                "libMaaFramework.so",
-                "libMaaRecordControlUnit.so",
-                "libMaaReplayControlUnit.so",
-                "libMaaToolkit.so",
-                "libMaaUtils.so",
-                "libMaaWlRootsControlUnit.so",
-            ],
-            ["osx"] =
-            [
-                "libMaaAdbControlUnit.dylib",
-                "libMaaAgentClient.dylib",
-                "libMaaAgentServer.dylib",
-                "libMaaCustomControlUnit.dylib",
-                "libMaaFramework.dylib",
-                "libMaaMacOSControlUnit.dylib",
-                "libMaaPlayCoverControlUnit.dylib",
-                "libMaaRecordControlUnit.dylib",
-                "libMaaReplayControlUnit.dylib",
-                "libMaaToolkit.dylib",
-                "libMaaUtils.dylib",
-            ],
+            ["win-x64"] = WindowsMaaNativeLibraryManifest,
+            ["win-arm64"] = WindowsMaaNativeLibraryManifest,
+            ["linux-x64"] = LinuxMaaNativeLibraryManifest,
+            ["linux-arm64"] = LinuxMaaNativeLibraryManifest,
+            ["osx-x64"] = MacOsMaaNativeLibraryManifest,
+            ["osx-arm64"] = MacOsMaaNativeLibraryManifest,
         };
 
     private sealed class StartupDependencyDiagnosis
@@ -130,19 +138,18 @@ public partial class App : Application
     {
         try
         {
+            TelemetryService.InitializeBootstrapFromInterface(AppContext.BaseDirectory);
             base.Initialize();
             AppPaths.Initialize();
             LoggerHelper.InitializeLogger();
+            if (!IsRuntimeMissingMode && !IsTempDirMode)
+            {
+                MaaProcessor.StartInterfacePreload();
+            }
             AppPaths.CleanupObsoleteExecutableBackups(
                 message => LoggerHelper.Info(message),
                 message => LoggerHelper.Warning(message));
-            AppPaths.CleanupOldDebugLogs(
-                logInfo: message => LoggerHelper.Info(message),
-                logWarning: message => LoggerHelper.Warning(message));
-            // 启动 MaaCore 日志运行期切块
-            MaaLogRotator.Start();
             AvaloniaXamlLoader.Load(this);
-            LoadMarkdownPluginResources();
             LanguageHelper.Initialize();
             ConfigurationManager.Initialize();
             SystemSleepHelper.ApplyPreventSleep();
@@ -162,19 +169,6 @@ public partial class App : Application
             LoggerHelper.Error($"应用初始化失败：原因={ex.Message}", ex);
             ShowStartupErrorAndExit(ex, "应用初始化");
         }
-    }
-
-    private void LoadMarkdownPluginResources()
-    {
-        var source = new Uri(
-            OperatingSystem.IsMacOS()
-                ? "avares://MFAAvalonia.Core/Assets/Style/MdXaml.NoMath.axaml"
-                : "avares://MFAAvalonia.Core/Assets/Style/MdXaml.axaml");
-
-        Resources.MergedDictionaries.Add(new ResourceInclude(source)
-        {
-            Source = source,
-        });
     }
 
 
@@ -216,9 +210,13 @@ public partial class App : Application
                 Services = services.BuildServiceProvider();
 
                 MaaProcessorManager.Instance.LoadInstanceConfig();
+                if (!OperatingSystem.IsAndroid())
+                {
+                    TelemetryService.InitializeFromInterface();
 
-                // 启动懒加载：先加载 ActiveTab，再加载有定时任务的，最后加载其余
-                _ = MaaProcessorManager.Instance.StartLazyLoadingAsync();
+                    // 启动懒加载：先加载 ActiveTab，再加载有定时任务的，最后加载其余
+                    _ = MaaProcessorManager.Instance.StartLazyLoadingAsync();
+                }
 
                 DataTemplates.Add(new ViewLocator(views));
 
@@ -257,15 +255,25 @@ public partial class App : Application
                 Services = services.BuildServiceProvider();
 
                 MaaProcessorManager.Instance.LoadInstanceConfig();
+                if (!OperatingSystem.IsAndroid())
+                {
+                    TelemetryService.InitializeFromInterface();
 
-                // 启动懒加载
-                _ = MaaProcessorManager.Instance.StartLazyLoadingAsync();
+                    // 启动懒加载
+                    _ = MaaProcessorManager.Instance.StartLazyLoadingAsync();
+                }
 
                 DataTemplates.Add(new ViewLocator(views));
 
                 var mainView = views.CreateView<RootViewModel>(Services);
 
                 singleView.MainView = mainView;
+
+                if (OperatingSystem.IsAndroid())
+                {
+                    MaaProcessorManager.Instance.Current.InitializeData();
+                    TimerModel.Instance.RefreshInstanceList();
+                }
 
                 if (GlobalConfiguration.HasFileAccessError)
                 {
@@ -296,6 +304,7 @@ public partial class App : Application
 
     private void OnShutdownRequested(object sender, ShutdownRequestedEventArgs e)
     {
+        TelemetryService.Shutdown();
         TrayIconManager.DisposeTrayIcon(this);
 
         Instances.PersistRuntimeState();
@@ -361,14 +370,7 @@ public partial class App : Application
 
         var views = new ViewsHelper();
 
-        if (OperatingSystem.IsAndroid())
-        {
-            views.AddView<RootViewMobile, RootViewModel>(services);
-        }
-        else
-        {
-            views.AddView<RootView, RootViewModel>(services);
-        }
+        views.AddView<RootView, RootViewModel>(services);
 
         return views
 
@@ -441,6 +443,7 @@ public partial class App : Application
 
             e.Handled = true;
             LoggerHelper.Error(e.Exception);
+            TelemetryService.CaptureException(e.Exception, "ui-thread");
             ErrorView.ShowException(e.Exception);
         }
         catch (Exception ex)
@@ -479,6 +482,7 @@ public partial class App : Application
 
             if (e.ExceptionObject is Exception ex2)
             {
+                TelemetryService.CaptureException(ex2, "app-domain");
                 ErrorView.ShowException(ex2);
                 sbEx.Append(ex2);
             }
@@ -514,6 +518,7 @@ public partial class App : Application
             else
             {
                 LoggerHelper.Error(e.Exception);
+                TelemetryService.CaptureException(e.Exception, "unobserved-task");
                 ErrorView.ShowException(e.Exception);
 
                 foreach (var item in e.Exception.InnerExceptions ?? Enumerable.Empty<Exception>())
@@ -697,54 +702,54 @@ public partial class App : Application
                         message = $"{missingMaaMsg}\n\n{string.Format(missingMaaDetailFormat, missingLibrarySummary, expectedRuntimeDirectory)}";
                     }
 
-                    try
+                    if (diagnosis.IsVisualCppRuntimeMissing)
                     {
-                        // 尝试显示自定义下载窗口
-                        void ShowRuntimeWindow()
+                        try
                         {
-                            var win = new RuntimeMissingWindow();
-                            win.Show();
-
-                            // 启动消息循环等待窗口关闭（窗口内部处理下载和退出）
-                            var cts = new System.Threading.CancellationTokenSource();
-                            win.Closed += (s, e) => cts.Cancel();
-                            Dispatcher.UIThread.MainLoop(cts.Token);
-                        }
-
-                        if (Dispatcher.UIThread.CheckAccess())
-                        {
-                            ShowRuntimeWindow();
-                            Environment.Exit(1);
-                            return;
-                        }
-                        else
-                        {
-                            var tcs = new TaskCompletionSource<bool>();
-                            Dispatcher.UIThread.Post(() =>
+                            // 尝试显示自定义下载窗口
+                            void ShowRuntimeWindow()
                             {
-                                try
-                                {
-                                    ShowRuntimeWindow();
-                                    tcs.TrySetResult(true);
-                                }
-                                catch (Exception ex)
-                                {
-                                    tcs.TrySetException(ex);
-                                }
-                            });
+                                var win = new RuntimeMissingWindow();
+                                win.Show();
 
-                            if (tcs.Task.Wait(15000)) // 等待15秒防止死锁
+                                // 启动消息循环等待窗口关闭（窗口内部处理下载和退出）
+                                var cts = new System.Threading.CancellationTokenSource();
+                                win.Closed += (s, e) => cts.Cancel();
+                                Dispatcher.UIThread.MainLoop(cts.Token);
+                            }
+
+                            if (Dispatcher.UIThread.CheckAccess())
                             {
+                                ShowRuntimeWindow();
                                 Environment.Exit(1);
                                 return;
                             }
+                            else
+                            {
+                                var tcs = new TaskCompletionSource<bool>();
+                                Dispatcher.UIThread.Post(() =>
+                                {
+                                    try
+                                    {
+                                        ShowRuntimeWindow();
+                                        tcs.TrySetResult(true);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        tcs.TrySetException(ex);
+                                    }
+                                });
+
+                                if (tcs.Task.Wait(15000)) // 等待15秒防止死锁
+                                {
+                                    Environment.Exit(1);
+                                    return;
+                                }
+                            }
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        LoggerHelper.Error($"无法显示 RuntimeMissingWindow: {ex}");
-                        if (diagnosis.IsVisualCppRuntimeMissing)
+                        catch (Exception ex)
                         {
+                            LoggerHelper.Error($"无法显示 RuntimeMissingWindow: {ex}");
                             // 尝试显示自定义下载窗口
                             try
                             {
@@ -894,6 +899,7 @@ public partial class App : Application
     {
         var expectedRuntimeDirectory = GetExpectedMaaNativeRuntimeDirectory();
         var expectedMaaLibraries = GetExpectedMaaNativeLibraries();
+        var primaryMaaLibrary = GetPrimaryMaaNativeLibraryName();
 
         var allExceptions = EnumerateExceptions(exception).ToList();
         var joinedText = string.Join(Environment.NewLine, allExceptions.Select(ex => ex.ToString()));
@@ -905,12 +911,10 @@ public partial class App : Application
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToList();
 
-        if (missingLibraryNames.Count == 0 &&
-            isLikelyMaaLoadFailure &&
-            expectedMaaLibraries.Count > 0 &&
-            !HasAnyMaaNativeLibrary(expectedRuntimeDirectory, expectedMaaLibraries))
+        if (isLikelyMaaLoadFailure)
         {
-            missingLibraryNames.AddRange(expectedMaaLibraries);
+            missingLibraryNames.AddRange(expectedMaaLibraries
+                .Where(name => !LibraryExistsInKnownSearchPaths(name, expectedRuntimeDirectory)));
         }
 
         var actuallyMissingLibraries = missingLibraryNames
@@ -921,7 +925,8 @@ public partial class App : Application
         var isVisualCppRuntimeMissing =
             isLikelyMaaLoadFailure &&
             actuallyMissingLibraries.Count == 0 &&
-            HasAnyMaaNativeLibrary(expectedRuntimeDirectory, expectedMaaLibraries) &&
+            !string.IsNullOrWhiteSpace(primaryMaaLibrary) &&
+            LibraryExistsInKnownSearchPaths(primaryMaaLibrary, expectedRuntimeDirectory) &&
             allExceptions.Any(ex => ex is DllNotFoundException or BadImageFormatException or TypeInitializationException || ex.ToString().Contains("DllNotFoundException", StringComparison.OrdinalIgnoreCase));
 
         if (isLikelyMaaLoadFailure)
@@ -1016,24 +1021,12 @@ public partial class App : Application
                libraryName.Contains("Maa", StringComparison.OrdinalIgnoreCase);
     }
 
-    private static bool HasAnyMaaNativeLibrary(string expectedRuntimeDirectory, IReadOnlyCollection<string> expectedMaaLibraries)
-    {
-        try
-        {
-            return expectedMaaLibraries.Any(name => LibraryExistsInKnownSearchPaths(name, expectedRuntimeDirectory));
-        }
-        catch
-        {
-            return false;
-        }
-    }
-
     private static bool LibraryExistsInKnownSearchPaths(string libraryName, string expectedRuntimeDirectory)
     {
         var searchDirectories = new[]
         {
             AppContext.BaseDirectory,
-            Path.Combine(AppContext.BaseDirectory, "runtimes/libs"),
+            Path.Combine(AppContext.BaseDirectory, "libs"),
             expectedRuntimeDirectory,
         };
 
@@ -1053,9 +1046,11 @@ public partial class App : Application
 
     private static string GetExpectedMaaNativeRuntimeDirectory()
     {
-        var runtimeIdentifier = $"{GetCurrentRuntimeOsName()}-{VersionChecker.GetNormalizedArchitecture()}";
-        return Path.Combine(AppContext.BaseDirectory, "runtimes", runtimeIdentifier, "native");
+        return Path.Combine(AppContext.BaseDirectory, "runtimes", GetCurrentRuntimeIdentifier(), "native");
     }
+
+    private static string GetCurrentRuntimeIdentifier() =>
+        $"{GetCurrentRuntimeOsName()}-{VersionChecker.GetNormalizedArchitecture()}";
 
     private static string GetCurrentRuntimeOsName()
     {
@@ -1077,9 +1072,17 @@ public partial class App : Application
         return "unknown";
     }
 
+    private static string GetPrimaryMaaNativeLibraryName() => GetCurrentRuntimeOsName() switch
+    {
+        "win" => "MaaFramework.dll",
+        "linux" => "libMaaFramework.so",
+        "osx" => "libMaaFramework.dylib",
+        _ => string.Empty,
+    };
+
     private static IReadOnlyList<string> GetExpectedMaaNativeLibraries()
     {
-        if (MaaNativeLibraryManifestByOs.TryGetValue(GetCurrentRuntimeOsName(), out var libraries))
+        if (MaaNativeLibraryManifestByRuntimeIdentifier.TryGetValue(GetCurrentRuntimeIdentifier(), out var libraries))
         {
             return libraries;
         }

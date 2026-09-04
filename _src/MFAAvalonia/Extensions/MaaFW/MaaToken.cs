@@ -12,45 +12,7 @@ public class MaaToken
 
     public void Merge(Dictionary<string, JToken> token)
     {
-        var cloned = CloneTokenDictionary(token);
-        foreach (var existing in Tokens)
-        {
-            string? mergedKey = null;
-            foreach (var pair in cloned)
-            {
-                if (!existing.TryGetValue(pair.Key, out var current)
-                    || current is not JObject currentObject
-                    || pair.Value is not JObject incomingObject)
-                {
-                    continue;
-                }
-
-                MergeObject(currentObject, incomingObject);
-                mergedKey = pair.Key;
-                break;
-            }
-
-            if (mergedKey != null)
-                cloned.Remove(mergedKey);
-
-            if (cloned.Count == 0)
-                break;
-        }
-
-        if (cloned.Count > 0)
-            Tokens.Add(cloned);
-    }
-
-    public void CopyAliases(string source, params string[] targets)
-    {
-        foreach (var token in Tokens)
-        {
-            if (!token.TryGetValue(source, out var value))
-                continue;
-
-            foreach (var target in targets)
-                token[target] = value.DeepClone();
-        }
+        Tokens.Add(CloneTokenDictionary(token));
     }
 
     public static MaaToken FromDictionary(Dictionary<string, JToken> token)
@@ -76,22 +38,5 @@ public class MaaToken
         return token.ToDictionary(
             kv => kv.Key,
             kv => kv.Value.DeepClone());
-    }
-
-    /// <summary>递归合并同一个 node 的覆盖字段，保留多个复选项产生的 action 参数。</summary>
-    private static void MergeObject(JObject target, JObject source)
-    {
-        foreach (var property in source.Properties())
-        {
-            if (property.Value is JObject sourceObject
-                && target[property.Name] is JObject targetObject)
-            {
-                MergeObject(targetObject, sourceObject);
-            }
-            else
-            {
-                target[property.Name] = property.Value.DeepClone();
-            }
-        }
     }
 }

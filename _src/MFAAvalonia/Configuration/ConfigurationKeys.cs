@@ -10,10 +10,12 @@ public static class ConfigurationKeys
     public const string ShowGui = "ShowGui";
     public const string LinkStart = "LinkStart";
     public const string DoNotShowAnnouncementAgain = "AnnouncementInfo.DoNotShowAgain";
+    public const string WelcomeAnnouncementSnapshot = "AnnouncementInfo.WelcomeSnapshot";
     public const string DoNotShowChangelogAgain = "Changelog.DoNotShowAgain";
     public const string ForceScheduledStart = "ForceScheduledStart";
     public const string CustomConfig = "CustomConfig";
     public const string NoAutoStart = "NoAutoStart";
+    public const string HelpImproveSoftware = "HelpImproveSoftware";
 
     #endregion
 
@@ -28,9 +30,9 @@ public static class ConfigurationKeys
 
     #endregion
 
-    #region 自定编队
+    #region MATR 业务数据
 
-    /// <summary>编队预设列表（List&lt;FormationPreset&gt;，所有任务共享）</summary>
+    /// <summary>编队预设列表（List&lt;FormationPreset&gt;，所有任务共享）。</summary>
     public const string FormationPresets = "FormationPresets";
 
     /// <summary>刀帐立绘拥有状态。</summary>
@@ -44,7 +46,11 @@ public static class ConfigurationKeys
 
     /// <summary>刀解/合成许可名单（全局配置，刀剑基础名称列表）。</summary>
     public const string AllowListSwords = "AllowListSwords";
+
+    /// <summary>刀剑掉落播报总开关。</summary>
     public const string SwordDropNotificationEnabled = "SwordDropNotificationEnabled";
+
+    /// <summary>刀剑掉落播报的关注名单。</summary>
     public const string SwordDropNotificationSwords = "SwordDropNotificationSwords";
 
     #endregion
@@ -110,6 +116,8 @@ public static class ConfigurationKeys
     public const string WlRootsSocketPath = "WlRootsSocketPath";
     public const string CurrentController = "CurrentController";
     public const string CurrentControllerName = "CurrentControllerName";
+    public const string AndroidRunMode = "AndroidRunMode";
+    public const string AndroidResolution = "AndroidResolution";
 
     #endregion
 

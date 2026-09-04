@@ -20,8 +20,7 @@ public static class LoggerHelper
         string? Operation,
         string? InstanceId,
         string? InstanceName,
-        string? ConfigName,
-        string? Entry);
+        string? ConfigName);
 
     private sealed class LogContextScope(LogContextFrame? previous) : IDisposable
     {
@@ -51,8 +50,7 @@ public static class LoggerHelper
             .WriteTo.File(
                 Path.Combine(AppPaths.LogsDirectory, "log-.log"),
                 rollingInterval: RollingInterval.Day,
-                retainedFileCountLimit: null,
-                retainedFileTimeLimit: TimeSpan.FromDays(30),
+                retainedFileCountLimit: 14,
                 fileSizeLimitBytes: 10 * 1024 * 1024,
                 rollOnFileSizeLimit: true,
                 shared: true,
@@ -74,8 +72,7 @@ public static class LoggerHelper
         string? operation = null,
         string? instanceId = null,
         string? instanceName = null,
-        string? configName = null,
-        string? entry = null)
+        string? configName = null)
     {
         var previous = CurrentContext.Value;
         var merged = new LogContextFrame(
@@ -83,8 +80,7 @@ public static class LoggerHelper
             string.IsNullOrWhiteSpace(operation) ? previous?.Operation : operation,
             string.IsNullOrWhiteSpace(instanceId) ? previous?.InstanceId : instanceId,
             string.IsNullOrWhiteSpace(instanceName) ? previous?.InstanceName : instanceName,
-            string.IsNullOrWhiteSpace(configName) ? previous?.ConfigName : configName,
-            string.IsNullOrWhiteSpace(entry) ? previous?.Entry : entry);
+            string.IsNullOrWhiteSpace(configName) ? previous?.ConfigName : configName);
 
         CurrentContext.Value = merged;
         return new LogContextScope(previous);
@@ -237,9 +233,6 @@ public static class LoggerHelper
 
         if (!string.IsNullOrWhiteSpace(context?.Operation))
             parts.Add($"op={context.Value.Operation}");
-
-        if (!string.IsNullOrWhiteSpace(context?.Entry))
-            parts.Add($"entry={context.Value.Entry}");
 
         if (parts.Count == 0)
             return message;

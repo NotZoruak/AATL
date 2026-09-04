@@ -118,7 +118,10 @@ public class ForgeDisassembleSelectAction : IMaaCustomAction
     /// <summary>检测滚动条底部标记颜色，判断是否已经滑至列表末尾。</summary>
     private static bool IsAtBottom(IMaaImageBuffer image)
     {
-        using var bitmap = image.ToBitmap();
+        if (image is not MaaImageBuffer imageBuffer)
+            return false;
+
+        using var bitmap = imageBuffer.ToBitmap();
         if (bitmap == null)
             return false;
 

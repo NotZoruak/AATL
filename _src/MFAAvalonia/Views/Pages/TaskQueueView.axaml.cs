@@ -93,6 +93,7 @@ public partial class TaskQueueView : UserControl
     private void OnDataContextChanged(object? sender, EventArgs e)
     {
         UpdateViewModelSubscription(DataContext as TaskQueueViewModel);
+        ApplyLiveViewCardState();
     }
 
     private TaskQueueViewModel? _subscribedViewModel;
@@ -114,6 +115,7 @@ public partial class TaskQueueView : UserControl
             _subscribedViewModel.SetOptionRequested += OnSetOptionRequested;
             _subscribedViewModel.TaskItemViewModels.CollectionChanged += OnTaskItemsCollectionChanged;
             Dispatcher.UIThread.Post(ClearUnsupportedSelection, DispatcherPriority.Background);
+            Dispatcher.UIThread.Post(ApplyLiveViewCardState, DispatcherPriority.Background);
         }
     }
 
@@ -678,9 +680,9 @@ public partial class TaskQueueView : UserControl
 
         HideAllPanels();
         InvalidatePanelCache(cacheKey);
-        var hasGlobalOptions = MaaProcessor.Interface?.GlobalOption is { Count: > 0 };
-        var juggle = dragItem.InterfaceItem is { Option: { Count: > 0 } } || hasGlobalOptions == true;
-        vm.ShowSettings = juggle;
+        var hasTaskOptions = dragItem.InterfaceItem is { Advanced: { Count: > 0 }, Option: { Count: > 0 } };
+        var hasGlobalOptions = MaaProcessor.Interface != null;
+        vm.ShowSettings = hasTaskOptions || hasGlobalOptions;
         // 处理资源设置项的选项
         if (dragItem.IsResourceOptionItem)
         {
@@ -701,12 +703,13 @@ public partial class TaskQueueView : UserControl
         else
         {
 
-            if (juggle)
+            if (hasTaskOptions)
             {
                 var newPanel = CommonPanelCache.GetOrAdd(cacheKey, key =>
                 {
                     var p = new StackPanel();
                     new TaskOptionGenerator(vm, SaveConfiguration).GeneratePanelContent(p, dragItem);
+                    // GeneratePanelContent(p, dragItem);
                     CommonOptionSettings.Children.Add(p);
                     return p;
                 });
@@ -714,20 +717,20 @@ public partial class TaskQueueView : UserControl
             }
             else
             {
+                var commonPanel = CommonPanelCache.GetOrAdd(cacheKey, key =>
+                {
+                    var p = new StackPanel();
+                    new TaskOptionGenerator(vm, SaveConfiguration).GenerateCommonPanelContent(p, dragItem);
+                    CommonOptionSettings.Children.Add(p);
+                    return p;
+                });
                 if (!init)
                 {
-                    var commonPanel = CommonPanelCache.GetOrAdd(cacheKey, key =>
-                    {
-                        var p = new StackPanel();
-                        new TaskOptionGenerator(vm, SaveConfiguration).GenerateCommonPanelContent(p, dragItem);
-                        CommonOptionSettings.Children.Add(p);
-                        return p;
-                    });
                     commonPanel.IsVisible = true;
                 }
             }
-            // 全局面板始终生成（独立于任务的 juggle）
-            if (hasGlobalOptions == true)
+
+            if (hasGlobalOptions)
             {
                 var globalPanel = GlobalPanelCache.GetOrAdd("__global__", key =>
                 {
@@ -736,10 +739,7 @@ public partial class TaskQueueView : UserControl
                     GlobalOptionSettings.Children.Add(p);
                     return p;
                 });
-                if (!init)
-                {
-                    globalPanel.IsVisible = true;
-                }
+                globalPanel.IsVisible = true;
             }
         }
         if (!init)
@@ -795,7 +795,7 @@ public partial class TaskQueueView : UserControl
     {
         // // 清空 Popup 中的内容
         // PopupCommonOptionSettings.Children.Clear();
-        // PopupGlobalOptionSettings.Children.Clear();
+        // PopupAdvancedOptionSettings.Children.Clear();
         //
         // var cacheKey = dragItem.IsResourceOptionItem
         //     ? $"ResourceOption_{dragItem.ResourceItem?.Name}_{dragItem.ResourceItem?.GetHashCode()}"
@@ -822,7 +822,7 @@ public partial class TaskQueueView : UserControl
         //     else
         //     {
         //         GenerateCommonPanelContent(PopupCommonOptionSettings, dragItem);
-        //         GenerateAdvancedPanelContent(PopupGlobalOptionSettings, dragItem);
+        //         GenerateAdvancedPanelContent(PopupAdvancedOptionSettings, dragItem);
         //     }
         // }
         //
@@ -841,7 +841,7 @@ public partial class TaskQueueView : UserControl
         //
         // // 检查是否有设置选项
         // bool hasSettings = PopupCommonOptionSettings.Children.Count > 0
-        //     || PopupGlobalOptionSettings.Children.Count > 0;
+        //     || PopupAdvancedOptionSettings.Children.Count > 0;
         // // Instances.TaskQueueViewModel.HasPopupSettings = hasSettings;
 
     }
@@ -849,111 +849,20 @@ public partial class TaskQueueView : UserControl
 
     private void GeneratePanelContent(StackPanel panel, DragItemViewModel dragItem)
     {
-
-        AddRepeatOption(panel, dragItem);
-
-        if (dragItem.InterfaceItem?.Option != null)
-        {
-            var checkboxBatch = new List<(MaaInterface.MaaInterfaceSelectOption, MaaInterface.MaaInterfaceOption)>();
-
-            void FlushCheckboxBatch()
-            {
-                if (checkboxBatch.Count == 0) return;
-                var grid = new WrapPanel
-                {
-                    Orientation = Orientation.Horizontal,
-                    HorizontalAlignment = HorizontalAlignment.Stretch,
-                    Margin = new Thickness(10, 4, 10, 4)
-                };
-                foreach (var (opt, ifOpt) in checkboxBatch)
-                {
-                    grid.Children.Add(CreateCheckboxControl(opt, ifOpt));
-                }
-                panel.Children.Add(grid);
-                checkboxBatch.Clear();
-            }
-
-            foreach (var option in dragItem.InterfaceItem.Option.ToList())
-            {
-                if (MaaProcessor.Interface?.Option?.TryGetValue(option.Name ?? string.Empty, out var interfaceOption) != true)
-                    continue;
-
-                if (interfaceOption.IsCheckbox)
-                {
-                    checkboxBatch.Add((option, interfaceOption));
-                }
-                else
-                {
-                    FlushCheckboxBatch();
-                    AddOption(panel, option, dragItem);
-                }
-            }
-            FlushCheckboxBatch();
-        }
-
-        if (dragItem.InterfaceItem?.Advanced != null)
-        {
-            foreach (var option in dragItem.InterfaceItem.Advanced.ToList())
-            {
-                AddAdvancedOption(panel, option);
-            }
-        }
-
+        if (DataContext is TaskQueueViewModel vm)
+            new TaskOptionGenerator(vm, SaveConfiguration).GeneratePanelContent(panel, dragItem);
     }
 
     private void GenerateCommonPanelContent(StackPanel panel, DragItemViewModel dragItem)
     {
-        AddRepeatOption(panel, dragItem);
-
-        if (dragItem.InterfaceItem?.Option != null)
-        {
-            var checkboxBatch = new List<(MaaInterface.MaaInterfaceSelectOption, MaaInterface.MaaInterfaceOption)>();
-
-            void FlushCheckboxBatch()
-            {
-                if (checkboxBatch.Count == 0) return;
-                var grid = new WrapPanel
-                {
-                    Orientation = Orientation.Horizontal,
-                    HorizontalAlignment = HorizontalAlignment.Stretch,
-                    Margin = new Thickness(10, 4, 10, 4)
-                };
-                foreach (var (opt, ifOpt) in checkboxBatch)
-                {
-                    grid.Children.Add(CreateCheckboxControl(opt, ifOpt));
-                }
-                panel.Children.Add(grid);
-                checkboxBatch.Clear();
-            }
-
-            foreach (var option in dragItem.InterfaceItem.Option.ToList())
-            {
-                if (MaaProcessor.Interface?.Option?.TryGetValue(option.Name ?? string.Empty, out var interfaceOption) != true)
-                    continue;
-
-                if (interfaceOption.IsCheckbox)
-                {
-                    checkboxBatch.Add((option, interfaceOption));
-                }
-                else
-                {
-                    FlushCheckboxBatch();
-                    AddOption(panel, option, dragItem);
-                }
-            }
-            FlushCheckboxBatch();
-        }
+        if (DataContext is TaskQueueViewModel vm)
+            new TaskOptionGenerator(vm, SaveConfiguration).GenerateCommonPanelContent(panel, dragItem);
     }
 
     private void GenerateAdvancedPanelContent(StackPanel panel, DragItemViewModel dragItem)
     {
-        if (dragItem.InterfaceItem?.Advanced != null)
-        {
-            foreach (var option in dragItem.InterfaceItem.Advanced.ToList())
-            {
-                AddAdvancedOption(panel, option);
-            }
-        }
+        if (DataContext is TaskQueueViewModel vm)
+            new TaskOptionGenerator(vm, SaveConfiguration).GenerateAdvancedPanelContent(panel, dragItem);
     }
 
     /// <summary>
@@ -961,42 +870,8 @@ public partial class TaskQueueView : UserControl
     /// </summary>
     private void GenerateResourceOptionPanelContent(StackPanel panel, DragItemViewModel dragItem)
     {
-        if (dragItem.ResourceItem?.SelectOptions == null)
-            return;
-
-        // 收集所有子选项名称（这些选项不应该在顶级显示）
-        var subOptionNames = new HashSet<string>();
-        foreach (var selectOption in dragItem.ResourceItem.SelectOptions)
-        {
-            if (MaaProcessor.Interface?.Option?.TryGetValue(selectOption.Name ?? string.Empty, out var interfaceOption) == true)
-            {
-                // 收集所有 case 中定义的子选项
-                if (interfaceOption.Cases != null)
-                {
-                    foreach (var caseOption in interfaceOption.Cases)
-                    {
-                        if (caseOption.Option != null)
-                        {
-                            foreach (var subOptionName in caseOption.Option)
-                            {
-                                subOptionNames.Add(subOptionName);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // 只显示顶级选项（不是子选项的选项）
-        foreach (var selectOption in dragItem.ResourceItem.SelectOptions)
-        {
-            //跳过子选项，它们会在父选项的 UpdateSubOptions 中动态添加
-            if (subOptionNames.Contains(selectOption.Name ?? string.Empty))
-                continue;
-
-            // 复用 AddOption 方法，它会根据 option 类型创建相应的控件
-            AddOption(panel, selectOption, dragItem);
-        }
+        if (DataContext is TaskQueueViewModel vm)
+            new TaskOptionGenerator(vm, SaveConfiguration).GenerateResourceOptionPanelContent(panel, dragItem);
     }
 
     private void HideCurrentPanel(string key)
@@ -1005,9 +880,9 @@ public partial class TaskQueueView : UserControl
         {
             oldPanel.IsVisible = false;
         }
-        if (GlobalPanelCache.TryGetValue(key, out var oldaPanel))
+        if (GlobalPanelCache.TryGetValue(key, out var oldGlobalPanel))
         {
-            oldaPanel.IsVisible = false;
+            oldGlobalPanel.IsVisible = false;
         }
 
         Introduction.Markdown = "";
@@ -1021,9 +896,9 @@ public partial class TaskQueueView : UserControl
             CommonOptionSettings.Children.Remove(commonPanel);
         }
 
-        if (GlobalPanelCache.TryRemove(key, out var advancedPanel))
+        if (GlobalPanelCache.TryRemove(key, out var globalPanel))
         {
-            GlobalOptionSettings.Children.Remove(advancedPanel);
+            GlobalOptionSettings.Children.Remove(globalPanel);
         }
 
         IntroductionsCache.TryRemove(key, out _);
@@ -1032,6 +907,11 @@ public partial class TaskQueueView : UserControl
     private void HideAllPanels()
     {
         foreach (var panel in CommonPanelCache.Values)
+        {
+            panel.IsVisible = false;
+        }
+
+        foreach (var panel in GlobalPanelCache.Values)
         {
             panel.IsVisible = false;
         }
@@ -1080,6 +960,8 @@ public partial class TaskQueueView : UserControl
             Margin = new Thickness(0, 2, 0, 2),
             Increment = 1,
             Minimum = -1,
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            Classes = { "TaskOptionLikeCombo" },
         };
         numericUpDown.Bind(IsEnabledProperty, new Binding("Idle")
         {
@@ -1494,10 +1376,10 @@ public partial class TaskQueueView : UserControl
         // 初始化 SelectedCases
         option.SelectedCases ??= new List<string>(interfaceOption.DefaultCases ?? new List<string>());
 
-        // UniformGrid of ToggleButtons，每行两个
-        var wrapPanel = new UniformGrid
+        // WrapPanel of ToggleButtons
+        var wrapPanel = new WrapPanel
         {
-            Columns = 2,
+            Orientation = Orientation.Horizontal,
             Margin = new Thickness(0, 2, 0, 2)
         };
 
@@ -1966,7 +1848,7 @@ public partial class TaskQueueView : UserControl
     }
 
     /// </summary>
-    private static string? GetTooltipText(string? description, List<string>? document)
+    internal static string? GetTooltipText(string? description, List<string>? document)
     {
         // 优先使用 Description
         if (!string.IsNullOrWhiteSpace(description))
@@ -2618,9 +2500,9 @@ public partial class TaskQueueView : UserControl
 
         var instanceConfig = vm.Processor.InstanceConfiguration;
 
-        // 保存普通任务项配置（必须 .ToList() 物化，惰性 IEnumerable 存入后 GetValue<List<T>> 类型转换失败会返回空列表）
+        // 保存普通任务项配置
         instanceConfig.SetValue(ConfigurationKeys.TaskItems,
-            vm.TaskItemViewModels.Where(m => !m.IsResourceOptionItem).Select(m => m.InterfaceItem).ToList());
+            vm.TaskItemViewModels.Where(m => !m.IsResourceOptionItem).Select(m => m.InterfaceItem));
 
         // 保存资源选项配置
         SaveResourceOptionConfiguration(vm);
@@ -2903,9 +2785,9 @@ public partial class TaskQueueView : UserControl
 
     private void OnTaskQueueViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(TaskQueueViewModel.IsLiveViewVisible))
+        if (e.PropertyName == nameof(TaskQueueViewModel.EnableLiveView))
         {
-            // ApplyLiveViewCardState();
+            ApplyLiveViewCardState();
             return;
         }
 
@@ -2970,8 +2852,6 @@ public partial class TaskQueueView : UserControl
 
     private void OnLoaded(object? sender, RoutedEventArgs e)
     {
-        // ApplyLiveViewCardState();
-
         TopToolbar.SizeChanged += OnTopToolbarSizeChanged;
         Dispatcher.UIThread.Post(() => UpdateTopToolbarLayout(true), DispatcherPriority.Render);
         Dispatcher.UIThread.Post(ClearUnsupportedSelection, DispatcherPriority.Background);
@@ -2980,6 +2860,17 @@ public partial class TaskQueueView : UserControl
         LanguageHelper.LanguageChanged += OnLanguageChanged;
 
         UpdateViewModelSubscription(DataContext as TaskQueueViewModel);
+        ApplyLiveViewCardState();
+    }
+
+    private void ApplyLiveViewCardState()
+    {
+        if (DataContext is not TaskQueueViewModel vm || LiveViewCard == null)
+        {
+            return;
+        }
+
+        LiveViewCard.IsVisible = vm.EnableLiveView;
     }
 
     private void OnSetOptionRequested(DragItemViewModel item, bool value)

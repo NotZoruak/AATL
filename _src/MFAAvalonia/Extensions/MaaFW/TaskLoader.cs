@@ -67,15 +67,6 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
 
         var (updateList, removeList) = SynchronizeTaskItems(ref currentTasks, drags, tasks);
 
-        var legacyGlobalOptions = instanceConfig.GetValue(
-            ConfigurationKeys.GlobalOptionItems,
-            new List<MaaInterface.MaaInterfaceSelectOption>());
-        var migratedCount = CaptainSettingsHelper.MigrateLegacySkipPositions(
-            updateList.Where(item => item.InterfaceItem != null).Select(item => item.InterfaceItem!),
-            legacyGlobalOptions);
-        if (migratedCount > 0)
-            LoggerHelper.Info($"[换队长配置] 已迁移 {migratedCount} 个任务的旧跳过位置");
-
         instanceConfig.SetValue(ConfigurationKeys.CurrentTasks, currentTasks);
         
         updateList.RemoveAll(d => removeList.Contains(d));
@@ -159,11 +150,6 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
 
         maaInterface.GlobalSelectOptions = maaInterface.GlobalOption.Select(optionName =>
         {
-            if (existingDict.TryGetValue(optionName, out var existing))
-            {
-                SetDefaultOptionValue(maaInterface, existing);
-                return existing;
-            }
             if (savedDict.TryGetValue(optionName, out var saved))
             {
                 var savedOption = new MaaInterface.MaaInterfaceSelectOption
@@ -171,11 +157,16 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
                     Name = saved.Name,
                     Index = saved.Index,
                     Data = saved.Data != null ? new Dictionary<string, string?>(saved.Data) : null,
-                    SubOptions = saved.SubOptions != null ? CloneSubOptions(saved.SubOptions) : null,
                     SelectedCases = saved.SelectedCases != null ? new List<string>(saved.SelectedCases) : null,
+                    SubOptions = saved.SubOptions != null ? CloneSubOptions(saved.SubOptions) : null,
                 };
                 SetDefaultOptionValue(maaInterface, savedOption);
                 return savedOption;
+            }
+            if (existingDict.TryGetValue(optionName, out var existing))
+            {
+                SetDefaultOptionValue(maaInterface, existing);
+                return existing;
             }
             var opt = new MaaInterface.MaaInterfaceSelectOption { Name = optionName };
             SetDefaultOptionValue(maaInterface, opt);
@@ -238,15 +229,7 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
             .Where(optionName => !subOptionNames.Contains(optionName))
             .Select(optionName =>
             {
-                // 优先使用已有的值（保留运行时的修改）
-                if (existingDict.TryGetValue(optionName, out var existingOpt))
-                {
-                    SetDefaultOptionValue(maaInterface, existingOpt);
-                    return existingOpt;
-                }
-
-                // 其次使用配置中保存的值
-                // 其次使用配置中保存的值
+                // 配置文件中的值属于当前实例，应优先于 Interface 上其他实例留下的运行时状态。
                 if (savedDict?.TryGetValue(optionName, out var savedOpt) == true)
                 {
                     // 克隆保存的选项，避免引用问题
@@ -260,6 +243,11 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
                     };
                     SetDefaultOptionValue(maaInterface, clonedOpt);
                     return clonedOpt;
+                }
+                if (existingDict.TryGetValue(optionName, out var existingOpt))
+                {
+                    SetDefaultOptionValue(maaInterface, existingOpt);
+                    return existingOpt;
                 }
                 // 最后创建新的并设置默认值
                 var selectOption = new MaaInterface.MaaInterfaceSelectOption
@@ -709,8 +697,8 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
             if (settingItem != null) finalItems.Add(settingItem);
         }
 
-        // MATR: 全局选项通过设置面板直接访问 Interface.GlobalSelectOptions，不显示为任务项
-        // 如果当前资源有 option 配置，在全局选项后添加资源设置项
+        // MATR: 全局选项仅在设置区的“全局”页呈现，不能作为可执行任务显示。
+        // 如果当前资源有 option 配置，在设置项后添加资源设置项。
         if (currentResource?.Option is {Count: > 0})
         {
             var resourceOptionItem = CreateResourceOptionItem(currentResource, drags);
@@ -814,7 +802,7 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
         syntheticResource.InitializeDisplayName();
 
         var item = new DragItemViewModel(syntheticResource) { OwnerViewModel = taskQueueViewModel };
-        item.IsVisible = false;
+        item.IsVisible = true;
         return item;
     }
 
@@ -855,11 +843,6 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
 
         controller.SelectOptions = controller.Option.Select(optionName =>
         {
-            if (existingDict.TryGetValue(optionName, out var existing))
-            {
-                SetDefaultOptionValue(maaInterface, existing);
-                return existing;
-            }
             if (savedDict?.TryGetValue(optionName, out var saved) == true)
             {
                 var savedOption = new MaaInterface.MaaInterfaceSelectOption
@@ -868,9 +851,15 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
                     Index = saved.Index,
                     Data = saved.Data != null ? new Dictionary<string, string?>(saved.Data) : null,
                     SelectedCases = saved.SelectedCases != null ? new List<string>(saved.SelectedCases) : null,
+                    SubOptions = saved.SubOptions != null ? CloneSubOptions(saved.SubOptions) : null,
                 };
                 SetDefaultOptionValue(maaInterface, savedOption);
                 return savedOption;
+            }
+            if (existingDict.TryGetValue(optionName, out var existing))
+            {
+                SetDefaultOptionValue(maaInterface, existing);
+                return existing;
             }
             var opt = new MaaInterface.MaaInterfaceSelectOption { Name = optionName };
             SetDefaultOptionValue(maaInterface, opt);
@@ -901,7 +890,7 @@ public class TaskLoader(MaaInterface? maaInterface, TaskQueueViewModel taskQueue
         syntheticResource.InitializeDisplayName();
 
         var item = new DragItemViewModel(syntheticResource) { OwnerViewModel = taskQueueViewModel };
-        item.IsVisible = false;
+        item.IsVisible = true;
         return item;
     }
 

@@ -5,9 +5,21 @@ using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.ViewModels.Pages;
 using Newtonsoft.Json;
 using System;
+using System.ComponentModel;
 using System.Linq;
 
 namespace MFAAvalonia.Helper.ValueType;
+
+public enum TaskRunState
+{
+    None,
+    Queued,
+    Running,
+    Succeeded,
+    Failed,
+    Stopped,
+    Skipped
+}
 
 public partial class DragItemViewModel : ObservableObject
 {
@@ -56,7 +68,7 @@ public partial class DragItemViewModel : ObservableObject
         OnPropertyChanged(nameof(IsCheckBoxEnabled));
     }
 
-    private void OnRootViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    private void OnRootViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(global::MFAAvalonia.ViewModels.Windows.RootViewModel.CurrentInstanceIdle))
             OnPropertyChanged(nameof(IsCheckBoxEnabled));
@@ -66,6 +78,45 @@ public partial class DragItemViewModel : ObservableObject
 
     /// <summary>验证不通过时标记为 true，用于 UI 红圈提示</summary>
     [ObservableProperty] [JsonIgnore] private bool _hasValidationError;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsRunStatusVisible))]
+    [NotifyPropertyChangedFor(nameof(IsRunQueued))]
+    [NotifyPropertyChangedFor(nameof(IsRunRunning))]
+    [NotifyPropertyChangedFor(nameof(IsRunSucceeded))]
+    [NotifyPropertyChangedFor(nameof(IsRunFailed))]
+    [NotifyPropertyChangedFor(nameof(IsRunStopped))]
+    [NotifyPropertyChangedFor(nameof(IsRunSkipped))]
+    [NotifyPropertyChangedFor(nameof(IsRunElapsedVisible))]
+    [JsonIgnore]
+    private TaskRunState _runState;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(RunElapsedText))]
+    [JsonIgnore]
+    private TimeSpan _runElapsed;
+
+    [ObservableProperty] [JsonIgnore] private int _completedRunCount;
+    [ObservableProperty] [JsonIgnore] private int _totalRunCount;
+    [ObservableProperty] [JsonIgnore] private string? _runErrorMessage;
+
+    [JsonIgnore] public DateTimeOffset? RunStartedAt { get; set; }
+    [JsonIgnore] public long RunId { get; set; }
+
+    [JsonIgnore] public bool IsRunStatusVisible => RunState != TaskRunState.None;
+    [JsonIgnore] public bool IsRunQueued => RunState == TaskRunState.Queued;
+    [JsonIgnore] public bool IsRunRunning => RunState == TaskRunState.Running;
+    [JsonIgnore] public bool IsRunSucceeded => RunState == TaskRunState.Succeeded;
+    [JsonIgnore] public bool IsRunFailed => RunState == TaskRunState.Failed;
+    [JsonIgnore] public bool IsRunStopped => RunState == TaskRunState.Stopped;
+    [JsonIgnore] public bool IsRunSkipped => RunState == TaskRunState.Skipped;
+    [JsonIgnore] public bool IsRunElapsedVisible =>
+        RunState is TaskRunState.Running or TaskRunState.Succeeded or TaskRunState.Failed or TaskRunState.Stopped;
+
+    [JsonIgnore]
+    public string RunElapsedText => RunElapsed.TotalHours >= 1
+        ? $"{(int)RunElapsed.TotalHours}:{RunElapsed.Minutes:00}:{RunElapsed.Seconds:00}"
+        : $"{RunElapsed.Minutes:00}:{RunElapsed.Seconds:00}";
 
     /// <summary>解析后的图标路径（用于 UI 绑定）</summary>
     [ObservableProperty] private string? _resolvedIcon;
@@ -115,14 +166,14 @@ public partial class DragItemViewModel : ObservableObject
         set => IsCheckedWithNull = value;
     }
 
-
-    private bool _enableSetting;
-
     /// <summary>
-    /// 复选框是否可交互：非资源项且当前实例空闲时可用。
+    /// 复选框只允许在当前实例空闲且项目可执行时交互。
     /// </summary>
     [JsonIgnore]
     public bool IsCheckBoxEnabled => !IsResourceOptionItem && Instances.RootViewModel.CurrentInstanceIdle;
+
+
+    private bool _enableSetting;
 
     /// <summary>
     /// Gets or sets a value indicating whether gets or sets whether the setting enabled.
@@ -158,6 +209,13 @@ public partial class DragItemViewModel : ObservableObject
     }
 
     [ObservableProperty] private bool _isVisible = true;
+
+    [JsonIgnore]
+    public bool HasMobileOptions => IsResourceOptionItem
+        ? ResourceItem?.SelectOptions is { Count: > 0 }
+        : InterfaceItem?.Option is { Count: > 0 }
+          || InterfaceItem?.Advanced is { Count: > 0 }
+          || InterfaceItem?.Repeatable == true;
 
     /// <summary>
     /// 指示这是否是一个全局资源设置项。

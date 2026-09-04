@@ -14,8 +14,7 @@ namespace MFAAvalonia.Helper;
 public static class FileLogExporter
 {
     public const int MAX_LINES = 42000;
-    // 导出 zip 分卷阈值:20 MiB,与 MaaLogRotator 日志切块阈值保持一致
-    private const long MaxArchiveVolumeBytes = 20_971_520;
+    private const long MaxArchivePayloadBytes = 23_750_000;
     private const long ZipEntryOverheadBytes = 128;
     private static readonly SemaphoreSlim ExportSemaphore = new(1, 1);
     // 定义需要处理的图片文件扩展名
@@ -142,9 +141,10 @@ public static class FileLogExporter
                         return ExportLogResult.Failed;
                     }
 
-                    var archiveFiles = await Task.Run(() => CreateArchiveVolumes(
-                        tempDir,
-                        options?.CombinePackage ?? false));
+                    // Android's storage picker usually returns a content URI. It can write the
+                    // selected document, but cannot create sibling files for split volumes.
+                    var allowSplitArchives = saveFile.Path.IsFile;
+                    var archiveFiles = await Task.Run(() => CreateArchiveVolumes(tempDir, allowSplitArchives));
                     await PublishArchiveVolumesAsync(saveFile, archiveFiles);
 
                     if (skippedCount > 0)
@@ -154,10 +154,7 @@ public static class FileLogExporter
                     LoggerHelper.Info(archiveFiles.Count == 1
                         ? $"日志和图片已成功压缩到：\n{saveFile.Name}"
                         : $"日志和图片已成功压缩为 {archiveFiles.Count} 个分卷：\n{GetVolumeFileName(saveFile.Name, 1, archiveFiles.Count)}");
-                    ToastHelper.SuccessWithSurvey(
-                        LangKeys.ExportLog.ToLocalization(),
-                        $"{LangKeys.ExportLogSuccess.ToLocalization()}，如果方便，欢迎填写问卷反馈。"
-                    );
+                    ToastHelper.Success(LangKeys.ExportLog.ToLocalization(), LangKeys.ExportLogSuccess.ToLocalization());
                     return ExportLogResult.Success;
                 }
                 catch (Exception ex)
@@ -309,7 +306,11 @@ public static class FileLogExporter
 
         var allFiles = Directory.GetFiles(debugDir, "*", SearchOption.AllDirectories);
         var namedMaaLogs = allFiles.Where(file =>
-            Path.GetFileName(file).StartsWith("maa.log", StringComparison.OrdinalIgnoreCase));
+        {
+            var fileName = Path.GetFileName(file);
+            return fileName.StartsWith("maa.log", StringComparison.OrdinalIgnoreCase)
+                   || fileName.StartsWith("maafw.log", StringComparison.OrdinalIgnoreCase);
+        });
 
         if (namedMaaLogs.Any())
             return namedMaaLogs;
@@ -458,7 +459,7 @@ public static class FileLogExporter
         source.CopyTo(destination);
     }
 
-    private static List<string> CreateArchiveVolumes(string sourceDirectory, bool combinePackage)
+    private static List<string> CreateArchiveVolumes(string sourceDirectory, bool allowSplitArchives)
     {
         var files = Directory.GetFiles(sourceDirectory, "*", SearchOption.AllDirectories)
             .OrderBy(file => Path.GetRelativePath(sourceDirectory, file), StringComparer.Ordinal)
@@ -468,13 +469,16 @@ public static class FileLogExporter
 
         try
         {
-            var singleArchive = Path.Combine(archiveDirectory, "archive.zip");
-            CreateArchive(singleArchive, sourceDirectory, files);
-            if (combinePackage || new FileInfo(singleArchive).Length <= MaxArchiveVolumeBytes)
+            var groups = allowSplitArchives
+                ? GroupFilesIntoVolumes(sourceDirectory, files)
+                : [files.ToList()];
+            if (groups.Count == 1)
+            {
+                var singleArchive = Path.Combine(archiveDirectory, "archive.zip");
+                CreateArchive(singleArchive, sourceDirectory, groups[0]);
                 return [singleArchive];
+            }
 
-            File.Delete(singleArchive);
-            var groups = GroupFilesIntoVolumes(sourceDirectory, files);
             var width = groups.Count >= 100 ? 3 : 2;
             var volumes = new List<string>(groups.Count);
 
@@ -506,11 +510,13 @@ public static class FileLogExporter
         foreach (var file in files)
         {
             var entryName = Path.GetRelativePath(sourceDirectory, file).Replace('\\', '/');
-            var estimatedSize = MeasureCompressedSize(file)
+            // Images are already compressed. Using their source size is both a reliable
+            // volume estimate and avoids a full throw-away Deflate pass for every file.
+            var estimatedSize = new FileInfo(file).Length
                                 + ZipEntryOverheadBytes
                                 + System.Text.Encoding.UTF8.GetByteCount(entryName) * 2L;
 
-            if (currentGroup.Count > 0 && currentSize + estimatedSize > MaxArchiveVolumeBytes)
+            if (currentGroup.Count > 0 && currentSize + estimatedSize > MaxArchivePayloadBytes)
             {
                 groups.Add(currentGroup);
                 currentGroup = [];
@@ -527,17 +533,6 @@ public static class FileLogExporter
         return groups;
     }
 
-    private static long MeasureCompressedSize(string file)
-    {
-        using var source = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read);
-        using var target = new CountingWriteStream();
-        using (var compressor = new DeflateStream(target, CompressionLevel.Optimal, leaveOpen: true))
-        {
-            source.CopyTo(compressor);
-        }
-        return target.BytesWritten;
-    }
-
     private static void CreateArchive(string archivePath, string sourceDirectory, IEnumerable<string> files)
     {
         using var stream = new FileStream(archivePath, FileMode.Create, FileAccess.Write, FileShare.None);
@@ -545,7 +540,10 @@ public static class FileLogExporter
         foreach (var file in files)
         {
             var entryName = Path.GetRelativePath(sourceDirectory, file).Replace('\\', '/');
-            archive.CreateEntryFromFile(file, entryName, CompressionLevel.Optimal);
+            archive.CreateEntryFromFile(
+                file,
+                entryName,
+                IsImageFile(file) ? CompressionLevel.NoCompression : CompressionLevel.Fastest);
         }
     }
 
@@ -558,8 +556,8 @@ public static class FileLogExporter
             {
                 await using var source = new FileStream(archiveFiles[0], FileMode.Open, FileAccess.Read, FileShare.Read);
                 await using var destination = await saveFile.OpenWriteAsync();
-                destination.SetLength(0);
                 await source.CopyToAsync(destination);
+                await destination.FlushAsync();
                 return;
             }
 
@@ -612,31 +610,10 @@ public static class FileLogExporter
         return $"{baseName}-part{volumeNumber.ToString($"D{width}")}.zip";
     }
 
-    private sealed class CountingWriteStream : Stream
-    {
-        public long BytesWritten { get; private set; }
-        public override bool CanRead => false;
-        public override bool CanSeek => false;
-        public override bool CanWrite => true;
-        public override long Length => BytesWritten;
-        public override long Position
-        {
-            get => BytesWritten;
-            set => throw new NotSupportedException();
-        }
-
-        public override void Flush() { }
-        public override int Read(byte[] buffer, int offset, int count) => throw new NotSupportedException();
-        public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
-        public override void SetLength(long value) => throw new NotSupportedException();
-        public override void Write(byte[] buffer, int offset, int count) => BytesWritten += count;
-        public override void Write(ReadOnlySpan<byte> buffer) => BytesWritten += buffer.Length;
-    }
 }
 
 public sealed class ExportLogPackageOptions
 {
-    public bool CombinePackage { get; init; }
     public bool IncludeMaaLog { get; init; } = true;
     public bool IncludeGuiLog { get; init; } = true;
     public bool IncludeCustomLog { get; init; } = true;
