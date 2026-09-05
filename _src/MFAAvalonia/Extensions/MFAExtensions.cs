@@ -513,7 +513,7 @@ public static class MFAExtensions
         return VersionChecker.VersionType.Stable;
     }
 
-    public static Bitmap? ToBitmap(this MaaImageBuffer buffer)
+    public static Bitmap? ToBitmap(this IMaaImageBuffer buffer)
     {
         if (buffer.IsInvalid || buffer.IsEmpty || !buffer.TryGetEncodedData(out Stream encodedDataStream)) return null;
 

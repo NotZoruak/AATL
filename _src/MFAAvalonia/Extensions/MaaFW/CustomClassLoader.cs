@@ -17,9 +17,8 @@ namespace MFAAvalonia.Extensions.MaaFW;
 public static class CustomClassLoader
 {
     private static List<MetadataReference>? _metadataReferences;
-    private static bool _shouldLoadCustomClasses = true;
-    private static FileSystemWatcher? _watcher;
-    private static IEnumerable<CustomValue<object>>? _customClasses;
+    private static readonly Dictionary<string, FileSystemWatcher> _watchers = new(StringComparer.OrdinalIgnoreCase);
+    private static readonly Dictionary<string, List<CustomValue<object>>> _customClassesByDirectory = new(StringComparer.OrdinalIgnoreCase);
 
     /// <summary>
     /// 获取当前应用程序域中所有程序集的元数据引用
@@ -91,28 +90,30 @@ public static class CustomClassLoader
         }
 
         // 设置文件监视器
-        if (_watcher == null)
+        var normalizedDirectory = Path.GetFullPath(directory);
+        if (!_watchers.ContainsKey(normalizedDirectory))
         {
             try
             {
-                _watcher = new FileSystemWatcher(directory)
+                var watcher = new FileSystemWatcher(normalizedDirectory)
                 {
                     Filter = "*.cs",
                     EnableRaisingEvents = true
                 };
-                _watcher.Changed += OnFileChanged;
-                _watcher.Created += OnFileChanged;
-                _watcher.Deleted += OnFileChanged;
-                _watcher.Renamed += OnFileChanged;
-                LoggerHelper.Info($"已启动自定义类目录监听：目录={directory}");
+                watcher.Changed += OnFileChanged;
+                watcher.Created += OnFileChanged;
+                watcher.Deleted += OnFileChanged;
+                watcher.Renamed += OnFileChanged;
+                _watchers[normalizedDirectory] = watcher;
+                LoggerHelper.Info($"已启动自定义类目录监听：目录={normalizedDirectory}");
             }
             catch (Exception ex)
             {
-                LoggerHelper.Warning($"创建自定义类目录监听失败：目录={directory}，原因={ex.Message}");
+                LoggerHelper.Warning($"创建自定义类目录监听失败：目录={normalizedDirectory}，原因={ex.Message}");
             }
         }
 
-        var csFiles = Directory.GetFiles(directory, "*.cs");
+        var csFiles = Directory.GetFiles(normalizedDirectory, "*.cs");
         if (csFiles.Length == 0)
         {
             LoggerHelper.Info($"自定义类目录中未找到 .cs 文件：目录={directory}");
@@ -179,7 +180,6 @@ public static class CustomClassLoader
             }
         }
 
-        _shouldLoadCustomClasses = false;
         return customClasses;
     }
 
@@ -205,8 +205,9 @@ public static class CustomClassLoader
     private static void OnFileChanged(object sender, FileSystemEventArgs e)
     {
         LoggerHelper.Info($"自定义类文件发生变化：文件={e.FullPath}，变更类型={e.ChangeType}");
-        _shouldLoadCustomClasses = true;
-        _customClasses = null;
+        var directory = Path.GetDirectoryName(e.FullPath);
+        if (!string.IsNullOrWhiteSpace(directory))
+            _customClassesByDirectory.Remove(Path.GetFullPath(directory));
     }
 
     /// <summary>
@@ -217,18 +218,20 @@ public static class CustomClassLoader
     /// <returns>自定义类实例的集合</returns>
     public static IEnumerable<CustomValue<object>> GetCustomClasses(string directory, string[] interfacesToImplement)
     {
-        if (_customClasses == null || _shouldLoadCustomClasses)
+        var normalizedDirectory = Path.GetFullPath(directory);
+        if (!_customClassesByDirectory.TryGetValue(normalizedDirectory, out var customClasses))
         {
-            _customClasses = LoadAndInstantiateCustomClasses(directory, interfacesToImplement);
+            customClasses = LoadAndInstantiateCustomClasses(normalizedDirectory, interfacesToImplement).ToList();
+            _customClassesByDirectory[normalizedDirectory] = customClasses;
         }
         else
         {
-            foreach (var value in _customClasses)
+            foreach (var value in customClasses)
             {
                 LoggerHelper.Info($"使用缓存中的自定义类：名称={value.Name}");
             }
         }
-        return _customClasses;
+        return customClasses;
     }
 
     /// <summary>
@@ -236,8 +239,7 @@ public static class CustomClassLoader
     /// </summary>
     public static void ForceReload()
     {
-        _shouldLoadCustomClasses = true;
-        _customClasses = null;
+        _customClassesByDirectory.Clear();
         LoggerHelper.Info("已标记自定义类缓存失效，将在下次访问时重新加载。");
     }
 
@@ -248,19 +250,19 @@ public static class CustomClassLoader
     {
         try
         {
-            if (_watcher != null)
+            foreach (var watcher in _watchers.Values)
             {
-                _watcher.EnableRaisingEvents = false;
-                _watcher.Changed -= OnFileChanged;
-                _watcher.Created -= OnFileChanged;
-                _watcher.Deleted -= OnFileChanged;
-                _watcher.Renamed -= OnFileChanged;
-                _watcher.Dispose();
-                _watcher = null;
-                LoggerHelper.Info("已释放自定义类目录监听器。");
+                watcher.EnableRaisingEvents = false;
+                watcher.Changed -= OnFileChanged;
+                watcher.Created -= OnFileChanged;
+                watcher.Deleted -= OnFileChanged;
+                watcher.Renamed -= OnFileChanged;
+                watcher.Dispose();
             }
-            _customClasses = null;
+            _watchers.Clear();
+            _customClassesByDirectory.Clear();
             _metadataReferences = null;
+            LoggerHelper.Info("已释放自定义类目录监听器。");
         }
         catch (Exception ex)
         {

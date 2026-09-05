@@ -5096,12 +5096,14 @@ public class MaaProcessor
                 return;
             }
 
-            // 创建副本，避免修改原始列表
-            var resourcePaths = new List<string>(originalPaths);
-            // LoggerHelper.Info(LangKeys.RegisteringCustomRecognizer.ToLocalization());
-            // LoggerHelper.Info(LangKeys.RegisteringCustomAction.ToLocalization());
-            resourcePaths.Add(AppPaths.ResourceDirectory);
-            // 遍历所有资源路径，查找 custom 目录
+            // 只使用当前资源声明的路径，并按绝对路径去重，避免混入安装目录中的旧资源。
+            var resourcePaths = originalPaths
+                .Where(path => !string.IsNullOrWhiteSpace(path))
+                .Select(Path.GetFullPath)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            // 遍历当前资源路径，查找 custom 目录
             foreach (var resourcePath in resourcePaths)
             {
                 var customDir = Path.Combine(resourcePath, "custom");
