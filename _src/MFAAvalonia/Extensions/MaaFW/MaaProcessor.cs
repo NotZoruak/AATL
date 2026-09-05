@@ -4335,8 +4335,9 @@ public class MaaProcessor
 
     private void AddCoreTasksAsync(List<NodeAndParam> taskAndParams, CancellationToken token)
     {
-        foreach (var task in taskAndParams)
+        for (var i = 0; i < taskAndParams.Count; i++)
         {
+            var task = taskAndParams[i];
             TaskQueue.Enqueue(CreateMaaFWTask(task.Name,
                 async () =>
                 {
@@ -4346,6 +4347,16 @@ public class MaaProcessor
                     return await TryRunTasksAsync(MaaTasker, task.Entry, task.Param, token);
                 }, task.Count ?? 1, task.SourceItem, task.RunId
             ));
+
+            // 最后一个任务后不插入；MFAA 特殊任务不需要先回本丸。
+            if (i < taskAndParams.Count - 1
+                && TaskQueueContinuationPolicy.ShouldInsertGoHome(taskAndParams[i + 1].Entry))
+            {
+                TaskQueue.Enqueue(CreateMaaFWTask("回本丸", async () =>
+                {
+                    return await TryRunTasksAsync(MaaTasker, "GoHome", "{}", token);
+                }));
+            }
         }
     }
 

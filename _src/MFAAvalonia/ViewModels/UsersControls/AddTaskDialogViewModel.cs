@@ -24,17 +24,7 @@ public partial class AddTaskDialogViewModel : ViewModelBase, IDisposable
     /// <summary>
     /// 已知的特殊任务 Action 名称集合，用于判断一个任务是否为特殊任务
     /// </summary>
-    public static readonly HashSet<string> SpecialActionNames = new()
-    {
-        "CountdownAction",
-        "TimedWaitAction",
-        "SystemNotificationAction",
-        "CustomProgramAction",
-        "KillProcessAction",
-        "ComputerOperationAction",
-        "WebhookAction",
-        "SwitchInstanceAction",
-    };
+    public static readonly HashSet<string> SpecialActionNames = TaskQueueContinuationPolicy.SpecialActionNames;
 
     private ObservableCollection<AddTaskItemViewModel> _items;
 

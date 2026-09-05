@@ -103,27 +103,25 @@ public class RestartGameAction : IMaaCustomAction
         return "com.youzu.djlw";
     }
 
-    private void RestartEmulator()
+    private bool RestartEmulator()
     {
         if (_isMuMu12)
         {
-            RestartEmulatorViaCli();
+            return RestartEmulatorViaCli();
         }
-        else
-        {
-            RestartEmulatorLegacy();
-        }
+
+        return RestartEmulatorLegacy();
     }
 
     /// <summary>
     /// MuMu 12+：通过 mumu-cli.exe control restart 重启实例，失败时回退旧版方式
     /// </summary>
-    private void RestartEmulatorViaCli()
+    private bool RestartEmulatorViaCli()
     {
         if (string.IsNullOrWhiteSpace(_mumuCliExe))
         {
             LoggerHelper.Info("[RestartGameAction] 未找到 mumu-cli.exe，跳过模拟器重启");
-            return;
+            return false;
         }
 
         LoggerHelper.Info($"[RestartGameAction] 通过 CLI 重启模拟器实例 {_mumuIndex}...");
@@ -169,10 +167,9 @@ public class RestartGameAction : IMaaCustomAction
         {
             LoggerHelper.Info("[RestartGameAction] CLI 重启未成功，回退到旧版方式");
             if (RestartEmulatorLegacy())
-                return;
+                return true;
             LoggerHelper.Info("[RestartGameAction] 旧版方式不可用，尝试强制重启模拟器进程");
-            RestartEmulatorForce();
-            return;
+            return RestartEmulatorForce();
         }
 
         // 等待 ADB 重新连接
@@ -181,15 +178,17 @@ public class RestartGameAction : IMaaCustomAction
         if (!WaitForAdbReady(30))
         {
             LoggerHelper.Info("[RestartGameAction] 模拟器启动超时，尝试强制重启模拟器进程");
-            RestartEmulatorForce();
+            return RestartEmulatorForce();
         }
+
+        return true;
     }
 
     /// <summary>
     /// 无响应场景强制重启：taskkill 强杀 MuMuNxDevice.exe（挂起/无响应进程也能强杀），
     /// 再用 mumu-cli 重新启动实例。覆盖 CLI 重启超时且旧版 MuMuPlayer.exe 不存在的情况。
     /// </summary>
-    private void RestartEmulatorForce()
+    private bool RestartEmulatorForce()
     {
         // 1. 强杀设备进程（无响应进程强杀不需要进程响应）
         LoggerHelper.Info("[RestartGameAction] 强制结束 MuMuNxDevice.exe...");
@@ -242,8 +241,10 @@ public class RestartGameAction : IMaaCustomAction
         // 3. 等待 ADB 重新连接
         LoggerHelper.Info("[RestartGameAction] 等待模拟器启动...");
         Thread.Sleep(10000);
-        if (!WaitForAdbReady(30))
+        var ready = WaitForAdbReady(30);
+        if (!ready)
             LoggerHelper.Info("[RestartGameAction] 模拟器启动超时，继续后续流程");
+        return ready;
     }
 
     /// <summary>
@@ -343,8 +344,9 @@ public class RestartGameAction : IMaaCustomAction
     /// <summary>
     /// 执行一条 adb 命令，并返回命令是否成功
     /// </summary>
-    private static bool RunAdbCommand(string adbPath, string adbSerial, string args)
+    private static bool RunAdbCommand(string adbPath, string adbSerial, string args, out string output)
     {
+        output = "";
         var psi = new ProcessStartInfo(adbPath, args)
         {
             CreateNoWindow = true,
@@ -372,7 +374,7 @@ public class RestartGameAction : IMaaCustomAction
                 return false;
             }
 
-            var output = outputTask.GetAwaiter().GetResult().Trim();
+            output = outputTask.GetAwaiter().GetResult().Trim();
             var error = errorTask.GetAwaiter().GetResult().Trim();
             if (proc.ExitCode != 0)
             {
@@ -391,6 +393,33 @@ public class RestartGameAction : IMaaCustomAction
         }
     }
 
+    private static bool RunAdbCommand(string adbPath, string adbSerial, string args)
+    {
+        return RunAdbCommand(adbPath, adbSerial, args, out _);
+    }
+
+    private bool TryResolveLaunchActivity(string package, out string launchActivity)
+    {
+        launchActivity = "";
+        if (!RunAdbCommand(
+                _adbPath!,
+                _adbSerial ?? "",
+                $"shell cmd package resolve-activity --brief -a android.intent.action.MAIN -c android.intent.category.LAUNCHER {package}",
+                out var output))
+            return false;
+
+        var component = output
+            .Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries)
+            .Select(line => line.Trim())
+            .LastOrDefault(line => line.StartsWith($"{package}/", StringComparison.Ordinal));
+        if (string.IsNullOrWhiteSpace(component))
+            return false;
+
+        launchActivity = component;
+        LoggerHelper.Info($"[RestartGameAction] 已解析游戏启动 Activity: {launchActivity}");
+        return true;
+    }
+
     private bool TryRestartGame(string package)
     {
         LoggerHelper.Info($"[RestartGameAction] 强制停止游戏进程: {package}");
@@ -399,7 +428,18 @@ public class RestartGameAction : IMaaCustomAction
         Thread.Sleep(2000);
 
         LoggerHelper.Info($"[RestartGameAction] 重新启动游戏: {package}");
-        if (!RunAdbCommand(_adbPath!, _adbSerial ?? "", $"shell monkey -p {package} -c android.intent.category.LAUNCHER 1"))
+        if (TryResolveLaunchActivity(package, out var launchActivity))
+        {
+            if (!RunAdbCommand(_adbPath!, _adbSerial ?? "", $"shell am start -n {launchActivity}"))
+            {
+                LoggerHelper.Warning("[RestartGameAction] 使用已解析的 Activity 启动游戏失败");
+                return false;
+            }
+        }
+        else if (!RunAdbCommand(
+                     _adbPath!,
+                     _adbSerial ?? "",
+                     $"shell am start -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -p {package}"))
         {
             LoggerHelper.Warning("[RestartGameAction] 游戏启动失败");
             return false;
@@ -426,10 +466,17 @@ public class RestartGameAction : IMaaCustomAction
             return;
 
         LoggerHelper.Warning("[RestartGameAction] 游戏重启失败，开始重启模拟器");
-        action.RestartEmulator();
+        if (!action.RestartEmulator())
+        {
+            LoggerHelper.Error("[RestartGameAction] 模拟器重启失败，无法继续恢复游戏");
+            throw new InvalidOperationException("模拟器重启失败，请检查模拟器路径、实例状态和 ADB 连接");
+        }
 
         if (!action.TryRestartGame(package))
-            throw new InvalidOperationException($"游戏启动失败，请检查应用包名和 ADB 连接。包名={package}");
+        {
+            LoggerHelper.Warning("[RestartGameAction] 模拟器重启成功，但游戏启动失败，继续交由任务流程进入主枢纽");
+            return;
+        }
     }
 
     public bool Run<T>(T context, in RunArgs args, in RunResults results) where T : IMaaContext

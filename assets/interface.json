@@ -1,10 +1,10 @@
 {
   "name": "MATR",
-  "version": "v0.12.9",
+  "version": "v0.13.0-beta.1",
   "mirrorchyan_rid": "MATR",
   "mirrorchyan_multiplatform": true,
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.12.9 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.13.0-beta.1 | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -5714,7 +5714,23 @@
             "DT_ForgeReturnHomeFallbackWait": {"enabled": false},
             "DT_DrillReturnHomeFallbackWait": {"enabled": false},
             "DT_KebiReturnHomeFallbackWait": {"enabled": false},
-            "DT_FallbackWait": {"enabled": false}
+            "DT_FallbackWait": {"enabled": false},
+            "DT_PresetHub": {"on_error": ["DT_RestartGame"]},
+            "DT_LoginRewardHub": {"on_error": ["DT_RestartGame"]},
+            "DT_WarmGiftHub": {"on_error": ["DT_RestartGame"]},
+            "DT_MixHub": {"on_error": ["DT_RestartGame"]},
+            "DT_ForgeHub": {"on_error": ["DT_RestartGame"]},
+            "DT_DrillHub": {"on_error": ["DT_RestartGame"]},
+            "DT_KebiHub": {"on_error": ["DT_RestartGame"]},
+            "DT_RewardHub": {"on_error": ["DT_RestartGame"]},
+            "DT_RewardClaimHub": {"on_error": ["DT_RestartGame"]},
+            "DT_RewardClosePopupHub": {"on_error": ["DT_RestartGame"]},
+            "DT_LoginRewardReturnHomeHub": {"on_error": ["DT_RestartGame"]},
+            "DT_WarmGiftReturnHomeHub": {"on_error": ["DT_RestartGame"]},
+            "DT_MixReturnHomeHub": {"on_error": ["DT_RestartGame"]},
+            "DT_ForgeReturnHomeHub": {"on_error": ["DT_RestartGame"]},
+            "DT_DrillReturnHomeHub": {"on_error": ["DT_RestartGame"]},
+            "DT_KebiReturnHomeHub": {"on_error": ["DT_RestartGame"]}
           }
         },
         {
@@ -5795,6 +5811,7 @@
       ],
       "pipeline_override": {
         "S_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
+        "DT_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "LR_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "EC_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "FB_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},

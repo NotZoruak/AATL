@@ -20,6 +20,14 @@ AssertFalse(TaskQueueContinuationPolicy.CanContinue(true, false),
     "失败但未启用继续时应停止队列");
 AssertFalse(TaskQueueContinuationPolicy.CanContinue(false, true),
     "非失败状态不应因继续选项而推进队列");
+AssertTrue(TaskQueueContinuationPolicy.ShouldInsertGoHome("Sortie"),
+    "普通任务之间应插入回本丸");
+AssertFalse(TaskQueueContinuationPolicy.ShouldInsertGoHome("CountdownAction"),
+    "MFAA 倒计时特殊任务前不应插入回本丸");
+AssertFalse(TaskQueueContinuationPolicy.ShouldInsertGoHome("WebhookAction"),
+    "MFAA Webhook 特殊任务前不应插入回本丸");
+AssertFalse(TaskQueueContinuationPolicy.ShouldInsertGoHome(null),
+    "没有下一个任务时不应插入回本丸");
 var rootViewSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Views", "Windows", "RootView.axaml.cs"));
 var rootViewMarkup = File.ReadAllText(Path.Combine(
@@ -32,6 +40,14 @@ var taskQueueViewModelSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "ViewModels", "Pages", "TaskQueueViewModel.cs"));
 var taskStartProcessorSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Extensions", "MaaFW", "MaaProcessor.cs"));
+var taskQueueContinuationPolicySource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "TaskQueueContinuationPolicy.cs"));
+AssertTrue(taskQueueContinuationPolicySource.Contains("ShouldInsertGoHome", StringComparison.Ordinal),
+    "任务队列应提供统一的回本丸插入判定，避免特殊任务前执行回本丸");
+AssertTrue(taskStartProcessorSource.Contains("ShouldInsertGoHome(taskAndParams[i + 1].Entry)", StringComparison.Ordinal),
+    "任务队列应根据下一个任务的 Entry 判断是否插入回本丸");
+var restartGameActionSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Extensions", "MaaFW", "Custom", "RestartGameAction.cs"));
 var appSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "App.axaml.cs"));
 var taskOptionGeneratorSource = File.ReadAllText(Path.Combine(
@@ -79,6 +95,23 @@ AssertFalse(applyCurrentDeviceSelectionSource.Contains("Dispatcher.UIThread.Post
     "恢复已保存的 ADB 设备必须同步写入连接配置，不能延后到后台 UI 队列，否则启动连接会读到空序列号");
 AssertFalse(taskQueueViewModelSource.Contains("_liveViewNoImageLogged", StringComparison.Ordinal),
     "实时画面首帧尚未完成时不应立即输出无画面警告，必须改为连续失败确认");
+AssertTrue(restartGameActionSource.Contains(
+        "shell am start -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -p {package}",
+        StringComparison.Ordinal)
+    && !restartGameActionSource.Contains("shell monkey -p", StringComparison.Ordinal),
+    "重启游戏应使用 am start 启动指定包名，不能依赖雷电缺失的 monkey 命令");
+AssertTrue(restartGameActionSource.Contains(
+        "shell cmd package resolve-activity --brief",
+        StringComparison.Ordinal)
+    && restartGameActionSource.Contains("shell am start -n {launchActivity}", StringComparison.Ordinal),
+    "重启游戏应先解析实际启动 Activity，再使用组件名启动，兼容包名没有可解析默认 Intent 的模拟器");
+AssertTrue(restartGameActionSource.Contains(
+        "模拟器重启成功，但游戏启动失败，继续交由任务流程进入主枢纽",
+        StringComparison.Ordinal)
+    && restartGameActionSource.Contains(
+        "模拟器重启失败，无法继续恢复游戏",
+        StringComparison.Ordinal),
+    "游戏启动失败不能直接判定任务失败，必须与模拟器重启失败分开记录并继续主枢纽流程");
 var startTaskSource = ExtractSourceSection(
     taskStartProcessorSource,
     "public async Task StartTask(",
@@ -265,6 +298,8 @@ foreach (var (pipelineFileName, prefix) in new[]
 }
 var sortiePipeline = JObject.Parse(File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "assets", "resource", "base", "pipeline", "Sortie.json")));
+var dailyTaskPipeline = JObject.Parse(File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "assets", "resource", "base", "pipeline", "DailyTask.json")));
 var updateDataPipeline = JObject.Parse(File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "assets", "resource", "base", "pipeline", "UpdateData.json")));
 var updateDataRecoveryNodes = new[]
@@ -738,6 +773,14 @@ var fallbackWaitNames = Directory.GetFiles(Path.Combine(
 AssertTrue(
     fallbackWaitNames.All(name => freezeRestartOverride?[name]?["enabled"]?.Value<bool>() == false),
     $"卡死重启开关应覆盖全部 FallbackWait：{string.Join(", ", fallbackWaitNames.Where(name => freezeRestartOverride?[name]?["enabled"]?.Value<bool>() != false))}");
+AssertTrue(
+    freezeRestartOverride?["DT_LoginRewardHub"]?["on_error"]?.Values<string>()
+        .SequenceEqual(["DT_RestartGame"]) == true,
+    "开启卡死重启后，日课登录奖励 hub 超时应转入 DT_RestartGame");
+var freezeTimeoutOverride = interfaceJson["option"]?["卡死等待时间"]?["pipeline_override"] as JObject;
+AssertTrue(
+    freezeTimeoutOverride?["DT_DetectWhereAmI"]?["timeout"]?.Value<string>() == "{timeout_seconds}000",
+    "卡死等待时间应覆盖日课 DT_DetectWhereAmI，不能继续使用固定10秒超时");
 for (var index = 1; index <= 5; index++)
 {
     var enterTrainingAction = dailyPipeline[$"DT_DrillEnterTraining{index}"]?["action"];
