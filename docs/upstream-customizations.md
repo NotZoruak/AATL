@@ -49,6 +49,14 @@
 
 任务队列的外层异步执行必须等待 `ExecuteTasks` 完整返回后再进入停止流程。调用 `TaskManager.RunTaskAsync` 时应使用 `Func<Task>` 重载，不能把异步 lambda 绑定到 `Action` 重载，否则会在第一个 `await` 后提前执行停止逻辑，并将正常完成的任务记录为“手动停止”。
 
+任务队列需要在普通任务之间自动插入 `GoHome`，确保下一个游戏任务从本丸开始；最后一个任务后不插入。MFAA 提供的特殊任务通过 `Entry` 标识（如 `CountdownAction`、`WebhookAction`）识别，特殊任务前不得插入回本丸。特殊任务集合由任务队列策略与任务添加界面共用，升级时不得恢复为无条件插入。
+
+### `recovery.game-and-emulator-restart`
+
+保留 MATR 对 MFAAvalonia 卡死恢复动作的二次开发。`RestartGameAction` 必须从当前 ADB 配置读取目标应用包名，优先通过 `cmd package resolve-activity` 解析实际启动 Activity，再使用 `am start -n` 启动，不能依赖部分模拟器缺失的 `monkey` 命令。
+
+恢复流程必须区分模拟器重启失败与游戏启动失败：模拟器重启失败时记录错误并让恢复动作失败；模拟器已恢复但游戏启动失败时记录警告，并将控制权交回任务 pipeline，继续尝试游戏图标、登录和主枢纽流程。升级 MFAAvalonia 的自定义动作注册、ADB 配置读取或任务错误处理时，必须保留该行为。
+
 ### `runtime.resource-path-and-packaging`
 
 保留资源大小写兼容、桌面发布结构、图标与 `libloader` 启动钩子；不恢复 Python agent。验证完整包资源加载、Windows/macOS 发布及 agent 排除。
