@@ -477,6 +477,12 @@ public class MaaProcessor
     }
 
     /// <summary>
+    /// {PROJECT_DIR} 占位符的标准替换值：interface 文件所在目录。
+    /// </summary>
+    public static string ProjectDir =>
+        Path.GetDirectoryName(GetInterfaceFilePath() ?? AppPaths.InterfaceJsonPath) ?? AppPaths.DataRoot;
+
+    /// <summary>
     /// 获取 interface 文件路径，优先返回 .jsonc，其次 .json
     /// </summary>
     public static string? GetInterfaceFilePath()
@@ -567,7 +573,7 @@ public class MaaProcessor
             foreach (var customResource in value?.Resource ?? Enumerable.Empty<MaaInterface.MaaInterfaceResource>())
             {
                 var nameKey = customResource.Name?.Trim() ?? string.Empty;
-                var paths = MaaInterface.ReplacePlaceholder(customResource.Path ?? new(), AppPaths.DataRoot);
+                var paths = MaaInterface.ReplacePlaceholder(customResource.Path ?? new(), ProjectDir);
                 customResource.ResolvedPath = paths;
                 value!.Resources[nameKey] = customResource;
             }
@@ -2341,7 +2347,7 @@ public class MaaProcessor
                         Name = "默认",
                         Path =
                         [
-                            "{PROJECT_DIR}/assets/resource/base",
+                            "{PROJECT_DIR}/resource/base",
                         ],
                     },
                 ],

@@ -119,9 +119,19 @@ AssertTrue(fileLogExporterSource.Contains("ToastHelper.SuccessWithSurvey(", Stri
     && toastHelperSource.Contains("public static void SuccessWithSurvey(", StringComparison.Ordinal)
     && toastHelperSource.Contains("去反馈bug", StringComparison.Ordinal),
     "导出日志成功后必须显示带问卷链接的反馈提示");
-AssertTrue(defaultInterfaceSource.Contains("{PROJECT_DIR}/assets/resource/base", StringComparison.Ordinal)
-    && !defaultInterfaceSource.Contains("{PROJECT_DIR}/resource/base", StringComparison.Ordinal),
-    "默认 interface 的资源路径必须位于 assets/resource，不能在根目录生成 resource 样例目录");
+AssertTrue(defaultInterfaceSource.Contains("{PROJECT_DIR}/resource/base", StringComparison.Ordinal)
+    && !defaultInterfaceSource.Contains("{PROJECT_DIR}/assets/resource/base", StringComparison.Ordinal),
+    "默认 interface 的资源路径必须相对 interface 文件所在的 assets 目录，不能在根目录生成 resource 样例目录");
+AssertTrue(taskStartProcessorSource.Contains(
+        "public static string ProjectDir =>",
+        StringComparison.Ordinal)
+    && taskStartProcessorSource.Contains(
+        "Path.GetDirectoryName(GetInterfaceFilePath() ?? AppPaths.InterfaceJsonPath) ?? AppPaths.DataRoot;",
+        StringComparison.Ordinal)
+    && taskStartProcessorSource.Contains(
+        "MaaInterface.ReplacePlaceholder(customResource.Path ?? new(), ProjectDir)",
+        StringComparison.Ordinal),
+    "资源路径解析必须以 interface 文件所在目录作为 {PROJECT_DIR}，不能以程序根目录解析");
 
 var optionInterfaceJson = JObject.Parse(File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "assets", "interface.json")));

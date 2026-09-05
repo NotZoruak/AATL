@@ -81,7 +81,7 @@
       "last_verified_upstream": "2.16.1",
       "migration_strategy": "采用 2.16.1 项目文件和更新流程，只覆盖明确的资源根、发布和 agent 排除点。",
       "verification": ["完整测试包可加载资源", "不会创建或下载 agent", "默认 interface 不会在根目录创建 resource/base/pipeline/sample.json", "Windows 与 macOS 发布路径正确", "Windows 发布目录包含 MATR.exe 和 MATR.dll", "打包时 PublishDir 中的 MFAAvalonia.Core.dll 版本与包内文件哈希一致"],
-      "notes": "项目根目录内可做大小写容错，不能扩展为任意磁盘搜索。资源定义和资源目录固定从 assets/interface.json、assets/interface.jsonc、assets/resource 读取，否则会触发上游默认资源兜底。CheckInterface 生成默认 interface 时也必须使用 {PROJECT_DIR}/assets/resource/base，不能使用根目录 resource/base。Windows 发布包统一使用 runtimes/libs，运行时探测配置必须同步指向该目录；根级 libs 仅用于补充缺失依赖，不能覆盖 runtimes/libs 的本次发布产物。桌面项目的 AssemblyName 与 OutputName 必须为 MATR；不能恢复上游 MFAAvalonia 输出名，否则 pack_win.ps1 会回退打包根目录残留的旧 MATR 产物。Windows 打包必须先发布，将宿主文件和 runtimes 同步到开发根目录，再以根目录为输入执行 pack_win.ps1。"
+      "notes": "项目根目录内可做大小写容错，不能扩展为任意磁盘搜索。资源定义和资源目录固定从 assets/interface.json、assets/interface.jsonc、assets/resource 读取，否则会触发上游默认资源兜底。MaaProcessor.ProjectDir 必须是 interface 文件所在的 assets 目录；资源路径与 CheckInterface 默认路径统一使用 {PROJECT_DIR}/resource/base，最终解析为 assets/resource/base，不能在根目录创建 resource/base。Windows 发布包统一使用 runtimes/libs，运行时探测配置必须同步指向该目录；根级 libs 仅用于补充缺失依赖，不能覆盖 runtimes/libs 的本次发布产物。桌面项目的 AssemblyName 与 OutputName 必须为 MATR；不能恢复上游 MFAAvalonia 输出名，否则 pack_win.ps1 会回退打包根目录残留的旧 MATR 产物。Windows 打包必须先发布，将宿主文件和 runtimes 同步到开发根目录，再以根目录为输入执行 pack_win.ps1。"
     },
     {
       "id": "privacy.telemetry-disabled",

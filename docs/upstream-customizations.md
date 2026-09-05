@@ -59,7 +59,7 @@ Windows 发布目录可能同时在 `runtimes/libs` 与根级 `libs` 放置托�
 
 MATR 的资源包固定在 `assets/`：`AppPaths.InterfaceJsonPath`、`AppPaths.InterfaceJsoncPath` 和 `AppPaths.ResourceDirectory` 必须分别解析到 `assets/interface.json`、`assets/interface.jsonc` 与 `assets/resource`。上游若改回程序根目录布局，会触发默认资源兜底并显示空任务列表。
 
-`MaaProcessor.CheckInterface` 生成默认 interface 时，资源路径也必须是 `{PROJECT_DIR}/assets/resource/base`。不得使用 `{PROJECT_DIR}/resource/base`，否则启动阶段会在程序根目录创建不需要的 `resource/base/pipeline/sample.json`。
+`MaaProcessor.ProjectDir` 必须解析为 `interface.json` 所在目录（MATR 即 `assets/`），并且所有 resource 路径均以它替换 `{PROJECT_DIR}`。`MaaProcessor.CheckInterface` 的默认资源路径必须为 `{PROJECT_DIR}/resource/base`；两项必须配套，最终解析到 `assets/resource/base`，不得在程序根目录创建不需要的 `resource/base/pipeline/sample.json`。
 
 ### `privacy.telemetry-disabled`
 
