@@ -25,8 +25,8 @@
       "baseline_upstream": "2.13.0",
       "last_verified_upstream": "2.16.1",
       "migration_strategy": "以 2.16.1 桌面根窗口与实例标签页为基础，在根级 RootViewContent 中逐入口重新注册。",
-      "verification": ["所有 MATR 工具入口可打开", "工具页切换实例后不会被替换或重置", "任务列表和设置页布局可用"],
-      "notes": "Views/Mobile/RootViewContent 是桌面与移动端共用的根级导航壳，不能按移动端排除；仅独立移动端宿主与页面不迁入。Assets/logo.ico 必须使用 MATR 图标。"
+      "verification": ["所有 MATR 工具入口可打开", "工具页切换实例后不会被替换或重置", "任务列表和设置页布局可用", "运行态耗时与状态图标显示在任务名称下方，不截断名称", "状态图标与设置齿轮视觉中轴重合，齿轮右侧无遗留固定空白"],
+      "notes": "Views/Mobile/RootViewContent 是桌面与移动端共用的根级导航壳，不能按移动端排除；仅独立移动端宿主与页面不迁入。Assets/logo.ico 必须使用 MATR 图标。任务运行态采用两行布局：第一行只显示名称和设置齿轮，第二行显示耗时与状态图标，避免窄窗口优先截断中文任务名称。状态图标与齿轮共用 24×24 布局边界；为补偿 Suki 图标几何的视觉偏移，状态图标组向右平移 3 个逻辑像素。"
     },
     {
       "id": "task-formation-config.normal-task",

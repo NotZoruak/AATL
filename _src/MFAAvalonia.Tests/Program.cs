@@ -95,6 +95,23 @@ AssertTrue(taskQueueViewMarkup.Contains("Command=\"{Binding ToggleSelectAllComma
     && !taskQueueViewMarkup.Contains("Command=\"{Binding SelectAllCommand}\"", StringComparison.Ordinal)
     && !taskQueueViewMarkup.Contains("Command=\"{Binding SelectNoneCommand}\"", StringComparison.Ordinal),
     "任务列表必须使用一个按钮在全选与全不选之间切换，不能恢复上游的两个独立按钮");
+AssertTrue(taskQueueViewMarkup.Contains("RowDefinitions=\"Auto,Auto\"", StringComparison.Ordinal)
+    && taskQueueViewMarkup.Contains("Grid.Row=\"1\"", StringComparison.Ordinal)
+    && taskQueueViewMarkup.Contains("ColumnDefinitions=\"Auto,*,24\"", StringComparison.Ordinal)
+    && !taskQueueViewMarkup.Contains("ColumnDefinitions=\"Auto,*,36,20,3,18\"", StringComparison.Ordinal)
+    && !taskQueueViewMarkup.Contains("ColumnDefinitions=\"Auto,*,24,3,18\"", StringComparison.Ordinal),
+    "运行耗时必须显示在任务名下方，不能占用任务名称所在行的固定宽度");
+AssertTrue(taskQueueViewMarkup.Contains("<Grid Grid.Column=\"2\" Grid.Row=\"1\" Width=\"24\" Height=\"24\"", StringComparison.Ordinal),
+    "任务运行状态图标必须使用与齿轮相同的 24×24 布局边界，确保两者中轴重合");
+var runningStatusGridStart = taskQueueViewMarkup.IndexOf(
+    "<Grid Grid.Column=\"2\" Grid.Row=\"1\" Width=\"24\" Height=\"24\"",
+    StringComparison.Ordinal);
+AssertTrue(runningStatusGridStart >= 0
+    && taskQueueViewMarkup.Substring(runningStatusGridStart, 720).Contains("<Path Width=\"16\" Height=\"16\"", StringComparison.Ordinal),
+    "任务运行状态图标必须在统一布局边界内使用 16×16 图标尺寸，保持与齿轮的视觉中心对齐");
+AssertTrue(runningStatusGridStart >= 0
+    && taskQueueViewMarkup.Substring(runningStatusGridStart, 980).Contains("<TranslateTransform X=\"3\" />", StringComparison.Ordinal),
+    "任务运行状态图标必须补偿图形自身的视觉偏移，与齿轮视觉中轴重合");
 AssertTrue(taskQueueViewModelSource.Contains("private void ToggleSelectAll()", StringComparison.Ordinal)
     && !taskQueueViewModelSource.Contains("private void SelectAll()", StringComparison.Ordinal)
     && !taskQueueViewModelSource.Contains("private void SelectNone()", StringComparison.Ordinal),
@@ -167,6 +184,9 @@ AssertTrue(packMacScript.Contains("$AgentTarget = Join-Path $MacOsDir 'MaaAgentB
     && packMacScript.Contains("Remove-Item -LiteralPath $AgentTarget -Recurse -Force", StringComparison.Ordinal)
     && packMacScript.Contains("Remove-Item -LiteralPath $RuntimeAgentTarget -Recurse -Force", StringComparison.Ordinal),
     "macOS 打包脚本在复制发布产物后必须清理根目录和 runtimes/libs 中已移除的 MaaAgentBinary 目录");
+AssertTrue(packMacScript.Contains("$BundleExecutable = Join-Path $MacOsDir 'MATR'", StringComparison.Ordinal)
+    && !packMacScript.Contains("$SourceExecutable = Join-Path $MacOsDir 'MFAAvalonia'", StringComparison.Ordinal),
+    "macOS 打包脚本必须直接使用发布产物中的 MATR 入口，不能再查找旧的 MFAAvalonia 名称");
 AssertTrue(taskOptionGeneratorSource.Contains("var grid = new UniformGrid", StringComparison.Ordinal)
     && taskOptionGeneratorSource.Contains("void UpdateColumns()", StringComparison.Ordinal)
     && taskOptionGeneratorSource.Contains("grid.Columns = columns", StringComparison.Ordinal),

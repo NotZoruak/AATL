@@ -56,12 +56,10 @@ $RuntimeAgentTarget = Join-Path $MacOsDir 'runtimes\libs\MaaAgentBinary'
 if (Test-Path $RuntimeAgentTarget) {
     Remove-Item -LiteralPath $RuntimeAgentTarget -Recurse -Force
 }
-$SourceExecutable = Join-Path $MacOsDir 'MFAAvalonia'
 $BundleExecutable = Join-Path $MacOsDir 'MATR'
-if (-not (Test-Path -LiteralPath $SourceExecutable)) {
-    throw "macOS 发布产物缺少入口程序: $SourceExecutable"
+if (-not (Test-Path -LiteralPath $BundleExecutable)) {
+    throw "macOS 发布产物缺少入口程序: $BundleExecutable"
 }
-Move-Item -LiteralPath $SourceExecutable -Destination $BundleExecutable -Force
 Copy-Item (Join-Path $Root 'assets\interface.json') -Destination (Join-Path $MacOsDir 'assets\interface.json') -Force
 Copy-Item (Join-Path $Root 'assets\resource') -Destination (Join-Path $MacOsDir 'assets\resource') -Recurse -Force
 Copy-Item (Join-Path $Root 'README.md') -Destination $MacOsDir -Force
