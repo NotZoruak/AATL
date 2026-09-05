@@ -58,6 +58,13 @@ public partial class WarehouseViewModel : ViewModelBase
         || CoreResources.Any(HasCoreChanged)
         || OtherItems.Any(HasOtherChanged);
     public bool IsIdle => !IsRecognizing;
+    public WarehouseChartRange SelectedChartRange { get; private set; } = WarehouseChartRange.Last7Days;
+    public bool IsLast24HoursSelected => SelectedChartRange == WarehouseChartRange.Last24Hours;
+    public bool IsLast7DaysSelected => SelectedChartRange == WarehouseChartRange.Last7Days;
+    public bool IsLast30DaysSelected => SelectedChartRange == WarehouseChartRange.Last30Days;
+    public string Last24HoursButtonText => IsLast24HoursSelected ? "✓ 24小时" : "24小时";
+    public string Last7DaysButtonText => IsLast7DaysSelected ? "✓ 7天" : "7天";
+    public string Last30DaysButtonText => IsLast30DaysSelected ? "✓ 30天" : "30天";
 
     [ObservableProperty] private bool _isRecognizing;
 
@@ -330,10 +337,38 @@ public partial class WarehouseViewModel : ViewModelBase
     private void RebuildCharts()
     {
         Charts.Clear();
+        var now = DateTime.Now;
+        var filteredHistory = WarehouseResourceHistoryFilter.FilterWithIndices(
+            _editor.Data.ResourceHistory, SelectedChartRange, now);
         foreach (var definition in CoreDefinitions)
-            Charts.Add(new WarehouseChartViewModel(definition.Name, _editor.Data.ResourceHistory, DeleteChartPoint));
+            Charts.Add(new WarehouseChartViewModel(definition.Name, filteredHistory, _editor.Data.ResourceHistory,
+                SelectedChartRange, now, DeleteChartPoint));
         OnPropertyChanged(nameof(HasChartHistory));
         OnPropertyChanged(nameof(NoChartHistory));
+    }
+
+    [RelayCommand]
+    private void SelectLast24Hours() => SetChartRange(WarehouseChartRange.Last24Hours);
+
+    [RelayCommand]
+    private void SelectLast7Days() => SetChartRange(WarehouseChartRange.Last7Days);
+
+    [RelayCommand]
+    private void SelectLast30Days() => SetChartRange(WarehouseChartRange.Last30Days);
+
+    private void SetChartRange(WarehouseChartRange range)
+    {
+        if (SelectedChartRange == range)
+            return;
+
+        SelectedChartRange = range;
+        OnPropertyChanged(nameof(IsLast24HoursSelected));
+        OnPropertyChanged(nameof(IsLast7DaysSelected));
+        OnPropertyChanged(nameof(IsLast30DaysSelected));
+        OnPropertyChanged(nameof(Last24HoursButtonText));
+        OnPropertyChanged(nameof(Last7DaysButtonText));
+        OnPropertyChanged(nameof(Last30DaysButtonText));
+        RebuildCharts();
     }
 
     private static WarehouseResourceSnapshot CloneSnapshot(WarehouseResourceSnapshot snapshot) => new()
@@ -409,14 +444,17 @@ public sealed partial class WarehouseOtherItemViewModel : ObservableObject
 public sealed class WarehouseChartViewModel
 {
     public const double ChartWidth = 650;
-    public const double ChartHeight = 150;
+    public const double ChartHeight = 170;
+    private const double AxisY = 145;
     public ObservableCollection<WarehouseChartPointViewModel> Points { get; } = [];
+    public ObservableCollection<WarehouseChartTimeAxisLabel> AxisLabels { get; } = [];
 
-    public WarehouseChartViewModel(string name, IEnumerable<WarehouseResourceSnapshot> history, Action<string, int> deletePoint)
+    public WarehouseChartViewModel(string name, IEnumerable<(WarehouseResourceSnapshot Snapshot, int Index)> history,
+        IReadOnlyList<WarehouseResourceSnapshot> fullHistory,
+        WarehouseChartRange range, DateTime now, Action<string, int> deletePoint)
     {
         Name = name;
         var snapshots = history
-            .Select((snapshot, index) => (Snapshot: snapshot, Index: index))
             .Where(item => item.Snapshot.Values.ContainsKey(name))
             .ToList();
         var values = snapshots
@@ -429,7 +467,16 @@ public sealed class WarehouseChartViewModel
             MaximumValue = values.Max();
             LatestValue = values[^1];
         }
-        BuildPoints(name, snapshots, values, deletePoint);
+        var start = now - range switch
+        {
+            WarehouseChartRange.Last24Hours => TimeSpan.FromHours(24),
+            WarehouseChartRange.Last7Days => TimeSpan.FromDays(7),
+            WarehouseChartRange.Last30Days => TimeSpan.FromDays(30),
+            _ => throw new ArgumentOutOfRangeException(nameof(range), range, "不支持的图表时间范围"),
+        };
+        foreach (var label in WarehouseChartTimeAxis.BuildLabels(start, now, range, ChartWidth))
+            AxisLabels.Add(label);
+        BuildPoints(name, snapshots, values, start, now, fullHistory, deletePoint);
     }
     public string Name { get; }
     public int PointCount { get; }
@@ -443,7 +490,9 @@ public sealed class WarehouseChartViewModel
         : $"当前 {LatestValue:N0} · 范围 {MinimumValue:N0}–{MaximumValue:N0}";
     public Geometry? LineGeometry { get; private set; }
 
-    private void BuildPoints(string name, IReadOnlyList<(WarehouseResourceSnapshot Snapshot, int Index)> snapshots, IReadOnlyList<int> values, Action<string, int> deletePoint)
+    private void BuildPoints(string name, IReadOnlyList<(WarehouseResourceSnapshot Snapshot, int Index)> snapshots,
+        IReadOnlyList<int> values, DateTime start, DateTime end, IReadOnlyList<WarehouseResourceSnapshot> fullHistory,
+        Action<string, int> deletePoint)
     {
         if (values.Count == 0)
             return;
@@ -453,19 +502,17 @@ public sealed class WarehouseChartViewModel
         var span = Math.Max(1d, maximum - minimum);
         const double horizontalPadding = 18;
         var width = Math.Max(1d, ChartWidth - horizontalPadding * 2);
-        var height = ChartHeight - 20;
-        var firstRecordedAt = snapshots[0].Snapshot.RecordedAt;
-        var lastRecordedAt = snapshots[^1].Snapshot.RecordedAt;
-        var totalElapsedTicks = (lastRecordedAt - firstRecordedAt).Ticks;
+        var height = AxisY - 20;
+        var totalElapsedTicks = (end - start).Ticks;
         for (var i = 0; i < values.Count; i++)
         {
-            var x = values.Count == 1
-                ? ChartWidth / 2
-                : totalElapsedTicks > 0
-                    ? horizontalPadding + width * (snapshots[i].Snapshot.RecordedAt - firstRecordedAt).Ticks / totalElapsedTicks
-                    : horizontalPadding + width * i / (values.Count - 1);
+            var x = totalElapsedTicks > 0
+                ? horizontalPadding + width * (snapshots[i].Snapshot.RecordedAt - start).Ticks / totalElapsedTicks
+                : ChartWidth / 2;
             var y = 10 + height - (values[i] - minimum) / span * height;
-            Points.Add(new WarehouseChartPointViewModel(x, y, values[i], snapshots[i].Snapshot.RecordedAt, snapshots[i].Index, name, deletePoint));
+            var change = FindChange(fullHistory, snapshots[i].Index, name, values[i]);
+            Points.Add(new WarehouseChartPointViewModel(x, y, values[i], change, snapshots[i].Snapshot.RecordedAt,
+                snapshots[i].Index, name, deletePoint));
         }
 
         if (Points.Count < 2)
@@ -480,15 +527,28 @@ public sealed class WarehouseChartViewModel
         }
         LineGeometry = geometry;
     }
+
+    private static int? FindChange(IReadOnlyList<WarehouseResourceSnapshot> history, int index, string name, int value)
+    {
+        for (var previousIndex = index - 1; previousIndex >= 0; previousIndex--)
+        {
+            if (history[previousIndex].Values.TryGetValue(name, out var previousValue))
+                return value - previousValue;
+        }
+
+        return null;
+    }
 }
 
 public sealed class WarehouseChartPointViewModel
 {
-    public WarehouseChartPointViewModel(double x, double y, int value, DateTime recordedAt, int historyIndex, string resourceName, Action<string, int> deletePoint)
+    public WarehouseChartPointViewModel(double x, double y, int value, int? change, DateTime recordedAt,
+        int historyIndex, string resourceName, Action<string, int> deletePoint)
     {
         X = x;
         Y = y;
         Value = value;
+        Change = change;
         RecordedAt = recordedAt;
         DeleteCommand = new RelayCommand(() => deletePoint(resourceName, historyIndex));
     }
@@ -498,7 +558,19 @@ public sealed class WarehouseChartPointViewModel
     public double Left => X - 6;
     public double Top => Y - 6;
     public int Value { get; }
+    public int? Change { get; }
     public DateTime RecordedAt { get; }
-    public string TooltipText => $"{RecordedAt:yyyy-MM-dd HH:mm:ss}\n{Value:N0}";
+    public string RecordedAtText => RecordedAt.ToString("yyyy-MM-dd HH:mm:ss");
+    public string CurrentText => $"当前：{Value:N0}";
+    public string ChangeValueText => Change.HasValue
+        ? $"{Change.Value:+#,##0;-#,##0;0}"
+        : "—";
+    public IBrush ChangeBrush => Change switch
+    {
+        > 0 => new SolidColorBrush(Color.Parse("#2E9B62")),
+        < 0 => new SolidColorBrush(Color.Parse("#D05A5A")),
+        _ => new SolidColorBrush(Color.Parse("#7B8798")),
+    };
+    public string TooltipText => WarehouseChartTooltipFormatter.Format(RecordedAt, Value, Change);
     public ICommand DeleteCommand { get; }
 }

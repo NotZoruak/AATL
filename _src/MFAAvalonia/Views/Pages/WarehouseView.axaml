@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pages="clr-namespace:MFAAvalonia.ViewModels.Pages"
+             xmlns:services="clr-namespace:MFAAvalonia.Services"
              xmlns:extensions="clr-namespace:MFAAvalonia.Extensions"
              mc:Ignorable="d"
              d:DesignWidth="1280"
@@ -106,11 +107,17 @@
 
             <Border Grid.Column="1" Background="{DynamicResource SukiCardBackground}" CornerRadius="10" Padding="14,12">
                 <Grid RowDefinitions="Auto,*" RowSpacing="8">
-                    <Grid ColumnDefinitions="*,Auto,Auto">
+                    <Grid ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto">
                         <TextBlock Text="核心资源变化" FontSize="15" FontWeight="SemiBold" Foreground="#7B8798" />
-                        <Button Grid.Column="1" Content="刷新图表" Command="{Binding RefreshChartsCommand}"
+                        <Button Grid.Column="1" Content="{Binding Last24HoursButtonText}" Command="{Binding SelectLast24HoursCommand}"
                                 Background="Transparent" Foreground="#7B8798" Padding="8,2" />
-                        <Button Grid.Column="2" Content="清空" Command="{Binding ClearChartHistoryCommand}"
+                        <Button Grid.Column="2" Content="{Binding Last7DaysButtonText}" Command="{Binding SelectLast7DaysCommand}"
+                                Background="Transparent" Foreground="#7B8798" Padding="8,2" />
+                        <Button Grid.Column="3" Content="{Binding Last30DaysButtonText}" Command="{Binding SelectLast30DaysCommand}"
+                                Background="Transparent" Foreground="#7B8798" Padding="8,2" />
+                        <Button Grid.Column="4" Content="刷新图表" Command="{Binding RefreshChartsCommand}"
+                                Background="Transparent" Foreground="#7B8798" Padding="8,2" />
+                        <Button Grid.Column="5" Content="清空" Command="{Binding ClearChartHistoryCommand}"
                                 Background="Transparent" Foreground="#C96B6B" Padding="8,2" />
                     </Grid>
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
@@ -124,12 +131,19 @@
                                         <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="110,*" ColumnSpacing="12" RowSpacing="4">
                                             <TextBlock Text="{Binding Name}" FontWeight="SemiBold" VerticalAlignment="Center" />
                                             <TextBlock Grid.Column="1" Text="{Binding SummaryText}" Foreground="{DynamicResource SukiLowText}" VerticalAlignment="Center" />
-                                            <Viewbox Grid.Row="1" Grid.ColumnSpan="2" Height="150"
+                                            <Viewbox Grid.Row="1" Grid.ColumnSpan="2" Height="170"
                                                      HorizontalAlignment="Stretch" Stretch="Fill"
                                                      IsVisible="{Binding HasHistory}">
-                                                <Canvas Width="650" Height="150">
+                                                <Canvas Width="650" Height="170">
+                                                    <Line StartPoint="0,30" EndPoint="650,30" Stroke="#AAB4C3" StrokeThickness="1" StrokeDashArray="4,4" Opacity="0.55" />
+                                                    <Line StartPoint="0,68" EndPoint="650,68" Stroke="#AAB4C3" StrokeThickness="1" StrokeDashArray="4,4" Opacity="0.55" />
+                                                    <Line StartPoint="0,106" EndPoint="650,106" Stroke="#AAB4C3" StrokeThickness="1" StrokeDashArray="4,4" Opacity="0.55" />
+                                                    <Line StartPoint="162.5,0" EndPoint="162.5,145" Stroke="#AAB4C3" StrokeThickness="1" StrokeDashArray="4,4" Opacity="0.55" />
+                                                    <Line StartPoint="325,0" EndPoint="325,145" Stroke="#AAB4C3" StrokeThickness="1" StrokeDashArray="4,4" Opacity="0.55" />
+                                                    <Line StartPoint="487.5,0" EndPoint="487.5,145" Stroke="#AAB4C3" StrokeThickness="1" StrokeDashArray="4,4" Opacity="0.55" />
+                                                    <Line StartPoint="0,145" EndPoint="650,145" Stroke="#7B8798" StrokeThickness="1" />
                                                     <Path Data="{Binding LineGeometry}" Stroke="#5B8FF9" StrokeThickness="2" Stretch="None" />
-                                                    <ItemsControl Width="650" Height="150" HorizontalAlignment="Left"
+                                                    <ItemsControl Width="650" Height="170" HorizontalAlignment="Left"
                                                                   ItemsSource="{Binding Points}">
                                                     <ItemsControl.Styles>
                                                         <Style Selector="ContentPresenter">
@@ -140,13 +154,27 @@
                                                     </ItemsControl.Styles>
                                                     <ItemsControl.ItemsPanel>
                                                         <ItemsPanelTemplate>
-                                                            <Canvas Width="650" Height="150" />
+                                                            <Canvas Width="650" Height="170" />
                                                         </ItemsPanelTemplate>
                                                     </ItemsControl.ItemsPanel>
                                                     <ItemsControl.ItemTemplate>
                                                         <DataTemplate x:DataType="pages:WarehouseChartPointViewModel">
                                                             <Ellipse Width="12" Height="12" Fill="#5B8FF9" Stroke="White" StrokeThickness="2"
-                                                                     ToolTip.Tip="{Binding TooltipText}">
+                                                                     >
+                                                                <ToolTip.Tip>
+                                                                    <ToolTip>
+                                                                        <Border Padding="12,8" CornerRadius="8" Background="#FFFFFF">
+                                                                            <StackPanel Spacing="2">
+                                                                                <TextBlock Text="{Binding RecordedAtText}" Foreground="#202735" />
+                                                                                <TextBlock Text="{Binding CurrentText}" Foreground="#202735" />
+                                                                                <StackPanel Orientation="Horizontal">
+                                                                                    <TextBlock Text="变动：" Foreground="#202735" />
+                                                                                    <TextBlock Text="{Binding ChangeValueText}" Foreground="{Binding ChangeBrush}" />
+                                                                                </StackPanel>
+                                                                            </StackPanel>
+                                                                        </Border>
+                                                                    </ToolTip>
+                                                                </ToolTip.Tip>
                                                                 <Ellipse.ContextMenu>
                                                                     <ContextMenu>
                                                                         <MenuItem Header="删除此记录点" Command="{Binding DeleteCommand}" />
@@ -155,6 +183,27 @@
                                                             </Ellipse>
                                                         </DataTemplate>
                                                     </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                    <ItemsControl Width="650" Height="170" HorizontalAlignment="Left"
+                                                                  ItemsSource="{Binding AxisLabels}">
+                                                        <ItemsControl.Styles>
+                                                            <Style Selector="ContentPresenter">
+                                                                <Setter Property="Canvas.Left" Value="{ReflectionBinding X}" />
+                                                                <Setter Property="Canvas.Top" Value="148" />
+                                                                <Setter Property="Panel.ZIndex" Value="2" />
+                                                            </Style>
+                                                        </ItemsControl.Styles>
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <Canvas Width="650" Height="170" />
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate x:DataType="services:WarehouseChartTimeAxisLabel">
+                                                                <TextBlock Text="{Binding Text}" FontSize="10" Foreground="#7B8798"
+                                                                           HorizontalAlignment="Center" />
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
                                                     </ItemsControl>
                                                 </Canvas>
                                             </Viewbox>

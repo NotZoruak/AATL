@@ -168,6 +168,14 @@ AssertTrue(taskStartProcessorSource.Contains(
 
 var optionInterfaceJson = JObject.Parse(File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "assets", "interface.json")));
+foreach (var syncOptionName in new[] { "S_同步远征", "U_同步远征", "LR_同步远征", "TT_同步远征", "EC_同步后勤" })
+{
+    var syncOverride = optionInterfaceJson["option"]?[syncOptionName]?["cases"]?
+        .Children<JObject>().Single()["pipeline_override"];
+    AssertTrue(Enumerable.Range(1, 5).All(team =>
+            syncOverride?[$"E_CheckTeam{team}"]?["enabled"]?.Value<bool>() == true),
+        $"{syncOptionName} 应启用第一至第五队的远征状态检查");
+}
 var formationPresetControlSource = ExtractSourceSection(
     taskOptionGeneratorSource,
     "private Control CreateFormationPresetControl(",
@@ -1232,6 +1240,46 @@ File.Delete(historyPath);
 AssertTrue(historyDraft.ResourceHistory.Count == 1
     && historyDraft.ResourceHistory[0].Values["木炭"] == 1234,
     "完整仓库识别结束后应追加核心资源历史快照");
+
+var filterNow = new DateTime(2026, 9, 5, 12, 0, 0, DateTimeKind.Local);
+var filterHistory = new List<WarehouseResourceSnapshot>
+{
+    new() { RecordedAt = filterNow.AddHours(-24), Values = new Dictionary<string, int> { ["木炭"] = 1 } },
+    new() { RecordedAt = filterNow.AddHours(-24).AddTicks(-1), Values = new Dictionary<string, int> { ["木炭"] = 2 } },
+    new() { RecordedAt = filterNow.AddDays(-7), Values = new Dictionary<string, int> { ["木炭"] = 3 } },
+    new() { RecordedAt = filterNow.AddDays(-30), Values = new Dictionary<string, int> { ["木炭"] = 4 } },
+    new() { RecordedAt = filterNow.AddMinutes(1), Values = new Dictionary<string, int> { ["木炭"] = 5 } },
+};
+AssertTrue(WarehouseResourceHistoryFilter.Filter(filterHistory, WarehouseChartRange.Last24Hours, filterNow)
+        .Select(snapshot => snapshot.Values["木炭"]).SequenceEqual([1]),
+    "24小时范围应包含边界记录且排除更早和未来记录");
+AssertTrue(WarehouseResourceHistoryFilter.Filter(filterHistory, WarehouseChartRange.Last7Days, filterNow)
+        .Select(snapshot => snapshot.Values["木炭"]).SequenceEqual([1, 2, 3]),
+    "7天范围应包含七天边界记录");
+AssertTrue(WarehouseResourceHistoryFilter.Filter(filterHistory, WarehouseChartRange.Last30Days, filterNow)
+        .Select(snapshot => snapshot.Values["木炭"]).SequenceEqual([1, 2, 3, 4]),
+    "30天范围应包含三十天边界记录");
+var indexedHistory = WarehouseResourceHistoryFilter.FilterWithIndices(filterHistory, WarehouseChartRange.Last24Hours, filterNow);
+AssertTrue(indexedHistory.Count == 1 && indexedHistory[0].Index == 0,
+    "时间范围筛选应保留原始历史索引，确保删除记录点时定位正确");
+var axisLabels = WarehouseChartTimeAxis.BuildLabels(
+    filterNow.AddHours(-24), filterNow, WarehouseChartRange.Last24Hours, 650);
+AssertTrue(axisLabels.Count == 5
+    && axisLabels[0].Text == "12:00"
+    && axisLabels[^1].Text == "12:00"
+    && axisLabels[0].X == 0
+    && axisLabels[^1].X == 650,
+    "24小时图表的X轴应显示五个小时分钟刻度并覆盖完整时间范围");
+var weeklyAxisLabels = WarehouseChartTimeAxis.BuildLabels(
+    filterNow.AddDays(-7), filterNow, WarehouseChartRange.Last7Days, 650);
+AssertTrue(weeklyAxisLabels.All(label => label.Text.Length == 5),
+    "7天图表的X轴应使用月日格式");
+AssertTrue(WarehouseChartTooltipFormatter.Format(filterNow, 12345, 240)
+        == "2026-09-05 12:00:00\n当前：12,345\n变动：+240",
+    "图表数据点悬停提示应显示当前值和正向变动量");
+AssertTrue(WarehouseChartTooltipFormatter.Format(filterNow, 12000, -345)
+        == "2026-09-05 12:00:00\n当前：12,000\n变动：-345",
+    "图表数据点悬停提示应显示负向变动量");
 
 var updateDataConfigRoot = Path.Combine(Path.GetTempPath(), $"matr-update-data-config-{Guid.NewGuid():N}");
 Directory.CreateDirectory(updateDataConfigRoot);

@@ -28,6 +28,9 @@
     <Compile Include="..\MFAAvalonia\Models\WarehouseData.cs" Link="WarehouseData.cs" />
     <Compile Include="..\MFAAvalonia\Services\WarehouseDataEditor.cs" Link="WarehouseDataEditor.cs" />
     <Compile Include="..\MFAAvalonia\Services\WarehouseScanDraftService.cs" Link="WarehouseScanDraftService.cs" />
+    <Compile Include="..\MFAAvalonia\Services\WarehouseResourceHistoryFilter.cs" Link="WarehouseResourceHistoryFilter.cs" />
+    <Compile Include="..\MFAAvalonia\Services\WarehouseChartTimeAxis.cs" Link="WarehouseChartTimeAxis.cs" />
+    <Compile Include="..\MFAAvalonia\Services\WarehouseChartTooltipFormatter.cs" Link="WarehouseChartTooltipFormatter.cs" />
     <Compile Include="..\MFAAvalonia\Services\UpdateDataScheduleService.cs" Link="UpdateDataScheduleService.cs" />
     <Compile Include="..\MFAAvalonia\Services\UpdateDataPersistenceService.cs" Link="UpdateDataPersistenceService.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\RepairFilterSelection.cs" Link="RepairFilterSelection.cs" />
