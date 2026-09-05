@@ -30,10 +30,22 @@ var taskQueueViewMarkup = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Views", "Pages", "TaskQueueView.axaml"));
 var taskQueueViewModelSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "ViewModels", "Pages", "TaskQueueViewModel.cs"));
+var taskStartProcessorSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Extensions", "MaaFW", "MaaProcessor.cs"));
 var appSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "App.axaml.cs"));
 var taskOptionGeneratorSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "TaskOptionGenerator.cs"));
+var addTaskDialogSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "ViewModels", "UsersControls", "AddTaskDialogViewModel.cs"));
+var desktopProjectSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia.Desktop", "MFAAvalonia.Desktop.csproj"));
+var aboutViewMarkup = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Views", "UserControls", "Settings", "AboutUserControl.axaml"));
+var fileLogExporterSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "FileLogExporter.cs"));
+var toastHelperSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "ToastHelper.cs"));
 var packWinScript = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "tools", "pack_win.ps1"));
 var packMacScript = File.ReadAllText(Path.Combine(
@@ -67,6 +79,13 @@ AssertFalse(applyCurrentDeviceSelectionSource.Contains("Dispatcher.UIThread.Post
     "恢复已保存的 ADB 设备必须同步写入连接配置，不能延后到后台 UI 队列，否则启动连接会读到空序列号");
 AssertFalse(taskQueueViewModelSource.Contains("_liveViewNoImageLogged", StringComparison.Ordinal),
     "实时画面首帧尚未完成时不应立即输出无画面警告，必须改为连续失败确认");
+var startTaskSource = ExtractSourceSection(
+    taskStartProcessorSource,
+    "public async Task StartTask(",
+    "private readonly record struct TaskQueueResult");
+AssertTrue(startTaskSource.Contains("await TaskManager.RunTaskAsync(async () =>", StringComparison.Ordinal)
+    && !startTaskSource.Contains("token: token, name: \"启动任务\"", StringComparison.Ordinal),
+    "启动任务必须等待异步任务队列完成，不能把异步 lambda 绑定到 Action 重载后提前停止");
 var liveViewFrameAvailability = new LiveViewFrameAvailability();
 AssertTrue(liveViewFrameAvailability.RecordFrame(false) == LiveViewFrameAvailabilityChange.None
     && liveViewFrameAvailability.RecordFrame(false) == LiveViewFrameAvailabilityChange.None
@@ -87,9 +106,43 @@ AssertTrue(taskOptionGeneratorSource.Contains("var grid = new UniformGrid", Stri
     && taskOptionGeneratorSource.Contains("void UpdateColumns()", StringComparison.Ordinal)
     && taskOptionGeneratorSource.Contains("grid.Columns = columns", StringComparison.Ordinal),
     "实际生成任务选项的复选框布局应根据可用宽度自适应列数，并拉伸填满当前行");
+AssertTrue(desktopProjectSource.Contains("<AssemblyName>MATR</AssemblyName>", StringComparison.Ordinal)
+    && desktopProjectSource.Contains("<OutputName>MATR</OutputName>", StringComparison.Ordinal),
+    "Windows 发布产物必须使用 MATR 名称，才能与打包脚本和品牌入口保持一致");
+AssertFalse(aboutViewMarkup.Contains("HelpImproveSoftware", StringComparison.Ordinal),
+    "MATR 已禁用遥测，关于页面不得显示没有实际作用的帮助改进软件开关");
+var defaultInterfaceSource = ExtractSourceSection(
+    taskStartProcessorSource,
+    "public static bool CheckInterface(",
+    "// 防止 interface 加载失败时 Toast 重复显示");
+AssertTrue(fileLogExporterSource.Contains("ToastHelper.SuccessWithSurvey(", StringComparison.Ordinal)
+    && toastHelperSource.Contains("public static void SuccessWithSurvey(", StringComparison.Ordinal)
+    && toastHelperSource.Contains("去反馈bug", StringComparison.Ordinal),
+    "导出日志成功后必须显示带问卷链接的反馈提示");
+AssertTrue(defaultInterfaceSource.Contains("{PROJECT_DIR}/assets/resource/base", StringComparison.Ordinal)
+    && !defaultInterfaceSource.Contains("{PROJECT_DIR}/resource/base", StringComparison.Ordinal),
+    "默认 interface 的资源路径必须位于 assets/resource，不能在根目录生成 resource 样例目录");
 
 var optionInterfaceJson = JObject.Parse(File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "assets", "interface.json")));
+var formationPresetControlSource = ExtractSourceSection(
+    taskOptionGeneratorSource,
+    "private Control CreateFormationPresetControl(",
+    "/// <summary>为一键日课的预设部队开关追加预设选择入口。</summary>");
+AssertTrue(optionInterfaceJson["task"]?.Children<JObject>().Any(task =>
+        task["name"]?.Value<string>() == "自定编队"
+        && task["entry"]?.Value<string>() == "FormationConfig"
+        && task["option"]?.Values<string>().SequenceEqual(["FC_选择预设"]) == true) == true
+    && optionInterfaceJson["option"]?["FC_选择预设"]?["type"]?.Value<string>() == "input"
+    && !addTaskDialogSource.Contains("\"FormationConfig\"", StringComparison.Ordinal)
+    && taskOptionGeneratorSource.Contains("IsFormationPresetOption", StringComparison.Ordinal)
+    && taskStartProcessorSource.Contains("task.InterfaceItem?.Entry == \"FormationConfig\"", StringComparison.Ordinal),
+    "自定编队必须作为普通任务注册，使用任务专属预设设置并在运行前注入编队参数，不能作为特殊任务出现");
+AssertTrue(formationPresetControlSource.Contains("RenderFormationPresets(", StringComparison.Ordinal)
+    && formationPresetControlSource.Contains("var presetList = new StackPanel", StringComparison.Ordinal)
+    && !formationPresetControlSource.Contains("selectButton", StringComparison.Ordinal)
+    && !formationPresetControlSource.Contains("viewModel.IsSubPageOpen = true", StringComparison.Ordinal),
+    "自定编队作为普通任务时，预设管理器必须直接显示在任务设置中，不能退化为打开选择子页的按钮");
 AssertTrue(optionInterfaceJson["resource"]?.Children<JObject>().Single(resource =>
         resource["name"]?.Value<string>() == "刀剑乱舞")["path"]?.Values<string>()
         .SequenceEqual(["{PROJECT_DIR}/resource/base"]) == true,

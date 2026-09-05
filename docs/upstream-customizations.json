@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "target_upstream": {
+    "project": "MFAAvalonia",
+    "version": "2.16.1",
+    "commit": "4f11c8122de4f43eafc818a368c9956e3b06249c"
+  },
+  "customizations": [
+    {
+      "id": "task-loader.global-options-hidden",
+      "title": "全局选项不显示为任务项",
+      "purpose": "全局选项仅由设置页管理，不干扰普通任务列表。",
+      "files": ["_src/MFAAvalonia/Extensions/MaaFW/TaskLoader.cs", "_src/MFAAvalonia/Extensions/MaaFW/MaaInterface.cs", "_src/MFAAvalonia/Helper/TaskOptionGenerator.cs", "_src/MFAAvalonia/Helper/ValueType/DragItemViewModel.cs", "_src/MFAAvalonia/Views/Pages/TaskQueueView.axaml", "_src/MFAAvalonia/Views/Pages/TaskQueueView.axaml.cs", "_src/MFAAvalonia/ViewModels/Pages/TaskQueueViewModel.cs"],
+      "baseline_upstream": "2.13.0",
+      "last_verified_upstream": "2.16.1",
+      "migration_strategy": "适配 2.16.1 模板与预设配置模型后保留过滤规则。",
+      "verification": ["全局选项不进入任务列表", "设置页可读写全局选项", "设置页仅显示常规与全局页签", "全局页可打开许可名单和掉落播报子页", "inline_sub_options 为否时显示齿轮并进入子设置页", "inline_sub_options 为真时在母选项页面内联显示下级选项", "checkbox 选项使用方框加文字样式", "is_searchable 为真或假时分别显示或隐藏下拉框搜索", "资源设置项和运行中实例的勾选框不可操作"],
+      "notes": "不能以删除资源选项替代界面过滤。全局页需保留许可名单和掉落播报入口；不得恢复上游高级页。"
+    },
+    {
+      "id": "ui.matr-tools-and-layout",
+      "title": "MATR 侧边栏工具与中文布局",
+      "purpose": "保留剪影识别、刀帐、仓库、工作记录等业务入口，以及适合中文显示的任务区布局。",
+      "files": ["_src/MFAAvalonia/Views/Windows/RootView.axaml", "_src/MFAAvalonia/ViewModels/Windows/RootViewModel.cs", "_src/MFAAvalonia/Views/Pages/", "_src/MFAAvalonia/ViewModels/Pages/"],
+      "baseline_upstream": "2.13.0",
+      "last_verified_upstream": "2.16.1",
+      "migration_strategy": "以 2.16.1 桌面根窗口与实例标签页为基础，在根级 RootViewContent 中逐入口重新注册。",
+      "verification": ["所有 MATR 工具入口可打开", "工具页切换实例后不会被替换或重置", "任务列表和设置页布局可用"],
+      "notes": "Views/Mobile/RootViewContent 是桌面与移动端共用的根级导航壳，不能按移动端排除；仅独立移动端宿主与页面不迁入。Assets/logo.ico 必须使用 MATR 图标。"
+    },
+    {
+      "id": "task-formation-config.normal-task",
+      "title": "自定编队普通任务与预设注入",
+      "purpose": "让自定编队作为普通任务提供可复用的部队、刀装和马匹预设，不依赖上游特殊任务注册。",
+      "files": ["assets/interface.json", "_src/MFAAvalonia/Helper/TaskOptionGenerator.cs", "_src/MFAAvalonia/Extensions/MaaFW/MaaProcessor.cs", "_src/MFAAvalonia/Models/FormationPreset.cs", "assets/resource/base/pipeline/FormationConfig.json"],
+      "baseline_upstream": "2.16.1",
+      "last_verified_upstream": "2.16.1",
+      "migration_strategy": "将入口保留为 interface.json 普通任务，在运行前按 FC_选择预设生成 FormationConfigAction 参数与 pipeline 覆盖；不恢复上游特殊任务列表注册。",
+      "verification": ["任务列表出现自定编队普通任务", "任务设置可选择、新增、编辑、复制、粘贴和删除编队预设", "运行时按所选预设配置目标部队", "每日任务的预设部队可复用同一预设"],
+      "notes": "仅保留 FormationConfig.json 不足以恢复功能：必须同时保留普通任务入口、预设编辑页和 MaaProcessor 参数注入。"
+    },
+    {
+      "id": "services.update-data-scheduling",
+      "title": "更新数据调度与持久化",
+      "purpose": "按用户设置的间隔执行更新数据任务，并在实例配置中持久化状态。",
+      "files": ["_src/MFAAvalonia/Services/UpdateDataPersistenceService.cs", "_src/MFAAvalonia/Services/UpdateDataScheduleService.cs", "_src/MFAAvalonia/Configuration/ConfigurationKeys.cs"],
+      "baseline_upstream": "2.13.0",
+      "last_verified_upstream": "2.16.1",
+      "migration_strategy": "适配 2.16.1 的配置和实例生命周期，不保留旧模型的并行路径。",
+      "verification": ["间隔未到时跳过", "重新加载实例后状态保持"],
+      "notes": "与任务队列统计共同验证。"
+    },
+    {
+      "id": "work-records.name-dialog-registration",
+      "title": "工作记录命名对话框注册",
+      "purpose": "保存、另存和重命名工作记录时提供名称输入对话框。",
+      "files": ["_src/MFAAvalonia/App.axaml.cs", "_src/MFAAvalonia/Views/UserControls/WorkRecordNameDialogView.axaml", "_src/MFAAvalonia/ViewModels/UsersControls/WorkRecordNameDialogViewModel.cs", "_src/MFAAvalonia/ViewModels/Pages/WorkRecordsViewModel.cs"],
+      "baseline_upstream": "2.13.0",
+      "last_verified_upstream": "2.16.1",
+      "migration_strategy": "保留已有对话框实现，并在新的 ConfigureViews 链中显式注册 ViewModel 到视图的映射。",
+      "verification": ["点击保存能弹出名称输入框", "输入名称并确认后工作记录被保存", "注册缺失时的回归检查会失败"],
+      "notes": "仅保留 ViewModel 和视图文件不足以工作；必须同时存在 AddView 注册。"
+    },
+    {
+      "id": "queue.resume-and-continue-on-error",
+      "title": "任务队列断点续跑与失败继续",
+      "purpose": "保留任务轮次统计、成功后的恢复索引、失败继续开关、用户停止语义和任务结束后操作边界。",
+      "files": ["_src/MFAAvalonia/Extensions/MaaFW/MaaProcessor.cs", "_src/MFAAvalonia/Helper/ValueType/MFATask.cs", "_src/MFAAvalonia/Helper/TaskQueueContinuationPolicy.cs", "_src/MFAAvalonia/Helper/MaaLogRotator.cs", "_src/MFAAvalonia/Helper/LoopDetector.cs"],
+      "baseline_upstream": "2.13.0",
+      "last_verified_upstream": "2.16.1",
+      "migration_strategy": "以 2.16.1 RunResult 和取消模型为基础重放，不复制旧队列主循环。",
+      "verification": ["失败且关闭继续时停止", "失败且开启继续时继续", "用户停止不触发后续操作", "恢复索引仅在成功后推进", "异步任务队列完整结束后才进入停止流程", "正常完成的任务不被记录为手动停止"],
+      "notes": "当前分支未提交改动属于该项快照的一部分。任务队列外层必须使用 Func<Task> 重载等待 ExecuteTasks 完整返回，不能将异步 lambda 绑定到 Action 重载。"
+    },
+    {
+      "id": "runtime.resource-path-and-packaging",
+      "title": "资源路径兼容、桌面发布与 agent 移除",
+      "purpose": "保留大小写容错资源解析、MATR 图标、GUI 子系统、libloader 启动钩子和跨平台发布布局，同时不使用 Python agent。",
+      "files": ["_src/MFAAvalonia/Extensions/MFAExtensions.cs", "_src/MFAAvalonia/Extensions/MaaFW/MaaProcessor.cs", "_src/MFAAvalonia/Helper/AppPaths.cs", "_src/MFAAvalonia/Helper/VersionChecker.cs", "_src/MFAAvalonia/Helper/PendingUpdateDeletionHelper.cs", "_src/MFAAvalonia.Desktop/MFAAvalonia.Desktop.csproj", "tools/pack_all.ps1", "tools/pack_win.ps1", "tools/pack_mac.ps1"],
+      "baseline_upstream": "2.13.0",
+      "last_verified_upstream": "2.16.1",
+      "migration_strategy": "采用 2.16.1 项目文件和更新流程，只覆盖明确的资源根、发布和 agent 排除点。",
+      "verification": ["完整测试包可加载资源", "不会创建或下载 agent", "默认 interface 不会在根目录创建 resource/base/pipeline/sample.json", "Windows 与 macOS 发布路径正确", "Windows 发布目录包含 MATR.exe 和 MATR.dll", "打包时 PublishDir 中的 MFAAvalonia.Core.dll 版本与包内文件哈希一致"],
+      "notes": "项目根目录内可做大小写容错，不能扩展为任意磁盘搜索。资源定义和资源目录固定从 assets/interface.json、assets/interface.jsonc、assets/resource 读取，否则会触发上游默认资源兜底。CheckInterface 生成默认 interface 时也必须使用 {PROJECT_DIR}/assets/resource/base，不能使用根目录 resource/base。Windows 发布包统一使用 runtimes/libs，运行时探测配置必须同步指向该目录；根级 libs 仅用于补充缺失依赖，不能覆盖 runtimes/libs 的本次发布产物。桌面项目的 AssemblyName 与 OutputName 必须为 MATR；不能恢复上游 MFAAvalonia 输出名，否则 pack_win.ps1 会回退打包根目录残留的旧 MATR 产物。Windows 打包必须先发布，将宿主文件和 runtimes 同步到开发根目录，再以根目录为输入执行 pack_win.ps1。"
+    },
+    {
+      "id": "privacy.telemetry-disabled",
+      "title": "禁用遥测与移除无效开关",
+      "purpose": "MATR 不采集、不保存且不发送任何遥测信息，避免误导用户开启无效选项。",
+      "files": ["_src/MFAAvalonia/Helper/TelemetryService.cs", "_src/MFAAvalonia/Helper/FileLogExporter.cs", "_src/MFAAvalonia/Helper/ToastHelper.cs", "_src/MFAAvalonia/Views/UserControls/Settings/AboutUserControl.axaml"],
+      "baseline_upstream": "2.16.1",
+      "last_verified_upstream": "2.16.1",
+      "migration_strategy": "保留空实现兼容上游调用点，移除关于页面的帮助改进软件开关。",
+      "verification": ["TelemetryService 所有入口均不采集、不保存且不发送数据", "关于页面不包含 HelpImproveSoftware 绑定或说明", "导出日志成功提示包含用户主动点击的问卷反馈入口"],
+      "notes": "不得恢复上游 Sentry 或任务遥测配置，除非 MATR 明确引入经用户同意的数据收集方案。问卷入口仅由用户主动点击后在浏览器打开，不属于遥测。"
+    }
+  ]
+}

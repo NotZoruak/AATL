@@ -14,7 +14,9 @@ using MFAAvalonia.Configuration;
 using MFAAvalonia.Extensions;
 using MFAAvalonia.Extensions.MaaFW;
 using MFAAvalonia.Helper.ValueType;
+using MFAAvalonia.Models;
 using MFAAvalonia.ViewModels.Pages;
+using MFAAvalonia.ViewModels.UsersControls;
 using MFAAvalonia.ViewModels.UsersControls.Settings;
 using MFAAvalonia.Views.UserControls;
 using MFAAvalonia.Views.UserControls.Settings;
@@ -35,6 +37,7 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
     private static readonly Thickness OptionRowMargin = new(10, 3, 10, 3);
     private static readonly Thickness NestedOptionMargin = new(14, 2, 4, 4);
     private static readonly Thickness NestedOptionPadding = new(8, 4, 6, 4);
+    private FormationPreset? _formationClipboard;
     public void GeneratePanelContent(StackPanel panel, DragItemViewModel dragItem)
     {
         // 检测是否为特殊任务，如果是则生成特殊任务选项面板
@@ -348,7 +351,11 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
 
         Control control;
 
-        if (interfaceOption.IsHotkey)
+        if (IsFormationPresetOption(option.Name))
+        {
+            control = CreateFormationPresetControl(option, interfaceOption, source);
+        }
+        else if (interfaceOption.IsHotkey)
         {
             control = CreateHotkeyControl(option, interfaceOption);
         }
@@ -395,6 +402,14 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
     {
         return interfaceOption.Cases?.Any(item => item.Option is { Count: > 0 }) == true;
     }
+
+    /// <summary>判断是否为自定编队任务的预设选择项。</summary>
+    private static bool IsFormationPresetOption(string? optionName)
+        => optionName == "FC_选择预设";
+
+    /// <summary>判断是否为一键日课的预设部队开关。</summary>
+    private static bool IsDailyPresetOption(string? optionName)
+        => optionName == "D_启用预设部队";
 
     /// <summary>添加子选项设置入口。</summary>
     private void AppendGearIcon(
@@ -481,6 +496,292 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         };
 
         labelPanel.Children.Add(gearIcon);
+    }
+
+    /// <summary>创建自定编队任务的普通任务设置行。</summary>
+    private Control CreateFormationPresetControl(
+        MaaInterface.MaaInterfaceSelectOption option,
+        MaaInterface.MaaInterfaceOption interfaceOption,
+        DragItemViewModel source)
+    {
+        option.Data ??= new Dictionary<string, string?>();
+        if (!option.Data.ContainsKey("preset_id"))
+            option.Data["preset_id"] = "0";
+
+        var panel = new StackPanel { Spacing = 6 };
+        panel.Children.Add(new TextBlock
+        {
+            Text = "预设（勾选互斥，选择本次要编成的预设）",
+            FontSize = 15,
+            Foreground = Brushes.Gray,
+            Margin = new Thickness(0, 0, 0, 4),
+        });
+        var presetList = new StackPanel { Spacing = 4 };
+        RenderFormationPresets(
+            presetList,
+            () => GetPresetId(option),
+            presetId =>
+            {
+                option.Data!["preset_id"] = presetId.ToString();
+                saveConfigurationAction();
+            },
+            source);
+        panel.Children.Add(presetList);
+        return panel;
+    }
+
+    /// <summary>为一键日课的预设部队开关追加预设选择入口。</summary>
+    private void AppendDailyPresetGearIcon(
+        StackPanel labelPanel,
+        MaaInterface.MaaInterfaceSelectOption option,
+        DragItemViewModel source)
+    {
+        var gearIcon = new FluentIcons.Avalonia.Fluent.FluentIcon
+        {
+            Icon = FluentIcons.Common.Icon.Settings,
+            IconSize = FluentIcons.Common.IconSize.Size16,
+            Width = 16,
+            Height = 16,
+            Margin = new Thickness(6, 0, 0, 0),
+            VerticalAlignment = VerticalAlignment.Center,
+        };
+        ToolTip.SetTip(gearIcon, "选择预设");
+        gearIcon.PointerPressed += (_, eventArgs) =>
+        {
+            eventArgs.Handled = true;
+            var presetPanel = new StackPanel { Spacing = 4 };
+            RenderFormationPresets(
+                presetPanel,
+                () => GetPresetId(option),
+                presetId =>
+                {
+                    option.Data ??= new Dictionary<string, string?>();
+                    option.Data["preset_id"] = presetId.ToString();
+                    saveConfigurationAction();
+                },
+                source);
+            viewModel.SubPageTitle = "选择预设部队";
+            viewModel.SubPageContent = presetPanel;
+            viewModel.IsSubPageOpen = true;
+        };
+        labelPanel.Children.Add(gearIcon);
+    }
+
+    /// <summary>读取任务选项中保存的预设编号。</summary>
+    private static int GetPresetId(MaaInterface.MaaInterfaceSelectOption option)
+    {
+        return option.Data != null
+               && option.Data.TryGetValue("preset_id", out var raw)
+               && int.TryParse(raw, out var presetId)
+            ? presetId
+            : 0;
+    }
+
+    /// <summary>渲染编队预设列表及新增、编辑、复制与删除操作。</summary>
+    private void RenderFormationPresets(
+        StackPanel presetList,
+        Func<int> getSelectedId,
+        Action<int> selectPreset,
+        DragItemViewModel dragItem)
+    {
+        presetList.Children.Clear();
+        var presets = LoadFormationPresets();
+        var selectedId = getSelectedId();
+
+        void Refresh() => RenderFormationPresets(presetList, getSelectedId, selectPreset, dragItem);
+
+        foreach (var preset in presets)
+        {
+            var capturedPreset = preset;
+            var row = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                Spacing = 8,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+            var checkBox = new CheckBox { IsChecked = capturedPreset.Id == selectedId };
+            checkBox.IsCheckedChanged += (_, _) =>
+            {
+                if (checkBox.IsChecked != true) return;
+                selectPreset(capturedPreset.Id);
+                Refresh();
+            };
+            row.Children.Add(checkBox);
+            row.Children.Add(new TextBlock
+            {
+                Text = $"预设{capturedPreset.Id}",
+                FontSize = 13,
+                Foreground = Brushes.Gray,
+                VerticalAlignment = VerticalAlignment.Center,
+                MinWidth = 48,
+            });
+            var nameBox = new TextBox
+            {
+                Text = capturedPreset.Name,
+                Watermark = $"预设{capturedPreset.Id}",
+                MinWidth = 160,
+                FontSize = 13,
+            };
+            nameBox.LostFocus += (_, _) =>
+            {
+                var name = nameBox.Text?.Trim() ?? string.Empty;
+                if (name == capturedPreset.Name) return;
+                capturedPreset.Name = name;
+                SaveFormationPresets(presets);
+            };
+            row.Children.Add(nameBox);
+
+            var gearIcon = new FluentIcons.Avalonia.Fluent.FluentIcon
+            {
+                Icon = FluentIcons.Common.Icon.Settings,
+                IconSize = FluentIcons.Common.IconSize.Size16,
+                Width = 16,
+                Height = 16,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+            gearIcon.PointerPressed += (_, eventArgs) =>
+            {
+                eventArgs.Handled = true;
+                OpenFormationEditor(capturedPreset, saved =>
+                {
+                    if (saved != null) SaveFormationPresets(presets);
+                    viewModel.IsSubPageOpen = false;
+                    Refresh();
+                });
+            };
+            row.Children.Add(gearIcon);
+
+            var moreButton = new Button { Content = "▾", Padding = new Thickness(6, 2), FontSize = 12 };
+            var menu = new ContextMenu();
+            var deleteItem = new MenuItem { Header = "删除" };
+            deleteItem.Click += (_, _) =>
+            {
+                presets.Remove(capturedPreset);
+                if (getSelectedId() == capturedPreset.Id) selectPreset(0);
+                RemapPresetIdsAfterDelete(capturedPreset.Id, presets);
+                SaveFormationPresets(presets);
+                RemapPresetReferences(capturedPreset.Id);
+                Refresh();
+            };
+            var copyItem = new MenuItem { Header = "复制" };
+            copyItem.Click += (_, _) => _formationClipboard = ClonePreset(capturedPreset);
+            var pasteItem = new MenuItem { Header = "粘贴", IsEnabled = _formationClipboard != null };
+            pasteItem.Click += (_, _) =>
+            {
+                if (_formationClipboard == null) return;
+                capturedPreset.Team = _formationClipboard.Team;
+                capturedPreset.ClearEquipmentBeforeFormation = _formationClipboard.ClearEquipmentBeforeFormation;
+                capturedPreset.SaveGameFormationRecordAfterFormation = _formationClipboard.SaveGameFormationRecordAfterFormation;
+                FormationPreset.SetRecordMode(capturedPreset, _formationClipboard.UseGameFormationRecordOnly, _formationClipboard.SaveGameFormationRecordOnly);
+                capturedPreset.Slots = CloneSlots(_formationClipboard);
+                SaveFormationPresets(presets);
+                Refresh();
+            };
+            menu.Items.Add(deleteItem);
+            menu.Items.Add(copyItem);
+            menu.Items.Add(pasteItem);
+            moreButton.Click += (_, _) => menu.Open(moreButton);
+            row.Children.Add(moreButton);
+            presetList.Children.Add(row);
+        }
+
+        var addButton = new Button { Content = "＋ 新增预设", HorizontalAlignment = HorizontalAlignment.Stretch, Margin = new Thickness(0, 6, 0, 0) };
+        addButton.Click += (_, _) =>
+        {
+            var currentPresets = LoadFormationPresets();
+            var preset = new FormationPreset
+            {
+                Id = currentPresets.Count == 0 ? 1 : currentPresets.Max(item => item.Id) + 1,
+                Team = 1,
+            };
+            preset.Name = $"预设{preset.Id}";
+            preset.EnsureSlots();
+            currentPresets.Add(preset);
+            SaveFormationPresets(currentPresets);
+            Refresh();
+            OpenFormationEditor(preset, saved =>
+            {
+                if (saved != null) SaveFormationPresets(currentPresets);
+                viewModel.IsSubPageOpen = false;
+                Refresh();
+            });
+        };
+        presetList.Children.Add(addButton);
+    }
+
+    /// <summary>读取全部编队预设并补齐固定槽位。</summary>
+    private static List<FormationPreset> LoadFormationPresets()
+    {
+        var presets = ConfigurationManager.CurrentInstance.GetValue<List<FormationPreset>>(ConfigurationKeys.FormationPresets, []);
+        presets ??= [];
+        foreach (var preset in presets) preset.EnsureSlots();
+        return presets;
+    }
+
+    /// <summary>保存全部编队预设。</summary>
+    private static void SaveFormationPresets(List<FormationPreset> presets)
+        => ConfigurationManager.CurrentInstance.SetValue(ConfigurationKeys.FormationPresets, presets);
+
+    /// <summary>删除预设后将后续编号和默认名称连续化。</summary>
+    private static void RemapPresetIdsAfterDelete(int removedId, List<FormationPreset> presets)
+    {
+        foreach (var preset in presets)
+        {
+            if (preset.Id <= removedId) continue;
+            if (preset.Name == $"预设{preset.Id}") preset.Name = $"预设{preset.Id - 1}";
+            preset.Id--;
+        }
+    }
+
+    /// <summary>同步删除预设后的任务引用。</summary>
+    private void RemapPresetReferences(int removedId)
+    {
+        foreach (var item in viewModel.TaskItemViewModels)
+        {
+            var interfaceItem = item.InterfaceItem;
+            if (interfaceItem == null) continue;
+            foreach (var option in interfaceItem.Option ?? [])
+            {
+                if (option.Name is not ("FC_选择预设" or "D_启用预设部队")
+                    || option.Data == null
+                    || !option.Data.TryGetValue("preset_id", out var raw)
+                    || !int.TryParse(raw, out var presetId)) continue;
+                option.Data["preset_id"] = (presetId == removedId ? 0 : presetId > removedId ? presetId - 1 : presetId).ToString();
+            }
+        }
+        saveConfigurationAction();
+    }
+
+    /// <summary>返回预设的显示名称。</summary>
+    private static string DisplayNameOf(FormationPreset preset)
+        => string.IsNullOrWhiteSpace(preset.Name) ? $"预设{preset.Id}" : preset.Name;
+
+    /// <summary>深拷贝预设。</summary>
+    private static FormationPreset ClonePreset(FormationPreset source)
+    {
+        return new FormationPreset
+        {
+            Id = source.Id,
+            Name = source.Name,
+            Team = source.Team,
+            ClearEquipmentBeforeFormation = source.ClearEquipmentBeforeFormation,
+            SaveGameFormationRecordAfterFormation = source.SaveGameFormationRecordAfterFormation,
+            UseGameFormationRecordOnly = source.UseGameFormationRecordOnly,
+            SaveGameFormationRecordOnly = source.SaveGameFormationRecordOnly,
+            Slots = CloneSlots(source),
+        };
+    }
+
+    /// <summary>深拷贝预设中的刀剑、刀装与马匹槽位。</summary>
+    private static List<FormationSlot> CloneSlots(FormationPreset source)
+        => source.Slots.Select(slot => new FormationSlot { Sword = slot.Sword, Equip = slot.Equip, Horse = slot.Horse }).ToList();
+
+    /// <summary>打开编队预设编辑页。</summary>
+    private void OpenFormationEditor(FormationPreset preset, Action<FormationPreset?>? onDone)
+    {
+        viewModel.SubPageTitle = "编辑预设";
+        viewModel.SubPageContent = new FormationEditorView { DataContext = new FormationEditorViewModel(preset, onDone) };
+        viewModel.IsSubPageOpen = true;
     }
 
     /// <summary>
@@ -1018,6 +1319,8 @@ public class TaskOptionGenerator(TaskQueueViewModel viewModel, Action saveConfig
         labelPanel.Children.Insert(0, icon);
         if (HasSubOptions(interfaceOption) && !interfaceOption.InlineSubOptions)
             AppendGearIcon(labelPanel, option, interfaceOption, source);
+        if (IsDailyPresetOption(option.Name))
+            AppendDailyPresetGearIcon(labelPanel, option, source);
 
         Grid.SetColumn(labelPanel, 0);
         Grid.SetColumn(toggleSwitch, 2);

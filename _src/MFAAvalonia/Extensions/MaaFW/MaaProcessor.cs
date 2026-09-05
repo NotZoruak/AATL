@@ -46,6 +46,14 @@ public class MaaProcessor
 
     private static readonly Random Random = new();
     private int _taskQueueTotal;
+    private static readonly int[][] FormationTeamClickCoords =
+    [
+        [154, 93], [282, 94], [398, 91], [519, 89], [635, 91],
+    ];
+    private static readonly int[][] FormationTeamVerifyRois =
+    [
+        [172, 81, 17, 9], [284, 77, 18, 9], [431, 80, 16, 8], [555, 78, 16, 8], [675, 79, 16, 8],
+    ];
     private int _isTaskRunActive;
     private readonly BlockingCollection<Func<Task>> _commandQueue = new();
     private readonly object _commandThreadLock = new();
@@ -2333,7 +2341,7 @@ public class MaaProcessor
                         Name = "默认",
                         Path =
                         [
-                            "{PROJECT_DIR}/resource/base",
+                            "{PROJECT_DIR}/assets/resource/base",
                         ],
                     },
                 ],
@@ -3504,7 +3512,7 @@ public class MaaProcessor
             {
                 var queueResult = await ExecuteTasks(token);
                 Stop(Status, true, onlyStart, queueCompleted: queueResult.QueueCompleted);
-            }, token: token, name: "启动任务");
+            }, name: "启动任务");
         }
         finally
         {
@@ -3846,6 +3854,8 @@ public class MaaProcessor
 
         // 4. 合并任务自身的 option（task.option，最高优先级）
         UpdateTaskDictionary(ref taskModels, task.InterfaceItem?.Option, task.InterfaceItem?.Advanced);
+        if (task.InterfaceItem?.Entry == "FormationConfig" || task.InterfaceItem?.Entry == "DailyTask")
+            ApplyFormationPresetOverride(ref taskModels, task);
 
         var taskParams = SerializeTaskParams(taskModels);
         // var settings = new JsonSerializerSettings
@@ -3870,6 +3880,117 @@ public class MaaProcessor
             SourceItem = task,
             RunId = runId
         };
+    }
+
+    /// <summary>将任务选择的编队预设转换为本次运行所需的 pipeline override。</summary>
+    private void ApplyFormationPresetOverride(ref MaaToken taskModels, DragItemViewModel task)
+    {
+        var entry = task.InterfaceItem?.Entry;
+        var optionName = entry == "FormationConfig" ? "FC_选择预设" : "D_启用预设部队";
+        var presetOption = task.InterfaceItem?.Option?.FirstOrDefault(option => option.Name == optionName);
+        if (presetOption?.Data?.TryGetValue("preset_id", out var rawPresetId) != true
+            || !int.TryParse(rawPresetId, out var presetId)
+            || presetId <= 0)
+            return;
+
+        var presets = InstanceConfiguration.GetValue<List<MFAAvalonia.Models.FormationPreset>>(
+            ConfigurationKeys.FormationPresets, []);
+        var preset = presets?.FirstOrDefault(item => item.Id == presetId);
+        if (preset == null)
+        {
+            LoggerHelper.Warning($"[FormationConfig] 未找到预设 {presetId}，跳过编队参数注入");
+            return;
+        }
+
+        preset.EnsureSlots();
+        var team = Math.Clamp(preset.Team, 1, 5);
+        var overrides = new Dictionary<string, JToken>
+        {
+            ["FormationConfig"] = new JObject
+            {
+                ["action"] = new JObject
+                {
+                    ["type"] = "Custom",
+                    ["custom_action"] = "FormationConfigAction",
+                    ["custom_action_param"] = new JObject { ["preset_id"] = presetId },
+                },
+            },
+            ["FC_ClickTeam"] = new JObject
+            {
+                ["action"] = new JObject
+                {
+                    ["param"] = new JObject { ["target"] = new JArray(FormationTeamClickCoords[team - 1]) },
+                },
+            },
+            ["FC_VerifySelectedTeam1"] = new JObject
+            {
+                ["recognition"] = new JObject
+                {
+                    ["param"] = new JObject { ["roi"] = new JArray(FormationTeamVerifyRois[team - 1]) },
+                },
+            },
+            ["FC_VerifySelectedTeam2"] = new JObject
+            {
+                ["recognition"] = new JObject
+                {
+                    ["param"] = new JObject { ["roi"] = new JArray(FormationTeamVerifyRois[team - 1]) },
+                },
+            },
+            ["FC_ClickEquipCond3"] = new JObject
+            {
+                ["action"] = new JObject { ["custom_action_param"] = new JObject { ["team"] = team } },
+            },
+            ["FC_ClickRecordSlot"] = new JObject
+            {
+                ["action"] = new JObject { ["custom_action_param"] = new JObject { ["team"] = team } },
+            },
+        };
+
+        if (preset.UseGameFormationRecordOnly)
+        {
+            ((JObject)overrides["FC_ClickTeam"])["next"] = new JArray("FC_UseRecord_Step1");
+        }
+        else if (preset.SaveGameFormationRecordOnly)
+        {
+            ((JObject)overrides["FC_ClickTeam"])["next"] = new JArray("FC_ClickTroopRecord");
+        }
+
+        if (preset.UseGameFormationRecordOnly && preset.ClearEquipmentBeforeFormation)
+        {
+            ((JObject)overrides["FC_ClickTeam"])["next"] = new JArray("FC_IsTeamEmpty", "FC_RemoveEquip");
+            overrides["FC_IsTeamEmpty"] = new JObject { ["next"] = new JArray("FC_UseRecord_Step1") };
+            overrides["FC_ConfirmEquipRemove"] = new JObject { ["next"] = new JArray("FC_UseRecord_Step1") };
+        }
+        else if (!preset.UseGameFormationRecordOnly && !preset.SaveGameFormationRecordOnly
+                 && preset.ClearEquipmentBeforeFormation)
+        {
+            ((JObject)overrides["FC_ClickTeam"])["next"] = new JArray("FC_IsTeamEmpty", "FC_RemoveEquip");
+        }
+
+        if (!preset.SaveGameFormationRecordAfterFormation)
+            overrides["FC_IsBackToFormation"] = new JObject { ["next"] = new JArray("FC_BackToHome") };
+
+        var memberSlots = Enumerable.Range(1, 6)
+            .Where(index => !string.IsNullOrWhiteSpace(preset.Slots[index - 1].Sword))
+            .ToList();
+        for (var index = 0; index < memberSlots.Count; index++)
+        {
+            var slot = memberSlots[index];
+            var next = index + 1 < memberSlots.Count
+                ? $"FC_ConfigureSwordSlot{memberSlots[index + 1]}"
+                : "FC_OpenEquip";
+            overrides[$"FC_FindSword{slot}"] = new JObject { ["next"] = new JArray(next) };
+        }
+        for (var slot = 1; slot <= 6; slot++)
+        {
+            if (!memberSlots.Contains(slot))
+                overrides[$"FC_ConfigureSwordSlot{slot}"] = new JObject { ["enabled"] = false };
+        }
+
+        if (entry == "DailyTask")
+            overrides["FC_BackToHome"] = new JObject { ["next"] = new JArray("DT_LoginRewardGate") };
+
+        taskModels.Merge(overrides);
     }
 
     /// <summary>
