@@ -18,11 +18,44 @@
       "DT_IsInternalReport",
       "DT_IsTrainingApplication",
       "DT_LeaveTroopRecord",
+      "DT_DetectClickMenu",
+      "DT_DetectMenuDirectory",
       "DT_CheckHomeBrightness",
       "DT_IsNetworkRequestTimeout",
       "DT_IsConnectionInterrupted"
     ],
-    "on_error": ["DT_PrepareHub"]
+    "on_error": ["DT_RestartGame"]
+  },
+  "DT_DetectClickMenu": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1186, 19, 38, 36],
+        "expected": "目"
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["DT_PrepareHub"],
+    "on_error": ["DT_DetectWhereAmI"]
+  },
+  "DT_DetectMenuDirectory": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [581, 28, 112, 57],
+        "template": "Common/菜单目录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1043, 170, 85, 40]
+      }
+    },
+    "next": ["DT_PrepareHub"],
+    "on_error": ["DT_DetectWhereAmI"]
   },
   "DT_CheckHomeBrightness": {
     "recognition": {
@@ -3748,7 +3781,7 @@
     "on_error": ["DT_KebiHub"]
   },
   "DT_RewardGate": {
-    "next": ["DT_RewardHub", "DT_Finish"],
+    "next": ["DT_RewardHub", "DT_MailResourceGate", "DT_Finish"],
     "on_error": ["DT_RestartGame"]
   },
   "DT_RewardHub": {
@@ -3813,11 +3846,31 @@
         "expected": "任务列表"
       }
     },
-    "next": ["DT_RewardClaimHub"],
+    "next": [
+      "DT_RewardDailyGate",
+      "DT_RewardMonthlyGate",
+      "DT_RewardMainlineGate",
+      "DT_RewardActivityGate",
+      "DT_RewardTaskFinishedLog"
+    ],
     "on_error": ["DT_RewardHub"]
   },
-  "DT_RewardClaimHub": {
-    "next": ["DT_RewardClaimAvailable", "DT_RewardNoClaimableLog"]
+  "DT_RewardDailyGate": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [37, 150, 24, 13]
+      }
+    },
+    "repeat": 3,
+    "repeat_delay": 500,
+    "next": ["DT_RewardDailyClaimHub"],
+    "on_error": ["DT_RewardHub"]
+  },
+  "DT_RewardDailyClaimHub": {
+    "next": ["DT_RewardClaimAvailable", "DT_RewardAfterDailyHub"],
+    "on_error": ["DT_RewardHub"]
   },
   "DT_RewardClaimAvailable": {
     "recognition": {
@@ -3829,33 +3882,148 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["DT_RewardClaimedLog"],
-    "on_error": ["DT_RewardClaimHub"],
+    "next": ["DT_RewardAfterDailyHub"],
+    "on_error": ["DT_RewardAfterDailyHub"],
     "post_wait_freezes": {
       "time": 200,
       "target": [1136, 570, 26, 21]
     }
   },
-  "DT_RewardNoClaimableLog": {
-    "action": {
-      "type": "Custom",
-      "custom_action": "GuiLogAction",
-      "custom_action_param": {"message": "日课 领取奖励 未检测到可领取奖励"}
-    },
-    "next": ["DT_RewardClosePopupHub"],
-    "on_error": ["DT_RewardClosePopupHub"]
+  "DT_RewardAfterDailyHub": {
+    "next": [
+      "DT_RewardMonthlyGate",
+      "DT_RewardMainlineGate",
+      "DT_RewardActivityGate",
+      "DT_RewardTaskFinishedLog"
+    ],
+    "on_error": ["DT_RewardHub"]
   },
-  "DT_RewardClaimedLog": {
+  "DT_RewardMonthlyGate": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [37, 288, 24, 13]
+      }
+    },
+    "repeat": 3,
+    "repeat_delay": 500,
+    "next": ["DT_RewardMonthlyClaimHub"],
+    "on_error": ["DT_RewardHub"]
+  },
+  "DT_RewardMonthlyClaimHub": {
+    "next": ["DT_RewardMonthlyClaimAvailable", "DT_RewardAfterMonthlyHub"],
+    "on_error": ["DT_RewardHub"]
+  },
+  "DT_RewardMonthlyClaimAvailable": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [1136, 570, 26, 21],
+        "upper": [214, 119, 11],
+        "lower": [208, 113, 5]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["DT_RewardAfterMonthlyHub"],
+    "on_error": ["DT_RewardAfterMonthlyHub"],
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [1136, 570, 26, 21]
+    }
+  },
+  "DT_RewardAfterMonthlyHub": {
+    "next": [
+      "DT_RewardMainlineGate",
+      "DT_RewardActivityGate",
+      "DT_RewardTaskFinishedLog"
+    ],
+    "on_error": ["DT_RewardHub"]
+  },
+  "DT_RewardMainlineGate": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [40, 425, 24, 14]
+      }
+    },
+    "repeat": 3,
+    "repeat_delay": 500,
+    "next": ["DT_RewardMainlineClaimHub"],
+    "on_error": ["DT_RewardHub"]
+  },
+  "DT_RewardMainlineClaimHub": {
+    "next": ["DT_RewardMainlineClaimAvailable", "DT_RewardAfterMainlineHub"],
+    "on_error": ["DT_RewardHub"]
+  },
+  "DT_RewardMainlineClaimAvailable": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [1136, 570, 26, 21],
+        "upper": [214, 119, 11],
+        "lower": [208, 113, 5]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["DT_RewardAfterMainlineHub"],
+    "on_error": ["DT_RewardAfterMainlineHub"],
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [1136, 570, 26, 21]
+    }
+  },
+  "DT_RewardAfterMainlineHub": {
+    "next": ["DT_RewardActivityGate", "DT_RewardTaskFinishedLog"],
+    "on_error": ["DT_RewardHub"]
+  },
+  "DT_RewardActivityGate": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [40, 560, 24, 14]
+      }
+    },
+    "repeat": 3,
+    "repeat_delay": 500,
+    "next": ["DT_RewardActivityClaimHub"],
+    "on_error": ["DT_RewardHub"]
+  },
+  "DT_RewardActivityClaimHub": {
+    "next": ["DT_RewardActivityClaimAvailable", "DT_RewardTaskFinishedLog"],
+    "on_error": ["DT_RewardHub"]
+  },
+  "DT_RewardActivityClaimAvailable": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [1136, 570, 26, 21],
+        "upper": [214, 119, 11],
+        "lower": [208, 113, 5]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["DT_RewardTaskFinishedLog"],
+    "on_error": ["DT_RewardTaskFinishedLog"],
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [1136, 570, 26, 21]
+    }
+  },
+  "DT_RewardTaskFinishedLog": {
     "action": {
       "type": "Custom",
       "custom_action": "GuiLogAction",
-      "custom_action_param": {"message": "日课 领取奖励 完成"}
+      "custom_action_param": {"message": "日课 任务奖励领取完成"}
     },
     "next": ["DT_RewardClosePopupHub"],
     "on_error": ["DT_RewardClosePopupHub"]
   },
   "DT_RewardClosePopupHub": {
-    "next": ["DT_RewardClosePopup", "DT_Finish"]
+    "next": ["DT_RewardClosePopup", "DT_MailResourceGate", "DT_Finish"],
+    "on_error": ["DT_MailResourceGate"]
   },
   "DT_RewardClosePopup": {
     "recognition": {
@@ -3877,6 +4045,259 @@
     "action": {"type": "DoNothing"},
     "next": ["DT_RewardHub"],
     "on_error": ["DT_RewardHub"]
+  },
+  "DT_MailResourceGate": {
+    "enabled": false,
+    "next": ["DT_MailResourceHub", "DT_Finish"],
+    "on_error": ["DT_RestartGame"]
+  },
+  "DT_MailResourceHub": {
+    "enabled": false,
+    "next": [
+      "DT_MailResourceOpenFromHome",
+      "DT_MailResourceOpenFromMenu",
+      "DT_MailResourceOpenFilter",
+      "DT_MailResourceIsFilter",
+      "[JumpBack]DT_HandleExperience",
+      "[JumpBack]DT_HandleSwordDrop",
+      "[JumpBack]DT_HandleAnnouncementPopup",
+      "[JumpBack]DT_HandleTrainingLetter",
+      "[JumpBack]DT_HandleInternalReport",
+      "[JumpBack]DT_HandleLeaveTroopRecord",
+      "[JumpBack]DT_HandleAdvertisementPopup",
+      "[JumpBack]DT_HandleGameIcon",
+      "[JumpBack]DT_HandleLoginButton",
+      "[JumpBack]DT_HandleGameUpdatePopup",
+      "[JumpBack]DT_HandleInGameUpdatePopup",
+      "[JumpBack]DT_HandleNetworkRequestTimeout",
+      "[JumpBack]DT_HandleConnectionInterrupted",
+      "DT_MailResourceFallbackWait"
+    ],
+    "on_error": ["DT_RestartGame"]
+  },
+  "DT_MailResourceOpenFromHome": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1188, 173, 75, 29],
+        "expected": "收件箱"
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["DT_MailResourceHub"],
+    "on_error": ["DT_MailResourceHub"]
+  },
+  "DT_MailResourceOpenFromMenu": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [980, 407, 82, 31],
+        "expected": "收件箱"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1060, 403, 1, 1]
+      }
+    },
+    "next": ["DT_MailResourceHub"],
+    "on_error": ["DT_MailResourceHub"]
+  },
+  "DT_MailResourceOpenFilter": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [577, 34, 129, 44],
+        "expected": "收件箱"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [965, 111, 48, 24]
+      }
+    },
+    "next": ["DT_MailResourceHub"],
+    "on_error": ["DT_MailResourceHub"]
+  },
+  "DT_MailResourceIsFilter": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [498, 69, 77, 39],
+        "expected": "选"
+      }
+    },
+    "next": [
+      "DT_MailResourceSelectFilter1",
+      "DT_MailResourceSelectFilter2",
+      "DT_MailResourceSelectFilter3",
+      "DT_MailResourceSelectFilter4",
+      "DT_MailResourceSelectFilter5",
+      "DT_MailResourceSelectFilter6",
+      "DT_MailResourceConfirmFilter"
+    ],
+    "on_error": ["DT_MailResourceHub"]
+  },
+  "DT_MailResourceSelectFilter1": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [250, 438, 56, 32]
+      }
+    },
+    "post_delay": 200,
+    "next": [
+      "DT_MailResourceSelectFilter2",
+      "DT_MailResourceSelectFilter3",
+      "DT_MailResourceSelectFilter4",
+      "DT_MailResourceSelectFilter5",
+      "DT_MailResourceSelectFilter6",
+      "DT_MailResourceConfirmFilter"
+    ],
+    "on_error": ["DT_MailResourceHub"]
+  },
+  "DT_MailResourceSelectFilter2": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [424, 440, 53, 33]
+      }
+    },
+    "post_delay": 200,
+    "next": [
+      "DT_MailResourceSelectFilter3",
+      "DT_MailResourceSelectFilter4",
+      "DT_MailResourceSelectFilter5",
+      "DT_MailResourceSelectFilter6",
+      "DT_MailResourceConfirmFilter"
+    ],
+    "on_error": ["DT_MailResourceHub"]
+  },
+  "DT_MailResourceSelectFilter3": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [604, 439, 52, 32]
+      }
+    },
+    "post_delay": 200,
+    "next": [
+      "DT_MailResourceSelectFilter4",
+      "DT_MailResourceSelectFilter5",
+      "DT_MailResourceSelectFilter6",
+      "DT_MailResourceConfirmFilter"
+    ],
+    "on_error": ["DT_MailResourceHub"]
+  },
+  "DT_MailResourceSelectFilter4": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [779, 441, 52, 31]
+      }
+    },
+    "post_delay": 200,
+    "next": [
+      "DT_MailResourceSelectFilter5",
+      "DT_MailResourceSelectFilter6",
+      "DT_MailResourceConfirmFilter"
+    ],
+    "on_error": ["DT_MailResourceHub"]
+  },
+  "DT_MailResourceSelectFilter5": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [246, 517, 52, 31]
+      }
+    },
+    "post_delay": 200,
+    "next": ["DT_MailResourceSelectFilter6", "DT_MailResourceConfirmFilter"],
+    "on_error": ["DT_MailResourceHub"]
+  },
+  "DT_MailResourceSelectFilter6": {
+    "enabled": false,
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [425, 515, 52, 31]
+      }
+    },
+    "post_delay": 200,
+    "next": ["DT_MailResourceConfirmFilter"],
+    "on_error": ["DT_MailResourceHub"]
+  },
+  "DT_MailResourceConfirmFilter": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [603, 603, 73, 46],
+        "expected": ["确认", "确定"]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["DT_MailResourceClaim","DT_MailResourceCloseMailboxHub"],
+    "on_error": ["DT_MailResourceHub"],
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [603, 603, 73, 46]
+    }
+  },
+  "DT_MailResourceClaim": {
+    "recognition": {
+      "type": "ColorMatch",
+      "param": {
+        "roi": [1147, 612, 19, 14],
+        "upper": [133, 173, 24],
+        "lower": [127, 167, 18]
+      }
+    },
+    "action": {"type": "Click"},
+    "pre_delay": 500,
+    "post_delay": 500,
+    "next": ["DT_MailResourceCloseMailboxHub"],
+    "on_error": ["DT_MailResourceCloseMailboxHub"]
+  },
+  "DT_MailResourceCloseMailboxHub": {
+    "next": ["DT_MailResourceCloseMailbox", "DT_MailResourceFinishedLog"],
+    "on_error": ["DT_MailResourceFinishedLog"]
+  },
+  "DT_MailResourceCloseMailbox": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [1234, 11, 34, 36],
+        "expected": ["×", "x", "X"]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["DT_MailResourceCloseMailboxHub"],
+    "on_error": ["DT_MailResourceCloseMailboxHub"],
+    "post_wait_freezes": {
+      "time": 100,
+      "target": [1234, 11, 34, 36]
+    }
+  },
+  "DT_MailResourceFinishedLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "日课 邮件领取完毕"}
+    },
+    "next": ["DT_Finish"],
+    "on_error": ["DT_Finish"]
+  },
+  "DT_MailResourceFallbackWait": {
+    "action": {"type": "DoNothing"},
+    "next": ["DT_MailResourceHub"],
+    "on_error": ["DT_MailResourceHub"]
   },
   "DT_LoginRewardReturnHomeHub": {
     "next": ["DT_LoginRewardReturnHomeCheckBrightness", "DT_LoginRewardReturnHomeClickMenu", "DT_LoginRewardReturnHomeClickHome", "DT_LoginRewardReturnHomeFallbackWait"]
@@ -4391,5 +4812,341 @@
     },
     "next": ["DT_DetectWhereAmI"],
     "on_error": ["DT_RestartGame"]
+  },
+  "DT_RestartGameReturnPrepareHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_PrepareHub"],
+    "on_error": ["DT_RestartGameReturnPrepareHub"]
+  },
+  "DT_RestartGameReturnPresetHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_PresetHub"],
+    "on_error": ["DT_RestartGameReturnPresetHub"]
+  },
+  "DT_RestartGameReturnLoginRewardHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_LoginRewardHub"],
+    "on_error": ["DT_RestartGameReturnLoginRewardHub"]
+  },
+  "DT_RestartGameReturnLoginRewardClosePopupHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_LoginRewardClosePopupHub"],
+    "on_error": ["DT_RestartGameReturnLoginRewardClosePopupHub"]
+  },
+  "DT_RestartGameReturnWarmGiftHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_WarmGiftHub"],
+    "on_error": ["DT_RestartGameReturnWarmGiftHub"]
+  },
+  "DT_RestartGameReturnWarmGiftFinishClaimHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_WarmGiftFinishClaimHub"],
+    "on_error": ["DT_RestartGameReturnWarmGiftFinishClaimHub"]
+  },
+  "DT_RestartGameReturnMixHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_MixHub"],
+    "on_error": ["DT_RestartGameReturnMixHub"]
+  },
+  "DT_RestartGameReturnForgeHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_ForgeHub"],
+    "on_error": ["DT_RestartGameReturnForgeHub"]
+  },
+  "DT_RestartGameReturnForgeClaimCompletedHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_ForgeClaimCompletedHub"],
+    "on_error": ["DT_RestartGameReturnForgeClaimCompletedHub"]
+  },
+  "DT_RestartGameReturnForgeFindFreeSlot1Hub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_ForgeFindFreeSlot1Hub"],
+    "on_error": ["DT_RestartGameReturnForgeFindFreeSlot1Hub"]
+  },
+  "DT_RestartGameReturnForgeFindFreeSlot2Hub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_ForgeFindFreeSlot2Hub"],
+    "on_error": ["DT_RestartGameReturnForgeFindFreeSlot2Hub"]
+  },
+  "DT_RestartGameReturnForgeFindFreeSlot3Hub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_ForgeFindFreeSlot3Hub"],
+    "on_error": ["DT_RestartGameReturnForgeFindFreeSlot3Hub"]
+  },
+  "DT_RestartGameReturnForgeDisassembleHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_ForgeDisassembleHub"],
+    "on_error": ["DT_RestartGameReturnForgeDisassembleHub"]
+  },
+  "DT_RestartGameReturnDrillHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_DrillHub"],
+    "on_error": ["DT_RestartGameReturnDrillHub"]
+  },
+  "DT_RestartGameReturnDrillOpponent1Hub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_DrillOpponent1Hub"],
+    "on_error": ["DT_RestartGameReturnDrillOpponent1Hub"]
+  },
+  "DT_RestartGameReturnDrillBattle1Hub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_DrillBattle1Hub"],
+    "on_error": ["DT_RestartGameReturnDrillBattle1Hub"]
+  },
+  "DT_RestartGameReturnDrillOpponent2Hub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_DrillOpponent2Hub"],
+    "on_error": ["DT_RestartGameReturnDrillOpponent2Hub"]
+  },
+  "DT_RestartGameReturnDrillBattle2Hub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_DrillBattle2Hub"],
+    "on_error": ["DT_RestartGameReturnDrillBattle2Hub"]
+  },
+  "DT_RestartGameReturnDrillOpponent3Hub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_DrillOpponent3Hub"],
+    "on_error": ["DT_RestartGameReturnDrillOpponent3Hub"]
+  },
+  "DT_RestartGameReturnDrillBattle3Hub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_DrillBattle3Hub"],
+    "on_error": ["DT_RestartGameReturnDrillBattle3Hub"]
+  },
+  "DT_RestartGameReturnDrillOpponent4Hub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_DrillOpponent4Hub"],
+    "on_error": ["DT_RestartGameReturnDrillOpponent4Hub"]
+  },
+  "DT_RestartGameReturnDrillBattle4Hub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_DrillBattle4Hub"],
+    "on_error": ["DT_RestartGameReturnDrillBattle4Hub"]
+  },
+  "DT_RestartGameReturnDrillOpponent5Hub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_DrillOpponent5Hub"],
+    "on_error": ["DT_RestartGameReturnDrillOpponent5Hub"]
+  },
+  "DT_RestartGameReturnDrillBattle5Hub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_DrillBattle5Hub"],
+    "on_error": ["DT_RestartGameReturnDrillBattle5Hub"]
+  },
+  "DT_RestartGameReturnKebiHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_KebiHub"],
+    "on_error": ["DT_RestartGameReturnKebiHub"]
+  },
+  "DT_RestartGameReturnKebiPrepareFinishHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_KebiPrepareFinishHub"],
+    "on_error": ["DT_RestartGameReturnKebiPrepareFinishHub"]
+  },
+  "DT_RestartGameReturnRewardHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_RewardHub"],
+    "on_error": ["DT_RestartGameReturnRewardHub"]
+  },
+  "DT_RestartGameReturnRewardDailyClaimHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_RewardDailyClaimHub"],
+    "on_error": ["DT_RestartGameReturnRewardDailyClaimHub"]
+  },
+  "DT_RestartGameReturnRewardAfterDailyHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_RewardAfterDailyHub"],
+    "on_error": ["DT_RestartGameReturnRewardAfterDailyHub"]
+  },
+  "DT_RestartGameReturnRewardMonthlyClaimHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_RewardMonthlyClaimHub"],
+    "on_error": ["DT_RestartGameReturnRewardMonthlyClaimHub"]
+  },
+  "DT_RestartGameReturnRewardAfterMonthlyHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_RewardAfterMonthlyHub"],
+    "on_error": ["DT_RestartGameReturnRewardAfterMonthlyHub"]
+  },
+  "DT_RestartGameReturnRewardMainlineClaimHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_RewardMainlineClaimHub"],
+    "on_error": ["DT_RestartGameReturnRewardMainlineClaimHub"]
+  },
+  "DT_RestartGameReturnRewardAfterMainlineHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_RewardAfterMainlineHub"],
+    "on_error": ["DT_RestartGameReturnRewardAfterMainlineHub"]
+  },
+  "DT_RestartGameReturnRewardActivityClaimHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_RewardActivityClaimHub"],
+    "on_error": ["DT_RestartGameReturnRewardActivityClaimHub"]
+  },
+  "DT_RestartGameReturnRewardClosePopupHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_RewardClosePopupHub"],
+    "on_error": ["DT_RestartGameReturnRewardClosePopupHub"]
+  },
+  "DT_RestartGameReturnLoginRewardReturnHomeHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_LoginRewardReturnHomeHub"],
+    "on_error": ["DT_RestartGameReturnLoginRewardReturnHomeHub"]
+  },
+  "DT_RestartGameReturnWarmGiftReturnHomeHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_WarmGiftReturnHomeHub"],
+    "on_error": ["DT_RestartGameReturnWarmGiftReturnHomeHub"]
+  },
+  "DT_RestartGameReturnMixReturnHomeHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_MixReturnHomeHub"],
+    "on_error": ["DT_RestartGameReturnMixReturnHomeHub"]
+  },
+  "DT_RestartGameReturnForgeReturnHomeHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_ForgeReturnHomeHub"],
+    "on_error": ["DT_RestartGameReturnForgeReturnHomeHub"]
+  },
+  "DT_RestartGameReturnDrillReturnHomeHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_DrillReturnHomeHub"],
+    "on_error": ["DT_RestartGameReturnDrillReturnHomeHub"]
+  },
+  "DT_RestartGameReturnKebiReturnHomeHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_KebiReturnHomeHub"],
+    "on_error": ["DT_RestartGameReturnKebiReturnHomeHub"]
+  },
+  "DT_RestartGameReturnMailResourceHub": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "RestartGameAction"
+    },
+    "next": ["DT_MailResourceHub"],
+    "on_error": ["DT_RestartGameReturnMailResourceHub"]
   }
 }

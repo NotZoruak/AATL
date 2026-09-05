@@ -1,10 +1,10 @@
 {
   "name": "MATR",
-  "version": "v0.13.0-beta.1",
+  "version": "v0.13.0-beta.2",
   "mirrorchyan_rid": "MATR",
   "mirrorchyan_multiplatform": true,
   "icon": "resource/logo/MATR.ico",
-  "custom_title": "MATR v0.13.0-beta.1 | 刀剑乱舞小助手",
+  "custom_title": "MATR v0.13.0-beta.2 | 刀剑乱舞小助手",
   "Github": "https://github.com/NotZoruak/MATR",
   "controller": [
     {
@@ -53,10 +53,11 @@
         "D_合成",
         "D_锻刀",
         "D_演练",
-        "D_收取奖励"
+        "D_收取奖励",
+        "D_领取邮件"
       ],
       "label": "一键日课",
-      "description": "⚠该功能现处于测试阶段，目前仍在完善中，请务必在有人看管时运行。\n\n按固定顺序执行启用的日课项目：预设部队 → 登录奖励 → 暖心礼包 → 合成 → 锻刀 → 演练 → 领取奖励。每个已执行项目完成后会先返回本丸；未启用的项目直接跳过。\n\n* **预设部队**：开始前调用已配置的自定编队预设。\n* **登录奖励**：领取每日登录签到奖励。\n* **暖心礼包**：进入万屋领取免费礼包。\n* **合成**：固定选择第一把刀剑作为强化对象，并按刀解/合成许可名单选择一把未上锁刀剑作为材料。\n* **锻刀**：先收取已完成锻刀，再以 ALL 50 公式最多锻造 3 把；不使用加速符。\n* **演练**：最多处理 5 个对手位置，累计胜利 3 次或处理完 5 个位置即结束。\n* **领取奖励**：仅一键领取日课奖励。"
+      "description": "⚠该功能现处于测试阶段，目前仍在完善中，请务必在有人看管时运行。\n\n按固定顺序执行启用的日课项目：预设部队 → 登录奖励 → 暖心礼包 → 合成 → 锻刀 → 演练 → 领取奖励 → 领取邮件。每个已执行项目完成后会先返回本丸；未启用的项目直接跳过。\n\n* **预设部队**：开始前调用已配置的自定编队预设。\n* **登录奖励**：领取每日登录签到奖励。\n* **暖心礼包**：进入万屋领取免费礼包。\n* **合成**：固定选择第一把刀剑作为强化对象，并按刀解/合成许可名单选择一把未上锁刀剑作为材料。\n* **锻刀**：先收取已完成锻刀，再以 ALL 50 公式最多锻造 3 把；不使用加速符。\n* **演练**：最多处理 5 个对手位置，累计胜利 3 次或处理完 5 个位置即结束。\n* **领取奖励**：可分别领取日常、月常、主线与活动任务奖励。\n* **领取邮件**：按所选邮件类别领取可收取的邮件。"
     },
     {
       "name": "自定编队",
@@ -5699,6 +5700,7 @@
             "DT_DrillFallbackWait": {"enabled": false},
             "DT_KebiFallbackWait": {"enabled": false},
             "DT_RewardFallbackWait": {"enabled": false},
+            "DT_MailResourceFallbackWait": {"enabled": false},
             "DT_LoginRewardReturnHomeFallbackWait": {"enabled": false},
             "DT_WarmGiftReturnHomeFallbackWait": {"enabled": false},
             "DT_MixReturnHomeFallbackWait": {"enabled": false},
@@ -5706,22 +5708,49 @@
             "DT_DrillReturnHomeFallbackWait": {"enabled": false},
             "DT_KebiReturnHomeFallbackWait": {"enabled": false},
             "DT_FallbackWait": {"enabled": false},
-            "DT_PresetHub": {"on_error": ["DT_RestartGame"]},
-            "DT_LoginRewardHub": {"on_error": ["DT_RestartGame"]},
-            "DT_WarmGiftHub": {"on_error": ["DT_RestartGame"]},
-            "DT_MixHub": {"on_error": ["DT_RestartGame"]},
-            "DT_ForgeHub": {"on_error": ["DT_RestartGame"]},
-            "DT_DrillHub": {"on_error": ["DT_RestartGame"]},
-            "DT_KebiHub": {"on_error": ["DT_RestartGame"]},
-            "DT_RewardHub": {"on_error": ["DT_RestartGame"]},
-            "DT_RewardClaimHub": {"on_error": ["DT_RestartGame"]},
-            "DT_RewardClosePopupHub": {"on_error": ["DT_RestartGame"]},
-            "DT_LoginRewardReturnHomeHub": {"on_error": ["DT_RestartGame"]},
-            "DT_WarmGiftReturnHomeHub": {"on_error": ["DT_RestartGame"]},
-            "DT_MixReturnHomeHub": {"on_error": ["DT_RestartGame"]},
-            "DT_ForgeReturnHomeHub": {"on_error": ["DT_RestartGame"]},
-            "DT_DrillReturnHomeHub": {"on_error": ["DT_RestartGame"]},
-            "DT_KebiReturnHomeHub": {"on_error": ["DT_RestartGame"]}
+            "DT_DetectWhereAmI": {"on_error": ["DT_RestartGame"]},
+            "DT_PrepareHub": {"on_error": ["DT_RestartGameReturnPrepareHub"]},
+            "DT_PresetHub": {"on_error": ["DT_RestartGameReturnPresetHub"]},
+            "DT_LoginRewardHub": {"on_error": ["DT_RestartGameReturnLoginRewardHub"]},
+            "DT_LoginRewardClosePopupHub": {"on_error": ["DT_RestartGameReturnLoginRewardClosePopupHub"]},
+            "DT_WarmGiftHub": {"on_error": ["DT_RestartGameReturnWarmGiftHub"]},
+            "DT_WarmGiftFinishClaimHub": {"on_error": ["DT_RestartGameReturnWarmGiftFinishClaimHub"]},
+            "DT_MixHub": {"on_error": ["DT_RestartGameReturnMixHub"]},
+            "DT_ForgeHub": {"on_error": ["DT_RestartGameReturnForgeHub"]},
+            "DT_ForgeClaimCompletedHub": {"on_error": ["DT_RestartGameReturnForgeClaimCompletedHub"]},
+            "DT_ForgeFindFreeSlot1Hub": {"on_error": ["DT_RestartGameReturnForgeFindFreeSlot1Hub"]},
+            "DT_ForgeFindFreeSlot2Hub": {"on_error": ["DT_RestartGameReturnForgeFindFreeSlot2Hub"]},
+            "DT_ForgeFindFreeSlot3Hub": {"on_error": ["DT_RestartGameReturnForgeFindFreeSlot3Hub"]},
+            "DT_ForgeDisassembleHub": {"on_error": ["DT_RestartGameReturnForgeDisassembleHub"]},
+            "DT_DrillHub": {"on_error": ["DT_RestartGameReturnDrillHub"]},
+            "DT_DrillOpponent1Hub": {"on_error": ["DT_RestartGameReturnDrillOpponent1Hub"]},
+            "DT_DrillBattle1Hub": {"on_error": ["DT_RestartGameReturnDrillBattle1Hub"]},
+            "DT_DrillOpponent2Hub": {"on_error": ["DT_RestartGameReturnDrillOpponent2Hub"]},
+            "DT_DrillBattle2Hub": {"on_error": ["DT_RestartGameReturnDrillBattle2Hub"]},
+            "DT_DrillOpponent3Hub": {"on_error": ["DT_RestartGameReturnDrillOpponent3Hub"]},
+            "DT_DrillBattle3Hub": {"on_error": ["DT_RestartGameReturnDrillBattle3Hub"]},
+            "DT_DrillOpponent4Hub": {"on_error": ["DT_RestartGameReturnDrillOpponent4Hub"]},
+            "DT_DrillBattle4Hub": {"on_error": ["DT_RestartGameReturnDrillBattle4Hub"]},
+            "DT_DrillOpponent5Hub": {"on_error": ["DT_RestartGameReturnDrillOpponent5Hub"]},
+            "DT_DrillBattle5Hub": {"on_error": ["DT_RestartGameReturnDrillBattle5Hub"]},
+            "DT_KebiHub": {"on_error": ["DT_RestartGameReturnKebiHub"]},
+            "DT_KebiPrepareFinishHub": {"on_error": ["DT_RestartGameReturnKebiPrepareFinishHub"]},
+            "DT_RewardHub": {"on_error": ["DT_RestartGameReturnRewardHub"]},
+            "DT_MailResourceHub": {"on_error": ["DT_RestartGameReturnMailResourceHub"]},
+            "DT_RewardDailyClaimHub": {"on_error": ["DT_RestartGameReturnRewardDailyClaimHub"]},
+            "DT_RewardAfterDailyHub": {"on_error": ["DT_RestartGameReturnRewardAfterDailyHub"]},
+            "DT_RewardMonthlyClaimHub": {"on_error": ["DT_RestartGameReturnRewardMonthlyClaimHub"]},
+            "DT_RewardAfterMonthlyHub": {"on_error": ["DT_RestartGameReturnRewardAfterMonthlyHub"]},
+            "DT_RewardMainlineClaimHub": {"on_error": ["DT_RestartGameReturnRewardMainlineClaimHub"]},
+            "DT_RewardAfterMainlineHub": {"on_error": ["DT_RestartGameReturnRewardAfterMainlineHub"]},
+            "DT_RewardActivityClaimHub": {"on_error": ["DT_RestartGameReturnRewardActivityClaimHub"]},
+            "DT_RewardClosePopupHub": {"on_error": ["DT_RestartGameReturnRewardClosePopupHub"]},
+            "DT_LoginRewardReturnHomeHub": {"on_error": ["DT_RestartGameReturnLoginRewardReturnHomeHub"]},
+            "DT_WarmGiftReturnHomeHub": {"on_error": ["DT_RestartGameReturnWarmGiftReturnHomeHub"]},
+            "DT_MixReturnHomeHub": {"on_error": ["DT_RestartGameReturnMixReturnHomeHub"]},
+            "DT_ForgeReturnHomeHub": {"on_error": ["DT_RestartGameReturnForgeReturnHomeHub"]},
+            "DT_DrillReturnHomeHub": {"on_error": ["DT_RestartGameReturnDrillReturnHomeHub"]},
+            "DT_KebiReturnHomeHub": {"on_error": ["DT_RestartGameReturnKebiReturnHomeHub"]}
           }
         },
         {
@@ -7262,8 +7291,162 @@
         {
           "name": "领取奖励",
           "label": "领取奖励",
+          "option": ["D_领取日常奖励", "D_领取月常奖励", "D_领取主线奖励", "D_领取活动奖励"],
           "pipeline_override": {
             "DT_RewardHub": {"enabled": true}
+          }
+        }
+      ]
+    },
+    "D_领取日常奖励": {
+      "name": "D_领取日常奖励",
+      "label": "日常奖励",
+      "type": "switch",
+      "default_case": "Yes",
+      "cases": [
+        {
+          "name": "No",
+          "label": "关闭"
+        },
+        {
+          "name": "Yes",
+          "label": "开启",
+          "pipeline_override": {
+            "DT_RewardDailyGate": {"enabled": true}
+          }
+        }
+      ]
+    },
+    "D_领取月常奖励": {
+      "name": "D_领取月常奖励",
+      "label": "月常奖励",
+      "type": "switch",
+      "default_case": "No",
+      "cases": [
+        {
+          "name": "No",
+          "label": "关闭"
+        },
+        {
+          "name": "Yes",
+          "label": "开启",
+          "pipeline_override": {
+            "DT_RewardMonthlyGate": {"enabled": true}
+          }
+        }
+      ]
+    },
+    "D_领取主线奖励": {
+      "name": "D_领取主线奖励",
+      "label": "主线奖励",
+      "type": "switch",
+      "default_case": "No",
+      "cases": [
+        {
+          "name": "No",
+          "label": "关闭"
+        },
+        {
+          "name": "Yes",
+          "label": "开启",
+          "pipeline_override": {
+            "DT_RewardMainlineGate": {"enabled": true}
+          }
+        }
+      ]
+    },
+    "D_领取活动奖励": {
+      "name": "D_领取活动奖励",
+      "label": "活动奖励",
+      "type": "switch",
+      "default_case": "No",
+      "cases": [
+        {
+          "name": "No",
+          "label": "关闭"
+        },
+        {
+          "name": "Yes",
+          "label": "开启",
+          "pipeline_override": {
+            "DT_RewardActivityGate": {"enabled": true}
+          }
+        }
+      ]
+    },
+    "D_领取邮件": {
+      "name": "D_领取邮件",
+      "label": "领取邮件",
+      "type": "checkbox",
+      "default_case": [],
+      "cases": [
+        {
+          "name": "领取邮件",
+          "label": "领取邮件",
+          "option": ["D_邮件类别"],
+          "pipeline_override": {
+            "DT_MailResourceGate": {"enabled": true},
+            "DT_MailResourceHub": {"enabled": true}
+          }
+        }
+      ]
+    },
+    "D_邮件类别": {
+      "name": "D_邮件类别",
+      "label": "邮件类别",
+      "type": "checkbox",
+      "default_case": ["资源", "货币", "便利道具", "其他物品", "景趣"],
+      "cases": [
+        {
+          "name": "资源",
+          "label": "资源",
+          "pipeline_override": {
+            "DT_MailResourceSelectFilter1": {"enabled": true}
+          }
+        },
+        {
+          "name": "刀装",
+          "label": "刀装",
+          "pipeline_override": {
+            "DT_MailResourceGate": {"enabled": true},
+            "DT_MailResourceHub": {"enabled": true},
+            "DT_MailResourceSelectFilter2": {"enabled": true}
+          }
+        },
+        {
+          "name": "货币",
+          "label": "货币",
+          "pipeline_override": {
+            "DT_MailResourceGate": {"enabled": true},
+            "DT_MailResourceHub": {"enabled": true},
+            "DT_MailResourceSelectFilter3": {"enabled": true}
+          }
+        },
+        {
+          "name": "便利道具",
+          "label": "便利道具",
+          "pipeline_override": {
+            "DT_MailResourceGate": {"enabled": true},
+            "DT_MailResourceHub": {"enabled": true},
+            "DT_MailResourceSelectFilter4": {"enabled": true}
+          }
+        },
+        {
+          "name": "其他物品",
+          "label": "其他物品",
+          "pipeline_override": {
+            "DT_MailResourceGate": {"enabled": true},
+            "DT_MailResourceHub": {"enabled": true},
+            "DT_MailResourceSelectFilter5": {"enabled": true}
+          }
+        },
+        {
+          "name": "景趣",
+          "label": "景趣",
+          "pipeline_override": {
+            "DT_MailResourceGate": {"enabled": true},
+            "DT_MailResourceHub": {"enabled": true},
+            "DT_MailResourceSelectFilter6": {"enabled": true}
           }
         }
       ]
