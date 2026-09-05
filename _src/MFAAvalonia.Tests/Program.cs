@@ -50,6 +50,12 @@ var restartGameActionSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Extensions", "MaaFW", "Custom", "RestartGameAction.cs"));
 var appSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "App.axaml.cs"));
+var appPathsSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "AppPaths.cs"));
+var maaLogRotatorSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "MaaLogRotator.cs"));
+var workRecordsViewModelSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "ViewModels", "Pages", "WorkRecordsViewModel.cs"));
 var taskOptionGeneratorSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "TaskOptionGenerator.cs"));
 var addTaskDialogSource = File.ReadAllText(Path.Combine(
@@ -62,6 +68,16 @@ var fileLogExporterSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "FileLogExporter.cs"));
 var toastHelperSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "ToastHelper.cs"));
+var swordDropLogActionSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "assets", "resource", "base", "custom", "SwordDropLogAction.cs"));
+AssertTrue(swordDropLogActionSource.Contains(
+        "ExternalNotificationHelper.ExternalNotificationAsync(message)",
+        StringComparison.Ordinal),
+    "刀剑掉落播报名单命中时应同时发送外部通知");
+AssertTrue(taskStartProcessorSource.Contains(
+        "ToastNotification.Show(LangKeys.TaskFailed.ToLocalization());",
+        StringComparison.Ordinal),
+    "任务失败时应发送与任务完成一致的系统通知");
 var packWinScript = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "tools", "pack_win.ps1"));
 var packMacScript = File.ReadAllText(Path.Combine(
@@ -87,6 +103,22 @@ AssertTrue(appSource.Contains(
         ".AddView<WorkRecordNameDialogView, WorkRecordNameDialogViewModel>(services)",
         StringComparison.Ordinal),
     "工作记录保存时必须注册名称输入对话框视图，避免提示找不到 WorkRecordNameDialogViewModel 对应视图");
+AssertTrue(appSource.Contains("AppPaths.CleanupOldDebugLogs(", StringComparison.Ordinal)
+    && appSource.Contains("MaaLogRotator.Start();", StringComparison.Ordinal)
+    && appSource.Contains("MaaLogRotator.Stop();", StringComparison.Ordinal),
+    "应用启动和退出时必须启用并停止磁盘日志维护，避免 debug 目录无限增长");
+AssertTrue(appPathsSource.Contains("public static void CleanupOldDebugLogs(int retainDays = 3", StringComparison.Ordinal)
+    && appPathsSource.Contains("DateTime.Now.AddDays(-retainDays)", StringComparison.Ordinal)
+    && appPathsSource.Contains("debugDirSize > 500 * 1024 * 1024", StringComparison.Ordinal)
+    && appPathsSource.Contains("Directory.EnumerateFiles(debugPath, \"maafw.bak.*.log\", SearchOption.TopDirectoryOnly)", StringComparison.Ordinal)
+    && appPathsSource.Contains("Directory.EnumerateFiles(onErrorPath, \"*.png\", SearchOption.TopDirectoryOnly)", StringComparison.Ordinal)
+    && appPathsSource.Contains("files.OrderByDescending(file => file).Skip(retainCount)", StringComparison.Ordinal),
+    "磁盘日志清理必须删除过期备份，并在空间超限时限制备份日志与错误截图数量");
+AssertTrue(maaLogRotatorSource.Contains("public static void Stop()", StringComparison.Ordinal),
+    "日志切块器必须提供停止入口，避免应用退出后遗留轮询任务");
+AssertTrue(workRecordsViewModelSource.Contains("FormatRepairCost(item.Wood)", StringComparison.Ordinal)
+    && workRecordsViewModelSource.Contains("cost < 0 ? \"未识别\"", StringComparison.Ordinal),
+    "工作记录的修刀明细必须将未识别资源显示为未识别，而不是内部失败标记");
 var applyCurrentDeviceSelectionSource = ExtractSourceSection(
     taskQueueViewModelSource,
     "private void ApplyCurrentDeviceSelection",
@@ -168,14 +200,28 @@ AssertTrue(taskStartProcessorSource.Contains(
 
 var optionInterfaceJson = JObject.Parse(File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "assets", "interface.json")));
+var currentMaaProcessorSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Extensions", "MaaFW", "MaaProcessor.cs"));
 foreach (var syncOptionName in new[] { "S_同步远征", "U_同步远征", "LR_同步远征", "TT_同步远征", "EC_同步后勤" })
 {
     var syncOverride = optionInterfaceJson["option"]?[syncOptionName]?["cases"]?
         .Children<JObject>().Single()["pipeline_override"];
     AssertTrue(Enumerable.Range(1, 5).All(team =>
-            syncOverride?[$"E_CheckTeam{team}"]?["enabled"]?.Value<bool>() == true),
-        $"{syncOptionName} 应启用第一至第五队的远征状态检查");
+            syncOverride?[$"E_CheckTeam{team}"] == null),
+        $"{syncOptionName} 不应固定启用五支队伍，应复用远征任务的队伍配置");
 }
+AssertTrue(currentMaaProcessorSource.Contains(
+        "ProcessOptions(ref taskModels, expTask.Option, teamOptionNames)",
+        StringComparison.Ordinal)
+    && currentMaaProcessorSource.Contains("EndsWith(\"同步远征\")", StringComparison.Ordinal)
+    && currentMaaProcessorSource.Contains("EndsWith(\"同步后勤\")", StringComparison.Ordinal)
+    && currentMaaProcessorSource.Contains("\"EdoCastle\"", StringComparison.Ordinal),
+    "同步后勤必须复用当前实例的远征队伍配置，并覆盖江户城任务");
+AssertTrue(currentMaaProcessorSource.Contains(
+        "MergePipelineOverrideDictionary(checkboxOverride, caseItem.PipelineOverride)",
+        StringComparison.Ordinal)
+    && currentMaaProcessorSource.Contains("MergeArrayHandling = MergeArrayHandling.Replace", StringComparison.Ordinal),
+    "多选筛选条件必须合并到同一个 node 覆盖对象，不能只保留最后一个刀种");
 var formationPresetControlSource = ExtractSourceSection(
     taskOptionGeneratorSource,
     "private Control CreateFormationPresetControl(",
@@ -1090,6 +1136,27 @@ var logisticsSupplementRecord = WorkRecordBuilder.Build([
 ]).Single();
 AssertTrue(logisticsSupplementRecord.LogisticsCounts["补充刀装"] == 1,
     "后勤任务产生的补充刀装应显示在后勤记录中");
+
+var partialRepairRecords = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：后勤"),
+    new LogEntry(logStart.AddSeconds(1), "INF", "[后勤] 开始修复 谦信景光 1/22/未识别/11"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "停止前状态：SUCCEEDED"),
+]);
+AssertTrue(partialRepairRecords.Count == 1
+    && partialRepairRecords[0].LogisticsCounts.GetValueOrDefault("开始修复") == 1
+    && partialRepairRecords[0].LogisticsRepairs.Count == 1
+    && partialRepairRecords[0].LogisticsRepairs[0].SwordName == "谦信景光"
+    && partialRepairRecords[0].LogisticsRepairs[0].Coolant == -1,
+    "修刀资源部分未识别时仍应保留后勤修刀记录与已识别信息");
+
+var sortieRepairRecord = WorkRecordBuilder.Build([
+    new LogEntry(logStart, "INF", "开始任务：常驻作战"),
+    new LogEntry(logStart.AddSeconds(1), "WRN", "[合战场] 修复 太郎太刀 632/185/未识别/474"),
+    new LogEntry(logStart.AddSeconds(2), "INF", "停止前状态：SUCCEEDED"),
+]).Single();
+AssertTrue(sortieRepairRecord.SpecialEvents.Count == 1
+    && sortieRepairRecord.SpecialEvents[0].Description == "修复 太郎太刀 632/185/未识别/474",
+    "出阵任务产生的修刀 Warning 词条应显示在特殊情况板块");
 
 var firstSavedSource = new WorkRecord
 {

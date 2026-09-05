@@ -38,10 +38,11 @@ public static class MaaLogRotator
         if (_pollTask is { IsCompleted: false })
             return;
 
-        _cts = new CancellationTokenSource();
+        var cancellationTokenSource = new CancellationTokenSource();
+        _cts = cancellationTokenSource;
         _pollTask = Task.Run(async () =>
         {
-            while (!_cts.IsCancellationRequested)
+            while (!cancellationTokenSource.IsCancellationRequested)
             {
                 try
                 {
@@ -55,14 +56,24 @@ public static class MaaLogRotator
 
                 try
                 {
-                    await Task.Delay(PollInterval, _cts.Token).ConfigureAwait(false);
+                    await Task.Delay(PollInterval, cancellationTokenSource.Token).ConfigureAwait(false);
                 }
                 catch (OperationCanceledException)
                 {
                     break;
                 }
             }
-        }, _cts.Token);
+        }, cancellationTokenSource.Token);
+    }
+
+    /// <summary>
+    /// 停止后台轮询切块。应用退出时调用，避免遗留后台任务。
+    /// </summary>
+    public static void Stop()
+    {
+        var cancellationTokenSource = Interlocked.Exchange(ref _cts, null);
+        _pollTask = null;
+        cancellationTokenSource?.Cancel();
     }
 
     /// <summary>

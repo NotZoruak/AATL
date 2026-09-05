@@ -2506,11 +2506,6 @@
             "EC_IsHome": {
               "next": ["Expedition"]
             },
-            "E_CheckTeam1": {"enabled": true},
-            "E_CheckTeam2": {"enabled": true},
-            "E_CheckTeam3": {"enabled": true},
-            "E_CheckTeam4": {"enabled": true},
-            "E_CheckTeam5": {"enabled": true},
             "E_SelectMap1": {
               "action": {
                 "type": "Custom",
@@ -2876,7 +2871,6 @@
               "next": ["S_NavigateToSortie"],
               "on_error": ["Expedition"]
             },
-            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "action": {
                 "type": "Custom",
@@ -5151,7 +5145,6 @@
             "U_IsHome": {
               "next": ["Expedition"]
             },
-            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "action": {
                 "type": "Custom",
@@ -5255,7 +5248,6 @@
             "LR_IsHome": {
               "next": ["Expedition"]
             },
-            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "action": {
                 "type": "Custom",
@@ -5358,7 +5350,6 @@
             "TT_IsHome": {
               "next": ["Expedition"]
             },
-            "E_CheckTeam1": {"enabled": true},
             "E_SelectMap1": {
               "action": {
                 "type": "Custom",

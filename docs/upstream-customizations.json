@@ -69,8 +69,8 @@
       "baseline_upstream": "2.13.0",
       "last_verified_upstream": "2.16.1",
       "migration_strategy": "以 2.16.1 RunResult 和取消模型为基础重放，不复制旧队列主循环。",
-      "verification": ["失败且关闭继续时停止", "失败且开启继续时继续", "用户停止不触发后续操作", "恢复索引仅在成功后推进", "异步任务队列完整结束后才进入停止流程", "正常完成的任务不被记录为手动停止", "普通任务之间自动插入回本丸", "最后一个任务后不插入回本丸", "MFAA 特殊任务前不插入回本丸", "任务添加界面与队列插入逻辑共用特殊任务 Entry 集合"],
-      "notes": "当前分支未提交改动属于该项快照的一部分。任务队列外层必须使用 Func<Task> 重载等待 ExecuteTasks 完整返回，不能将异步 lambda 绑定到 Action 重载。普通任务之间通过 GoHome 确保从本丸开始；MFAA 特殊任务由 Entry 标识识别，特殊任务前跳过 GoHome，不得恢复为无条件插入。"
+      "verification": ["失败且关闭继续时停止", "失败且开启继续时继续", "用户停止不触发后续操作", "恢复索引仅在成功后推进", "异步任务队列完整结束后才进入停止流程", "正常完成的任务不被记录为手动停止", "普通任务之间自动插入回本丸", "最后一个任务后不插入回本丸", "MFAA 特殊任务前不插入回本丸", "任务添加界面与队列插入逻辑共用特殊任务 Entry 集合", "任务失败时发送系统通知"],
+      "notes": "当前分支未提交改动属于该项快照的一部分。任务队列外层必须使用 Func<Task> 重载等待 ExecuteTasks 完整返回，不能将异步 lambda 绑定到 Action 重载。普通任务之间通过 GoHome 确保从本丸开始；MFAA 特殊任务由 Entry 标识识别，特殊任务前跳过 GoHome，不得恢复为无条件插入。任务失败时除保留界面内提示和外部通知外，必须调用 ToastNotification.Show 发送系统通知。"
     },
     {
       "id": "recovery.game-and-emulator-restart",
@@ -93,6 +93,28 @@
       "migration_strategy": "采用 2.16.1 项目文件和更新流程，只覆盖明确的资源根、发布和 agent 排除点。",
       "verification": ["完整测试包可加载资源", "不会创建或下载 agent", "默认 interface 不会在根目录创建 resource/base/pipeline/sample.json", "Windows 与 macOS 发布路径正确", "Windows 发布目录包含 MATR.exe 和 MATR.dll", "打包时 PublishDir 中的 MFAAvalonia.Core.dll 版本与包内文件哈希一致"],
       "notes": "项目根目录内可做大小写容错，不能扩展为任意磁盘搜索。资源定义和资源目录固定从 assets/interface.json、assets/interface.jsonc、assets/resource 读取，否则会触发上游默认资源兜底。MaaProcessor.ProjectDir 必须是 interface 文件所在的 assets 目录；资源路径与 CheckInterface 默认路径统一使用 {PROJECT_DIR}/resource/base，最终解析为 assets/resource/base，不能在根目录创建 resource/base。Windows 发布包统一使用 runtimes/libs，运行时探测配置必须同步指向该目录；根级 libs 仅用于补充缺失依赖，不能覆盖 runtimes/libs 的本次发布产物。桌面项目的 AssemblyName 与 OutputName 必须为 MATR；不能恢复上游 MFAAvalonia 输出名，否则 pack_win.ps1 会回退打包根目录残留的旧 MATR 产物。Windows 打包必须先发布，将宿主文件和 runtimes 同步到开发根目录，再以根目录为输入执行 pack_win.ps1。"
+    },
+    {
+      "id": "runtime.custom-action-loading-isolation",
+      "title": "自定义动作动态编译适配与资源隔离",
+      "purpose": "保证运行时动态编译的自定义动作能适配 MFAFramework 接口，并避免资源切换时混用不同版本的动作。",
+      "files": ["_src/MFAAvalonia/Extensions/MFAExtensions.cs", "_src/MFAAvalonia/Extensions/MaaFW/CustomClassLoader.cs", "_src/MFAAvalonia/Extensions/MaaFW/MaaProcessor.cs"],
+      "baseline_upstream": "2.16.1",
+      "last_verified_upstream": "2.16.1",
+      "migration_strategy": "保留 IMaaImageBuffer 截图转换适配；将自定义动作缓存和文件监听按资源目录隔离；注册时只扫描当前资源声明的 custom 目录并按绝对路径去重。",
+      "verification": ["SwordDropLogAction 动态编译并注册成功", "MixGreedySelectionAction 动态编译并注册成功", "NewMixTargetSelectionAction 动态编译并注册成功", "资源切换后不复用其他资源目录的动作缓存", "不额外扫描安装目录旧资源"],
+      "notes": "MFAFramework 的 IMaaContext.GetImage() 返回 IMaaImageBuffer。若扩展方法只接受 MaaImageBuffer，动态编译失败后 MaaFramework 会在执行相关动作时报告 Action is null。资源路径混用会使旧脚本覆盖或补充当前资源动作，必须保持当前资源边界。"
+    },
+    {
+      "id": "runtime.debug-log-maintenance",
+      "title": "磁盘日志轮转与自动清理",
+      "purpose": "避免 debug 目录因 MaaFramework 日志和错误截图持续累积而无限增长，同时保留近期排障证据。",
+      "files": ["_src/MFAAvalonia/App.axaml.cs", "_src/MFAAvalonia/Helper/AppPaths.cs", "_src/MFAAvalonia/Helper/MaaLogRotator.cs"],
+      "baseline_upstream": "2.13.0",
+      "last_verified_upstream": "2.16.1",
+      "migration_strategy": "保留启动清理、运行期切块和退出停止三个调用点；上游调整应用生命周期或日志目录时重新接入。",
+      "verification": ["启动时轮转 maafw.log", "清理超过三天的备份日志和截图", "debug 超过 500MiB 时仅保留最新 10 个备份日志与 50 张 on_error PNG 截图", "日志超过 20MiB 时运行期切块", "应用退出时停止日志轮询任务"],
+      "notes": "CleanupOldDebugLogs 使用跨平台 Path API；MaaLogRotator 每 30 秒检查一次。不得只保留切块器而遗漏 App 启动调用，否则运行期切块不会生效。"
     },
     {
       "id": "privacy.telemetry-disabled",

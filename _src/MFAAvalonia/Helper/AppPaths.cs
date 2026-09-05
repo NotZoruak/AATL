@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -151,6 +152,125 @@ public static class AppPaths
         catch (Exception ex)
         {
             logWarning?.Invoke($"处理旧主程序 backupMFA 清理失败：原因={ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// 清理过期调试日志和截图，限制 debug 目录的磁盘占用。
+    /// </summary>
+    public static void CleanupOldDebugLogs(int retainDays = 3, Action<string>? logInfo = null, Action<string>? logWarning = null)
+    {
+        try
+        {
+            var debugPath = Path.Combine(InstallRoot, "debug");
+            if (!Directory.Exists(debugPath))
+                return;
+
+            var cutoff = DateTime.Now.AddDays(-retainDays);
+            var mainLog = Path.Combine(debugPath, "maafw.log");
+            if (File.Exists(mainLog) && new FileInfo(mainLog).Length > 0)
+            {
+                try
+                {
+                    var bakName = $"maafw.bak.{DateTime.Now:yyyy.MM.dd-HH.mm.ss.fff}.log";
+                    File.Move(mainLog, Path.Combine(debugPath, bakName));
+                    logInfo?.Invoke($"已轮转调试日志：{bakName}");
+                }
+                catch (Exception ex)
+                {
+                    logWarning?.Invoke($"轮转调试日志失败：原因={ex.Message}");
+                }
+            }
+
+            foreach (var file in Directory.EnumerateFiles(debugPath, "maafw.bak.*.log", SearchOption.AllDirectories))
+            {
+                try
+                {
+                    if (File.GetLastWriteTime(file) >= cutoff)
+                        continue;
+
+                    File.SetAttributes(file, FileAttributes.Normal);
+                    File.Delete(file);
+                    logInfo?.Invoke($"已清理过期调试日志：文件={Path.GetFileName(file)}");
+                }
+                catch (Exception ex)
+                {
+                    logWarning?.Invoke($"清理调试日志失败：文件={file}，原因={ex.Message}");
+                }
+            }
+
+            var debugDirSize = Directory.EnumerateFiles(debugPath, "*", SearchOption.AllDirectories)
+                .Sum(file =>
+                {
+                    try { return new FileInfo(file).Length; }
+                    catch { return 0L; }
+                });
+            if (debugDirSize > 500 * 1024 * 1024)
+            {
+                DeleteExcessFiles(
+                    Directory.EnumerateFiles(debugPath, "maafw.bak.*.log", SearchOption.TopDirectoryOnly),
+                    10,
+                    "debug 目录超 500MB，已清理备份日志",
+                    logInfo,
+                    logWarning);
+
+                var onErrorPath = Path.Combine(debugPath, "on_error");
+                if (Directory.Exists(onErrorPath))
+                {
+                    DeleteExcessFiles(
+                        Directory.EnumerateFiles(onErrorPath, "*.png", SearchOption.TopDirectoryOnly),
+                        50,
+                        "debug 目录超 500MB，已清理 on_error 截图",
+                        logInfo,
+                        logWarning);
+                }
+            }
+
+            foreach (var pattern in new[] { "*.png", "*.jpg", "*.jpeg" })
+            {
+                foreach (var file in Directory.EnumerateFiles(debugPath, pattern, SearchOption.AllDirectories))
+                {
+                    try
+                    {
+                        if (File.GetLastWriteTime(file) < cutoff)
+                        {
+                            File.SetAttributes(file, FileAttributes.Normal);
+                            File.Delete(file);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        logWarning?.Invoke($"清理调试截图失败：文件={file}，原因={ex.Message}");
+                    }
+                }
+            }
+            logInfo?.Invoke("调试文件清理完成");
+        }
+        catch (Exception ex)
+        {
+            logWarning?.Invoke($"清理调试日志异常：原因={ex.Message}");
+        }
+    }
+
+    private static void DeleteExcessFiles(
+        IEnumerable<string> files,
+        int retainCount,
+        string message,
+        Action<string>? logInfo,
+        Action<string>? logWarning)
+    {
+        foreach (var file in files.OrderByDescending(file => file).Skip(retainCount))
+        {
+            try
+            {
+                File.SetAttributes(file, FileAttributes.Normal);
+                File.Delete(file);
+                logInfo?.Invoke($"{message}：文件={Path.GetFileName(file)}");
+            }
+            catch (Exception ex)
+            {
+                logWarning?.Invoke($"清理调试文件失败：文件={file}，原因={ex.Message}");
+            }
         }
     }
 }

@@ -447,17 +447,34 @@ public static class WorkRecordBuilder
     private static bool TryParseRepair(string detail, out LogisticsRepair repair)
     {
         repair = default!;
-        var match = Regex.Match(detail, @"^(\S+)\s+(\d+)/(\d+)/(\d+)/(\d+)$");
+        var match = Regex.Match(detail, @"^(\S+)\s+((?:\d+|未识别))/((?:\d+|未识别))/((?:\d+|未识别))/((?:\d+|未识别))$");
         if (!match.Success)
+            return false;
+
+        if (!TryParseRepairCost(match.Groups[2].Value, out var wood)
+            || !TryParseRepairCost(match.Groups[3].Value, out var steel)
+            || !TryParseRepairCost(match.Groups[4].Value, out var coolant)
+            || !TryParseRepairCost(match.Groups[5].Value, out var whetstone))
             return false;
 
         repair = new LogisticsRepair(
             DateTime.MinValue,
             match.Groups[1].Value,
-            int.Parse(match.Groups[2].Value),
-            int.Parse(match.Groups[3].Value),
-            int.Parse(match.Groups[4].Value),
-            int.Parse(match.Groups[5].Value));
+            wood,
+            steel,
+            coolant,
+            whetstone);
         return true;
+    }
+
+    private static bool TryParseRepairCost(string value, out int cost)
+    {
+        if (value == "未识别")
+        {
+            cost = -1;
+            return true;
+        }
+
+        return int.TryParse(value, out cost);
     }
 }

@@ -86,7 +86,7 @@ public class SwordDropLogAction : IMaaCustomAction
         }
     }
 
-    /// <summary>按全局开关和播报名单发送刀剑掉落桌面通知。</summary>
+    /// <summary>按全局开关和播报名单发送刀剑掉落通知。</summary>
     private static void TryNotify(string swordName, string swordType)
     {
         if (!ConfigurationManager.Current.GetValue(ConfigurationKeys.SwordDropNotificationEnabled, false))
@@ -99,7 +99,9 @@ public class SwordDropLogAction : IMaaCustomAction
             return;
         }
 
-        ToastNotification.Show(SwordDropNotificationMatcher.FormatMessage(swordType, swordName));
+        var message = SwordDropNotificationMatcher.FormatMessage(swordType, swordName);
+        ToastNotification.Show(message);
+        _ = ExternalNotificationHelper.ExternalNotificationAsync(message);
     }
 
     /// <summary>保存当前完整画面，截图失败不影响后续点击。</summary>

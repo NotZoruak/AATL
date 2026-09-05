@@ -51,6 +51,18 @@
 
 任务队列需要在普通任务之间自动插入 `GoHome`，确保下一个游戏任务从本丸开始；最后一个任务后不插入。MFAA 提供的特殊任务通过 `Entry` 标识（如 `CountdownAction`、`WebhookAction`）识别，特殊任务前不得插入回本丸。特殊任务集合由任务队列策略与任务添加界面共用，升级时不得恢复为无条件插入。
 
+任务失败时除保留界面内提示与外部通知外，还必须调用 `ToastNotification.Show` 发送系统通知，使失败、成功的任务结束反馈保持一致。升级时检查失败分支，避免只剩界面内日志而用户错过失败结果。
+
+### `task.sync-expedition-reuse`
+
+同步后勤是 MATR 对 MFAAvalonia 远征流程的定制扩展。合战场、地下城、陆联、战术强化和江户潜入启用“同步后勤”时，`MaaProcessor.CreateNodeAndParam` 必须从当前实例的“后勤”任务读取“部队一”至“部队五”的选项，并将这些选项的 `pipeline_override` 合并到当前任务。
+
+远征队伍的检查开关必须沿用后勤任务的配置：选择“休息”时对应的 `E_CheckTeamN` 为 `false`，选择远征地图时对应的 `E_CheckTeamN` 为 `true`，同时合并对应的地图选择参数。同步选项本身不得固定把五个 `E_CheckTeamN` 全部设为 `true`，否则休息队伍会进入 `E_SelectMapN`，并可能因自定义选图动作返回失败而重复进入远征页面。
+
+“修刀”的“筛选条件”是 checkbox 多选项。多个刀种或伤势的 `pipeline_override` 必须先递归合并到同一个 `E_FindRepairableSword` 覆盖对象；不能按 case 分别生成同名 node 的多层覆盖，否则 MaaFramework 只会使用最后一层，表现为只点击最后一个筛选条件。
+
+该逻辑还负责同步修刀、内番和远征刷新间隔；升级时必须保留实例配置重新读取兜底，避免配置缓存为空或被惰性枚举污染时丢失队伍设置。2026-09-05 的 MFAAvalonia v2.16.1 升级曾移除整段同步配置复用逻辑，导致已配置的第二至第五队不再检查；后续修复不得只在 `interface.json` 的同步选项中补充固定启用开关。
+
 ### `recovery.game-and-emulator-restart`
 
 保留 MATR 对 MFAAvalonia 卡死恢复动作的二次开发。`RestartGameAction` 必须从当前 ADB 配置读取目标应用包名，优先通过 `cmd package resolve-activity` 解析实际启动 Activity，再使用 `am start -n` 启动，不能依赖部分模拟器缺失的 `monkey` 命令。
@@ -68,6 +80,20 @@ Windows 发布目录可能同时在 `runtimes/libs` 与根级 `libs` 放置托�
 MATR 的资源包固定在 `assets/`：`AppPaths.InterfaceJsonPath`、`AppPaths.InterfaceJsoncPath` 和 `AppPaths.ResourceDirectory` 必须分别解析到 `assets/interface.json`、`assets/interface.jsonc` 与 `assets/resource`。上游若改回程序根目录布局，会触发默认资源兜底并显示空任务列表。
 
 `MaaProcessor.ProjectDir` 必须解析为 `interface.json` 所在目录（MATR 即 `assets/`），并且所有 resource 路径均以它替换 `{PROJECT_DIR}`。`MaaProcessor.CheckInterface` 的默认资源路径必须为 `{PROJECT_DIR}/resource/base`；两项必须配套，最终解析到 `assets/resource/base`，不得在程序根目录创建不需要的 `resource/base/pipeline/sample.json`。
+
+### `runtime.custom-action-loading-isolation`
+
+MATR 的资源包包含运行时动态编译的自定义动作。`MFAExtensions.ToBitmap` 必须接受 MFAFramework 返回的 `IMaaImageBuffer` 接口，否则使用 `IMaaContext.GetImage()` 的动作会在编译阶段失败，随后在 pipeline 中表现为 `Action is null`。
+
+自定义动作加载器必须按资源目录隔离缓存和文件监听器；资源切换或脚本变更后只能复用同一目录的缓存。`MaaProcessor` 只允许从当前资源声明的路径加载 `custom` 目录，并需对绝对路径去重，不能额外扫描安装目录中的旧资源，避免不同资源版本的动作混合注册。
+
+升级时必须验证 `SwordDropLogAction`、`MixGreedySelectionAction` 和 `NewMixTargetSelectionAction` 能够动态编译并注册；同时确认资源切换后不会继续使用上一套自定义动作。
+
+### `runtime.debug-log-maintenance`
+
+保留 MATR 的磁盘日志维护。应用启动时必须调用 `AppPaths.CleanupOldDebugLogs`：轮转现有 `debug/maafw.log`，清理超过三天的备份日志和截图；当 `debug` 总大小超过 500 MiB 时，最多保留最新 10 个备份日志和 `on_error` 中最新 50 张 PNG 截图。
+
+`MaaLogRotator` 必须在应用启动时启动，并在退出时停止；运行期间每 30 秒检查一次，在单个 MaaFramework 日志超过 20 MiB 时切分为备份。升级应用生命周期、日志目录或 MaaFramework 日志初始化时，验证该维护流程仍被调用，避免 `debug/` 无限增长。
 
 ### `privacy.telemetry-disabled`
 

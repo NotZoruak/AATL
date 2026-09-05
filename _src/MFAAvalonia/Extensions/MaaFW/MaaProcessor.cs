@@ -3677,6 +3677,7 @@ public class MaaProcessor
             if (interfaceOption.IsCheckbox && interfaceOption.Cases != null)
             {
                 var selectedCases = selectOption.SelectedCases ?? new List<string>();
+                var checkboxOverride = new Dictionary<string, JToken>();
                 // 按 cases 定义顺序合并所有选中 case 的 pipeline_override
                 foreach (var caseItem in interfaceOption.Cases)
                 {
@@ -3684,7 +3685,7 @@ public class MaaProcessor
                     {
                         if (caseItem.PipelineOverride != null)
                         {
-                            taskModels.Merge(caseItem.PipelineOverride);
+                            MergePipelineOverrideDictionary(checkboxOverride, caseItem.PipelineOverride);
                         }
 
                         // 递归处理被选中 case 的子配置项
@@ -3721,6 +3722,9 @@ public class MaaProcessor
                         }
                     }
                 }
+
+                if (checkboxOverride.Count > 0)
+                    taskModels.Merge(checkboxOverride);
             }
             // 处理 input 类型
             else if (interfaceOption.IsInput)
@@ -3800,6 +3804,32 @@ public class MaaProcessor
         }
     }
 
+    /// <summary>
+    /// 合并同一个 checkbox 的多个选中 case，保留同一 node 下不同 action 参数字段。
+    /// </summary>
+    private static void MergePipelineOverrideDictionary(
+        Dictionary<string, JToken> target,
+        Dictionary<string, JToken> source)
+    {
+        foreach (var (name, value) in source)
+        {
+            if (target.TryGetValue(name, out var existing)
+                && existing is JObject existingObject
+                && value is JObject valueObject)
+            {
+                existingObject.Merge(valueObject, new JsonMergeSettings
+                {
+                    MergeArrayHandling = MergeArrayHandling.Replace,
+                    MergeNullValueHandling = MergeNullValueHandling.Ignore
+                });
+            }
+            else
+            {
+                target[name] = value.DeepClone();
+            }
+        }
+    }
+
     private List<MaaInterface.MaaInterfaceSelectOption> CreateDefaultSelectOptions(IEnumerable<string> optionNames)
     {
         var result = new List<MaaInterface.MaaInterfaceSelectOption>();
@@ -3860,6 +3890,91 @@ public class MaaProcessor
 
         // 4. 合并任务自身的 option（task.option，最高优先级）
         UpdateTaskDictionary(ref taskModels, task.InterfaceItem?.Option, task.InterfaceItem?.Advanced);
+
+        // 5. 同步后勤任务复用当前实例的远征队伍、修刀、内番和刷新间隔配置
+        if (task.InterfaceItem?.Entry is "Sortie" or "Underground" or "LRentaisen" or "TacticalTraining" or "EdoCastle")
+        {
+            var syncExpEnabled = task.InterfaceItem.Option
+                ?.FirstOrDefault(o => (o.Name ?? string.Empty).EndsWith("同步远征")
+                    || (o.Name ?? string.Empty).EndsWith("同步后勤"))
+                ?.SelectedCases?.Contains(string.Empty) == true;
+
+            if (syncExpEnabled)
+            {
+                var savedTasks = InstanceConfiguration.GetValue(
+                    ConfigurationKeys.TaskItems,
+                    new List<MaaInterface.MaaInterfaceTask>());
+
+                if (savedTasks == null || savedTasks.Count == 0)
+                {
+                    InstanceConfiguration.ReloadFromDisk();
+                    savedTasks = InstanceConfiguration.GetValue(
+                        ConfigurationKeys.TaskItems,
+                        new List<MaaInterface.MaaInterfaceTask>());
+                }
+
+                var expTask = savedTasks?.FirstOrDefault(t => t.Entry == "Expedition");
+                if (expTask?.Option != null)
+                {
+                    var teamOptionNames = new List<string> { "部队一", "部队二", "部队三", "部队四", "部队五" };
+                    ProcessOptions(ref taskModels, expTask.Option, teamOptionNames);
+                    var repairOptionNames = new List<string> { "修刀" };
+                    ProcessOptions(ref taskModels, expTask.Option, repairOptionNames);
+                    var naibanOptionNames = new List<string> { "内番" };
+                    ProcessOptions(ref taskModels, expTask.Option, naibanOptionNames);
+
+                    var refreshOpt = expTask.Option.FirstOrDefault(o => o.Name == "RefreshInterval");
+                    if (refreshOpt?.Data?.TryGetValue("seconds", out var secondsStr) == true
+                        && int.TryParse(secondsStr, out var seconds))
+                    {
+                        var timerNext = task.InterfaceItem.Entry switch
+                        {
+                            "Sortie" => "S_NavigateToSortie",
+                            "Underground" => "U_NavigateToUnderground",
+                            "TacticalTraining" => "TT_NavigateToActivity",
+                            "EdoCastle" => "EC_NavigateToActivity",
+                            _ => "LR_NavigateToActivity"
+                        };
+                        taskModels.Merge(new Dictionary<string, JToken>
+                        {
+                            ["E_TimerStart"] = new JObject
+                            {
+                                ["action"] = new JObject
+                                {
+                                    ["type"] = "Custom",
+                                    ["custom_action"] = "ExpeditionTimerAction",
+                                    ["custom_action_param"] = new JObject
+                                    {
+                                        ["mode"] = "start",
+                                        ["interval"] = seconds
+                                    }
+                                },
+                                ["next"] = new JArray(timerNext)
+                            },
+                            ["E_SmartWait"] = new JObject
+                            {
+                                ["action"] = new JObject
+                                {
+                                    ["type"] = "Custom",
+                                    ["custom_action"] = "SmartWaitAction",
+                                    ["custom_action_param"] = new JObject { ["interval"] = seconds }
+                                }
+                            },
+                            ["U_SmartWait"] = new JObject
+                            {
+                                ["action"] = new JObject
+                                {
+                                    ["type"] = "Custom",
+                                    ["custom_action"] = "SmartWaitAction",
+                                    ["custom_action_param"] = new JObject { ["interval"] = seconds }
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        }
+
         if (task.InterfaceItem?.Entry == "FormationConfig" || task.InterfaceItem?.Entry == "DailyTask")
             ApplyFormationPresetOverride(ref taskModels, task);
 
@@ -4608,6 +4723,7 @@ public class MaaProcessor
 
         if (status == MFATask.MFATaskStatus.FAILED)
         {
+            ToastNotification.Show(LangKeys.TaskFailed.ToLocalization());
             ToastHelper.Info(LangKeys.TaskFailed.ToLocalization());
             AddLogByKey(LangKeys.TaskFailed, (IBrush?)null);
             ExternalNotificationHelper.ExternalNotificationAsync(Instances.ExternalNotificationSettingsUserControlModel.EnabledCustom

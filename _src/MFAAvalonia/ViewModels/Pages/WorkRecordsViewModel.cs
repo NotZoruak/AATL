@@ -496,8 +496,10 @@ public partial class WorkRecordsViewModel : ViewModelBase
     /// <summary>修刀明细，位于派遣远征组与内番服组之间。</summary>
     public IReadOnlyList<string> SelectedLogisticsRepairTexts =>
         SelectedRecord?.LogisticsRepairs
-            .Select(item => $"{item.Time:HH:mm}  开始修复 {item.SwordName} {item.Wood}/{item.Steel}/{item.Coolant}/{item.Whetstone}")
+            .Select(item => $"{item.Time:HH:mm}  开始修复 {item.SwordName} {FormatRepairCost(item.Wood)}/{FormatRepairCost(item.Steel)}/{FormatRepairCost(item.Coolant)}/{FormatRepairCost(item.Whetstone)}")
             .ToList() ?? [];
+
+    private static string FormatRepairCost(int cost) => cost < 0 ? "未识别" : cost.ToString();
 
     /// <summary>是否有修刀记录。</summary>
     public bool SelectedHasLogisticsRepairs => SelectedLogisticsRepairTexts.Count > 0;

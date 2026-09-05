@@ -142,13 +142,17 @@ public partial class App : Application
             base.Initialize();
             AppPaths.Initialize();
             LoggerHelper.InitializeLogger();
+            AppPaths.CleanupObsoleteExecutableBackups(
+                message => LoggerHelper.Info(message),
+                message => LoggerHelper.Warning(message));
+            AppPaths.CleanupOldDebugLogs(
+                logInfo: message => LoggerHelper.Info(message),
+                logWarning: message => LoggerHelper.Warning(message));
+            MaaLogRotator.Start();
             if (!IsRuntimeMissingMode && !IsTempDirMode)
             {
                 MaaProcessor.StartInterfacePreload();
             }
-            AppPaths.CleanupObsoleteExecutableBackups(
-                message => LoggerHelper.Info(message),
-                message => LoggerHelper.Warning(message));
             AvaloniaXamlLoader.Load(this);
             LanguageHelper.Initialize();
             ConfigurationManager.Initialize();
@@ -305,6 +309,7 @@ public partial class App : Application
     private void OnShutdownRequested(object sender, ShutdownRequestedEventArgs e)
     {
         TelemetryService.Shutdown();
+        MaaLogRotator.Stop();
         TrayIconManager.DisposeTrayIcon(this);
 
         Instances.PersistRuntimeState();
