@@ -324,7 +324,7 @@
     "repeat_delay": 300
   },
   "FB_Dissolve": {
-    "next": ["FB_DissolveCheck", "FB_ClickCaptainSlot"],
+    "next": ["FB_DissolveCheck", "FB_CheckCaptainFatigue", "FB_ClickSortieNow"],
     "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_DissolveCheck": {
@@ -338,6 +338,17 @@
     },
     "action": {"type": "Click"},
     "next": ["FB_Dissolve"],
+    "on_error": ["FB_DetectWhereAmI"]
+  },
+  "FB_CheckCaptainFatigue": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [340, 187, 80, 22],
+        "expected": "100"
+      }
+    },
+    "next": ["FB_ClickCaptainSlot"],
     "on_error": ["FB_DetectWhereAmI"]
   },
   "FB_ClickCaptainSlot": {
