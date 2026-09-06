@@ -329,7 +329,7 @@
       "type": "OCR",
       "param": {
         "roi": [532, 59, 221, 35],
-        "expected": "归城提灯一补充"
+        "expected": "提灯"
       }
     },
     "action": {
