@@ -32,6 +32,7 @@ __pycache__/
 # 根目录发布产物（dotnet publish 后手动拷贝，仅用于 pack.ps1 打包）
 /matr.exe
 /MATR.dll
+/MFAAvalonia.Core.dll
 /MATR.deps.json
 /MATR.runtimeconfig.json
 /libloader.dll
