@@ -46,6 +46,8 @@ public class NaibanOutfitLogAction : IMaaCustomAction
             case "finish":
                 if (_state.TryFinishMissingOutfit())
                     LoggerHelper.Info("[后勤] 未显示内番服立绘");
+                else if (_state.SwordNames.Count > 0)
+                    LoggerHelper.Info($"[后勤] 内番服 {string.Join("、", _state.SwordNames)}");
                 return true;
             case "recognize":
                 RecognizeAndClick(context, json);
@@ -65,11 +67,8 @@ public class NaibanOutfitLogAction : IMaaCustomAction
             var indicatorText = Normalize(ReadText(context, indicatorRoi));
 
             if ((indicatorText.Contains('饲') || indicatorText.Contains('耕'))
-                && TryValidateSword(ReadText(context, nameRoi), out var swordName)
-                && _state.TryRecord(swordName))
-            {
-                LoggerHelper.Info($"[后勤] 内番服 {swordName}");
-            }
+                && TryValidateSword(ReadText(context, nameRoi), out var swordName))
+                _state.TryRecord(swordName);
         }
         finally
         {

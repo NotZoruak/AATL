@@ -9,13 +9,14 @@ namespace MFAAvalonia.Extensions.MaaFW.Custom;
 public sealed class NaibanOutfitRecognitionState
 {
     private const int MaxSwordCount = 2;
-    private readonly HashSet<string> _swordNames = new(StringComparer.Ordinal);
+    private readonly HashSet<string> _swordNameSet = new(StringComparer.Ordinal);
+    private readonly List<string> _swordNames = [];
     private bool _isFinished;
 
     /// <summary>
     /// 本轮已确认的刀剑名称。
     /// </summary>
-    public IReadOnlyCollection<string> SwordNames => _swordNames;
+    public IReadOnlyList<string> SwordNames => _swordNames;
 
     /// <summary>
     /// 本轮结束时是否需要记录未显示内番服立绘。
@@ -27,6 +28,7 @@ public sealed class NaibanOutfitRecognitionState
     /// </summary>
     public void Begin()
     {
+        _swordNameSet.Clear();
         _swordNames.Clear();
         _isFinished = false;
     }
@@ -39,7 +41,11 @@ public sealed class NaibanOutfitRecognitionState
         if (string.IsNullOrWhiteSpace(swordName) || _swordNames.Count >= MaxSwordCount)
             return false;
 
-        return _swordNames.Add(swordName);
+        if (!_swordNameSet.Add(swordName))
+            return false;
+
+        _swordNames.Add(swordName);
+        return true;
     }
 
     /// <summary>

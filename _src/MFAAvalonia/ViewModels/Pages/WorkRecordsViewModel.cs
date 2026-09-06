@@ -504,10 +504,10 @@ public partial class WorkRecordsViewModel : ViewModelBase
     /// <summary>是否有修刀记录。</summary>
     public bool SelectedHasLogisticsRepairs => SelectedLogisticsRepairTexts.Count > 0;
 
-    /// <summary>内番服明细，紧跟派遣远征组之后显示。</summary>
+    /// <summary>内番派遣与内番服结果合并显示，紧跟派遣远征组之后显示。</summary>
     public IReadOnlyList<string> SelectedLogisticsNaibanOutfitTexts =>
         SelectedRecord?.LogisticsNaibanOutfits
-            .Select(item => $"{item.Time:HH:mm}  内番服 {item.SwordName}")
+            .Select(item => $"{item.Time:HH:mm}  安排内番（内番服 {item.SwordName}）")
             .ToList() ?? [];
 
     /// <summary>是否有内番服识别记录。</summary>

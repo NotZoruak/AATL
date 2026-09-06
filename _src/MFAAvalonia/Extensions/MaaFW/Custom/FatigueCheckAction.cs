@@ -131,7 +131,7 @@ public class FatigueCheckAction : IMaaCustomAction
                 }
                 if (!firstValue.HasValue)
                 {
-                    LoggerHelper.Warning("[疲劳检测-合战场] 首位 OCR 失败，跳过刷花并继续出阵");
+                    LoggerHelper.Warning("[疲劳检测-合战场] 首位疲劳值识别失败，继续出阵");
                     return FatigueCheckDecision.ShouldContinueWhenFirstValueUnreadable(firstValue);
                 }
                 var reversed = (bool?)json["reversed"] ?? false;
