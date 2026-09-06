@@ -10,6 +10,7 @@
       "DT_IsSwordDropColor",
       "DT_IsAnnouncementPopup",
       "DT_IsTrainingLetter",
+      "DT_IsLoginReward",
       "DT_IsAdvertisementPopup",
       "DT_IsGameIcon",
       "DT_IsLoginButton",
@@ -381,6 +382,49 @@
     "next": ["DT_DetectWhereAmI"],
     "on_error": ["DT_DetectWhereAmI"]
   },
+  "DT_IsLoginReward": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [816, 577, 182, 59],
+        "template": "Common/登录奖励.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {"type": "Click"},
+    "next": ["DT_LoginRewardClick2"],
+    "on_error": ["DT_DetectWhereAmI"],
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [240, 104, 803, 561]
+    }
+  },
+  "DT_LoginRewardClick2": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
+    "next": ["DT_LoginRewardClick3"],
+    "on_error": ["DT_DetectWhereAmI"],
+    "post_wait_freezes": {
+      "time": 200,
+      "target": [240, 104, 803, 561]
+    }
+  },
+  "DT_LoginRewardClick3": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1092, 318, 1, 1]
+      }
+    },
+    "timeout": 3000,
+    "next": ["DT_IsLoginReward"],
+    "on_error": ["DT_DetectWhereAmI"]
+  },
   "DT_IsGameIcon": {
     "recognition": {
       "type": "TemplateMatch",
@@ -551,6 +595,24 @@
     "next": ["DT_LoginRewardHub", "DT_WarmGiftGate"],
     "on_error": ["DT_RestartGame"]
   },
+  "DT_LoginRewardOnceCheck": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DailyTaskCompletionCheckAction",
+      "custom_action_param": {"item": "login_reward"}
+    },
+    "next": ["DT_LoginRewardHub"],
+    "on_error": ["DT_LoginRewardAlreadyCompleted"]
+  },
+  "DT_LoginRewardAlreadyCompleted": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "日课 登录奖励 今日已完成，跳过"}
+    },
+    "next": ["DT_WarmGiftGate"],
+    "on_error": ["DT_WarmGiftGate"]
+  },
   "DT_LoginRewardHub": {
     "enabled": false,
     "next": [
@@ -649,7 +711,11 @@
         "target": [1181, 11, 38, 35]
       }
     },
-    "next": ["DT_LoginRewardAlreadyClaimedFinished"],
+    "next": [
+      "DT_LoginRewardAlreadyClaimedFinished",
+      "DT_LoginRewardAlreadyClaimedMenuDirectory",
+      "DT_LoginRewardAlreadyClaimedRetry"
+    ],
     "on_error": ["DT_LoginRewardHub"],
     "post_wait_freezes": {
       "time": 500,
@@ -666,11 +732,47 @@
     },
     "action": {
       "type": "Custom",
-      "custom_action": "GuiLogAction",
-      "custom_action_param": {"message": "日课 登录奖励 领取完成"}
+      "custom_action": "DailyTaskCompletionMarkAction",
+      "custom_action_param": {"item": "login_reward"}
     },
-    "next": ["DT_LoginRewardReturnHomeHub"],
+    "next": ["DT_LoginRewardCompletedLog"],
     "on_error": ["DT_LoginRewardReturnHomeHub"]
+  },
+  "DT_LoginRewardAlreadyClaimedMenuDirectory": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "roi": [581, 28, 112, 57],
+        "template": "Common/菜单目录.png",
+        "green_mask": true,
+        "threshold": [0.98]
+      }
+    },
+    "action": {
+      "type": "Custom",
+      "custom_action": "DailyTaskCompletionMarkAction",
+      "custom_action_param": {"item": "login_reward"}
+    },
+    "next": ["DT_LoginRewardCompletedLog"],
+    "on_error": ["DT_LoginRewardAlreadyClaimedRetry"]
+  },
+  "DT_LoginRewardAlreadyClaimedRetry": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [1181, 11, 38, 35]
+      }
+    },
+    "next": [
+      "DT_LoginRewardAlreadyClaimedFinished",
+      "DT_LoginRewardAlreadyClaimedMenuDirectory",
+      "DT_LoginRewardAlreadyClaimedRetry"
+    ],
+    "on_error": ["DT_LoginRewardAlreadyClaimedRetry"],
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [1181, 11, 38, 35]
+    }
   },
   "DT_LoginRewardClosePopupHub": {
     "next": ["DT_LoginRewardClosePopup", "DT_LoginRewardFinished"],
@@ -702,11 +804,20 @@
     },
     "action": {
       "type": "Custom",
+      "custom_action": "DailyTaskCompletionMarkAction",
+      "custom_action_param": {"item": "login_reward"}
+    },
+    "next": ["DT_LoginRewardCompletedLog"],
+    "on_error": ["DT_LoginRewardClosePopupHub"]
+  },
+  "DT_LoginRewardCompletedLog": {
+    "action": {
+      "type": "Custom",
       "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "日课 登录奖励 领取完成"}
     },
     "next": ["DT_LoginRewardReturnHomeHub"],
-    "on_error": ["DT_LoginRewardClosePopupHub"]
+    "on_error": ["DT_LoginRewardReturnHomeHub"]
   },
   "DT_LoginRewardFallbackWait": {
     "action": {"type": "DoNothing"},
@@ -716,6 +827,24 @@
   "DT_WarmGiftGate": {
     "next": ["DT_WarmGiftHub", "DT_MixGate"],
     "on_error": ["DT_RestartGame"]
+  },
+  "DT_WarmGiftOnceCheck": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DailyTaskCompletionCheckAction",
+      "custom_action_param": {"item": "warm_gift"}
+    },
+    "next": ["DT_WarmGiftHub"],
+    "on_error": ["DT_WarmGiftAlreadyCompleted"]
+  },
+  "DT_WarmGiftAlreadyCompleted": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "日课 暖心礼包 今日已完成，跳过"}
+    },
+    "next": ["DT_MixGate"],
+    "on_error": ["DT_MixGate"]
   },
   "DT_WarmGiftHub": {
     "enabled": false,
@@ -789,10 +918,10 @@
   "DT_WarmGiftAlreadyClaimed": {
     "action": {
       "type": "Custom",
-      "custom_action": "GuiLogAction",
-      "custom_action_param": {"message": "日课 暖心礼包 领取完成"}
+      "custom_action": "DailyTaskCompletionMarkAction",
+      "custom_action_param": {"item": "warm_gift"}
     },
-    "next": ["DT_WarmGiftReturnHomeHub"],
+    "next": ["DT_WarmGiftCompletedLog"],
     "on_error": ["DT_WarmGiftReturnHomeHub"]
   },
   "DT_WarmGiftClaim1": {
@@ -904,11 +1033,20 @@
     },
     "action": {
       "type": "Custom",
+      "custom_action": "DailyTaskCompletionMarkAction",
+      "custom_action_param": {"item": "warm_gift"}
+    },
+    "next": ["DT_WarmGiftCompletedLog"],
+    "on_error": ["DT_WarmGiftCloseClaimPopup"]
+  },
+  "DT_WarmGiftCompletedLog": {
+    "action": {
+      "type": "Custom",
       "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "日课 暖心礼包 领取完成"}
     },
     "next": ["DT_WarmGiftReturnHomeHub"],
-    "on_error": ["DT_WarmGiftCloseClaimPopup"]
+    "on_error": ["DT_WarmGiftReturnHomeHub"]
   },
   "DT_WarmGiftFallbackWait": {
     "action": {"type": "DoNothing"},
@@ -918,6 +1056,24 @@
   "DT_MixGate": {
     "next": ["DT_MixHub", "DT_ForgeGate"],
     "on_error": ["DT_RestartGame"]
+  },
+  "DT_MixOnceCheck": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DailyTaskCompletionCheckAction",
+      "custom_action_param": {"item": "mix"}
+    },
+    "next": ["DT_MixHub"],
+    "on_error": ["DT_MixAlreadyCompleted"]
+  },
+  "DT_MixAlreadyCompleted": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "日课 合成 今日已完成，跳过"}
+    },
+    "next": ["DT_ForgeGate"],
+    "on_error": ["DT_ForgeGate"]
   },
   "DT_MixHub": {
     "enabled": false,
@@ -1059,6 +1215,15 @@
   "DT_MixComplete": {
     "action": {
       "type": "Custom",
+      "custom_action": "DailyTaskCompletionMarkAction",
+      "custom_action_param": {"item": "mix"}
+    },
+    "next": ["DT_MixCompletedLog"],
+    "on_error": ["DT_MixReturnHomeHub"]
+  },
+  "DT_MixCompletedLog": {
+    "action": {
+      "type": "Custom",
       "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "日课 合成 完成"}
     },
@@ -1073,6 +1238,24 @@
   "DT_ForgeGate": {
     "next": ["DT_ForgeHub", "DT_DrillGate"],
     "on_error": ["DT_RestartGame"]
+  },
+  "DT_ForgeOnceCheck": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DailyTaskCompletionCheckAction",
+      "custom_action_param": {"item": "forge"}
+    },
+    "next": ["DT_ForgeHub"],
+    "on_error": ["DT_ForgeAlreadyCompleted"]
+  },
+  "DT_ForgeAlreadyCompleted": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "日课 锻刀 今日已完成，跳过"}
+    },
+    "next": ["DT_DrillGate"],
+    "on_error": ["DT_DrillGate"]
   },
   "DT_ForgeHub": {
     "enabled": false,
@@ -1146,7 +1329,7 @@
       "type": "Custom",
       "custom_action": "ForgeCapacityCheckAction"
     },
-    "next": ["DT_ForgeClaimCompletedHub"],
+    "next": ["DT_ForgeDailyDisassembleOnceCheck", "DT_ForgeClaimCompletedHub"],
     "on_error": ["DT_ForgeSkipDisassemble"]
   },
   "DT_ForgeSkipDisassemble": {
@@ -1154,7 +1337,27 @@
     "next": ["DT_ForgeReturnHomeHub"],
     "on_error": ["DT_ForgeReturnHomeHub"]
   },
+  "DT_ForgeDailyDisassembleOnceCheck": {
+    "enabled": false,
+    "action": {
+      "type": "Custom",
+      "custom_action": "DailyTaskCompletionCheckAction",
+      "custom_action_param": {"item": "disassemble"}
+    },
+    "next": ["DT_ForgeDisassembleHub"],
+    "on_error": ["DT_ForgeDailyDisassembleAlreadyCompleted"]
+  },
+  "DT_ForgeDailyDisassembleAlreadyCompleted": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "日课 刀解 今日已完成，跳过"}
+    },
+    "next": ["DT_ForgeClaimCompletedHub", "DT_ForgeReturnHomeHub"],
+    "on_error": ["DT_ForgeReturnHomeHub"]
+  },
   "DT_ForgeClaimCompletedHub": {
+    "enabled": false,
     "timeout": 3000,
     "next": ["DT_ForgeClaimSkipDropAnimation", "DT_ForgeClaimIsSwordDropColor", "DT_ForgeClaimCompleted", "DT_ForgeClaimTenCompleted", "DT_ForgeClaimTenClaim"],
     "on_error": ["DT_ForgeFindFreeSlot1Hub"]
@@ -1815,6 +2018,15 @@
   "DT_ForgeCompletedThreeTimes": {
     "action": {
       "type": "Custom",
+      "custom_action": "DailyTaskCompletionMarkAction",
+      "custom_action_param": {"item": "forge"}
+    },
+    "next": ["DT_ForgeCompletedLog"],
+    "on_error": ["DT_ForgeReturnHomeHub"]
+  },
+  "DT_ForgeCompletedLog": {
+    "action": {
+      "type": "Custom",
       "custom_action": "GuiLogAction",
       "custom_action_param": {"message": "日课 锻刀 已完成 3 次锻刀"}
     },
@@ -1900,7 +2112,8 @@
   "DT_ForgeDisassembleSelectAllowed": {
     "action": {
       "type": "Custom",
-      "custom_action": "ForgeDisassembleSelectAction"
+      "custom_action": "ForgeDisassembleSelectAction",
+      "custom_action_param": {"minimum_count": 1}
     },
     "next": ["DT_ForgeDisassembleClickConfirm"],
     "on_error": ["DT_DrillGate"]
@@ -1927,12 +2140,30 @@
       }
     },
     "action": {"type": "Click"},
-    "next": ["DT_ForgeDisassembleReturnToForge"],
+    "next": ["DT_ForgeDisassembleCompleted"],
     "on_error": ["DT_ForgeHub"],
     "post_wait_freezes": {
       "time": 500,
       "target": [735, 605, 103, 45]
     }
+  },
+  "DT_ForgeDisassembleCompleted": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "DailyTaskCompletionMarkAction",
+      "custom_action_param": {"item": "disassemble"}
+    },
+    "next": ["DT_ForgeDisassembleCompletedLog"],
+    "on_error": ["DT_ForgeDisassembleReturnToForge"]
+  },
+  "DT_ForgeDisassembleCompletedLog": {
+    "action": {
+      "type": "Custom",
+      "custom_action": "GuiLogAction",
+      "custom_action_param": {"message": "日课 刀解 完成"}
+    },
+    "next": ["DT_ForgeDisassembleReturnToForge"],
+    "on_error": ["DT_ForgeDisassembleReturnToForge"]
   },
   "DT_ForgeDisassembleReturnToForge": {
     "action": {
@@ -1941,8 +2172,12 @@
         "target": [5, 167, 39, 84]
       }
     },
-    "next": ["DT_ForgeHub"],
-    "on_error": ["DT_ForgeHub"]
+    "next": ["DT_ForgeDisassemblePostProcessGate"],
+    "on_error": ["DT_ForgeDisassemblePostProcessGate"]
+  },
+  "DT_ForgeDisassemblePostProcessGate": {
+    "next": ["DT_ForgeOnceCheck", "DT_ForgeReturnHomeHub"],
+    "on_error": ["DT_ForgeReturnHomeHub"]
   },
   "DT_ForgeClickMenu": {
     "recognition": {
@@ -2063,8 +2298,13 @@
       "custom_action": "DrillVictoryAction",
       "custom_action_param": {"position": 1}
     },
-    "next": ["DT_DrillOpponent2Hub"],
+    "next": ["DT_DrillVictoryLimitCheck1"],
     "on_error": ["DT_DrillFinishThreeVictories"]
+  },
+  "DT_DrillVictoryLimitCheck1": {
+    "recognition": {"type": "Custom", "param": {"custom_recognition": "DrillVictoryLimitRecognition"}},
+    "next": ["DT_DrillFinishThreeVictories"],
+    "on_error": ["DT_DrillOpponent2Hub"]
   },
   "DT_DrillOpponentInfo1": {
     "recognition": {
@@ -2166,8 +2406,13 @@
       "custom_action": "DrillVictoryAction",
       "custom_action_param": {"position": 2}
     },
-    "next": ["DT_DrillOpponent3Hub"],
+    "next": ["DT_DrillVictoryLimitCheck2"],
     "on_error": ["DT_DrillFinishThreeVictories"]
+  },
+  "DT_DrillVictoryLimitCheck2": {
+    "recognition": {"type": "Custom", "param": {"custom_recognition": "DrillVictoryLimitRecognition"}},
+    "next": ["DT_DrillFinishThreeVictories"],
+    "on_error": ["DT_DrillOpponent3Hub"]
   },
   "DT_DrillOpponentInfo2": {
     "recognition": {
@@ -2269,8 +2514,13 @@
       "custom_action": "DrillVictoryAction",
       "custom_action_param": {"position": 3}
     },
-    "next": ["DT_DrillOpponent4Hub"],
+    "next": ["DT_DrillVictoryLimitCheck3"],
     "on_error": ["DT_DrillFinishThreeVictories"]
+  },
+  "DT_DrillVictoryLimitCheck3": {
+    "recognition": {"type": "Custom", "param": {"custom_recognition": "DrillVictoryLimitRecognition"}},
+    "next": ["DT_DrillFinishThreeVictories"],
+    "on_error": ["DT_DrillOpponent4Hub"]
   },
   "DT_DrillOpponentInfo3": {
     "recognition": {
@@ -2372,8 +2622,13 @@
       "custom_action": "DrillVictoryAction",
       "custom_action_param": {"position": 4}
     },
-    "next": ["DT_DrillOpponent5Hub"],
+    "next": ["DT_DrillVictoryLimitCheck4"],
     "on_error": ["DT_DrillFinishThreeVictories"]
+  },
+  "DT_DrillVictoryLimitCheck4": {
+    "recognition": {"type": "Custom", "param": {"custom_recognition": "DrillVictoryLimitRecognition"}},
+    "next": ["DT_DrillFinishThreeVictories"],
+    "on_error": ["DT_DrillOpponent5Hub"]
   },
   "DT_DrillOpponentInfo4": {
     "recognition": {
@@ -2475,8 +2730,13 @@
       "custom_action": "DrillVictoryAction",
       "custom_action_param": {"position": 5}
     },
-    "next": ["DT_DrillFinishFive"],
+    "next": ["DT_DrillVictoryLimitCheck5"],
     "on_error": ["DT_DrillFinishThreeVictories"]
+  },
+  "DT_DrillVictoryLimitCheck5": {
+    "recognition": {"type": "Custom", "param": {"custom_recognition": "DrillVictoryLimitRecognition"}},
+    "next": ["DT_DrillFinishThreeVictories"],
+    "on_error": ["DT_DrillFinishFive"]
   },
   "DT_DrillOpponentInfo5": {
     "recognition": {
@@ -4289,7 +4549,7 @@
     "action": {
       "type": "Custom",
       "custom_action": "GuiLogAction",
-      "custom_action_param": {"message": "日课 邮件领取完毕"}
+      "custom_action_param": {"message": "日课 邮件领取完成"}
     },
     "next": ["DT_Finish"],
     "on_error": ["DT_Finish"]

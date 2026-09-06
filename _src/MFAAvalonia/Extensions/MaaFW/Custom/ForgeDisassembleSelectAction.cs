@@ -35,7 +35,9 @@ public class ForgeDisassembleSelectAction : IMaaCustomAction
                 return false;
             }
 
-            var requiredCount = DailyTaskForgeContext.RequiredDisassemblyCount;
+            var parameters = ActionParamHelper.Parse(args.ActionParam);
+            var minimumCount = Math.Max(0, parameters["minimum_count"]?.ToObject<int>() ?? 0);
+            var requiredCount = Math.Max(DailyTaskForgeContext.RequiredDisassemblyCount, minimumCount);
             while (true)
             {
                 ActionParamHelper.ThrowIfStopping(context);
@@ -54,7 +56,7 @@ public class ForgeDisassembleSelectAction : IMaaCustomAction
                     return false;
                 }
 
-                LoggerHelper.Info($"[日课 锻刀] 当前已选择 {selectedCount}/30，把需刀解数量为 {requiredCount}");
+                LoggerHelper.Info($"[日课 刀解锻刀] 当前已选择 {selectedCount}/30，把需刀解数量为 {requiredCount}");
                 if (selectedCount >= requiredCount || selectedCount == 30)
                     return true;
 

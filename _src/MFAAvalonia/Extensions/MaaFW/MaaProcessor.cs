@@ -5211,6 +5211,7 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.DrillDangerCheckAction());
             tasker.Resource.Register(new Custom.DrillResetVictoryAction());
             tasker.Resource.Register(new Custom.DrillVictoryAction());
+            tasker.Resource.Register(new Custom.DrillVictoryLimitRecognition());
             tasker.Resource.Register(new Custom.MixFindAllowedMaterialAction());
             tasker.Resource.Register(new Custom.EdoActionSelectAction());
             tasker.Resource.Register(new Custom.EdoLastActionRetreatRecognition());

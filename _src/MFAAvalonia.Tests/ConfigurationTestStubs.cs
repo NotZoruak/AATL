@@ -169,6 +169,7 @@ namespace MFAAvalonia.Helper
     public static class AppPaths
     {
         public static string InstancesDirectory { get; set; } = Path.Combine(Path.GetTempPath(), "matr-tests", "instances");
+        public static string LogsDirectory { get; set; } = Path.Combine(Path.GetTempPath(), "matr-tests", "logs");
     }
 
     /// <summary>测试环境中的最小日志替身。</summary>

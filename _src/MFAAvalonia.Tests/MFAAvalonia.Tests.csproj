@@ -32,6 +32,7 @@
     <Compile Include="..\MFAAvalonia\Services\WarehouseChartTimeAxis.cs" Link="WarehouseChartTimeAxis.cs" />
     <Compile Include="..\MFAAvalonia\Services\WarehouseChartTooltipFormatter.cs" Link="WarehouseChartTooltipFormatter.cs" />
     <Compile Include="..\MFAAvalonia\Services\UpdateDataScheduleService.cs" Link="UpdateDataScheduleService.cs" />
+    <Compile Include="..\MFAAvalonia\Services\DailyTaskCompletionService.cs" Link="DailyTaskCompletionService.cs" />
     <Compile Include="..\MFAAvalonia\Services\UpdateDataPersistenceService.cs" Link="UpdateDataPersistenceService.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\RepairFilterSelection.cs" Link="RepairFilterSelection.cs" />
     <Compile Include="..\MFAAvalonia\Extensions\MaaFW\Custom\RepairCooldownState.cs" Link="RepairCooldownState.cs" />

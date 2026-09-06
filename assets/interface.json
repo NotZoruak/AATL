@@ -51,13 +51,13 @@
         "D_登录奖励",
         "D_暖心礼包",
         "D_合成",
-        "D_锻刀",
+        "D_刀解锻刀",
         "D_演练",
         "D_收取奖励",
         "D_领取邮件"
       ],
       "label": "一键日课",
-      "description": "⚠该功能现处于测试阶段，目前仍在完善中，请务必在有人看管时运行。\n\n按固定顺序执行启用的日课项目：预设部队 → 登录奖励 → 暖心礼包 → 合成 → 锻刀 → 演练 → 领取奖励 → 领取邮件。每个已执行项目完成后会先返回本丸；未启用的项目直接跳过。\n\n* **预设部队**：开始前调用已配置的自定编队预设。\n* **登录奖励**：领取每日登录签到奖励。\n* **暖心礼包**：进入万屋领取免费礼包。\n* **合成**：固定选择第一把刀剑作为强化对象，并按刀解/合成许可名单选择一把未上锁刀剑作为材料。\n* **锻刀**：先收取已完成锻刀，再以 ALL 50 公式最多锻造 3 把；不使用加速符。\n* **演练**：最多处理 5 个对手位置，累计胜利 3 次或处理完 5 个位置即结束。\n* **领取奖励**：可分别领取日常、月常、主线与活动任务奖励。\n* **领取邮件**：按所选邮件类别领取可收取的邮件。"
+      "description": "⚠该功能现处于测试阶段，目前仍在完善中，请务必在有人看管时运行。\n\n按固定顺序执行启用的日课项目：预设部队 → 登录奖励 → 暖心礼包 → 合成 → 刀解锻刀 → 演练 → 领取奖励 → 领取邮件。每个已执行项目完成后会先返回本丸；未启用的项目直接跳过。登录奖励、暖心礼包、合成、刀解与锻刀在每个游戏日仅完成一次，游戏日于每日 5:00 刷新；未找到合成素材或未完成 3 次锻刀不会标记为完成。\n\n* **预设部队**：开始前调用已配置的自定编队预设。\n* **登录奖励**：领取每日登录签到奖励。\n* **暖心礼包**：进入万屋领取免费礼包。\n* **合成**：固定选择第一把刀剑作为强化对象，并按刀解/合成许可名单选择一把未上锁刀剑作为材料。\n* **刀解锻刀**：可分别开启刀解与锻刀。刀解开启时，若本游戏日尚未刀解，会按许可名单至少刀解一把；锻刀会先收取已完成锻刀，再以 ALL 50 公式最多锻造 3 把，不使用加速符。\n* **演练**：最多处理 5 个对手位置，累计胜利 3 次或处理完 5 个位置即结束。\n* **领取奖励**：可分别领取日常、月常、主线与活动任务奖励。\n* **领取邮件**：按所选邮件类别领取可收取的邮件。"
     },
     {
       "name": "自定编队",
@@ -5717,7 +5717,6 @@
             "DT_WarmGiftFinishClaimHub": {"on_error": ["DT_RestartGameReturnWarmGiftFinishClaimHub"]},
             "DT_MixHub": {"on_error": ["DT_RestartGameReturnMixHub"]},
             "DT_ForgeHub": {"on_error": ["DT_RestartGameReturnForgeHub"]},
-            "DT_ForgeClaimCompletedHub": {"on_error": ["DT_RestartGameReturnForgeClaimCompletedHub"]},
             "DT_ForgeFindFreeSlot1Hub": {"on_error": ["DT_RestartGameReturnForgeFindFreeSlot1Hub"]},
             "DT_ForgeFindFreeSlot2Hub": {"on_error": ["DT_RestartGameReturnForgeFindFreeSlot2Hub"]},
             "DT_ForgeFindFreeSlot3Hub": {"on_error": ["DT_RestartGameReturnForgeFindFreeSlot3Hub"]},
@@ -5832,6 +5831,47 @@
       "pipeline_override": {
         "S_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "DT_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
+        "DT_PrepareHub": {"timeout": "{timeout_seconds}000"},
+        "DT_PresetHub": {"timeout": "{timeout_seconds}000"},
+        "DT_LoginRewardHub": {"timeout": "{timeout_seconds}000"},
+        "DT_LoginRewardClosePopupHub": {"timeout": "{timeout_seconds}000"},
+        "DT_WarmGiftHub": {"timeout": "{timeout_seconds}000"},
+        "DT_WarmGiftFinishClaimHub": {"timeout": "{timeout_seconds}000"},
+        "DT_MixHub": {"timeout": "{timeout_seconds}000"},
+        "DT_ForgeHub": {"timeout": "{timeout_seconds}000"},
+        "DT_ForgeFindFreeSlot1Hub": {"timeout": "{timeout_seconds}000"},
+        "DT_ForgeFindFreeSlot2Hub": {"timeout": "{timeout_seconds}000"},
+        "DT_ForgeFindFreeSlot3Hub": {"timeout": "{timeout_seconds}000"},
+        "DT_ForgeDisassembleHub": {"timeout": "{timeout_seconds}000"},
+        "DT_DrillHub": {"timeout": "{timeout_seconds}000"},
+        "DT_DrillOpponent1Hub": {"timeout": "{timeout_seconds}000"},
+        "DT_DrillBattle1Hub": {"timeout": "{timeout_seconds}000"},
+        "DT_DrillOpponent2Hub": {"timeout": "{timeout_seconds}000"},
+        "DT_DrillBattle2Hub": {"timeout": "{timeout_seconds}000"},
+        "DT_DrillOpponent3Hub": {"timeout": "{timeout_seconds}000"},
+        "DT_DrillBattle3Hub": {"timeout": "{timeout_seconds}000"},
+        "DT_DrillOpponent4Hub": {"timeout": "{timeout_seconds}000"},
+        "DT_DrillBattle4Hub": {"timeout": "{timeout_seconds}000"},
+        "DT_DrillOpponent5Hub": {"timeout": "{timeout_seconds}000"},
+        "DT_DrillBattle5Hub": {"timeout": "{timeout_seconds}000"},
+        "DT_KebiHub": {"timeout": "{timeout_seconds}000"},
+        "DT_KebiPrepareFinishHub": {"timeout": "{timeout_seconds}000"},
+        "DT_RewardHub": {"timeout": "{timeout_seconds}000"},
+        "DT_MailResourceHub": {"timeout": "{timeout_seconds}000"},
+        "DT_RewardDailyClaimHub": {"timeout": "{timeout_seconds}000"},
+        "DT_RewardAfterDailyHub": {"timeout": "{timeout_seconds}000"},
+        "DT_RewardMonthlyClaimHub": {"timeout": "{timeout_seconds}000"},
+        "DT_RewardAfterMonthlyHub": {"timeout": "{timeout_seconds}000"},
+        "DT_RewardMainlineClaimHub": {"timeout": "{timeout_seconds}000"},
+        "DT_RewardAfterMainlineHub": {"timeout": "{timeout_seconds}000"},
+        "DT_RewardActivityClaimHub": {"timeout": "{timeout_seconds}000"},
+        "DT_RewardClosePopupHub": {"timeout": "{timeout_seconds}000"},
+        "DT_LoginRewardReturnHomeHub": {"timeout": "{timeout_seconds}000"},
+        "DT_WarmGiftReturnHomeHub": {"timeout": "{timeout_seconds}000"},
+        "DT_MixReturnHomeHub": {"timeout": "{timeout_seconds}000"},
+        "DT_ForgeReturnHomeHub": {"timeout": "{timeout_seconds}000"},
+        "DT_DrillReturnHomeHub": {"timeout": "{timeout_seconds}000"},
+        "DT_KebiReturnHomeHub": {"timeout": "{timeout_seconds}000"},
         "LR_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "EC_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
         "FB_DetectWhereAmI": {"timeout": "{timeout_seconds}000"},
@@ -6241,7 +6281,8 @@
           "name": "登录奖励",
           "label": "登录奖励",
           "pipeline_override": {
-            "DT_LoginRewardHub": {"enabled": true}
+            "DT_LoginRewardHub": {"enabled": true},
+            "DT_LoginRewardGate": {"next": ["DT_LoginRewardOnceCheck"]}
           }
         }
       ]
@@ -6256,7 +6297,8 @@
           "name": "暖心礼包",
           "label": "暖心礼包",
           "pipeline_override": {
-            "DT_WarmGiftHub": {"enabled": true}
+            "DT_WarmGiftHub": {"enabled": true},
+            "DT_WarmGiftGate": {"next": ["DT_WarmGiftOnceCheck"]}
           }
         }
       ]
@@ -6271,39 +6313,66 @@
           "name": "合成",
           "label": "合成",
           "pipeline_override": {
-            "DT_MixHub": {"enabled": true}
+            "DT_MixHub": {"enabled": true},
+            "DT_MixGate": {"next": ["DT_MixOnceCheck"]}
           }
+        }
+      ]
+    },
+    "D_刀解锻刀": {
+      "name": "D_刀解锻刀",
+      "label": "刀解锻刀",
+      "type": "checkbox",
+      "default_case": [],
+      "cases": [
+        {
+          "name": "刀解锻刀",
+          "label": "刀解锻刀",
+          "option": ["D_锻刀", "D_刀解"]
         }
       ]
     },
     "D_锻刀": {
       "name": "D_锻刀",
       "label": "锻刀",
-      "type": "checkbox",
-      "default_case": [],
+      "type": "switch",
+      "inline_sub_options": true,
+      "default_case": "No",
       "cases": [
         {
-          "name": "锻刀",
-          "label": "锻刀",
-          "option": ["D_锻刀公式", "D_锻刀刀解"],
+          "name": "No",
+          "label": "关闭"
+        },
+        {
+          "name": "Yes",
+          "label": "开启",
+          "option": ["D_锻刀公式"],
           "pipeline_override": {
-            "DT_ForgeHub": {"enabled": true}
+            "DT_ForgeHub": {"enabled": true},
+            "DT_ForgeOnceCheck": {"enabled": true},
+            "DT_ForgeClaimCompletedHub": {"enabled": true}
           }
         }
       ]
     },
-    "D_锻刀刀解": {
-      "name": "D_锻刀刀解",
+    "D_刀解": {
+      "name": "D_刀解",
       "label": "刀解",
-      "type": "checkbox",
-      "default_case": [],
+      "type": "switch",
+      "default_case": "No",
       "cases": [
         {
-          "name": "锻刀刀解",
-          "label": "刀解",
+          "name": "No",
+          "label": "关闭"
+        },
+        {
+          "name": "Yes",
+          "label": "开启",
           "pipeline_override": {
+            "DT_ForgeHub": {"enabled": true},
+            "DT_ForgeDailyDisassembleOnceCheck": {"enabled": true},
             "DT_ForgeCheckCapacity": {
-              "on_error": ["DT_ForgeDisassembleHub"]
+              "on_error": ["DT_ForgeDailyDisassembleOnceCheck"]
             }
           }
         }

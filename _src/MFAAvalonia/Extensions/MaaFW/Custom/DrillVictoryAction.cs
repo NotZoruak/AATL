@@ -28,7 +28,7 @@ public class DrillResetVictoryAction : IMaaCustomAction
     }
 }
 
-/// <summary>记录已胜利的位置；累计三胜时返回失败以结束演练。</summary>
+/// <summary>记录已胜利的位置。</summary>
 public class DrillVictoryAction : IMaaCustomAction
 {
     public string Name { get; set; } = nameof(DrillVictoryAction);
@@ -40,6 +40,6 @@ public class DrillVictoryAction : IMaaCustomAction
         var count = DailyTaskDrillContext.AddVictory();
         LoggerHelper.Info($"日课 演练 位置{position} 胜利（累计 {count} 胜）");
         LoggerHelper.Info("[日课] 完成一圈");
-        return count < 3;
+        return true;
     }
 }
