@@ -56,9 +56,11 @@ public class ExpeditionTimerAction : IMaaCustomAction
                 var display = intervalSeconds >= 60
                     ? $"{intervalSeconds / 60}分{intervalSeconds % 60}s"
                     : $"{intervalSeconds}s";
-                var msg = $"[远征计时] 倒计时开始：{display}";
-                LoggerHelper.Info(msg);
-                try { MaaProcessorManager.Instance.Current?.AddLog(msg); } catch { }
+                var fileMessage = $"[远征计时] 倒计时开始：{display}";
+                var guiMessage = $"[远征计时] {display}";
+                // 文件日志保留词表格式，供工作记录解析器识别。
+                LoggerHelper.Info(fileMessage);
+                try { MaaProcessorManager.Instance.Current?.AddLog(guiMessage); } catch { }
             }
             else
             {

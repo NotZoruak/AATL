@@ -41,8 +41,8 @@ public class DispatchLogAction : IMaaCustomAction
             {
                 string teamLabel = TeamToLabel(team);
                 string mapLabel = ReadMapFromConfig(team);
-                message = $"[远征派遣] {teamLabel}已派遣至 {mapLabel}";
-                // 文件日志用词表格式(供运行结果页解析),GUI 保持 [远征派遣] 原文案
+                message = $"[远征派遣] {teamLabel} → {mapLabel}";
+                // 文件日志保留词表格式，供工作记录解析器识别。
                 Log(message, $"[后勤] 派遣远征 {teamLabel}已派遣至 {mapLabel}");
             }
 
