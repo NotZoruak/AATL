@@ -1487,7 +1487,10 @@ public static class VersionChecker
             var targetRoot = isDataFile
                 ? AppPaths.DataRoot
                 : installTargetRootOverride ?? AppPaths.InstallRoot;
-            var targetFile = Path.Combine(targetRoot, item.RelativePath);
+            var targetRelativePath = isDataFile
+                ? GetDataRootRelativePath(item.RelativePath)
+                : item.RelativePath;
+            var targetFile = Path.Combine(targetRoot, targetRelativePath);
             var currentProcessPath = Process.GetCurrentProcess().MainModule?.FileName ?? string.Empty;
             if (skipRunningExecutable
                 && !string.IsNullOrWhiteSpace(currentProcessPath)
@@ -3490,6 +3493,21 @@ public static class VersionChecker
     {
         foreach (var candidateRoot in GetResourcePackageCandidateRoots(extractDirectory))
         {
+            var candidateInterface = Path.Combine(candidateRoot, "assets", "interface.json");
+            var candidateResource = Path.Combine(candidateRoot, "assets", "resource");
+            if (!ContainsCoreApplicationFiles(candidateRoot)
+                || !File.Exists(candidateInterface)
+                || !Directory.Exists(candidateResource))
+                continue;
+
+            packageRoot = candidateRoot;
+            interfacePath = candidateInterface;
+            resourceDirectory = candidateResource;
+            return true;
+        }
+
+        foreach (var candidateRoot in GetResourcePackageCandidateRoots(extractDirectory))
+        {
             var candidateInterface = Path.Combine(candidateRoot, "interface.json");
             var candidateResource = Path.Combine(candidateRoot, "resource");
             if (!File.Exists(candidateInterface) || !Directory.Exists(candidateResource))
@@ -3530,13 +3548,34 @@ public static class VersionChecker
         var normalized = relativePath.Replace('\\', '/').TrimStart('/');
         var fileName = Path.GetFileName(normalized);
 
-        if (normalized.StartsWith("resource/", StringComparison.OrdinalIgnoreCase)
+        if (normalized.Equals("resource", StringComparison.OrdinalIgnoreCase)
+            || normalized.StartsWith("resource/", StringComparison.OrdinalIgnoreCase)
+            || normalized.Equals("assets/resource", StringComparison.OrdinalIgnoreCase)
+            || normalized.StartsWith("assets/resource/", StringComparison.OrdinalIgnoreCase)
             || normalized.StartsWith("backup/", StringComparison.OrdinalIgnoreCase))
             return true;
 
         return fileName.Equals("interface.json", StringComparison.OrdinalIgnoreCase)
                || fileName.Equals("interface.jsonc", StringComparison.OrdinalIgnoreCase)
                || fileName.Equals("changes.json", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string GetDataRootRelativePath(string relativePath)
+    {
+        var normalized = relativePath.Replace('\\', '/').TrimStart('/');
+        var fileName = Path.GetFileName(normalized);
+        var isRootInterfaceFile = fileName.Equals("interface.json", StringComparison.OrdinalIgnoreCase)
+                                  || fileName.Equals("interface.jsonc", StringComparison.OrdinalIgnoreCase);
+
+        if (normalized.Equals("resource", StringComparison.OrdinalIgnoreCase)
+            || normalized.StartsWith("resource/", StringComparison.OrdinalIgnoreCase)
+            || (isRootInterfaceFile
+                && !normalized.StartsWith("assets/", StringComparison.OrdinalIgnoreCase)))
+        {
+            normalized = $"assets/{normalized}";
+        }
+
+        return normalized.Replace('/', Path.DirectorySeparatorChar);
     }
 
     private static bool IsCoreApplicationFile(string relativePath)
@@ -3858,8 +3897,10 @@ public static class VersionChecker
 
     private static bool TryGetSafeUpdateTargetPath(string relativePath, out string fullPath)
     {
-        var baseDirectory = IsDataRootRelativePath(relativePath) ? AppPaths.DataRoot : AppPaths.InstallRoot;
-        return TryGetSafeUpdateTargetPath(baseDirectory, relativePath, out fullPath);
+        var isDataPath = IsDataRootRelativePath(relativePath);
+        var baseDirectory = isDataPath ? AppPaths.DataRoot : AppPaths.InstallRoot;
+        var targetRelativePath = isDataPath ? GetDataRootRelativePath(relativePath) : relativePath;
+        return TryGetSafeUpdateTargetPath(baseDirectory, targetRelativePath, out fullPath);
     }
 
     private static string[] GetRepoFromUrl(string githubUrl)

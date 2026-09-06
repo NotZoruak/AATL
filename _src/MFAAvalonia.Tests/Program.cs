@@ -66,6 +66,13 @@ var appSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "App.axaml.cs"));
 var appPathsSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "AppPaths.cs"));
+var versionCheckerSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "VersionChecker.cs"));
+AssertTrue(versionCheckerSource.Contains("GetDataRootRelativePath", StringComparison.Ordinal)
+    && versionCheckerSource.Contains("normalized = $\"assets/{normalized}\"", StringComparison.Ordinal)
+    && versionCheckerSource.Contains("Path.Combine(candidateRoot, \"assets\", \"interface.json\")", StringComparison.Ordinal)
+    && versionCheckerSource.Contains("Path.Combine(candidateRoot, \"assets\", \"resource\")", StringComparison.Ordinal),
+    "资源更新必须将资源包内容映射到 assets 目录，并识别包含程序文件的完整资源包根目录");
 var maaLogRotatorSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "MaaLogRotator.cs"));
 var workRecordsViewModelSource = File.ReadAllText(Path.Combine(
