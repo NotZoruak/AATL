@@ -7,6 +7,16 @@
   },
   "customizations": [
     {
+      "id": "settings.background-image-description-spacing",
+      "title": "背景图片说明留白修正",
+      "purpose": "避免固定宽度按钮与过大的说明右边距将中文挤成逐字换行。",
+      "files": ["_src/MFAAvalonia/Views/UserControls/Settings/GuiSettingsUserControl.axaml"],
+      "baseline_upstream": "2.16.1",
+      "last_verified_upstream": "2.16.1",
+      "migration_strategy": "保留背景图片说明的 12 像素右边距，不恢复上游的 70 像素留白。",
+      "verification": ["窄窗口中背景图片说明充分利用文字区域换行", "选择与清除按钮正常显示"]
+    },
+    {
       "id": "task-loader.global-options-hidden",
       "title": "全局选项不显示为任务项",
       "purpose": "全局选项仅由设置页管理，不干扰普通任务列表。",

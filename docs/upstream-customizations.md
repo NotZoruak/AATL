@@ -11,6 +11,10 @@
 
 ## 定制项
 
+### settings.background-image-description-spacing
+
+`GuiSettingsUserControl.axaml` 的背景图片说明右边距使用 12 个逻辑像素，避免右侧固定宽度按钮与原有 70 像素留白共同挤压说明文字，导致逐字换行。上游升级时保留此间距，并检查窄窗口中的说明换行及按钮显示。
+
 ### `task-loader.global-options-hidden`
 
 全局选项不应显示为普通任务项，但仍必须能在设置界面配置。升级时需适配上游模板和预设模型。

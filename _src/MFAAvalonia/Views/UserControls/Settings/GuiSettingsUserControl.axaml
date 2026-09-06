@@ -250,7 +250,7 @@
                             TextWrapping="Wrap" />
                     </StackPanel>
                 </DockPanel>
-                <!-- Background Image Settings -->
+                <!-- 背景图片设置 -->
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="8">
                         <Button
@@ -277,7 +277,7 @@
                             Text="{markup:I18n {x:Static helper:LangKeys.BackgroundImageTitle}}" />
                         <TextBlock
                             Foreground="{DynamicResource SukiLowText}"
-                            Margin="0,12,70,0"
+                            Margin="0,12,12,0"
                             Text="{markup:I18n {x:Static helper:LangKeys.BackgroundImageDescription}}"
                             TextWrapping="Wrap" />
                     </StackPanel>
