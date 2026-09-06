@@ -798,10 +798,14 @@ AssertTrue(SwordDropNotificationMatcher.GetAnimationKind("特") == SwordDropAnim
     "识别到特时应判定为特化动画");
 AssertTrue(SwordDropNotificationMatcher.GetAnimationKind("极") == SwordDropAnimationKind.Kiwame,
     "识别到极时应判定为极化归来");
-AssertTrue(SwordDropNotificationMatcher.GetAnimationKind("初") == SwordDropAnimationKind.InitialDrop,
-    "识别到初时应判定为初始掉落");
-AssertTrue(SwordDropNotificationMatcher.GetAnimationKind(" 初 ") == SwordDropAnimationKind.InitialDrop,
-    "动画 OCR 结果应忽略空白字符");
+AssertTrue(SwordDropNotificationMatcher.GetAnimationKind("極") == SwordDropAnimationKind.Kiwame,
+    "极化动画 OCR 识别为繁体极字时仍应识别为极化");
+AssertTrue(SwordDropNotificationMatcher.IsColorWithinTolerance(195, 13, 24, 195, 13, 24, 1),
+    "初掉落颜色命中目标色时应通过校验");
+AssertTrue(SwordDropNotificationMatcher.IsColorWithinTolerance(194, 12, 23, 195, 13, 24, 1),
+    "初掉落颜色在容差范围内时应通过校验");
+AssertFalse(SwordDropNotificationMatcher.IsColorWithinTolerance(193, 13, 24, 195, 13, 24, 1),
+    "初掉落颜色超出容差时不应通过校验");
 
 var selectedFilter = RepairFilterSelection.FromFlags(new Dictionary<string, bool>
 {

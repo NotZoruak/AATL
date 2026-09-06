@@ -25,8 +25,11 @@ public class SwordDropLogAction : IMaaCustomAction
     // 跳过 OCR 与打点,但保留原点击行为
     private static readonly int[] DefaultCheckRoi = [53, 257, 54, 32];
     private static readonly int[] DefaultCheckColor = [248, 244, 230];
+    private static readonly int[] InitialDropColorRoi = [180, 397, 8, 30];
+    private static readonly int[] InitialDropColor = [195, 13, 24];
     private static readonly int[] AnimationRoi = [131, 354, 136, 126];
     private const int DefaultCheckTolerance = 3;
+    private const int InitialDropColorTolerance = 1;
 
     public string Name { get; set; } = nameof(SwordDropLogAction);
 
@@ -45,7 +48,9 @@ public class SwordDropLogAction : IMaaCustomAction
         }
         else
         {
-            var animationKind = SwordDropNotificationMatcher.GetAnimationKind(ReadText(context, AnimationRoi));
+            var animationKind = IsInitialDropMarker(context)
+                ? SwordDropAnimationKind.InitialDrop
+                : SwordDropNotificationMatcher.GetAnimationKind(ReadText(context, AnimationRoi));
             if (animationKind is SwordDropAnimationKind.Specialization or SwordDropAnimationKind.Kiwame)
             {
                 LoggerHelper.Info($"{prefix} 特化或极化动画，跳过刀剑掉落识别");
@@ -185,6 +190,67 @@ public class SwordDropLogAction : IMaaCustomAction
         }
 
         return isPlain;
+    }
+
+    /// <summary>
+    /// 通过初掉落标记区域的纯色判断结果动画。
+    /// 区域内所有像素都必须命中目标 RGB 颜色及其容差。
+    /// </summary>
+    private static bool IsInitialDropMarker<T>(T context) where T : IMaaContext
+    {
+        using var image = context.GetImage();
+        if (image == null)
+            return false;
+
+        using var bitmap = image.ToBitmap();
+        if (bitmap == null)
+            return false;
+
+        int x0 = InitialDropColorRoi[0];
+        int y0 = InitialDropColorRoi[1];
+        int width = InitialDropColorRoi[2];
+        int height = InitialDropColorRoi[3];
+        if (x0 < 0 || y0 < 0 || width <= 0 || height <= 0
+            || x0 + width > bitmap.PixelSize.Width
+            || y0 + height > bitmap.PixelSize.Height)
+        {
+            LoggerHelper.Warning($"初掉落颜色匹配 ROI 越界: roi=[{x0},{y0},{width},{height}], 截图={bitmap.PixelSize.Width}x{bitmap.PixelSize.Height}");
+            return false;
+        }
+
+        var pixelBytes = new byte[width * height * 4];
+        var handle = System.Runtime.InteropServices.GCHandle.Alloc(
+            pixelBytes,
+            System.Runtime.InteropServices.GCHandleType.Pinned);
+        try
+        {
+            bitmap.CopyPixels(
+                new PixelRect(x0, y0, width, height),
+                handle.AddrOfPinnedObject(),
+                pixelBytes.Length,
+                width * 4);
+        }
+        finally
+        {
+            handle.Free();
+        }
+
+        for (var i = 0; i < pixelBytes.Length; i += 4)
+        {
+            if (!SwordDropNotificationMatcher.IsColorWithinTolerance(
+                    pixelBytes[i + 2],
+                    pixelBytes[i + 1],
+                    pixelBytes[i],
+                    InitialDropColor[0],
+                    InitialDropColor[1],
+                    InitialDropColor[2],
+                    InitialDropColorTolerance))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private static bool TryValidateSword(

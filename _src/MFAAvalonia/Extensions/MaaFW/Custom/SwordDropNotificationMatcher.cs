@@ -15,17 +15,33 @@ public enum SwordDropAnimationKind
 /// <summary>判断标准刀名是否符合刀剑掉落播报条件。</summary>
 public static class SwordDropNotificationMatcher
 {
+    /// <summary>判断 RGB 颜色的每个通道是否都在指定容差内。</summary>
+    public static bool IsColorWithinTolerance(
+        byte red,
+        byte green,
+        byte blue,
+        int targetRed,
+        int targetGreen,
+        int targetBlue,
+        int tolerance)
+    {
+        var safeTolerance = Math.Max(0, tolerance);
+        return Math.Abs(red - targetRed) <= safeTolerance
+            && Math.Abs(green - targetGreen) <= safeTolerance
+            && Math.Abs(blue - targetBlue) <= safeTolerance;
+    }
+
     /// <summary>识别刀剑结果动画标记。</summary>
     public static SwordDropAnimationKind GetAnimationKind(string? text)
     {
         var normalized = string.Concat((text ?? string.Empty).Where(character => !char.IsWhiteSpace(character)));
-        return normalized switch
-        {
-            "特" => SwordDropAnimationKind.Specialization,
-            "极" => SwordDropAnimationKind.Kiwame,
-            "初" => SwordDropAnimationKind.InitialDrop,
-            _ => SwordDropAnimationKind.Unknown,
-        };
+        if (normalized.Contains('特'))
+            return SwordDropAnimationKind.Specialization;
+
+        if (normalized.Contains('极') || normalized.Contains('極'))
+            return SwordDropAnimationKind.Kiwame;
+
+        return SwordDropAnimationKind.Unknown;
     }
 
     /// <summary>生成刀剑掉落通知文本。</summary>

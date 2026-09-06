@@ -99,6 +99,12 @@ MATR 的资源包固定在 `assets/`：`AppPaths.InterfaceJsonPath`、`AppPaths.
 
 `MaaProcessor.ProjectDir` 必须解析为 `interface.json` 所在目录（MATR 即 `assets/`），并且所有 resource 路径均以它替换 `{PROJECT_DIR}`。`MaaProcessor.CheckInterface` 的默认资源路径必须为 `{PROJECT_DIR}/resource/base`；两项必须配套，最终解析到 `assets/resource/base`，不得在程序根目录创建不需要的 `resource/base/pipeline/sample.json`。
 
+### `resource.sword-drop-recognition`
+
+MATR 使用 `SwordDropLogAction` 记录合战场、地下城、联队战和战术强化中的刀剑掉落，并支持播报和初掉落截图。初掉落不使用动画文字 OCR，而是检查 1280×720 基准画面的 `[180,397,8,30]` 区域；区域内所有像素都必须命中 RGB `[195,13,24] ±1`，命中后才进入初掉落截图与刀名识别流程。
+
+特化和极化仍由动画 ROI 的 OCR 识别。升级资源或自定义动作时，必须保留四个 pipeline 挂载点、颜色匹配规则和 `debug/sword_drop/` 截图行为。
+
 ### `runtime.custom-action-loading-isolation`
 
 MATR 的资源包包含运行时动态编译的自定义动作。`MFAExtensions.ToBitmap` 必须接受 MFAFramework 返回的 `IMaaImageBuffer` 接口，否则使用 `IMaaContext.GetImage()` 的动作会在编译阶段失败，随后在 pipeline 中表现为 `Action is null`。

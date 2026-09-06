@@ -116,6 +116,17 @@
       "notes": "项目根目录内可做大小写容错，不能扩展为任意磁盘搜索。资源定义和资源目录固定从 assets/interface.json、assets/interface.jsonc、assets/resource 读取，否则会触发上游默认资源兜底。VersionChecker 必须同时识别包含 assets/interface.json 与 assets/resource 的完整程序包，以及根目录直接包含 interface.json 与 resource 的仅资源包；后者的资源文件、接口文件和增量变更路径必须映射到 assets 目录。MaaProcessor.ProjectDir 必须是 interface 文件所在的 assets 目录；资源路径与 CheckInterface 默认路径统一使用 {PROJECT_DIR}/resource/base，最终解析为 assets/resource/base，不能在根目录创建 resource/base。Windows 发布包统一使用 runtimes/libs，运行时探测配置必须同步指向该目录；根级 libs 仅用于补充缺失依赖，不能覆盖 runtimes/libs 的本次发布产物。桌面项目的 AssemblyName 与 OutputName 必须为 MATR；不能恢复上游 MFAAvalonia 输出名，否则 pack_win.ps1 会回退打包根目录残留的旧 MATR 产物。Windows 打包必须先发布，将宿主文件和 runtimes 同步到开发根目录，再以根目录为输入执行 pack_win.ps1。"
     },
     {
+      "id": "resource.sword-drop-recognition",
+      "title": "刀剑掉落记录与初掉落颜色识别",
+      "purpose": "保留 MATR 的刀剑掉落日志、播报和初掉落截图，并使用资源画面特征识别初掉落。",
+      "files": ["assets/resource/base/custom/SwordDropLogAction.cs", "_src/MFAAvalonia/Extensions/MaaFW/Custom/SwordDropNotificationMatcher.cs", "assets/resource/base/pipeline/Sortie.json", "assets/resource/base/pipeline/Underground.json", "assets/resource/base/pipeline/LRentaisen.json", "assets/resource/base/pipeline/TacticalTraining.json"],
+      "baseline_upstream": "2.16.1",
+      "last_verified_upstream": "2.16.1",
+      "migration_strategy": "保留四类任务的 SwordDropLogAction 挂载、刀名校验与播报；初掉落只使用 [180,397,8,30] 区域的 RGB [195,13,24] ±1 全像素匹配，不恢复初掉落 OCR。",
+      "verification": ["初掉落颜色区域全部命中时保存截图并继续识别刀名", "颜色区域任一点超出容差时不判定为初掉落", "特化和极化继续由动画 OCR 识别", "SwordDropLogAction 动态编译并注册成功"],
+      "notes": "初掉落动画文字 OCR 不稳定，不能作为初掉落截图触发条件；颜色匹配按 1280×720 基准坐标执行。"
+    },
+    {
       "id": "runtime.custom-action-loading-isolation",
       "title": "自定义动作动态编译适配与资源隔离",
       "purpose": "保证运行时动态编译的自定义动作能适配 MFAFramework 接口，并避免资源切换时混用不同版本的动作。",
