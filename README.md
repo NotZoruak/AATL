@@ -127,39 +127,61 @@ MATR 自带日志打包功能：在任务页面的“日志”卡片右上角点
 
 ```
 MATR/
-├── matr.exe                              ← 桌面启动入口
-├── appsettings.json                      ← 应用配置
 ├── assets/
 │   ├── interface.json                    ← 任务与选项配置
 │   └── resource/
 │       ├── base/
 │       │   ├── pipeline/                 ← 自动化任务流水线（JSON）
-│       │   │   ├── Sortie.json           ← 合战场
-│       │   │   ├── Underground.json      ← 地下城
-│       │   │   ├── Expedition.json       ← 远征
-│       │   │   ├── LRentaisen.json       ← 陆联（联队战）
-│       │   │   ├── TacticalTraining.json ← 战术强化训练
-│       │   │   ├── FlowerBrush.json      ← 刷花
-│       │   │   ├── Disassemble.json      ← 刀解
-│       │   │   ├── NewMix.json           ← 习合
-│       │   │   └── GoHome.json           ← 回到本丸
 │       │   ├── image/                    ← 模板匹配图片
 │       │   ├── custom/                   ← 自定义动作脚本
 │       │   └── model/ocr/                ← OCR 模型
 │       ├── logo/                         ← 程序图标
 │       ├── silhouette/                   ← 剪影识别样板
 │       └── announcement/                 ← 公告
-├── _src/                                 ← C# 源代码
+├── _src/                                 ← C# 源代码与解决方案
+│   ├── MFAAvalonia/                      ← 核心库、界面、服务和业务逻辑
+│   ├── MFAAvalonia.Desktop/              ← Windows/macOS 桌面端宿主
+│   ├── MFAAvalonia.Android/              ← Android 端宿主
+│   ├── MFAAvalonia.Tests/                ← 自动化测试
+│   └── MFAAvalonia.sln                   ← Visual Studio 解决方案
 ├── docs/                                 ← 项目文档
 ├── tools/                                ← 构建/发布脚本
 ├── screenshots/                           ← README 展示图片
-├── runtimes/                             ← .NET 运行时库
-├── .github/                              ← CI/CD workflows
+├── runtimes/                             ← 本地 .NET 运行时库
+├── .github/                              ← GitHub Issue 模板与工作流
 │   └── workflows/
 │       ├── mirrorchyan_release.yml       ← 发布时上传 Mirror酱
 │       └── check.yml                     ← PR 检查
 └── LICENSE
 ```
+
+## 源码运行
+
+如果希望从源码运行或参与开发，请先安装 [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)，然后执行：
+
+```powershell
+git clone https://github.com/NotZoruak/MATR.git
+Set-Location MATR
+dotnet run --project _src/MFAAvalonia.Desktop
+```
+
+也可以先构建桌面端项目：
+
+```powershell
+dotnet build _src/MFAAvalonia.Desktop
+```
+
+程序运行时需要从项目根目录加载 `assets/` 等资源目录。若要修改自动化流程，请优先阅读 `docs/` 中的相关说明，并遵循现有 pipeline 和自定义动作的编写约定。
+
+## 欢迎迁移到其他版本与平台
+
+目前 MATR 主要面向国服 PC 端，并通过 ADB 连接模拟器运行。我们非常欢迎熟悉《刀剑乱舞》日服，或希望将 MATR 迁移到安卓端的开发者参与：
+
+- **日服迁移**：欢迎熟悉日服的开发者直接将适配内容贡献到 MATR，补充日服界面、文本、流程差异对应的识别资源和 pipeline；如果希望基于 MATR 的整体逻辑和实现思路独立创建适配日服的项目，也同样欢迎。无论采用哪种方式，最好都附上可公开使用的截图及测试说明。
+- **安卓端迁移**：欢迎完善 `_src/MFAAvalonia.Android/`，或探索适用于安卓设备的连接、权限和运行方式。
+- **协作方式**：可以先在 [GitHub Issues](https://github.com/NotZoruak/MATR/issues) 说明目标和现状，也欢迎直接提交 PR。较大的改动建议先开 Issue 讨论方案，避免重复工作。
+
+如果你完成了日服或安卓端的适配，也欢迎与社区分享，让更多玩家能够使用和维护这些版本。
 
 ## 致谢
 
