@@ -41,6 +41,12 @@
 
 更新数据任务按间隔执行，状态存入实例配置。需验证间隔跳过与实例重新加载。
 
+### `daily-task.per-game-day-completion`
+
+一键日课的登录奖励、暖心礼包、合成、刀解和锻刀使用 MATR 自定义的游戏日完成台账。完成日期按每日 5:00 切换；状态写入 `debug/logs/daily-task-completion.log`。只有实际完成路径写入台账：无合成素材、刀解素材不足或未完成 3 次锻刀均不得标记为完成。
+
+台账由 `DailyTaskCompletionService` 统一读写，并通过自定义 action 接入 pipeline。升级时需同时保留日志文件格式、检查/写入 action 注册，以及日课各项目的成功路径和跳过路径。
+
 ### `work-records.name-dialog-registration`
 
 工作记录的保存、另存与重命名均通过 `WorkRecordNameDialogViewModel` 输入名称。该 ViewModel 必须在 `App.ConfigureViews` 注册为 `WorkRecordNameDialogView`；上游升级时即使两个源文件仍存在，也不得遗漏这条映射，否则保存会提示找不到对应视图。
@@ -53,7 +59,11 @@
 
 任务队列需要在普通任务之间自动插入 `GoHome`，确保下一个游戏任务从本丸开始；最后一个任务后不插入。MFAA 提供的特殊任务通过 `Entry` 标识（如 `CountdownAction`、`WebhookAction`）识别，特殊任务前不得插入回本丸。特殊任务集合由任务队列策略与任务添加界面共用，升级时不得恢复为无条件插入。
 
+有限重复的 MAAFW 任务在每轮成功后必须向 GUI 日志输出“任务完成：任务名 进度 X/Y”。该行为位于 `MFATask.Run` 的循环内，`MaaAction` 返回成功后触发；无限重复与单次任务不输出。升级时不得因将 action 改为返回 `MaaJobStatus` 而遗漏该输出。
+
 任务失败时除保留界面内提示与外部通知外，还必须调用 `ToastNotification.Show` 发送系统通知，使失败、成功的任务结束反馈保持一致。升级时检查失败分支，避免只剩界面内日志而用户错过失败结果。
+
+合战场任务的 `repeatable` 固定为 `false`，但“异去”模式的轮次数由“过去/异去”选项下的 `异去_重复次数` 输入项决定。`MaaProcessor.CreateNodeAndParam` 必须从该下级选项读取 `repeat_count`，并将正整数与 `-1`（无限循环）直接作为队列轮次；不得因合战场未标记为可重复而压成单次执行。“过去”模式保持三轮的既有策略。
 
 ### `task.sync-expedition-reuse`
 

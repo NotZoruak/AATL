@@ -1029,6 +1029,9 @@
     <data name="TaskStart" xml:space="preserve">
         <value>Starting task: {0}</value>
     </data>
+    <data name="TaskRoundComplete" xml:space="preserve">
+        <value>Task completed: {0}, progress {1}/{2}</value>
+    </data>
     <data name="TaskStopped" xml:space="preserve">
         <value>Task has been stopped</value>
     </data>

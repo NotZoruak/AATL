@@ -72,6 +72,7 @@ public partial class MFATask : ObservableObject
 
         try
         {
+            var infinite = Count < 0;
             if (Count < 0)
                 Count = int.MaxValue;
             OwnerViewModel?.MarkTaskRunning(SourceItem, RunId);
@@ -106,6 +107,18 @@ public partial class MFATask : ObservableObject
                     token.ThrowIfCancellationRequested();
                 }
                 OwnerViewModel?.MarkTaskIterationCompleted(SourceItem, RunId);
+                // 有限重复任务每轮成功后输出完成进度；无限任务与单次任务不重复输出。
+                if (!infinite && Count > 1 && Type == MFATaskType.MAAFW)
+                {
+                    OwnerViewModel?.AddLogByKey(
+                        LangKeys.TaskRoundComplete,
+                        (Avalonia.Media.IBrush?)null,
+                        true,
+                        true,
+                        LanguageHelper.GetLocalizedString(Name),
+                        (i + 1).ToString(),
+                        Count.ToString());
+                }
             }
             if (hasFailed)
             {

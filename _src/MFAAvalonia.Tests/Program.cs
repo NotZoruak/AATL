@@ -40,6 +40,20 @@ var taskQueueViewModelSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "ViewModels", "Pages", "TaskQueueViewModel.cs"));
 var taskStartProcessorSource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Extensions", "MaaFW", "MaaProcessor.cs"));
+var mfaTaskSource = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "ValueType", "MFATask.cs"));
+var sortieRepeatSource = ExtractSourceSection(
+    taskStartProcessorSource,
+    "private NodeAndParam CreateNodeAndParam",
+    "private void ApplyFormationPresetOverride");
+AssertTrue(sortieRepeatSource.Contains("var modeOption = task.InterfaceItem?.Option?.FirstOrDefault(o => o.Name == \"过去/异去\")", StringComparison.Ordinal)
+    && sortieRepeatSource.Contains("modeOption.Index == 1", StringComparison.Ordinal)
+    && sortieRepeatSource.Contains("modeOption.SubOptions?.FirstOrDefault(o => o.Name == \"异去_重复次数\")", StringComparison.Ordinal)
+    && sortieRepeatSource.Contains("repeatOption.Data.TryGetValue(\"repeat_count\", out var repeatStr)", StringComparison.Ordinal),
+    "异去模式必须从过去/异去的下级重复次数读取轮数，不能因合战场未标记 repeatable 而固定为单次");
+AssertTrue(mfaTaskSource.Contains("!infinite && Count > 1 && Type == MFATaskType.MAAFW", StringComparison.Ordinal)
+    && mfaTaskSource.Contains("LangKeys.TaskRoundComplete", StringComparison.Ordinal),
+    "有限重复任务每完成一轮都必须输出任务完成和当前进度");
 var taskQueueContinuationPolicySource = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "_src", "MFAAvalonia", "Helper", "TaskQueueContinuationPolicy.cs"));
 AssertTrue(taskQueueContinuationPolicySource.Contains("ShouldInsertGoHome", StringComparison.Ordinal),
@@ -849,8 +863,11 @@ AssertTrue(
     $"卡死重启开关应覆盖全部 FallbackWait：{string.Join(", ", fallbackWaitNames.Where(name => freezeRestartOverride?[name]?["enabled"]?.Value<bool>() != false))}");
 AssertTrue(
     freezeRestartOverride?["DT_LoginRewardHub"]?["on_error"]?.Values<string>()
-        .SequenceEqual(["DT_RestartGame"]) == true,
-    "开启卡死重启后，日课登录奖励 hub 超时应转入 DT_RestartGame");
+        .SequenceEqual(["DT_RestartGameReturnLoginRewardHub"]) == true
+    && dailyPipeline["DT_RestartGameReturnLoginRewardHub"]?["action"]?["custom_action"]?.Value<string>() == "RestartGameAction"
+    && dailyPipeline["DT_RestartGameReturnLoginRewardHub"]?["next"]?.Values<string>()
+        .SequenceEqual(["DT_LoginRewardHub"]) == true,
+    "开启卡死重启后，日课登录奖励 hub 超时必须重启游戏并回到登录奖励 hub");
 var freezeTimeoutOverride = interfaceJson["option"]?["卡死等待时间"]?["pipeline_override"] as JObject;
 AssertTrue(
     freezeTimeoutOverride?["DT_DetectWhereAmI"]?["timeout"]?.Value<string>() == "{timeout_seconds}000",
@@ -1425,6 +1442,40 @@ finally
     DeleteDirectoryIfExists(updateDataConfigRoot);
 }
 
+var dailyTaskCompletionLogRoot = Path.Combine(Path.GetTempPath(), $"matr-daily-task-completion-{Guid.NewGuid():N}");
+Directory.CreateDirectory(dailyTaskCompletionLogRoot);
+AppPaths.LogsDirectory = dailyTaskCompletionLogRoot;
+try
+{
+    var beforeReset = new DateTime(2026, 9, 6, 4, 59, 0, DateTimeKind.Local);
+    var afterReset = new DateTime(2026, 9, 6, 5, 0, 0, DateTimeKind.Local);
+
+    AssertTrue(InvokeDailyTaskShouldRun("login_reward", beforeReset),
+        "登录奖励首次执行前应允许运行");
+    InvokeDailyTaskMarkCompleted("login_reward", beforeReset);
+    AssertFalse(InvokeDailyTaskShouldRun("login_reward", beforeReset),
+        "同一游戏日内已完成的登录奖励应跳过");
+    AssertTrue(InvokeDailyTaskShouldRun("login_reward", afterReset),
+        "每日 05:00 后登录奖励应重新允许运行");
+
+    InvokeDailyTaskMarkCompleted("warm_gift", afterReset);
+    AssertFalse(InvokeDailyTaskShouldRun("warm_gift", afterReset.AddHours(12)),
+        "暖心礼包完成标记应独立于登录奖励");
+    AssertTrue(InvokeDailyTaskShouldRun("mix", afterReset.AddHours(12)),
+        "未完成合成时不应因其他项目完成而跳过");
+    AssertTrue(InvokeDailyTaskShouldRun("forge", afterReset.AddDays(1)),
+        "锻刀跨游戏日后应允许运行");
+
+    var completionLogPath = Path.Combine(dailyTaskCompletionLogRoot, "daily-task-completion.log");
+    AssertTrue(File.Exists(completionLogPath)
+        && File.ReadAllLines(completionLogPath).Length == 2,
+        "日课完成状态应写入独立日志文件，且同一项目同一天不重复写入");
+}
+finally
+{
+    DeleteDirectoryIfExists(dailyTaskCompletionLogRoot);
+}
+
 ConfigurationManager.Current.Reset();
 var oldWarehouse = new WarehouseData
 {
@@ -1681,6 +1732,12 @@ static DateTime? InvokeUpdateDataGetLastSucceeded(InstanceConfiguration configur
 
 static void InvokeUpdateDataMarkSucceeded(InstanceConfiguration configuration, DateTime now) =>
     InvokeStaticMethod("MFAAvalonia.Services.UpdateDataScheduleService", "MarkSucceeded", configuration, now);
+
+static bool InvokeDailyTaskShouldRun(string item, DateTime now) =>
+    (bool)InvokeStaticMethod("MFAAvalonia.Services.DailyTaskCompletionService", "ShouldRun", item, now)!;
+
+static void InvokeDailyTaskMarkCompleted(string item, DateTime now) =>
+    InvokeStaticMethod("MFAAvalonia.Services.DailyTaskCompletionService", "MarkCompleted", item, now);
 
 static bool InvokeTrySaveWarehouseDraft(string draftPath) =>
     (bool)InvokeStaticMethod("MFAAvalonia.Services.UpdateDataPersistenceService", "TrySaveWarehouseDraft", draftPath)!;

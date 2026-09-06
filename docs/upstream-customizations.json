@@ -51,6 +51,17 @@
       "notes": "与任务队列统计共同验证。"
     },
     {
+      "id": "daily-task.per-game-day-completion",
+      "title": "一键日课游戏日完成台账",
+      "purpose": "记录登录奖励、暖心礼包、合成、刀解和锻刀在当前游戏日是否已实际完成，避免重复执行。",
+      "files": ["assets/interface.json", "assets/resource/base/pipeline/DailyTask.json", "_src/MFAAvalonia/Helper/AppPaths.cs", "_src/MFAAvalonia/Services/DailyTaskCompletionService.cs", "_src/MFAAvalonia/Extensions/MaaFW/Custom/DailyTaskCompletionCheckAction.cs", "_src/MFAAvalonia/Extensions/MaaFW/Custom/DailyTaskCompletionMarkAction.cs", "_src/MFAAvalonia/Extensions/MaaFW/MaaProcessor.cs", "_src/MFAAvalonia.Tests/Program.cs", "_src/MFAAvalonia.Tests/ConfigurationTestStubs.cs", "_src/MFAAvalonia.Tests/MFAAvalonia.Tests.csproj"],
+      "baseline_upstream": "2.16.1",
+      "last_verified_upstream": "2.16.1",
+      "migration_strategy": "保留 debug/logs/daily-task-completion.log 的完成日期记录，以每日 5:00 计算游戏日；保留检查与写入自定义 action 的注册，并按日课项目的实际成功路径重放 pipeline 覆盖。",
+      "verification": ["同一游戏日重复运行时跳过已完成项目", "每日 5:00 后允许再次执行", "日志文件可被重新读取并恢复完成状态", "无合成素材时不写入合成完成记录", "刀解素材不足时不写入刀解完成记录", "未完成 3 次锻刀时不写入锻刀完成记录", "登录奖励和暖心礼包的已领取完成路径会写入记录"],
+      "notes": "完成记录不是临时内存状态；由 DailyTaskCompletionService 持久化到 debug/logs/daily-task-completion.log。游戏日按本地时间每日 5:00 切换。只有输出完成结果的实际成功路径才能调用写入 action，跳过、素材不足和锻刀未完成路径不得标记。"
+    },
+    {
       "id": "work-records.name-dialog-registration",
       "title": "工作记录命名对话框注册",
       "purpose": "保存、另存和重命名工作记录时提供名称输入对话框。",
@@ -69,8 +80,8 @@
       "baseline_upstream": "2.13.0",
       "last_verified_upstream": "2.16.1",
       "migration_strategy": "以 2.16.1 RunResult 和取消模型为基础重放，不复制旧队列主循环。",
-      "verification": ["失败且关闭继续时停止", "失败且开启继续时继续", "用户停止不触发后续操作", "恢复索引仅在成功后推进", "异步任务队列完整结束后才进入停止流程", "正常完成的任务不被记录为手动停止", "普通任务之间自动插入回本丸", "最后一个任务后不插入回本丸", "MFAA 特殊任务前不插入回本丸", "任务添加界面与队列插入逻辑共用特殊任务 Entry 集合", "任务失败时发送系统通知"],
-      "notes": "当前分支未提交改动属于该项快照的一部分。任务队列外层必须使用 Func<Task> 重载等待 ExecuteTasks 完整返回，不能将异步 lambda 绑定到 Action 重载。普通任务之间通过 GoHome 确保从本丸开始；MFAA 特殊任务由 Entry 标识识别，特殊任务前跳过 GoHome，不得恢复为无条件插入。任务失败时除保留界面内提示和外部通知外，必须调用 ToastNotification.Show 发送系统通知。"
+      "verification": ["失败且关闭继续时停止", "失败且开启继续时继续", "用户停止不触发后续操作", "恢复索引仅在成功后推进", "异步任务队列完整结束后才进入停止流程", "正常完成的任务不被记录为手动停止", "普通任务之间自动插入回本丸", "最后一个任务后不插入回本丸", "MFAA 特殊任务前不插入回本丸", "任务添加界面与队列插入逻辑共用特殊任务 Entry 集合", "任务失败时发送系统通知", "异去模式从过去/异去的下级重复次数读取轮数，repeatable 为 false 时仍按正整数或 -1 生效", "有限重复任务每轮成功后在 GUI 日志输出任务完成与 X/Y 进度"],
+      "notes": "当前分支未提交改动属于该项快照的一部分。任务队列外层必须使用 Func<Task> 重载等待 ExecuteTasks 完整返回，不能将异步 lambda 绑定到 Action 重载。普通任务之间通过 GoHome 确保从本丸开始；MFAA 特殊任务由 Entry 标识识别，特殊任务前跳过 GoHome，不得恢复为无条件插入。任务失败时除保留界面内提示和外部通知外，必须调用 ToastNotification.Show 发送系统通知。合战场异去的重复次数存储在过去/异去选项的下级异去_重复次数中；CreateNodeAndParam 必须读取该值并绕过合战场 repeatable=false 的单次限制，-1 表示无限循环；过去模式维持三轮策略。有限重复的 MAAFW 任务在 MaaAction 成功后必须输出 TaskRoundComplete；无限重复和单次任务不输出。"
     },
     {
       "id": "recovery.game-and-emulator-restart",

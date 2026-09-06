@@ -3979,6 +3979,26 @@ public class MaaProcessor
             ApplyFormationPresetOverride(ref taskModels, task);
 
         var taskParams = SerializeTaskParams(taskModels);
+        // 异去重复次数位于“过去/异去”选项的下级选项中，不能受任务本身 repeatable=false 的限制。
+        var repeatCount = task.InterfaceItem?.RepeatCount;
+        var modeOption = task.InterfaceItem?.Option?.FirstOrDefault(o => o.Name == "过去/异去");
+        if (modeOption != null)
+        {
+            if (modeOption.Index == 1)
+            {
+                var repeatOption = modeOption.SubOptions?.FirstOrDefault(o => o.Name == "异去_重复次数");
+                if (repeatOption?.Data != null
+                    && repeatOption.Data.TryGetValue("repeat_count", out var repeatStr)
+                    && int.TryParse(repeatStr, out var repeatValue))
+                {
+                    repeatCount = repeatValue;
+                }
+            }
+            else
+            {
+                repeatCount = 3;
+            }
+        }
         // var settings = new JsonSerializerSettings
         // {
         //     Formatting = Formatting.Indented,
@@ -3995,7 +4015,11 @@ public class MaaProcessor
             Index = index,
             Name = task.Name,
             Entry = task.InterfaceItem?.Entry,
-            Count = task.InterfaceItem?.Repeatable == true ? (task.InterfaceItem?.RepeatCount ?? 1) : 1,
+            Count = repeatCount is > 0
+                ? repeatCount.Value
+                : (repeatCount == -1
+                    ? -1
+                    : (task.InterfaceItem?.Repeatable == true ? (repeatCount ?? 1) : 1)),
             // Tasks = tasks,
             Param = taskParams,
             SourceItem = task,
@@ -5180,6 +5204,8 @@ public class MaaProcessor
             tasker.Resource.Register(new Custom.SelectFlowerTeamAction());
             tasker.Resource.Register(new Custom.ClickTopRepairableSwordAction());
             tasker.Resource.Register(new Custom.RepairCooldownCheckAction());
+            tasker.Resource.Register(new Custom.DailyTaskCompletionCheckAction());
+            tasker.Resource.Register(new Custom.DailyTaskCompletionMarkAction());
             tasker.Resource.Register(new Custom.ForgeCapacityCheckAction());
             tasker.Resource.Register(new Custom.ForgeDisassembleSelectAction());
             tasker.Resource.Register(new Custom.DrillDangerCheckAction());
