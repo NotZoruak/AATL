@@ -96,6 +96,8 @@ var packWinScript = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "tools", "pack_win.ps1"));
 var packMacScript = File.ReadAllText(Path.Combine(
     Directory.GetCurrentDirectory(), "tools", "pack_mac.ps1"));
+var packAllScript = File.ReadAllText(Path.Combine(
+    Directory.GetCurrentDirectory(), "tools", "pack_all.ps1"));
 AssertTrue(rootViewSource.IndexOf("InitializeComponent();", StringComparison.Ordinal)
     < rootViewSource.IndexOf("LoadWindowSizeAndPosition();", StringComparison.Ordinal),
     "窗口应在加载已保存尺寸前完成XAML初始化，避免默认尺寸覆盖配置");
@@ -201,6 +203,11 @@ AssertTrue(packMacScript.Contains("$AgentTarget = Join-Path $MacOsDir 'MaaAgentB
 AssertTrue(packMacScript.Contains("$BundleExecutable = Join-Path $MacOsDir 'MATR'", StringComparison.Ordinal)
     && !packMacScript.Contains("$SourceExecutable = Join-Path $MacOsDir 'MFAAvalonia'", StringComparison.Ordinal),
     "macOS 打包脚本必须直接使用发布产物中的 MATR 入口，不能再查找旧的 MFAAvalonia 名称");
+AssertTrue(packMacScript.Contains("$StagingDir = Join-Path $Root '_temp_macos'", StringComparison.Ordinal)
+    && packMacScript.Contains("Remove-Item -LiteralPath $StagingDir -Recurse -Force", StringComparison.Ordinal),
+    "macOS 打包前必须完整清理临时目录，避免不完整残留导致程序集重复进入压缩包");
+AssertTrue(packAllScript.Contains("Remove-Item -LiteralPath (Join-Path $PublishBase 'osx-arm64\\publish') -Recurse -Force", StringComparison.Ordinal),
+    "macOS 发布前必须清理旧发布目录，避免过期程序集与当前 runtimes/libs 重复打入发布包");
 AssertTrue(taskOptionGeneratorSource.Contains("var grid = new UniformGrid", StringComparison.Ordinal)
     && taskOptionGeneratorSource.Contains("void UpdateColumns()", StringComparison.Ordinal)
     && taskOptionGeneratorSource.Contains("grid.Columns = columns", StringComparison.Ordinal),

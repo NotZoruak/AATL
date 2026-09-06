@@ -1,4 +1,4 @@
-# 一键打包 win-x64 与 macos-arm64 两个发布包（本地手动发布用）
+﻿# 一键打包 win-x64 与 macos-arm64 两个发布包（本地手动发布用）
 # 用法: pwsh tools/pack_all.ps1 -Version v0.13.0-beta.1
 # 产物: MATR-$Version-win-x64.zip 与 MATR-$Version-macos-arm64.zip（仓库根目录）
 param(
@@ -24,6 +24,9 @@ Invoke-Dotnet @('publish', $Project, '-c', 'Release', '-p:Platform=AnyCPU', '-r'
 pwsh (Join-Path $Root "tools\pack_win.ps1") -Version $Version -PublishDir (Join-Path $PublishBase 'win-x64\publish')
 
 Write-Host "== macOS arm64 交叉发布 =="
+if (Test-Path (Join-Path $PublishBase 'osx-arm64\publish')) {
+    Remove-Item -LiteralPath (Join-Path $PublishBase 'osx-arm64\publish') -Recurse -Force
+}
 Invoke-Dotnet @('restore', $Project, '-p:Configuration=Release', '-p:Platform=AnyCPU', '-r', 'osx-arm64',
     '-p:MATR_TARGET_RID=osx-arm64', '--disable-parallel')
 Invoke-Dotnet @('publish', $Project, '-c', 'Release', '-p:Platform=AnyCPU', '-r', 'osx-arm64',

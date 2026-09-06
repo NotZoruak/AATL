@@ -9,7 +9,8 @@ $ErrorActionPreference = 'Stop'
 
 $Root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $Platform = "macos-arm64"
-$AppDir = Join-Path $Root "_temp_macos\MATR.app"
+$StagingDir = Join-Path $Root '_temp_macos'
+$AppDir = Join-Path $StagingDir 'MATR.app'
 $MacOsDir = Join-Path $AppDir "Contents\MacOS"
 $ResourcesDir = Join-Path $AppDir "Contents\Resources"
 $ZipFile = Join-Path $Root "MATR-$Version-$Platform.zip"
@@ -43,7 +44,7 @@ function New-UnixZip([string]$SourceDir, [string]$Destination) {
     } finally { $stream.Dispose() }
 }
 
-if (Test-Path $AppDir) { Remove-Item -LiteralPath (Join-Path $Root '_temp_macos') -Recurse -Force }
+if (Test-Path $StagingDir) { Remove-Item -LiteralPath $StagingDir -Recurse -Force }
 if (Test-Path $ZipFile) { Remove-Item -LiteralPath $ZipFile -Force }
 
 New-Item -ItemType Directory -Force -Path $MacOsDir, $ResourcesDir, (Join-Path $MacOsDir 'assets') | Out-Null
@@ -86,6 +87,6 @@ $bundleVersion = Get-BundleVersion $Version
 </dict></plist>
 "@ | Set-Content -LiteralPath (Join-Path $AppDir 'Contents\Info.plist') -Encoding utf8NoBOM
 
-New-UnixZip (Join-Path $Root '_temp_macos') $ZipFile
-Remove-Item -LiteralPath (Join-Path $Root '_temp_macos') -Recurse -Force
+New-UnixZip $StagingDir $ZipFile
+Remove-Item -LiteralPath $StagingDir -Recurse -Force
 Write-Host "macOS 打包完成: $ZipFile"
